@@ -1,0 +1,82 @@
+{%- style -%}
+  .footer-trademark {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(54, 56, 76, 0.1); /* CHARCOALの透過色 */
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #36384C; /* CHARCOAL */
+  }
+  .footer-trademark__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+  }
+  .footer-trademark__list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .footer-trademark__link {
+    color: #36384C;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.3s;
+  }
+  .footer-trademark__link:hover {
+    opacity: 0.7;
+  }
+  @media screen and (max-width: 749px) {
+    .footer-trademark__list {
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="footer-trademark color-{{ section.settings.color_scheme }}">
+  <div class="footer-trademark__container">
+    <p>ボタニー、ロータスリーフペイントは、株式会社アントレ・サン・フラッペの登録商標です。</p>
+    <ul class="footer-trademark__list">
+      <li>
+        <a href="https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2017-090539/40/ja" class="footer-trademark__link" target="_blank" rel="noopener">
+          ボタニー（第6026741号）
+        </a>
+      </li>
+      <li>
+        <a href="https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2020-046991/40/ja" class="footer-trademark__link" target="_blank" rel="noopener">
+          ロータスリーフ＆リンデン（第6304653号）
+        </a>
+      </li>
+      <li>
+        <a href="https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2019-034210/40/ja" class="footer-trademark__link" target="_blank" rel="noopener">
+          ロータスリーフペイント（第6147070号）
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "商標権表示",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "カラースキーム",
+      "default": "scheme-6"
+    }
+  ],
+  "presets": [
+    {
+      "name": "商標権表示"
+    }
+  ]
+}
+{% endschema %}

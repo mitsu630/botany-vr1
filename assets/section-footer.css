@@ -543,9 +543,8 @@
   text-align: right;
 }
 
+/* リッチテキスト・見出しは .rte / テーマのタイポグラフィに任せる */
 .footer-custom-content__text {
-  line-height: 1.6;
-  font-size: 1.2rem;
   width: 100%;
 }
 
@@ -571,6 +570,17 @@
 
 .footer-custom-content__link {
   text-decoration: none;
+}
+
+/* base.css の .link 固定 font-size を打ち消し、親（フッター本文）のテーマ設定に合わせる */
+.footer-custom-content .link.link--text,
+.footer-custom-content .footer-custom-content__link--text.link {
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  font-weight: inherit;
 }
 
 .footer-custom-content__link--text {

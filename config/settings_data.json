@@ -141,10 +141,10 @@
           "background": "#e9dccd",
           "background_gradient": "linear-gradient(54deg, rgba(233, 220, 205, 1) 14%, rgba(255, 255, 255, 1) 85%)",
           "text": "#36384c",
-          "button": "#121212",
-          "button_label": "#ffffff",
-          "secondary_button_label": "#121212",
-          "shadow": "#121212"
+          "button": "#613a43",
+          "button_label": "#e9dccd",
+          "secondary_button_label": "#36384c",
+          "shadow": "#36384c"
         }
       },
       "scheme-2": {

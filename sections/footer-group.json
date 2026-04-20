@@ -11,27 +11,44 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
-    "footer_trademark_Kr3fNL": {
-      "type": "footer-trademark",
-      "name": "商標権表示1",
-      "settings": {
-        "heading": "商標権表示",
-        "show_heading": false,
-        "heading_size": "h2",
-        "text": "<p>ボタニ―、ロータスリーフペイントは、株式会社アントレ・サン・フラッペの登録商標です。</p>",
-        "link_label_1": "ボタニー（第6026741号）",
-        "link_1": "https://j-platpat.inpit.go.jp/?uri=/c1801/TR/JP-2017-090539/40/ja",
-        "link_label_2": "ロータスリーフ＆リンデン（第6304653号）",
-        "link_2": "https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2020-046991/40/ja",
-        "link_label_3": "ロータスリーフペイント（第6147070号）",
-        "link_3": "https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2019-034210/40/ja",
-        "color_scheme": "scheme-5",
-        "padding_top": 20,
-        "padding_bottom": 20
-      }
-    },
     "footer": {
       "type": "footer",
+      "blocks": {
+        "custom_content_qKbE9E": {
+          "type": "custom_content",
+          "name": "著作権表示ブロック",
+          "settings": {
+            "text": "<p>ボタニー、ロータスリーフペイントは、株式会社アントレ・サン・フラッペの登録商標です。</p>",
+            "alignment": "center",
+            "color_scheme": "scheme-5",
+            "padding_top": 16,
+            "padding_bottom": 16,
+            "link_label_1": "ボタニー（登録商標第6026741号）",
+            "link_url_1": "https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2017-090539/40/ja",
+            "link_label_2": "ロータスリーフ＆リンデン（登録商標第6304653号）",
+            "link_url_2": "https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2020-046991/40/ja",
+            "link_label_3": "ロータスリーフペイント（登録商標第6147070号）",
+            "link_url_3": "https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2019-034210/40/ja",
+            "link_label_4": "",
+            "link_url_4": "",
+            "link_label_5": "",
+            "link_url_5": "",
+            "link_label_6": "",
+            "link_url_6": "",
+            "link_label_7": "",
+            "link_url_7": "",
+            "link_label_8": "",
+            "link_url_8": "",
+            "link_label_9": "",
+            "link_url_9": "",
+            "link_label_10": "",
+            "link_url_10": ""
+          }
+        }
+      },
+      "block_order": [
+        "custom_content_qKbE9E"
+      ],
       "settings": {
         "color_scheme": "scheme-5",
         "newsletter_enable": false,
@@ -49,7 +66,6 @@
     }
   },
   "order": [
-    "footer_trademark_Kr3fNL",
     "footer"
   ]
 }

@@ -46,6 +46,7 @@
         "two_column_media_QPjKen": {
           "type": "two_column_media",
           "settings": {
+            "force_full_width_on_desktop": true,
             "color_scheme": "scheme-1",
             "title": "ボタニーペインティングBOOK",
             "text": "<p>初心者でもわかりやすいよう画材の説明や葉の貼り方、色付けの手順を丁寧に紹介しています。また、スパッタリングやグリッターを用いる技法など幅広い作品つくりを楽しめるアイデアも満載!ボタニーペインティングと出逢って、ヨガ、カラーセラピー、植物やアートの仕事などにボタニーペインティングを上手に調和させて活躍されている方のインタビューページも、必見のページです。</p>",
@@ -58,6 +59,7 @@
           "type": "generic_card",
           "name": "NEWSの全力",
           "settings": {
+            "force_full_width_on_desktop": false,
             "video_url": "",
             "video_link": "http://youtube.com/watch?v=OOti3iXHmOI",
             "title": "TBS「NEWSの全力！！メイキング」に出演",
@@ -78,6 +80,7 @@
           "type": "generic_card",
           "name": "DaiichiTV",
           "settings": {
+            "force_full_width_on_desktop": false,
             "image": "shopify://shop_images/karina.jpg",
             "video_url": "",
             "video_link": "",
@@ -99,6 +102,7 @@
           "type": "generic_card",
           "name": "DaiichiTV",
           "settings": {
+            "force_full_width_on_desktop": false,
             "image": "shopify://shop_images/karina.jpg",
             "video_url": "",
             "video_link": "",

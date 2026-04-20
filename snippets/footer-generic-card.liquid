@@ -19,7 +19,7 @@
   endif
 
   assign has_video = false
-  assign ext_vid = block.settings.video_url
+  assign ext_vid = block.settings.video_url | default: block.settings.video_link
   assign vid_id = ext_vid.id
   assign vid_type = ext_vid.type
 

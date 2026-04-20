@@ -1087,6 +1087,10 @@
               "placeholder": "https://www.youtube.com/watch?v=...",
               "info": "When set, the video replaces the image. Plays inline after clicking the poster. For Vimeo, use the image field if you need a custom poster."
             },
+            "video_link": {
+              "label": "Video URL (fallback - YouTube / Vimeo)",
+              "info": "Fallback input if the video_url picker is not available. If either video field is set, the video replaces the image."
+            },
             "title": {
               "label": "Title",
               "default": "Card title"

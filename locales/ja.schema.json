@@ -932,6 +932,10 @@
               "placeholder": "https://www.youtube.com/watch?v=...",
               "info": "設定すると写真より動画が優先表示されます。再生はカード内で行われます。VimeoはShopifyが取得したサムネイル、または下の写真をサムネに使います。"
             },
+            "video_link": {
+              "label": "動画URL（予備・YouTube / Vimeo）",
+              "info": "上の「動画（YouTube / Vimeo）」が表示されない場合の予備入力欄です。どちらかにURLが入っていれば、写真より動画を優先表示します。"
+            },
             "title": {
               "label": "タイトル",
               "default": "カードのタイトル"

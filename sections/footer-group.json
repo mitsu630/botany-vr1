@@ -46,26 +46,36 @@
         "generic_card_gWYdMN": {
           "type": "generic_card",
           "settings": {
+            "video_url": "",
+            "video_link": "http://youtube.com/watch?v=OOti3iXHmOI",
             "title": "TBS「NEWSの全力！！メイキング」に出演",
             "excerpt": "<p>日本のTBSテレビ番組「NEWSの全力！！メイキング」で放送されました！<br/>日本の大人気男性アイドルグループNEWSのメンバー<br/>加藤シゲアキさん・小山慶一郎さん、Travis Japanのメンバー川島如恵留さん・中村海人さんに直接指導し、ボタニーペインティングの楽しさを体験していただきました！</p>",
             "card_link": "",
             "border_radius": 12,
-            "color_scheme": "scheme-1",
+            "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
             "padding": 16,
-            "image_ratio": "ratio-16-9"
+            "image_ratio": "square",
+            "title_font_size_rem": 1,
+            "excerpt_font_size_rem": 1,
+            "card_text_font_family": "inherit"
           }
         },
         "generic_card_Ax3CMG": {
           "type": "generic_card",
           "settings": {
             "image": "shopify://shop_images/karina.jpg",
+            "video_url": "",
+            "video_link": "",
             "title": "DaiichiTV「まるごと」に出演",
             "excerpt": "<h6>元なでしこジャパン 丸山桂里奈さんが「ボタニーペインティング」を体験しました！<br/>DaiichiTV 情報バラエティー番組「まるごと」<br/>丸山桂里奈さん、秋元啓二アナウンサーに感謝申し上げます！入力します。</h6>",
             "card_link": "",
             "border_radius": 10,
             "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
             "padding": 22,
-            "image_ratio": "square"
+            "image_ratio": "square",
+            "title_font_size_rem": 2,
+            "excerpt_font_size_rem": 1,
+            "card_text_font_family": "inherit"
           }
         },
         "custom_content_fkdyfz": {
@@ -75,6 +85,8 @@
             "text": "<p>【運営事務局】<br/>株式会社アントレ・サン・フラッペ<br/>〒411-0016静岡県三島市塚原新田24-3<br/>【配送部】<br/>〒411-0016静岡県三島市塚原新田218-6<br/>【運営事務局休業日】<br/>土.日.祝日※シーズン休<br/>【配送部休業日】<br/>水.土.日.祝日※シーズン休</p>",
             "alignment": "center",
             "color_scheme": "scheme-5",
+            "text_font_size_rem": 1.6,
+            "text_font_family": "inherit",
             "padding_top": 16,
             "padding_bottom": 0,
             "link_label_1": "",
@@ -117,6 +129,8 @@
             "text": "",
             "alignment": "center",
             "color_scheme": "scheme-5",
+            "text_font_size_rem": 1.6,
+            "text_font_family": "inherit",
             "padding_top": 0,
             "padding_bottom": 0,
             "link_label_1": "",
@@ -159,6 +173,8 @@
             "text": "<p>ボタニー、ロータスリーフペイントは、株式会社アントレ・サン・フラッペの登録商標です。</p>",
             "alignment": "center",
             "color_scheme": "scheme-5",
+            "text_font_size_rem": 1.6,
+            "text_font_family": "inherit",
             "padding_top": 0,
             "padding_bottom": 0,
             "link_label_1": "ボタニー（登録商標第6026741号）",

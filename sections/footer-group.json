@@ -43,6 +43,18 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "generic_card_gWYdMN": {
+          "type": "generic_card",
+          "settings": {
+            "title": "TBS「NEWSの全力！！メイキング」に出演",
+            "excerpt": "<p>日本のTBSテレビ番組「NEWSの全力！！メイキング」で放送されました！<br/>日本の大人気男性アイドルグループNEWSのメンバー<br/>加藤シゲアキさん・小山慶一郎さん、Travis Japanのメンバー川島如恵留さん・中村海人さんに直接指導し、ボタニーペインティングの楽しさを体験していただきました！</p>",
+            "card_link": "https://www.youtube.com/watch?v=OOti3iXHmOI&t=3s",
+            "border_radius": 12,
+            "color_scheme": "scheme-1",
+            "padding": 16,
+            "image_ratio": "ratio-16-9"
+          }
+        },
         "generic_card_Ax3CMG": {
           "type": "generic_card",
           "settings": {
@@ -183,6 +195,7 @@
         }
       },
       "block_order": [
+        "generic_card_gWYdMN",
         "generic_card_Ax3CMG",
         "custom_content_fkdyfz",
         "custom_content_gwq8dj",

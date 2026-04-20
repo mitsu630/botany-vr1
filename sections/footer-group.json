@@ -43,6 +43,19 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "generic_card_Ax3CMG": {
+          "type": "generic_card",
+          "settings": {
+            "image": "shopify://shop_images/karina.jpg",
+            "title": "DaiichiTV「まるごと」に出演",
+            "excerpt": "<p>説明文や抜粋を元なでしこジャパン 丸山桂里奈さんが「ボタニーペインティング」を体験しました！<br/>DaiichiTV 情報バラエティー番組「まるごと」<br/>丸山桂里奈さん、秋元啓二アナウンサーに感謝申し上げます！入力します。</p>",
+            "card_link": "",
+            "border_radius": 10,
+            "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+            "padding": 22,
+            "image_ratio": "square"
+          }
+        },
         "custom_content_fkdyfz": {
           "type": "custom_content",
           "name": "会社案内",
@@ -170,6 +183,7 @@
         }
       },
       "block_order": [
+        "generic_card_Ax3CMG",
         "custom_content_fkdyfz",
         "custom_content_gwq8dj",
         "custom_content_qKbE9E"

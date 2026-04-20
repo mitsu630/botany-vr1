@@ -102,7 +102,7 @@
                     href="{{ b.settings.link }}"
                   {% endif %}
                   class="footer-custom-content__link footer-custom-content__link--image"
-                  style="max-width: min(100%, {{ section_link_img_w }}px);"
+                  style="width: min(100%, {{ section_link_img_w }}px); max-width: min(100%, {{ section_link_img_w }}px);"
                   {{ b.shopify_attributes }}
                 >
                   {{
@@ -200,7 +200,7 @@
                   href="{{ lnk }}"
                 {% endif %}
                 class="footer-custom-content__link footer-custom-content__link--image"
-                style="max-width: min(100%, {{ img_w }}px);"
+                style="width: min(100%, {{ img_w }}px); max-width: min(100%, {{ img_w }}px);"
               >
                 {{
                   img

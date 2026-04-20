@@ -592,11 +592,12 @@
 }
 
 .footer-custom-content__link--image {
-  display: inline-block;
+  display: block;
   line-height: 0;
   border: none;
   outline: none;
   box-shadow: none;
+  box-sizing: border-box;
 }
 
 .footer-custom-content__link-image {

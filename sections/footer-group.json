@@ -11,6 +11,35 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "1776662935994908ce": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_Mm6iMb": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 22,
+            "instafeed_margin_bottom": 22,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "center",
+            "link_color": "#000000",
+            "background_color": "#613a43",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_Mm6iMb"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -18,31 +47,41 @@
           "type": "custom_content",
           "name": "会社案内",
           "settings": {
-            "text": "<p>【運営事務局】株式会社アントレ・サン・フラッペ<br/>〒411-0016静岡県三島市塚原新田24-3<br/>【配送部】〒411-0016静岡県三島市塚原新田218-6<br/>【運営事務局休業日】土.日.祝日※シーズン休<br/>【配送部休業日】水.土.日.祝日※シーズン休</p>",
+            "text": "<p>【運営事務局】<br/>株式会社アントレ・サン・フラッペ<br/>〒411-0016静岡県三島市塚原新田24-3<br/>【配送部】<br/>〒411-0016静岡県三島市塚原新田218-6<br/>【運営事務局休業日】<br/>土.日.祝日※シーズン休<br/>【配送部休業日】<br/>水.土.日.祝日※シーズン休</p>",
             "alignment": "center",
             "color_scheme": "scheme-5",
             "padding_top": 16,
             "padding_bottom": 0,
             "link_label_1": "",
             "link_image_1": "shopify://shop_images/rogo.png",
+            "link_image_width_1": 200,
             "link_url_1": "https://botanypainting.com/",
             "link_label_2": "",
+            "link_image_width_2": 370,
             "link_url_2": "",
             "link_label_3": "",
+            "link_image_width_3": 300,
             "link_url_3": "",
             "link_label_4": "",
+            "link_image_width_4": 300,
             "link_url_4": "",
             "link_label_5": "",
+            "link_image_width_5": 300,
             "link_url_5": "",
             "link_label_6": "",
+            "link_image_width_6": 300,
             "link_url_6": "",
             "link_label_7": "",
+            "link_image_width_7": 300,
             "link_url_7": "",
             "link_label_8": "",
+            "link_image_width_8": 300,
             "link_url_8": "",
             "link_label_9": "",
+            "link_image_width_9": 300,
             "link_url_9": "",
             "link_label_10": "",
+            "link_image_width_10": 300,
             "link_url_10": ""
           }
         },
@@ -57,24 +96,34 @@
             "padding_bottom": 0,
             "link_label_1": "",
             "link_image_1": "shopify://shop_images/handmade_a.jpg",
+            "link_image_width_1": 300,
             "link_url_1": "https://next-level.biz/enmusubi/botanypainting/",
             "link_label_2": "",
+            "link_image_width_2": 200,
             "link_url_2": "",
             "link_label_3": "",
+            "link_image_width_3": 300,
             "link_url_3": "",
             "link_label_4": "",
+            "link_image_width_4": 300,
             "link_url_4": "",
             "link_label_5": "",
+            "link_image_width_5": 300,
             "link_url_5": "",
             "link_label_6": "",
+            "link_image_width_6": 300,
             "link_url_6": "",
             "link_label_7": "",
+            "link_image_width_7": 300,
             "link_url_7": "",
             "link_label_8": "",
+            "link_image_width_8": 300,
             "link_url_8": "",
             "link_label_9": "",
+            "link_image_width_9": 300,
             "link_url_9": "",
             "link_label_10": "",
+            "link_image_width_10": 300,
             "link_url_10": ""
           }
         },
@@ -88,24 +137,34 @@
             "padding_top": 0,
             "padding_bottom": 0,
             "link_label_1": "ボタニー（登録商標第6026741号）",
+            "link_image_width_1": 300,
             "link_url_1": "https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2017-090539/40/ja",
             "link_label_2": "ロータスリーフ＆リンデン（登録商標第6304653号）",
+            "link_image_width_2": 300,
             "link_url_2": "https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2020-046991/40/ja",
             "link_label_3": "ロータスリーフペイント（登録商標第6147070号）",
+            "link_image_width_3": 300,
             "link_url_3": "https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2019-034210/40/ja",
             "link_label_4": "",
+            "link_image_width_4": 300,
             "link_url_4": "",
             "link_label_5": "",
+            "link_image_width_5": 300,
             "link_url_5": "",
             "link_label_6": "",
+            "link_image_width_6": 300,
             "link_url_6": "",
             "link_label_7": "",
+            "link_image_width_7": 300,
             "link_url_7": "",
             "link_label_8": "",
+            "link_image_width_8": 300,
             "link_url_8": "",
             "link_label_9": "",
+            "link_image_width_9": 300,
             "link_url_9": "",
             "link_label_10": "",
+            "link_image_width_10": 300,
             "link_url_10": ""
           }
         }
@@ -132,6 +191,7 @@
     }
   },
   "order": [
+    "1776662935994908ce",
     "footer"
   ]
 }

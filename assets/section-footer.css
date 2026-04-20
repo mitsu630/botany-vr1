@@ -637,7 +637,7 @@
 
 .footer-generic-card--is-link {
   text-decoration: none;
-  color: inherit;
+  color: rgb(var(--color-foreground));
   cursor: pointer;
   transition: opacity 0.2s ease;
 }
@@ -740,7 +740,7 @@
 
 .footer-generic-card__body-link {
   text-decoration: none;
-  color: inherit;
+  color: rgb(var(--color-foreground));
   display: block;
 }
 

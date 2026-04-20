@@ -48,6 +48,10 @@
   if btn_radius_setting >= 100
     assign btn_radius = 999
   endif
+
+  assign align = cfg.alignment | default: 'left'
+  assign mt = cfg.margin_top | default: 0
+  assign mb = cfg.margin_bottom | default: 0
 -%}
 
 {%- capture style_vars -%}
@@ -58,13 +62,15 @@
   --ftb-btn-bg: {{ btn_bg }};
   --ftb-btn-fg: {{ btn_fg }};
   --ftb-btn-radius: {{ btn_radius }}px;
+  --ftb-mt: {{ mt }}px;
+  --ftb-mb: {{ mb }}px;
   --ftb-t1-fs: {{ t1_fs }}rem;
   --ftb-t2-fs: {{ t2_fs }}rem;
   {% if t1_ff_css != blank %}--ftb-t1-ff: {{ t1_ff_css }};{% endif %}
   {% if t2_ff_css != blank %}--ftb-t2-ff: {{ t2_ff_css }};{% endif %}
 {%- endcapture -%}
 
-<div class="footer-ftb color-{{ cfg.color_scheme }} gradient" style="{{ style_vars | strip }}" {{ block.shopify_attributes }}>
+<div class="footer-ftb footer-ftb--align-{{ align }} color-{{ cfg.color_scheme }} gradient" style="{{ style_vars | strip }}" {{ block.shopify_attributes }}>
   <div class="footer-ftb__inner">
     {%- if t1 != blank -%}
       <div class="footer-ftb__text footer-ftb__text--1 rte">{{ t1 }}</div>

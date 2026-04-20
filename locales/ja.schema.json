@@ -1049,6 +1049,12 @@
             "force_full_width_on_desktop": {
               "label": "PCでも1カラム（全幅）で表示する"
             },
+            "alignment": {
+              "label": "配置",
+              "option_left": "左",
+              "option_center": "中央",
+              "option_right": "右"
+            },
             "color_scheme": {
               "label": "カラーセット（背景・文字色）"
             },
@@ -1096,6 +1102,15 @@
             },
             "button_link": {
               "label": "ボタンのリンク"
+            },
+            "header_spacing": {
+              "content": "余白（外側）"
+            },
+            "margin_top": {
+              "label": "上マージン"
+            },
+            "margin_bottom": {
+              "label": "下マージン"
             },
             "header_box": {
               "content": "囲み（枠線・余白）"

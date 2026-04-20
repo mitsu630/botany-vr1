@@ -1204,6 +1204,12 @@
             "force_full_width_on_desktop": {
               "label": "Show as 1 column (full width) on desktop"
             },
+            "alignment": {
+              "label": "Alignment",
+              "option_left": "Left",
+              "option_center": "Center",
+              "option_right": "Right"
+            },
             "color_scheme": {
               "label": "Color scheme"
             },
@@ -1251,6 +1257,15 @@
             },
             "button_link": {
               "label": "Button link"
+            },
+            "header_spacing": {
+              "content": "Outer spacing"
+            },
+            "margin_top": {
+              "label": "Top margin"
+            },
+            "margin_bottom": {
+              "label": "Bottom margin"
             },
             "header_box": {
               "content": "Box (border & padding)"

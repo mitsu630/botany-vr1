@@ -14,6 +14,38 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "custom_content_fkdyfz": {
+          "type": "custom_content",
+          "name": "会社案内",
+          "settings": {
+            "text": "<p>【運営事務局】株式会社アントレ・サン・フラッペ<br/>〒411-0016静岡県三島市塚原新田24-3<br/>【配送部】〒411-0016静岡県三島市塚原新田218-6<br/>【運営事務局休業日】土.日.祝日※シーズン休<br/>【配送部休業日】水.土.日.祝日※シーズン休</p>",
+            "alignment": "center",
+            "color_scheme": "scheme-5",
+            "padding_top": 16,
+            "padding_bottom": 0,
+            "link_label_1": "",
+            "link_image_1": "shopify://shop_images/rogo.png",
+            "link_url_1": "https://botanypainting.com/",
+            "link_label_2": "",
+            "link_url_2": "",
+            "link_label_3": "",
+            "link_url_3": "",
+            "link_label_4": "",
+            "link_url_4": "",
+            "link_label_5": "",
+            "link_url_5": "",
+            "link_label_6": "",
+            "link_url_6": "",
+            "link_label_7": "",
+            "link_url_7": "",
+            "link_label_8": "",
+            "link_url_8": "",
+            "link_label_9": "",
+            "link_url_9": "",
+            "link_label_10": "",
+            "link_url_10": ""
+          }
+        },
         "custom_content_gwq8dj": {
           "type": "custom_content",
           "name": "縁結び大学",
@@ -79,6 +111,7 @@
         }
       },
       "block_order": [
+        "custom_content_fkdyfz",
         "custom_content_gwq8dj",
         "custom_content_qKbE9E"
       ],

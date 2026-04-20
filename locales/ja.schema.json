@@ -875,6 +875,9 @@
         "custom_content": {
           "name": "汎用コンテンツ",
           "settings": {
+            "force_full_width_on_desktop": {
+              "label": "PCでも1カラム（全幅）で表示する"
+            },
             "text": {
               "label": "テキスト（リッチテキスト）",
               "default": "<p></p>",

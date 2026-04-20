@@ -1030,6 +1030,9 @@
         "custom_content": {
           "name": "Custom content",
           "settings": {
+            "force_full_width_on_desktop": {
+              "label": "Show as 1 column (full width) on desktop"
+            },
             "text": {
               "label": "Text (rich text)",
               "default": "<p></p>",

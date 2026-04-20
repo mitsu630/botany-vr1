@@ -711,7 +711,7 @@
 .footer-generic-card__video.deferred-media {
   position: relative;
   width: 100%;
-  padding-bottom: calc(var(--ratio-percent, 56.25%) - var(--media-border-width, 0rem));
+  padding-bottom: var(--ratio-percent, 56.25%);
   overflow: hidden;
 }
 

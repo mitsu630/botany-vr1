@@ -43,6 +43,29 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "text_button_GCQdxG": {
+          "type": "text_button",
+          "settings": {
+            "force_full_width_on_desktop": true,
+            "color_scheme": "scheme-1",
+            "text_1": "<p>LINEのお友達登録はこちらから</p>",
+            "text_1_font_size_rem": 1.6,
+            "text_1_font_family": "inherit",
+            "text_2": "<p>ボタニーペインティングについて気になることがありましたら、どうぞお気軽にご相談ください。ワークショップのことや作品づくりについてなど、知りたいことがあればLINEからいつでもお声がけいただけます。</p>",
+            "text_2_font_size_rem": 1.6,
+            "text_2_font_family": "inherit",
+            "button_label": "ボタン",
+            "button_image": "shopify://shop_images/line.png",
+            "button_link": "https://line.me/R/ti/p/%40gkf4662p",
+            "box_padding": 26,
+            "box_border_width": 1,
+            "box_border_color": "#03c104",
+            "box_radius": 13,
+            "button_bg_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_radius": 100
+          }
+        },
         "two_column_media_QPjKen": {
           "type": "two_column_media",
           "name": "ボタニーペインティングBOOK",
@@ -238,6 +261,7 @@
         }
       },
       "block_order": [
+        "text_button_GCQdxG",
         "two_column_media_QPjKen",
         "generic_card_gWYdMN",
         "generic_card_Ny6HKi",

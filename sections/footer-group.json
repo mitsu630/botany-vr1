@@ -11,6 +11,13 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "footer_trademark_Kr3fNL": {
+      "type": "footer-trademark",
+      "name": "商標権表示",
+      "settings": {
+        "color_scheme": ""
+      }
+    },
     "footer": {
       "type": "footer",
       "settings": {
@@ -30,6 +37,7 @@
     }
   },
   "order": [
+    "footer_trademark_Kr3fNL",
     "footer"
   ]
 }

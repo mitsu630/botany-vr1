@@ -1017,6 +1017,41 @@
               "default": "<p>Share contact information, store details, and brand content with your customers.</p>"
             }
           }
+        },
+        "custom_content": {
+          "name": "Custom content",
+          "settings": {
+            "text": {
+              "label": "Text (rich text)",
+              "default": "<p></p>",
+              "info": "If an image is set, text is not shown."
+            },
+            "image": {
+              "label": "Image",
+              "info": "When an image is set, it is shown instead of text."
+            },
+            "alignment": {
+              "label": "Alignment",
+              "option_left": "Left",
+              "option_center": "Center",
+              "option_right": "Right"
+            },
+            "color_scheme": {
+              "label": "Color scheme"
+            },
+            "padding_top": {
+              "label": "Top padding"
+            },
+            "padding_bottom": {
+              "label": "Bottom padding"
+            },
+            "header_link_buttons": {
+              "content": "Link buttons"
+            },
+            "paragraph_link_buttons": {
+              "content": "Up to 10 links. Rows with an empty label are hidden."
+            }
+          }
         }
       },
       "settings": {

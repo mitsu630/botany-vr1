@@ -339,36 +339,36 @@
     },
     {
       "type": "custom_content",
-      "name": "汎用コンテンツ",
+      "name": "t:sections.footer.blocks.custom_content.name",
       "settings": [
         {
           "type": "richtext",
           "id": "text",
-          "label": "テキスト（リッチテキスト）",
-          "default": "<p></p>",
-          "info": "画像を設定した場合はテキストは表示されません。"
+          "label": "t:sections.footer.blocks.custom_content.settings.text.label",
+          "default": "t:sections.footer.blocks.custom_content.settings.text.default",
+          "info": "t:sections.footer.blocks.custom_content.settings.text.info"
         },
         {
           "type": "image_picker",
           "id": "image",
-          "label": "画像",
-          "info": "画像がある場合はテキストより画像を優先して表示します。"
+          "label": "t:sections.footer.blocks.custom_content.settings.image.label",
+          "info": "t:sections.footer.blocks.custom_content.settings.image.info"
         },
         {
           "type": "select",
           "id": "alignment",
-          "label": "配置",
+          "label": "t:sections.footer.blocks.custom_content.settings.alignment.label",
           "options": [
-            { "value": "left", "label": "左寄せ" },
-            { "value": "center", "label": "中央" },
-            { "value": "right", "label": "右寄せ" }
+            { "value": "left", "label": "t:sections.footer.blocks.custom_content.settings.alignment.option_left" },
+            { "value": "center", "label": "t:sections.footer.blocks.custom_content.settings.alignment.option_center" },
+            { "value": "right", "label": "t:sections.footer.blocks.custom_content.settings.alignment.option_right" }
           ],
           "default": "center"
         },
         {
           "type": "color_scheme",
           "id": "color_scheme",
-          "label": "カラーセット（背景色）",
+          "label": "t:sections.footer.blocks.custom_content.settings.color_scheme.label",
           "default": "scheme-1"
         },
         {
@@ -378,7 +378,7 @@
           "max": 100,
           "step": 1,
           "unit": "px",
-          "label": "上部余白",
+          "label": "t:sections.footer.blocks.custom_content.settings.padding_top.label",
           "default": 16
         },
         {
@@ -388,13 +388,16 @@
           "max": 100,
           "step": 1,
           "unit": "px",
-          "label": "下部余白",
+          "label": "t:sections.footer.blocks.custom_content.settings.padding_bottom.label",
           "default": 16
         },
         {
           "type": "header",
-          "content": "リンクボタン",
-          "info": "最大10件まで。ラベルが空の行は表示されません。"
+          "content": "t:sections.footer.blocks.custom_content.settings.header_link_buttons.content"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.footer.blocks.custom_content.settings.paragraph_link_buttons.content"
         },
         {
           "type": "text",

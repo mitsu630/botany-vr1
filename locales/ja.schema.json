@@ -862,6 +862,41 @@
               "info": "[ソーシャルアカウントの管理](/editor?context=theme&category=social%20media)"
             }
           }
+        },
+        "custom_content": {
+          "name": "汎用コンテンツ",
+          "settings": {
+            "text": {
+              "label": "テキスト（リッチテキスト）",
+              "default": "<p></p>",
+              "info": "画像を設定した場合はテキストは表示されません。"
+            },
+            "image": {
+              "label": "画像",
+              "info": "画像がある場合はテキストより画像を優先して表示します。"
+            },
+            "alignment": {
+              "label": "配置",
+              "option_left": "左寄せ",
+              "option_center": "中央",
+              "option_right": "右寄せ"
+            },
+            "color_scheme": {
+              "label": "カラーセット（背景色）"
+            },
+            "padding_top": {
+              "label": "上部余白"
+            },
+            "padding_bottom": {
+              "label": "下部余白"
+            },
+            "header_link_buttons": {
+              "content": "リンクボタン"
+            },
+            "paragraph_link_buttons": {
+              "content": "最大10件まで。ラベルが空の行は表示されません。"
+            }
+          }
         }
       },
       "settings": {

@@ -52,6 +52,7 @@
   assign align = cfg.alignment | default: 'left'
   assign mt = cfg.margin_top | default: 0
   assign mb = cfg.margin_bottom | default: 0
+  assign outer_pad = cfg.outer_padding | default: 0
 -%}
 
 {%- capture style_vars -%}
@@ -64,6 +65,7 @@
   --ftb-btn-radius: {{ btn_radius }}px;
   --ftb-mt: {{ mt }}px;
   --ftb-mb: {{ mb }}px;
+  --ftb-outer-pad: {{ outer_pad }}px;
   --ftb-t1-fs: {{ t1_fs }}rem;
   --ftb-t2-fs: {{ t2_fs }}rem;
   {% if t1_ff_css != blank %}--ftb-t1-ff: {{ t1_ff_css }};{% endif %}

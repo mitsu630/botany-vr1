@@ -1267,6 +1267,9 @@
             "margin_bottom": {
               "label": "Bottom margin"
             },
+            "outer_padding": {
+              "label": "Outer padding (space outside border)"
+            },
             "header_box": {
               "content": "Box (border & padding)"
             },

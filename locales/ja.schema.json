@@ -1112,6 +1112,9 @@
             "margin_bottom": {
               "label": "下マージン"
             },
+            "outer_padding": {
+              "label": "線の外側の余白（外側パディング）"
+            },
             "header_box": {
               "content": "囲み（枠線・余白）"
             },

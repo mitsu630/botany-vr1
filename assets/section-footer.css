@@ -824,6 +824,7 @@
   box-sizing: border-box;
   margin-top: var(--ftb-mt, 0);
   margin-bottom: var(--ftb-mb, 0);
+  padding: var(--ftb-outer-pad, 0);
 }
 
 .footer-ftb__inner {
@@ -910,4 +911,16 @@
   display: block;
   width: 100%;
   height: auto;
+}
+
+/* text_button: PCで1カラムONなら画面幅まで広げる */
+@media screen and (min-width: 750px) {
+  .footer__blocks-wrapper .footer-block--full-width-desktop .footer-ftb {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
 }

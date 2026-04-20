@@ -93,6 +93,7 @@
                 {%- assign section_link_img_alt = b.settings.image.alt | default: b.settings.label | escape -%}
                 {%- assign section_link_img_w = b.settings.image_width | default: 300 -%}
                 {%- assign section_link_src_w = section_link_img_w | times: 2 | at_most: 1600 | at_least: section_link_img_w -%}
+                {%- capture section_link_sizes -%}(max-width: 749px) min({{ section_link_img_w }}px, 100vw), {{ section_link_img_w }}px{%- endcapture -%}
                 <a
                   {% if b.settings.link == blank %}
                     role="link"
@@ -110,7 +111,7 @@
                     | image_tag:
                       loading: 'lazy',
                       widths: '100, 200, 300, 400, 500, 600, 800, 1000, 1200, 1600',
-                      sizes: '(max-width: 749px) min({{ section_link_img_w }}px, 100vw), {{ section_link_img_w }}px',
+                      sizes: section_link_sizes,
                       class: 'footer-custom-content__link-image',
                       alt: section_link_img_alt
                   }}
@@ -190,6 +191,7 @@
             {%- if img != blank -%}
               {%- assign block_link_img_alt = img.alt | default: lbl | escape -%}
               {%- assign block_link_src_w = img_w | times: 2 | at_most: 1600 | at_least: img_w -%}
+              {%- capture block_link_sizes -%}(max-width: 749px) min({{ img_w }}px, 100vw), {{ img_w }}px{%- endcapture -%}
               <a
                 {% if lnk == blank %}
                   role="link"
@@ -206,7 +208,7 @@
                   | image_tag:
                     loading: 'lazy',
                     widths: '100, 200, 300, 400, 500, 600, 800, 1000, 1200, 1600',
-                    sizes: '(max-width: 749px) min({{ img_w }}px, 100vw), {{ img_w }}px',
+                    sizes: block_link_sizes,
                     class: 'footer-custom-content__link-image',
                     alt: block_link_img_alt
                 }}

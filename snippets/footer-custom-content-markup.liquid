@@ -91,6 +91,8 @@
             {%- if b.type == 'link_button' -%}
               {%- if b.settings.image != blank -%}
                 {%- assign section_link_img_alt = b.settings.image.alt | default: b.settings.label | escape -%}
+                {%- assign section_link_img_w = b.settings.image_width | default: 300 -%}
+                {%- assign section_link_src_w = section_link_img_w | times: 2 | at_most: 1600 | at_least: section_link_img_w -%}
                 <a
                   {% if b.settings.link == blank %}
                     role="link"
@@ -99,15 +101,16 @@
                     href="{{ b.settings.link }}"
                   {% endif %}
                   class="footer-custom-content__link footer-custom-content__link--image"
+                  style="max-width: min(100%, {{ section_link_img_w }}px);"
                   {{ b.shopify_attributes }}
                 >
                   {{
                     b.settings.image
-                    | image_url: width: 800
+                    | image_url: width: section_link_src_w
                     | image_tag:
                       loading: 'lazy',
-                      widths: '200, 360, 480, 640, 800',
-                      sizes: '(min-width: 750px) 400px, 70vw',
+                      widths: '100, 200, 300, 400, 500, 600, 800, 1000, 1200, 1600',
+                      sizes: '(max-width: 749px) min({{ section_link_img_w }}px, 100vw), {{ section_link_img_w }}px',
                       class: 'footer-custom-content__link-image',
                       alt: section_link_img_alt
                   }}
@@ -136,46 +139,57 @@
                   assign lbl = link_block.settings.link_label_1
                   assign lnk = link_block.settings.link_url_1
                   assign img = link_block.settings.link_image_1
+                  assign img_w = link_block.settings.link_image_width_1 | default: 300
                 when 2
                   assign lbl = link_block.settings.link_label_2
                   assign lnk = link_block.settings.link_url_2
                   assign img = link_block.settings.link_image_2
+                  assign img_w = link_block.settings.link_image_width_2 | default: 300
                 when 3
                   assign lbl = link_block.settings.link_label_3
                   assign lnk = link_block.settings.link_url_3
                   assign img = link_block.settings.link_image_3
+                  assign img_w = link_block.settings.link_image_width_3 | default: 300
                 when 4
                   assign lbl = link_block.settings.link_label_4
                   assign lnk = link_block.settings.link_url_4
                   assign img = link_block.settings.link_image_4
+                  assign img_w = link_block.settings.link_image_width_4 | default: 300
                 when 5
                   assign lbl = link_block.settings.link_label_5
                   assign lnk = link_block.settings.link_url_5
                   assign img = link_block.settings.link_image_5
+                  assign img_w = link_block.settings.link_image_width_5 | default: 300
                 when 6
                   assign lbl = link_block.settings.link_label_6
                   assign lnk = link_block.settings.link_url_6
                   assign img = link_block.settings.link_image_6
+                  assign img_w = link_block.settings.link_image_width_6 | default: 300
                 when 7
                   assign lbl = link_block.settings.link_label_7
                   assign lnk = link_block.settings.link_url_7
                   assign img = link_block.settings.link_image_7
+                  assign img_w = link_block.settings.link_image_width_7 | default: 300
                 when 8
                   assign lbl = link_block.settings.link_label_8
                   assign lnk = link_block.settings.link_url_8
                   assign img = link_block.settings.link_image_8
+                  assign img_w = link_block.settings.link_image_width_8 | default: 300
                 when 9
                   assign lbl = link_block.settings.link_label_9
                   assign lnk = link_block.settings.link_url_9
                   assign img = link_block.settings.link_image_9
+                  assign img_w = link_block.settings.link_image_width_9 | default: 300
                 when 10
                   assign lbl = link_block.settings.link_label_10
                   assign lnk = link_block.settings.link_url_10
                   assign img = link_block.settings.link_image_10
+                  assign img_w = link_block.settings.link_image_width_10 | default: 300
               endcase
             -%}
             {%- if img != blank -%}
               {%- assign block_link_img_alt = img.alt | default: lbl | escape -%}
+              {%- assign block_link_src_w = img_w | times: 2 | at_most: 1600 | at_least: img_w -%}
               <a
                 {% if lnk == blank %}
                   role="link"
@@ -184,14 +198,15 @@
                   href="{{ lnk }}"
                 {% endif %}
                 class="footer-custom-content__link footer-custom-content__link--image"
+                style="max-width: min(100%, {{ img_w }}px);"
               >
                 {{
                   img
-                  | image_url: width: 800
+                  | image_url: width: block_link_src_w
                   | image_tag:
                     loading: 'lazy',
-                    widths: '200, 360, 480, 640, 800',
-                    sizes: '(min-width: 750px) 400px, 70vw',
+                    widths: '100, 200, 300, 400, 500, 600, 800, 1000, 1200, 1600',
+                    sizes: '(max-width: 749px) min({{ img_w }}px, 100vw), {{ img_w }}px',
                     class: 'footer-custom-content__link-image',
                     alt: block_link_img_alt
                 }}
@@ -212,6 +227,7 @@
             {%- assign lbl = nil -%}
             {%- assign lnk = nil -%}
             {%- assign img = nil -%}
+            {%- assign img_w = nil -%}
           {%- endfor -%}
         {%- endif -%}
       </div>

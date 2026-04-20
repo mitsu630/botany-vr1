@@ -927,6 +927,9 @@
               "label": "写真",
               "info": "動画を設定しない場合のカード上部画像です。動画ありのときはサムネイル（任意）として使えます。"
             },
+            "force_full_width_on_desktop": {
+              "label": "PCでも1カラム（全幅）で表示する"
+            },
             "video_url": {
               "label": "動画（YouTube / Vimeo）",
               "placeholder": "https://www.youtube.com/watch?v=...",
@@ -996,6 +999,9 @@
         "two_column_media": {
           "name": "2カラム複合ブロック",
           "settings": {
+            "force_full_width_on_desktop": {
+              "label": "PCでも1カラム（全幅）で表示する"
+            },
             "color_scheme": {
               "label": "カラーセット（背景・文字色）"
             },

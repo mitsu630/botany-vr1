@@ -1082,6 +1082,9 @@
               "label": "Image",
               "info": "Top image when no video is set. With a video, used as an optional custom poster/thumbnail."
             },
+            "force_full_width_on_desktop": {
+              "label": "Show as 1 column (full width) on desktop"
+            },
             "video_url": {
               "label": "Video (YouTube / Vimeo)",
               "placeholder": "https://www.youtube.com/watch?v=...",
@@ -1151,6 +1154,9 @@
         "two_column_media": {
           "name": "Two-column media block",
           "settings": {
+            "force_full_width_on_desktop": {
+              "label": "Show as 1 column (full width) on desktop"
+            },
             "color_scheme": {
               "label": "Color scheme"
             },

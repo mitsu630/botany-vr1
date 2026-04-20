@@ -69,7 +69,7 @@
           >
             {%- for block in section.blocks -%}
               <div
-                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if block.settings.force_full_width_on_desktop %} footer-block--full-width-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
@@ -699,6 +699,12 @@
       "name": "t:sections.footer.blocks.generic_card.name",
       "settings": [
         {
+          "type": "checkbox",
+          "id": "force_full_width_on_desktop",
+          "label": "t:sections.footer.blocks.generic_card.settings.force_full_width_on_desktop.label",
+          "default": true
+        },
+        {
           "type": "image_picker",
           "id": "image",
           "label": "t:sections.footer.blocks.generic_card.settings.image.label",
@@ -852,6 +858,12 @@
       "type": "two_column_media",
       "name": "t:sections.footer.blocks.two_column_media.name",
       "settings": [
+        {
+          "type": "checkbox",
+          "id": "force_full_width_on_desktop",
+          "label": "t:sections.footer.blocks.two_column_media.settings.force_full_width_on_desktop.label",
+          "default": true
+        },
         {
           "type": "color_scheme",
           "id": "color_scheme",

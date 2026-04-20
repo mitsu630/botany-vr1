@@ -514,6 +514,18 @@
   max-width: 100%;
 }
 
+.footer-block--full-width-desktop {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media screen and (min-width: 750px) {
+  .footer__blocks-wrapper.grid .footer-block--full-width-desktop {
+    flex: 1 1 100%;
+    grid-column: 1 / -1;
+  }
+}
+
 .footer-custom-content-section {
   border-radius: var(--media-radius, 0);
   width: 100%;

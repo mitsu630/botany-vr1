@@ -1,7 +1,13 @@
 <div class="footer-trademark-section color-{{ section.settings.color_scheme }} gradient">
   <div class="page-width">
     <div class="footer-trademark__content">
-      {%- if section.settings.heading != blank -%}
+      {%- comment -%}
+        管理画面の見出し（heading）が空じゃない時だけ表示。
+        「レイヤーには名前を出したいが画面には出したくない」場合は、設定パネルの見出しを空にするか、
+        以下のロジックで制御します。
+      {%- endcomment -%}
+
+      {%- if section.settings.show_heading and section.settings.heading != blank -%}
         <h2 class="footer-trademark__heading inline-richtext {{ section.settings.heading_size }}">
           {{ section.settings.heading }}
         </h2>
@@ -11,25 +17,25 @@
         {{ section.settings.text }}
       </div>
 
-      {%- if section.settings.link_label_1 != blank -%}
-        <div class="footer-trademark__links">
-          <a href="{{ section.settings.link_1 }}" class="footer-trademark__link">
-            {{ section.settings.link_label_1 }}
+      <div class="footer-trademark__links">
+        {%- if section.settings.link_label_1 != blank -%}
+          <a href="{{ section.settings.link_1 }}" class="footer-trademark__link" target="_blank">
+            {{- section.settings.link_label_1 -}}
           </a>
-          {%- if section.settings.link_label_2 != blank -%}
-            <span class="footer-trademark__separator">|</span>
-            <a href="{{ section.settings.link_2 }}" class="footer-trademark__link">
-              {{ section.settings.link_label_2 }}
-            </a>
-          {%- endif -%}
-          {%- if section.settings.link_label_3 != blank -%}
-            <span class="footer-trademark__separator">|</span>
-            <a href="{{ section.settings.link_3 }}" class="footer-trademark__link">
-              {{ section.settings.link_label_3 }}
-            </a>
-          {%- endif -%}
-        </div>
-      {%- endif -%}
+        {%- endif -%}
+        {%- if section.settings.link_label_2 != blank -%}
+          <span class="footer-trademark__separator">|</span>
+          <a href="{{ section.settings.link_2 }}" class="footer-trademark__link" target="_blank">
+            {{- section.settings.link_label_2 -}}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.link_label_3 != blank -%}
+          <span class="footer-trademark__separator">|</span>
+          <a href="{{ section.settings.link_3 }}" class="footer-trademark__link" target="_blank">
+            {{- section.settings.link_label_3 -}}
+          </a>
+        {%- endif -%}
+      </div>
     </div>
   </div>
 </div>
@@ -40,41 +46,16 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
     text-align: center;
   }
-  .footer-trademark__content {
-    max-width: 80rem;
-    margin: 0 auto;
-  }
-  .footer-trademark__heading {
-    margin-top: 0;
-    margin-bottom: 2rem;
-  }
-  .footer-trademark__text {
-    margin-bottom: 2rem;
-    line-height: 1.6;
-  }
-  .footer-trademark__links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    align-items: center;
-  }
-  .footer-trademark__link {
-    color: inherit;
-    text-underline-offset: 0.3rem;
-    transition: opacity 0.2s;
-  }
-  .footer-trademark__link:hover {
-    opacity: 0.7;
-  }
-  .footer-trademark__separator {
-    opacity: 0.5;
-  }
+  .footer-trademark__content { max-width: 80rem; margin: 0 auto; }
+  .footer-trademark__text { margin-bottom: 1.5rem; line-height: 1.6; font-size: 1.2rem; }
+  .footer-trademark__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; align-items: center; }
+  .footer-trademark__link { color: inherit; text-underline-offset: 0.3rem; }
+  .footer-trademark__separator { opacity: 0.5; }
 </style>
 
 {% schema %}
 {
-  "name": "商標権表示（カスタム）",
+  "name": "商標権表示",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -82,15 +63,20 @@
       "type": "inline_richtext",
       "id": "heading",
       "default": "商標権表示",
-      "label": "見出し"
+      "label": "管理用名称（レイヤーに表示されます）"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "default": false,
+      "label": "実際の画面に見出しを表示する"
     },
     {
       "type": "select",
       "id": "heading_size",
       "options": [
         { "value": "h2", "label": "小" },
-        { "value": "h1", "label": "中" },
-        { "value": "h0", "label": "大" }
+        { "value": "h1", "label": "中" }
       ],
       "default": "h2",
       "label": "見出しサイズ"
@@ -103,12 +89,12 @@
     },
     {
       "type": "header",
-      "content": "リンク1"
+      "content": "登録証書へのリンク"
     },
     {
       "type": "text",
       "id": "link_label_1",
-      "label": "リンクのラベル1",
+      "label": "ラベル1",
       "default": "ボタニー（第6026741号）"
     },
     {
@@ -117,13 +103,9 @@
       "label": "リンク先1"
     },
     {
-      "type": "header",
-      "content": "リンク2"
-    },
-    {
       "type": "text",
       "id": "link_label_2",
-      "label": "リンクのラベル2",
+      "label": "ラベル2",
       "default": "ロータスリーフ＆リンデン（第6304653号）"
     },
     {
@@ -132,13 +114,9 @@
       "label": "リンク先2"
     },
     {
-      "type": "header",
-      "content": "リンク3"
-    },
-    {
       "type": "text",
       "id": "link_label_3",
-      "label": "リンクのラベル3",
+      "label": "ラベル3",
       "default": "ロータスリーフペイント（第6147070号）"
     },
     {
@@ -153,18 +131,14 @@
       "default": "scheme-1"
     },
     {
-      "type": "header",
-      "content": "余白設定"
-    },
-    {
       "type": "range",
       "id": "padding_top",
       "min": 0,
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "上部の余白",
-      "default": 36
+      "label": "上部余白",
+      "default": 20
     },
     {
       "type": "range",
@@ -173,13 +147,13 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "下部の余白",
-      "default": 36
+      "label": "下部余白",
+      "default": 20
     }
   ],
   "presets": [
     {
-      "name": "商標権表示（カスタム）"
+      "name": "商標権表示"
     }
   ]
 }

@@ -50,8 +50,11 @@
             "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
             "title": "ボタニーペインティングBOOK",
             "text": "<p>初心者でもわかりやすいよう画材の説明や葉の貼り方、色付けの手順を丁寧に紹介しています。また、スパッタリングやグリッターを用いる技法など幅広い作品つくりを楽しめるアイデアも満載!ボタニーペインティングと出逢って、ヨガ、カラーセラピー、植物やアートの仕事などにボタニーペインティングを上手に調和させて活躍されている方のインタビューページも、必見のページです。</p>",
+            "left_image_1": "shopify://shop_images/booktest.png",
             "left_image_1_link": "",
-            "left_image_2_link": "",
+            "left_image_2": "shopify://shop_images/amazon.png",
+            "left_image_2_link": "https://www.amazon.co.jp/%E8%93%AE%E3%81%AE%E8%91%89%E3%81%8C%E3%81%8F%E3%82%8C%E3%82%8B%E7%99%92%E3%81%97-%E3%83%9C%E3%82%BF%E3%83%8B%E3%83%BC%E3%83%9A%E3%82%A4%E3%83%B3%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0BOOK-%E6%9D%89%E6%9C%AC%E5%85%89%E4%BF%8A/dp/4905937639",
+            "right_image": "shopify://shop_images/book_photo.png",
             "right_image_link": ""
           }
         },

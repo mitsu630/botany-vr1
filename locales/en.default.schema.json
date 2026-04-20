@@ -1128,8 +1128,16 @@
             "title_font_size_rem": {
               "label": "Title font size (rem)"
             },
+            "title_font_size_rem_custom": {
+              "label": "Title font size (direct decimal input - optional)",
+              "info": "Example: 1.2. When set, this overrides the slider value. Leave blank to use the slider."
+            },
             "excerpt_font_size_rem": {
               "label": "Excerpt font size (rem)"
+            },
+            "excerpt_font_size_rem_custom": {
+              "label": "Excerpt font size (direct decimal input - optional)",
+              "info": "Example: 1.2. When set, this overrides the slider value. Leave blank to use the slider."
             },
             "card_text_font_family": {
               "label": "Font (title & excerpt)",

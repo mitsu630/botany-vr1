@@ -973,8 +973,16 @@
             "title_font_size_rem": {
               "label": "タイトルの文字サイズ（rem）"
             },
+            "title_font_size_rem_custom": {
+              "label": "タイトルの文字サイズ（小数で直接入力・任意）",
+              "info": "例: 1.2。入力するとスライダー設定よりこちらが優先されます。空欄でスライダー設定を使います。"
+            },
             "excerpt_font_size_rem": {
               "label": "略文の文字サイズ（rem）"
+            },
+            "excerpt_font_size_rem_custom": {
+              "label": "略文の文字サイズ（小数で直接入力・任意）",
+              "info": "例: 1.2。入力するとスライダー設定よりこちらが優先されます。空欄でスライダー設定を使います。"
             },
             "card_text_font_family": {
               "label": "フォント（タイトル・略文共通）",

@@ -7,8 +7,10 @@
   assign radius = block.settings.border_radius
   assign pad = block.settings.padding
   assign ratio_class = block.settings.image_ratio | default: 'ratio-16-9'
-  assign g_title_fs = block.settings.title_font_size_rem | default: 1.3
-  assign g_excerpt_fs = block.settings.excerpt_font_size_rem | default: 1.6
+  assign g_title_fs_raw = block.settings.title_font_size_rem_custom | default: block.settings.title_font_size_rem | default: 1.3
+  assign g_excerpt_fs_raw = block.settings.excerpt_font_size_rem_custom | default: block.settings.excerpt_font_size_rem | default: 1.6
+  assign g_title_fs = g_title_fs_raw | plus: 0.0
+  assign g_excerpt_fs = g_excerpt_fs_raw | plus: 0.0
   assign g_ff_setting = block.settings.card_text_font_family | default: 'inherit'
   if g_ff_setting == 'body'
     assign g_ff_css = 'var(--font-body-family)'

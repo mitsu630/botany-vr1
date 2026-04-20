@@ -82,6 +82,15 @@
                 {%- case block.type -%}
                   {%- when '@app' -%}
                     {% render block %}
+                  {%- when 'custom_content' -%}
+                    <div class="footer-block__details-content">
+                      {% render 'footer-custom-content-markup',
+                        cfg: block.settings,
+                        use_page_width: false,
+                        mode: 'footer_block',
+                        link_block: block
+                      %}
+                    </div>
                   {%- when 'text' -%}
                     <div class="footer-block__details-content rte">
                       {{ block.settings.subtext }}
@@ -327,6 +336,167 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "custom_content",
+      "name": "汎用コンテンツ",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "テキスト（リッチテキスト）",
+          "default": "<p></p>",
+          "info": "画像を設定した場合はテキストは表示されません。"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "画像",
+          "info": "画像がある場合はテキストより画像を優先して表示します。"
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "配置",
+          "options": [
+            { "value": "left", "label": "左寄せ" },
+            { "value": "center", "label": "中央" },
+            { "value": "right", "label": "右寄せ" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "カラーセット（背景色）",
+          "default": "scheme-1"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "上部余白",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "下部余白",
+          "default": 16
+        },
+        {
+          "type": "header",
+          "content": "リンクボタン",
+          "info": "最大10件まで。ラベルが空の行は表示されません。"
+        },
+        {
+          "type": "text",
+          "id": "link_label_1",
+          "label": "ボタン1・ラベル"
+        },
+        {
+          "type": "url",
+          "id": "link_url_1",
+          "label": "ボタン1・URL"
+        },
+        {
+          "type": "text",
+          "id": "link_label_2",
+          "label": "ボタン2・ラベル"
+        },
+        {
+          "type": "url",
+          "id": "link_url_2",
+          "label": "ボタン2・URL"
+        },
+        {
+          "type": "text",
+          "id": "link_label_3",
+          "label": "ボタン3・ラベル"
+        },
+        {
+          "type": "url",
+          "id": "link_url_3",
+          "label": "ボタン3・URL"
+        },
+        {
+          "type": "text",
+          "id": "link_label_4",
+          "label": "ボタン4・ラベル"
+        },
+        {
+          "type": "url",
+          "id": "link_url_4",
+          "label": "ボタン4・URL"
+        },
+        {
+          "type": "text",
+          "id": "link_label_5",
+          "label": "ボタン5・ラベル"
+        },
+        {
+          "type": "url",
+          "id": "link_url_5",
+          "label": "ボタン5・URL"
+        },
+        {
+          "type": "text",
+          "id": "link_label_6",
+          "label": "ボタン6・ラベル"
+        },
+        {
+          "type": "url",
+          "id": "link_url_6",
+          "label": "ボタン6・URL"
+        },
+        {
+          "type": "text",
+          "id": "link_label_7",
+          "label": "ボタン7・ラベル"
+        },
+        {
+          "type": "url",
+          "id": "link_url_7",
+          "label": "ボタン7・URL"
+        },
+        {
+          "type": "text",
+          "id": "link_label_8",
+          "label": "ボタン8・ラベル"
+        },
+        {
+          "type": "url",
+          "id": "link_url_8",
+          "label": "ボタン8・URL"
+        },
+        {
+          "type": "text",
+          "id": "link_label_9",
+          "label": "ボタン9・ラベル"
+        },
+        {
+          "type": "url",
+          "id": "link_url_9",
+          "label": "ボタン9・URL"
+        },
+        {
+          "type": "text",
+          "id": "link_label_10",
+          "label": "ボタン10・ラベル"
+        },
+        {
+          "type": "url",
+          "id": "link_url_10",
+          "label": "ボタン10・URL"
+        }
+      ]
     },
     {
       "type": "link_list",

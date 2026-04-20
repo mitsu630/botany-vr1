@@ -1,102 +1,11 @@
-<div class="footer-custom-content-section color-{{ section.settings.color_scheme }} gradient footer-custom-content-section--align-{{ section.settings.alignment | default: 'center' }}">
-  <div class="page-width">
-    <div class="footer-custom-content">
-      {%- if section.settings.image != blank -%}
-        <div class="footer-custom-content__media">
-          {{
-            section.settings.image
-            | image_url: width: 1200
-            | image_tag:
-              loading: 'lazy',
-              widths: '165, 360, 535, 750, 940, 1200',
-              sizes: '(min-width: 990px) 940px, (min-width: 750px) 90vw, 100vw',
-              class: 'footer-custom-content__image'
-          }}
-        </div>
-      {%- elsif section.settings.text != blank -%}
-        <div class="footer-custom-content__text rte">
-          {{ section.settings.text }}
-        </div>
-      {%- endif -%}
+{{ 'section-footer.css' | asset_url | stylesheet_tag }}
 
-      {%- if section.blocks.size > 0 -%}
-        <div class="footer-custom-content__buttons">
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'link_button' and block.settings.label != blank -%}
-              <a
-                {% if block.settings.link == blank %}
-                  role="link"
-                  aria-disabled="true"
-                {% else %}
-                  href="{{ block.settings.link }}"
-                {% endif %}
-                class="button button--secondary"
-                {{ block.shopify_attributes }}
-              >
-                {{- block.settings.label | escape -}}
-              </a>
-            {%- endif -%}
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
-    </div>
-  </div>
-</div>
-
-<style>
-  .footer-custom-content-section {
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
-  }
-  .footer-custom-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  .footer-custom-content-section--align-left .footer-custom-content {
-    align-items: flex-start;
-    text-align: left;
-  }
-  .footer-custom-content-section--align-center .footer-custom-content {
-    align-items: center;
-    text-align: center;
-  }
-  .footer-custom-content-section--align-right .footer-custom-content {
-    align-items: flex-end;
-    text-align: right;
-  }
-  .footer-custom-content__text {
-    line-height: 1.6;
-    font-size: 1.2rem;
-    width: 100%;
-  }
-  .footer-custom-content__media {
-    display: block;
-    max-width: 100%;
-  }
-  .footer-custom-content__image {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    vertical-align: middle;
-  }
-  .footer-custom-content__buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    align-items: center;
-    width: 100%;
-  }
-  .footer-custom-content-section--align-left .footer-custom-content__buttons {
-    justify-content: flex-start;
-  }
-  .footer-custom-content-section--align-center .footer-custom-content__buttons {
-    justify-content: center;
-  }
-  .footer-custom-content-section--align-right .footer-custom-content__buttons {
-    justify-content: flex-end;
-  }
-</style>
+{% render 'footer-custom-content-markup',
+  cfg: section.settings,
+  use_page_width: true,
+  mode: 'section',
+  parent_section: section
+%}
 
 {% schema %}
 {

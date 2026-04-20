@@ -1,0 +1,153 @@
+{% comment %}
+  フッター汎用コンテンツのマークアップ
+  @param {object} cfg - section.settings または block.settings（text, image, alignment, color_scheme, padding_top, padding_bottom）
+  @param {boolean} use_page_width - true のとき .page-width でラップ（独立セクション用）
+  @param {string} mode - 'section' | 'footer_block'
+  @param {object} [parent_section] - mode が section のとき、リンクボタン用の section オブジェクト
+  @param {object} [link_block] - mode が footer_block のとき、リンク設定を持つ block
+{% endcomment %}
+
+<div
+  class="footer-custom-content-section color-{{ cfg.color_scheme }} gradient footer-custom-content-section--align-{{ cfg.alignment | default: 'center' }}"
+  style="padding-top: {{ cfg.padding_top }}px; padding-bottom: {{ cfg.padding_bottom }}px;"
+>
+  {%- if use_page_width -%}
+    <div class="page-width">
+  {%- endif -%}
+  <div class="footer-custom-content">
+    {%- if cfg.image != blank -%}
+      <div class="footer-custom-content__media">
+        {{
+          cfg.image
+          | image_url: width: 1200
+          | image_tag:
+            loading: 'lazy',
+            widths: '165, 360, 535, 750, 940, 1200',
+            sizes: '(min-width: 990px) 940px, (min-width: 750px) 90vw, 100vw',
+            class: 'footer-custom-content__image'
+        }}
+      </div>
+    {%- elsif cfg.text != blank -%}
+      <div class="footer-custom-content__text rte">
+        {{ cfg.text }}
+      </div>
+    {%- endif -%}
+
+    {%- liquid
+      assign show_buttons = false
+      if mode == 'section' and parent_section.blocks.size > 0
+        for b in parent_section.blocks
+          if b.type == 'link_button' and b.settings.label != blank
+            assign show_buttons = true
+          endif
+        endfor
+      elsif mode == 'footer_block' and link_block != blank
+        for i in (1..10)
+          case i
+            when 1
+              assign scan_lbl = link_block.settings.link_label_1
+            when 2
+              assign scan_lbl = link_block.settings.link_label_2
+            when 3
+              assign scan_lbl = link_block.settings.link_label_3
+            when 4
+              assign scan_lbl = link_block.settings.link_label_4
+            when 5
+              assign scan_lbl = link_block.settings.link_label_5
+            when 6
+              assign scan_lbl = link_block.settings.link_label_6
+            when 7
+              assign scan_lbl = link_block.settings.link_label_7
+            when 8
+              assign scan_lbl = link_block.settings.link_label_8
+            when 9
+              assign scan_lbl = link_block.settings.link_label_9
+            when 10
+              assign scan_lbl = link_block.settings.link_label_10
+          endcase
+          if scan_lbl != blank
+            assign show_buttons = true
+          endif
+        endfor
+      endif
+    -%}
+
+    {%- if show_buttons -%}
+      <div class="footer-custom-content__buttons">
+        {%- if mode == 'section' -%}
+          {%- for b in parent_section.blocks -%}
+            {%- if b.type == 'link_button' and b.settings.label != blank -%}
+              <a
+                {% if b.settings.link == blank %}
+                  role="link"
+                  aria-disabled="true"
+                {% else %}
+                  href="{{ b.settings.link }}"
+                {% endif %}
+                class="button button--secondary"
+                {{ b.shopify_attributes }}
+              >
+                {{- b.settings.label | escape -}}
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- elsif mode == 'footer_block' -%}
+          {%- for i in (1..10) -%}
+            {%- liquid
+              case i
+                when 1
+                  assign lbl = link_block.settings.link_label_1
+                  assign lnk = link_block.settings.link_url_1
+                when 2
+                  assign lbl = link_block.settings.link_label_2
+                  assign lnk = link_block.settings.link_url_2
+                when 3
+                  assign lbl = link_block.settings.link_label_3
+                  assign lnk = link_block.settings.link_url_3
+                when 4
+                  assign lbl = link_block.settings.link_label_4
+                  assign lnk = link_block.settings.link_url_4
+                when 5
+                  assign lbl = link_block.settings.link_label_5
+                  assign lnk = link_block.settings.link_url_5
+                when 6
+                  assign lbl = link_block.settings.link_label_6
+                  assign lnk = link_block.settings.link_url_6
+                when 7
+                  assign lbl = link_block.settings.link_label_7
+                  assign lnk = link_block.settings.link_url_7
+                when 8
+                  assign lbl = link_block.settings.link_label_8
+                  assign lnk = link_block.settings.link_url_8
+                when 9
+                  assign lbl = link_block.settings.link_label_9
+                  assign lnk = link_block.settings.link_url_9
+                when 10
+                  assign lbl = link_block.settings.link_label_10
+                  assign lnk = link_block.settings.link_url_10
+              endcase
+            -%}
+            {%- if lbl != blank -%}
+              <a
+                {% if lnk == blank %}
+                  role="link"
+                  aria-disabled="true"
+                {% else %}
+                  href="{{ lnk }}"
+                {% endif %}
+                class="button button--secondary"
+              >
+                {{- lbl | escape -}}
+              </a>
+            {%- endif -%}
+            {%- assign lbl = nil -%}
+            {%- assign lnk = nil -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+  {%- if use_page_width -%}
+    </div>
+  {%- endif -%}
+</div>

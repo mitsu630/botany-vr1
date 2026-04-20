@@ -1,81 +1,185 @@
-{%- style -%}
-  .footer-trademark {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-top: 1px solid rgba(54, 56, 76, 0.1); /* CHARCOALの透過色 */
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #36384C; /* CHARCOAL */
-  }
-  .footer-trademark__container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+<div class="footer-trademark-section color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    <div class="footer-trademark__content">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="footer-trademark__heading inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.heading }}
+        </h2>
+      {%- endif -%}
+
+      <div class="footer-trademark__text rte">
+        {{ section.settings.text }}
+      </div>
+
+      {%- if section.settings.link_label_1 != blank -%}
+        <div class="footer-trademark__links">
+          <a href="{{ section.settings.link_1 }}" class="footer-trademark__link">
+            {{ section.settings.link_label_1 }}
+          </a>
+          {%- if section.settings.link_label_2 != blank -%}
+            <span class="footer-trademark__separator">|</span>
+            <a href="{{ section.settings.link_2 }}" class="footer-trademark__link">
+              {{ section.settings.link_label_2 }}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.link_label_3 != blank -%}
+            <span class="footer-trademark__separator">|</span>
+            <a href="{{ section.settings.link_3 }}" class="footer-trademark__link">
+              {{ section.settings.link_label_3 }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .footer-trademark-section {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
     text-align: center;
   }
-  .footer-trademark__list {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0;
+  .footer-trademark__content {
+    max-width: 80rem;
+    margin: 0 auto;
+  }
+  .footer-trademark__heading {
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+  .footer-trademark__text {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  .footer-trademark__links {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    gap: 15px;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
   }
   .footer-trademark__link {
-    color: #36384C;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    transition: opacity 0.3s;
+    color: inherit;
+    text-underline-offset: 0.3rem;
+    transition: opacity 0.2s;
   }
   .footer-trademark__link:hover {
     opacity: 0.7;
   }
-  @media screen and (max-width: 749px) {
-    .footer-trademark__list {
-      flex-direction: column;
-      gap: 5px;
-    }
+  .footer-trademark__separator {
+    opacity: 0.5;
   }
-{%- endstyle -%}
-
-<div class="footer-trademark color-{{ section.settings.color_scheme }}">
-  <div class="footer-trademark__container">
-    <p>ボタニー、ロータスリーフペイントは、株式会社アントレ・サン・フラッペの登録商標です。</p>
-    <ul class="footer-trademark__list">
-      <li>
-        <a href="https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2017-090539/40/ja" class="footer-trademark__link" target="_blank" rel="noopener">
-          ボタニー（第6026741号）
-        </a>
-      </li>
-      <li>
-        <a href="https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2020-046991/40/ja" class="footer-trademark__link" target="_blank" rel="noopener">
-          ロータスリーフ＆リンデン（第6304653号）
-        </a>
-      </li>
-      <li>
-        <a href="https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2019-034210/40/ja" class="footer-trademark__link" target="_blank" rel="noopener">
-          ロータスリーフペイント（第6147070号）
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
+</style>
 
 {% schema %}
 {
-  "name": "商標権表示",
+  "name": "商標権表示（カスタム）",
+  "tag": "section",
+  "class": "section",
   "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "商標権表示",
+      "label": "見出し"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "小" },
+        { "value": "h1", "label": "中" },
+        { "value": "h0", "label": "大" }
+      ],
+      "default": "h2",
+      "label": "見出しサイズ"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "default": "<p>ボタニ―、ロータスリーフペイントは、株式会社アントレ・サン・フラッペの登録商標です。</p>",
+      "label": "説明文"
+    },
+    {
+      "type": "header",
+      "content": "リンク1"
+    },
+    {
+      "type": "text",
+      "id": "link_label_1",
+      "label": "リンクのラベル1",
+      "default": "ボタニー（第6026741号）"
+    },
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "リンク先1"
+    },
+    {
+      "type": "header",
+      "content": "リンク2"
+    },
+    {
+      "type": "text",
+      "id": "link_label_2",
+      "label": "リンクのラベル2",
+      "default": "ロータスリーフ＆リンデン（第6304653号）"
+    },
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "リンク先2"
+    },
+    {
+      "type": "header",
+      "content": "リンク3"
+    },
+    {
+      "type": "text",
+      "id": "link_label_3",
+      "label": "リンクのラベル3",
+      "default": "ロータスリーフペイント（第6147070号）"
+    },
+    {
+      "type": "url",
+      "id": "link_3",
+      "label": "リンク先3"
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "カラースキーム",
-      "default": "scheme-6"
+      "label": "カラーセット",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "余白設定"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "上部の余白",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "下部の余白",
+      "default": 36
     }
   ],
   "presets": [
     {
-      "name": "商標権表示"
+      "name": "商標権表示（カスタム）"
     }
   ]
 }

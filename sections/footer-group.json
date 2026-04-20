@@ -47,7 +47,7 @@
           "type": "two_column_media",
           "settings": {
             "force_full_width_on_desktop": true,
-            "color_scheme": "scheme-1",
+            "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
             "title": "ボタニーペインティングBOOK",
             "text": "<p>初心者でもわかりやすいよう画材の説明や葉の貼り方、色付けの手順を丁寧に紹介しています。また、スパッタリングやグリッターを用いる技法など幅広い作品つくりを楽しめるアイデアも満載!ボタニーペインティングと出逢って、ヨガ、カラーセラピー、植物やアートの仕事などにボタニーペインティングを上手に調和させて活躍されている方のインタビューページも、必見のページです。</p>",
             "left_image_1_link": "",
@@ -102,6 +102,7 @@
           "type": "custom_content",
           "name": "会社案内",
           "settings": {
+            "force_full_width_on_desktop": true,
             "text": "<p>【運営事務局】<br/>株式会社アントレ・サン・フラッペ<br/>〒411-0016静岡県三島市塚原新田24-3<br/>【配送部】<br/>〒411-0016静岡県三島市塚原新田218-6<br/>【運営事務局休業日】<br/>土.日.祝日※シーズン休<br/>【配送部休業日】<br/>水.土.日.祝日※シーズン休</p>",
             "alignment": "center",
             "color_scheme": "scheme-5",
@@ -146,6 +147,7 @@
           "type": "custom_content",
           "name": "縁結び大学",
           "settings": {
+            "force_full_width_on_desktop": true,
             "text": "",
             "alignment": "center",
             "color_scheme": "scheme-5",
@@ -190,6 +192,7 @@
           "type": "custom_content",
           "name": "著作権表示ブロック",
           "settings": {
+            "force_full_width_on_desktop": true,
             "text": "<p>ボタニー、ロータスリーフペイントは、株式会社アントレ・サン・フラッペの登録商標です。</p>",
             "alignment": "center",
             "color_scheme": "scheme-5",

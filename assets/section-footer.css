@@ -508,54 +508,103 @@
 }
 
 /* Footer: 汎用コンテンツ（セクション / フッターブロック共通） */
+.footer-block--custom-content-full-width {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: 100%;
+}
+
 .footer-custom-content-section {
   border-radius: var(--media-radius, 0);
+  width: 100%;
+  box-sizing: border-box;
 }
+
 .footer-custom-content {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  width: 100%;
+  max-width: 100%;
 }
+
 .footer-custom-content-section--align-left .footer-custom-content {
   align-items: flex-start;
   text-align: left;
 }
+
 .footer-custom-content-section--align-center .footer-custom-content {
   align-items: center;
   text-align: center;
 }
+
 .footer-custom-content-section--align-right .footer-custom-content {
   align-items: flex-end;
   text-align: right;
 }
+
 .footer-custom-content__text {
   line-height: 1.6;
   font-size: 1.2rem;
   width: 100%;
 }
+
 .footer-custom-content__media {
   display: block;
   max-width: 100%;
 }
+
 .footer-custom-content__image {
   width: auto;
   height: auto;
   max-width: 100%;
   vertical-align: middle;
 }
-.footer-custom-content__buttons {
+
+.footer-custom-content__links {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1rem 1.5rem;
   align-items: center;
   width: 100%;
 }
-.footer-custom-content-section--align-left .footer-custom-content__buttons {
+
+.footer-custom-content__link {
+  text-decoration: none;
+}
+
+.footer-custom-content__link--text {
+  text-underline-offset: 0.25rem;
+}
+
+.footer-custom-content__link--text:hover {
+  text-decoration: underline;
+}
+
+.footer-custom-content__link--image {
+  display: inline-block;
+  line-height: 0;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.footer-custom-content__link-image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  vertical-align: middle;
+}
+
+.footer-custom-content-section--align-left .footer-custom-content__links {
   justify-content: flex-start;
 }
-.footer-custom-content-section--align-center .footer-custom-content__buttons {
+
+.footer-custom-content-section--align-center .footer-custom-content__links {
   justify-content: center;
 }
-.footer-custom-content-section--align-right .footer-custom-content__buttons {
+
+.footer-custom-content-section--align-right .footer-custom-content__links {
   justify-content: flex-end;
 }

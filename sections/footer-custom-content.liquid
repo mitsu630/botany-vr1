@@ -2,7 +2,7 @@
 
 {% render 'footer-custom-content-markup',
   cfg: section.settings,
-  use_page_width: true,
+  use_page_width: false,
   mode: 'section',
   parent_section: section
 %}
@@ -73,7 +73,13 @@
           "type": "text",
           "id": "label",
           "label": "ラベル",
-          "default": "リンク"
+          "default": "リンク",
+          "info": "画像を設定した場合はラベルより画像が表示されます（代替テキスト用にも使えます）。"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "画像"
         },
         {
           "type": "url",

@@ -1049,7 +1049,7 @@
               "content": "Link buttons"
             },
             "paragraph_link_buttons": {
-              "content": "Up to 10 links. Rows with an empty label are hidden."
+              "content": "Up to 10 links. If an image is set for a row, it is used instead of text. Rows with no image and no label are hidden."
             }
           }
         }

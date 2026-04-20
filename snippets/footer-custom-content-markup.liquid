@@ -1,10 +1,10 @@
 {% comment %}
   フッター汎用コンテンツのマークアップ
-  @param {object} cfg - section.settings または block.settings（text, image, alignment, color_scheme, padding_top, padding_bottom）
-  @param {boolean} use_page_width - true のとき .page-width でラップ（独立セクション用）
+  @param {object} cfg - section.settings または block.settings
+  @param {boolean} use_page_width - true のとき .page-width でラップ
   @param {string} mode - 'section' | 'footer_block'
-  @param {object} [parent_section] - mode が section のとき、リンクボタン用の section オブジェクト
-  @param {object} [link_block] - mode が footer_block のとき、リンク設定を持つ block
+  @param {object} [parent_section] - mode が section のときの section
+  @param {object} [link_block] - mode が footer_block のときの block
 {% endcomment %}
 
 <div
@@ -34,11 +34,13 @@
     {%- endif -%}
 
     {%- liquid
-      assign show_buttons = false
+      assign show_links = false
       if mode == 'section' and parent_section.blocks.size > 0
         for b in parent_section.blocks
-          if b.type == 'link_button' and b.settings.label != blank
-            assign show_buttons = true
+          if b.type == 'link_button'
+            if b.settings.image != blank or b.settings.label != blank
+              assign show_links = true
+            endif
           endif
         endfor
       elsif mode == 'footer_block' and link_block != blank
@@ -46,49 +48,84 @@
           case i
             when 1
               assign scan_lbl = link_block.settings.link_label_1
+              assign scan_img = link_block.settings.link_image_1
             when 2
               assign scan_lbl = link_block.settings.link_label_2
+              assign scan_img = link_block.settings.link_image_2
             when 3
               assign scan_lbl = link_block.settings.link_label_3
+              assign scan_img = link_block.settings.link_image_3
             when 4
               assign scan_lbl = link_block.settings.link_label_4
+              assign scan_img = link_block.settings.link_image_4
             when 5
               assign scan_lbl = link_block.settings.link_label_5
+              assign scan_img = link_block.settings.link_image_5
             when 6
               assign scan_lbl = link_block.settings.link_label_6
+              assign scan_img = link_block.settings.link_image_6
             when 7
               assign scan_lbl = link_block.settings.link_label_7
+              assign scan_img = link_block.settings.link_image_7
             when 8
               assign scan_lbl = link_block.settings.link_label_8
+              assign scan_img = link_block.settings.link_image_8
             when 9
               assign scan_lbl = link_block.settings.link_label_9
+              assign scan_img = link_block.settings.link_image_9
             when 10
               assign scan_lbl = link_block.settings.link_label_10
+              assign scan_img = link_block.settings.link_image_10
           endcase
-          if scan_lbl != blank
-            assign show_buttons = true
+          if scan_lbl != blank or scan_img != blank
+            assign show_links = true
           endif
         endfor
       endif
     -%}
 
-    {%- if show_buttons -%}
-      <div class="footer-custom-content__buttons">
+    {%- if show_links -%}
+      <div class="footer-custom-content__links">
         {%- if mode == 'section' -%}
           {%- for b in parent_section.blocks -%}
-            {%- if b.type == 'link_button' and b.settings.label != blank -%}
-              <a
-                {% if b.settings.link == blank %}
-                  role="link"
-                  aria-disabled="true"
-                {% else %}
-                  href="{{ b.settings.link }}"
-                {% endif %}
-                class="button button--secondary"
-                {{ b.shopify_attributes }}
-              >
-                {{- b.settings.label | escape -}}
-              </a>
+            {%- if b.type == 'link_button' -%}
+              {%- if b.settings.image != blank -%}
+                {%- assign section_link_img_alt = b.settings.image.alt | default: b.settings.label | escape -%}
+                <a
+                  {% if b.settings.link == blank %}
+                    role="link"
+                    aria-disabled="true"
+                  {% else %}
+                    href="{{ b.settings.link }}"
+                  {% endif %}
+                  class="footer-custom-content__link footer-custom-content__link--image"
+                  {{ b.shopify_attributes }}
+                >
+                  {{
+                    b.settings.image
+                    | image_url: width: 800
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '200, 360, 480, 640, 800',
+                      sizes: '(min-width: 750px) 400px, 70vw',
+                      class: 'footer-custom-content__link-image',
+                      alt: section_link_img_alt
+                  }}
+                </a>
+              {%- elsif b.settings.label != blank -%}
+                <a
+                  {% if b.settings.link == blank %}
+                    role="link"
+                    aria-disabled="true"
+                  {% else %}
+                    href="{{ b.settings.link }}"
+                  {% endif %}
+                  class="link link--text footer-custom-content__link footer-custom-content__link--text"
+                  {{ b.shopify_attributes }}
+                >
+                  {{- b.settings.label | escape -}}
+                </a>
+              {%- endif -%}
             {%- endif -%}
           {%- endfor -%}
         {%- elsif mode == 'footer_block' -%}
@@ -98,36 +135,47 @@
                 when 1
                   assign lbl = link_block.settings.link_label_1
                   assign lnk = link_block.settings.link_url_1
+                  assign img = link_block.settings.link_image_1
                 when 2
                   assign lbl = link_block.settings.link_label_2
                   assign lnk = link_block.settings.link_url_2
+                  assign img = link_block.settings.link_image_2
                 when 3
                   assign lbl = link_block.settings.link_label_3
                   assign lnk = link_block.settings.link_url_3
+                  assign img = link_block.settings.link_image_3
                 when 4
                   assign lbl = link_block.settings.link_label_4
                   assign lnk = link_block.settings.link_url_4
+                  assign img = link_block.settings.link_image_4
                 when 5
                   assign lbl = link_block.settings.link_label_5
                   assign lnk = link_block.settings.link_url_5
+                  assign img = link_block.settings.link_image_5
                 when 6
                   assign lbl = link_block.settings.link_label_6
                   assign lnk = link_block.settings.link_url_6
+                  assign img = link_block.settings.link_image_6
                 when 7
                   assign lbl = link_block.settings.link_label_7
                   assign lnk = link_block.settings.link_url_7
+                  assign img = link_block.settings.link_image_7
                 when 8
                   assign lbl = link_block.settings.link_label_8
                   assign lnk = link_block.settings.link_url_8
+                  assign img = link_block.settings.link_image_8
                 when 9
                   assign lbl = link_block.settings.link_label_9
                   assign lnk = link_block.settings.link_url_9
+                  assign img = link_block.settings.link_image_9
                 when 10
                   assign lbl = link_block.settings.link_label_10
                   assign lnk = link_block.settings.link_url_10
+                  assign img = link_block.settings.link_image_10
               endcase
             -%}
-            {%- if lbl != blank -%}
+            {%- if img != blank -%}
+              {%- assign block_link_img_alt = img.alt | default: lbl | escape -%}
               <a
                 {% if lnk == blank %}
                   role="link"
@@ -135,13 +183,35 @@
                 {% else %}
                   href="{{ lnk }}"
                 {% endif %}
-                class="button button--secondary"
+                class="footer-custom-content__link footer-custom-content__link--image"
+              >
+                {{
+                  img
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '200, 360, 480, 640, 800',
+                    sizes: '(min-width: 750px) 400px, 70vw',
+                    class: 'footer-custom-content__link-image',
+                    alt: block_link_img_alt
+                }}
+              </a>
+            {%- elsif lbl != blank -%}
+              <a
+                {% if lnk == blank %}
+                  role="link"
+                  aria-disabled="true"
+                {% else %}
+                  href="{{ lnk }}"
+                {% endif %}
+                class="link link--text footer-custom-content__link footer-custom-content__link--text"
               >
                 {{- lbl | escape -}}
               </a>
             {%- endif -%}
             {%- assign lbl = nil -%}
             {%- assign lnk = nil -%}
+            {%- assign img = nil -%}
           {%- endfor -%}
         {%- endif -%}
       </div>

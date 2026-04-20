@@ -20,14 +20,14 @@
         "heading_size": "h2",
         "text": "<p>ボタニ―、ロータスリーフペイントは、株式会社アントレ・サン・フラッペの登録商標です。</p>",
         "link_label_1": "ボタニー（第6026741号）",
-        "link_1": "",
+        "link_1": "https://j-platpat.inpit.go.jp/?uri=/c1801/TR/JP-2017-090539/40/ja",
         "link_label_2": "ロータスリーフ＆リンデン（第6304653号）",
-        "link_2": "",
+        "link_2": "https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2020-046991/40/ja",
         "link_label_3": "ロータスリーフペイント（第6147070号）",
-        "link_3": "",
-        "color_scheme": "scheme-1",
-        "padding_top": 28,
-        "padding_bottom": 0
+        "link_3": "https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2019-034210/40/ja",
+        "color_scheme": "scheme-5",
+        "padding_top": 20,
+        "padding_bottom": 20
       }
     },
     "footer": {

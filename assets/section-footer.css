@@ -619,3 +619,76 @@
 .footer-custom-content-section--align-right .footer-custom-content__links {
   justify-content: flex-end;
 }
+
+/* Footer: 汎用カード */
+.footer-generic-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.footer-generic-card--is-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.footer-generic-card--is-link:hover {
+  opacity: 0.92;
+}
+
+.footer-generic-card__media {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.footer-generic-card__media--adapt .footer-generic-card__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: middle;
+}
+
+.footer-generic-card__media--ratio-16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.footer-generic-card__media--ratio-4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+.footer-generic-card__media--square {
+  aspect-ratio: 1;
+}
+
+.footer-generic-card__media--ratio-16-9 .footer-generic-card__image,
+.footer-generic-card__media--ratio-4-3 .footer-generic-card__image,
+.footer-generic-card__media--square .footer-generic-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.footer-generic-card__body {
+  padding: var(--footer-card-padding, 1.6rem);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer-generic-card__title {
+  margin: 0;
+}
+
+.footer-generic-card__excerpt {
+  margin: 0;
+}
+
+.footer-generic-card__excerpt p:last-child {
+  margin-bottom: 0;
+}

@@ -906,6 +906,45 @@
               "content": "最大10件まで。各項目で画像を設定するとテキストより画像リンクが優先されます。画像もラベルも空の行は表示されません。"
             }
           }
+        },
+        "generic_card": {
+          "name": "汎用カード",
+          "settings": {
+            "image": {
+              "label": "写真"
+            },
+            "title": {
+              "label": "タイトル",
+              "default": "カードのタイトル"
+            },
+            "excerpt": {
+              "label": "略文",
+              "default": "<p>説明文や抜粋を入力します。</p>"
+            },
+            "card_link": {
+              "label": "カード全体のリンク（任意）",
+              "info": "設定すると、写真・タイトル・略文のブロック全体がそのURLへのリンクになります。"
+            },
+            "header_style": {
+              "content": "カードの見た目"
+            },
+            "border_radius": {
+              "label": "角丸のサイズ"
+            },
+            "color_scheme": {
+              "label": "カラーセット（背景・文字色）"
+            },
+            "padding": {
+              "label": "カード内の余白"
+            },
+            "image_ratio": {
+              "label": "写真の表示比率",
+              "option_adapt": "画像に合わせる",
+              "option_16_9": "16:9",
+              "option_4_3": "4:3",
+              "option_square": "1:1（正方形）"
+            }
+          }
         }
       },
       "settings": {

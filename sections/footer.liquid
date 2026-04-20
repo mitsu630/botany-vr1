@@ -91,6 +91,10 @@
                         link_block: block
                       %}
                     </div>
+                  {%- when 'generic_card' -%}
+                    <div class="footer-block__details-content">
+                      {% render 'footer-generic-card', block: block %}
+                    </div>
                   {%- when 'text' -%}
                     <div class="footer-block__details-content rte">
                       {{ block.settings.subtext }}
@@ -648,6 +652,89 @@
           "type": "url",
           "id": "link_url_10",
           "label": "ボタン10・URL"
+        }
+      ]
+    },
+    {
+      "type": "generic_card",
+      "name": "t:sections.footer.blocks.generic_card.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.footer.blocks.generic_card.settings.image.label"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "t:sections.footer.blocks.generic_card.settings.title.label",
+          "default": "t:sections.footer.blocks.generic_card.settings.title.default"
+        },
+        {
+          "type": "richtext",
+          "id": "excerpt",
+          "label": "t:sections.footer.blocks.generic_card.settings.excerpt.label",
+          "default": "t:sections.footer.blocks.generic_card.settings.excerpt.default"
+        },
+        {
+          "type": "url",
+          "id": "card_link",
+          "label": "t:sections.footer.blocks.generic_card.settings.card_link.label",
+          "info": "t:sections.footer.blocks.generic_card.settings.card_link.info"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.footer.blocks.generic_card.settings.header_style.content"
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "label": "t:sections.footer.blocks.generic_card.settings.border_radius.label",
+          "default": 12
+        },
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "t:sections.footer.blocks.generic_card.settings.color_scheme.label",
+          "default": "scheme-1"
+        },
+        {
+          "type": "range",
+          "id": "padding",
+          "min": 0,
+          "max": 48,
+          "step": 2,
+          "unit": "px",
+          "label": "t:sections.footer.blocks.generic_card.settings.padding.label",
+          "default": 16
+        },
+        {
+          "type": "select",
+          "id": "image_ratio",
+          "label": "t:sections.footer.blocks.generic_card.settings.image_ratio.label",
+          "options": [
+            {
+              "value": "adapt",
+              "label": "t:sections.footer.blocks.generic_card.settings.image_ratio.option_adapt"
+            },
+            {
+              "value": "ratio-16-9",
+              "label": "t:sections.footer.blocks.generic_card.settings.image_ratio.option_16_9"
+            },
+            {
+              "value": "ratio-4-3",
+              "label": "t:sections.footer.blocks.generic_card.settings.image_ratio.option_4_3"
+            },
+            {
+              "value": "square",
+              "label": "t:sections.footer.blocks.generic_card.settings.image_ratio.option_square"
+            }
+          ],
+          "default": "ratio-16-9"
         }
       ]
     },

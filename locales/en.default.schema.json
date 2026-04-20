@@ -1061,6 +1061,45 @@
               "content": "Up to 10 links. If an image is set for a row, it is used instead of text. Rows with no image and no label are hidden."
             }
           }
+        },
+        "generic_card": {
+          "name": "Generic card",
+          "settings": {
+            "image": {
+              "label": "Image"
+            },
+            "title": {
+              "label": "Title",
+              "default": "Card title"
+            },
+            "excerpt": {
+              "label": "Excerpt",
+              "default": "<p>Add a short description or excerpt.</p>"
+            },
+            "card_link": {
+              "label": "Card link (optional)",
+              "info": "When set, the whole card (image, title, excerpt) links to this URL."
+            },
+            "header_style": {
+              "content": "Card appearance"
+            },
+            "border_radius": {
+              "label": "Corner radius"
+            },
+            "color_scheme": {
+              "label": "Color scheme"
+            },
+            "padding": {
+              "label": "Inner padding"
+            },
+            "image_ratio": {
+              "label": "Image aspect ratio",
+              "option_adapt": "Natural (match image)",
+              "option_16_9": "16:9",
+              "option_4_3": "4:3",
+              "option_square": "1:1 (square)"
+            }
+          }
         }
       },
       "settings": {

@@ -751,3 +751,56 @@
 .footer-generic-card__excerpt p:last-child {
   margin-bottom: 0;
 }
+
+/* Footer: 2カラム複合ブロック（two_column_media） */
+.footer-tcm {
+  padding: 1.6rem;
+  border-radius: var(--media-radius, 0);
+  box-sizing: border-box;
+}
+
+.footer-tcm__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.6rem;
+  align-items: start;
+}
+
+@media screen and (min-width: 750px) {
+  .footer-tcm__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.4rem;
+  }
+}
+
+.footer-tcm__title {
+  margin: 0 0 0.8rem;
+}
+
+.footer-tcm__text {
+  margin: 0;
+}
+
+.footer-tcm__left-images {
+  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.footer-tcm__image-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer-tcm__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.footer-tcm__right-image {
+  width: 100%;
+  height: auto;
+}

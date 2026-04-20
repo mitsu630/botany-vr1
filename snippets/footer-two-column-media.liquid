@@ -1,0 +1,103 @@
+{%- comment %}
+  Footer block: two_column_media
+  - Desktop: 2 columns (left content + images / right image)
+  - Mobile: stacked
+{%- endcomment -%}
+
+{%- liquid
+  assign cfg = block.settings
+  assign title = cfg.title
+  assign text = cfg.text
+
+  assign li1 = cfg.left_image_1
+  assign li1_link = cfg.left_image_1_link
+  assign li2 = cfg.left_image_2
+  assign li2_link = cfg.left_image_2_link
+
+  assign ri = cfg.right_image
+  assign ri_link = cfg.right_image_link
+
+  assign has_left_images = false
+  if li1 != blank or li2 != blank
+    assign has_left_images = true
+  endif
+-%}
+
+<div class="footer-tcm color-{{ cfg.color_scheme }} gradient" {{ block.shopify_attributes }}>
+  <div class="footer-tcm__grid">
+    <div class="footer-tcm__left">
+      {%- if title != blank -%}
+        <h3 class="footer-tcm__title inline-richtext h4">{{ title }}</h3>
+      {%- endif -%}
+
+      {%- if text != blank -%}
+        <div class="footer-tcm__text rte">{{ text }}</div>
+      {%- endif -%}
+
+      {%- if has_left_images -%}
+        <div class="footer-tcm__left-images">
+          {%- if li1 != blank -%}
+            <div class="footer-tcm__left-image">
+              {%- if li1_link != blank -%}
+                <a class="footer-tcm__image-link" href="{{ li1_link }}">
+              {%- endif -%}
+              {{
+                li1
+                | image_url: width: 800
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '165, 360, 535, 750, 800',
+                  sizes: '(min-width: 750px) 200px, 45vw',
+                  class: 'footer-tcm__image'
+              }}
+              {%- if li1_link != blank -%}
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if li2 != blank -%}
+            <div class="footer-tcm__left-image">
+              {%- if li2_link != blank -%}
+                <a class="footer-tcm__image-link" href="{{ li2_link }}">
+              {%- endif -%}
+              {{
+                li2
+                | image_url: width: 800
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '165, 360, 535, 750, 800',
+                  sizes: '(min-width: 750px) 200px, 45vw',
+                  class: 'footer-tcm__image'
+              }}
+              {%- if li2_link != blank -%}
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="footer-tcm__right">
+      {%- if ri != blank -%}
+        {%- if ri_link != blank -%}
+          <a class="footer-tcm__image-link footer-tcm__right-link" href="{{ ri_link }}">
+        {%- endif -%}
+        {{
+          ri
+          | image_url: width: 1200
+          | image_tag:
+            loading: 'lazy',
+            widths: '360, 535, 750, 940, 1100, 1200',
+            sizes: '(min-width: 990px) 420px, (min-width: 750px) 40vw, 100vw',
+            class: 'footer-tcm__image footer-tcm__right-image'
+        }}
+        {%- if ri_link != blank -%}
+          </a>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+

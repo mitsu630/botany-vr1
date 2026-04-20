@@ -1147,6 +1147,47 @@
             }
           }
         }
+        ,
+        "two_column_media": {
+          "name": "Two-column media block",
+          "settings": {
+            "color_scheme": {
+              "label": "Color scheme"
+            },
+            "title": {
+              "label": "Title",
+              "default": "Title"
+            },
+            "text": {
+              "label": "Text",
+              "default": "<p></p>"
+            },
+            "header_left_images": {
+              "content": "Left column images (2)"
+            },
+            "left_image_1": {
+              "label": "Left image 1"
+            },
+            "left_image_1_link": {
+              "label": "Left image 1 link"
+            },
+            "left_image_2": {
+              "label": "Left image 2"
+            },
+            "left_image_2_link": {
+              "label": "Left image 2 link"
+            },
+            "header_right_image": {
+              "content": "Right column image (1)"
+            },
+            "right_image": {
+              "label": "Right image"
+            },
+            "right_image_link": {
+              "label": "Right image link"
+            }
+          }
+        }
       },
       "settings": {
         "newsletter_enable": {

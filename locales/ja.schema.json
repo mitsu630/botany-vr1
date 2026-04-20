@@ -992,6 +992,47 @@
             }
           }
         }
+        ,
+        "two_column_media": {
+          "name": "2カラム複合ブロック",
+          "settings": {
+            "color_scheme": {
+              "label": "カラーセット（背景・文字色）"
+            },
+            "title": {
+              "label": "タイトル",
+              "default": "タイトル"
+            },
+            "text": {
+              "label": "文章",
+              "default": "<p></p>"
+            },
+            "header_left_images": {
+              "content": "左カラムの画像（2枚）"
+            },
+            "left_image_1": {
+              "label": "左画像 1"
+            },
+            "left_image_1_link": {
+              "label": "左画像 1 のリンク"
+            },
+            "left_image_2": {
+              "label": "左画像 2"
+            },
+            "left_image_2_link": {
+              "label": "左画像 2 のリンク"
+            },
+            "header_right_image": {
+              "content": "右カラムの画像（1枚）"
+            },
+            "right_image": {
+              "label": "右画像"
+            },
+            "right_image_link": {
+              "label": "右画像のリンク"
+            }
+          }
+        }
       },
       "settings": {
         "newsletter_enable": {

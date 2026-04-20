@@ -44,6 +44,32 @@
       "default": "scheme-1"
     },
     {
+      "type": "header",
+      "content": "文字スタイル（テキスト・全リンクラベル共通）"
+    },
+    {
+      "type": "range",
+      "id": "text_font_size_rem",
+      "min": 0.8,
+      "max": 3,
+      "step": 0.1,
+      "unit": "rem",
+      "label": "文字サイズ（rem）",
+      "info": "リッチテキストと、テキスト表示のリンクラベルすべてに適用されます。",
+      "default": 1.6
+    },
+    {
+      "type": "select",
+      "id": "text_font_family",
+      "label": "フォント",
+      "options": [
+        { "value": "inherit", "label": "周囲に合わせる（テーマ既定）" },
+        { "value": "body", "label": "本文フォント（テーマ設定）" },
+        { "value": "heading", "label": "見出しフォント（テーマ設定）" }
+      ],
+      "default": "inherit"
+    },
+    {
       "type": "range",
       "id": "padding_top",
       "min": 0,

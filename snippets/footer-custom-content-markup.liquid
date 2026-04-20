@@ -7,6 +7,21 @@
   @param {object} [link_block] - mode が footer_block のときの block
 {% endcomment %}
 
+{%- liquid
+  assign cc_fs = cfg.text_font_size_rem | default: 1.6
+  assign cc_ff_setting = cfg.text_font_family | default: 'inherit'
+  if cc_ff_setting == 'body'
+    assign cc_ff_css = 'var(--font-body-family)'
+  elsif cc_ff_setting == 'heading'
+    assign cc_ff_css = 'var(--font-heading-family)'
+  else
+    assign cc_ff_css = ''
+  endif
+-%}
+{%- capture cc_typo_style -%}
+  --footer-cc-font-size: {{ cc_fs }}rem;{% if cc_ff_css != blank %} --footer-cc-font-family: {{ cc_ff_css }};{% endif %}
+{%- endcapture -%}
+
 <div
   class="footer-custom-content-section color-{{ cfg.color_scheme }} gradient footer-custom-content-section--align-{{ cfg.alignment | default: 'center' }}"
   style="padding-top: {{ cfg.padding_top }}px; padding-bottom: {{ cfg.padding_bottom }}px;"
@@ -14,7 +29,7 @@
   {%- if use_page_width -%}
     <div class="page-width">
   {%- endif -%}
-  <div class="footer-custom-content">
+  <div class="footer-custom-content" style="{{ cc_typo_style }}">
     {%- if cfg.image != blank -%}
       <div class="footer-custom-content__media">
         {{

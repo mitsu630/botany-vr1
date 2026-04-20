@@ -7,19 +7,32 @@
   assign radius = block.settings.border_radius
   assign pad = block.settings.padding
   assign ratio_class = block.settings.image_ratio | default: 'ratio-16-9'
+  assign g_title_fs = block.settings.title_font_size_rem | default: 1.25
+  assign g_excerpt_fs = block.settings.excerpt_font_size_rem | default: 1.6
+  assign g_ff_setting = block.settings.card_text_font_family | default: 'inherit'
+  if g_ff_setting == 'body'
+    assign g_ff_css = 'var(--font-body-family)'
+  elsif g_ff_setting == 'heading'
+    assign g_ff_css = 'var(--font-heading-family)'
+  else
+    assign g_ff_css = ''
+  endif
 -%}
+{%- capture footer_generic_card_style -%}
+--footer-card-radius: {{ radius }}px; --footer-card-padding: {{ pad }}px; border-radius: {{ radius }}px; --fgc-title-fs: {{ g_title_fs }}rem; --fgc-excerpt-fs: {{ g_excerpt_fs }}rem;{% if g_ff_css != blank %} --fgc-font-family: {{ g_ff_css }};{% endif %}
+{%- endcapture -%}
 
 {%- if block.settings.card_link != blank -%}
   <a
     href="{{ block.settings.card_link }}"
     class="footer-generic-card footer-generic-card--is-link color-{{ block.settings.color_scheme }} gradient"
-    style="--footer-card-radius: {{ radius }}px; --footer-card-padding: {{ pad }}px; border-radius: {{ radius }}px;"
+    style="{{ footer_generic_card_style }}"
     {{ block.shopify_attributes }}
   >
 {%- else -%}
   <div
     class="footer-generic-card color-{{ block.settings.color_scheme }} gradient"
-    style="--footer-card-radius: {{ radius }}px; --footer-card-padding: {{ pad }}px; border-radius: {{ radius }}px;"
+    style="{{ footer_generic_card_style }}"
     {{ block.shopify_attributes }}
   >
 {%- endif -%}

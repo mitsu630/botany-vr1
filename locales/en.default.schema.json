@@ -1048,6 +1048,19 @@
             "color_scheme": {
               "label": "Color scheme"
             },
+            "header_typography": {
+              "content": "Typography (text & all link labels)"
+            },
+            "text_font_size_rem": {
+              "label": "Font size (rem)",
+              "info": "Applies to rich text and all text link labels (up to 10)."
+            },
+            "text_font_family": {
+              "label": "Font",
+              "option_inherit": "Match surrounding (theme default)",
+              "option_body": "Body font (theme settings)",
+              "option_heading": "Heading font (theme settings)"
+            },
             "padding_top": {
               "label": "Top padding"
             },
@@ -1098,6 +1111,21 @@
               "option_16_9": "16:9",
               "option_4_3": "4:3",
               "option_square": "1:1 (square)"
+            },
+            "header_typography": {
+              "content": "Typography"
+            },
+            "title_font_size_rem": {
+              "label": "Title font size (rem)"
+            },
+            "excerpt_font_size_rem": {
+              "label": "Excerpt font size (rem)"
+            },
+            "card_text_font_family": {
+              "label": "Font (title & excerpt)",
+              "option_inherit": "Match surrounding (theme default)",
+              "option_body": "Body font (theme settings)",
+              "option_heading": "Heading font (theme settings)"
             }
           }
         }

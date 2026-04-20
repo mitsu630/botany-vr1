@@ -543,9 +543,15 @@
   text-align: right;
 }
 
-/* リッチテキスト・見出しは .rte / テーマのタイポグラフィに任せる */
+/* リッチテキスト（汎用コンテンツの --footer-cc-* は親 .footer-custom-content に設定） */
 .footer-custom-content__text {
   width: 100%;
+  font-size: var(--footer-cc-font-size, inherit);
+  font-family: var(--footer-cc-font-family, inherit);
+}
+
+.footer-custom-content__text.rte * {
+  font-family: inherit;
 }
 
 .footer-custom-content__media {
@@ -572,11 +578,11 @@
   text-decoration: none;
 }
 
-/* base.css の .link 固定 font-size を打ち消し、親（フッター本文）のテーマ設定に合わせる */
+/* テキストリンク：汎用コンテンツの rem / フォント（--footer-cc-*）を反映 */
 .footer-custom-content .link.link--text,
 .footer-custom-content .footer-custom-content__link--text.link {
-  font-size: inherit;
-  font-family: inherit;
+  font-size: var(--footer-cc-font-size, inherit);
+  font-family: var(--footer-cc-font-family, inherit);
   line-height: inherit;
   letter-spacing: inherit;
   text-transform: inherit;
@@ -683,10 +689,18 @@
 
 .footer-generic-card__title {
   margin: 0;
+  font-size: var(--fgc-title-fs, inherit);
+  font-family: var(--fgc-font-family, inherit);
 }
 
 .footer-generic-card__excerpt {
   margin: 0;
+  font-size: var(--fgc-excerpt-fs, inherit);
+  font-family: var(--fgc-font-family, inherit);
+}
+
+.footer-generic-card__excerpt.rte * {
+  font-family: inherit;
 }
 
 .footer-generic-card__excerpt p:last-child {

@@ -893,6 +893,19 @@
             "color_scheme": {
               "label": "カラーセット（背景色）"
             },
+            "header_typography": {
+              "content": "文字スタイル（テキスト・全リンクラベル共通）"
+            },
+            "text_font_size_rem": {
+              "label": "文字サイズ（rem）",
+              "info": "リッチテキストと、テキスト表示のリンクラベル（最大10件）すべてに適用されます。"
+            },
+            "text_font_family": {
+              "label": "フォント",
+              "option_inherit": "周囲に合わせる（テーマ既定）",
+              "option_body": "本文フォント（テーマ設定）",
+              "option_heading": "見出しフォント（テーマ設定）"
+            },
             "padding_top": {
               "label": "上部余白"
             },
@@ -943,6 +956,21 @@
               "option_16_9": "16:9",
               "option_4_3": "4:3",
               "option_square": "1:1（正方形）"
+            },
+            "header_typography": {
+              "content": "文字スタイル"
+            },
+            "title_font_size_rem": {
+              "label": "タイトルの文字サイズ（rem）"
+            },
+            "excerpt_font_size_rem": {
+              "label": "略文の文字サイズ（rem）"
+            },
+            "card_text_font_family": {
+              "label": "フォント（タイトル・略文共通）",
+              "option_inherit": "周囲に合わせる（テーマ既定）",
+              "option_body": "本文フォント（テーマ設定）",
+              "option_heading": "見出しフォント（テーマ設定）"
             }
           }
         }

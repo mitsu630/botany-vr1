@@ -19,7 +19,32 @@
   endif
 
   assign has_video = false
-  if block.settings.video_url != blank and block.settings.video_url.id != blank
+  assign ext_vid = block.settings.video_url
+  assign vid_id = ext_vid.id
+  assign vid_type = ext_vid.type
+
+  comment
+    ブロックの `video_url` は通常 VideoUrlDrop（.id / .type / .preview_image）だが、
+    テーマ/環境によっては文字列URLとして渡ることがあるためフォールバックでIDを抽出する。
+  endcomment
+  if vid_id == blank and ext_vid != blank
+    assign ext_vid_str = ext_vid | append: ''
+    if ext_vid_str contains 'youtu.be/'
+      assign vid_type = 'youtube'
+      assign after = ext_vid_str | split: 'youtu.be/' | last
+      assign vid_id = after | split: '?' | first | split: '&' | first | split: '/' | first
+    elsif ext_vid_str contains 'youtube.com'
+      assign vid_type = 'youtube'
+      assign after = ext_vid_str | split: 'v=' | last
+      assign vid_id = after | split: '&' | first | split: '?' | first
+    elsif ext_vid_str contains 'vimeo.com'
+      assign vid_type = 'vimeo'
+      assign path = ext_vid_str | split: '?' | first
+      assign vid_id = path | split: '/' | last
+    endif
+  endif
+
+  if vid_id != blank
     assign has_video = true
   endif
 
@@ -59,8 +84,6 @@
 
 {%- if has_video -%}
   {%- liquid
-    assign ext_vid = block.settings.video_url
-    assign vid_id = ext_vid.id
     assign vid_poster = block.settings.image | default: ext_vid.preview_image
     assign vid_aria = block.settings.title | default: 'Video' | strip_html | escape
     assign vid_alt = 'sections.video.load_video' | t: description: vid_aria
@@ -92,7 +115,7 @@
               sizes: '(min-width: 990px) 400px, (min-width: 750px) 45vw, 100vw',
               alt: vid_aria
           }}
-        {%- elsif ext_vid.type == 'youtube' -%}
+        {%- elsif vid_type == 'youtube' -%}
           <img
             src="https://i.ytimg.com/vi/{{ vid_id }}/hqdefault.jpg"
             alt="{{ vid_aria }}"
@@ -110,7 +133,7 @@
         </span>
       </button>
       <template>
-        {%- if ext_vid.type == 'youtube' -%}
+        {%- if vid_type == 'youtube' -%}
           <iframe
             src="https://www.youtube.com/embed/{{ vid_id }}?enablejsapi=1&autoplay=1"
             class="js-youtube"

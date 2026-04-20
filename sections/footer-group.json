@@ -45,6 +45,7 @@
       "blocks": {
         "generic_card_gWYdMN": {
           "type": "generic_card",
+          "name": "NEWSの全力",
           "settings": {
             "video_url": "",
             "video_link": "http://youtube.com/watch?v=OOti3iXHmOI",
@@ -62,6 +63,7 @@
         },
         "generic_card_Ax3CMG": {
           "type": "generic_card",
+          "name": "DaiichiTV",
           "settings": {
             "image": "shopify://shop_images/karina.jpg",
             "video_url": "",

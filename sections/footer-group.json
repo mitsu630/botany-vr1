@@ -14,6 +14,38 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "custom_content_gwq8dj": {
+          "type": "custom_content",
+          "name": "縁結び大学",
+          "settings": {
+            "text": "",
+            "alignment": "center",
+            "color_scheme": "scheme-5",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "link_label_1": "",
+            "link_image_1": "shopify://shop_images/handmade_a.jpg",
+            "link_url_1": "https://next-level.biz/enmusubi/botanypainting/",
+            "link_label_2": "",
+            "link_url_2": "",
+            "link_label_3": "",
+            "link_url_3": "",
+            "link_label_4": "",
+            "link_url_4": "",
+            "link_label_5": "",
+            "link_url_5": "",
+            "link_label_6": "",
+            "link_url_6": "",
+            "link_label_7": "",
+            "link_url_7": "",
+            "link_label_8": "",
+            "link_url_8": "",
+            "link_label_9": "",
+            "link_url_9": "",
+            "link_label_10": "",
+            "link_url_10": ""
+          }
+        },
         "custom_content_qKbE9E": {
           "type": "custom_content",
           "name": "著作権表示ブロック",
@@ -21,8 +53,8 @@
             "text": "<p>ボタニー、ロータスリーフペイントは、株式会社アントレ・サン・フラッペの登録商標です。</p>",
             "alignment": "center",
             "color_scheme": "scheme-5",
-            "padding_top": 16,
-            "padding_bottom": 16,
+            "padding_top": 0,
+            "padding_bottom": 0,
             "link_label_1": "ボタニー（登録商標第6026741号）",
             "link_url_1": "https://www.j-platpat.inpit.go.jp/c1801/TR/JP-2017-090539/40/ja",
             "link_label_2": "ロータスリーフ＆リンデン（登録商標第6304653号）",
@@ -47,6 +79,7 @@
         }
       },
       "block_order": [
+        "custom_content_gwq8dj",
         "custom_content_qKbE9E"
       ],
       "settings": {
@@ -54,7 +87,7 @@
         "newsletter_enable": false,
         "newsletter_heading": "Subscribe to our emails",
         "enable_follow_on_shop": false,
-        "show_social": true,
+        "show_social": false,
         "enable_country_selector": true,
         "enable_language_selector": true,
         "payment_enable": true,

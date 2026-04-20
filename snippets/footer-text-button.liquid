@@ -1,0 +1,103 @@
+{%- comment %}
+  Footer block: text_button
+  - Text 1 + Text 2 with independent font and size
+  - Button: image (preferred) or text label
+  - Box: border/width/color/radius/padding
+  - Button: bg/text color and radius (text button only)
+{%- endcomment -%}
+
+{%- liquid
+  assign cfg = block.settings
+
+  assign t1 = cfg.text_1
+  assign t2 = cfg.text_2
+
+  assign t1_fs = cfg.text_1_font_size_rem | default: 1.6
+  assign t2_fs = cfg.text_2_font_size_rem | default: 1.6
+
+  assign t1_ff = cfg.text_1_font_family | default: 'inherit'
+  assign t2_ff = cfg.text_2_font_family | default: 'inherit'
+
+  assign t1_ff_css = ''
+  if t1_ff == 'body'
+    assign t1_ff_css = 'var(--font-body-family)'
+  elsif t1_ff == 'heading'
+    assign t1_ff_css = 'var(--font-heading-family)'
+  endif
+
+  assign t2_ff_css = ''
+  if t2_ff == 'body'
+    assign t2_ff_css = 'var(--font-body-family)'
+  elsif t2_ff == 'heading'
+    assign t2_ff_css = 'var(--font-heading-family)'
+  endif
+
+  assign btn_label = cfg.button_label
+  assign btn_img = cfg.button_image
+  assign btn_link = cfg.button_link
+
+  assign box_pad = cfg.box_padding | default: 16
+  assign box_bw = cfg.box_border_width | default: 1
+  assign box_bc = cfg.box_border_color | default: '#000000'
+  assign box_radius = cfg.box_radius | default: 12
+
+  assign btn_bg = cfg.button_bg_color | default: '#000000'
+  assign btn_fg = cfg.button_text_color | default: '#FFFFFF'
+  assign btn_radius = cfg.button_radius | default: 999
+-%}
+
+{%- capture style_vars -%}
+  --ftb-box-padding: {{ box_pad }}px;
+  --ftb-box-border-width: {{ box_bw }}px;
+  --ftb-box-border-color: {{ box_bc }};
+  --ftb-box-radius: {{ box_radius }}px;
+  --ftb-btn-bg: {{ btn_bg }};
+  --ftb-btn-fg: {{ btn_fg }};
+  --ftb-btn-radius: {{ btn_radius }}px;
+  --ftb-t1-fs: {{ t1_fs }}rem;
+  --ftb-t2-fs: {{ t2_fs }}rem;
+  {% if t1_ff_css != blank %}--ftb-t1-ff: {{ t1_ff_css }};{% endif %}
+  {% if t2_ff_css != blank %}--ftb-t2-ff: {{ t2_ff_css }};{% endif %}
+{%- endcapture -%}
+
+<div class="footer-ftb color-{{ cfg.color_scheme }} gradient" style="{{ style_vars | strip }}" {{ block.shopify_attributes }}>
+  <div class="footer-ftb__inner">
+    {%- if t1 != blank -%}
+      <div class="footer-ftb__text footer-ftb__text--1 rte">{{ t1 }}</div>
+    {%- endif -%}
+
+    {%- if t2 != blank -%}
+      <div class="footer-ftb__text footer-ftb__text--2 rte">{{ t2 }}</div>
+    {%- endif -%}
+
+    {%- if btn_link != blank -%}
+      {%- assign has_btn_content = false -%}
+      {%- if btn_img != blank or btn_label != blank -%}
+        {%- assign has_btn_content = true -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if btn_link != blank and has_btn_content -%}
+      <div class="footer-ftb__button">
+        {%- if btn_img != blank -%}
+          <a class="footer-ftb__button-link footer-ftb__button-link--image" href="{{ btn_link }}">
+            {{
+              btn_img
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'lazy',
+                widths: '165, 360, 535, 750, 940, 1100, 1200',
+                sizes: '(min-width: 750px) 360px, 80vw',
+                class: 'footer-ftb__button-image'
+            }}
+          </a>
+        {%- else -%}
+          <a class="footer-ftb__button-link footer-ftb__button-link--text" href="{{ btn_link }}">
+            {{ btn_label | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+

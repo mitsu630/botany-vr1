@@ -1197,6 +1197,90 @@
             }
           }
         }
+        ,
+        "text_button": {
+          "name": "Text + button block",
+          "settings": {
+            "force_full_width_on_desktop": {
+              "label": "Show as 1 column (full width) on desktop"
+            },
+            "color_scheme": {
+              "label": "Color scheme"
+            },
+            "header_text1": {
+              "content": "Text 1"
+            },
+            "text_1": {
+              "label": "Text 1",
+              "default": "<p></p>"
+            },
+            "text_1_font_size_rem": {
+              "label": "Text 1 font size (rem)"
+            },
+            "text_1_font_family": {
+              "label": "Text 1 font",
+              "option_inherit": "Match surrounding (theme default)",
+              "option_body": "Body font (theme settings)",
+              "option_heading": "Heading font (theme settings)"
+            },
+            "header_text2": {
+              "content": "Text 2"
+            },
+            "text_2": {
+              "label": "Text 2",
+              "default": "<p></p>"
+            },
+            "text_2_font_size_rem": {
+              "label": "Text 2 font size (rem)"
+            },
+            "text_2_font_family": {
+              "label": "Text 2 font",
+              "option_inherit": "Match surrounding (theme default)",
+              "option_body": "Body font (theme settings)",
+              "option_heading": "Heading font (theme settings)"
+            },
+            "header_button": {
+              "content": "Button"
+            },
+            "button_label": {
+              "label": "Button text",
+              "default": "Button"
+            },
+            "button_image": {
+              "label": "Button image (optional - overrides text)"
+            },
+            "button_link": {
+              "label": "Button link"
+            },
+            "header_box": {
+              "content": "Box (border & padding)"
+            },
+            "box_padding": {
+              "label": "Inner padding"
+            },
+            "box_border_width": {
+              "label": "Border width"
+            },
+            "box_border_color": {
+              "label": "Border color"
+            },
+            "box_radius": {
+              "label": "Corner radius"
+            },
+            "header_button_style": {
+              "content": "Text button style"
+            },
+            "button_bg_color": {
+              "label": "Button background"
+            },
+            "button_text_color": {
+              "label": "Button text color"
+            },
+            "button_radius": {
+              "label": "Button corner radius"
+            }
+          }
+        }
       },
       "settings": {
         "newsletter_enable": {

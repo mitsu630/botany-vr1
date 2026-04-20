@@ -1042,6 +1042,90 @@
             }
           }
         }
+        ,
+        "text_button": {
+          "name": "文章ボタンブロック",
+          "settings": {
+            "force_full_width_on_desktop": {
+              "label": "PCでも1カラム（全幅）で表示する"
+            },
+            "color_scheme": {
+              "label": "カラーセット（背景・文字色）"
+            },
+            "header_text1": {
+              "content": "テキスト 1"
+            },
+            "text_1": {
+              "label": "テキスト 1",
+              "default": "<p></p>"
+            },
+            "text_1_font_size_rem": {
+              "label": "テキスト 1 の文字サイズ（rem）"
+            },
+            "text_1_font_family": {
+              "label": "テキスト 1 のフォント",
+              "option_inherit": "周囲に合わせる（テーマ既定）",
+              "option_body": "本文フォント（テーマ設定）",
+              "option_heading": "見出しフォント（テーマ設定）"
+            },
+            "header_text2": {
+              "content": "テキスト 2"
+            },
+            "text_2": {
+              "label": "テキスト 2",
+              "default": "<p></p>"
+            },
+            "text_2_font_size_rem": {
+              "label": "テキスト 2 の文字サイズ（rem）"
+            },
+            "text_2_font_family": {
+              "label": "テキスト 2 のフォント",
+              "option_inherit": "周囲に合わせる（テーマ既定）",
+              "option_body": "本文フォント（テーマ設定）",
+              "option_heading": "見出しフォント（テーマ設定）"
+            },
+            "header_button": {
+              "content": "ボタン"
+            },
+            "button_label": {
+              "label": "ボタンのテキスト",
+              "default": "ボタン"
+            },
+            "button_image": {
+              "label": "ボタン画像（任意・設定時は画像優先）"
+            },
+            "button_link": {
+              "label": "ボタンのリンク"
+            },
+            "header_box": {
+              "content": "囲み（枠線・余白）"
+            },
+            "box_padding": {
+              "label": "内側の余白"
+            },
+            "box_border_width": {
+              "label": "線の太さ"
+            },
+            "box_border_color": {
+              "label": "線の色"
+            },
+            "box_radius": {
+              "label": "角丸"
+            },
+            "header_button_style": {
+              "content": "ボタン（テキスト表示時）の見た目"
+            },
+            "button_bg_color": {
+              "label": "ボタン背景色"
+            },
+            "button_text_color": {
+              "label": "ボタン文字色"
+            },
+            "button_radius": {
+              "label": "ボタン角丸"
+            }
+          }
+        }
       },
       "settings": {
         "newsletter_enable": {

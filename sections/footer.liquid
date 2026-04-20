@@ -100,6 +100,10 @@
                     <div class="footer-block__details-content footer-block--custom-content-full-width">
                       {% render 'footer-two-column-media', block: block %}
                     </div>
+                  {%- when 'text_button' -%}
+                    <div class="footer-block__details-content footer-block--custom-content-full-width">
+                      {% render 'footer-text-button', block: block %}
+                    </div>
                   {%- when 'text' -%}
                     <div class="footer-block__details-content rte">
                       {{ block.settings.subtext }}
@@ -925,6 +929,188 @@
           "type": "url",
           "id": "right_image_link",
           "label": "t:sections.footer.blocks.two_column_media.settings.right_image_link.label"
+        }
+      ]
+    },
+    {
+      "type": "text_button",
+      "name": "t:sections.footer.blocks.text_button.name",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "force_full_width_on_desktop",
+          "label": "t:sections.footer.blocks.text_button.settings.force_full_width_on_desktop.label",
+          "default": true
+        },
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "t:sections.footer.blocks.text_button.settings.color_scheme.label",
+          "default": "scheme-1"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.footer.blocks.text_button.settings.header_text1.content"
+        },
+        {
+          "type": "richtext",
+          "id": "text_1",
+          "label": "t:sections.footer.blocks.text_button.settings.text_1.label",
+          "default": "t:sections.footer.blocks.text_button.settings.text_1.default"
+        },
+        {
+          "type": "range",
+          "id": "text_1_font_size_rem",
+          "min": 0.8,
+          "max": 3,
+          "step": 0.1,
+          "label": "t:sections.footer.blocks.text_button.settings.text_1_font_size_rem.label",
+          "default": 1.6
+        },
+        {
+          "type": "select",
+          "id": "text_1_font_family",
+          "label": "t:sections.footer.blocks.text_button.settings.text_1_font_family.label",
+          "options": [
+            {
+              "value": "inherit",
+              "label": "t:sections.footer.blocks.text_button.settings.text_1_font_family.option_inherit"
+            },
+            {
+              "value": "body",
+              "label": "t:sections.footer.blocks.text_button.settings.text_1_font_family.option_body"
+            },
+            {
+              "value": "heading",
+              "label": "t:sections.footer.blocks.text_button.settings.text_1_font_family.option_heading"
+            }
+          ],
+          "default": "inherit"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.footer.blocks.text_button.settings.header_text2.content"
+        },
+        {
+          "type": "richtext",
+          "id": "text_2",
+          "label": "t:sections.footer.blocks.text_button.settings.text_2.label",
+          "default": "t:sections.footer.blocks.text_button.settings.text_2.default"
+        },
+        {
+          "type": "range",
+          "id": "text_2_font_size_rem",
+          "min": 0.8,
+          "max": 3,
+          "step": 0.1,
+          "label": "t:sections.footer.blocks.text_button.settings.text_2_font_size_rem.label",
+          "default": 1.6
+        },
+        {
+          "type": "select",
+          "id": "text_2_font_family",
+          "label": "t:sections.footer.blocks.text_button.settings.text_2_font_family.label",
+          "options": [
+            {
+              "value": "inherit",
+              "label": "t:sections.footer.blocks.text_button.settings.text_2_font_family.option_inherit"
+            },
+            {
+              "value": "body",
+              "label": "t:sections.footer.blocks.text_button.settings.text_2_font_family.option_body"
+            },
+            {
+              "value": "heading",
+              "label": "t:sections.footer.blocks.text_button.settings.text_2_font_family.option_heading"
+            }
+          ],
+          "default": "inherit"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.footer.blocks.text_button.settings.header_button.content"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "t:sections.footer.blocks.text_button.settings.button_label.label",
+          "default": "t:sections.footer.blocks.text_button.settings.button_label.default"
+        },
+        {
+          "type": "image_picker",
+          "id": "button_image",
+          "label": "t:sections.footer.blocks.text_button.settings.button_image.label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.footer.blocks.text_button.settings.button_link.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.footer.blocks.text_button.settings.header_box.content"
+        },
+        {
+          "type": "range",
+          "id": "box_padding",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "label": "t:sections.footer.blocks.text_button.settings.box_padding.label",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "box_border_width",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "unit": "px",
+          "label": "t:sections.footer.blocks.text_button.settings.box_border_width.label",
+          "default": 1
+        },
+        {
+          "type": "color",
+          "id": "box_border_color",
+          "label": "t:sections.footer.blocks.text_button.settings.box_border_color.label",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "box_radius",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "label": "t:sections.footer.blocks.text_button.settings.box_radius.label",
+          "default": 12
+        },
+        {
+          "type": "header",
+          "content": "t:sections.footer.blocks.text_button.settings.header_button_style.content"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "t:sections.footer.blocks.text_button.settings.button_bg_color.label",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "t:sections.footer.blocks.text_button.settings.button_text_color.label",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "range",
+          "id": "button_radius",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "label": "t:sections.footer.blocks.text_button.settings.button_radius.label",
+          "default": 999
         }
       ]
     },

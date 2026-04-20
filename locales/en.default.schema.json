@@ -1277,7 +1277,7 @@
               "label": "Button text color"
             },
             "button_radius": {
-              "label": "Button corner radius"
+              "label": "Button corner radius (0–100; 100 = pill)"
             }
           }
         }

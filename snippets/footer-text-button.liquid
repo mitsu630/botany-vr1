@@ -43,7 +43,11 @@
 
   assign btn_bg = cfg.button_bg_color | default: '#000000'
   assign btn_fg = cfg.button_text_color | default: '#FFFFFF'
-  assign btn_radius = cfg.button_radius | default: 999
+  assign btn_radius_setting = cfg.button_radius | default: 100
+  assign btn_radius = btn_radius_setting
+  if btn_radius_setting >= 100
+    assign btn_radius = 999
+  endif
 -%}
 
 {%- capture style_vars -%}

@@ -17,12 +17,32 @@
   else
     assign g_ff_css = ''
   endif
+
+  assign has_video = false
+  if block.settings.video_url != blank and block.settings.video_url.id != blank
+    assign has_video = true
+  endif
+
+  assign card_wraps_with_link = false
+  if block.settings.card_link != blank and has_video == false
+    assign card_wraps_with_link = true
+  endif
+
+  if ratio_class == 'ratio-16-9'
+    assign ratio_percent = 56.25
+  elsif ratio_class == 'ratio-4-3'
+    assign ratio_percent = 75.0
+  elsif ratio_class == 'square'
+    assign ratio_percent = 100.0
+  else
+    assign ratio_percent = nil
+  endif
 -%}
 {%- capture footer_generic_card_style -%}
 --footer-card-radius: {{ radius }}px; --footer-card-padding: {{ pad }}px; border-radius: {{ radius }}px; --fgc-title-fs: {{ g_title_fs }}rem; --fgc-excerpt-fs: {{ g_excerpt_fs }}rem;{% if g_ff_css != blank %} --fgc-font-family: {{ g_ff_css }};{% endif %}
 {%- endcapture -%}
 
-{%- if block.settings.card_link != blank -%}
+{%- if card_wraps_with_link -%}
   <a
     href="{{ block.settings.card_link }}"
     class="footer-generic-card footer-generic-card--is-link color-{{ block.settings.color_scheme }} gradient"
@@ -37,7 +57,80 @@
   >
 {%- endif -%}
 
-{%- if block.settings.image != blank -%}
+{%- if has_video -%}
+  {%- liquid
+    assign ext_vid = block.settings.video_url
+    assign vid_id = ext_vid.id
+    assign vid_poster = block.settings.image | default: ext_vid.preview_image
+    assign vid_aria = block.settings.title | default: 'Video' | strip_html | escape
+    assign vid_alt = 'sections.video.load_video' | t: description: vid_aria
+    if ratio_class == 'adapt' and vid_poster != blank
+      assign ratio_percent = 1 | divided_by: vid_poster.aspect_ratio | times: 100
+    elsif ratio_class == 'adapt'
+      assign ratio_percent = 56.25
+    endif
+  -%}
+  <div class="footer-generic-card__media footer-generic-card__media--video">
+    <deferred-media
+      class="footer-generic-card__video deferred-media"
+      data-media-id="{{ vid_id }}"
+      style="--ratio-percent: {{ ratio_percent }}%;"
+    >
+      <button
+        id="Deferred-FooterCard-{{ block.id }}"
+        type="button"
+        class="footer-generic-card__video-poster deferred-media__poster media"
+        aria-label="{{ vid_alt }}"
+      >
+        {%- if vid_poster != blank -%}
+          {{
+            vid_poster
+            | image_url: width: 1200
+            | image_tag:
+              loading: 'lazy',
+              widths: '165, 360, 535, 750, 940, 1100, 1200',
+              sizes: '(min-width: 990px) 400px, (min-width: 750px) 45vw, 100vw',
+              alt: vid_aria
+          }}
+        {%- elsif ext_vid.type == 'youtube' -%}
+          <img
+            src="https://i.ytimg.com/vi/{{ vid_id }}/hqdefault.jpg"
+            alt="{{ vid_aria }}"
+            loading="lazy"
+            width="480"
+            height="360"
+          >
+        {%- else -%}
+          {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+        {%- endif -%}
+        <span class="deferred-media__poster-button motion-reduce">
+          <span class="svg-wrapper">
+            {{- 'icon-play.svg' | inline_asset_content -}}
+          </span>
+        </span>
+      </button>
+      <template>
+        {%- if ext_vid.type == 'youtube' -%}
+          <iframe
+            src="https://www.youtube.com/embed/{{ vid_id }}?enablejsapi=1&autoplay=1"
+            class="js-youtube"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+            title="{{ vid_aria }}"
+          ></iframe>
+        {%- else -%}
+          <iframe
+            src="https://player.vimeo.com/video/{{ vid_id }}?autoplay=1"
+            class="js-vimeo"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+            title="{{ vid_aria }}"
+          ></iframe>
+        {%- endif -%}
+      </template>
+    </deferred-media>
+  </div>
+{%- elsif block.settings.image != blank -%}
   <div class="footer-generic-card__media footer-generic-card__media--{{ ratio_class }}">
     {{
       block.settings.image
@@ -52,6 +145,9 @@
 {%- endif -%}
 
 <div class="footer-generic-card__body">
+  {%- if block.settings.card_link != blank and has_video -%}
+    <a href="{{ block.settings.card_link }}" class="footer-generic-card__body-link">
+  {%- endif -%}
   {%- if block.settings.title != blank -%}
     <h3 class="footer-generic-card__title inline-richtext h4">
       {{ block.settings.title }}
@@ -62,9 +158,12 @@
       {{ block.settings.excerpt }}
     </div>
   {%- endif -%}
+  {%- if block.settings.card_link != blank and has_video -%}
+    </a>
+  {%- endif -%}
 </div>
 
-{%- if block.settings.card_link != blank -%}
+{%- if card_wraps_with_link -%}
   </a>
 {%- else -%}
   </div>

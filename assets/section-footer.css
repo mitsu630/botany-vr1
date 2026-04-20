@@ -703,6 +703,51 @@
   font-family: inherit;
 }
 
+/* 汎用カード：YouTube / Vimeo（deferred-media） */
+.footer-generic-card__media--video {
+  width: 100%;
+}
+
+.footer-generic-card__video.deferred-media {
+  position: relative;
+  width: 100%;
+  padding-bottom: calc(var(--ratio-percent, 56.25%) - var(--media-border-width, 0rem));
+  overflow: hidden;
+}
+
+.footer-generic-card__video-poster.deferred-media__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.footer-generic-card__video-poster.deferred-media__poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.footer-generic-card__video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000;
+}
+
+.footer-generic-card__body-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.footer-generic-card__body-link:hover {
+  opacity: 0.92;
+}
+
 .footer-generic-card__excerpt p:last-child {
   margin-bottom: 0;
 }

@@ -4,6 +4,7 @@
 {{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
 {{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
 {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .footer {
@@ -696,7 +697,16 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "t:sections.footer.blocks.generic_card.settings.image.label"
+          "label": "t:sections.footer.blocks.generic_card.settings.image.label",
+          "info": "t:sections.footer.blocks.generic_card.settings.image.info"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "accept": ["youtube", "vimeo"],
+          "label": "t:sections.footer.blocks.generic_card.settings.video_url.label",
+          "placeholder": "t:sections.footer.blocks.generic_card.settings.video_url.placeholder",
+          "info": "t:sections.footer.blocks.generic_card.settings.video_url.info"
         },
         {
           "type": "inline_richtext",

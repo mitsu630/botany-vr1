@@ -1079,7 +1079,13 @@
           "name": "Generic card",
           "settings": {
             "image": {
-              "label": "Image"
+              "label": "Image",
+              "info": "Top image when no video is set. With a video, used as an optional custom poster/thumbnail."
+            },
+            "video_url": {
+              "label": "Video (YouTube / Vimeo)",
+              "placeholder": "https://www.youtube.com/watch?v=...",
+              "info": "When set, the video replaces the image. Plays inline after clicking the poster. For Vimeo, use the image field if you need a custom poster."
             },
             "title": {
               "label": "Title",
@@ -1091,7 +1097,7 @@
             },
             "card_link": {
               "label": "Card link (optional)",
-              "info": "When set, the whole card (image, title, excerpt) links to this URL."
+              "info": "With image only, the whole card links. With a video, only the title/excerpt area links (so it does not wrap the play control)."
             },
             "header_style": {
               "content": "Card appearance"

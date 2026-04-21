@@ -1103,6 +1103,9 @@
             "button_link": {
               "label": "ボタンのリンク"
             },
+            "button_width_percent": {
+              "label": "ボタンの幅（%・テキスト/画像どちらも）"
+            },
             "header_spacing": {
               "content": "余白（外側）"
             },

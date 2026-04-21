@@ -1258,6 +1258,9 @@
             "button_link": {
               "label": "Button link"
             },
+            "button_width_percent": {
+              "label": "Button width (%) - text and image"
+            },
             "header_spacing": {
               "content": "Outer spacing"
             },

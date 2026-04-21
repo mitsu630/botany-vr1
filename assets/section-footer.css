@@ -880,6 +880,16 @@
 
 .footer-ftb__button {
   margin-top: 0.6rem;
+  width: min(100%, var(--ftb-btn-w, 100%));
+}
+
+.footer-ftb--align-center .footer-ftb__button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-ftb--align-right .footer-ftb__button {
+  margin-left: auto;
 }
 
 .footer-ftb__button-link {
@@ -897,6 +907,8 @@
   line-height: 1.2;
   font-weight: 600;
   max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .footer-ftb__button-link--text:hover {
@@ -905,6 +917,7 @@
 
 .footer-ftb__button-link--image {
   line-height: 0;
+  width: 100%;
 }
 
 .footer-ftb__button-image {

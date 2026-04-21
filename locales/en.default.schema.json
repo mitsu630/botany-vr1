@@ -2930,6 +2930,129 @@
         "name": "Multicolumn"
       }
     },
+    "promo-framed-content": {
+      "name": "Framed promo",
+      "presets": {
+        "name": "Framed promo"
+      },
+      "settings": {
+        "header_outer_margin": {
+          "content": "Outer margin (space around the block)"
+        },
+        "margin_top": {
+          "label": "Top"
+        },
+        "margin_right": {
+          "label": "Right"
+        },
+        "margin_bottom": {
+          "label": "Bottom"
+        },
+        "margin_left": {
+          "label": "Left"
+        },
+        "header_inner_box": {
+          "content": "Inner box (border, background, radius)"
+        },
+        "box_background": {
+          "label": "Box background"
+        },
+        "box_border_color": {
+          "label": "Border color"
+        },
+        "box_border_width": {
+          "label": "Border width"
+        },
+        "box_radius": {
+          "label": "Corner radius"
+        },
+        "header_inner_padding": {
+          "content": "Inner padding (inside the box)"
+        },
+        "box_padding_top": {
+          "label": "Top"
+        },
+        "box_padding_right": {
+          "label": "Right"
+        },
+        "box_padding_bottom": {
+          "label": "Bottom"
+        },
+        "box_padding_left": {
+          "label": "Left"
+        },
+        "header_badge": {
+          "content": "Top badge (overlaps the top border)"
+        },
+        "show_badge": {
+          "label": "Show badge"
+        },
+        "badge_text": {
+          "label": "Badge text"
+        },
+        "badge_background": {
+          "label": "Badge background"
+        },
+        "badge_text_color": {
+          "label": "Badge text color"
+        },
+        "badge_border_color": {
+          "label": "Badge border color"
+        },
+        "badge_border_width": {
+          "label": "Badge border width"
+        },
+        "header_alignment": {
+          "content": "Text alignment"
+        },
+        "content_alignment": {
+          "label": "Text and button alignment"
+        }
+      },
+      "blocks": {
+        "image_grid": {
+          "name": "Image grid (4)",
+          "settings": {
+            "header_images": {
+              "content": "Images (optional link each)"
+            },
+            "image_1": {
+              "label": "Image 1"
+            },
+            "link_1": {
+              "label": "Image 1 link"
+            },
+            "image_2": {
+              "label": "Image 2"
+            },
+            "link_2": {
+              "label": "Image 2 link"
+            },
+            "image_3": {
+              "label": "Image 3"
+            },
+            "link_3": {
+              "label": "Image 3 link"
+            },
+            "image_4": {
+              "label": "Image 4"
+            },
+            "link_4": {
+              "label": "Image 4 link"
+            },
+            "header_layout": {
+              "content": "Layout"
+            },
+            "grid_gap": {
+              "label": "Gap between images"
+            },
+            "image_radius": {
+              "label": "Image corner radius"
+            }
+          }
+        }
+      }
+    },
     "newsletter": {
       "name": "Email signup",
       "settings": {
@@ -3344,6 +3467,15 @@
             },
             "padding_left": {
               "label": "Left"
+            }
+          }
+        },
+        "standalone_video": {
+          "name": "Custom video",
+          "settings": {
+            "full_viewport_width": {
+              "label": "Full browser width (break out of parent)",
+              "info": "When on, the video spans the viewport, wider than the rich text column. When off, it stays within the rich text column width."
             }
           }
         }

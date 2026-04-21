@@ -2602,6 +2602,129 @@
         "name": "マルチカラム"
       }
     },
+    "promo-framed-content": {
+      "name": "枠付きプロモ",
+      "presets": {
+        "name": "枠付きプロモ"
+      },
+      "settings": {
+        "header_outer_margin": {
+          "content": "セクションの外側マージン（周囲とのあき）"
+        },
+        "margin_top": {
+          "label": "上"
+        },
+        "margin_right": {
+          "label": "右"
+        },
+        "margin_bottom": {
+          "label": "下"
+        },
+        "margin_left": {
+          "label": "左"
+        },
+        "header_inner_box": {
+          "content": "内側ボックス（枠線・背景・角丸）"
+        },
+        "box_background": {
+          "label": "ボックス背景色"
+        },
+        "box_border_color": {
+          "label": "枠線の色"
+        },
+        "box_border_width": {
+          "label": "枠線の太さ"
+        },
+        "box_radius": {
+          "label": "角丸"
+        },
+        "header_inner_padding": {
+          "content": "ボックス内の余白（パディング）"
+        },
+        "box_padding_top": {
+          "label": "上"
+        },
+        "box_padding_right": {
+          "label": "右"
+        },
+        "box_padding_bottom": {
+          "label": "下"
+        },
+        "box_padding_left": {
+          "label": "左"
+        },
+        "header_badge": {
+          "content": "上辺バッジ（枠の上に重ねる）"
+        },
+        "show_badge": {
+          "label": "バッジを表示"
+        },
+        "badge_text": {
+          "label": "バッジのテキスト"
+        },
+        "badge_background": {
+          "label": "バッジの背景色"
+        },
+        "badge_text_color": {
+          "label": "バッジの文字色"
+        },
+        "badge_border_color": {
+          "label": "バッジの枠線色"
+        },
+        "badge_border_width": {
+          "label": "バッジの枠線の太さ"
+        },
+        "header_alignment": {
+          "content": "本文の揃え"
+        },
+        "content_alignment": {
+          "label": "テキストとボタンの位置"
+        }
+      },
+      "blocks": {
+        "image_grid": {
+          "name": "画像グリッド（4枚）",
+          "settings": {
+            "header_images": {
+              "content": "画像（各1枚・任意でリンク）"
+            },
+            "image_1": {
+              "label": "画像1"
+            },
+            "link_1": {
+              "label": "画像1のリンク"
+            },
+            "image_2": {
+              "label": "画像2"
+            },
+            "link_2": {
+              "label": "画像2のリンク"
+            },
+            "image_3": {
+              "label": "画像3"
+            },
+            "link_3": {
+              "label": "画像3のリンク"
+            },
+            "image_4": {
+              "label": "画像4"
+            },
+            "link_4": {
+              "label": "画像4のリンク"
+            },
+            "header_layout": {
+              "content": "レイアウト"
+            },
+            "grid_gap": {
+              "label": "画像の間隔"
+            },
+            "image_radius": {
+              "label": "画像の角丸"
+            }
+          }
+        }
+      }
+    },
     "newsletter": {
       "name": "メール登録",
       "settings": {
@@ -2811,6 +2934,15 @@
             },
             "padding_left": {
               "label": "左"
+            }
+          }
+        },
+        "standalone_video": {
+          "name": "オリジナル動画",
+          "settings": {
+            "full_viewport_width": {
+              "label": "画面幅いっぱいに表示（親ブロックより広げる）",
+              "info": "ONにするとリッチテキストの文章幅より広く、ブラウザ表示幅いっぱいに動画が広がります。OFFのときはこのセクションのテキスト列の幅に収めます。"
             }
           }
         }

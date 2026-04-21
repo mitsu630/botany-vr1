@@ -1,0 +1,153 @@
+{%- comment -%}
+  Rich text block: standalone_video — matches theme video section (Shopify video or YouTube/Vimeo)
+{%- endcomment -%}
+{%- liquid
+  assign cfg = block.settings
+  assign video_hosted = cfg.video
+  assign video_url_setting = cfg.video_url
+  assign video_id = video_hosted.id | default: video_url_setting.id
+
+  assign video_alt = cfg.description
+  if video_hosted != null
+    assign video_alt = video_hosted.alt | default: cfg.description
+  endif
+  assign alt = 'sections.video.load_video' | t: description: video_alt | escape
+  assign poster = video_hosted.preview_image | default: cfg.cover_image
+
+  assign fix_ratio = false
+  if video_hosted != null and poster != null
+    assign ratio_diff = video_hosted.aspect_ratio | minus: poster.aspect_ratio | abs
+    if ratio_diff < 0.01 and ratio_diff > 0
+      assign fix_ratio = true
+    endif
+  endif
+
+  assign full_bleed = cfg.full_viewport_width
+
+  assign sizes_bleed = '100vw'
+  assign sizes_contained = '(min-width: 990px) 78rem, (min-width: 750px) 50rem, calc(100vw - 3rem)'
+  assign sizes_attr = sizes_contained
+  if full_bleed
+    assign sizes_attr = sizes_bleed
+  endif
+
+  assign mt = cfg.margin_top | default: 0
+  assign mr = cfg.margin_right | default: 0
+  assign mb = cfg.margin_bottom | default: 0
+  assign ml = cfg.margin_left | default: 0
+
+  assign pt = cfg.padding_top | default: 0
+  assign pr = cfg.padding_right | default: 0
+  assign pb = cfg.padding_bottom | default: 0
+  assign pl = cfg.padding_left | default: 0
+
+  assign pad_style = 'padding-top: ' | append: pt | append: 'px; padding-right: ' | append: pr | append: 'px; padding-bottom: ' | append: pb | append: 'px; padding-left: ' | append: pl | append: 'px;'
+
+  assign ao = animation_order | default: 1
+-%}
+{%- capture wrap_style -%}
+margin-top: {{ mt }}px; margin-right: {{ mr }}px; margin-bottom: {{ mb }}px; margin-left: {{ ml }}px;{% if settings.animations_reveal_on_scroll %} --animation-order: {{ ao }};{% endif %}
+{%- endcapture -%}
+
+{%- liquid
+  assign has_playable_video = false
+  if video_hosted != null
+    assign has_playable_video = true
+  elsif video_url_setting != null and video_url_setting.id != blank
+    assign has_playable_video = true
+  endif
+-%}
+
+<div
+  class="rich-text__standalone-video{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  {% if settings.animations_reveal_on_scroll %}
+    data-cascade
+  {% endif %}
+  style="{{ wrap_style | strip }}"
+  {{ block.shopify_attributes }}
+>
+  {%- if has_playable_video -%}
+    {%- capture deferred_inner -%}
+      <deferred-media
+        class="video-section__media deferred-media gradient global-media-settings{% if full_bleed %} global-media-settings--full-width{% endif %}{% if fix_ratio %} media-fit-cover{% endif %}"
+        data-media-id="{{ video_id }}"
+        {% if poster != null %}
+          style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"
+        {% endif %}
+      >
+        <button
+          id="Deferred-Poster-Modal-{{ block.id }}"
+          class="video-section__poster media deferred-media__poster media--landscape"
+          type="button"
+          aria-label="{{ alt }}"
+        >
+          {%- if poster != null -%}
+            {{
+              poster
+              | image_url: width: 3840
+              | image_tag: sizes: sizes_attr, widths: '375, 750, 1100, 1500, 1780, 2000, 3000, 3840', alt: alt
+            }}
+          {%- else -%}
+            {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+          {%- endif -%}
+          <span class="deferred-media__poster-button motion-reduce">
+            <span class="svg-wrapper">
+              {{- 'icon-play.svg' | inline_asset_content -}}
+            </span>
+          </span>
+        </button>
+        <template>
+          {%- if video_hosted == null and video_url_setting != null -%}
+            {%- liquid
+              assign loop = ''
+              if cfg.enable_video_looping
+                assign loop = '&loop=1&playlist=' | append: video_id
+              endif
+            -%}
+            {%- if video_url_setting.type == 'youtube' -%}
+              <iframe
+                src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&autoplay=1{{ loop }}"
+                class="js-youtube"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+                title="{{ cfg.description | escape }}"
+              ></iframe>
+            {%- else -%}
+              <iframe
+                src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1{{ loop }}"
+                class="js-vimeo"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+                title="{{ cfg.description | escape }}"
+              ></iframe>
+            {%- endif -%}
+          {%- else -%}
+            {{
+              video_hosted
+              | video_tag:
+                image_size: '1100x',
+                autoplay: true,
+                loop: cfg.enable_video_looping,
+                controls: true,
+                muted: false
+            }}
+          {%- endif -%}
+        </template>
+      </deferred-media>
+    {%- endcapture -%}
+
+    {%- if full_bleed -%}
+      <div class="custom-standalone-image__media custom-standalone-image__media--bleed rich-text__standalone-video-bleed" style="{{ pad_style }}">
+        {{ deferred_inner }}
+      </div>
+    {%- else -%}
+      <div style="{{ pad_style }}">
+        {{ deferred_inner }}
+      </div>
+    {%- endif -%}
+  {%- else -%}
+    <div class="rich-text__standalone-video-placeholder" style="{{ pad_style }}">
+      {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+    </div>
+  {%- endif -%}
+</div>

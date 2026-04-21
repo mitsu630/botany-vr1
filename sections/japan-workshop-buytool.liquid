@@ -63,13 +63,20 @@
       }
 
       #jwbt-{{ section.id }} .jwbt__optis-host {
-        position: absolute;
-        left: -10000px;
-        top: 0;
+        /*
+          OPTISのブロックは「画面内に入ったら初期化/描画」される場合があるため、
+          画面外へ飛ばす（left:-10000px 等）ではなく、画面内に存在させたまま不可視化する。
+        */
+        position: fixed;
+        left: 0;
+        bottom: 0;
         width: 420px;
+        max-width: calc(100vw - 24px);
         height: auto;
         overflow: visible;
+        opacity: 0.001;
         pointer-events: none;
+        z-index: 0;
       }
 
       #jwbt-{{ section.id }} .jwbt__optis-host * {

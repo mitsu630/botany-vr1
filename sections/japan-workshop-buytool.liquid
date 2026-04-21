@@ -43,6 +43,11 @@
     padding-bottom: var(--jwb-reserve) !important;
   }
 
+  /* Workshopテンプレートでは商品サムネ（メディア列）を非表示 */
+  .product__media-wrapper {
+    display: none !important;
+  }
+
   /* 2) Fixed bar base: OPTIS app block (Shopify app block)
         DOM例:
         <div class="shopify-block shopify-app-block" id="...__optis_product_options_...">...</div>

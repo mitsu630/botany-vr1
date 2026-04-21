@@ -588,17 +588,21 @@
             alert('サイズと植物を選んでからお進みください。');
             return;
           }
-          var form = getMainForm();
+          // 予約は jwbt の隠しフォームを「送信元の唯一の正」として使う
+          // （メイン側フォームの構造差・アプリ注入差の影響を避ける）
+          var form = jwbtForm || getMainForm();
           if (!form) {
             alert('購入フォームが見つかりませんでした。');
             return;
           }
 
-          // 念のため、フッター→メインへ反映してから送信
-          syncMainFromFooter();
-
-          var idInput = getVariantIdInput(form);
-          if (!idInput || !idInput.value) {
+          // バリエーションIDはフッターの開催プルダウンを最優先で採用
+          var variantId = selVariant && selVariant.value ? String(selVariant.value) : '';
+          if (!variantId) {
+            var mainIdInput = getVariantIdInput(getMainForm());
+            if (mainIdInput && mainIdInput.value) variantId = String(mainIdInput.value);
+          }
+          if (!variantId) {
             alert('バリエーションIDが取得できませんでした。');
             return;
           }
@@ -611,9 +615,7 @@
               if (!el || !el.name) return;
               var v = el.value != null ? String(el.value) : '';
               if (!v) return;
-              if (!form.querySelector('[name="' + el.name + '"]')) {
-                fd.set(el.name, v);
-              }
+              fd.set(el.name, v);
             };
             addField(opt && opt.size ? opt.size : null);
             addField(opt && opt.plant ? opt.plant : null);
@@ -624,7 +626,7 @@
           if (qtyInput && qtyInput.value) qty = parseInt(qtyInput.value, 10);
           if (!Number.isFinite(qty) || qty < 1) qty = 1;
           fd.set('quantity', String(qty));
-          fd.set('id', String(idInput.value));
+          fd.set('id', variantId);
 
           btn.textContent = 'お待ちください…';
           btn.setAttribute('aria-busy', 'true');

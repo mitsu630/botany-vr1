@@ -84,17 +84,11 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
-    },
-    "japan_workshop_buytool_pyWgnx": {
-      "type": "japan-workshop-buytool",
-      "name": "japan-workshop-buytool",
-      "settings": {}
     }
   },
   "order": [
     "workshop_dynamic_header_NCVnWe",
     "main",
-    "related-products",
-    "japan_workshop_buytool_pyWgnx"
+    "related-products"
   ]
 }

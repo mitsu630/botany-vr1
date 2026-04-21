@@ -1,0 +1,34 @@
+/* Custom standalone image — optional full viewport width breakout */
+
+.custom-standalone-image {
+  box-sizing: border-box;
+}
+
+.custom-standalone-image__media {
+  display: block;
+  line-height: 0;
+  box-sizing: border-box;
+}
+
+.custom-standalone-image__link {
+  display: block;
+  line-height: 0;
+  text-decoration: none;
+}
+
+.custom-standalone-image__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Break out of page-width / narrow parents to span the viewport */
+.custom-standalone-image__media--bleed {
+  width: 100vw;
+  max-width: 100vw;
+  position: relative;
+  left: 50%;
+  right: auto;
+  margin-left: -50vw;
+  margin-right: 0;
+}

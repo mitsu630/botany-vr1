@@ -682,6 +682,61 @@
         "name": "カスタムLiquid"
       }
     },
+    "custom-standalone-image": {
+      "name": "オリジナル画像（単体）",
+      "presets": {
+        "name": "オリジナル画像（単体）"
+      },
+      "settings": {
+        "image": {
+          "label": "画像"
+        },
+        "image_link": {
+          "label": "リンク先URL（任意）"
+        },
+        "link_new_tab": {
+          "label": "リンクを新しいタブで開く"
+        },
+        "image_alt": {
+          "label": "代替テキスト（任意）",
+          "info": "空欄のときはアップロード画像のALT、それもなければショップ名を使います。"
+        },
+        "full_viewport_width": {
+          "label": "画面幅いっぱいに表示（親ブロックより広げる）",
+          "info": "ONにすると記事やページの収まり幅より広く、ブラウザ表示幅いっぱいに広がります。OFFのときはテーマの通常幅（page-width）に収めます。"
+        },
+        "header_margin": {
+          "content": "セクションの外側の余白（マージン）"
+        },
+        "margin_top": {
+          "label": "上"
+        },
+        "margin_right": {
+          "label": "右"
+        },
+        "margin_bottom": {
+          "label": "下"
+        },
+        "margin_left": {
+          "label": "左"
+        },
+        "header_padding": {
+          "content": "画像まわりの内側の余白（パディング）"
+        },
+        "padding_top": {
+          "label": "上"
+        },
+        "padding_right": {
+          "label": "右"
+        },
+        "padding_bottom": {
+          "label": "下"
+        },
+        "padding_left": {
+          "label": "左"
+        }
+      }
+    },
     "featured-blog": {
       "name": "ブログ記事",
       "settings": {

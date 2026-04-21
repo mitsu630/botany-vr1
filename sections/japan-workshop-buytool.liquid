@@ -27,18 +27,18 @@
     --jwb-help-text: 'ご予約はサイズと植物を\n選んだ後に行ってください';
   }
 
-  /* このセクションがあるテンプレートだけに効かせる */
-  #shopify-section-{{ section.id }} ~ * .product__media-wrapper {
+  /* 注意: このCSSは「このセクションを入れたテンプレート」だけに適用する運用前提 */
+  .product__media-wrapper {
     display: none !important;
   }
 
-  #shopify-section-{{ section.id }} ~ * .product__info-wrapper,
-  #shopify-section-{{ section.id }} ~ * .product__info-container {
+  .product__info-wrapper,
+  .product__info-container {
     width: 100% !important;
     max-width: 100% !important;
   }
 
-  #shopify-section-{{ section.id }} ~ * .product__info-container {
+  .product__info-container {
     background: var(--jwb-bg);
     border-radius: var(--jwb-radius);
     padding: var(--jwb-pad);
@@ -53,7 +53,7 @@
   }
 
   /* 中央の案内文（DOM追加せずCSSだけで表示） */
-  #shopify-section-{{ section.id }} ~ * .product__info-container::after {
+  .product__info-container::after {
     content: var(--jwb-help-text);
     grid-area: help;
     align-self: center;
@@ -67,75 +67,75 @@
   }
 
   /* 不要なラベル類（見た目のため） */
-  #shopify-section-{{ section.id }} ~ * .product__info-container .form__label,
-  #shopify-section-{{ section.id }} ~ * .product__info-container .po-label,
-  #shopify-section-{{ section.id }} ~ * .product__info-container .quantity__label,
-  #shopify-section-{{ section.id }} ~ * .product__info-container .product__view-details {
+  .product__info-container .form__label,
+  .product__info-container .po-label,
+  .product__info-container .quantity__label,
+  .product__info-container .product__view-details {
     display: none !important;
   }
 
   /* 1段目：会場開催日 */
-  #shopify-section-{{ section.id }} ~ * .product__info-container > variant-selects[id^='variant-selects-'] {
+  .product__info-container > variant-selects[id^='variant-selects-'] {
     grid-area: variant;
   }
-  #shopify-section-{{ section.id }} ~ * .product__info-container > variant-selects .select,
-  #shopify-section-{{ section.id }} ~ * .product__info-container > variant-selects .select__select {
+  .product__info-container > variant-selects .select,
+  .product__info-container > variant-selects .select__select {
     width: 100%;
     min-height: var(--jwb-row-h);
   }
 
   /* 2-3段目：OPTIS（サイズ/植物） */
-  #shopify-section-{{ section.id }} ~ * .product__info-container > .shopify-app-block[id*='__optis_product_options_'] {
+  .product__info-container > .shopify-app-block[id*='__optis_product_options_'] {
     grid-area: optis;
   }
-  #shopify-section-{{ section.id }} ~ * .product__info-container .bss-po-product-page {
+  .product__info-container .bss-po-product-page {
     display: flex !important;
     flex-direction: column !important;
     gap: var(--jwb-gap) !important;
   }
-  #shopify-section-{{ section.id }} ~ * .product__info-container .po-select-dropdown-thumbnail {
+  .product__info-container .po-select-dropdown-thumbnail {
     min-height: var(--jwb-row-h) !important;
   }
 
   /* OPTIS: 上に出る表示は非表示 */
-  #shopify-section-{{ section.id }} ~ * .product__info-container .po-selected-swatch,
-  #shopify-section-{{ section.id }} ~ * .product__info-container .po-extra-price {
+  .product__info-container .po-selected-swatch,
+  .product__info-container .po-extra-price {
     display: none !important;
   }
 
   /* 4段目：数量 */
-  #shopify-section-{{ section.id }} ~ * .product__info-container > [id^='Quantity-Form-'].product-form__quantity {
+  .product__info-container > [id^='Quantity-Form-'].product-form__quantity {
     grid-area: qty;
     display: flex;
     align-items: center;
     gap: 8px;
     margin: 0 !important;
   }
-  #shopify-section-{{ section.id }} ~ * .product__info-container > [id^='Quantity-Form-'] .quantity {
+  .product__info-container > [id^='Quantity-Form-'] .quantity {
     width: var(--jwb-qty-w);
     min-height: var(--jwb-row-h);
     background: #fff;
     border-radius: var(--jwb-radius);
   }
-  #shopify-section-{{ section.id }} ~ * .product__info-container > [id^='Quantity-Form-'].product-form__quantity::after {
+  .product__info-container > [id^='Quantity-Form-'].product-form__quantity::after {
     content: '人';
     font-size: 14px;
     color: rgba(var(--color-foreground), 0.9);
   }
 
   /* 4段目：CTA（Quantity-Form の次のDIVが product-form を内包） */
-  #shopify-section-{{ section.id }} ~ * .product__info-container > [id^='Quantity-Form-'] + div {
+  .product__info-container > [id^='Quantity-Form-'] + div {
     grid-area: cta;
     display: flex;
     justify-content: flex-end;
     align-items: center;
   }
-  #shopify-section-{{ section.id }} ~ * .product__info-container > [id^='Quantity-Form-'] + div .product-form__buttons {
+  .product__info-container > [id^='Quantity-Form-'] + div .product-form__buttons {
     width: var(--jwb-btn-w);
   }
 
   /* Buy it now ボタン強調（予約する想定） */
-  #shopify-section-{{ section.id }} ~ * .product__info-container .shopify-payment-button__button--unbranded {
+  .product__info-container .shopify-payment-button__button--unbranded {
     background: var(--jwb-accent) !important;
     border-color: var(--jwb-accent) !important;
     color: #fff !important;
@@ -147,7 +147,7 @@
   }
 
   /* Add to cart はDOMに残して退避 */
-  #shopify-section-{{ section.id }} ~ * .product__info-container .po-atc-btn {
+  .product__info-container .po-atc-btn {
     position: fixed !important;
     left: -9999px !important;
     width: 1px !important;
@@ -165,11 +165,11 @@
       --jwb-qty-w: 84px;
     }
 
-    #shopify-section-{{ section.id }} ~ * .product__info-container {
+    .product__info-container {
       grid-template-columns: minmax(86px, 110px) 1fr var(--jwb-btn-w);
     }
 
-    #shopify-section-{{ section.id }} ~ * .product__info-container::after {
+    .product__info-container::after {
       font-size: 11px;
     }
   }

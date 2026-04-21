@@ -588,6 +588,21 @@
             alert('サイズと植物を選んでからお進みください。');
             return;
           }
+
+          // OPTISが本来の「今すぐ購入 / 購入手続き」フローで追加料金処理を行うため、
+          // 予約する = ページ上の checkout ボタンを代理クリックする。
+          // その前に、フッターで選んだ開催（variant）をメインフォームへ確実に反映する。
+          try {
+            syncMainFromFooter();
+          } catch (e) {}
+
+          var checkoutBtn = document.querySelector('button[name="checkout"]');
+          if (checkoutBtn && !checkoutBtn.disabled) {
+            checkoutBtn.click();
+            return;
+          }
+
+          // フォールバック：checkoutボタンが見つからない場合のみ従来経路を使う
           // 予約は jwbt の隠しフォームを「送信元の唯一の正」として使う
           // （メイン側フォームの構造差・アプリ注入差の影響を避ける）
           var form = jwbtForm || getMainForm();

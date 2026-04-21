@@ -46,7 +46,7 @@
     const setField = (name, val) => {
       const node = root.querySelector('[data-wdh-field="' + name + '"]');
       if (!node) return;
-      const row = node.closest('.wdh__row');
+      const row = node.closest('tr[data-wdh-row]');
       const v = val != null ? String(val).trim() : '';
       node.textContent = v;
       if (row) row.hidden = !v;
@@ -54,9 +54,10 @@
 
     setField('day', entry.day);
     setField('time', entry.time);
+    setField('mochimono', entry.mochimono);
     setField('kaijyo', entry.kaijyo);
     setField('jyusho', entry.jyusho);
-    setField('mochimono', entry.mochimono);
+    setField('biko', entry.biko);
   }
 
   function initRoot(root) {

@@ -21,6 +21,10 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "optis_product_options_option_set_jq3hDd": {
+          "type": "shopify://apps/optis-product-options/blocks/option-set/2c446099-c349-4e73-80cd-49c9770b7807",
+          "settings": {}
+        },
         "vendor": {
           "type": "text",
           "settings": {
@@ -109,6 +113,7 @@
         }
       },
       "block_order": [
+        "optis_product_options_option_set_jq3hDd",
         "vendor",
         "title",
         "caption",

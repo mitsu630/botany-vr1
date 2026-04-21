@@ -230,9 +230,15 @@
             OPTIS Product Options（@appブロック）はこのセクション内で実体を生成させる。
             表示UIは固定バー側のselectを使い、OPTIS実体selectと双方向同期する。
           {%- endcomment -%}
-          <div class="jwbt__optis-host" aria-hidden="true">
+          <div
+            class="jwbt__optis-host"
+            aria-hidden="true"
+            data-jwbt-optis-block-count="{{ section.blocks.size }}"
+          >
+            <!-- jwbt optis host: blocks={{ section.blocks.size }} product_id={{ product.id }} handle={{ product.handle }} -->
             {%- for block in section.blocks -%}
               <div {{ block.shopify_attributes }}>
+                <!-- jwbt optis block: id={{ block.id }} type={{ block.type }} -->
                 {%- render block -%}
               </div>
             {%- endfor -%}
@@ -316,7 +322,7 @@
           var want = normalizeText(labelText);
           if (!want) return null;
           var scope = scopeEl || document;
-          var blocks = scope.querySelectorAll('.po-option, .po-option--container, .po-option--block, .po-option--wrapper');
+          var blocks = scope.querySelectorAll('.po-option, .po-option--container, .po-option--block, .po-option--wrapper, .bss-po-option-set');
           for (var i = 0; i < blocks.length; i++) {
             var b = blocks[i];
             if (!b) continue;
@@ -336,7 +342,7 @@
           var want = normalizeText(labelText);
           if (!want) return null;
           var scope = scopeEl || document;
-          var roots = scope.querySelectorAll('.bss-po-product-page, .po-option, .po-option--container, .po-option--block, .po-option--wrapper');
+          var roots = scope.querySelectorAll('.bss-po-product-page, .bss-po-option-set, .po-option, .po-option--container, .po-option--block, .po-option--wrapper');
           for (var i = 0; i < roots.length; i++) {
             var r = roots[i];
             if (!r) continue;
@@ -502,8 +508,8 @@
           if (btn) btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
         }
 
-        // OPTISが遅延生成される前提で、最大30秒程度リトライする（500ms * 60）
-        var optisRetryLeft = 60;
+        // OPTISが遅延生成される前提で、最大2分程度リトライする（500ms * 240）
+        var optisRetryLeft = 240;
         var optisRetryTimer = null;
         function scheduleOptisRetry() {
           if (optisRetryLeft <= 0) return;
@@ -513,6 +519,18 @@
             optisRetryLeft -= 1;
             syncFooterFromMain();
           }, 500);
+        }
+
+        function watchOptisHostChanges() {
+          if (typeof MutationObserver === 'undefined') return;
+          var host = q('.jwbt__optis-host');
+          if (!host) return;
+          if (host.__jwbtObserved) return;
+          host.__jwbtObserved = true;
+          var moHost = new MutationObserver(function () {
+            syncFooterFromMain();
+          });
+          moHost.observe(host, { childList: true, subtree: true, attributes: true });
         }
 
         function syncFooterFromMain() {
@@ -529,6 +547,40 @@
           }
           if (opt.plant && opt.plant.tagName === 'SELECT') {
             cloneOptions(selPlant, opt.plant, '植物を選ぶ');
+          }
+
+          // selectがまだ生成されないケースでも、リスト要素から候補が拾える場合がある
+          if (opt.sizeField && opt.sizeField.kind !== 'select' && selSize && selSize.options.length <= 1) {
+            var list1 = getBssOptionsFromRoot(opt.sizeField.root);
+            if (list1.length) {
+              selSize.innerHTML = '';
+              var ph1 = document.createElement('option');
+              ph1.value = '';
+              ph1.textContent = 'サイズを選ぶ';
+              selSize.appendChild(ph1);
+              for (var i1 = 0; i1 < list1.length; i1++) {
+                var o1 = document.createElement('option');
+                o1.value = list1[i1];
+                o1.textContent = list1[i1];
+                selSize.appendChild(o1);
+              }
+            }
+          }
+          if (opt.plantField && opt.plantField.kind !== 'select' && selPlant && selPlant.options.length <= 1) {
+            var list2 = getBssOptionsFromRoot(opt.plantField.root);
+            if (list2.length) {
+              selPlant.innerHTML = '';
+              var ph2 = document.createElement('option');
+              ph2.value = '';
+              ph2.textContent = '植物を選ぶ';
+              selPlant.appendChild(ph2);
+              for (var i2 = 0; i2 < list2.length; i2++) {
+                var o2 = document.createElement('option');
+                o2.value = list2[i2];
+                o2.textContent = list2[i2];
+                selPlant.appendChild(o2);
+              }
+            }
           }
 
           // OPTISの実体がまだ生成されていない場合は粘り強く待つ
@@ -647,6 +699,7 @@
         }
 
         // 初期同期
+        watchOptisHostChanges();
         syncFooterFromMain();
 
         // Dawn標準の variantChange（存在する場合）に追従してフッターも更新

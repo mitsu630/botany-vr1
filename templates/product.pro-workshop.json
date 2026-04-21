@@ -21,6 +21,13 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "buy_buttons_C6BdcF": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
         "variant_picker_JbAPj6": {
           "type": "variant_picker",
           "settings": {
@@ -38,6 +45,7 @@
         }
       },
       "block_order": [
+        "buy_buttons_C6BdcF",
         "variant_picker_JbAPj6",
         "quantity_selector_NfKEab",
         "optis_product_options_option_set_jq3hDd"

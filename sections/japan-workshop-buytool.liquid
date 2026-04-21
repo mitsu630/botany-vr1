@@ -321,6 +321,18 @@
           if (btn) btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
         }
 
+        var optisRetryLeft = 12;
+        var optisRetryTimer = null;
+        function scheduleOptisRetry() {
+          if (optisRetryLeft <= 0) return;
+          if (optisRetryTimer) return;
+          optisRetryTimer = setTimeout(function () {
+            optisRetryTimer = null;
+            optisRetryLeft -= 1;
+            syncFooterFromMain();
+          }, 250);
+        }
+
         function syncFooterFromMain() {
           var form = getMainForm();
           var idInput = getVariantIdInput(form);
@@ -330,6 +342,7 @@
           var opt = findOptisSelects();
           if (opt.size) cloneOptions(selSize, opt.size, 'サイズを選ぶ');
           if (opt.plant) cloneOptions(selPlant, opt.plant, '植物を選ぶ');
+          if (!opt.size || !opt.plant) scheduleOptisRetry();
 
           updateReserveState();
         }

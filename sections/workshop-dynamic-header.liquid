@@ -1,0 +1,262 @@
+{%- liquid
+  assign wdh_variant = product.selected_or_first_available_variant
+  assign wdh_fb = ''
+  if product.featured_image
+    assign wdh_fb = product.featured_image | image_url: width: 1600
+  elsif product.media.size > 0
+    assign wdh_m0 = product.media.first
+    if wdh_m0.media_type == 'image'
+      assign wdh_fb = wdh_m0 | image_url: width: 1600
+    elsif wdh_m0.preview_image
+      assign wdh_fb = wdh_m0.preview_image | image_url: width: 1600
+    endif
+  endif
+
+  assign wdh_img_src = ''
+  assign wdh_pu = wdh_variant.metafields.custom.photo_url.value
+  if wdh_pu != blank
+    assign wdh_img_src = wdh_pu | strip
+  endif
+  if wdh_img_src == blank
+    assign wdh_mfp = wdh_variant.metafields.custom.photo
+    if wdh_mfp.value != blank
+      assign wdh_try_img = wdh_mfp | image_url: width: 1600
+      if wdh_try_img != blank
+        assign wdh_img_src = wdh_try_img
+      elsif wdh_mfp.value.url != blank
+        assign wdh_img_src = wdh_mfp.value.url
+      endif
+    endif
+  endif
+  if wdh_img_src == blank and wdh_variant.featured_image
+    assign wdh_img_src = wdh_variant.featured_image | image_url: width: 1600
+  elsif wdh_img_src == blank
+    assign wdh_img_src = wdh_fb
+  endif
+
+  assign wdh_day = wdh_variant.metafields.custom.day.value | default: ''
+  assign wdh_time = wdh_variant.metafields.custom.time.value | default: ''
+  assign wdh_kaijyo = wdh_variant.metafields.custom.kaijyo.value | default: ''
+  assign wdh_jyusho = wdh_variant.metafields.custom.jyusho.value | default: ''
+  assign wdh_mochimono = wdh_variant.metafields.custom.mochimono.value | default: ''
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  #shopify-section-{{ section.id }} .wdh-card {
+    background-color: #ffffff;
+    border-radius: var(--border-radius, 0.8rem);
+    padding: 2rem 1.5rem;
+    box-shadow: 0 0.1rem 0.4rem rgba(var(--color-foreground), 0.08);
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .wdh-card {
+      padding: 2.5rem 2rem;
+    }
+  }
+  #shopify-section-{{ section.id }} .wdh__layout {
+    display: grid;
+    gap: 1.75rem;
+    align-items: start;
+  }
+  @media screen and (min-width: 990px) {
+    #shopify-section-{{ section.id }} .wdh__layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: 2.5rem;
+    }
+  }
+  #shopify-section-{{ section.id }} .wdh__media {
+    margin: 0;
+    border-radius: calc(var(--border-radius, 0.8rem) - 0.2rem);
+    overflow: hidden;
+    background: rgba(var(--color-foreground), 0.04);
+  }
+  #shopify-section-{{ section.id }} .wdh__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+  }
+  #shopify-section-{{ section.id }} .wdh__details {
+    margin: 0;
+  }
+  #shopify-section-{{ section.id }} .wdh__row {
+    margin: 0 0 1rem;
+  }
+  #shopify-section-{{ section.id }} .wdh__row:last-child {
+    margin-bottom: 0;
+  }
+  #shopify-section-{{ section.id }} .wdh__label {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: rgb(var(--color-foreground));
+  }
+  #shopify-section-{{ section.id }} .wdh__value {
+    margin: 0;
+    font-size: 1.4rem;
+    line-height: calc(1 + 0.5 / var(--font-body-scale));
+    color: rgba(var(--color-foreground), 0.85);
+    word-break: break-word;
+    white-space: pre-wrap;
+  }
+{%- endstyle -%}
+
+{%- if product != blank -%}
+  <script src="{{ 'workshop-dynamic-header.js' | asset_url }}" defer="defer"></script>
+
+  <div
+    class="workshop-dynamic-header color-{{ section.settings.color_scheme }} gradient"
+    data-section-id="{{ section.id }}"
+    data-initial-variant-id="{{ wdh_variant.id }}"
+    data-initial-variant-title="{{ wdh_variant.title | escape }}"
+    data-product-id="{{ product.id }}"
+  >
+    <script type="application/json" data-wdh-json>
+      {
+        "productId": {{ product.id | json }},
+        "productTitle": {{ product.title | json }},
+        "fallbackImage": {{ wdh_fb | json }},
+        "variants": {
+          {%- for variant in product.variants -%}
+            "{{ variant.id }}": {
+              "photoUrl": {% if variant.metafields.custom.photo_url.value != blank %}{{ variant.metafields.custom.photo_url.value | strip | json }}{% else %}""{% endif %},
+              "photoFileUrl": {% liquid
+                assign wdh_pf = variant.metafields.custom.photo
+                if wdh_pf.value == blank
+                  echo '""'
+                else
+                  assign wdh_pu2 = wdh_pf | image_url: width: 1600
+                  if wdh_pu2 != blank
+                    echo wdh_pu2 | json
+                  elsif wdh_pf.value.url != blank
+                    echo wdh_pf.value.url | json
+                  else
+                    echo '""'
+                  endif
+                endif
+              %},
+              "day": {{ variant.metafields.custom.day.value | default: '' | json }},
+              "time": {{ variant.metafields.custom.time.value | default: '' | json }},
+              "kaijyo": {{ variant.metafields.custom.kaijyo.value | default: '' | json }},
+              "jyusho": {{ variant.metafields.custom.jyusho.value | default: '' | json }},
+              "mochimono": {{ variant.metafields.custom.mochimono.value | default: '' | json }}
+            }{%- unless forloop.last -%},{%- endunless -%}
+          {%- endfor -%}
+        }
+      }
+    </script>
+
+    <div class="page-width section-{{ section.id }}-padding">
+      <div class="wdh-card">
+        <div class="wdh__layout">
+          <figure class="wdh__media">
+            <img
+              class="wdh__image"
+              {% if wdh_img_src != blank %}
+                src="{{ wdh_img_src | escape }}"
+              {% elsif wdh_fb != blank %}
+                src="{{ wdh_fb | escape }}"
+              {% endif %}
+              alt="{{ product.title | escape }} — {{ wdh_variant.title | escape }}"
+              width="1200"
+              height="800"
+              loading="lazy"
+            >
+          </figure>
+
+          <div class="wdh__details">
+            <div class="wdh__row" {% if wdh_day == blank %}hidden{% endif %}>
+              <span class="wdh__label">開催日</span>
+              <p class="wdh__value" data-wdh-field="day">{{ wdh_day }}</p>
+            </div>
+            <div class="wdh__row" {% if wdh_time == blank %}hidden{% endif %}>
+              <span class="wdh__label">時間</span>
+              <p class="wdh__value" data-wdh-field="time">{{ wdh_time }}</p>
+            </div>
+            <div class="wdh__row" {% if wdh_kaijyo == blank %}hidden{% endif %}>
+              <span class="wdh__label">会場名</span>
+              <p class="wdh__value" data-wdh-field="kaijyo">{{ wdh_kaijyo }}</p>
+            </div>
+            <div class="wdh__row" {% if wdh_jyusho == blank %}hidden{% endif %}>
+              <span class="wdh__label">住所</span>
+              <p class="wdh__value" data-wdh-field="jyusho">{{ wdh_jyusho }}</p>
+            </div>
+            <div class="wdh__row" {% if wdh_mochimono == blank %}hidden{% endif %}>
+              <span class="wdh__label">持ち物</span>
+              <p class="wdh__value" data-wdh-field="mochimono">{{ wdh_mochimono }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- else -%}
+  <div class="workshop-dynamic-header color-{{ section.settings.color_scheme }} gradient">
+    <div class="page-width section-{{ section.id }}-padding">
+      <div class="wdh-card">
+        <p class="center">商品データがある商品ページテンプレートで表示されます。</p>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ワークショップ動的ヘッダー",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "ワークショップ動的ヘッダー"
+    }
+  ]
+}
+{% endschema %}

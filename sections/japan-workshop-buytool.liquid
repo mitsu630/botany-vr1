@@ -160,6 +160,32 @@
 
     <span class="jwbt__spacer" aria-hidden="true"></span>
 
+    {%- comment -%}
+      OPTIS/BSS などのアプリは「@app ブロック」としてセクション内に挿入できるようにする。
+      ここは表示しないが、DOM上には残す（JSが option/hidden field を参照し、/cart/add.js に送る）。
+    {%- endcomment -%}
+    <div class="jwbt__optis-host" data-jwbt="optis-host" hidden>
+      {%- for block in section.blocks -%}
+        {%- if block.type == '@app' -%}
+          {% render block %}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%}
+      申込みフォーム（/cart/add の実体）をこのセクション内に用意する。
+      main-product を無効化していても /cart/add.js 送信ができ、OPTIS の hidden fields も同フォームへ入れられる。
+    {%- endcomment -%}
+    {%- assign jwbt_form_id = 'jwbt-form-' | append: section.id -%}
+    {%- form 'product', product, id: jwbt_form_id, class: 'jwbt__hidden-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+      <input type="hidden" name="id" value="{{ jwbt_initial_variant.id }}" class="product-variant-id">
+      {%- for block in section.blocks -%}
+        {%- if block.type == '@app' -%}
+          {% render block %}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endform -%}
+
     <div class="jwbt__bar" role="region" aria-label="ワークショップ購入支援ツール">
       <div class="jwbt__inner">
         <div class="jwbt__row jwbt__row--top">
@@ -229,9 +255,12 @@
         var selPlant = q('[data-jwbt="plant"]');
         var selQty = q('[data-jwbt="qty"]');
         var btn = q('[data-jwbt="reserve"]');
+        var optisHost = q('[data-jwbt="optis-host"]');
+        var jwbtForm = document.getElementById('{{ jwbt_form_id }}');
 
         function getMainForm() {
           return (
+            jwbtForm ||
             document.querySelector('form[action*="/cart/add"]') ||
             document.querySelector('product-form form[action*="/cart/add"]') ||
             document.querySelector('form[data-type="add-to-cart-form"]')
@@ -253,7 +282,8 @@
         function findOptisSelectByLabel(labelText) {
           var want = normalizeText(labelText);
           if (!want) return null;
-          var blocks = document.querySelectorAll('.po-option, .po-option--container, .po-option--block, .po-option--wrapper');
+          var scope = optisHost || document;
+          var blocks = scope.querySelectorAll('.po-option, .po-option--container, .po-option--block, .po-option--wrapper');
           for (var i = 0; i < blocks.length; i++) {
             var b = blocks[i];
             if (!b) continue;
@@ -272,7 +302,8 @@
         function findBssOptisFieldByLabel(labelText) {
           var want = normalizeText(labelText);
           if (!want) return null;
-          var roots = document.querySelectorAll('.bss-po-product-page, .po-option, .po-option--container, .po-option--block, .po-option--wrapper');
+          var scope = optisHost || document;
+          var roots = scope.querySelectorAll('.bss-po-product-page, .po-option, .po-option--container, .po-option--block, .po-option--wrapper');
           for (var i = 0; i < roots.length; i++) {
             var r = roots[i];
             if (!r) continue;
@@ -299,7 +330,7 @@
           }
 
           // フォールバック：po_dropdown 系の hidden select/input を全探索し、周辺テキストで当てる
-          var allFields = document.querySelectorAll('select[name^="po_dropdown"], input[name^="po_dropdown"]');
+          var allFields = (optisHost || document).querySelectorAll('select[name^="po_dropdown"], input[name^="po_dropdown"]');
           for (var j = 0; j < allFields.length; j++) {
             var f = allFields[j];
             if (!f) continue;
@@ -337,16 +368,17 @@
 
         function findOptisSelects() {
           // OPTIS Product Options（実装差異に耐えるため複数候補）
+          var scope = optisHost || document;
           var sizeSelect =
-            document.querySelector('select.po-option--type-dropdown-menu[key="po_作品のサイズ"]') ||
-            document.querySelector('select[key="po_作品のサイズ"]') ||
-            document.querySelector('select[name*="po_作品のサイズ"]') ||
+            scope.querySelector('select.po-option--type-dropdown-menu[key="po_作品のサイズ"]') ||
+            scope.querySelector('select[key="po_作品のサイズ"]') ||
+            scope.querySelector('select[name*="po_作品のサイズ"]') ||
             findOptisSelectByLabel('作品のサイズ') ||
             findOptisSelectByLabel('サイズ');
           var plantSelect =
-            document.querySelector('select.po-option--type-dropdown-menu[key="po_希望する植物"]') ||
-            document.querySelector('select[key="po_希望する植物"]') ||
-            document.querySelector('select[name*="po_希望する植物"]') ||
+            scope.querySelector('select.po-option--type-dropdown-menu[key="po_希望する植物"]') ||
+            scope.querySelector('select[key="po_希望する植物"]') ||
+            scope.querySelector('select[name*="po_希望する植物"]') ||
             findOptisSelectByLabel('希望する植物') ||
             findOptisSelectByLabel('植物');
 
@@ -771,6 +803,12 @@
   "enabled_on": {
     "templates": ["product"]
   },
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "max_blocks": 6,
   "settings": [
     {
       "type": "header",

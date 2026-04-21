@@ -9,15 +9,14 @@
  */
 {
   "sections": {
-    "video_kqcVKT": {
-      "type": "video",
-      "name": "t:sections.video.presets.name",
+    "autoplay_loop_video_qjVFkb": {
+      "type": "autoplay-loop-video",
+      "name": "t:sections.autoplay-loop-video.presets.name",
       "settings": {
         "heading": "",
         "heading_size": "h1",
-        "enable_video_looping": false,
         "video": "shopify://files/videos/ce1a23a07d4c4e82b589926bd095ed00.mp4",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "show_controls": false,
         "description": "",
         "full_width": true,
         "color_scheme": "",
@@ -590,7 +589,7 @@
     }
   },
   "order": [
-    "video_kqcVKT",
+    "autoplay_loop_video_qjVFkb",
     "multicolumn",
     "rich_text_mdmQjc",
     "video_EkLcCx",

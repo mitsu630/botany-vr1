@@ -84,11 +84,22 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "japan_workshop_buytool_QjPzT4": {
+      "type": "japan-workshop-buytool",
+      "name": "japan-workshop-buytool",
+      "settings": {
+        "bg_color": "#eef2e6",
+        "accent_color": "#d31d84",
+        "z_index": 9999,
+        "footer_height_px": 200
+      }
     }
   },
   "order": [
     "workshop_dynamic_header_NCVnWe",
     "main",
-    "related-products"
+    "related-products",
+    "japan_workshop_buytool_QjPzT4"
   ]
 }

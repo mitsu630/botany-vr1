@@ -51,21 +51,6 @@
     display: none !important;
   }
 
-  /* 2) Fixed bar base: OPTIS app block (Shopify app block)
-        DOM例:
-        <div class="shopify-block shopify-app-block" id="...__optis_product_options_...">...</div>
-  */
-  .product__info-container > .shopify-app-block[id*="__optis_product_options_"] {
-    position: static;
-    z-index: auto;
-    background: var(--jwb-bg);
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 12px;
-    padding: var(--jwb-pad);
-    padding-right: var(--jwb-pad); /* 幅を削らない */
-    box-sizing: border-box;
-  }
-
   /* 2.5) Variant picker（会場開催日）を下部バー先頭に固定配置 */
   .product__info-container > variant-selects[id^="variant-selects-"] {
     position: static;
@@ -101,6 +86,11 @@
 
   /* OPTIS: ドロップダウン上に出る選択結果表示を非表示 */
   .product__info-container .po-selected-swatch {
+    display: none !important;
+  }
+
+  /* OPTIS: 追加料金表示を非表示 */
+  .product__info-container .po-extra-price {
     display: none !important;
   }
 
@@ -191,20 +181,11 @@
       grid-template-columns: 1fr;
     }
 
-    /* on mobile, allow full width content and don't lift variant-selects */
-    .product__info-container > .shopify-app-block[id*="__optis_product_options_"] {
-      padding-right: var(--jwb-pad);
-      border-radius: 12px;
-      border-top: 1px solid rgba(0, 0, 0, 0.12);
-    }
-
     .product__info-container > variant-selects[id^="variant-selects-"] {
       position: static;
       max-width: var(--page-width);
       margin: 0 auto 8px auto;
       padding-right: var(--jwb-pad);
-      border-radius: 12px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     }
 
     /* On iPhone, stop extra fixed overlays; let them appear in the bar flow */

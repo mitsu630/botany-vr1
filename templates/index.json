@@ -151,12 +151,86 @@
         "padding_top": 0,
         "padding_bottom": 52
       }
+    },
+    "promo_framed_content_EKixLL": {
+      "type": "promo-framed-content",
+      "blocks": {
+        "heading_866i3Q": {
+          "type": "heading",
+          "settings": {
+            "heading": "資格取得講座",
+            "heading_size": "h2"
+          }
+        },
+        "text_UXyW3n": {
+          "type": "text",
+          "settings": {
+            "text": "<p>資格を取得後は、ボタニーペインティングの認定講師として自分の作品を展示・販売できるほか、専用の画材も購入可能です。趣味として楽しみながら、より深い創作の世界へと進むための講座です。アート初心者の方でも安心して各地域の講師から植物の貼り付け方や着色の方法を講師から直接学び、基礎からしっかりと技術を習得できます。</p>"
+          }
+        },
+        "image_grid_VtDf46": {
+          "type": "image_grid",
+          "settings": {
+            "image_1": "shopify://shop_images/P1090390.jpg",
+            "link_1": "",
+            "image_2": "shopify://shop_images/P1040466.jpg",
+            "link_2": "",
+            "image_3": "shopify://shop_images/P1060430.jpg",
+            "link_3": "",
+            "image_4": "shopify://shop_images/P1080082.jpg",
+            "link_4": "",
+            "grid_gap": 12,
+            "image_radius": 8
+          }
+        },
+        "button_RBtkjp": {
+          "type": "button",
+          "settings": {
+            "button_label": "ボタンのラベル",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_866i3Q",
+        "text_UXyW3n",
+        "image_grid_VtDf46",
+        "button_RBtkjp"
+      ],
+      "name": "t:sections.promo-framed-content.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "box_background": "#FFFFFF",
+        "box_border_color": "#E8E8E8",
+        "box_border_width": 1,
+        "box_radius": 16,
+        "box_padding_top": 32,
+        "box_padding_right": 28,
+        "box_padding_bottom": 32,
+        "box_padding_left": 28,
+        "show_badge": true,
+        "badge_text": "アートの資格取得が人気",
+        "badge_background": "#FFFFFF",
+        "badge_text_color": "#121212",
+        "badge_border_color": "#E8E8E8",
+        "badge_border_width": 1,
+        "content_alignment": "center"
+      }
     }
   },
   "order": [
     "multicolumn",
     "rich_text_mdmQjc",
     "video_EkLcCx",
-    "rich_text_LXVceC"
+    "rich_text_LXVceC",
+    "promo_framed_content_EKixLL"
   ]
 }

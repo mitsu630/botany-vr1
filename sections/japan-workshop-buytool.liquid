@@ -21,12 +21,17 @@
     --jwb-z: {{ section.settings.z_index | default: 9999 }};
     --jwb-pad: 12px;
     --jwb-gap: 10px;
+    --jwb-btn-w: 220px;
+    --jwb-qty-w: 120px;
 
     /* iPhone home indicator safe area */
     --jwb-safe: env(safe-area-inset-bottom, 0px);
 
     /* Reserve space so content doesn't hide under the fixed bar */
     --jwb-reserve: calc({{ section.settings.footer_height_px | default: 200 }}px + var(--jwb-safe));
+
+    /* Space on the right for qty + CTA button (desktop/tablet) */
+    --jwb-right-space: calc(var(--jwb-btn-w) + var(--jwb-qty-w) + (var(--jwb-gap) * 2));
   }
 
   /* 1) Reserve space at page bottom */
@@ -50,6 +55,9 @@
 
     padding: var(--jwb-pad);
     padding-bottom: calc(var(--jwb-pad) + var(--jwb-safe));
+    /* keep selects from going under qty/button overlays */
+    padding-right: calc(var(--jwb-pad) + var(--jwb-right-space));
+    box-sizing: border-box;
   }
 
   /* Center align inner content to page width */
@@ -79,7 +87,10 @@
     margin: 0 auto;
 
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
+    padding-right: calc(var(--jwb-pad) + var(--jwb-btn-w) + var(--jwb-gap));
+    padding-left: var(--jwb-pad);
+    box-sizing: border-box;
     pointer-events: none; /* don't block underlying interactions except the controls themselves */
   }
 
@@ -107,12 +118,15 @@
 
     display: flex;
     justify-content: flex-end;
+    padding-right: var(--jwb-pad);
+    padding-left: var(--jwb-pad);
+    box-sizing: border-box;
     pointer-events: none;
   }
 
   .product__info-container > div > product-form .product-form__buttons {
     pointer-events: auto;
-    width: 220px; /* 予約するボタン幅 */
+    width: var(--jwb-btn-w); /* 予約するボタン幅 */
   }
 
   /* Emphasize Buy it now button (as "予約する") */
@@ -154,6 +168,11 @@
       grid-template-columns: 1fr;
     }
 
+    /* on mobile, allow full width content */
+    .product__info-container > .shopify-app-block[id*="__optis_product_options_"] {
+      padding-right: var(--jwb-pad);
+    }
+
     /* On iPhone, stop extra fixed overlays; let them appear in the bar flow */
     .product__info-container > [id^="Quantity-Form-"].product-form__quantity,
     .product__info-container > div > product-form {
@@ -161,6 +180,8 @@
       max-width: var(--page-width);
       pointer-events: auto;
       margin: 8px auto 0 auto;
+      padding-left: 0;
+      padding-right: 0;
     }
 
     .product__info-container > div > product-form .product-form__buttons {

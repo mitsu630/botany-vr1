@@ -99,6 +99,9 @@
       {{ label_unavailable }}
     </label>
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
+    {%- if option_disabled -%}
+      {%- continue -%}
+    {%- endif -%}
     <option
       id="{{ input_id }}"
       value="{{ escaped_value }}"
@@ -113,11 +116,7 @@
       {% endif %}
       {{ input_dataset }}
     >
-      {% if option_disabled -%}
-        {{- 'products.product.value_unavailable' | t: option_value: value -}}
-      {%- else -%}
-        {{- value -}}
-      {%- endif %}
+      {{- value -}}
     </option>
   {%- endif -%}
 {%- endfor -%}

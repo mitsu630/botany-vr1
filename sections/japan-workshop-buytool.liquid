@@ -232,9 +232,9 @@
 
         function getMainForm() {
           return (
-            document.querySelector('form[data-type="add-to-cart-form"]') ||
+            document.querySelector('form[action*="/cart/add"]') ||
             document.querySelector('product-form form[action*="/cart/add"]') ||
-            document.querySelector('form[action*="/cart/add"]')
+            document.querySelector('form[data-type="add-to-cart-form"]')
           );
         }
 
@@ -304,6 +304,21 @@
             u.searchParams.set('variant', String(id));
             window.history.replaceState({}, '', u.toString());
           } catch (e) {}
+        }
+
+        function reloadWithVariant(id) {
+          try {
+            var u = new URL(window.location.href);
+            u.searchParams.set('variant', String(id));
+            var next = u.toString();
+            if (next !== String(window.location.href)) {
+              window.location.assign(next);
+            } else {
+              window.location.reload();
+            }
+          } catch (e) {
+            window.location.reload();
+          }
         }
 
         function isUnsetOptisValue(val, jaPlaceholder) {
@@ -417,7 +432,10 @@
 
         if (selVariant) {
           selVariant.addEventListener('change', function () {
+            // URL を先に確実に更新し、必要ならページ全体を更新（プレビュー/エディタでも確実）
+            setUrlVariant(selVariant.value);
             syncMainFromFooter();
+            reloadWithVariant(selVariant.value);
           });
         }
         if (selSize) {
@@ -439,8 +457,40 @@
           });
         }
 
-        // 初期同
+        // 初期同期
         syncFooterFromMain();
+
+        // Dawn標準の variantChange（存在する場合）に追従してフッターも更新
+        if (typeof subscribe === 'function' && typeof PUB_SUB_EVENTS !== 'undefined' && PUB_SUB_EVENTS && PUB_SUB_EVENTS.variantChange) {
+          try {
+            subscribe(PUB_SUB_EVENTS.variantChange, function (event) {
+              var v = event && event.data && event.data.variant;
+              if (!v || v.id == null) return;
+              if (selVariant && String(selVariant.value) !== String(v.id)) {
+                selVariant.value = String(v.id);
+                setUrlVariant(v.id);
+              }
+              syncFooterFromMain();
+            });
+          } catch (e) {}
+        }
+
+        // メイン側の change を拾ってフッターへ反映（存在すれば）
+        document.addEventListener(
+          'change',
+          function (e) {
+            var t = e && e.target;
+            if (!t) return;
+            if (t.matches && (t.matches('form[action*="/cart/add"] input[name="id"]') || t.matches('input.product-variant-id'))) {
+              syncFooterFromMain();
+              return;
+            }
+            if (t.matches && t.matches('select[name^="options["]')) {
+              syncFooterFromMain();
+            }
+          },
+          true
+        );
 
         // メイン側の変化（variant/OPTIS再描画）に追従
         if (typeof MutationObserver !== 'undefined') {
@@ -450,6 +500,13 @@
           mo.observe(document.body, { childList: true, subtree: true });
         }
         setInterval(syncFooterFromMain, 600);
+
+        // テーマエディタ：セクション再読み込み時にも同期を再実行
+        if (window.Shopify && window.Shopify.designMode) {
+          document.addEventListener('shopify:section:load', function () {
+            setTimeout(syncFooterFromMain, 50);
+          });
+        }
       })();
     </script>
   </div>

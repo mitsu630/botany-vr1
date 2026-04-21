@@ -250,16 +250,39 @@
             .trim();
         }
 
+        function findOptisSelectByLabel(labelText) {
+          var want = normalizeText(labelText);
+          if (!want) return null;
+          var blocks = document.querySelectorAll('.po-option, .po-option--container, .po-option--block, .po-option--wrapper');
+          for (var i = 0; i < blocks.length; i++) {
+            var b = blocks[i];
+            if (!b) continue;
+            var t = normalizeText(b.textContent || '');
+            if (t.indexOf(want) === -1) continue;
+            var sel =
+              b.querySelector('select.po-option--type-dropdown-menu') ||
+              b.querySelector('select[key^="po_"]') ||
+              b.querySelector('select[name^="po_dropdown"]') ||
+              b.querySelector('select');
+            if (sel) return sel;
+          }
+          return null;
+        }
+
         function findOptisSelects() {
           // OPTIS Product Options のセレクト（実装差異に耐えるため複数候補）
           var size =
             document.querySelector('select.po-option--type-dropdown-menu[key="po_作品のサイズ"]') ||
             document.querySelector('select[key="po_作品のサイズ"]') ||
-            document.querySelector('select[name*="po_作品のサイズ"]');
+            document.querySelector('select[name*="po_作品のサイズ"]') ||
+            findOptisSelectByLabel('作品のサイズ') ||
+            findOptisSelectByLabel('サイズ');
           var plant =
             document.querySelector('select.po-option--type-dropdown-menu[key="po_希望する植物"]') ||
             document.querySelector('select[key="po_希望する植物"]') ||
-            document.querySelector('select[name*="po_希望する植物"]');
+            document.querySelector('select[name*="po_希望する植物"]') ||
+            findOptisSelectByLabel('希望する植物') ||
+            findOptisSelectByLabel('植物');
           return { size: size, plant: plant };
         }
 
@@ -336,7 +359,7 @@
           if (btn) btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
         }
 
-        var optisRetryLeft = 12;
+        var optisRetryLeft = 10;
         var optisRetryTimer = null;
         function scheduleOptisRetry() {
           if (optisRetryLeft <= 0) return;
@@ -345,7 +368,7 @@
             optisRetryTimer = null;
             optisRetryLeft -= 1;
             syncFooterFromMain();
-          }, 250);
+          }, 500);
         }
 
         function syncFooterFromMain() {
@@ -487,6 +510,18 @@
             }
             if (t.matches && t.matches('select[name^="options["]')) {
               syncFooterFromMain();
+              return;
+            }
+            // OPTIS の select 変化も拾う（サイズ/植物）
+            if (
+              t.matches &&
+              (t.matches('select.po-option--type-dropdown-menu') ||
+                t.matches('select[key^="po_"]') ||
+                t.matches('select[name^="po_dropdown"]') ||
+                t.matches('select[name*="po_作品のサイズ"]') ||
+                t.matches('select[name*="po_希望する植物"]'))
+            ) {
+              syncFooterFromMain();
             }
           },
           true
@@ -494,8 +529,29 @@
 
         // メイン側の変化（variant/OPTIS再描画）に追従
         if (typeof MutationObserver !== 'undefined') {
-          var mo = new MutationObserver(function () {
-            syncFooterFromMain();
+          var mo = new MutationObserver(function (mutations) {
+            for (var i = 0; i < mutations.length; i++) {
+              var m = mutations[i];
+              if (!m || !m.addedNodes || !m.addedNodes.length) continue;
+              for (var j = 0; j < m.addedNodes.length; j++) {
+                var n = m.addedNodes[j];
+                if (!n || !n.querySelector) continue;
+                if (
+                  n.matches &&
+                  (n.matches('select.po-option--type-dropdown-menu') ||
+                    n.matches('.po-option') ||
+                    n.matches('.po-option--container') ||
+                    n.matches('.bss-po-product-page'))
+                ) {
+                  syncFooterFromMain();
+                  break;
+                }
+                if (n.querySelector('select.po-option--type-dropdown-menu, select[key^="po_"], select[name^="po_dropdown"]')) {
+                  syncFooterFromMain();
+                  break;
+                }
+              }
+            }
           });
           mo.observe(document.body, { childList: true, subtree: true });
         }

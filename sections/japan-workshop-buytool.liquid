@@ -36,6 +36,12 @@
     /* Space on the right for qty + CTA button (desktop/tablet) */
     --jwb-right-space: calc(var(--jwb-btn-w) + var(--jwb-qty-w) + (var(--jwb-gap) * 2));
     --jwb-right-pad: calc(var(--jwb-pad) + var(--jwb-right-space));
+
+    /* 会場開催日(variant) + OPTIS 2段 を想定した総段数 */
+    --jwb-optis-rows: 2;
+    --jwb-variant-offset: calc(
+      (var(--jwb-optis-rows) * var(--jwb-row-h)) + (var(--jwb-optis-rows) * var(--jwb-row-gap))
+    );
   }
 
   /* 1) Reserve space at page bottom */
@@ -60,12 +66,12 @@
 
     z-index: var(--jwb-z);
     background: var(--jwb-bg);
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-top: 0;
+    border-radius: 0 0 12px 12px;
 
     padding: var(--jwb-pad);
     padding-bottom: calc(var(--jwb-pad) + var(--jwb-safe));
-    /* 先頭の会場開催日（variant-selects）分の縦スペースを確保 */
-    padding-top: calc(var(--jwb-pad) + var(--jwb-variant-h) + var(--jwb-row-gap));
     /* keep selects from going under qty/button overlays */
     padding-right: var(--jwb-right-pad);
     box-sizing: border-box;
@@ -76,7 +82,8 @@
     position: fixed;
     left: 0;
     right: 0;
-    bottom: calc(var(--jwb-pad) + var(--jwb-safe));
+    /* OPTIS 2段分だけ上に持ち上げて、希望レイアウト（上：会場開催日）にする */
+    bottom: calc(var(--jwb-pad) + var(--jwb-safe) + var(--jwb-variant-offset));
     z-index: calc(var(--jwb-z) + 3);
 
     max-width: var(--page-width);
@@ -84,6 +91,11 @@
     padding-left: var(--jwb-pad);
     padding-right: var(--jwb-right-pad);
     box-sizing: border-box;
+
+    background: var(--jwb-bg);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 0;
+    border-radius: 12px 12px 0 0;
   }
 
   .product__info-container > variant-selects .product-form__input--dropdown .select {
@@ -104,7 +116,7 @@
   .product__info-container > .shopify-app-block[id*="__optis_product_options_"] .bss-po-product-page {
     display: grid !important;
     grid-template-columns: 1fr; /* 希望レイアウト：縦積み */
-    gap: var(--jwb-gap);
+    gap: var(--jwb-row-gap);
     align-items: end;
   }
 
@@ -206,14 +218,20 @@
       grid-template-columns: 1fr;
     }
 
-    /* on mobile, allow full width content */
+    /* on mobile, allow full width content and don't lift variant-selects */
     .product__info-container > .shopify-app-block[id*="__optis_product_options_"] {
       padding-right: var(--jwb-pad);
-      padding-top: calc(var(--jwb-pad) + var(--jwb-variant-h) + var(--jwb-row-gap));
+      border-radius: 12px;
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
     }
 
     .product__info-container > variant-selects[id^="variant-selects-"] {
+      position: static;
+      max-width: var(--page-width);
+      margin: 0 auto 8px auto;
       padding-right: var(--jwb-pad);
+      border-radius: 12px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     }
 
     /* On iPhone, stop extra fixed overlays; let them appear in the bar flow */

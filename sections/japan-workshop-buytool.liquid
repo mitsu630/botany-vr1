@@ -30,17 +30,15 @@
   }
 
   /* 1) Reserve space at page bottom */
-  .template-product main {
+  main {
     padding-bottom: var(--jwb-reserve) !important;
   }
 
-  /* 2) Fixed bar base: OPTIS (BSS/OPTIS) container
+  /* 2) Fixed bar base: OPTIS app block (Shopify app block)
         DOM例:
-        <form class="installment ...">
-          <div id="po_container--xxxx" class="bss-po-product-page">...</div>
-        </form>
+        <div class="shopify-block shopify-app-block" id="...__optis_product_options_...">...</div>
   */
-  .template-product .product__info-container form.installment .bss-po-product-page {
+  .product__info-container > .shopify-app-block[id*="__optis_product_options_"] {
     position: fixed;
     left: 0;
     right: 0;
@@ -55,14 +53,14 @@
   }
 
   /* Center align inner content to page width */
-  .template-product .product__info-container form.installment .bss-po-product-page {
+  .product__info-container > .shopify-app-block[id*="__optis_product_options_"] {
     max-width: var(--page-width);
     margin-left: auto;
     margin-right: auto;
   }
 
   /* 3) OPTIS dropdown layout: 2 columns on desktop/tablet */
-  .template-product .product__info-container form.installment .bss-po-product-page {
+  .product__info-container > .shopify-app-block[id*="__optis_product_options_"] .bss-po-product-page {
     display: grid !important;
     grid-template-columns: 1fr 1fr; /* サイズ / 植物 */
     gap: var(--jwb-gap);
@@ -70,7 +68,7 @@
   }
 
   /* 4) Quantity: fixed overlay aligned with bar */
-  .template-product .product__info-container > [id^="Quantity-Form-"].product-form__quantity {
+  .product__info-container > [id^="Quantity-Form-"].product-form__quantity {
     position: fixed;
     left: 0;
     right: 0;
@@ -85,19 +83,19 @@
     pointer-events: none; /* don't block underlying interactions except the controls themselves */
   }
 
-  .template-product .product__info-container > [id^="Quantity-Form-"].product-form__quantity .quantity,
-  .template-product .product__info-container > [id^="Quantity-Form-"].product-form__quantity .quantity__input,
-  .template-product .product__info-container > [id^="Quantity-Form-"].product-form__quantity .quantity__button {
+  .product__info-container > [id^="Quantity-Form-"].product-form__quantity .quantity,
+  .product__info-container > [id^="Quantity-Form-"].product-form__quantity .quantity__input,
+  .product__info-container > [id^="Quantity-Form-"].product-form__quantity .quantity__button {
     pointer-events: auto;
   }
 
   /* make quantity compact (like "1 人") */
-  .template-product .product__info-container > [id^="Quantity-Form-"].product-form__quantity .quantity__input {
+  .product__info-container > [id^="Quantity-Form-"].product-form__quantity .quantity__input {
     width: 72px;
   }
 
   /* 5) Buy area: fixed overlay right aligned */
-  .template-product .product__info-container > div > product-form {
+  .product__info-container > div > product-form {
     position: fixed;
     left: 0;
     right: 0;
@@ -112,13 +110,13 @@
     pointer-events: none;
   }
 
-  .template-product .product__info-container > div > product-form .product-form__buttons {
+  .product__info-container > div > product-form .product-form__buttons {
     pointer-events: auto;
     width: 220px; /* 予約するボタン幅 */
   }
 
   /* Emphasize Buy it now button (as "予約する") */
-  .template-product .product__info-container .shopify-payment-button__button--unbranded {
+  .product__info-container .shopify-payment-button__button--unbranded {
     background: var(--jwb-accent);
     border-color: var(--jwb-accent);
     color: #fff;
@@ -129,7 +127,7 @@
   }
 
   /* Keep Add to cart in DOM, but hide offscreen safely */
-  .template-product .product__info-container .po-atc-btn {
+  .product__info-container .po-atc-btn {
     position: fixed !important;
     left: -9999px !important;
     top: auto !important;
@@ -152,20 +150,20 @@
       --jwb-reserve: calc({{ section.settings.footer_height_px | default: 240 }}px + var(--jwb-safe));
     }
 
-    .template-product .product__info-container form.installment .bss-po-product-page {
+    .product__info-container > .shopify-app-block[id*="__optis_product_options_"] .bss-po-product-page {
       grid-template-columns: 1fr;
     }
 
     /* On iPhone, stop extra fixed overlays; let them appear in the bar flow */
-    .template-product .product__info-container > [id^="Quantity-Form-"].product-form__quantity,
-    .template-product .product__info-container > div > product-form {
+    .product__info-container > [id^="Quantity-Form-"].product-form__quantity,
+    .product__info-container > div > product-form {
       position: static;
       max-width: var(--page-width);
       pointer-events: auto;
       margin: 8px auto 0 auto;
     }
 
-    .template-product .product__info-container > div > product-form .product-form__buttons {
+    .product__info-container > div > product-form .product-form__buttons {
       width: 100%;
     }
   }

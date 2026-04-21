@@ -34,8 +34,13 @@
     padding-bottom: var(--jwb-reserve) !important;
   }
 
-  /* 2) Fixed bar base: OPTIS app block */
-  .template-product .product__info-container > .shopify-app-block[id*="__optis_product_options_"] {
+  /* 2) Fixed bar base: OPTIS (BSS/OPTIS) container
+        DOM例:
+        <form class="installment ...">
+          <div id="po_container--xxxx" class="bss-po-product-page">...</div>
+        </form>
+  */
+  .template-product .product__info-container form.installment .bss-po-product-page {
     position: fixed;
     left: 0;
     right: 0;
@@ -50,15 +55,14 @@
   }
 
   /* Center align inner content to page width */
-  .template-product .product__info-container > .shopify-app-block[id*="__optis_product_options_"] > form,
-  .template-product .product__info-container > .shopify-app-block[id*="__optis_product_options_"] .bss-po-product-page {
+  .template-product .product__info-container form.installment .bss-po-product-page {
     max-width: var(--page-width);
     margin-left: auto;
     margin-right: auto;
   }
 
   /* 3) OPTIS dropdown layout: 2 columns on desktop/tablet */
-  .template-product .product__info-container > .shopify-app-block[id*="__optis_product_options_"] .bss-po-product-page {
+  .template-product .product__info-container form.installment .bss-po-product-page {
     display: grid !important;
     grid-template-columns: 1fr 1fr; /* サイズ / 植物 */
     gap: var(--jwb-gap);
@@ -148,7 +152,7 @@
       --jwb-reserve: calc({{ section.settings.footer_height_px | default: 240 }}px + var(--jwb-safe));
     }
 
-    .template-product .product__info-container > .shopify-app-block[id*="__optis_product_options_"] .bss-po-product-page {
+    .template-product .product__info-container form.installment .bss-po-product-page {
       grid-template-columns: 1fr;
     }
 

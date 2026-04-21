@@ -502,11 +502,27 @@
           if (typeof MutationObserver === 'undefined') return;
           if (root.__jwbtObservedGlobal) return;
           root.__jwbtObservedGlobal = true;
+          var timer = null;
           var mo = new MutationObserver(function () {
-            ensureFooterInsideCartForm();
-            mountOptisIntoFooter();
-            mountQuantityIntoFooter();
-            syncFooterFromMain();
+            if (timer) return;
+            timer = setTimeout(function () {
+              timer = null;
+              ensureFooterInsideCartForm();
+              mountOptisIntoFooter();
+              mountQuantityIntoFooter();
+              syncFooterFromMain();
+
+              // 初期マウントが完了したら監視を止めて負荷を下げる
+              try {
+                var bar = q('.jwbt__bar');
+                var optInFooter = bar && bar.querySelector && bar.querySelector('.bss-po-product-page');
+                var optInForm = optInFooter && optInFooter.closest && optInFooter.closest('form[action*=\"/cart/add\"]');
+                var qtyOk = qtyHost && qtyHost.querySelector && qtyHost.querySelector('input[name=\"quantity\"], input.quantity__input, input[type=\"number\"]');
+                if (bar && optInFooter && optInForm && qtyOk) {
+                  mo.disconnect();
+                }
+              } catch (e) {}
+            }, 80);
           });
           mo.observe(document.body, { childList: true, subtree: true, attributes: false });
         }
@@ -881,35 +897,7 @@
           true
         );
 
-        // メイン側の変化（variant/OPTIS再描画）に追従
-        if (typeof MutationObserver !== 'undefined') {
-          var mo = new MutationObserver(function (mutations) {
-            for (var i = 0; i < mutations.length; i++) {
-              var m = mutations[i];
-              if (!m || !m.addedNodes || !m.addedNodes.length) continue;
-              for (var j = 0; j < m.addedNodes.length; j++) {
-                var n = m.addedNodes[j];
-                if (!n || !n.querySelector) continue;
-                if (
-                  n.matches &&
-                  (n.matches('select.po-option--type-dropdown-menu') ||
-                    n.matches('.po-option') ||
-                    n.matches('.po-option--container') ||
-                    n.matches('.bss-po-product-page'))
-                ) {
-                  syncFooterFromMain();
-                  break;
-                }
-                if (n.querySelector('select.po-option--type-dropdown-menu, select[key^="po_"], select[name^="po_dropdown"]')) {
-                  syncFooterFromMain();
-                  break;
-                }
-              }
-            }
-          });
-          mo.observe(document.body, { childList: true, subtree: true });
-        }
-        setInterval(syncFooterFromMain, 600);
+        // DOM監視は watchDynamicMount() に一本化（過剰発火を避ける）
 
         // テーマエディタ：セクション再読み込み時にも同期を再実行
         if (window.Shopify && window.Shopify.designMode) {

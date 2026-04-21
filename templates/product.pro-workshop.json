@@ -21,20 +21,20 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "optis_product_options_option_set_jq3hDd": {
+          "type": "shopify://apps/optis-product-options/blocks/option-set/2c446099-c349-4e73-80cd-49c9770b7807",
+          "settings": {}
+        },
+        "quantity_selector_NfKEab": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
         "buy_buttons_C6BdcF": {
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": true,
             "show_gift_card_recipient": true
           }
-        },
-        "quantity_selector_NfKEab": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "optis_product_options_option_set_jq3hDd": {
-          "type": "shopify://apps/optis-product-options/blocks/option-set/2c446099-c349-4e73-80cd-49c9770b7807",
-          "settings": {}
         },
         "variant_picker_JbAPj6": {
           "type": "variant_picker",
@@ -45,9 +45,9 @@
         }
       },
       "block_order": [
-        "buy_buttons_C6BdcF",
-        "quantity_selector_NfKEab",
         "optis_product_options_option_set_jq3hDd",
+        "quantity_selector_NfKEab",
+        "buy_buttons_C6BdcF",
         "variant_picker_JbAPj6"
       ],
       "settings": {

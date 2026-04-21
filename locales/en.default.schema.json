@@ -3532,6 +3532,52 @@
         "name": "Video"
       }
     },
+    "autoplay-loop-video": {
+      "name": "Autoplay loop video",
+      "settings": {
+        "paragraph_info": {
+          "content": "When this section enters the viewport, the video plays muted and loops. Use a silent video or Shopify-hosted file for reliable autoplay. Use this instead of the default Video section when you do not want a paused poster with a play button."
+        },
+        "heading": {
+          "label": "Heading",
+          "default": "Video"
+        },
+        "header_video": {
+          "content": "Video"
+        },
+        "video": {
+          "label": "Video"
+        },
+        "paragraph_url": {
+          "content": "Used when no Shopify-hosted video is selected."
+        },
+        "video_url": {
+          "label": "URL",
+          "info": "YouTube or Vimeo URL"
+        },
+        "cover_image": {
+          "label": "Cover image",
+          "info": "Optional. Sets the frame aspect ratio when preview images are missing."
+        },
+        "show_controls": {
+          "label": "Show video controls",
+          "info": "Applies to Shopify-hosted video only."
+        },
+        "description": {
+          "label": "Video alt text",
+          "info": "Describe the video for customers using screen readers."
+        },
+        "header_layout": {
+          "content": "Layout"
+        },
+        "full_width": {
+          "label": "Full width"
+        }
+      },
+      "presets": {
+        "name": "Autoplay loop video"
+      }
+    },
     "slideshow": {
       "name": "Slideshow",
       "settings": {

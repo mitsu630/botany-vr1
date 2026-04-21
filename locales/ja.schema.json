@@ -3010,6 +3010,52 @@
         "name": "動画"
       }
     },
+    "autoplay-loop-video": {
+      "name": "自動再生ループ動画",
+      "settings": {
+        "paragraph_info": {
+          "content": "セクションが画面に入ると、無音で自動再生しループします。ブラウザの仕様上、無音動画または Shopify ホスト動画での利用を推奨します。停止状態のポスターと再生ボタンが不要なときは、標準の「動画」セクションの代わりにこちらを使ってください。"
+        },
+        "heading": {
+          "label": "見出し",
+          "default": "動画"
+        },
+        "header_video": {
+          "content": "動画"
+        },
+        "video": {
+          "label": "動画"
+        },
+        "paragraph_url": {
+          "content": "Shopify ホストの動画が未選択のときは、YouTube または Vimeo の URL が使われます。"
+        },
+        "video_url": {
+          "label": "URL",
+          "info": "YouTube または Vimeo の URL"
+        },
+        "cover_image": {
+          "label": "カバー画像",
+          "info": "任意。プレビュー画像がない場合に枠の縦横比を合わせるために使います。"
+        },
+        "show_controls": {
+          "label": "動画コントロールを表示",
+          "info": "Shopify ホスト動画のみに適用されます。"
+        },
+        "description": {
+          "label": "動画の代替テキスト",
+          "info": "スクリーンリーダー利用者向けに動画の内容を説明します。"
+        },
+        "header_layout": {
+          "content": "レイアウト"
+        },
+        "full_width": {
+          "label": "全幅"
+        }
+      },
+      "presets": {
+        "name": "自動再生ループ動画"
+      }
+    },
     "featured-product": {
       "name": "特集商品",
       "blocks": {

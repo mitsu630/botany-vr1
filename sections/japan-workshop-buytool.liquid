@@ -37,11 +37,8 @@
     --jwb-right-space: calc(var(--jwb-btn-w) + var(--jwb-qty-w) + (var(--jwb-gap) * 2));
     --jwb-right-pad: calc(var(--jwb-pad) + var(--jwb-right-space));
 
-    /* 会場開催日(variant) + OPTIS 2段 を想定した総段数 */
-    --jwb-optis-rows: 2;
-    --jwb-variant-offset: calc(
-      (var(--jwb-optis-rows) * var(--jwb-row-h)) + (var(--jwb-optis-rows) * var(--jwb-row-gap))
-    );
+    /* 会場開催日（variant）をバー内1段として扱う */
+    --jwb-variant-block: calc(var(--jwb-variant-h) + var(--jwb-row-gap));
   }
 
   /* 1) Reserve space at page bottom */
@@ -66,12 +63,16 @@
 
     z-index: var(--jwb-z);
     background: var(--jwb-bg);
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-top: 0;
-    border-radius: 0 0 12px 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-radius: 0;
 
     padding: var(--jwb-pad);
     padding-bottom: calc(var(--jwb-pad) + var(--jwb-safe));
+    /* 上段（会場開催日）を同じバー内に収めるための余白 */
+    padding-top: calc(var(--jwb-pad) + var(--jwb-variant-block));
     /* keep selects from going under qty/button overlays */
     padding-right: var(--jwb-right-pad);
     box-sizing: border-box;
@@ -82,8 +83,8 @@
     position: fixed;
     left: 0;
     right: 0;
-    /* OPTIS 2段分だけ上に持ち上げて、希望レイアウト（上：会場開催日）にする */
-    bottom: calc(var(--jwb-pad) + var(--jwb-safe) + var(--jwb-variant-offset));
+    /* OPTISと同じバー内（同じbottom）に配置 */
+    bottom: calc(var(--jwb-pad) + var(--jwb-safe));
     z-index: calc(var(--jwb-z) + 3);
 
     max-width: var(--page-width);
@@ -92,10 +93,9 @@
     padding-right: var(--jwb-right-pad);
     box-sizing: border-box;
 
-    background: var(--jwb-bg);
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-bottom: 0;
-    border-radius: 12px 12px 0 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
   }
 
   .product__info-container > variant-selects .product-form__input--dropdown .select {

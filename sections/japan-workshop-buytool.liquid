@@ -41,9 +41,9 @@
     --jwb-variant-block: calc(var(--jwb-variant-h) + var(--jwb-row-gap));
   }
 
-  /* 1) Reserve space at page bottom */
+  /* 1) いったん固定レイアウトを外し、幅を最大化（希望レイアウト優先） */
   main {
-    padding-bottom: var(--jwb-reserve) !important;
+    padding-bottom: 0 !important;
   }
 
   /* Workshopテンプレートでは商品サムネ（メディア列）を非表示 */
@@ -56,43 +56,22 @@
         <div class="shopify-block shopify-app-block" id="...__optis_product_options_...">...</div>
   */
   .product__info-container > .shopify-app-block[id*="__optis_product_options_"] {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    z-index: var(--jwb-z);
+    position: static;
+    z-index: auto;
     background: var(--jwb-bg);
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 0;
-    border-radius: 0;
-
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
     padding: var(--jwb-pad);
-    padding-bottom: calc(var(--jwb-pad) + var(--jwb-safe));
-    /* 上段（会場開催日）を同じバー内に収めるための余白 */
-    padding-top: calc(var(--jwb-pad) + var(--jwb-variant-block));
-    /* keep selects from going under qty/button overlays */
-    padding-right: var(--jwb-right-pad);
+    padding-right: var(--jwb-pad); /* 幅を削らない */
     box-sizing: border-box;
   }
 
   /* 2.5) Variant picker（会場開催日）を下部バー先頭に固定配置 */
   .product__info-container > variant-selects[id^="variant-selects-"] {
-    position: fixed;
-    left: 0;
-    right: 0;
-    /* OPTISと同じバー内（同じbottom）に配置 */
-    bottom: calc(var(--jwb-pad) + var(--jwb-safe));
-    z-index: calc(var(--jwb-z) + 3);
-
-    max-width: var(--page-width);
-    margin: 0 auto;
-    padding-left: var(--jwb-pad);
-    padding-right: var(--jwb-right-pad);
-    box-sizing: border-box;
-
+    position: static;
+    max-width: none;
+    margin: 0;
+    padding: 0;
     background: transparent;
     border: 0;
     border-radius: 0;
@@ -126,22 +105,17 @@
 
   /* 4) Quantity: fixed overlay aligned with bar */
   .product__info-container > [id^="Quantity-Form-"].product-form__quantity {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: calc(var(--jwb-pad) + var(--jwb-safe));
-    z-index: calc(var(--jwb-z) + 1);
-
-    max-width: var(--page-width);
-    margin: 0 auto;
-
+    position: static;
+    z-index: auto;
+    max-width: none;
+    margin: 0;
     display: flex;
-    justify-content: flex-end;
-    /* 右端のボタン幅分だけ左に寄せて、ボタンと被らないように */
-    padding-right: calc(var(--jwb-pad) + var(--jwb-btn-w) + var(--jwb-gap));
-    padding-left: var(--jwb-pad);
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 0;
     box-sizing: border-box;
-    pointer-events: none; /* don't block underlying interactions except the controls themselves */
+    pointer-events: auto;
   }
 
   .product__info-container > [id^="Quantity-Form-"].product-form__quantity .quantity,
@@ -157,21 +131,15 @@
 
   /* 5) Buy area: fixed overlay right aligned */
   .product__info-container > div > product-form {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: calc(var(--jwb-pad) + var(--jwb-safe));
-    z-index: calc(var(--jwb-z) + 2);
-
-    max-width: var(--page-width);
-    margin: 0 auto;
-
+    position: static;
+    z-index: auto;
+    max-width: none;
+    margin: 0;
     display: flex;
     justify-content: flex-end;
-    padding-right: var(--jwb-pad);
-    padding-left: var(--jwb-pad);
+    padding: 0;
     box-sizing: border-box;
-    pointer-events: none;
+    pointer-events: auto;
   }
 
   .product__info-container > div > product-form .product-form__buttons {

@@ -62,9 +62,53 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "rich_text_mdmQjc": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_XfMzPL": {
+          "type": "heading",
+          "settings": {
+            "heading": "ボタニー®️ペインティング",
+            "heading_size": "h2"
+          }
+        },
+        "text_qmAm9a": {
+          "type": "text",
+          "settings": {
+            "text": "<p>本物の葉をパネルに貼り付けて、彩色するアート。絵の苦手意識を感じずに簡単に楽しめます。<br/>作品は世界で唯一のインテリアとして、あなたの空間を彩ります。デジタルの生活から、アナログのアートでリラックスを感じてください。<br/>蓮の葉やモンステラ・カラテアルテアやインド菩提樹の葉があります。</p>"
+          }
+        },
+        "button_AfFJhb": {
+          "type": "button",
+          "settings": {
+            "button_label": "ボタンのラベル",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_XfMzPL",
+        "text_qmAm9a",
+        "button_AfFJhb"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
-    "multicolumn"
+    "multicolumn",
+    "rich_text_mdmQjc"
   ]
 }

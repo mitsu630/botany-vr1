@@ -13,44 +13,91 @@
     endif
   endif
 
-  assign wdh_img_src = ''
+  assign wdh_photo_mf = variant.metafields.custom.custom_photo
+  if wdh_photo_mf == blank
+    assign wdh_photo_mf = variant.metafields.custom.photo
+  endif
+  assign wdh_photo_obj = wdh_photo_mf.value
+
+  assign wdh_photo_file_url = ''
+  if wdh_photo_mf != blank
+    if wdh_photo_obj != blank
+      assign wdh_photo_file_url = wdh_photo_obj | image_url: width: 2000
+    endif
+    if wdh_photo_file_url == blank and wdh_photo_obj.preview_image != blank
+      assign wdh_photo_file_url = wdh_photo_obj.preview_image | image_url: width: 2000
+    endif
+    if wdh_photo_file_url == blank and wdh_photo_obj != blank
+      assign wdh_photo_file_url = wdh_photo_obj | file_url
+    endif
+    if wdh_photo_file_url == blank
+      assign wdh_photo_file_url = wdh_photo_mf | file_url
+    endif
+    if wdh_photo_file_url == blank and wdh_photo_obj.url != blank
+      assign wdh_photo_file_url = wdh_photo_obj.url
+    endif
+    if wdh_photo_file_url == blank
+      assign wdh_photo_file_url = wdh_photo_mf | metafield_text | strip
+    endif
+  endif
+
+  assign wdh_photo_url = ''
   if variant.metafields.custom.photo_url.value != blank
     assign pu_val = variant.metafields.custom.photo_url.value
-    assign raw = ''
+    assign wdh_photo_url = ''
     if pu_val.url != blank
-      assign raw = pu_val.url | strip
+      assign wdh_photo_url = pu_val.url | strip
     else
-      assign raw = pu_val | strip
+      assign wdh_photo_url = pu_val | append: '' | strip
     endif
-    if raw != blank
-      if raw contains '://'
-        assign wdh_img_src = raw
+  endif
+
+  if wdh_photo_url != blank
+    assign wdh_drive_id = ''
+    if wdh_photo_url contains 'drive.google.com/file/d/'
+      assign wdh_drive_id = wdh_photo_url | split: '/file/d/' | last | split: '/' | first | split: '?' | first
+    elsif wdh_photo_url contains 'drive.google.com/open?id='
+      assign wdh_drive_id = wdh_photo_url | split: 'open?id=' | last | split: '&' | first | split: '#' | first
+    elsif wdh_photo_url contains 'drive.google.com/uc?' and wdh_photo_url contains 'id='
+      assign wdh_drive_id = wdh_photo_url | split: 'id=' | last | split: '&' | first | split: '#' | first
+    elsif wdh_photo_url contains 'docs.google.com/uc?' and wdh_photo_url contains 'id='
+      assign wdh_drive_id = wdh_photo_url | split: 'id=' | last | split: '&' | first | split: '#' | first
+    endif
+    if wdh_drive_id != blank
+      assign wdh_photo_url = 'https://drive.google.com/thumbnail?id=' | append: wdh_drive_id | append: '&sz=w1600'
+    endif
+  endif
+
+  assign wdh_img_src = ''
+  if wdh_photo_url != blank
+    assign raw = wdh_photo_url | strip
+    if raw contains '://'
+      assign wdh_img_src = raw
+    else
+      assign head2 = raw | slice: 0, 2
+      assign head1 = raw | slice: 0, 1
+      if head2 == '//'
+        assign wdh_img_src = 'https:' | append: raw
+      elsif head1 == '/'
+        assign wdh_img_src = shop.secure_url | append: raw
       else
-        assign head2 = raw | slice: 0, 2
-        assign head1 = raw | slice: 0, 1
-        if head2 == '//'
-          assign wdh_img_src = 'https:' | append: raw
-        elsif head1 == '/'
-          assign wdh_img_src = shop.secure_url | append: raw
-        else
-          assign wdh_img_src = raw
-        endif
+        assign wdh_img_src = raw
       endif
     endif
   endif
-  if wdh_img_src == blank and variant.metafields.custom.photo.value != blank
-    assign wdh_img_src = variant.metafields.custom.photo | image_url: width: 2000
+  if wdh_img_src == blank and wdh_photo_file_url != blank
+    assign wdh_img_src = wdh_photo_file_url
   endif
   if wdh_img_src == blank and wdh_fb != blank
     assign wdh_img_src = wdh_fb
   endif
 
-  assign wdh_day = variant.metafields.custom.day.value | default: '' | strip
-  assign wdh_time = variant.metafields.custom.time.value | default: '' | strip
-  assign wdh_kaijyo = variant.metafields.custom.kaijyo.value | default: '' | strip
-  assign wdh_jyusho = variant.metafields.custom.jyusho.value | default: '' | strip
-  assign wdh_mochimono = variant.metafields.custom.mochimono.value | default: '' | strip
-  assign wdh_biko = variant.metafields.custom.biko.value | default: '' | strip
+  assign wdh_day = variant.metafields.custom.day | metafield_text | strip
+  assign wdh_time = variant.metafields.custom.time | metafield_text | strip
+  assign wdh_kaijyo = variant.metafields.custom.kaijyo | metafield_text | strip
+  assign wdh_jyusho = variant.metafields.custom.jyusho | metafield_text | strip
+  assign wdh_mochimono = variant.metafields.custom.mochimono | metafield_text | strip
+  assign wdh_biko = variant.metafields.custom.biko | metafield_text | strip
 -%}
 
 {%- style -%}
@@ -172,56 +219,108 @@
         "productId": {{ product.id | json }},
         "productTitle": {{ product.title | json }},
         "fallbackImage": {{ wdh_fb | json }},
-        "variants": {
+        "b64List": [
           {%- for v in product.variants -%}
+            {%- if forloop.index0 > 0 -%},{%- endif -%}
             {%- liquid
-              assign v_img = ''
-              assign v_purl = ''
+              assign v_photo_mf = v.metafields.custom.custom_photo
+              if v_photo_mf == blank
+                assign v_photo_mf = v.metafields.custom.photo
+              endif
+              assign v_photo_obj = v_photo_mf.value
+
+              assign v_photo_file_url = ''
+              if v_photo_mf != blank
+                if v_photo_obj != blank
+                  assign v_photo_file_url = v_photo_obj | image_url: width: 2000
+                endif
+                if v_photo_file_url == blank and v_photo_obj.preview_image != blank
+                  assign v_photo_file_url = v_photo_obj.preview_image | image_url: width: 2000
+                endif
+                if v_photo_file_url == blank and v_photo_obj != blank
+                  assign v_photo_file_url = v_photo_obj | file_url
+                endif
+                if v_photo_file_url == blank
+                  assign v_photo_file_url = v_photo_mf | file_url
+                endif
+                if v_photo_file_url == blank and v_photo_obj.url != blank
+                  assign v_photo_file_url = v_photo_obj.url
+                endif
+                if v_photo_file_url == blank
+                  assign v_photo_file_url = v_photo_mf | metafield_text | strip
+                endif
+              endif
+
+              assign v_photo_url = ''
               if v.metafields.custom.photo_url.value != blank
                 assign v_pu = v.metafields.custom.photo_url.value
-                assign v_raw = ''
                 if v_pu.url != blank
-                  assign v_raw = v_pu.url | strip
+                  assign v_photo_url = v_pu.url | strip
                 else
-                  assign v_raw = v_pu | strip
+                  assign v_photo_url = v_pu | append: '' | strip
                 endif
-                assign v_purl = v_raw
-                if v_raw != blank
-                  if v_raw contains '://'
-                    assign v_img = v_raw
+              endif
+              if v_photo_url != blank
+                assign v_drive_id = ''
+                if v_photo_url contains 'drive.google.com/file/d/'
+                  assign v_drive_id = v_photo_url | split: '/file/d/' | last | split: '/' | first | split: '?' | first
+                elsif v_photo_url contains 'drive.google.com/open?id='
+                  assign v_drive_id = v_photo_url | split: 'open?id=' | last | split: '&' | first | split: '#' | first
+                elsif v_photo_url contains 'drive.google.com/uc?' and v_photo_url contains 'id='
+                  assign v_drive_id = v_photo_url | split: 'id=' | last | split: '&' | first | split: '#' | first
+                elsif v_photo_url contains 'docs.google.com/uc?' and v_photo_url contains 'id='
+                  assign v_drive_id = v_photo_url | split: 'id=' | last | split: '&' | first | split: '#' | first
+                endif
+                if v_drive_id != blank
+                  assign v_photo_url = 'https://drive.google.com/thumbnail?id=' | append: v_drive_id | append: '&sz=w1600'
+                endif
+              endif
+
+              assign v_img = ''
+              if v_photo_url != blank
+                assign vr = v_photo_url | strip
+                if vr contains '://'
+                  assign v_img = vr
+                else
+                  assign v2 = vr | slice: 0, 2
+                  assign v1 = vr | slice: 0, 1
+                  if v2 == '//'
+                    assign v_img = 'https:' | append: vr
+                  elsif v1 == '/'
+                    assign v_img = shop.secure_url | append: vr
                   else
-                    assign vh2 = v_raw | slice: 0, 2
-                    assign vh1 = v_raw | slice: 0, 1
-                    if vh2 == '//'
-                      assign v_img = 'https:' | append: v_raw
-                    elsif vh1 == '/'
-                      assign v_img = shop.secure_url | append: v_raw
-                    else
-                      assign v_img = v_raw
-                    endif
+                    assign v_img = vr
                   endif
                 endif
               endif
-              if v_img == blank and v.metafields.custom.photo.value != blank
-                assign v_img = v.metafields.custom.photo | image_url: width: 2000
+              if v_img == blank and v_photo_file_url != blank
+                assign v_img = v_photo_file_url
               endif
               if v_img == blank and wdh_fb != blank
                 assign v_img = wdh_fb
               endif
+
+              assign v_day = v.metafields.custom.day | metafield_text | strip
+              assign v_time = v.metafields.custom.time | metafield_text | strip
+              assign v_kaijyo = v.metafields.custom.kaijyo | metafield_text | strip
+              assign v_jyusho = v.metafields.custom.jyusho | metafield_text | strip
+              assign v_mochi = v.metafields.custom.mochimono | metafield_text | strip
+              assign v_biko = v.metafields.custom.biko | metafield_text | strip
             -%}
-            "{{ v.id }}": {
+            {
+              "id": {{ v.id | json }},
               "imageUrl": {{ v_img | json }},
-              "photoUrl": {{ v_purl | json }},
-              "photoFileUrl": {% if v.metafields.custom.photo.value != blank %}{{ v.metafields.custom.photo | image_url: width: 2000 | json }}{% else %}""{% endif %},
-              "day": {{ v.metafields.custom.day.value | default: '' | strip | json }},
-              "time": {{ v.metafields.custom.time.value | default: '' | strip | json }},
-              "kaijyo": {{ v.metafields.custom.kaijyo.value | default: '' | strip | json }},
-              "jyusho": {{ v.metafields.custom.jyusho.value | default: '' | strip | json }},
-              "mochimono": {{ v.metafields.custom.mochimono.value | default: '' | strip | json }},
-              "biko": {{ v.metafields.custom.biko.value | default: '' | strip | json }}
-            }{%- unless forloop.last -%},{%- endunless -%}
+              "photoUrl": {{ v_photo_url | json }},
+              "photoFileUrl": {{ v_photo_file_url | json }},
+              "day_b64": {{ v_day | base64_encode | json }},
+              "time_b64": {{ v_time | base64_encode | json }},
+              "kaijyo_b64": {{ v_kaijyo | base64_encode | json }},
+              "jyusho_b64": {{ v_jyusho | base64_encode | json }},
+              "mochimono_b64": {{ v_mochi | base64_encode | json }},
+              "biko_b64": {{ v_biko | base64_encode | json }}
+            }
           {%- endfor -%}
-        }
+        ]
       }
     </script>
 

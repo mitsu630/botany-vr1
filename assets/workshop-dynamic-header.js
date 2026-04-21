@@ -9,10 +9,14 @@
   ];
 
   function getVariantIdFromUrl() {
-    var raw = new URLSearchParams(window.location.search).get('variant');
-    if (!raw) return null;
-    var n = parseInt(raw, 10);
-    return Number.isFinite(n) ? n : null;
+    try {
+      var raw = new URLSearchParams(window.location.search).get('variant');
+      if (!raw) return null;
+      var n = parseInt(String(raw).split('?')[0].split('&')[0], 10);
+      return Number.isFinite(n) ? n : null;
+    } catch (e) {
+      return null;
+    }
   }
 
   function parseData(root) {
@@ -23,6 +27,46 @@
     } catch (e) {
       return null;
     }
+  }
+
+  function b64Utf8Decode(b64) {
+    if (b64 == null || b64 === '') return '';
+    var s = String(b64);
+    try {
+      var bin = atob(s);
+      if (typeof TextDecoder !== 'undefined') {
+        var u8 = new Uint8Array(bin.length);
+        for (var i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+        return new TextDecoder('utf-8').decode(u8);
+      }
+      // fallback (old browsers)
+      return decodeURIComponent(escape(bin));
+    } catch (e) {
+      return '';
+    }
+  }
+
+  function buildVariantsFromB64List(b64List) {
+    var map = {};
+    if (!Array.isArray(b64List)) return map;
+    for (var i = 0; i < b64List.length; i++) {
+      var row = b64List[i];
+      if (!row) continue;
+      var id = row.id != null ? String(row.id) : '';
+      if (!id) continue;
+      map[id] = {
+        imageUrl: row.imageUrl || '',
+        photoUrl: row.photoUrl || '',
+        photoFileUrl: row.photoFileUrl || '',
+        day: b64Utf8Decode(row.day_b64),
+        time: b64Utf8Decode(row.time_b64),
+        kaijyo: b64Utf8Decode(row.kaijyo_b64),
+        jyusho: b64Utf8Decode(row.jyusho_b64),
+        mochimono: b64Utf8Decode(row.mochimono_b64),
+        biko: b64Utf8Decode(row.biko_b64),
+      };
+    }
+    return map;
   }
 
   function normalizePhotoUrl(u) {
@@ -131,22 +175,45 @@
     syncTableRows(root, entry);
   }
 
+  function sanitizeVariantIdStr(raw) {
+    if (raw == null || raw === '') return null;
+    var s = String(raw).split('?')[0].split('&')[0].trim();
+    var n = parseInt(s, 10);
+    return Number.isFinite(n) ? String(n) : null;
+  }
+
+  function getActiveVariantIdStr() {
+    // OPTIS 等で installment が実IDになりやすいので優先
+    var inst = document.querySelector('form.installment input[name="id"]');
+    var v1 = inst && inst.value ? sanitizeVariantIdStr(inst.value) : null;
+    if (v1) return v1;
+    var main =
+      document.querySelector('form[action*="/cart/add"] input[name="id"].product-variant-id') ||
+      document.querySelector('form[action*="/cart/add"] input[name="id"]');
+    var v2 = main && main.value ? sanitizeVariantIdStr(main.value) : null;
+    if (v2) return v2;
+    var urlId = getVariantIdFromUrl();
+    return urlId != null ? String(urlId) : null;
+  }
+
   function initRoot(root) {
     if (root.dataset.wdhInitialized === 'true') return;
     root.dataset.wdhInitialized = 'true';
 
     var data = parseData(root);
-    if (!data || !data.variants) return;
+    if (!data) return;
+    data.variants = buildVariantsFromB64List(data.b64List);
+    if (!data.variants || !Object.keys(data.variants).length) return;
 
-    var variantId = getVariantIdFromUrl();
-    if (variantId == null || !data.variants[String(variantId)]) {
+    var variantIdStr = getActiveVariantIdStr();
+    if (!variantIdStr || !data.variants[String(variantIdStr)]) {
       var initial = parseInt(root.dataset.initialVariantId, 10);
-      variantId = Number.isFinite(initial) ? initial : null;
+      variantIdStr = Number.isFinite(initial) ? String(initial) : null;
     }
-    if (variantId == null) return;
+    if (!variantIdStr) return;
 
     var initialTitle = root.dataset.initialVariantTitle || '';
-    updatePanel(root, data, variantId, initialTitle);
+    updatePanel(root, data, variantIdStr, initialTitle);
 
     var onVariantChange = function (event) {
       var v = event && event.data && event.data.variant;
@@ -165,6 +232,51 @@
         updatePanel(root, data, id, '');
       }
     });
+
+    (function watchVariantIdChanges() {
+      if (typeof MutationObserver === 'undefined') return;
+      var last = '';
+      var lastUrl = String(getVariantIdFromUrl() || '');
+      var observed = new WeakSet();
+      var mo = new MutationObserver(tick);
+
+      function pickEls() {
+        var inst = document.querySelector('form.installment input[name="id"]');
+        var main =
+          document.querySelector('form[action*="/cart/add"] input[name="id"].product-variant-id') ||
+          document.querySelector('form[action*="/cart/add"] input[name="id"]');
+        return { inst: inst, main: main };
+      }
+
+      function observeNew() {
+        var els = pickEls();
+        [els.inst, els.main].forEach(function (el) {
+          if (el && !observed.has(el)) {
+            try {
+              mo.observe(el, { attributes: true, attributeFilter: ['value'] });
+              observed.add(el);
+            } catch (e) {}
+          }
+        });
+      }
+
+      function tick() {
+        observeNew();
+        var now = getActiveVariantIdStr() || '';
+        if (now && now !== last && data.variants[now]) {
+          last = now;
+          updatePanel(root, data, now, '');
+        }
+        var u = String(getVariantIdFromUrl() || '');
+        if (u && u !== lastUrl && data.variants[u]) {
+          lastUrl = u;
+          updatePanel(root, data, u, '');
+        }
+      }
+
+      observeNew();
+      setInterval(tick, 400);
+    })();
   }
 
   function boot(container) {

@@ -88,7 +88,8 @@
   .product__info-container > .shopify-app-block[id*='__optis_product_options_'] {
     grid-area: optis;
   }
-  .product__info-container .bss-po-product-page {
+  /* OPTIS本体は id="po_container--xxxx" class="bss-po-product-page" のため、ここを強めに上書き */
+  .product__info-container [id^='po_container'].bss-po-product-page {
     display: flex !important;
     flex-direction: column !important;
     gap: var(--jwb-gap) !important;
@@ -123,14 +124,15 @@
     color: rgba(var(--color-foreground), 0.9);
   }
 
-  /* 4段目：CTA（Quantity-Form の次のDIVが product-form を内包） */
-  .product__info-container > [id^='Quantity-Form-'] + div {
+  /* 4段目：CTA（product-form を内包するDIVを確実に拾う） */
+  .product__info-container > div:has(> product-form),
+  .product__info-container > div:has(> pickup-availability) {
     grid-area: cta;
     display: flex;
     justify-content: flex-end;
     align-items: center;
   }
-  .product__info-container > [id^='Quantity-Form-'] + div .product-form__buttons {
+  .product__info-container > div:has(> product-form) .product-form__buttons {
     width: var(--jwb-btn-w);
   }
 

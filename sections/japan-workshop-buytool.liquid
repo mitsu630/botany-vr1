@@ -607,14 +607,49 @@
             return;
           }
 
-          var fd = new FormData(form);
-          // OPTIS / 数量の値がフォーム外にある場合に備えて、FormData に手動で注入
+          var cleanValue = function (v) {
+            return normalizeText(String(v == null ? '' : v).replace(/[\r\n]+/g, ' '));
+          };
+
+          // OPTISの本体フォーム（OPTISが独自に用意している/cart/addフォームがあればそれを優先）
+          var optRootForSubmit = getActiveOptisRoot();
+          var optisForm =
+            (optRootForSubmit && optRootForSubmit.closest && optRootForSubmit.closest('form[action*="/cart/add"]')) || null;
+          var submitForm = optisForm || getMainForm() || form;
+
+          // バリエーションID/数量を送信フォームへ確実に反映
+          try {
+            var idEl = getVariantIdInput(submitForm);
+            if (idEl) {
+              idEl.value = String(variantId);
+              dispatchChange(idEl);
+            }
+          } catch (e) {}
+
+          // 数量（先に算出してフォームへも反映）
+          var qty = 1;
+          var qtyInput = qtyHost
+            ? qtyHost.querySelector('input[name="quantity"], input.quantity__input, input[type="number"]')
+            : null;
+          if (!qtyInput) qtyInput = root.querySelector('input[name="quantity"], input.quantity__input, input[type="number"]');
+          if (qtyInput && qtyInput.value) qty = parseInt(qtyInput.value, 10);
+          if (!Number.isFinite(qty) || qty < 1) qty = 1;
+          try {
+            var qEl =
+              (submitForm && submitForm.querySelector && submitForm.querySelector('input[name="quantity"], input.quantity__input, input[type="number"]')) ||
+              null;
+            if (qEl) qEl.value = String(qty);
+          } catch (e) {}
+
+          // 予約用のFormData（最終的に/cart/addへ投げる内容）
+          var fd = new FormData(submitForm);
+          // OPTIS の値がフォーム外にある場合に備えて、FormData に手動で注入
           try {
             var optRoot = getActiveOptisRoot();
 
             var setField = function (name, v) {
               if (!name) return;
-              var vv = v != null ? String(v) : '';
+              var vv = cleanValue(v);
               if (!vv) return;
               fd.set(name, vv);
             };
@@ -647,7 +682,7 @@
                   st.querySelector('input[name^="po_dropdown"]') ||
                   st.querySelector('input[type="hidden"][name*="po_"]');
                 if (!field) continue;
-                var val = normalizeText(field.value || '');
+                var val = cleanValue(field.value || '');
                 if (!val) continue;
                 if (val === 'サイズを選ぶ' || val === '植物を選ぶ') continue;
                 if (val.indexOf('Please select') !== -1) continue;
@@ -661,17 +696,7 @@
             if (opt && opt.size && opt.size.name) setField(opt.size.name, opt.size.value);
             if (opt && opt.plant && opt.plant.name) setField(opt.plant.name, opt.plant.value);
           } catch (e) {}
-          // 数量
-          var qty = 1;
-          var qtyInput = qtyHost
-            ? qtyHost.querySelector('input[name="quantity"], input.quantity__input, input[type="number"]')
-            : null;
-          if (!qtyInput) {
-            // quantity-input が想定外のDOMでも拾えるようにフォールバック
-            qtyInput = root.querySelector('input[name="quantity"], input.quantity__input, input[type="number"]');
-          }
-          if (qtyInput && qtyInput.value) qty = parseInt(qtyInput.value, 10);
-          if (!Number.isFinite(qty) || qty < 1) qty = 1;
+
           fd.set('quantity', String(qty));
           fd.set('id', variantId);
 
@@ -679,14 +704,30 @@
           btn.setAttribute('aria-busy', 'true');
 
           try {
-            var res = await fetch('/cart/add.js', {
-              method: 'POST',
-              headers: { Accept: 'application/json' },
-              body: fd,
-              credentials: 'same-origin',
-            });
-            if (!res.ok) throw new Error('add failed');
-            window.location.assign('/checkout');
+            // まずOPTISの標準ロジックが走るようにフォーム送信を発火（追加料金反映のため）
+            var fired = false;
+            try {
+              if (submitForm && typeof submitForm.requestSubmit === 'function') {
+                submitForm.requestSubmit();
+                fired = true;
+              }
+            } catch (e) {}
+
+            // requestSubmitが使えない/失敗時はフォールバックで/cart/add.jsへ直POST
+            if (!fired) {
+              var res = await fetch('/cart/add.js', {
+                method: 'POST',
+                headers: { Accept: 'application/json' },
+                body: fd,
+                credentials: 'same-origin',
+              });
+              if (!res.ok) throw new Error('add failed');
+            }
+
+            // 少し待ってからcheckoutへ（カート画面に留まらない）
+            setTimeout(function () {
+              window.location.assign('/checkout');
+            }, 300);
           } catch (e) {
             alert('予約処理に失敗しました。もう一度お試しください。');
           } finally {

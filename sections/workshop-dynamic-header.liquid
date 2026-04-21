@@ -12,27 +12,44 @@
       assign wdh_fb = wdh_m0.preview_image | image_url: width: 2000
     endif
   endif
--%}
-{%- capture wdh_img_src -%}
-  {%- render 'wdh-resolve-image-url',
-    photo_url_mf: variant.metafields.custom.photo_url,
-    photo_file_mf: variant.metafields.custom.photo,
-    variant_obj: variant,
-    product_fallback: wdh_fb
-  -%}
-{%- endcapture -%}
-{%- assign wdh_img_src = wdh_img_src | strip -%}
 
-{%- liquid
-  assign wdh_day = variant.metafields.custom.day.value | default: '' | strip
-  if wdh_day == blank
-    assign wdh_day = variant.title | strip
+  assign wdh_img_src = ''
+  if variant.metafields.custom.photo_url.value != blank
+    assign pu_val = variant.metafields.custom.photo_url.value
+    assign raw = ''
+    if pu_val.url != blank
+      assign raw = pu_val.url | strip
+    else
+      assign raw = pu_val | strip
+    endif
+    if raw != blank
+      if raw contains '://'
+        assign wdh_img_src = raw
+      else
+        assign head2 = raw | slice: 0, 2
+        assign head1 = raw | slice: 0, 1
+        if head2 == '//'
+          assign wdh_img_src = 'https:' | append: raw
+        elsif head1 == '/'
+          assign wdh_img_src = shop.secure_url | append: raw
+        else
+          assign wdh_img_src = raw
+        endif
+      endif
+    endif
+  endif
+  if wdh_img_src == blank and variant.metafields.custom.photo.value != blank
+    assign wdh_img_src = variant.metafields.custom.photo | image_url: width: 2000
+  endif
+  if wdh_img_src == blank and wdh_fb != blank
+    assign wdh_img_src = wdh_fb
   endif
 
+  assign wdh_day = variant.metafields.custom.day.value | default: '' | strip
   assign wdh_time = variant.metafields.custom.time.value | default: '' | strip
-  assign wdh_mochimono = variant.metafields.custom.mochimono.value | default: '' | strip
   assign wdh_kaijyo = variant.metafields.custom.kaijyo.value | default: '' | strip
   assign wdh_jyusho = variant.metafields.custom.jyusho.value | default: '' | strip
+  assign wdh_mochimono = variant.metafields.custom.mochimono.value | default: '' | strip
   assign wdh_biko = variant.metafields.custom.biko.value | default: '' | strip
 -%}
 
@@ -73,6 +90,7 @@
   }
   #shopify-section-{{ section.id }} .wdh__media {
     margin: 0;
+    max-width: 100%;
     border-radius: calc(var(--border-radius, 0.8rem) - 0.2rem);
     overflow: hidden;
     background: rgba(var(--color-foreground), 0.04);
@@ -80,8 +98,10 @@
   #shopify-section-{{ section.id }} .wdh__image {
     display: block;
     width: 100%;
+    max-width: 100%;
     height: auto;
     vertical-align: middle;
+    object-fit: contain;
   }
   #shopify-section-{{ section.id }} .wdh-course-block {
     border-radius: calc(var(--border-radius, 0.8rem) - 0.2rem);
@@ -101,8 +121,10 @@
     font-weight: 600;
     text-align: center;
     letter-spacing: 0.06rem;
-    background-color: rgb(var(--color-button));
-    color: rgb(var(--color-button-text));
+    background-color: rgba(var(--color-link), 0.14);
+    color: rgb(var(--color-foreground));
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.1);
+    box-shadow: inset 0 0.25rem 0 rgba(var(--color-background), 0.35);
   }
   #shopify-section-{{ section.id }} .wdh-table__label {
     width: 28%;
@@ -114,7 +136,7 @@
     vertical-align: top;
     background-color: rgba(var(--color-foreground), 0.06);
     color: rgb(var(--color-foreground));
-    border-top: 0.1rem solid rgba(var(--color-foreground), 0.12);
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.12);
     border-right: 0.1rem solid rgba(var(--color-foreground), 0.12);
   }
   #shopify-section-{{ section.id }} .wdh-table__value {
@@ -125,17 +147,13 @@
     vertical-align: top;
     color: rgba(var(--color-foreground), 0.92);
     background-color: rgb(var(--color-background));
-    border-top: 0.1rem solid rgba(var(--color-foreground), 0.12);
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.12);
     word-break: break-word;
     white-space: pre-wrap;
   }
   #shopify-section-{{ section.id }} .wdh-table__value--muted {
     font-size: 1.3rem;
     color: rgba(var(--color-foreground), 0.75);
-  }
-  #shopify-section-{{ section.id }} .wdh-table tbody tr:first-child .wdh-table__label,
-  #shopify-section-{{ section.id }} .wdh-table tbody tr:first-child .wdh-table__value {
-    border-top: none;
   }
 {%- endstyle -%}
 
@@ -156,29 +174,51 @@
         "fallbackImage": {{ wdh_fb | json }},
         "variants": {
           {%- for v in product.variants -%}
-            {%- capture v_img -%}
-              {%- render 'wdh-resolve-image-url',
-                photo_url_mf: v.metafields.custom.photo_url,
-                photo_file_mf: v.metafields.custom.photo,
-                variant_obj: v,
-                product_fallback: wdh_fb
-              -%}
-            {%- endcapture -%}
-            {%- assign v_img = v_img | strip -%}
-            {%- assign v_day = v.metafields.custom.day.value | default: '' | strip -%}
-            {%- if v_day == blank -%}
-              {%- assign v_day = v.title | strip -%}
-            {%- endif -%}
+            {%- liquid
+              assign v_img = ''
+              assign v_purl = ''
+              if v.metafields.custom.photo_url.value != blank
+                assign v_pu = v.metafields.custom.photo_url.value
+                assign v_raw = ''
+                if v_pu.url != blank
+                  assign v_raw = v_pu.url | strip
+                else
+                  assign v_raw = v_pu | strip
+                endif
+                assign v_purl = v_raw
+                if v_raw != blank
+                  if v_raw contains '://'
+                    assign v_img = v_raw
+                  else
+                    assign vh2 = v_raw | slice: 0, 2
+                    assign vh1 = v_raw | slice: 0, 1
+                    if vh2 == '//'
+                      assign v_img = 'https:' | append: v_raw
+                    elsif vh1 == '/'
+                      assign v_img = shop.secure_url | append: v_raw
+                    else
+                      assign v_img = v_raw
+                    endif
+                  endif
+                endif
+              endif
+              if v_img == blank and v.metafields.custom.photo.value != blank
+                assign v_img = v.metafields.custom.photo | image_url: width: 2000
+              endif
+              if v_img == blank and wdh_fb != blank
+                assign v_img = wdh_fb
+              endif
+            -%}
             "{{ v.id }}": {
               "imageUrl": {{ v_img | json }},
-              "photoUrl": {% if v.metafields.custom.photo_url.value != blank %}{{ v.metafields.custom.photo_url.value | strip | json }}{% else %}""{% endif %},
+              "photoUrl": {{ v_purl | json }},
               "photoFileUrl": {% if v.metafields.custom.photo.value != blank %}{{ v.metafields.custom.photo | image_url: width: 2000 | json }}{% else %}""{% endif %},
-              "day": {{ v_day | json }},
-              "time": {{ v.metafields.custom.time.value | default: '' | json }},
-              "mochimono": {{ v.metafields.custom.mochimono.value | default: '' | json }},
-              "kaijyo": {{ v.metafields.custom.kaijyo.value | default: '' | json }},
-              "jyusho": {{ v.metafields.custom.jyusho.value | default: '' | json }},
-              "biko": {{ v.metafields.custom.biko.value | default: '' | json }}
+              "day": {{ v.metafields.custom.day.value | default: '' | strip | json }},
+              "time": {{ v.metafields.custom.time.value | default: '' | strip | json }},
+              "kaijyo": {{ v.metafields.custom.kaijyo.value | default: '' | strip | json }},
+              "jyusho": {{ v.metafields.custom.jyusho.value | default: '' | strip | json }},
+              "mochimono": {{ v.metafields.custom.mochimono.value | default: '' | strip | json }},
+              "biko": {{ v.metafields.custom.biko.value | default: '' | strip | json }}
             }{%- unless forloop.last -%},{%- endunless -%}
           {%- endfor -%}
         }
@@ -189,19 +229,15 @@
       <div class="wdh-card">
         <div class="wdh__layout">
           <figure class="wdh__media">
-            <img
-              class="wdh__image"
-              {% if wdh_img_src != blank %}
+            {%- if wdh_img_src != blank -%}
+              <img
+                class="wdh__image"
                 src="{{ wdh_img_src }}"
-              {% elsif wdh_fb != blank %}
-                src="{{ wdh_fb }}"
-              {% endif %}
-              alt="{{ product.title | escape }} — {{ variant.title | escape }}"
-              width="1200"
-              height="800"
-              loading="lazy"
-              decoding="async"
-            >
+                alt="{{ product.title | escape }} — {{ variant.title | escape }}"
+                loading="lazy"
+                decoding="async"
+              >
+            {%- endif -%}
           </figure>
 
           <div class="wdh-course-block color-{{ section.settings.color_scheme }} gradient isolate">
@@ -212,30 +248,42 @@
                 </tr>
               </thead>
               <tbody>
-                <tr data-wdh-row="day" {% if wdh_day == blank %}hidden{% endif %}>
-                  <th class="wdh-table__label" scope="row">日程</th>
-                  <td class="wdh-table__value"><span data-wdh-field="day">{{ wdh_day }}</span></td>
-                </tr>
-                <tr data-wdh-row="time" {% if wdh_time == blank %}hidden{% endif %}>
-                  <th class="wdh-table__label" scope="row">時間</th>
-                  <td class="wdh-table__value"><span data-wdh-field="time">{{ wdh_time }}</span></td>
-                </tr>
-                <tr data-wdh-row="mochimono" {% if wdh_mochimono == blank %}hidden{% endif %}>
-                  <th class="wdh-table__label" scope="row">持ち物</th>
-                  <td class="wdh-table__value"><span data-wdh-field="mochimono">{{ wdh_mochimono }}</span></td>
-                </tr>
-                <tr data-wdh-row="kaijyo" {% if wdh_kaijyo == blank %}hidden{% endif %}>
-                  <th class="wdh-table__label" scope="row">会場</th>
-                  <td class="wdh-table__value"><span data-wdh-field="kaijyo">{{ wdh_kaijyo }}</span></td>
-                </tr>
-                <tr data-wdh-row="jyusho" {% if wdh_jyusho == blank %}hidden{% endif %}>
-                  <th class="wdh-table__label" scope="row">住所</th>
-                  <td class="wdh-table__value"><span data-wdh-field="jyusho">{{ wdh_jyusho }}</span></td>
-                </tr>
-                <tr data-wdh-row="biko" {% if wdh_biko == blank %}hidden{% endif %}>
-                  <th class="wdh-table__label" scope="row">備考</th>
-                  <td class="wdh-table__value wdh-table__value--muted"><span data-wdh-field="biko">{{ wdh_biko }}</span></td>
-                </tr>
+                {%- if wdh_day != blank -%}
+                  <tr data-wdh-row="day">
+                    <th class="wdh-table__label" scope="row">日程</th>
+                    <td class="wdh-table__value"><span data-wdh-field="day">{{ wdh_day }}</span></td>
+                  </tr>
+                {%- endif -%}
+                {%- if wdh_time != blank -%}
+                  <tr data-wdh-row="time">
+                    <th class="wdh-table__label" scope="row">時間</th>
+                    <td class="wdh-table__value"><span data-wdh-field="time">{{ wdh_time }}</span></td>
+                  </tr>
+                {%- endif -%}
+                {%- if wdh_kaijyo != blank -%}
+                  <tr data-wdh-row="kaijyo">
+                    <th class="wdh-table__label" scope="row">会場</th>
+                    <td class="wdh-table__value"><span data-wdh-field="kaijyo">{{ wdh_kaijyo }}</span></td>
+                  </tr>
+                {%- endif -%}
+                {%- if wdh_jyusho != blank -%}
+                  <tr data-wdh-row="jyusho">
+                    <th class="wdh-table__label" scope="row">住所</th>
+                    <td class="wdh-table__value"><span data-wdh-field="jyusho">{{ wdh_jyusho }}</span></td>
+                  </tr>
+                {%- endif -%}
+                {%- if wdh_mochimono != blank -%}
+                  <tr data-wdh-row="mochimono">
+                    <th class="wdh-table__label" scope="row">持ち物</th>
+                    <td class="wdh-table__value"><span data-wdh-field="mochimono">{{ wdh_mochimono }}</span></td>
+                  </tr>
+                {%- endif -%}
+                {%- if wdh_biko != blank -%}
+                  <tr data-wdh-row="biko">
+                    <th class="wdh-table__label" scope="row">備考</th>
+                    <td class="wdh-table__value wdh-table__value--muted"><span data-wdh-field="biko">{{ wdh_biko }}</span></td>
+                  </tr>
+                {%- endif -%}
               </tbody>
             </table>
           </div>

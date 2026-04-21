@@ -26,6 +26,7 @@
     --wvl-datetime-opacity: {{ section.settings.datetime_text_opacity | times: 0.01 }};
     --wvl-card-pad: {{ section.settings.card_padding }}px;
     --wvl-card-gap: {{ section.settings.card_inner_gap }}px;
+    --wvl-venue-datetime-gap: {{ section.settings.venue_datetime_gap }}px;
   }
 
   #shopify-section-{{ section.id }} .workshop-variant-list__card {
@@ -37,6 +38,14 @@
     flex-direction: column;
     gap: var(--wvl-card-gap);
     box-shadow: 0 0.1rem 0.4rem rgba(var(--color-foreground), 0.08);
+  }
+
+  #shopify-section-{{ section.id }} .workshop-variant-list__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--wvl-venue-datetime-gap);
+    width: 100%;
   }
 
   #shopify-section-{{ section.id }} .workshop-variant-list__venue {
@@ -80,7 +89,12 @@
   }
 {%- endstyle -%}
 
-<div class="workshop-variant-list color-{{ section.settings.color_scheme }} gradient">
+<script src="{{ 'workshop-variant-list.js' | asset_url }}" defer="defer"></script>
+
+<div
+  class="workshop-variant-list color-{{ section.settings.color_scheme }} gradient"
+  data-deadline-notice-days="{{ section.settings.deadline_notice_days_before }}"
+>
   <div class="page-width section-{{ section.id }}-padding isolate{% unless layout_grid %} workshop-variant-list--stack{% endunless %}">
     {%- if product != blank -%}
       <ul
@@ -116,28 +130,36 @@
             endif
           -%}
           <li class="grid__item">
-            <div class="workshop-variant-list__card">
-              {%- if venue != blank -%}
-                <h3 class="workshop-variant-list__venue">{{ venue | escape }}</h3>
-              {%- endif -%}
-
-              {%- if datetime_line != blank -%}
-                <p class="workshop-variant-list__datetime">
-                  {{- datetime_line | escape -}}
-                  {%- unless variant.available -%}
-                    <span class="workshop-variant-list__soldout-label"> 満席</span>
-                  {%- endunless -%}
-                </p>
-              {%- elsif venue == blank -%}
-                <h3 class="workshop-variant-list__venue">{{ variant.title | escape }}</h3>
-              {%- elsif venue != blank and variant.available == false and datetime_line == blank -%}
-                <p class="workshop-variant-list__datetime">
-                  満席
-                </p>
+            <div
+              class="workshop-variant-list__card"
+              data-workshop-variant-card
+              data-available="{% if variant.available %}true{% else %}false{% endif %}"
+              data-manual-deadline="{% if deadline_note != blank %}true{% else %}false{% endif %}"
+            >
+              {%- if venue != blank or datetime_line != blank -%}
+                <div class="workshop-variant-list__meta">
+                  {%- if venue != blank -%}
+                    <h3 class="workshop-variant-list__venue">{{ venue | escape | newline_to_br }}</h3>
+                  {%- endif -%}
+                  {%- if datetime_line != blank -%}
+                    <p class="workshop-variant-list__datetime">
+                      {{- datetime_line | escape | newline_to_br -}}
+                      {%- unless variant.available -%}
+                        <span class="workshop-variant-list__soldout-label"> 満席</span>
+                      {%- endunless -%}
+                    </p>
+                  {%- elsif venue != blank and variant.available == false and datetime_line == blank -%}
+                    <p class="workshop-variant-list__datetime">満席</p>
+                  {%- endif -%}
+                </div>
+              {%- elsif venue == blank and datetime_line == blank -%}
+                <div class="workshop-variant-list__meta">
+                  <h3 class="workshop-variant-list__venue">{{ variant.title | escape | newline_to_br }}</h3>
+                </div>
               {%- endif -%}
 
               {%- if deadline_note != blank -%}
-                <p class="workshop-variant-list__deadline">{{ deadline_note | escape }}</p>
+                <p class="workshop-variant-list__deadline">{{ deadline_note | escape | newline_to_br }}</p>
               {%- endif -%}
 
               <div class="workshop-variant-list__actions">
@@ -250,6 +272,31 @@
       "default": 14
     },
     {
+      "type": "range",
+      "id": "venue_datetime_gap",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "会場名と開催日の間の余白",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "募集締切の自動表示"
+    },
+    {
+      "type": "range",
+      "id": "deadline_notice_days_before",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "日",
+      "label": "「募集締切間近」を表示する期間（締切の何日前から）",
+      "info": "開催日の3日前の正午を締切として計算します。0 にすると、締切の正午までは常に表示します（満席・手動の締切メモありのカードは除く）。表示はお客様のブラウザの日時に基づきます。",
+      "default": 7
+    },
+    {
       "type": "header",
       "content": "カード"
     },
@@ -279,7 +326,7 @@
     },
     {
       "type": "paragraph",
-      "content": "各バリエーションに、ショップのメタフィールド（名前空間 custom）で workshop_venue（会場）、workshop_datetime（日時）、workshop_deadline_note（締切など任意の注意文・例：募集締切間近 : 2026年04月24日 正午）を設定できます。メタフィールドが空の場合は、バリエーション名を「会場 || 日時」の形式（区切りは || または 半角スペース+||+半角スペース）にすると自動で分割されます。"
+      "content": "会場と開催日は別ブロックで表示され、メタフィールドやバリエーション名内の改行はそのまま改行として表示されます。開催日の行に「2026年04月27日 (月) 10:00」のように年月日が含まれると、在庫ありかつ手動の workshop_deadline_note がないカードだけ、締切（開催日の3日前の正午）から逆算した「募集締切間近：…正午」を自動表示します（満席では表示しません）。各バリエーションに、メタフィールド（名前空間 custom）で workshop_venue、workshop_datetime、workshop_deadline_note（任意・手動で上書きしたい場合）を設定するか、バリエーション名を「会場 || 日時」形式にしてください。"
     },
     {
       "type": "header",

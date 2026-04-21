@@ -608,21 +608,43 @@
           }
 
           var fd = new FormData(form);
-          // OPTIS の値がフォーム外にある場合に備えて、FormData に手動で注入
+          // OPTIS / 数量の値がフォーム外にある場合に備えて、FormData に手動で注入
           try {
-            var opt = findOptisSelects();
-            var addField = function (el) {
-              if (!el || !el.name) return;
-              var v = el.value != null ? String(el.value) : '';
-              if (!v) return;
-              fd.set(el.name, v);
+            var optRoot = getActiveOptisRoot();
+
+            var setField = function (name, v) {
+              if (!name) return;
+              var vv = v != null ? String(v) : '';
+              if (!vv) return;
+              fd.set(name, vv);
             };
-            addField(opt && opt.size ? opt.size : null);
-            addField(opt && opt.plant ? opt.plant : null);
+
+            // OPTISの主要フィールド（hidden select / input）を総なめで拾う
+            if (optRoot && optRoot.querySelectorAll) {
+              var nodes = optRoot.querySelectorAll(
+                'select[name^="po_dropdown"], input[name^="po_dropdown"], input[name^="properties["], input[type="hidden"][name*="po_"]'
+              );
+              for (var i = 0; i < nodes.length; i++) {
+                var el = nodes[i];
+                if (!el || !el.name) continue;
+                setField(el.name, el.value);
+              }
+            }
+
+            // 念のため label探索で見つけたフィールドも入れる
+            var opt = findOptisSelects();
+            if (opt && opt.size && opt.size.name) setField(opt.size.name, opt.size.value);
+            if (opt && opt.plant && opt.plant.name) setField(opt.plant.name, opt.plant.value);
           } catch (e) {}
           // 数量
           var qty = 1;
-          var qtyInput = qtyHost ? qtyHost.querySelector('input[name="quantity"], input.quantity__input, input[type="number"]') : null;
+          var qtyInput = qtyHost
+            ? qtyHost.querySelector('input[name="quantity"], input.quantity__input, input[type="number"]')
+            : null;
+          if (!qtyInput) {
+            // quantity-input が想定外のDOMでも拾えるようにフォールバック
+            qtyInput = root.querySelector('input[name="quantity"], input.quantity__input, input[type="number"]');
+          }
           if (qtyInput && qtyInput.value) qty = parseInt(qtyInput.value, 10);
           if (!Number.isFinite(qty) || qty < 1) qty = 1;
           fd.set('quantity', String(qty));

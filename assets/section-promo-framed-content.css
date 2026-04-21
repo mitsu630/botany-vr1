@@ -44,6 +44,25 @@
   width: 100%;
 }
 
+/*
+ * rich-text と同じ .rich-text__blocks クラスを使うため max-width: 50rem / 78rem が付くが、
+ * リッチテキストの .rich-text__wrapper（flex 中央寄せ）が無いとブロック全体が左に寄る。
+ */
+.pfc .pfc__blocks.rich-text__blocks.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pfc .pfc__blocks.rich-text__blocks.left {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.pfc .pfc__blocks.rich-text__blocks.right {
+  margin-left: auto;
+  margin-right: 0;
+}
+
 .pfc__blocks > * + * {
   margin-top: 2rem;
 }

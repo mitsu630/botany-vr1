@@ -468,81 +468,17 @@
           if (vid && selVariant && selVariant.value !== vid) selVariant.value = vid;
 
           var opt = findOptisSelects();
-          if (opt.size) {
-            if (opt.size.tagName === 'SELECT') {
-              cloneOptions(selSize, opt.size, 'サイズを選ぶ');
-            } else {
-              // hidden select が同名で存在する場合はそこから option を生成
-              var altSel1 = null;
-              if (opt.size && opt.size.name) {
-                altSel1 = document.querySelector('select[name="' + opt.size.name + '"]');
-              }
-              if (!altSel1 && opt.sizeField && opt.sizeField.root) {
-                altSel1 = opt.sizeField.root.querySelector('select[name^="po_dropdown"]');
-              }
-              if (altSel1) {
-                cloneOptions(selSize, altSel1, 'サイズを選ぶ');
-              } else {
-              var list1 = getBssOptionsFromRoot(opt.sizeField && opt.sizeField.root ? opt.sizeField.root : null);
-              if (list1.length && selSize) {
-                selSize.innerHTML = '';
-                var ph1 = document.createElement('option');
-                ph1.value = '';
-                ph1.textContent = 'サイズを選ぶ';
-                selSize.appendChild(ph1);
-                for (var i1 = 0; i1 < list1.length; i1++) {
-                  var o1 = document.createElement('option');
-                  o1.value = list1[i1];
-                  o1.textContent = list1[i1];
-                  selSize.appendChild(o1);
-                }
-              }
-              }
-            }
-            // 現在値を反映（inputの場合）
-            if (opt.sizeField && opt.sizeField.kind === 'input' && selSize) {
-              var cur1 = normalizeText(opt.size.value || '');
-              if (cur1 && selSize.value !== cur1) selSize.value = cur1;
-            }
+          // 上部に実際に表示されているOPTISの select を唯一の正として使い、
+          // 固定バーの select はその options をコピーしてミラー表示する。
+          if (opt.size && opt.size.tagName === 'SELECT') {
+            cloneOptions(selSize, opt.size, 'サイズを選ぶ');
+          }
+          if (opt.plant && opt.plant.tagName === 'SELECT') {
+            cloneOptions(selPlant, opt.plant, '植物を選ぶ');
           }
 
-          if (opt.plant) {
-            if (opt.plant.tagName === 'SELECT') {
-              cloneOptions(selPlant, opt.plant, '植物を選ぶ');
-            } else {
-              var altSel2 = null;
-              if (opt.plant && opt.plant.name) {
-                altSel2 = document.querySelector('select[name="' + opt.plant.name + '"]');
-              }
-              if (!altSel2 && opt.plantField && opt.plantField.root) {
-                altSel2 = opt.plantField.root.querySelector('select[name^="po_dropdown"]');
-              }
-              if (altSel2) {
-                cloneOptions(selPlant, altSel2, '植物を選ぶ');
-              } else {
-              var list2 = getBssOptionsFromRoot(opt.plantField && opt.plantField.root ? opt.plantField.root : null);
-              if (list2.length && selPlant) {
-                selPlant.innerHTML = '';
-                var ph2 = document.createElement('option');
-                ph2.value = '';
-                ph2.textContent = '植物を選ぶ';
-                selPlant.appendChild(ph2);
-                for (var i2 = 0; i2 < list2.length; i2++) {
-                  var o2 = document.createElement('option');
-                  o2.value = list2[i2];
-                  o2.textContent = list2[i2];
-                  selPlant.appendChild(o2);
-                }
-              }
-              }
-            }
-            if (opt.plantField && opt.plantField.kind === 'input' && selPlant) {
-              var cur2 = normalizeText(opt.plant.value || '');
-              if (cur2 && selPlant.value !== cur2) selPlant.value = cur2;
-            }
-          }
-
-          if (!opt.size || !opt.plant) scheduleOptisRetry();
+          // OPTISの実体がまだ生成されていない場合は粘り強く待つ
+          if (!opt.size || !opt.plant || opt.size.tagName !== 'SELECT' || opt.plant.tagName !== 'SELECT') scheduleOptisRetry();
 
           updateReserveState();
         }
@@ -558,44 +494,13 @@
           }
 
           var opt = findOptisSelects();
-          if (opt.size && selSize) {
-            if (opt.size.tagName === 'SELECT') {
-              opt.size.value = selSize.value;
-              dispatchChange(opt.size);
-            } else {
-              opt.size.value = selSize.value;
-              dispatchChange(opt.size);
-              // UI option click (best-effort)
-              if (opt.sizeField && opt.sizeField.root) {
-                var opts = opt.sizeField.root.querySelectorAll('.po-dropdown-option, [role="option"]');
-                for (var i = 0; i < opts.length; i++) {
-                  var t = normalizeText(opts[i].textContent || '');
-                  if (t && t === normalizeText(selSize.value)) {
-                    try { opts[i].click(); } catch (e) {}
-                    break;
-                  }
-                }
-              }
-            }
+          if (opt.size && opt.size.tagName === 'SELECT' && selSize) {
+            opt.size.value = selSize.value;
+            dispatchChange(opt.size);
           }
-          if (opt.plant && selPlant) {
-            if (opt.plant.tagName === 'SELECT') {
-              opt.plant.value = selPlant.value;
-              dispatchChange(opt.plant);
-            } else {
-              opt.plant.value = selPlant.value;
-              dispatchChange(opt.plant);
-              if (opt.plantField && opt.plantField.root) {
-                var opts2 = opt.plantField.root.querySelectorAll('.po-dropdown-option, [role="option"]');
-                for (var j = 0; j < opts2.length; j++) {
-                  var t2 = normalizeText(opts2[j].textContent || '');
-                  if (t2 && t2 === normalizeText(selPlant.value)) {
-                    try { opts2[j].click(); } catch (e) {}
-                    break;
-                  }
-                }
-              }
-            }
+          if (opt.plant && opt.plant.tagName === 'SELECT' && selPlant) {
+            opt.plant.value = selPlant.value;
+            dispatchChange(opt.plant);
           }
         }
 

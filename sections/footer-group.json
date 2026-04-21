@@ -58,6 +58,7 @@
             "button_label": "ボタン",
             "button_image": "shopify://shop_images/line.png",
             "button_link": "https://line.me/R/ti/p/%40gkf4662p",
+            "button_width_percent": 60,
             "margin_top": 72,
             "margin_bottom": 52,
             "outer_padding": 36,

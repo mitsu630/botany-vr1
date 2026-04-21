@@ -101,53 +101,8 @@
         -webkit-appearance: none;
       }
 
-      /* =========================================
-         OPTISを「フッター固定」に寄せる（1つだけ表示）
-         - OPTISの実体（.bss-po-product-page）をそのまま使う
-         - japan-workshop-buytool 側のUIは非表示
-         このセクションがあるページだけに効くよう、
-         <html> に付与するクラス（jwbt-optis-footer--{{ section.id }}）でスコープする
-         ========================================= */
-
-      html.jwbt-optis-footer--{{ section.id }} #jwbt-{{ section.id }} .jwbt__bar,
-      html.jwbt-optis-footer--{{ section.id }} #jwbt-{{ section.id }} .jwbt__spacer {
-        display: none !important;
-      }
-
-      html.jwbt-optis-footer--{{ section.id }} .bss-po-product-page {
-        position: fixed !important;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: {{ section.settings.z_index }};
-
-        background: var(--jwbt-bg);
-        border-top: var(--jwbt-border);
-        box-shadow: var(--jwbt-shadow);
-
-        padding: 0.75rem 0.9rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
-        display: grid;
-        gap: 0.55rem;
-      }
-
-      html.jwbt-optis-footer--{{ section.id }} body {
-        padding-bottom: calc({{ section.settings.footer_height_px }}px + env(safe-area-inset-bottom, 0px));
-      }
-
-      /* サイズ・植物を2列に（SPは1列） */
-      html.jwbt-optis-footer--{{ section.id }} .bss-po-product-page .po-stack {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.55rem;
-      }
-
-      html.jwbt-optis-footer--{{ section.id }} .bss-po-product-page .po-label {
-        font-weight: 700;
-        font-size: 0.9rem;
-      }
-
-      /* 見えている疑似select本体（.po-select-dropdown-thumbnail）を jwbt__select と揃える */
-      html.jwbt-optis-footer--{{ section.id }} .bss-po-product-page .po-select-dropdown-thumbnail {
+      /* OPTIS UI（疑似select）を jwbt の見た目に寄せる（フッター内で差し替え表示） */
+      #jwbt-{{ section.id }} .jwbt__optis-slot .po-select-dropdown-thumbnail {
         width: 100%;
         max-width: 100%;
         font-family: inherit;
@@ -163,22 +118,37 @@
         align-items: center;
       }
 
-      html.jwbt-optis-footer--{{ section.id }} .bss-po-product-page .po-select-dropdown-thumbnail .po-dropdown-selected-option {
+      #jwbt-{{ section.id }} .jwbt__optis-slot .po-dropdown-selected-option {
         flex: 1 1 auto;
         display: flex;
         align-items: center;
         gap: 0.5rem;
       }
 
-      html.jwbt-optis-footer--{{ section.id }} .bss-po-product-page .po-dropdown-arrow {
+      #jwbt-{{ section.id }} .jwbt__optis-slot .po-dropdown-arrow {
         margin-left: auto;
         opacity: 0.75;
       }
 
-      @media (max-width: 767px) {
-        html.jwbt-optis-footer--{{ section.id }} .bss-po-product-page .po-stack {
-          grid-template-columns: 1fr;
-        }
+      #jwbt-{{ section.id }} .jwbt__optis-slot .po-label-container {
+        margin-bottom: 0.25rem;
+      }
+
+      #jwbt-{{ section.id }} .jwbt__qtyhost {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        white-space: nowrap;
+      }
+
+      #jwbt-{{ section.id }} .jwbt__qtyhost quantity-input,
+      #jwbt-{{ section.id }} .jwbt__qtyhost .quantity {
+        margin: 0;
+      }
+
+      /* フッターに隠れない余白（スペーサーに加えて本体にも） */
+      body {
+        padding-bottom: calc({{ section.settings.footer_height_px }}px + env(safe-area-inset-bottom, 0px));
       }
 
       #jwbt-{{ section.id }} .jwbt__row--bottom {
@@ -324,16 +294,20 @@
             {%- endfor -%}
           </div>
 
-          <select class="jwbt__select" data-jwbt="size" aria-label="サイズを選ぶ">
-            <option value="">サイズを選ぶ</option>
-          </select>
-          <select class="jwbt__select" data-jwbt="plant" aria-label="植物を選ぶ">
-            <option value="">植物を選ぶ</option>
-          </select>
+          <div class="jwbt__optis-slot" data-jwbt-optis-slot="size" aria-label="サイズ">
+            <select class="jwbt__select" data-jwbt="size" aria-label="サイズを選ぶ">
+              <option value="">サイズを選ぶ</option>
+            </select>
+          </div>
+          <div class="jwbt__optis-slot" data-jwbt-optis-slot="plant" aria-label="植物">
+            <select class="jwbt__select" data-jwbt="plant" aria-label="植物を選ぶ">
+              <option value="">植物を選ぶ</option>
+            </select>
+          </div>
         </div>
 
         <div class="jwbt__row jwbt__row--bottom">
-          <div class="jwbt__qtywrap">
+          <div class="jwbt__qtyhost" data-jwbt="qtyhost" aria-label="数量">
             <select class="jwbt__qty" data-jwbt="qty" aria-label="人数">
               {%- for i in (1..10) -%}
                 <option
@@ -366,10 +340,6 @@
         if (root.dataset.jwbtInit === '1') return;
         root.dataset.jwbtInit = '1';
 
-        try {
-          document.documentElement.classList.add('jwbt-optis-footer--{{ section.id }}');
-        } catch (e) {}
-
         function q(sel) {
           return root.querySelector(sel);
         }
@@ -378,6 +348,7 @@
         var selSize = q('[data-jwbt="size"]');
         var selPlant = q('[data-jwbt="plant"]');
         var selQty = q('[data-jwbt="qty"]');
+        var qtyHost = q('[data-jwbt="qtyhost"]');
         var btn = q('[data-jwbt="reserve"]');
         var jwbtForm = document.getElementById('{{ jwbt_form_id }}');
 
@@ -612,9 +583,83 @@
           if (host.__jwbtObserved) return;
           host.__jwbtObserved = true;
           var moHost = new MutationObserver(function () {
+            mountOptisIntoFooter();
+            mountQuantityIntoFooter();
             syncFooterFromMain();
           });
           moHost.observe(host, { childList: true, subtree: true, attributes: true });
+        }
+
+        function mountOptisIntoFooter() {
+          var host = q('.jwbt__optis-host');
+          if (!host) return;
+          var optRoot = host.querySelector('.bss-po-product-page') || host.querySelector('#po_container') || null;
+          if (!optRoot) return;
+
+          var slotSize = q('[data-jwbt-optis-slot="size"]');
+          var slotPlant = q('[data-jwbt-optis-slot="plant"]');
+          if (!slotSize || !slotPlant) return;
+
+          // 既に移設済みなら何もしない
+          if (slotSize.querySelector('.po-select-dropdown-thumbnail') && slotPlant.querySelector('.po-select-dropdown-thumbnail')) return;
+
+          var stacks = Array.prototype.slice.call(optRoot.querySelectorAll('.po-stack'));
+          if (!stacks.length) return;
+
+          function pickStackByLabelText(want) {
+            for (var i = 0; i < stacks.length; i++) {
+              var s = stacks[i];
+              if (!s) continue;
+              var label = s.querySelector('.po-label');
+              var t = normalizeText((label && label.textContent) || s.textContent || '');
+              if (t.indexOf(want) !== -1) return s;
+            }
+            return null;
+          }
+
+          var stackSize = pickStackByLabelText('サイズ') || stacks[0] || null;
+          var stackPlant = pickStackByLabelText('植物') || (stacks.length > 1 ? stacks[1] : null);
+          if (!stackSize || !stackPlant) return;
+
+          // 移設（実体UIをそのまま使う）
+          try {
+            slotSize.innerHTML = '';
+            slotSize.appendChild(stackSize);
+          } catch (e) {}
+          try {
+            slotPlant.innerHTML = '';
+            slotPlant.appendChild(stackPlant);
+          } catch (e) {}
+        }
+
+        function mountQuantityIntoFooter() {
+          if (!qtyHost) return;
+          if (qtyHost.__jwbtQtyMounted) return;
+
+          var form = getMainForm();
+          if (!form) return;
+
+          var qtyEl =
+            form.querySelector('quantity-input') ||
+            form.querySelector('.quantity') ||
+            form.querySelector('input[name="quantity"]');
+          if (!qtyEl) return;
+
+          // 既にフッター内ならOK
+          if (qtyHost.contains(qtyEl)) {
+            qtyHost.__jwbtQtyMounted = true;
+            return;
+          }
+
+          // 元の場所に戻せるようにプレースホルダーを置く
+          try {
+            var ph = document.createElement('span');
+            ph.setAttribute('data-jwbt-qty-placeholder', '1');
+            qtyEl.parentNode && qtyEl.parentNode.insertBefore(ph, qtyEl);
+            qtyHost.innerHTML = '';
+            qtyHost.appendChild(qtyEl);
+            qtyHost.__jwbtQtyMounted = true;
+          } catch (e) {}
         }
 
         function syncFooterFromMain() {
@@ -730,7 +775,13 @@
             addField(opt && opt.plant ? opt.plant : null);
           } catch (e) {}
           // 数量（人数）
-          var qty = selQty && selQty.value ? parseInt(selQty.value, 10) : 1;
+          var qty = 1;
+          var qtyInput = qtyHost ? qtyHost.querySelector('input[name="quantity"], input.quantity__input, input[type="number"]') : null;
+          if (qtyInput && qtyInput.value) {
+            qty = parseInt(qtyInput.value, 10);
+          } else if (selQty && selQty.value) {
+            qty = parseInt(selQty.value, 10);
+          }
           if (!Number.isFinite(qty) || qty < 1) qty = 1;
           fd.set('quantity', String(qty));
           fd.set('id', String(idInput.value));
@@ -784,6 +835,8 @@
 
         // 初期同期
         watchOptisHostChanges();
+        mountOptisIntoFooter();
+        mountQuantityIntoFooter();
         syncFooterFromMain();
 
         // Dawn標準の variantChange（存在する場合）に追従してフッターも更新

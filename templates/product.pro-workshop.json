@@ -21,6 +21,13 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "variant_picker_JbAPj6": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
         "quantity_selector_NfKEab": {
           "type": "quantity_selector",
           "settings": {}
@@ -31,6 +38,7 @@
         }
       },
       "block_order": [
+        "variant_picker_JbAPj6",
         "quantity_selector_NfKEab",
         "optis_product_options_option_set_jq3hDd"
       ],
@@ -72,12 +80,7 @@
     "japan_workshop_buytool_pyWgnx": {
       "type": "japan-workshop-buytool",
       "name": "japan-workshop-buytool",
-      "settings": {
-        "bg_color": "#daddd0",
-        "accent_color": "#d31d84",
-        "z_index": 100,
-        "footer_height_px": 160
-      }
+      "settings": {}
     }
   },
   "order": [

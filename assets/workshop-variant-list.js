@@ -78,6 +78,47 @@
     });
   }
 
+  function getSortTextFromCard(card) {
+    const dtEl = card.querySelector('.workshop-variant-list__datetime');
+    const venueEl = card.querySelector('.workshop-variant-list__venue');
+    if (dtEl && (dtEl.textContent || '').trim()) {
+      return dtEl.textContent.trim();
+    }
+    if (venueEl) {
+      return venueEl.textContent.trim();
+    }
+    return '';
+  }
+
+  function getCardSortMeta(card) {
+    const d = parseJapaneseEventDate(getSortTextFromCard(card));
+    const ts = d ? d.getTime() : Number.POSITIVE_INFINITY;
+    const idx = parseInt(card.getAttribute('data-variant-original-index'), 10);
+    const stable = Number.isFinite(idx) ? idx : 0;
+    return { ts: ts, stable: stable };
+  }
+
+  function sortWorkshopVariantListItems(root) {
+    root.querySelectorAll('.workshop-variant-list[data-sort-by-date="true"] .workshop-variant-list__list').forEach(function (listEl) {
+      const items = Array.prototype.filter.call(listEl.children, function (n) {
+        return n.tagName === 'LI';
+      });
+      if (items.length < 2) return;
+      items.sort(function (a, b) {
+        const ca = a.querySelector('[data-workshop-variant-card]');
+        const cb = b.querySelector('[data-workshop-variant-card]');
+        if (!ca || !cb) return 0;
+        const ka = getCardSortMeta(ca);
+        const kb = getCardSortMeta(cb);
+        if (ka.ts !== kb.ts) return ka.ts - kb.ts;
+        return ka.stable - kb.stable;
+      });
+      items.forEach(function (li) {
+        listEl.appendChild(li);
+      });
+    });
+  }
+
   function splitCombinedVenueDatetime(meta) {
     const venueEl = meta.querySelector('.workshop-variant-list__venue');
     if (!venueEl) return;
@@ -152,8 +193,9 @@
     root.querySelectorAll('[data-workshop-variant-card]').forEach(function (card) {
       const meta = card.querySelector('.workshop-variant-list__meta');
       if (meta) splitCombinedVenueDatetime(meta);
-      initCard(card);
     });
+    sortWorkshopVariantListItems(root);
+    root.querySelectorAll('[data-workshop-variant-card]').forEach(initCard);
   }
 
   document.addEventListener('DOMContentLoaded', function () {

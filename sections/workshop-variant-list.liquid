@@ -106,6 +106,7 @@
 <div
   class="workshop-variant-list color-{{ section.settings.color_scheme }} gradient"
   data-deadline-notice-days="{{ section.settings.deadline_notice_days_before }}"
+  data-sort-by-date="{% if section.settings.sort_variants_by_date %}true{% else %}false{% endif %}"
 >
   <div class="page-width section-{{ section.id }}-padding isolate{% unless layout_grid %} workshop-variant-list--stack{% endunless %}">
     {%- if product != blank -%}
@@ -219,6 +220,7 @@
             <div
               class="workshop-variant-list__card"
               data-workshop-variant-card
+              data-variant-original-index="{{ forloop.index0 }}"
               data-available="{% if variant.available %}true{% else %}false{% endif %}"
               data-manual-deadline="{% if deadline_note != blank %}true{% else %}false{% endif %}"
             >
@@ -313,6 +315,13 @@
         }
       ],
       "default": "stack"
+    },
+    {
+      "type": "checkbox",
+      "id": "sort_variants_by_date",
+      "label": "バリエーションを開催日順に並べる",
+      "info": "タイトル・日時行から読み取った開催日の早い順に並べ替えます（読み取れない行は末尾・元の順を維持）。オフにすると管理画面のバリエーション順のままです。",
+      "default": true
     },
     {
       "type": "header",

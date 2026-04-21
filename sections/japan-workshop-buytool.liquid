@@ -629,6 +629,31 @@
                 if (!el || !el.name) continue;
                 setField(el.name, el.value);
               }
+
+              // /cart/add.js に直POSTする場合は、OPTISの内部キー（po_dropdown...）だけでは
+              // チェックアウトに表示されないことがあるため、properties[...] にも変換して入れる。
+              var stacks = optRoot.querySelectorAll('.po-stack');
+              for (var s = 0; s < stacks.length; s++) {
+                var st = stacks[s];
+                if (!st) continue;
+                var labelEl = st.querySelector('.po-label');
+                var label = normalizeText((labelEl && labelEl.textContent) || '');
+                if (!label) continue;
+                label = label.replace(/[*＊]/g, '').trim();
+                if (!label) continue;
+
+                var field =
+                  st.querySelector('select[name^="po_dropdown"]') ||
+                  st.querySelector('input[name^="po_dropdown"]') ||
+                  st.querySelector('input[type="hidden"][name*="po_"]');
+                if (!field) continue;
+                var val = normalizeText(field.value || '');
+                if (!val) continue;
+                if (val === 'サイズを選ぶ' || val === '植物を選ぶ') continue;
+                if (val.indexOf('Please select') !== -1) continue;
+
+                setField('properties[' + label + ']', val);
+              }
             }
 
             // 念のため label探索で見つけたフィールドも入れる

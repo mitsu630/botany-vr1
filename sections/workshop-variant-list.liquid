@@ -43,12 +43,16 @@
   #shopify-section-{{ section.id }} .workshop-variant-list__meta {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    flex-wrap: nowrap;
+    align-items: stretch;
     gap: var(--wvl-venue-datetime-gap);
     width: 100%;
   }
 
   #shopify-section-{{ section.id }} .workshop-variant-list__venue {
+    display: block;
+    width: 100%;
+    flex: 0 0 auto;
     margin: 0;
     font-size: var(--wvl-venue-fs);
     line-height: calc(1 + 0.35 / var(--font-heading-scale));
@@ -58,6 +62,9 @@
   }
 
   #shopify-section-{{ section.id }} .workshop-variant-list__datetime {
+    display: block;
+    width: 100%;
+    flex: 0 0 auto;
     margin: 0;
     font-size: var(--wvl-datetime-fs);
     line-height: calc(1 + 0.5 / var(--font-body-scale));
@@ -128,6 +135,39 @@
                 endif
               endif
             endif
+
+            if datetime_line == blank and venue != blank
+              assign wvl_raw = venue | strip | newline_to_br
+              assign wvl_norm = wvl_raw | replace: '<br />', '||WVLBR||' | replace: '<br/>', '||WVLBR||' | replace: '<br>', '||WVLBR||'
+              assign wvl_br = wvl_norm | split: '||WVLBR||'
+              if wvl_br.size >= 2
+                assign venue = wvl_br[0] | strip
+                assign datetime_line = wvl_br[1] | strip
+                for wvl_part in wvl_br
+                  if forloop.index >= 3
+                    assign datetime_line = datetime_line | append: ' ' | append: wvl_part | strip
+                  endif
+                endfor
+              elsif venue contains ' / '
+                assign wvl_sl = venue | split: ' / '
+                if wvl_sl.size >= 2
+                  assign venue = wvl_sl[0] | strip
+                  assign datetime_line = wvl_sl[1] | strip
+                endif
+              elsif venue contains '／'
+                assign wvl_sl = venue | split: '／'
+                if wvl_sl.size >= 2
+                  assign venue = wvl_sl[0] | strip
+                  assign datetime_line = wvl_sl[1] | strip
+                endif
+              elsif venue contains ' | '
+                assign wvl_sl = venue | split: ' | '
+                if wvl_sl.size >= 2
+                  assign venue = wvl_sl[0] | strip
+                  assign datetime_line = wvl_sl[1] | strip
+                endif
+              endif
+            endif
           -%}
           <li class="grid__item">
             <div
@@ -144,12 +184,7 @@
                   {%- if datetime_line != blank -%}
                     <p class="workshop-variant-list__datetime">
                       {{- datetime_line | escape | newline_to_br -}}
-                      {%- unless variant.available -%}
-                        <span class="workshop-variant-list__soldout-label"> 満席</span>
-                      {%- endunless -%}
                     </p>
-                  {%- elsif venue != blank and variant.available == false and datetime_line == blank -%}
-                    <p class="workshop-variant-list__datetime">満席</p>
                   {%- endif -%}
                 </div>
               {%- elsif venue == blank and datetime_line == blank -%}
@@ -326,7 +361,7 @@
     },
     {
       "type": "paragraph",
-      "content": "会場と開催日は別ブロックで表示され、メタフィールドやバリエーション名内の改行はそのまま改行として表示されます。開催日の行に「2026年04月27日 (月) 10:00」のように年月日が含まれると、在庫ありかつ手動の workshop_deadline_note がないカードだけ、締切（開催日の3日前の正午）から逆算した「募集締切間近：…正午」を自動表示します（満席では表示しません）。各バリエーションに、メタフィールド（名前空間 custom）で workshop_venue、workshop_datetime、workshop_deadline_note（任意・手動で上書きしたい場合）を設定するか、バリエーション名を「会場 || 日時」形式にしてください。"
+      "content": "会場と開催日は別の行に分かれて表示されます。改行、または「 / 」「／」「 | 」で区切ると分割されます。1行に「会場名2026年…月…日…」のように書いた場合も、日付の直前で自動分割されます。開催日行に年月日が含まれると、在庫ありかつ手動の workshop_deadline_note がないカードだけ「募集締切間近：…正午」を表示します。満席のときはボタン文言のみで、カード内に満席の重複表示はしません。メタフィールド workshop_venue / workshop_datetime / workshop_deadline_note（任意）またはバリエーション名「会場 || 日時」も利用できます。"
     },
     {
       "type": "header",

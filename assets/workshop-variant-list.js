@@ -33,6 +33,28 @@
     });
   }
 
+  function splitCombinedVenueDatetime(meta) {
+    const venueEl = meta.querySelector('.workshop-variant-list__venue');
+    if (!venueEl) return;
+
+    const existingDt = meta.querySelector('.workshop-variant-list__datetime');
+    if (existingDt && (existingDt.textContent || '').trim().length > 0) return;
+
+    const text = venueEl.textContent.trim();
+    const m = text.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+    if (!m || m.index <= 0) return;
+
+    const venueText = text.slice(0, m.index).trim();
+    const dateText = text.slice(m.index).trim();
+    if (!venueText || !dateText) return;
+
+    venueEl.textContent = venueText;
+    const p = document.createElement('p');
+    p.className = 'workshop-variant-list__datetime';
+    p.textContent = dateText;
+    venueEl.insertAdjacentElement('afterend', p);
+  }
+
   function initCard(card) {
     removeAutoDeadlines(card);
 
@@ -43,7 +65,7 @@
     const dtEl = card.querySelector('.workshop-variant-list__datetime');
     if (!dtEl) return;
 
-    let text = (dtEl.textContent || '').replace(/\s*満席\s*$/, '').trim();
+    let text = (dtEl.textContent || '').trim();
     const eventDate = parseJapaneseEventDate(text);
     if (!eventDate) return;
 
@@ -74,7 +96,11 @@
 
   function initWorkshopVariantList(container) {
     const root = container && container.querySelector ? container : document;
-    root.querySelectorAll('[data-workshop-variant-card]').forEach(initCard);
+    root.querySelectorAll('[data-workshop-variant-card]').forEach(function (card) {
+      const meta = card.querySelector('.workshop-variant-list__meta');
+      if (meta) splitCombinedVenueDatetime(meta);
+      initCard(card);
+    });
   }
 
   document.addEventListener('DOMContentLoaded', function () {

@@ -1,0 +1,118 @@
+{%- comment -%}
+  Rich text block: standalone_image — viewport-wide bleed + margins/padding
+  Contained mode does not wrap in page-width (rich-text column is already narrow).
+{%- endcomment -%}
+{%- liquid
+  assign cfg = block.settings
+  assign img = cfg.image
+  assign img_link = cfg.image_link
+  assign full_bleed = cfg.full_viewport_width
+
+  assign alt_override = cfg.image_alt | strip
+  assign alt_text = alt_override
+  if alt_text == blank and img != blank
+    assign alt_text = img.alt | default: shop.name
+  elsif alt_text == blank
+    assign alt_text = shop.name
+  endif
+
+  assign mt = cfg.margin_top | default: 0
+  assign mr = cfg.margin_right | default: 0
+  assign mb = cfg.margin_bottom | default: 0
+  assign ml = cfg.margin_left | default: 0
+
+  assign pt = cfg.padding_top | default: 0
+  assign pr = cfg.padding_right | default: 0
+  assign pb = cfg.padding_bottom | default: 0
+  assign pl = cfg.padding_left | default: 0
+
+  assign pad_style = 'padding-top: ' | append: pt | append: 'px; padding-right: ' | append: pr | append: 'px; padding-bottom: ' | append: pb | append: 'px; padding-left: ' | append: pl | append: 'px;'
+
+  assign sizes_bleed = '100vw'
+  assign sizes_contained = '(min-width: 990px) 78rem, (min-width: 750px) 50rem, calc(100vw - 3rem)'
+
+  assign loading_mode = 'lazy'
+  assign fetch_priority = 'auto'
+
+  assign ao = animation_order | default: 1
+-%}
+{%- capture wrap_style -%}
+margin-top: {{ mt }}px; margin-right: {{ mr }}px; margin-bottom: {{ mb }}px; margin-left: {{ ml }}px;{% if settings.animations_reveal_on_scroll %} --animation-order: {{ ao }};{% endif %}
+{%- endcapture -%}
+
+<div
+  class="rich-text__standalone-image{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  {% if settings.animations_reveal_on_scroll %}
+    data-cascade
+  {% endif %}
+  style="{{ wrap_style | strip }}"
+  {{ block.shopify_attributes }}
+>
+  {%- if img != blank -%}
+    {%- liquid
+      assign img_height = img.width | divided_by: img.aspect_ratio | round
+      assign img_sizes = sizes_contained
+      if full_bleed
+        assign img_sizes = sizes_bleed
+      endif
+    -%}
+    {%- capture img_core -%}
+      {{
+        img
+        | image_url: width: 3840
+        | image_tag:
+          width: img.width,
+          height: img_height,
+          alt: alt_text,
+          sizes: img_sizes,
+          widths: '165, 360, 535, 750, 940, 1100, 1500, 1780, 2000, 3000, 3840',
+          fetchpriority: fetch_priority,
+          loading: loading_mode
+      }}
+    {%- endcapture -%}
+
+    {%- if full_bleed -%}
+      <div class="custom-standalone-image__media custom-standalone-image__media--bleed" style="{{ pad_style }}">
+        {%- if img_link != blank -%}
+          <a
+            class="custom-standalone-image__link"
+            href="{{ img_link }}"
+            {% if cfg.link_new_tab %}
+              target="_blank" rel="noopener noreferrer"
+            {% endif %}
+          >
+            {{ img_core }}
+          </a>
+        {%- else -%}
+          {{ img_core }}
+        {%- endif -%}
+      </div>
+    {%- else -%}
+      <div class="custom-standalone-image__media" style="{{ pad_style }}">
+        {%- if img_link != blank -%}
+          <a
+            class="custom-standalone-image__link"
+            href="{{ img_link }}"
+            {% if cfg.link_new_tab %}
+              target="_blank" rel="noopener noreferrer"
+            {% endif %}
+          >
+            {{ img_core }}
+          </a>
+        {%- else -%}
+          {{ img_core }}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- else -%}
+    {%- if full_bleed -%}
+      <div class="custom-standalone-image__media custom-standalone-image__media--bleed placeholder" style="{{ pad_style }}">
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    {%- else -%}
+      <div class="custom-standalone-image__media placeholder" style="{{ pad_style }}">
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+</div>

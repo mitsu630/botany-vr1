@@ -3294,6 +3294,58 @@
               "label": "Outline style"
             }
           }
+        },
+        "standalone_image": {
+          "name": "Custom image",
+          "settings": {
+            "image": {
+              "label": "Image"
+            },
+            "image_link": {
+              "label": "Link URL (optional)"
+            },
+            "link_new_tab": {
+              "label": "Open link in new tab"
+            },
+            "image_alt": {
+              "label": "Alt text (optional)",
+              "info": "If empty, uses the image’s alt text; if that is also empty, the shop name is used."
+            },
+            "full_viewport_width": {
+              "label": "Full browser width (break out of parent)",
+              "info": "When on, the image spans the viewport, wider than the rich text column. When off, it stays within the rich text column width."
+            },
+            "header_margin": {
+              "content": "Outer spacing (margin)"
+            },
+            "margin_top": {
+              "label": "Top"
+            },
+            "margin_right": {
+              "label": "Right"
+            },
+            "margin_bottom": {
+              "label": "Bottom"
+            },
+            "margin_left": {
+              "label": "Left"
+            },
+            "header_padding": {
+              "content": "Inner spacing around image (padding)"
+            },
+            "padding_top": {
+              "label": "Top"
+            },
+            "padding_right": {
+              "label": "Right"
+            },
+            "padding_bottom": {
+              "label": "Bottom"
+            },
+            "padding_left": {
+              "label": "Left"
+            }
+          }
         }
       },
       "presets": {

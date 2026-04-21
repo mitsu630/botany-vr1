@@ -297,6 +297,17 @@
             var list = r.querySelector('.po-dropdown-list, [role="listbox"]');
             if (trigger || list) return { kind: 'ui', el: trigger || list, root: r };
           }
+
+          // フォールバック：po_dropdown 系の hidden select/input を全探索し、周辺テキストで当てる
+          var allFields = document.querySelectorAll('select[name^="po_dropdown"], input[name^="po_dropdown"]');
+          for (var j = 0; j < allFields.length; j++) {
+            var f = allFields[j];
+            if (!f) continue;
+            var box = f.closest('.po-option, .po-option--container, .po-option--block, .po-option--wrapper, .bss-po-product-page') || f.parentElement;
+            var around = normalizeText((box && box.textContent) || '');
+            if (around.indexOf(want) === -1) continue;
+            return { kind: f.tagName === 'SELECT' ? 'select' : 'input', el: f, root: box || f };
+          }
           return null;
         }
 
@@ -449,6 +460,17 @@
             if (opt.size.tagName === 'SELECT') {
               cloneOptions(selSize, opt.size, 'サイズを選ぶ');
             } else {
+              // hidden select が同名で存在する場合はそこから option を生成
+              var altSel1 = null;
+              if (opt.size && opt.size.name) {
+                altSel1 = document.querySelector('select[name="' + opt.size.name + '"]');
+              }
+              if (!altSel1 && opt.sizeField && opt.sizeField.root) {
+                altSel1 = opt.sizeField.root.querySelector('select[name^="po_dropdown"]');
+              }
+              if (altSel1) {
+                cloneOptions(selSize, altSel1, 'サイズを選ぶ');
+              } else {
               var list1 = getBssOptionsFromRoot(opt.sizeField && opt.sizeField.root ? opt.sizeField.root : null);
               if (list1.length && selSize) {
                 selSize.innerHTML = '';
@@ -463,6 +485,7 @@
                   selSize.appendChild(o1);
                 }
               }
+              }
             }
             // 現在値を反映（inputの場合）
             if (opt.sizeField && opt.sizeField.kind === 'input' && selSize) {
@@ -475,6 +498,16 @@
             if (opt.plant.tagName === 'SELECT') {
               cloneOptions(selPlant, opt.plant, '植物を選ぶ');
             } else {
+              var altSel2 = null;
+              if (opt.plant && opt.plant.name) {
+                altSel2 = document.querySelector('select[name="' + opt.plant.name + '"]');
+              }
+              if (!altSel2 && opt.plantField && opt.plantField.root) {
+                altSel2 = opt.plantField.root.querySelector('select[name^="po_dropdown"]');
+              }
+              if (altSel2) {
+                cloneOptions(selPlant, altSel2, '植物を選ぶ');
+              } else {
               var list2 = getBssOptionsFromRoot(opt.plantField && opt.plantField.root ? opt.plantField.root : null);
               if (list2.length && selPlant) {
                 selPlant.innerHTML = '';
@@ -488,6 +521,7 @@
                   o2.textContent = list2[i2];
                   selPlant.appendChild(o2);
                 }
+              }
               }
             }
             if (opt.plantField && opt.plantField.kind === 'input' && selPlant) {
@@ -574,6 +608,20 @@
           }
 
           var fd = new FormData(form);
+          // OPTIS の値がフォーム外にある場合に備えて、FormData に手動で注入
+          try {
+            var opt = findOptisSelects();
+            var addField = function (el) {
+              if (!el || !el.name) return;
+              var v = el.value != null ? String(el.value) : '';
+              if (!v) return;
+              if (!form.querySelector('[name="' + el.name + '"]')) {
+                fd.set(el.name, v);
+              }
+            };
+            addField(opt && opt.size ? opt.size : null);
+            addField(opt && opt.plant ? opt.plant : null);
+          } catch (e) {}
           // 数量（人数）
           var qty = selQty && selQty.value ? parseInt(selQty.value, 10) : 1;
           if (!Number.isFinite(qty) || qty < 1) qty = 1;

@@ -62,46 +62,25 @@
         grid-template-columns: 1fr 1fr;
       }
 
-      #jwbt-{{ section.id }} .jwbt__optis-host {
-        /*
-          OPTISのブロックは「画面内に入ったら初期化/描画」される場合があるため、
-          画面外へ飛ばす（left:-10000px 等）ではなく、画面内に存在させたまま不可視化する。
-        */
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 420px;
-        max-width: calc(100vw - 24px);
-        height: auto;
-        overflow: visible;
-        opacity: 0.001;
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      #jwbt-{{ section.id }} .jwbt__optis-host * {
-        pointer-events: none;
-      }
-
-      /* OPTISのselectを固定バーのデザインに寄せる（念のため） */
-      #jwbt-{{ section.id }} .jwbt__optis-host select,
-      #jwbt-{{ section.id }} .jwbt__optis-host .po-option--type-dropdown-menu {
+      #jwbt-{{ section.id }} .jwbt__optis-placeholder {
         width: 100%;
         max-width: 100%;
         font-family: inherit;
-        font-size: 1rem;
-        font-weight: 500;
+        font-size: 0.95rem;
+        font-weight: 600;
         line-height: 1.2;
         padding: 0.7rem 0.85rem;
         border-radius: 10px;
-        border: 1px solid rgba(0, 0, 0, 0.22);
-        background: #fff;
+        border: 1px dashed rgba(0, 0, 0, 0.22);
+        background: rgba(255, 255, 255, 0.7);
         min-height: 3.1rem;
-        appearance: none;
-        -webkit-appearance: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(0, 0, 0, 0.55);
       }
 
-      /* OPTIS UI（疑似select）を jwbt の見た目に寄せる（フッター内で差し替え表示） */
+      /* OPTIS UI（疑似select）を jwbt の見た目に寄せる（フッター内で表示） */
       #jwbt-{{ section.id }} .jwbt__optis-slot .po-select-dropdown-thumbnail {
         width: 100%;
         max-width: 100%;
@@ -132,6 +111,24 @@
 
       #jwbt-{{ section.id }} .jwbt__optis-slot .po-label-container {
         margin-bottom: 0.25rem;
+      }
+
+      #jwbt-{{ section.id }} .jwbt__optis-slot .bss-po-product-page {
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      /* サイズ・植物は2列（SPは1列） */
+      #jwbt-{{ section.id }} .jwbt__optis-slot .bss-po-product-page .po-stack {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.55rem;
+      }
+
+      @media (max-width: 767px) {
+        #jwbt-{{ section.id }} .jwbt__optis-slot .bss-po-product-page .po-stack {
+          grid-template-columns: 1fr;
+        }
       }
 
       #jwbt-{{ section.id }} .jwbt__qtyhost {
@@ -276,51 +273,14 @@
         </div>
 
         <div class="jwbt__row jwbt__row--opts">
-          {%- comment -%}
-            OPTIS Product Options（@appブロック）はこのセクション内で実体を生成させる。
-            表示UIは固定バー側のselectを使い、OPTIS実体selectと双方向同期する。
-          {%- endcomment -%}
-          <div
-            class="jwbt__optis-host"
-            aria-hidden="true"
-            data-jwbt-optis-block-count="{{ section.blocks.size }}"
-          >
-            <!-- jwbt optis host: blocks={{ section.blocks.size }} product_id={{ product.id }} handle={{ product.handle }} -->
-            {%- for block in section.blocks -%}
-              <div {{ block.shopify_attributes }}>
-                <!-- jwbt optis block: id={{ block.id }} type={{ block.type }} -->
-                {%- render block -%}
-              </div>
-            {%- endfor -%}
-          </div>
-
-          <div class="jwbt__optis-slot" data-jwbt-optis-slot="size" aria-label="サイズ">
-            <select class="jwbt__select" data-jwbt="size" aria-label="サイズを選ぶ">
-              <option value="">サイズを選ぶ</option>
-            </select>
-          </div>
-          <div class="jwbt__optis-slot" data-jwbt-optis-slot="plant" aria-label="植物">
-            <select class="jwbt__select" data-jwbt="plant" aria-label="植物を選ぶ">
-              <option value="">植物を選ぶ</option>
-            </select>
+          <div class="jwbt__optis-slot" data-jwbt-optis-slot="root" aria-label="サイズ・植物">
+            <div class="jwbt__optis-placeholder" aria-hidden="true">サイズ・植物を読み込み中…</div>
           </div>
         </div>
 
         <div class="jwbt__row jwbt__row--bottom">
           <div class="jwbt__qtyhost" data-jwbt="qtyhost" aria-label="数量">
-            <select class="jwbt__qty" data-jwbt="qty" aria-label="人数">
-              {%- for i in (1..10) -%}
-                <option
-                  value="{{ i }}"
-                  {% if i == 1 %}
-                    selected
-                  {% endif %}
-                >
-                  {{ i }}
-                </option>
-              {%- endfor -%}
-            </select>
-            <span>人</span>
+            <div class="jwbt__optis-placeholder" aria-hidden="true">数量を読み込み中…</div>
           </div>
 
           <div class="jwbt__hint">
@@ -345,10 +305,8 @@
         }
 
         var selVariant = q('[data-jwbt="variant"]');
-        var selSize = q('[data-jwbt="size"]');
-        var selPlant = q('[data-jwbt="plant"]');
-        var selQty = q('[data-jwbt="qty"]');
         var qtyHost = q('[data-jwbt="qtyhost"]');
+        var optisSlotRoot = q('[data-jwbt-optis-slot="root"]');
         var btn = q('[data-jwbt="reserve"]');
         var jwbtForm = document.getElementById('{{ jwbt_form_id }}');
 
@@ -393,7 +351,7 @@
           for (var i = 0; i < all.length; i++) {
             var el = all[i];
             if (!el) continue;
-            if (root.contains(el)) continue; // jwbt内は除外（ホスト側など）
+            if (root.contains(el)) continue;
             if (!isVisibleEl(el)) continue;
             if (el.querySelector('.po-stack')) return el;
           }
@@ -465,32 +423,8 @@
           return null;
         }
 
-        function getBssOptionsFromRoot(rootEl) {
-          if (!rootEl) return [];
-          var opts = [];
-          var nodes = rootEl.querySelectorAll('.po-dropdown-option, [role="option"], option');
-          for (var i = 0; i < nodes.length; i++) {
-            var n = nodes[i];
-            var t = normalizeText((n && (n.textContent || n.value)) || '');
-            if (!t) continue;
-            // placeholder除外
-            if (t.indexOf('Please select') !== -1) continue;
-            opts.push(t);
-          }
-          // uniq
-          var seen = {};
-          var out = [];
-          for (var j = 0; j < opts.length; j++) {
-            var s = opts[j];
-            if (seen[s]) continue;
-            seen[s] = true;
-            out.push(s);
-          }
-          return out;
-        }
-
         function findOptisSelects() {
-          var host = getActiveOptisRoot() || q('.jwbt__optis-host') || document;
+          var host = getActiveOptisRoot() || document;
           // OPTIS Product Options（実装差異に耐えるため複数候補）
           var sizeSelect =
             host.querySelector('select.po-option--type-dropdown-menu[key="po_作品のサイズ"]') ||
@@ -517,35 +451,6 @@
             sizeField: sizeField,
             plantField: plantField,
           };
-        }
-
-        function cloneOptions(target, source, placeholder) {
-          if (!target || !source) return;
-          var prev = target.value;
-          target.innerHTML = '';
-          if (placeholder) {
-            var ph = document.createElement('option');
-            ph.value = '';
-            ph.textContent = placeholder;
-            target.appendChild(ph);
-          }
-          for (var i = 0; i < source.options.length; i++) {
-            var o = source.options[i];
-            var opt = document.createElement('option');
-            opt.value = o.value;
-            opt.textContent = o.textContent || o.value;
-            target.appendChild(opt);
-          }
-          if (
-            prev &&
-            Array.prototype.some.call(target.options, function (x) {
-              return x.value === prev;
-            })
-          ) {
-            target.value = prev;
-          } else {
-            target.value = source.value || '';
-          }
         }
 
         function dispatchChange(el) {
@@ -586,39 +491,23 @@
         }
 
         function updateReserveState() {
-          // 表示はOPTIS実体UIが優先。未移設/未生成時はフォールバックselect。
           var opt = findOptisSelects();
-          var sizeVal = opt && opt.size ? opt.size.value : (selSize ? selSize.value : '');
-          var plantVal = opt && opt.plant ? opt.plant.value : (selPlant ? selPlant.value : '');
+          var sizeVal = opt && opt.size ? opt.size.value : '';
+          var plantVal = opt && opt.plant ? opt.plant.value : '';
           var ok = !isUnsetOptisValue(sizeVal, 'サイズを選ぶ') && !isUnsetOptisValue(plantVal, '植物を選ぶ');
           if (btn) btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
         }
 
-        // OPTISが遅延生成される前提で、最大2分程度リトライする（500ms * 240）
-        var optisRetryLeft = 240;
-        var optisRetryTimer = null;
-        function scheduleOptisRetry() {
-          if (optisRetryLeft <= 0) return;
-          if (optisRetryTimer) return;
-          optisRetryTimer = setTimeout(function () {
-            optisRetryTimer = null;
-            optisRetryLeft -= 1;
-            syncFooterFromMain();
-          }, 500);
-        }
-
-        function watchOptisHostChanges() {
+        function watchDynamicMount() {
           if (typeof MutationObserver === 'undefined') return;
-          var host = q('.jwbt__optis-host');
-          if (!host) return;
-          if (host.__jwbtObserved) return;
-          host.__jwbtObserved = true;
-          var moHost = new MutationObserver(function () {
+          if (root.__jwbtObservedGlobal) return;
+          root.__jwbtObservedGlobal = true;
+          var mo = new MutationObserver(function () {
             mountOptisIntoFooter();
             mountQuantityIntoFooter();
             syncFooterFromMain();
           });
-          moHost.observe(host, { childList: true, subtree: true, attributes: true });
+          mo.observe(document.body, { childList: true, subtree: true, attributes: false });
         }
 
         function mountOptisIntoFooter() {
@@ -627,46 +516,10 @@
           // 既にフッター内ならOK
           if (root.contains(optRoot)) return;
 
-          var slotSize = q('[data-jwbt-optis-slot="size"]');
-          var slotPlant = q('[data-jwbt-optis-slot="plant"]');
-          if (!slotSize || !slotPlant) return;
-
-          // 既に移設済みなら何もしない
-          if (slotSize.querySelector('.po-select-dropdown-thumbnail') && slotPlant.querySelector('.po-select-dropdown-thumbnail')) return;
-
-          var stacks = Array.prototype.slice.call(optRoot.querySelectorAll('.po-stack'));
-          if (!stacks.length) return;
-
-          function pickStackByLabelText(want) {
-            for (var i = 0; i < stacks.length; i++) {
-              var s = stacks[i];
-              if (!s) continue;
-              var label = s.querySelector('.po-label');
-              var t = normalizeText((label && label.textContent) || s.textContent || '');
-              if (t.indexOf(want) !== -1) return s;
-            }
-            return null;
-          }
-
-          var stackSize = pickStackByLabelText('サイズ') || stacks[0] || null;
-          var stackPlant = pickStackByLabelText('植物') || (stacks.length > 1 ? stacks[1] : null);
-          if (!stackSize || !stackPlant) return;
-
-          // 移設（実体UIをそのまま使う）
           try {
-            slotSize.innerHTML = '';
-            slotSize.appendChild(stackSize);
-          } catch (e) {}
-          try {
-            slotPlant.innerHTML = '';
-            slotPlant.appendChild(stackPlant);
-          } catch (e) {}
-
-          // 元のOPTISコンテナが空になるので、余白が残らないように隠す（best-effort）
-          try {
-            if (optRoot.querySelectorAll('.po-stack').length === 0) {
-              optRoot.style.display = 'none';
-            }
+            if (!optisSlotRoot) return;
+            optisSlotRoot.innerHTML = '';
+            optisSlotRoot.appendChild(optRoot);
           } catch (e) {}
         }
 
@@ -716,53 +569,6 @@
           var vid = idInput && idInput.value ? String(idInput.value) : '';
           if (vid && selVariant && selVariant.value !== vid) selVariant.value = vid;
 
-          var opt = findOptisSelects();
-          // 上部に実際に表示されているOPTISの select を唯一の正として使い、
-          // 固定バーの select はその options をコピーしてミラー表示する。
-          if (opt.size && opt.size.tagName === 'SELECT') {
-            cloneOptions(selSize, opt.size, 'サイズを選ぶ');
-          }
-          if (opt.plant && opt.plant.tagName === 'SELECT') {
-            cloneOptions(selPlant, opt.plant, '植物を選ぶ');
-          }
-
-          // selectがまだ生成されないケースでも、リスト要素から候補が拾える場合がある
-          if (opt.sizeField && opt.sizeField.kind !== 'select' && selSize && selSize.options.length <= 1) {
-            var list1 = getBssOptionsFromRoot(opt.sizeField.root);
-            if (list1.length) {
-              selSize.innerHTML = '';
-              var ph1 = document.createElement('option');
-              ph1.value = '';
-              ph1.textContent = 'サイズを選ぶ';
-              selSize.appendChild(ph1);
-              for (var i1 = 0; i1 < list1.length; i1++) {
-                var o1 = document.createElement('option');
-                o1.value = list1[i1];
-                o1.textContent = list1[i1];
-                selSize.appendChild(o1);
-              }
-            }
-          }
-          if (opt.plantField && opt.plantField.kind !== 'select' && selPlant && selPlant.options.length <= 1) {
-            var list2 = getBssOptionsFromRoot(opt.plantField.root);
-            if (list2.length) {
-              selPlant.innerHTML = '';
-              var ph2 = document.createElement('option');
-              ph2.value = '';
-              ph2.textContent = '植物を選ぶ';
-              selPlant.appendChild(ph2);
-              for (var i2 = 0; i2 < list2.length; i2++) {
-                var o2 = document.createElement('option');
-                o2.value = list2[i2];
-                o2.textContent = list2[i2];
-                selPlant.appendChild(o2);
-              }
-            }
-          }
-
-          // OPTISの実体がまだ生成されていない場合は粘り強く待つ
-          if (!opt.size || !opt.plant || opt.size.tagName !== 'SELECT' || opt.plant.tagName !== 'SELECT') scheduleOptisRetry();
-
           updateReserveState();
         }
 
@@ -774,16 +580,6 @@
             idInput.value = String(selVariant.value);
             dispatchChange(idInput);
             setUrlVariant(selVariant.value);
-          }
-
-          var opt = findOptisSelects();
-          if (opt.size && opt.size.tagName === 'SELECT' && selSize) {
-            opt.size.value = selSize.value;
-            dispatchChange(opt.size);
-          }
-          if (opt.plant && opt.plant.tagName === 'SELECT' && selPlant) {
-            opt.plant.value = selPlant.value;
-            dispatchChange(opt.plant);
           }
         }
 
@@ -822,14 +618,10 @@
             addField(opt && opt.size ? opt.size : null);
             addField(opt && opt.plant ? opt.plant : null);
           } catch (e) {}
-          // 数量（人数）
+          // 数量
           var qty = 1;
           var qtyInput = qtyHost ? qtyHost.querySelector('input[name="quantity"], input.quantity__input, input[type="number"]') : null;
-          if (qtyInput && qtyInput.value) {
-            qty = parseInt(qtyInput.value, 10);
-          } else if (selQty && selQty.value) {
-            qty = parseInt(selQty.value, 10);
-          }
+          if (qtyInput && qtyInput.value) qty = parseInt(qtyInput.value, 10);
           if (!Number.isFinite(qty) || qty < 1) qty = 1;
           fd.set('quantity', String(qty));
           fd.set('id', String(idInput.value));
@@ -862,18 +654,7 @@
             reloadWithVariant(selVariant.value);
           });
         }
-        if (selSize) {
-          selSize.addEventListener('change', function () {
-            syncMainFromFooter();
-            updateReserveState();
-          });
-        }
-        if (selPlant) {
-          selPlant.addEventListener('change', function () {
-            syncMainFromFooter();
-            updateReserveState();
-          });
-        }
+        // OPTIS側の選択変化はchangeキャプチャで拾う（下のイベントで updateReserveState が走る）
         if (btn) {
           btn.addEventListener('click', function (e) {
             e.preventDefault();
@@ -882,7 +663,7 @@
         }
 
         // 初期同期
-        watchOptisHostChanges();
+        watchDynamicMount();
         mountOptisIntoFooter();
         mountQuantityIntoFooter();
         syncFooterFromMain();

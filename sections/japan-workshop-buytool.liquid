@@ -101,6 +101,86 @@
         -webkit-appearance: none;
       }
 
+      /* =========================================
+         OPTISを「フッター固定」に寄せる（1つだけ表示）
+         - OPTISの実体（.bss-po-product-page）をそのまま使う
+         - japan-workshop-buytool 側のUIは非表示
+         このセクションがあるページだけに効くよう、
+         <html> に付与するクラス（jwbt-optis-footer--{{ section.id }}）でスコープする
+         ========================================= */
+
+      html.jwbt-optis-footer--{{ section.id }} #jwbt-{{ section.id }} .jwbt__bar,
+      html.jwbt-optis-footer--{{ section.id }} #jwbt-{{ section.id }} .jwbt__spacer {
+        display: none !important;
+      }
+
+      html.jwbt-optis-footer--{{ section.id }} .bss-po-product-page {
+        position: fixed !important;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: {{ section.settings.z_index }};
+
+        background: var(--jwbt-bg);
+        border-top: var(--jwbt-border);
+        box-shadow: var(--jwbt-shadow);
+
+        padding: 0.75rem 0.9rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+        display: grid;
+        gap: 0.55rem;
+      }
+
+      html.jwbt-optis-footer--{{ section.id }} body {
+        padding-bottom: calc({{ section.settings.footer_height_px }}px + env(safe-area-inset-bottom, 0px));
+      }
+
+      /* サイズ・植物を2列に（SPは1列） */
+      html.jwbt-optis-footer--{{ section.id }} .bss-po-product-page .po-stack {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.55rem;
+      }
+
+      html.jwbt-optis-footer--{{ section.id }} .bss-po-product-page .po-label {
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      /* 見えている疑似select本体（.po-select-dropdown-thumbnail）を jwbt__select と揃える */
+      html.jwbt-optis-footer--{{ section.id }} .bss-po-product-page .po-select-dropdown-thumbnail {
+        width: 100%;
+        max-width: 100%;
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.2;
+        padding: 0.7rem 0.85rem;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.22);
+        background: #fff;
+        min-height: 3.1rem;
+        display: flex;
+        align-items: center;
+      }
+
+      html.jwbt-optis-footer--{{ section.id }} .bss-po-product-page .po-select-dropdown-thumbnail .po-dropdown-selected-option {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      html.jwbt-optis-footer--{{ section.id }} .bss-po-product-page .po-dropdown-arrow {
+        margin-left: auto;
+        opacity: 0.75;
+      }
+
+      @media (max-width: 767px) {
+        html.jwbt-optis-footer--{{ section.id }} .bss-po-product-page .po-stack {
+          grid-template-columns: 1fr;
+        }
+      }
+
       #jwbt-{{ section.id }} .jwbt__row--bottom {
         grid-template-columns: auto 1fr auto;
         align-items: center;
@@ -285,6 +365,10 @@
         if (!root) return;
         if (root.dataset.jwbtInit === '1') return;
         root.dataset.jwbtInit = '1';
+
+        try {
+          document.documentElement.classList.add('jwbt-optis-footer--{{ section.id }}');
+        } catch (e) {}
 
         function q(sel) {
           return root.querySelector(sel);

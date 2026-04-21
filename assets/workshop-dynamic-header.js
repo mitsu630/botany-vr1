@@ -16,10 +16,30 @@
     }
   }
 
+  function normalizePhotoUrl(u) {
+    if (!u || typeof u !== 'string') return '';
+    var s = u.trim();
+    if (!s) return '';
+    if (/^https?:\/\//i.test(s)) return s;
+    if (s.indexOf('//') === 0) return 'https:' + s;
+    if (s.indexOf('/') === 0 && typeof window !== 'undefined' && window.location && window.location.origin) {
+      return window.location.origin + s;
+    }
+    return s;
+  }
+
   function pickImageUrl(entry, fallback) {
-    if (entry.photoUrl && String(entry.photoUrl).trim()) return String(entry.photoUrl).trim();
-    if (entry.photoFileUrl && String(entry.photoFileUrl).trim()) return String(entry.photoFileUrl).trim();
-    return fallback ? String(fallback).trim() : '';
+    var tryNorm = function (x) {
+      if (!x || !String(x).trim()) return '';
+      return normalizePhotoUrl(String(x).trim());
+    };
+    var src = tryNorm(entry.imageUrl);
+    if (src) return src;
+    src = tryNorm(entry.photoUrl);
+    if (src) return src;
+    src = tryNorm(entry.photoFileUrl);
+    if (src) return src;
+    return tryNorm(fallback) || '';
   }
 
   function updatePanel(root, data, variantId, variantTitle) {

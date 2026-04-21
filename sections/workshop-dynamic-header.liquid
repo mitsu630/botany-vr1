@@ -12,22 +12,23 @@
       assign wdh_fb = wdh_m0.preview_image | image_url: width: 2000
     endif
   endif
+-%}
+{%- capture wdh_img_src -%}
+  {%- render 'wdh-resolve-image-url',
+    photo_url_mf: variant.metafields.custom.photo_url,
+    photo_file_mf: variant.metafields.custom.photo,
+    variant_obj: variant,
+    product_fallback: wdh_fb
+  -%}
+{%- endcapture -%}
+{%- assign wdh_img_src = wdh_img_src | strip -%}
 
-  comment
-    画像: photo_url は生URLを src に。photo は image_url のみ。どちらもなければバリエーション画像→商品画像。
-  endcomment
-  assign wdh_img_src = ''
-  if variant.metafields.custom.photo_url.value != blank
-    assign wdh_img_src = variant.metafields.custom.photo_url.value | strip
-  elsif variant.metafields.custom.photo.value != blank
-    assign wdh_img_src = variant.metafields.custom.photo | image_url: width: 2000
-  elsif variant.featured_image
-    assign wdh_img_src = variant.featured_image | image_url: width: 2000
-  elsif wdh_fb != blank
-    assign wdh_img_src = wdh_fb
+{%- liquid
+  assign wdh_day = variant.metafields.custom.day.value | default: '' | strip
+  if wdh_day == blank
+    assign wdh_day = variant.title | strip
   endif
 
-  assign wdh_day = variant.metafields.custom.day.value | default: '' | strip
   assign wdh_time = variant.metafields.custom.time.value | default: '' | strip
   assign wdh_mochimono = variant.metafields.custom.mochimono.value | default: '' | strip
   assign wdh_kaijyo = variant.metafields.custom.kaijyo.value | default: '' | strip
@@ -155,10 +156,24 @@
         "fallbackImage": {{ wdh_fb | json }},
         "variants": {
           {%- for v in product.variants -%}
+            {%- capture v_img -%}
+              {%- render 'wdh-resolve-image-url',
+                photo_url_mf: v.metafields.custom.photo_url,
+                photo_file_mf: v.metafields.custom.photo,
+                variant_obj: v,
+                product_fallback: wdh_fb
+              -%}
+            {%- endcapture -%}
+            {%- assign v_img = v_img | strip -%}
+            {%- assign v_day = v.metafields.custom.day.value | default: '' | strip -%}
+            {%- if v_day == blank -%}
+              {%- assign v_day = v.title | strip -%}
+            {%- endif -%}
             "{{ v.id }}": {
+              "imageUrl": {{ v_img | json }},
               "photoUrl": {% if v.metafields.custom.photo_url.value != blank %}{{ v.metafields.custom.photo_url.value | strip | json }}{% else %}""{% endif %},
               "photoFileUrl": {% if v.metafields.custom.photo.value != blank %}{{ v.metafields.custom.photo | image_url: width: 2000 | json }}{% else %}""{% endif %},
-              "day": {{ v.metafields.custom.day.value | default: '' | json }},
+              "day": {{ v_day | json }},
               "time": {{ v.metafields.custom.time.value | default: '' | json }},
               "mochimono": {{ v.metafields.custom.mochimono.value | default: '' | json }},
               "kaijyo": {{ v.metafields.custom.kaijyo.value | default: '' | json }},

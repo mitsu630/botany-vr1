@@ -62,6 +62,38 @@
         grid-template-columns: 1fr 1fr;
       }
 
+      #jwbt-{{ section.id }} .jwbt__optis-host {
+        position: absolute;
+        left: -10000px;
+        top: 0;
+        width: 420px;
+        height: auto;
+        overflow: visible;
+        pointer-events: none;
+      }
+
+      #jwbt-{{ section.id }} .jwbt__optis-host * {
+        pointer-events: none;
+      }
+
+      /* OPTISのselectを固定バーのデザインに寄せる（念のため） */
+      #jwbt-{{ section.id }} .jwbt__optis-host select,
+      #jwbt-{{ section.id }} .jwbt__optis-host .po-option--type-dropdown-menu {
+        width: 100%;
+        max-width: 100%;
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.2;
+        padding: 0.7rem 0.85rem;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.22);
+        background: #fff;
+        min-height: 3.1rem;
+        appearance: none;
+        -webkit-appearance: none;
+      }
+
       #jwbt-{{ section.id }} .jwbt__row--bottom {
         grid-template-columns: auto 1fr auto;
         align-items: center;
@@ -187,6 +219,18 @@
         </div>
 
         <div class="jwbt__row jwbt__row--opts">
+          {%- comment -%}
+            OPTIS Product Options（@appブロック）はこのセクション内で実体を生成させる。
+            表示UIは固定バー側のselectを使い、OPTIS実体selectと双方向同期する。
+          {%- endcomment -%}
+          <div class="jwbt__optis-host" aria-hidden="true">
+            {%- for block in section.blocks -%}
+              <div {{ block.shopify_attributes }}>
+                {%- render block -%}
+              </div>
+            {%- endfor -%}
+          </div>
+
           <select class="jwbt__select" data-jwbt="size" aria-label="サイズを選ぶ">
             <option value="">サイズを選ぶ</option>
           </select>
@@ -261,10 +305,11 @@
             .trim();
         }
 
-        function findOptisSelectByLabel(labelText) {
+        function findOptisSelectByLabel(labelText, scopeEl) {
           var want = normalizeText(labelText);
           if (!want) return null;
-          var blocks = document.querySelectorAll('.po-option, .po-option--container, .po-option--block, .po-option--wrapper');
+          var scope = scopeEl || document;
+          var blocks = scope.querySelectorAll('.po-option, .po-option--container, .po-option--block, .po-option--wrapper');
           for (var i = 0; i < blocks.length; i++) {
             var b = blocks[i];
             if (!b) continue;
@@ -280,10 +325,11 @@
           return null;
         }
 
-        function findBssOptisFieldByLabel(labelText) {
+        function findBssOptisFieldByLabel(labelText, scopeEl) {
           var want = normalizeText(labelText);
           if (!want) return null;
-          var roots = document.querySelectorAll('.bss-po-product-page, .po-option, .po-option--container, .po-option--block, .po-option--wrapper');
+          var scope = scopeEl || document;
+          var roots = scope.querySelectorAll('.bss-po-product-page, .po-option, .po-option--container, .po-option--block, .po-option--wrapper');
           for (var i = 0; i < roots.length; i++) {
             var r = roots[i];
             if (!r) continue;
@@ -310,7 +356,7 @@
           }
 
           // フォールバック：po_dropdown 系の hidden select/input を全探索し、周辺テキストで当てる
-          var allFields = document.querySelectorAll('select[name^="po_dropdown"], input[name^="po_dropdown"], input[type="hidden"][name*="po_"]');
+          var allFields = scope.querySelectorAll('select[name^="po_dropdown"], input[name^="po_dropdown"], input[type="hidden"][name*="po_"]');
           for (var j = 0; j < allFields.length; j++) {
             var f = allFields[j];
             if (!f) continue;
@@ -347,25 +393,26 @@
         }
 
         function findOptisSelects() {
+          var host = q('.jwbt__optis-host') || root;
           // OPTIS Product Options（実装差異に耐えるため複数候補）
           var sizeSelect =
-            document.querySelector('select.po-option--type-dropdown-menu[key="po_作品のサイズ"]') ||
-            document.querySelector('select[key="po_作品のサイズ"]') ||
-            document.querySelector('select[name*="po_作品のサイズ"]') ||
-            findOptisSelectByLabel('作品のサイズ') ||
-            findOptisSelectByLabel('サイズ');
+            host.querySelector('select.po-option--type-dropdown-menu[key="po_作品のサイズ"]') ||
+            host.querySelector('select[key="po_作品のサイズ"]') ||
+            host.querySelector('select[name*="po_作品のサイズ"]') ||
+            findOptisSelectByLabel('作品のサイズ', host) ||
+            findOptisSelectByLabel('サイズ', host);
           var plantSelect =
-            document.querySelector('select.po-option--type-dropdown-menu[key="po_希望する植物"]') ||
-            document.querySelector('select[key="po_希望する植物"]') ||
-            document.querySelector('select[name*="po_希望する植物"]') ||
-            findOptisSelectByLabel('希望する植物') ||
-            findOptisSelectByLabel('植物');
+            host.querySelector('select.po-option--type-dropdown-menu[key="po_希望する植物"]') ||
+            host.querySelector('select[key="po_希望する植物"]') ||
+            host.querySelector('select[name*="po_希望する植物"]') ||
+            findOptisSelectByLabel('希望する植物', host) ||
+            findOptisSelectByLabel('植物', host);
 
           // selectが見つからない場合はBSS/OPTISのフィールド（inputやUI）も探索
-          var sizeField = sizeSelect ? { kind: 'select', el: sizeSelect } : findBssOptisFieldByLabel('サイズ');
-          if (!sizeField) sizeField = findBssOptisFieldByLabel('作品のサイズ');
-          var plantField = plantSelect ? { kind: 'select', el: plantSelect } : findBssOptisFieldByLabel('植物');
-          if (!plantField) plantField = findBssOptisFieldByLabel('希望する植物');
+          var sizeField = sizeSelect ? { kind: 'select', el: sizeSelect } : findBssOptisFieldByLabel('サイズ', host);
+          if (!sizeField) sizeField = findBssOptisFieldByLabel('作品のサイズ', host);
+          var plantField = plantSelect ? { kind: 'select', el: plantSelect } : findBssOptisFieldByLabel('植物', host);
+          if (!plantField) plantField = findBssOptisFieldByLabel('希望する植物', host);
 
           return {
             size: sizeField && sizeField.el ? sizeField.el : null,

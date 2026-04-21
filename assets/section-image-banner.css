@@ -257,7 +257,7 @@
     position: relative;
   }
 
-  .banner::before {
+  .banner:not(.slideshow)::before {
     display: none !important;
   }
 

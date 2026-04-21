@@ -92,12 +92,44 @@
     assign wdh_img_src = wdh_fb
   endif
 
-  assign wdh_day = variant.metafields.custom.day | metafield_text | strip
-  assign wdh_time = variant.metafields.custom.time | metafield_text | strip
-  assign wdh_kaijyo = variant.metafields.custom.kaijyo | metafield_text | strip
-  assign wdh_jyusho = variant.metafields.custom.jyusho | metafield_text | strip
-  assign wdh_mochimono = variant.metafields.custom.mochimono | metafield_text | strip
-  assign wdh_biko = variant.metafields.custom.biko | metafield_text | strip
+  assign wdh_day_mf = variant.metafields.custom.custom_daytime
+  if wdh_day_mf == blank
+    assign wdh_day_mf = variant.metafields.custom.day
+  endif
+  assign wdh_day = wdh_day_mf | metafield_text | strip
+
+  assign wdh_time_mf = variant.metafields.custom.custom_time
+  if wdh_time_mf == blank
+    assign wdh_time_mf = variant.metafields.custom.time
+  endif
+  assign wdh_time = wdh_time_mf | metafield_text | strip
+
+  assign wdh_kaijyo_mf = variant.metafields.custom.custom_kaijyo
+  if wdh_kaijyo_mf == blank
+    assign wdh_kaijyo_mf = variant.metafields.custom.kaijyo
+  endif
+  assign wdh_kaijyo = wdh_kaijyo_mf | metafield_text | strip
+
+  assign wdh_jyusho_mf = variant.metafields.custom.custom_jyusho
+  if wdh_jyusho_mf == blank
+    assign wdh_jyusho_mf = variant.metafields.custom.jyusho
+  endif
+  assign wdh_jyusho = wdh_jyusho_mf | metafield_text | strip
+
+  assign wdh_mochimono_mf = variant.metafields.custom.custom_mochimono
+  if wdh_mochimono_mf == blank
+    assign wdh_mochimono_mf = variant.metafields.custom.mochimono
+  endif
+  assign wdh_mochimono = wdh_mochimono_mf | metafield_text | strip
+
+  assign wdh_biko_mf = variant.metafields.custom.custom_hoka
+  if wdh_biko_mf == blank
+    assign wdh_biko_mf = variant.metafields.custom.biko
+  endif
+  if wdh_biko_mf == blank
+    assign wdh_biko_mf = variant.metafields.custom.hoka
+  endif
+  assign wdh_biko = wdh_biko_mf | metafield_text | strip
 -%}
 
 {%- style -%}
@@ -300,12 +332,44 @@
                 assign v_img = wdh_fb
               endif
 
-              assign v_day = v.metafields.custom.day | metafield_text | strip
-              assign v_time = v.metafields.custom.time | metafield_text | strip
-              assign v_kaijyo = v.metafields.custom.kaijyo | metafield_text | strip
-              assign v_jyusho = v.metafields.custom.jyusho | metafield_text | strip
-              assign v_mochi = v.metafields.custom.mochimono | metafield_text | strip
-              assign v_biko = v.metafields.custom.biko | metafield_text | strip
+              assign v_day_mf = v.metafields.custom.custom_daytime
+              if v_day_mf == blank
+                assign v_day_mf = v.metafields.custom.day
+              endif
+              assign v_day = v_day_mf | metafield_text | strip
+
+              assign v_time_mf = v.metafields.custom.custom_time
+              if v_time_mf == blank
+                assign v_time_mf = v.metafields.custom.time
+              endif
+              assign v_time = v_time_mf | metafield_text | strip
+
+              assign v_kaijyo_mf = v.metafields.custom.custom_kaijyo
+              if v_kaijyo_mf == blank
+                assign v_kaijyo_mf = v.metafields.custom.kaijyo
+              endif
+              assign v_kaijyo = v_kaijyo_mf | metafield_text | strip
+
+              assign v_jyusho_mf = v.metafields.custom.custom_jyusho
+              if v_jyusho_mf == blank
+                assign v_jyusho_mf = v.metafields.custom.jyusho
+              endif
+              assign v_jyusho = v_jyusho_mf | metafield_text | strip
+
+              assign v_mochi_mf = v.metafields.custom.custom_mochimono
+              if v_mochi_mf == blank
+                assign v_mochi_mf = v.metafields.custom.mochimono
+              endif
+              assign v_mochi = v_mochi_mf | metafield_text | strip
+
+              assign v_biko_mf = v.metafields.custom.custom_hoka
+              if v_biko_mf == blank
+                assign v_biko_mf = v.metafields.custom.biko
+              endif
+              if v_biko_mf == blank
+                assign v_biko_mf = v.metafields.custom.hoka
+              endif
+              assign v_biko = v_biko_mf | metafield_text | strip
             -%}
             {
               "id": {{ v.id | json }},

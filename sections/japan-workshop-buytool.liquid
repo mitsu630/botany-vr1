@@ -703,36 +703,64 @@
           btn.textContent = 'お待ちください…';
           btn.setAttribute('aria-busy', 'true');
 
-          try {
-            // まずOPTISの標準ロジックが走るようにフォーム送信を発火（追加料金反映のため）
-            var fired = false;
+          // submit を発火させてOPTIS側ロジックを動かしつつ、ブラウザ遷移は止める
+          // その後、同内容を /cart/add.js に送って /checkout へ
+          var handled = false;
+          var onSubmit = async function (e) {
+            if (handled) return;
+            handled = true;
             try {
-              if (submitForm && typeof submitForm.requestSubmit === 'function') {
-                submitForm.requestSubmit();
-                fired = true;
-              }
-            } catch (e) {}
+              if (e && e.preventDefault) e.preventDefault();
+              if (e && e.stopPropagation) e.stopPropagation();
 
-            // requestSubmitが使えない/失敗時はフォールバックで/cart/add.jsへ直POST
-            if (!fired) {
+              // submitイベント中にOPTIS側が値を書き換える可能性があるので、
+              // ここで最新のFormDataを作り直す
+              var latest = new FormData(submitForm);
+
+              // 念のため id/quantity を上書き（最終的にこちらを優先）
+              latest.set('id', String(variantId));
+              latest.set('quantity', String(qty));
+
+              // properties を含む注入内容も反映
+              fd.forEach(function (v, k) {
+                latest.set(k, v);
+              });
+
               var res = await fetch('/cart/add.js', {
                 method: 'POST',
                 headers: { Accept: 'application/json' },
-                body: fd,
+                body: latest,
                 credentials: 'same-origin',
               });
               if (!res.ok) throw new Error('add failed');
-            }
-
-            // 少し待ってからcheckoutへ（カート画面に留まらない）
-            setTimeout(function () {
               window.location.assign('/checkout');
-            }, 300);
+            } catch (err) {
+              alert('予約処理に失敗しました。もう一度お試しください。');
+            } finally {
+              try {
+                submitForm.removeEventListener('submit', onSubmit);
+              } catch (e2) {}
+              btn.textContent = '予約する';
+              btn.removeAttribute('aria-busy');
+            }
+          };
+
+          try {
+            submitForm.addEventListener('submit', onSubmit);
+            if (typeof submitForm.requestSubmit === 'function') {
+              submitForm.requestSubmit();
+            } else {
+              // requestSubmit が無い環境でも submit event を発火させる
+              var ev = new Event('submit', { bubbles: true, cancelable: true });
+              submitForm.dispatchEvent(ev);
+            }
           } catch (e) {
-            alert('予約処理に失敗しました。もう一度お試しください。');
-          } finally {
+            try {
+              submitForm.removeEventListener('submit', onSubmit);
+            } catch (e2) {}
             btn.textContent = '予約する';
             btn.removeAttribute('aria-busy');
+            alert('予約処理に失敗しました。もう一度お試しください。');
           }
         }
 

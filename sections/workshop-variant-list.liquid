@@ -175,6 +175,7 @@
 
               if datetime_line == blank and venue != blank
                 assign v_norm = venue | strip | replace: '　', ' ' | replace: '	', ' '
+                assign v_norm = v_norm | replace: '０', '0' | replace: '１', '1' | replace: '２', '2' | replace: '３', '3' | replace: '４', '4' | replace: '５', '5' | replace: '６', '6' | replace: '７', '7' | replace: '８', '8' | replace: '９', '9'
                 assign parts = v_norm | split: ' '
                 assign venue_acc = ''
                 assign date_acc = ''
@@ -182,9 +183,20 @@
                 for part in parts
                   if part == blank
                   else
+                    assign wvl_is_date_token = false
+                    if part contains '月' and part contains '日'
+                      if part contains '年'
+                        assign wvl_is_date_token = true
+                      else
+                        assign wvl_hd = part | slice: 0, 1
+                        if wvl_hd == '0' or wvl_hd == '1' or wvl_hd == '2' or wvl_hd == '3' or wvl_hd == '4' or wvl_hd == '5' or wvl_hd == '6' or wvl_hd == '7' or wvl_hd == '8' or wvl_hd == '9'
+                          assign wvl_is_date_token = true
+                        endif
+                      endif
+                    endif
                     if seen_date
                       assign date_acc = date_acc | append: ' ' | append: part
-                    elsif part contains '年' and part contains '月' and part contains '日'
+                    elsif wvl_is_date_token
                       assign seen_date = true
                       assign date_acc = part
                     else
@@ -401,7 +413,7 @@
     },
     {
       "type": "paragraph",
-      "content": "会場と開催日は別の行に表示されます。バリエーション名などは半角スペースで「会場名 2026年04月27日 (月) 10:00」のように区切ってください（全角スペースやタブも半角スペースに置き換えて分割します）。改行や「 / 」「／」「 | 」「会場 || 日時」形式にも対応します。スペースなしの「会場名2026年…」は表示後に日付の直前で自動分割されます。開催日行に年月日があると、在庫あり・手動締切メモなしのときだけ「募集締切間近：…正午」を出します。メタフィールド workshop_venue / workshop_datetime / workshop_deadline_note（任意）も利用できます。"
+      "content": "会場と開催日は別の行に表示されます。「東京都新宿区　4月29日（水）12:00〜」のように全角スペース区切りや「2026年4月29日…」のどちらでも対応します（年がない月日表記は当年・翌年を自動で判断）。半角スペース・改行・「 / 」「／」「 | 」「会場 || 日時」にも対応。スペースなしの「会場名4月29日…」は表示後に日付の直前で分割します。在庫あり・手動締切メモなしのときだけ「募集締切間近：…正午」を表示します。メタフィールド workshop_venue / workshop_datetime / workshop_deadline_note（任意）も利用できます。"
     },
     {
       "type": "header",

@@ -8,11 +8,22 @@
   function findJapaneseDateInText(text) {
     if (!text || typeof text !== 'string') return null;
     const normalized = asciiDigitsFromText(text);
-    const m = normalized.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
-    if (!m) return null;
-    const index = normalized.indexOf(m[0]);
-    if (index < 0) return null;
-    return { match: m, index: index, source: text };
+
+    let m = normalized.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+    if (m) {
+      const index = normalized.indexOf(m[0]);
+      if (index < 0) return null;
+      return { match: m, index: index, kind: 'ymd' };
+    }
+
+    m = normalized.match(/(\d{1,2})月(\d{1,2})日/);
+    if (m) {
+      const index = normalized.indexOf(m[0]);
+      if (index < 0) return null;
+      return { match: m, index: index, kind: 'md' };
+    }
+
+    return null;
   }
 
   function parseJapaneseEventDate(text) {
@@ -20,13 +31,30 @@
     const found = findJapaneseDateInText(text);
     if (!found) return null;
     const m = found.match;
-    const y = parseInt(m[1], 10);
-    const mo = parseInt(m[2], 10);
-    const d = parseInt(m[3], 10);
-    if (y < 2000 || y > 2100 || mo < 1 || mo > 12 || d < 1 || d > 31) return null;
-    const date = new Date(y, mo - 1, d);
-    if (date.getFullYear() !== y || date.getMonth() !== mo - 1 || date.getDate() !== d) return null;
-    return date;
+
+    if (found.kind === 'ymd') {
+      const y = parseInt(m[1], 10);
+      const mo = parseInt(m[2], 10);
+      const d = parseInt(m[3], 10);
+      if (y < 2000 || y > 2100 || mo < 1 || mo > 12 || d < 1 || d > 31) return null;
+      const date = new Date(y, mo - 1, d);
+      if (date.getFullYear() !== y || date.getMonth() !== mo - 1 || date.getDate() !== d) return null;
+      return date;
+    }
+
+    const mo = parseInt(m[1], 10);
+    const d = parseInt(m[2], 10);
+    if (mo < 1 || mo > 12 || d < 1 || d > 31) return null;
+    const now = new Date();
+    let y = now.getFullYear();
+    let candidate = new Date(y, mo - 1, d);
+    const startToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    if (candidate < startToday) {
+      y++;
+      candidate = new Date(y, mo - 1, d);
+    }
+    if (candidate.getFullYear() !== y || candidate.getMonth() !== mo - 1 || candidate.getDate() !== d) return null;
+    return candidate;
   }
 
   function formatJapaneseDate(date) {

@@ -24,8 +24,8 @@
         "variant_picker_JbAPj6": {
           "type": "variant_picker",
           "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
+            "picker_type": "dropdown",
+            "swatch_shape": "none"
           }
         },
         "optis_product_options_option_set_jq3hDd": {
@@ -60,7 +60,7 @@
         "mobile_thumbnails": "hide",
         "media_position": "left",
         "image_zoom": "lightbox",
-        "hide_variants": true,
+        "hide_variants": false,
         "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 12

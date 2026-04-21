@@ -373,6 +373,35 @@
             .trim();
         }
 
+        function isVisibleEl(el) {
+          if (!el) return false;
+          if (el.offsetParent !== null) return true;
+          try {
+            var r = el.getBoundingClientRect();
+            return r && (r.width > 0 || r.height > 0);
+          } catch (e) {}
+          return false;
+        }
+
+        function getActiveOptisRoot() {
+          // まずフッター内（移設後）
+          var inFooter = root.querySelector('.jwbt__bar .bss-po-product-page');
+          if (inFooter) return inFooter;
+
+          // ページ上の表示されているOPTIS（商品情報側）
+          var all = document.querySelectorAll('.bss-po-product-page');
+          for (var i = 0; i < all.length; i++) {
+            var el = all[i];
+            if (!el) continue;
+            if (root.contains(el)) continue; // jwbt内は除外（ホスト側など）
+            if (!isVisibleEl(el)) continue;
+            if (el.querySelector('.po-stack')) return el;
+          }
+
+          // 最後の手段：どれか1つ
+          return document.querySelector('.bss-po-product-page') || null;
+        }
+
         function findOptisSelectByLabel(labelText, scopeEl) {
           var want = normalizeText(labelText);
           if (!want) return null;
@@ -461,7 +490,7 @@
         }
 
         function findOptisSelects() {
-          var host = q('.jwbt__optis-host') || root;
+          var host = getActiveOptisRoot() || q('.jwbt__optis-host') || document;
           // OPTIS Product Options（実装差異に耐えるため複数候補）
           var sizeSelect =
             host.querySelector('select.po-option--type-dropdown-menu[key="po_作品のサイズ"]') ||
@@ -557,8 +586,10 @@
         }
 
         function updateReserveState() {
-          var sizeVal = selSize ? selSize.value : '';
-          var plantVal = selPlant ? selPlant.value : '';
+          // 表示はOPTIS実体UIが優先。未移設/未生成時はフォールバックselect。
+          var opt = findOptisSelects();
+          var sizeVal = opt && opt.size ? opt.size.value : (selSize ? selSize.value : '');
+          var plantVal = opt && opt.plant ? opt.plant.value : (selPlant ? selPlant.value : '');
           var ok = !isUnsetOptisValue(sizeVal, 'サイズを選ぶ') && !isUnsetOptisValue(plantVal, '植物を選ぶ');
           if (btn) btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
         }
@@ -591,10 +622,10 @@
         }
 
         function mountOptisIntoFooter() {
-          var host = q('.jwbt__optis-host');
-          if (!host) return;
-          var optRoot = host.querySelector('.bss-po-product-page') || host.querySelector('#po_container') || null;
+          var optRoot = getActiveOptisRoot();
           if (!optRoot) return;
+          // 既にフッター内ならOK
+          if (root.contains(optRoot)) return;
 
           var slotSize = q('[data-jwbt-optis-slot="size"]');
           var slotPlant = q('[data-jwbt-optis-slot="plant"]');
@@ -630,19 +661,36 @@
             slotPlant.innerHTML = '';
             slotPlant.appendChild(stackPlant);
           } catch (e) {}
+
+          // 元のOPTISコンテナが空になるので、余白が残らないように隠す（best-effort）
+          try {
+            if (optRoot.querySelectorAll('.po-stack').length === 0) {
+              optRoot.style.display = 'none';
+            }
+          } catch (e) {}
         }
 
         function mountQuantityIntoFooter() {
           if (!qtyHost) return;
           if (qtyHost.__jwbtQtyMounted) return;
 
+          // まずメインフォーム、見つからなければページ全体から（表示されているものを優先）
           var form = getMainForm();
-          if (!form) return;
-
-          var qtyEl =
-            form.querySelector('quantity-input') ||
-            form.querySelector('.quantity') ||
-            form.querySelector('input[name="quantity"]');
+          var qtyEl = null;
+          if (form) {
+            qtyEl = form.querySelector('quantity-input') || form.querySelector('.quantity') || form.querySelector('input[name="quantity"]');
+          }
+          if (!qtyEl) {
+            var candidates = document.querySelectorAll('quantity-input, .quantity, input[name="quantity"]');
+            for (var i = 0; i < candidates.length; i++) {
+              var c = candidates[i];
+              if (!c) continue;
+              if (root.contains(c)) continue;
+              if (!isVisibleEl(c)) continue;
+              qtyEl = c;
+              break;
+            }
+          }
           if (!qtyEl) return;
 
           // 既にフッター内ならOK

@@ -186,7 +186,7 @@
         "button_RBtkjp": {
           "type": "button",
           "settings": {
-            "button_label": "ボタンのラベル",
+            "button_label": "資格取得講座はこちらから",
             "button_link": "",
             "button_style_secondary": false,
             "button_label_2": "",

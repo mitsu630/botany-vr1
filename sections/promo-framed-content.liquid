@@ -146,13 +146,28 @@
                       endcase
                     -%}
                     <div class="pfc__grid-cell{% if img == blank %} pfc__grid-cell--placeholder{% endif %}" style="border-radius: {{ ir }}px;">
-                      {%- if img != blank -%}
-                        {%- liquid
-                          assign sq = img.width | at_most: 1200
-                          assign sizes = '(min-width: 750px) 22vw, 45vw'
-                        -%}
-                        {%- if cell_link != blank -%}
-                          <a class="pfc__grid-link" href="{{ cell_link }}">
+                      <div class="pfc__grid-cell-aspect">
+                        {%- if img != blank -%}
+                          {%- liquid
+                            assign sq = img.width | at_most: 1200
+                            assign sizes = '(min-width: 750px) 22vw, 45vw'
+                          -%}
+                          {%- if cell_link != blank -%}
+                            <a class="pfc__grid-link" href="{{ cell_link }}">
+                              {{
+                                img
+                                | image_url: width: 1200
+                                | image_tag:
+                                  loading: 'lazy',
+                                  width: sq,
+                                  height: sq,
+                                  alt: img.alt | default: shop.name,
+                                  sizes: sizes,
+                                  widths: '165, 360, 535, 750, 940, 1100, 1200',
+                                  class: 'pfc__grid-img'
+                              }}
+                            </a>
+                          {%- else -%}
                             {{
                               img
                               | image_url: width: 1200
@@ -165,26 +180,13 @@
                                 widths: '165, 360, 535, 750, 940, 1100, 1200',
                                 class: 'pfc__grid-img'
                             }}
-                          </a>
+                          {%- endif -%}
                         {%- else -%}
-                          {{
-                            img
-                            | image_url: width: 1200
-                            | image_tag:
-                              loading: 'lazy',
-                              width: sq,
-                              height: sq,
-                              alt: img.alt | default: shop.name,
-                              sizes: sizes,
-                              widths: '165, 360, 535, 750, 940, 1100, 1200',
-                              class: 'pfc__grid-img'
-                          }}
+                          <span class="pfc__grid-link" aria-hidden="true">
+                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                          </span>
                         {%- endif -%}
-                      {%- else -%}
-                        <span class="pfc__grid-link" aria-hidden="true">
-                          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                        </span>
-                      {%- endif -%}
+                      </div>
                     </div>
                   {%- endfor -%}
                 </div>

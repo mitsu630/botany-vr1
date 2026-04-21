@@ -503,11 +503,27 @@
           if (root.__jwbtObservedGlobal) return;
           root.__jwbtObservedGlobal = true;
           var mo = new MutationObserver(function () {
+            ensureFooterInsideCartForm();
             mountOptisIntoFooter();
             mountQuantityIntoFooter();
             syncFooterFromMain();
           });
           mo.observe(document.body, { childList: true, subtree: true, attributes: false });
+        }
+
+        function ensureFooterInsideCartForm() {
+          // OPTIS/数量がフォーム外に出ると、OPTISの追加料金・今すぐ購入フローに乗れないため
+          // jwbtの固定バー自体を「商品フォーム内」に移動する（見た目はposition:fixedなので変わらない）
+          try {
+            var bar = q('.jwbt__bar');
+            if (!bar) return;
+            var mainForm =
+              (getActiveOptisRoot() && getActiveOptisRoot().closest && getActiveOptisRoot().closest('form[action*="/cart/add"]')) ||
+              getMainForm();
+            if (!mainForm) return;
+            if (mainForm.contains(bar)) return;
+            mainForm.appendChild(bar);
+          } catch (e) {}
         }
 
         function mountOptisIntoFooter() {

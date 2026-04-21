@@ -148,7 +148,7 @@
                     <div class="pfc__grid-cell{% if img == blank %} pfc__grid-cell--placeholder{% endif %}" style="border-radius: {{ ir }}px;">
                       {%- if img != blank -%}
                         {%- liquid
-                          assign ih = img.width | divided_by: img.aspect_ratio | round
+                          assign sq = img.width | at_most: 1200
                           assign sizes = '(min-width: 750px) 22vw, 45vw'
                         -%}
                         {%- if cell_link != blank -%}
@@ -158,8 +158,8 @@
                               | image_url: width: 1200
                               | image_tag:
                                 loading: 'lazy',
-                                width: img.width,
-                                height: ih,
+                                width: sq,
+                                height: sq,
                                 alt: img.alt | default: shop.name,
                                 sizes: sizes,
                                 widths: '165, 360, 535, 750, 940, 1100, 1200',
@@ -172,8 +172,8 @@
                             | image_url: width: 1200
                             | image_tag:
                               loading: 'lazy',
-                              width: img.width,
-                              height: ih,
+                              width: sq,
+                              height: sq,
                               alt: img.alt | default: shop.name,
                               sizes: sizes,
                               widths: '165, 360, 535, 750, 940, 1100, 1200',

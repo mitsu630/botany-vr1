@@ -163,8 +163,8 @@
       "type": "japan-workshop-buytool",
       "name": "japan-workshop-buytool",
       "settings": {
-        "bg_color": "#fcfff0",
-        "accent_color": "#d93292",
+        "bg_color": "#daddd0",
+        "accent_color": "#d31d84",
         "z_index": 100,
         "footer_height_px": 160
       }

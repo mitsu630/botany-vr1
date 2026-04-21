@@ -66,6 +66,24 @@
     "rich_text_mdmQjc": {
       "type": "rich-text",
       "blocks": {
+        "standalone_image_XBzB8A": {
+          "type": "standalone_image",
+          "settings": {
+            "image": "shopify://shop_images/P1090972-min.webp",
+            "image_link": "",
+            "link_new_tab": false,
+            "image_alt": "",
+            "full_viewport_width": true,
+            "margin_top": 0,
+            "margin_right": 0,
+            "margin_bottom": 0,
+            "margin_left": 0,
+            "padding_top": 0,
+            "padding_right": 0,
+            "padding_bottom": 0,
+            "padding_left": 0
+          }
+        },
         "heading_XfMzPL": {
           "type": "heading",
           "settings": {
@@ -78,23 +96,50 @@
           "settings": {
             "text": "<p>本物の葉をパネルに貼り付けて、彩色するアート。絵の苦手意識を感じずに簡単に楽しめます。<br/>作品は世界で唯一のインテリアとして、あなたの空間を彩ります。デジタルの生活から、アナログのアートでリラックスを感じてください。<br/>蓮の葉やモンステラ・カラテアルテアやインド菩提樹の葉があります。</p>"
           }
-        },
-        "button_AfFJhb": {
-          "type": "button",
+        }
+      },
+      "block_order": [
+        "standalone_image_XBzB8A",
+        "heading_XfMzPL",
+        "text_qmAm9a"
+      ],
+      "name": "ボタニーペインティングとは",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "video_EkLcCx": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "enable_video_looping": true,
+        "video_url": "https://vimeo.com/579795882",
+        "description": "",
+        "full_width": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_LXVceC": {
+      "type": "rich-text",
+      "blocks": {
+        "text_t7f7Qy": {
+          "type": "text",
           "settings": {
-            "button_label": "ボタンのラベル",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "text": "<p>撮影:<a href=\"https://eugeedesign.com/\">eugeedesign.com</a>出演: Shizuka Sakamoto [shizu0511s]<br/>この動画はワークショップ参加者様よりご提供頂きました。S様ありがとうございます。</p>"
           }
         }
       },
       "block_order": [
-        "heading_XfMzPL",
-        "text_qmAm9a",
-        "button_AfFJhb"
+        "text_t7f7Qy"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
@@ -102,13 +147,15 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
+        "padding_top": 0,
         "padding_bottom": 52
       }
     }
   },
   "order": [
     "multicolumn",
-    "rich_text_mdmQjc"
+    "rich_text_mdmQjc",
+    "video_EkLcCx",
+    "rich_text_LXVceC"
   ]
 }

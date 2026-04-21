@@ -149,37 +149,21 @@
                       <div class="pfc__grid-cell-aspect">
                         {%- if img != blank -%}
                           {%- liquid
-                            assign sq = img.width | at_most: 1200
-                            assign sizes = '(min-width: 750px) 22vw, 45vw'
+                            assign pfc_img_alt = img.alt | default: shop.name
+                            assign pfc_bg_url = img | image_url: width: 1600
                           -%}
                           {%- if cell_link != blank -%}
-                            <a class="pfc__grid-link" href="{{ cell_link }}">
-                              {{
-                                img
-                                | image_url: width: 1200
-                                | image_tag:
-                                  loading: 'lazy',
-                                  width: sq,
-                                  height: sq,
-                                  alt: img.alt | default: shop.name,
-                                  sizes: sizes,
-                                  widths: '165, 360, 535, 750, 940, 1100, 1200',
-                                  class: 'pfc__grid-img'
-                              }}
+                            <a
+                              class="pfc__grid-link"
+                              href="{{ cell_link }}"
+                              aria-label="{{ pfc_img_alt | escape }}"
+                            >
+                              <span class="pfc__grid-bg" style="background-image: url('{{ pfc_bg_url }}');"></span>
                             </a>
                           {%- else -%}
-                            {{
-                              img
-                              | image_url: width: 1200
-                              | image_tag:
-                                loading: 'lazy',
-                                width: sq,
-                                height: sq,
-                                alt: img.alt | default: shop.name,
-                                sizes: sizes,
-                                widths: '165, 360, 535, 750, 940, 1100, 1200',
-                                class: 'pfc__grid-img'
-                            }}
+                            <span class="pfc__grid-link" role="img" aria-label="{{ pfc_img_alt | escape }}">
+                              <span class="pfc__grid-bg" style="background-image: url('{{ pfc_bg_url }}');"></span>
+                            </span>
                           {%- endif -%}
                         {%- else -%}
                           <span class="pfc__grid-link" aria-hidden="true">

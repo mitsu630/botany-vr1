@@ -124,19 +124,13 @@
   overflow: hidden;
 }
 
-/* Force square crop over theme defaults (.rte img { height:auto }, etc.) */
-.pfc__grid .pfc__grid-img {
+/* background-size: cover は img + object-fit よりテーマCSSとの干渉が少なく、正方形クロップが安定 */
+.pfc__grid-bg {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  max-height: none;
-  margin: 0;
-  padding: 0;
-  border: none;
-  box-shadow: none;
-  object-fit: cover;
-  object-position: center;
   display: block;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
 }

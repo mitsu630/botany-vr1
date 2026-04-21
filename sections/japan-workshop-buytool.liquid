@@ -34,13 +34,14 @@
          画面外に退避してDOM上には残す */
       #jwbt-{{ section.id }} .jwbt__app-sandbox {
         position: fixed;
-        left: -10000px;
+        left: 0;
         top: 0;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
+        transform: translateX(-200vw);
+        width: min(1000px, 100vw);
+        max-width: 100%;
         opacity: 0;
         pointer-events: none;
+        z-index: -1;
       }
 
       #jwbt-{{ section.id }} .jwbt__bar {

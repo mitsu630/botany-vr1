@@ -1,5 +1,9 @@
 {%- liquid
   assign product = section.settings.product
+  assign layout_grid = false
+  if section.settings.layout == 'grid'
+    assign layout_grid = true
+  endif
 -%}
 
 {%- style -%}
@@ -15,55 +19,139 @@
     }
   }
 
+  #shopify-section-{{ section.id }} {
+    --wvl-venue-fs: {{ section.settings.venue_font_size }}px;
+    --wvl-datetime-fs: {{ section.settings.datetime_font_size }}px;
+    --wvl-deadline-fs: {{ section.settings.deadline_font_size }}px;
+    --wvl-datetime-opacity: {{ section.settings.datetime_text_opacity | times: 0.01 }};
+    --wvl-card-pad: {{ section.settings.card_padding }}px;
+    --wvl-card-gap: {{ section.settings.card_inner_gap }}px;
+  }
+
   #shopify-section-{{ section.id }} .workshop-variant-list__card {
     background-color: #ffffff;
     border-radius: var(--border-radius, 0.8rem);
-    padding: 2rem 1.5rem;
+    padding: var(--wvl-card-pad);
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: var(--wvl-card-gap);
     box-shadow: 0 0.1rem 0.4rem rgba(var(--color-foreground), 0.08);
   }
 
-  #shopify-section-{{ section.id }} .workshop-variant-list__title {
+  #shopify-section-{{ section.id }} .workshop-variant-list__venue {
     margin: 0;
-    font-size: calc(var(--font-heading-scale) * 1.4rem);
-    line-height: calc(1 + 0.3 / var(--font-heading-scale));
+    font-size: var(--wvl-venue-fs);
+    line-height: calc(1 + 0.35 / var(--font-heading-scale));
+    font-weight: 600;
     word-break: break-word;
+    color: rgb(var(--color-foreground));
+  }
+
+  #shopify-section-{{ section.id }} .workshop-variant-list__datetime {
+    margin: 0;
+    font-size: var(--wvl-datetime-fs);
+    line-height: calc(1 + 0.5 / var(--font-body-scale));
+    word-break: break-word;
+    color: rgba(var(--color-foreground), var(--wvl-datetime-opacity));
+  }
+
+  #shopify-section-{{ section.id }} .workshop-variant-list__deadline {
+    margin: 0;
+    font-size: var(--wvl-deadline-fs);
+    line-height: calc(1 + 0.45 / var(--font-body-scale));
+    font-weight: 600;
+    word-break: break-word;
+    color: rgb(var(--color-link));
   }
 
   #shopify-section-{{ section.id }} .workshop-variant-list__btn--soldout {
     opacity: 0.65;
     pointer-events: auto;
   }
+
+  #shopify-section-{{ section.id }} .workshop-variant-list__actions {
+    margin-top: auto;
+  }
+
+  #shopify-section-{{ section.id }} .workshop-variant-list--stack .workshop-variant-list__list {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
 {%- endstyle -%}
 
 <div class="workshop-variant-list color-{{ section.settings.color_scheme }} gradient">
-  <div class="page-width section-{{ section.id }}-padding isolate">
+  <div class="page-width section-{{ section.id }}-padding isolate{% unless layout_grid %} workshop-variant-list--stack{% endunless %}">
     {%- if product != blank -%}
       <ul
-        class="grid grid--1-col grid--2-col-tablet grid--3-col-desktop"
+        class="workshop-variant-list__list grid{% if layout_grid %} grid--1-col grid--2-col-tablet grid--3-col-desktop{% else %} grid--1-col{% endif %}"
         role="list"
       >
         {%- for variant in product.variants -%}
+          {%- liquid
+            assign venue_m = variant.metafields.custom.workshop_venue.value
+            assign datetime_m = variant.metafields.custom.workshop_datetime.value
+            assign deadline_note = variant.metafields.custom.workshop_deadline_note.value
+
+            assign venue = ''
+            assign datetime_line = ''
+
+            if venue_m != blank or datetime_m != blank
+              assign venue = venue_m | default: ''
+              assign datetime_line = datetime_m | default: ''
+            else
+              assign split_title = variant.title | split: ' || '
+              if split_title.size >= 2
+                assign venue = split_title[0] | strip
+                assign datetime_line = split_title[1] | strip
+              else
+                assign split_title2 = variant.title | split: '||'
+                if split_title2.size >= 2
+                  assign venue = split_title2[0] | strip
+                  assign datetime_line = split_title2[1] | strip
+                else
+                  assign venue = variant.title
+                endif
+              endif
+            endif
+          -%}
           <li class="grid__item">
             <div class="workshop-variant-list__card">
-              <h3 class="workshop-variant-list__title h4">
-                {{ variant.title | escape }}
-              </h3>
+              {%- if venue != blank -%}
+                <h3 class="workshop-variant-list__venue">{{ venue | escape }}</h3>
+              {%- endif -%}
+
+              {%- if datetime_line != blank -%}
+                <p class="workshop-variant-list__datetime">
+                  {{- datetime_line | escape -}}
+                  {%- unless variant.available -%}
+                    <span class="workshop-variant-list__soldout-label"> 満席</span>
+                  {%- endunless -%}
+                </p>
+              {%- elsif venue == blank -%}
+                <h3 class="workshop-variant-list__venue">{{ variant.title | escape }}</h3>
+              {%- elsif venue != blank and variant.available == false and datetime_line == blank -%}
+                <p class="workshop-variant-list__datetime">
+                  満席
+                </p>
+              {%- endif -%}
+
+              {%- if deadline_note != blank -%}
+                <p class="workshop-variant-list__deadline">{{ deadline_note | escape }}</p>
+              {%- endif -%}
+
               <div class="workshop-variant-list__actions">
                 {%- if variant.available -%}
                   <a
                     href="{{ variant.url }}"
-                    class="button button--primary"
+                    class="button button--primary button--full-width"
                   >
                     講座詳細はこちら
                   </a>
                 {%- else -%}
                   <a
                     href="{{ variant.url }}"
-                    class="button button--secondary workshop-variant-list__btn--soldout"
+                    class="button button--secondary button--full-width workshop-variant-list__btn--soldout"
                   >
                     満席（会場詳細はこちら）
                   </a>
@@ -100,6 +188,98 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "レイアウト",
+      "options": [
+        {
+          "value": "stack",
+          "label": "縦並び（1列）"
+        },
+        {
+          "value": "grid",
+          "label": "レスポンシブグリッド（2〜3列）"
+        }
+      ],
+      "default": "stack"
+    },
+    {
+      "type": "header",
+      "content": "タイポグラフィ"
+    },
+    {
+      "type": "range",
+      "id": "venue_font_size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "会場名の文字サイズ",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "datetime_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "日時の文字サイズ",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "datetime_text_opacity",
+      "min": 45,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "日時の濃さ（カラースキームの文字色に対する透明度）",
+      "default": 65
+    },
+    {
+      "type": "range",
+      "id": "deadline_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "締切・注意文の文字サイズ",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "カード"
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "カード内の余白",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_inner_gap",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "カード内の要素間の間隔",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "データの入れ方"
+    },
+    {
+      "type": "paragraph",
+      "content": "各バリエーションに、ショップのメタフィールド（名前空間 custom）で workshop_venue（会場）、workshop_datetime（日時）、workshop_deadline_note（締切など任意の注意文・例：募集締切間近 : 2026年04月24日 正午）を設定できます。メタフィールドが空の場合は、バリエーション名を「会場 || 日時」の形式（区切りは || または 半角スペース+||+半角スペース）にすると自動で分割されます。"
     },
     {
       "type": "header",

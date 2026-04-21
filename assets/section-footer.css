@@ -880,7 +880,13 @@
 
 .footer-ftb__button {
   margin-top: 0.6rem;
-  width: min(100%, var(--ftb-btn-w, 100%));
+  width: min(100%, var(--ftb-btn-w-sm, 100%));
+}
+
+@media screen and (min-width: 750px) {
+  .footer-ftb__button {
+    width: min(100%, var(--ftb-btn-w-lg, 100%));
+  }
 }
 
 .footer-ftb--align-center .footer-ftb__button {

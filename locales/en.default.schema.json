@@ -1259,7 +1259,12 @@
               "label": "Button link"
             },
             "button_width_percent": {
-              "label": "Button width (%) - text and image"
+              "label": "Button width · mobile (%)",
+              "info": "Percent of the block inner width. On desktop the block can be wider, so the same % looks larger — use the desktop setting below."
+            },
+            "button_width_percent_desktop": {
+              "label": "Button width · desktop (750px+) (%)",
+              "info": "Applies to both text and image buttons. Images keep aspect ratio; text height follows padding."
             },
             "header_spacing": {
               "content": "Outer spacing"

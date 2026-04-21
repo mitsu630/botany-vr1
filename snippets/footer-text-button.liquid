@@ -54,7 +54,8 @@
   assign mb = cfg.margin_bottom | default: 0
   assign outer_pad = cfg.outer_padding | default: 0
 
-  assign btn_width_pct = cfg.button_width_percent | default: 100
+  assign btn_width_sm = cfg.button_width_percent | default: 100
+  assign btn_width_lg = cfg.button_width_percent_desktop | default: 100
 -%}
 
 {%- capture style_vars -%}
@@ -68,7 +69,8 @@
   --ftb-mt: {{ mt }}px;
   --ftb-mb: {{ mb }}px;
   --ftb-outer-pad: {{ outer_pad }}px;
-  --ftb-btn-w: {{ btn_width_pct }}%;
+  --ftb-btn-w-sm: {{ btn_width_sm }}%;
+  --ftb-btn-w-lg: {{ btn_width_lg }}%;
   --ftb-t1-fs: {{ t1_fs }}rem;
   --ftb-t2-fs: {{ t2_fs }}rem;
   {% if t1_ff_css != blank %}--ftb-t1-ff: {{ t1_ff_css }};{% endif %}

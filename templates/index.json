@@ -552,8 +552,24 @@
         "auto_rotate": false,
         "change_slides_speed": 3,
         "image_behavior": "ambient",
-        "show_text_below": false,
+        "show_text_below": true,
         "accessibility_info": ""
+      }
+    },
+    "video_7rBJ6d": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "enable_video_looping": false,
+        "video": "shopify://files/videos/ロータス・リンデン・モンステラ｜ボタニーペインティング｜lotus.linden.monnsutera_botany_painting_v1 (2160p).mp4",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "description": "",
+        "full_width": false,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
@@ -564,6 +580,7 @@
     "rich_text_LXVceC",
     "promo_framed_content_EKixLL",
     "multicolumn_fmMNbk",
-    "slideshow_WAxXXG"
+    "slideshow_WAxXXG",
+    "video_7rBJ6d"
   ]
 }

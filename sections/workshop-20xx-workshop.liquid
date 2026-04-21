@@ -1,0 +1,3768 @@
+{%- comment -%}
+  20xx-workshop 専用（workshop2025-002.liquid の複製）
+  product.20xx-workshop テンプレート専用。workshop2025-002 とは独立して編集可能。
+{%- endcomment -%}
+{%- comment -%}
+  説明文から「日程: ～ 時間:」のあいだを日付として抜き出し
+{%- endcomment -%}
+{%- assign desc = product.description
+  | strip_html
+  | replace: '&nbsp;', ' '
+  | replace: '　', ' '
+-%}
+
+{%- assign after_date_parts = desc | split: '日程:' -%}
+{%- assign date_raw = '' -%}
+{%- if after_date_parts.size > 1 -%}
+  {%- assign tmp = after_date_parts[1] -%}
+  {%- assign date_raw = tmp | split: '時間:' | first | strip -%}
+{%- endif -%}
+
+{%- comment -%}
+  住所はメタフィールド（都道府県＋市区町村）から取得
+  event と custom 両方をケア
+{%- endcomment -%}
+{%- assign raw_region = product.metafields.event.address_region
+                        | default: product.metafields.custom.address_region -%}
+{%- assign region_value = raw_region.value | default: raw_region -%}
+
+{%- assign raw_city = product.metafields.event.address_locality
+                      | default: product.metafields.custom.address_locality -%}
+{%- assign city_value = raw_city.value | default: raw_city -%}
+
+{%- comment -%}
+  都道府県と市区町村を結合してエリア情報を作成
+{%- endcomment -%}
+{%- assign area_raw = '' -%}
+{%- if region_value != blank -%}
+  {%- assign area_raw = area_raw | append: region_value -%}
+{%- endif -%}
+{%- if city_value != blank -%}
+  {%- assign area_raw = area_raw | append: city_value -%}
+{%- endif -%}
+
+<div
+  class="esfs-20xx-workshop-scope"
+  style="--esfs-workshop-header-offset: {{ section.settings.esfs_header_top_offset | default: 72 }}px;"
+>
+
+<style>
+  /* 固定ヘッダー分：ページ上部を下げる */
+  .esfs-20xx-workshop-scope {
+    padding-top: calc(env(safe-area-inset-top, 0px) + var(--esfs-workshop-header-offset, 72px));
+  }
+
+  /* バリアント（開催日）別バナー */
+  .esfs-variant-banner {
+    width: 100%;
+    max-width: 1000px;
+    margin: 1.25rem auto 0.75rem;
+    padding: 0 0.75rem;
+  }
+
+  .esfs-variant-banner[hidden] {
+    display: none !important;
+  }
+
+  .esfs-variant-banner__img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+  }
+
+  /* バリアント（開催日）別 講座情報：表・1.2rem */
+  .esfs-variant-info {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0.35rem auto 1.15rem;
+    padding: 0 0.85rem;
+    color: #222;
+    font-size: 1.2rem;
+    line-height: 1.55;
+  }
+
+  .esfs-variant-info[hidden] {
+    display: none !important;
+  }
+
+  /* 講座詳細：サイトのボタン色（#bd7a9a）に合わせた枠＋白文字 */
+  .esfs-variant-info__title {
+    margin: 0;
+    padding: 0.72rem 1.15rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    color: #fff;
+    background: linear-gradient(180deg, #c894ad 0%, #bd7a9a 48%, #b37092 100%);
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .esfs-variant-info__table-wrap {
+    border-radius: 0 0 12px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 2px solid #a86a88;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    background: #fff;
+  }
+
+  .esfs-variant-info__table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: 1.2rem;
+    line-height: 1.55;
+  }
+
+  .esfs-variant-info__table tbody tr:nth-child(even):not(.esfs-variant-info__note-row) {
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  .esfs-variant-info__table tbody tr:hover:not(.esfs-variant-info__note-row) {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .esfs-variant-info__note-row td {
+    padding: 0.7rem 1.1rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #444;
+    background: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    border-left: 4px solid rgba(0, 0, 0, 0.12);
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  @media (min-width: 768px) {
+    .esfs-variant-info__note-row td {
+      padding-left: 1.35rem;
+      padding-right: 1.35rem;
+    }
+  }
+
+  .esfs-variant-info__table th {
+    width: 6.5rem;
+    padding: 0.85rem 0.75rem;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #3d3d3d;
+    background: linear-gradient(180deg, #f8f8f8 0%, #f0f0f0 100%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-right: 1px solid rgba(0, 0, 0, 0.06);
+    white-space: nowrap;
+  }
+
+  .esfs-variant-info__table td {
+    padding: 0.85rem 1.1rem;
+    color: #1a1a1a;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  .esfs-variant-info__table tbody tr:last-child th,
+  .esfs-variant-info__table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .esfs-variant-info__hint {
+    font-size: 0.85rem;
+    color: #b45309;
+    margin: 0 0 0.65rem;
+    line-height: 1.45;
+    padding: 0.5rem 0.65rem;
+    background: rgba(180, 83, 9, 0.08);
+    border-radius: 8px;
+  }
+
+  @media (min-width: 768px) {
+    .esfs-variant-info__table th {
+      width: 7.5rem;
+      font-size: 1rem;
+      font-weight: 400;
+      padding-left: 0.85rem;
+      padding-right: 0.85rem;
+    }
+
+    .esfs-variant-info__table td {
+      padding-left: 1.35rem;
+      padding-right: 1.35rem;
+    }
+  }
+
+  /* 講座詳細カード直下：全会場共通の案内 */
+  .esfs-variant-info__same-detail-note {
+    margin: 0.85rem 0 0;
+    padding: 0 0.5rem;
+    font-size: 1rem;
+    line-height: 1.55;
+    text-align: center;
+    color: #444;
+  }
+
+  .esfs-20xx-workshop-scope .workshop-spacer {
+    margin-top: 100px;
+    display: block;
+  }
+
+  .esfs-20xx-workshop-scope .workshop-image-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .esfs-20xx-workshop-scope .workshop-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+  }
+
+  /* esfs: ワークショップ詳細動画（「以下ワークショップ詳細は全開催同じ内容です。」直下） */
+  .esfs-20xx-workshop-scope .esfs-workshop-detail-video {
+    margin-top: 1rem;
+  }
+  .esfs-20xx-workshop-scope .esfs-workshop-detail-video video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    vertical-align: middle;
+    object-fit: cover;
+  }
+
+  .esfs-20xx-workshop-scope .workshop-featured-image {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 0.5rem;
+    scroll-margin-top: 80px;
+  }
+
+  .esfs-20xx-workshop-scope .workshop-featured-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 767px) {
+    .esfs-20xx-workshop-scope .workshop-featured-image {
+      margin-top: 80px;
+      padding-top: 1rem;
+    }
+  }
+
+  .esfs-20xx-workshop-scope .workshop-notice {
+    padding: 10px 20px;
+    margin: 20px auto;
+    background-color: #f8f8f8;
+    border-left: 4px solid #ff6600;
+    max-width: 80%;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  /* esfs: フローティングフッター（本セクション表示ページのみ） */
+  .esfs-floating-workshop-footer {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    background: #fcfff0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.08);
+    padding: 0.55rem 0.85rem calc(0.55rem + env(safe-area-inset-bottom, 0));
+    max-height: 50vh;
+    overflow-x: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .esfs-floating-workshop-footer.esfs-floating-workshop-footer--active {
+    display: block;
+  }
+
+  /* 旧カスタムUIは削除し、ネイティブ申込みセットを画面下部に固定表示する */
+  body.esfs-20xx-workshop-native-footer-active .esfs-floating-workshop-footer {
+    display: none !important;
+  }
+
+  body.esfs-20xx-workshop-native-footer-active .product__info-wrapper {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 10000 !important;
+    background: #fcfff0 !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.08) !important;
+    padding: 0.55rem 0.85rem calc(0.55rem + env(safe-area-inset-bottom, 0)) !important;
+    max-height: 50vh !important;
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* デザイン調整（ロジックに影響しない表示のみ） */
+  body.esfs-20xx-workshop-native-footer-active .product__title {
+    display: none !important;
+  }
+  body.esfs-20xx-workshop-native-footer-active .product__tax {
+    display: none !important;
+  }
+
+  /* 申込みDOM内の文字サイズを一律 1rem */
+  body.esfs-20xx-workshop-native-footer-active .product__info-wrapper *,
+  body.esfs-20xx-workshop-native-footer-active .product__info-wrapper {
+    font-size: 1rem !important;
+  }
+
+  /* 申込みDOMの余白を整理 */
+  body.esfs-20xx-workshop-native-footer-active .product__info-container > * + * {
+    margin: 0;
+  }
+
+  /* サイズ/植物ラベルの太字を通常文字へ */
+  body.esfs-20xx-workshop-native-footer-active
+    .bss-po-product-page
+    .po-label {
+    font-weight: 400 !important;
+  }
+  body.esfs-20xx-workshop-native-footer-active
+    .bss-po-product-page
+    .po-label
+    span {
+    font-weight: 400 !important;
+  }
+
+  /* サイズ/植物ラベル（文字）を非表示（プルダウンは残す） */
+  body.esfs-20xx-workshop-native-footer-active
+    .bss-po-product-page
+    .po-label
+    > span {
+    display: none !important;
+  }
+
+  /* 会場開催日ラベル文字（上部「会場開催日」）をひとまず非表示 */
+  body.esfs-20xx-workshop-native-footer-active
+    .product-form__input--dropdown:has(select[name="options[会場開催日]"])
+    > label.form__label {
+    display: none !important;
+  }
+
+  /* 価格表示（本番は下部UIのみ整形するため一旦非表示） */
+  body.esfs-20xx-workshop-native-footer-active .price__container,
+  body.esfs-20xx-workshop-native-footer-active .price,
+  body.esfs-20xx-workshop-native-footer-active .price__regular,
+  body.esfs-20xx-workshop-native-footer-active .price__sale {
+    display: none !important;
+  }
+
+  /* OPTIS/BSS の +¥xxx など余分表示もひとまず非表示 */
+  body.esfs-20xx-workshop-native-footer-active .po-extra-price {
+    display: none !important;
+  }
+
+  /* 共有ボタンはフッター固定UI内では不要のため非表示 */
+  body.esfs-20xx-workshop-native-footer-active share-button,
+  body.esfs-20xx-workshop-native-footer-active .share-button {
+    display: none !important;
+  }
+  
+  /*
+   * 下部レイアウト（CSSのみ）：
+   * 左：数量 / 中：合計金額 / 右：予約する
+   */
+  body.esfs-20xx-workshop-native-footer-active .product__info-wrapper {
+    position: fixed !important;
+    padding-bottom: 0px !important;
+  }
+
+  body.esfs-20xx-workshop-native-footer-active div[id^='price-template--'] {
+    position: absolute !important;
+    left: 50% !important;
+    bottom: 0.55rem !important;
+    transform: translateX(-50%) !important;
+    width: 40% !important;
+    display: block !important;
+    text-align: center !important;
+  }
+
+  body.esfs-20xx-workshop-native-footer-active
+    form[action*='/cart/add']
+    .shopify-payment-button.bss-po-btn-buyitnow {
+    /* 無効化（コメントアウト）：absolute など強制レイアウトを止める */
+  }
+
+  /* 内部をフッターらしく（2カラム：サイズ/植物） */
+  body.esfs-20xx-workshop-native-footer-active variant-selects {
+    display: block !important;
+  }
+  body.esfs-20xx-workshop-native-footer-active .product-form__input {
+    margin: 0 !important;
+  }
+  body.esfs-20xx-workshop-native-footer-active .bss-po-product-page {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.45rem !important;
+    align-items: stretch !important;
+    flex-wrap: nowrap !important;
+    margin: 0 !important;
+  }
+  body.esfs-20xx-workshop-native-footer-active .bss-po-product-page .po-stack--vertical {
+    margin: 0 !important;
+    width: 100% !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* 必要（*）を非表示 */
+  body.esfs-20xx-workshop-native-footer-active
+    .bss-po-product-page
+    .po-label
+    .po-required {
+    display: none !important;
+  }
+
+  /* 会場開催日（ドロップダウン自体は必要のため非表示にしない） */
+
+  /* 中段：BSS/OPTIS ドロップダウンの見た目をフッター向けに整形 */
+  /* 二重の線を避けるため、枠は po-select-dropdown-thumbnail のみに適用 */
+  body.esfs-20xx-workshop-native-footer-active .bss-po-product-page .po-option--container,
+  body.esfs-20xx-workshop-native-footer-active .bss-po-product-page .po-option--dropdown-menu-container,
+  body.esfs-20xx-workshop-native-footer-active .bss-po-product-page .po-dropdown--single {
+    background: #fff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  body.esfs-20xx-workshop-native-footer-active
+    .bss-po-product-page
+    .po-select-dropdown-thumbnail {
+    background: #fff !important;
+    border: 1px solid #b8b8b8 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+  }
+
+  /* 閉じている状態の高さを狭く（4px縮小） */
+  body.esfs-20xx-workshop-native-footer-active .bss-po-product-page .po-select-dropdown-thumbnail {
+    min-height: calc(3.15rem - 4px) !important;
+    height: calc(3.15rem - 4px) !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 0.7rem !important;
+  }
+  body.esfs-20xx-workshop-native-footer-active .bss-po-product-page .po-dropdown-selected-option {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 8px !important;
+    min-height: calc(3.15rem - 4px) !important;
+    height: calc(3.15rem - 4px) !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Inspectorで指摘されている selected-option のボーダーだけ抑止 */
+  body.esfs-20xx-workshop-native-footer-active
+    .po-dropdown-selected-option,
+  body.esfs-20xx-workshop-native-footer-active
+    .po-font_picker-selected-option {
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* ドロップリスト背景を白に */
+  body.esfs-20xx-workshop-native-footer-active .bss-po-product-page .po-dropdown-list {
+    background: #fff !important;
+    border: 1px solid #b8b8b8 !important;
+    border-radius: 8px !important;
+    overflow: auto !important;
+    max-height: 16rem !important;
+  }
+
+  /* オプションの背景が透明にならないように */
+  body.esfs-20xx-workshop-native-footer-active .bss-po-product-page .po-dropdown-option {
+    background: #fff !important;
+  }
+
+  /*
+   * 会場開催日（ネイティブ select）もサイズ/植物と同じ高さに揃える
+   */
+  body.esfs-20xx-workshop-native-footer-active
+    .product-form__input:has(select[name="options[会場開催日]"])
+    .select,
+  body.esfs-20xx-workshop-native-footer-active
+    .product-form__input--dropdown:has(select[name="options[会場開催日]"])
+    .select,
+  body.esfs-20xx-workshop-native-footer-active
+    fieldset:has(select[name="options[会場開催日]"])
+    .select {
+    height: calc(3.15rem - 4px) !important;
+    min-height: calc(3.15rem - 4px) !important;
+  }
+
+  body.esfs-20xx-workshop-native-footer-active
+    select.select__select[name="options[会場開催日]"] {
+    height: calc(3.15rem - 4px) !important;
+    min-height: calc(3.15rem - 4px) !important;
+    line-height: calc(3.15rem - 4px) !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* サイズ/植物を選んだ時の swatch 表示（<p class="swatch_value po-value">）を非表示 */
+  body.esfs-20xx-workshop-native-footer-active .bss-po-product-page .po-selected-swatch,
+  body.esfs-20xx-workshop-native-footer-active
+    .bss-po-product-page
+    .po-selected-swatch
+    .swatch_value {
+    display: none !important;
+    background: transparent !important;
+  }
+
+  body.esfs-20xx-workshop-native-footer-active .shopify-payment-button.bss-po-btn-buyitnow {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 予約する（Accelerated Checkout）ボタンの色 */
+  body.esfs-20xx-workshop-native-footer-active
+    .shopify-payment-button.bss-po-btn-buyitnow
+    button.shopify-payment-button__button--unbranded,
+  body.esfs-20xx-workshop-native-footer-active
+    .shopify-payment-button.bss-po-btn-buyitnow
+    button.shopify-payment-button__button {
+    background-color: #d93292 !important;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* 予約するボタンの直前余白（margin/padding）を詰める */
+  body.esfs-20xx-workshop-native-footer-active .product-form__buttons {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* カートに追加する（通常フロー）は非表示にし、Accelerated Checkout のみ動かす */
+  body.esfs-20xx-workshop-native-footer-active
+    .product-form__buttons
+    button[type='submit'],
+  body.esfs-20xx-workshop-native-footer-active
+    .product-form__buttons
+    input[type='submit'] {
+    display: none !important;
+  }
+
+  /* installmentフォーム側にも submit がある場合があるため抑止 */
+  body.esfs-20xx-workshop-native-footer-active
+    form[action*='/cart/add'][class*='installment'] button[type='submit'],
+  body.esfs-20xx-workshop-native-footer-active
+    form[action*='/cart/add'][class*='installment'] input[type='submit'] {
+    display: none !important;
+  }
+
+  /*
+   * ロジック優先：カスタムフローティングフッターは無効化し、
+   * ネイティブの product-form をそのまま画面下部へ固定表示する
+   * （Accelerated Checkout と OPTIS の整合性を崩さない）
+   */
+  .esfs-20xx-workshop-scope .product-form {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    background: #fcfff0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.08);
+    padding: 0.55rem 0.85rem calc(0.55rem + env(safe-area-inset-bottom, 0));
+    max-height: 50vh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* product-form 内で表示を残すものだけに絞る（デザインは後で調整） */
+  .esfs-20xx-workshop-scope .product-form__input,
+  .esfs-20xx-workshop-scope .product-form__quantity,
+  .esfs-20xx-workshop-scope .quantity-popover-wrapper {
+    display: none !important;
+  }
+
+  .esfs-20xx-workshop-scope
+    .product-form__input:has(select[name="options[会場開催日]"]),
+  .esfs-20xx-workshop-scope
+    .product-form__input--dropdown:has(select[name="options[会場開催日]"]),
+  .esfs-20xx-workshop-scope
+    fieldset:has(select[name="options[会場開催日]"]) {
+    display: flex !important;
+  }
+
+  .esfs-20xx-workshop-scope
+    .product-form__input:has(select.po-option--type-dropdown-menu[key="po_作品のサイズ"]),
+  .esfs-20xx-workshop-scope
+    .product-form__input--dropdown:has(select.po-option--type-dropdown-menu[key="po_作品のサイズ"]) {
+    display: flex !important;
+  }
+
+  .esfs-20xx-workshop-scope
+    .product-form__input:has(select.po-option--type-dropdown-menu[key="po_希望する植物"]),
+  .esfs-20xx-workshop-scope
+    .product-form__input--dropdown:has(select.po-option--type-dropdown-menu[key="po_希望する植物"]) {
+    display: flex !important;
+  }
+
+  /* 数量 */
+  .esfs-20xx-workshop-scope
+    .product-form__input:has(quantity-input),
+  .esfs-20xx-workshop-scope
+    .product-form__input:has(input[name="quantity"]),
+  .esfs-20xx-workshop-scope
+    .product-form__input:has(.esfs-quantity-select),
+  .esfs-20xx-workshop-scope
+    quantity-input {
+    display: block !important;
+    min-width: 0;
+  }
+
+  /* ネイティブの「カートに追加」ボタンは消し、Accelerated Checkout だけ残す */
+  .esfs-20xx-workshop-scope .product-form__buttons button[type="submit"],
+  .esfs-20xx-workshop-scope .product-form__buttons input[type="submit"],
+  .esfs-20xx-workshop-scope .product-form__submit {
+    display: none !important;
+  }
+
+  .esfs-20xx-workshop-scope .shopify-payment-button.bss-po-btn-buyitnow {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* 上：開催 / 中：サイズ・植物 2列 / 下：数量+人・予約する */
+  .esfs-floating-workshop-footer__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .esfs-fw-row--middle {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.45rem 0.65rem;
+    align-items: end;
+  }
+
+  /* 人数・数量・人・予約する（1行、予約は右端） */
+  .esfs-fw-row--bottom {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.45rem 0.55rem;
+    padding-top: 0.4rem;
+    margin-top: 0.2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+    min-width: 0;
+  }
+
+  .esfs-fw-row--bottom .esfs-fw-spacer {
+    flex: 1 1 0;
+    min-width: 0.35rem;
+  }
+
+  .esfs-fw-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+
+  /* 開催：ラベル左・ドロップ右 */
+  .esfs-fw-field--date {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.55rem 0.75rem;
+    flex-wrap: nowrap;
+  }
+
+  .esfs-fw-field--date .esfs-fw-label--date {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .esfs-fw-field--date .esfs-fw-date-ui {
+    flex: 1 1 0;
+    min-width: 0;
+    position: relative;
+  }
+
+  .esfs-fw-select-date-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    border: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .esfs-fw-date-trigger {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23333' d='M1 1.5L6 6l5-4.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.65rem center;
+    padding-right: 2rem !important;
+  }
+
+  .esfs-fw-date-trigger-lines {
+    flex: 1;
+    min-width: 0;
+    line-height: 1.35;
+    font-weight: 500;
+  }
+
+  .esfs-fw-date-line1 {
+    display: block;
+  }
+
+  .esfs-fw-date-line2 {
+    display: block;
+    margin-top: 0.12rem;
+    color: #444;
+    font-size: 0.94em;
+  }
+
+  .esfs-fw-date-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 10050;
+    background: rgba(0, 0, 0, 0.28);
+  }
+
+  .esfs-fw-date-backdrop[hidden] {
+    display: none !important;
+  }
+
+  .esfs-fw-date-panel-wrap {
+    position: fixed;
+    left: 0.65rem;
+    right: 0.65rem;
+    z-index: 10051;
+    background: #fff;
+    border: 1px solid #b8b8b8;
+    border-radius: 10px;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+  }
+
+  .esfs-fw-date-panel-wrap[hidden] {
+    display: none !important;
+  }
+
+  .esfs-fw-date-panel {
+    list-style: none;
+    margin: 0;
+    padding: 0.35rem 0;
+    max-height: inherit;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .esfs-fw-date-item {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    line-height: 1.4;
+    font-weight: 500;
+  }
+
+  .esfs-fw-date-item:last-child {
+    border-bottom: none;
+  }
+
+  .esfs-fw-date-item:active,
+  .esfs-fw-date-item:hover {
+    background: #f5f0f3;
+  }
+
+  .esfs-fw-date-item--current {
+    background: #faf6f8;
+  }
+
+  .esfs-fw-date-item-l1 {
+    display: block;
+  }
+
+  .esfs-fw-date-item-l2 {
+    display: block;
+    margin-top: 0.2rem;
+    color: #444;
+    font-size: 0.94em;
+  }
+
+  .esfs-fw-label {
+    font-size: clamp(1.02rem, 3.2vw, 1.18rem);
+    font-weight: 500;
+    color: #222;
+    line-height: 1.25;
+  }
+
+  .esfs-fw-select {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(1.08rem, 3.5vw, 1.28rem);
+    font-weight: 500;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid #b8b8b8;
+    border-radius: 8px;
+    background: #fff;
+    min-height: 3.15rem;
+    line-height: 1.35;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23333' d='M1 1.5L6 6l5-4.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.65rem center;
+    padding-right: 2rem;
+  }
+
+  .esfs-fw-row--bottom .esfs-fw-label--qty {
+    flex-shrink: 0;
+  }
+
+  /* 人数ドロップ（他セレクトと同系統・幅だけコンパクト） */
+  .esfs-fw-select--qty {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 4.5rem;
+    max-width: 6.5rem;
+    padding-left: 0.6rem;
+    padding-right: 1.9rem;
+    min-height: 3.15rem;
+  }
+
+  /* 予約するボタン左隣：合計（通常字重・太字なし） */
+  .esfs-fw-total-before-reserve {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-right: 0.35rem;
+  }
+
+  .esfs-fw-total-one-line {
+    font-size: clamp(0.9rem, 2.6vw, 1.05rem);
+    font-weight: 500;
+    color: #333;
+    white-space: nowrap;
+    letter-spacing: 0;
+    line-height: 1.2;
+  }
+
+  .esfs-fw-reserve-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 7.5rem;
+    min-height: 3.15rem;
+    padding: 0.55rem 1.15rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #bd7a9a;
+    color: #fff;
+    font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+    font-weight: 800;
+    line-height: 1.2;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(189, 122, 154, 0.35);
+    transition: background-color 0.15s ease, transform 0.1s ease;
+  }
+
+  .esfs-fw-reserve-btn:hover {
+    background-color: #a86a88;
+  }
+
+  .esfs-fw-reserve-btn:active {
+    transform: scale(0.99);
+  }
+
+  .esfs-fw-reserve-btn:focus {
+    outline: 2px solid #bd7a9a;
+    outline-offset: 2px;
+  }
+
+  .esfs-fw-reserve-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* サイズ・植物未選択時（予約不可に合わせて薄く・クリック不可） */
+  .esfs-fw-reserve-btn.esfs-fw-reserve-btn--muted {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
+    background-color: #c4a3b5;
+    transform: none;
+  }
+
+  .esfs-fw-reserve-btn.esfs-fw-reserve-btn--muted:hover,
+  .esfs-fw-reserve-btn.esfs-fw-reserve-btn--muted:active {
+    background-color: #c4a3b5;
+    transform: none;
+  }
+
+  .esfs-fw-reserve-btn.esfs-fw-reserve-btn--waiting {
+    background-color: #a86a88;
+    animation: esfsReserveBtnBlink 1s ease-in-out infinite;
+  }
+
+  @keyframes esfsReserveBtnBlink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.45;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .esfs-fw-field--date {
+      flex-wrap: nowrap;
+    }
+
+    .esfs-fw-field--date .esfs-fw-date-ui {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .esfs-fw-row--bottom {
+      flex-wrap: nowrap;
+      gap: 0.3rem 0.4rem;
+    }
+
+    .esfs-fw-row--bottom .esfs-fw-spacer {
+      display: block;
+      min-width: 0.2rem;
+    }
+
+    .esfs-fw-row--bottom .esfs-fw-reserve-btn {
+      min-width: 5.75rem;
+      padding: 0.5rem 0.7rem;
+    }
+
+    /* ネイティブ（shopify-buy-it-now-button）を予約枠として使う場合も幅を合わせる */
+    .esfs-fw-row--bottom shopify-buy-it-now-button {
+      min-width: 5.75rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    .esfs-fw-select--qty {
+      min-width: 4rem;
+      max-width: 5.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .esfs-floating-workshop-footer__inner {
+      max-width: 900px;
+    }
+  }
+</style>
+{%- comment -%}
+  フッター有効時のみ body に付与。本流の Buy it now を画面外に退避（クリックは JS で実ボタンへ委譲）
+{%- endcomment -%}
+<style>
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native) .shopify-payment-button.bss-po-btn-buyitnow,
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native) div[data-shopify="payment-button"].bss-po-btn-buyitnow {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /*
+   * フッターと重複するページ内 UI を非表示（DOM は残すので JS 同期・カートはそのまま）
+   * :has() はモダンブラウザ想定（スマホ / PC）
+   */
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native) .product-form__input:has(select[name="options[会場開催日]"]),
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native) .product-form__input--dropdown:has(select[name="options[会場開催日]"]),
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native) fieldset:has(select[name="options[会場開催日]"]) {
+    display: none !important;
+  }
+
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native) .bss-po-product-page {
+    display: none !important;
+  }
+
+  /* 価格表示・購入ブロックもフッターに集約するため非表示（DOM は残す） */
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native) div[id^="price-template--"][id$="__main"],
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native) #price-template--20358570672284__main,
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native) .product__info-container .price,
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native) .product__info-container .price__container {
+    display: none !important;
+  }
+
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native) product-form.product-form,
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native) .product-form,
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native) .product-form__buttons,
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native) .shopify-payment-button {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* フッター内へ移植したネイティブ購入ボタンは通常表示する */
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native)
+    #esfs-floating-workshop-footer
+    .shopify-payment-button.bss-po-btn-buyitnow,
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native)
+    #esfs-floating-workshop-footer
+    div[data-shopify="payment-button"].bss-po-btn-buyitnow {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    clip-path: none !important;
+    white-space: normal !important;
+    border: 0 !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Accelerated Checkout 側は shipify custom element になるため、幅広く可視化 */
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native)
+    #esfs-floating-workshop-footer
+    shopify-buy-it-now-button,
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native)
+    #esfs-floating-workshop-footer
+    shopify-accelerated-checkout,
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native)
+    #esfs-floating-workshop-footer
+    .shopify-payment-button,
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native)
+    #esfs-floating-workshop-footer
+    button.shopify-payment-button__button--unbranded,
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native)
+    #esfs-floating-workshop-footer
+    button.shopify-payment-button__button {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    clip-path: none !important;
+    white-space: normal !important;
+    border: 0 !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* フッター内のネイティブ要素が内包するボタンも確実に可視化 */
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native)
+    #esfs-floating-workshop-footer
+    .shopify-payment-button__button--unbranded *,
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native)
+    #esfs-floating-workshop-footer
+    .shopify-payment-button * {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /*
+   * DOM移動せず、テーマ本体にあるネイティブ「予約する」をフッター最下部に可視化する
+   * （DOM移動すると Accelerated Checkout が文脈を失い失敗するため）
+   */
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native)
+    .shopify-payment-button.bss-po-btn-buyitnow,
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native)
+    div[data-shopify="payment-button"].bss-po-btn-buyitnow {
+    position: fixed !important;
+    left: 50% !important;
+    bottom: 0 !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    clip-path: none !important;
+    white-space: normal !important;
+    border: 0 !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    z-index: 10001 !important;
+  }
+
+  /* カスタム枠は消して、ネイティブのみ押せる状態にする */
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native) #esfs-fw-reserve-btn {
+    display: none !important;
+  }
+
+  /* 親（product-form 側）の opacity:0 が子に効いてしまうので、支配元も unhide */
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native)
+    .product-form:has(.shopify-payment-button.bss-po-btn-buyitnow),
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native)
+    .product-form:has(div[data-shopify="payment-button"].bss-po-btn-buyitnow) {
+    position: fixed !important;
+    left: 50% !important;
+    bottom: 0 !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    clip-path: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    z-index: 10001 !important;
+  }
+
+  /* accelerated checkout 以外（カートに追加）を消す */
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native)
+    .product-form:has(.shopify-payment-button.bss-po-btn-buyitnow)
+    button[type="submit"],
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native)
+    .product-form:has(div[data-shopify="payment-button"].bss-po-btn-buyitnow)
+    button[type="submit"],
+  body.esfs-20xx-workshop-reserve-in-footer:not(.esfs-debug-show-native)
+    .product-form:has(.shopify-payment-button.bss-po-btn-buyitnow)
+    input[type="submit"] {
+    display: none !important;
+  }
+</style>
+{%- comment -%}
+  main-product はセクション外のため、非表示・レイアウトはページ全体向け（workshop2025-002 と同様）
+  本セクションは product.20xx-workshop のみで利用想定
+{%- endcomment -%}
+<style>
+  #ProductSubmitButton-template--18176986775708__main {
+    display: none;
+  }
+
+  .workshop-details {
+    margin: 63px 4% 0 4%;
+  }
+
+  #ProductSubmitButton-template--17648775037084__main,
+  .product__title,
+  .product__tax {
+    display: none;
+  }
+
+  .price {
+    text-align: center;
+  }
+
+  .product__media-list {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+
+  .product__media-item,
+  .product__media-wrapper {
+    display: none;
+  }
+
+  .product__media-item:first-child {
+    display: block;
+    width: 100%;
+  }
+
+  .product__media-wrapper {
+    margin-bottom: 2rem;
+  }
+
+  .product__media-wrapper .product__media-item:first-child {
+    display: block;
+    width: 100%;
+  }
+</style>
+
+{%- comment -%}
+  バナー画像：実キー custom.custom_photo（表示名 custom.photo）。空のときのみ custom.photo
+{%- endcomment -%}
+{%- comment -%}
+  「会場開催日」が option1/2/3 のどれかを自動判定（テーマ差異・将来の並び替え対策）
+{%- endcomment -%}
+{%- assign esfs_kaijo_option_index = 0 -%}
+{%- for opt_name in product.options -%}
+  {%- if opt_name == '会場開催日' -%}
+    {%- assign esfs_kaijo_option_index = forloop.index0 -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<script type="application/json" id="esfs-variant-photo-map">
+  {
+  {%- assign first_written = false -%}
+  {%- for v in product.variants -%}
+    {%- assign photo_mf = v.metafields.custom.custom_photo -%}
+    {%- if photo_mf == blank -%}{%- assign photo_mf = v.metafields.custom.photo -%}{%- endif -%}
+    {%- assign photo_obj = photo_mf.value -%}
+    {%- assign photo_url = '' -%}
+
+    {%- if photo_mf != blank -%}
+      {%- comment -%} media_image / image 参照 {%- endcomment -%}
+      {%- if photo_obj != blank -%}
+        {%- assign photo_url = photo_obj | image_url: width: 1600 -%}
+      {%- endif -%}
+      {%- if photo_url == blank and photo_obj.preview_image != blank -%}
+        {%- assign photo_url = photo_obj.preview_image | image_url: width: 1600 -%}
+      {%- endif -%}
+
+      {%- comment -%} file 参照 {%- endcomment -%}
+      {%- if photo_url == blank and photo_obj != blank -%}
+        {%- assign photo_url = photo_obj | file_url -%}
+      {%- endif -%}
+      {%- if photo_url == blank -%}
+        {%- assign photo_url = photo_mf | file_url -%}
+      {%- endif -%}
+
+      {%- comment -%} 最後の保険: URL文字列が取れる場合 {%- endcomment -%}
+      {%- if photo_url == blank and photo_obj.url != blank -%}
+        {%- assign photo_url = photo_obj.url -%}
+      {%- endif -%}
+      {%- if photo_url == blank -%}
+        {%- assign photo_url = photo_mf | metafield_text -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- comment -%}
+      追加フォールバック: custom.photo_url（単一行テキスト）
+      Google Drive URL の場合は埋め込み表示しやすい uc 形式へ正規化
+    {%- endcomment -%}
+    {%- if photo_url == blank -%}
+      {%- assign photo_url_text_mf = v.metafields.custom.photo_url -%}
+      {%- assign photo_url_text = photo_url_text_mf | metafield_text | strip -%}
+      {%- if photo_url_text == blank and photo_url_text_mf.value != blank -%}
+        {%- assign photo_url_text = photo_url_text_mf.value | append: '' | strip -%}
+      {%- endif -%}
+      {%- if photo_url_text != blank -%}
+        {%- assign photo_url_text_norm = photo_url_text -%}
+        {%- assign drive_file_id = '' -%}
+        {%- if photo_url_text contains 'drive.google.com/file/d/' -%}
+          {%- assign drive_file_id = photo_url_text | split: '/file/d/' | last | split: '/' | first | split: '?' | first -%}
+        {%- elsif photo_url_text contains 'drive.google.com/open?id=' -%}
+          {%- assign drive_file_id = photo_url_text | split: 'open?id=' | last | split: '&' | first | split: '#' | first -%}
+        {%- elsif photo_url_text contains 'drive.google.com/uc?' and photo_url_text contains 'id=' -%}
+          {%- assign drive_file_id = photo_url_text | split: 'id=' | last | split: '&' | first | split: '#' | first -%}
+        {%- elsif photo_url_text contains 'docs.google.com/uc?' and photo_url_text contains 'id=' -%}
+          {%- assign drive_file_id = photo_url_text | split: 'id=' | last | split: '&' | first | split: '#' | first -%}
+        {%- endif -%}
+        {%- if drive_file_id != blank -%}
+          {%- comment -%}
+            Google Drive の uc は環境により img 直表示が不安定なため、
+            画像配信用の thumbnail エンドポイントへ正規化する
+          {%- endcomment -%}
+          {%- assign photo_url_text_norm = 'https://drive.google.com/thumbnail?id=' | append: drive_file_id | append: '&sz=w1600' -%}
+        {%- endif -%}
+        {%- assign photo_url = photo_url_text_norm -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if photo_url != blank -%}
+      {%- if first_written -%},{%- endif -%}
+      "{{ v.id }}":{{ photo_url | strip | json }}
+      {%- assign first_written = true -%}
+    {%- endif -%}
+  {%- endfor -%}
+  }
+</script>
+
+{%- comment -%}
+  DEBUG/フォールバック用：variant.featured_image でのマップ（メタフィールド画像が Liquid で取れない場合）
+{%- endcomment -%}
+<script type="application/json" id="esfs-variant-featured-image-map">
+  {
+  {%- assign first_fi = false -%}
+  {%- for v in product.variants -%}
+    {%- if v.featured_image != blank -%}
+      {%- if first_fi -%},{%- endif -%}
+      "{{ v.id }}":"{{ v.featured_image | image_url: width: 1600 }}"
+      {%- assign first_fi = true -%}
+    {%- endif -%}
+  {%- endfor -%}
+  }
+</script>
+
+{%- comment -%}
+  開催日（会場開催日オプション値）→ バナー画像URL
+  バリアントIDが取れないタイミングでも確実に引けるようにする
+{%- endcomment -%}
+<script type="application/json" id="esfs-variant-photo-map-by-option">
+  {
+  {%- assign first_written2 = false -%}
+  {%- for v in product.variants -%}
+    {%- assign esfs_kaijo_key = v.options[esfs_kaijo_option_index] | default: v.option1 -%}
+    {%- assign photo_mf2 = v.metafields.custom.custom_photo -%}
+    {%- if photo_mf2 == blank -%}{%- assign photo_mf2 = v.metafields.custom.photo -%}{%- endif -%}
+    {%- assign photo_obj2 = photo_mf2.value -%}
+    {%- assign photo_url2 = '' -%}
+
+    {%- if photo_mf2 != blank -%}
+      {%- if photo_obj2 != blank -%}
+        {%- assign photo_url2 = photo_obj2 | image_url: width: 1600 -%}
+      {%- endif -%}
+      {%- if photo_url2 == blank and photo_obj2.preview_image != blank -%}
+        {%- assign photo_url2 = photo_obj2.preview_image | image_url: width: 1600 -%}
+      {%- endif -%}
+      {%- if photo_url2 == blank and photo_obj2 != blank -%}
+        {%- assign photo_url2 = photo_obj2 | file_url -%}
+      {%- endif -%}
+      {%- if photo_url2 == blank -%}
+        {%- assign photo_url2 = photo_mf2 | file_url -%}
+      {%- endif -%}
+      {%- if photo_url2 == blank and photo_obj2.url != blank -%}
+        {%- assign photo_url2 = photo_obj2.url -%}
+      {%- endif -%}
+      {%- if photo_url2 == blank -%}
+        {%- assign photo_url2 = photo_mf2 | metafield_text -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- comment -%}
+      追加フォールバック: custom.photo_url（単一行テキスト）
+      Google Drive URL の場合は埋め込み表示しやすい uc 形式へ正規化
+    {%- endcomment -%}
+    {%- if photo_url2 == blank -%}
+      {%- assign photo_url_text_mf2 = v.metafields.custom.photo_url -%}
+      {%- assign photo_url_text2 = photo_url_text_mf2 | metafield_text | strip -%}
+      {%- if photo_url_text2 == blank and photo_url_text_mf2.value != blank -%}
+        {%- assign photo_url_text2 = photo_url_text_mf2.value | append: '' | strip -%}
+      {%- endif -%}
+      {%- if photo_url_text2 != blank -%}
+        {%- assign photo_url_text_norm2 = photo_url_text2 -%}
+        {%- assign drive_file_id2 = '' -%}
+        {%- if photo_url_text2 contains 'drive.google.com/file/d/' -%}
+          {%- assign drive_file_id2 = photo_url_text2 | split: '/file/d/' | last | split: '/' | first | split: '?' | first -%}
+        {%- elsif photo_url_text2 contains 'drive.google.com/open?id=' -%}
+          {%- assign drive_file_id2 = photo_url_text2 | split: 'open?id=' | last | split: '&' | first | split: '#' | first -%}
+        {%- elsif photo_url_text2 contains 'drive.google.com/uc?' and photo_url_text2 contains 'id=' -%}
+          {%- assign drive_file_id2 = photo_url_text2 | split: 'id=' | last | split: '&' | first | split: '#' | first -%}
+        {%- elsif photo_url_text2 contains 'docs.google.com/uc?' and photo_url_text2 contains 'id=' -%}
+          {%- assign drive_file_id2 = photo_url_text2 | split: 'id=' | last | split: '&' | first | split: '#' | first -%}
+        {%- endif -%}
+        {%- if drive_file_id2 != blank -%}
+          {%- comment -%}
+            Google Drive の uc は環境により img 直表示が不安定なため、
+            画像配信用の thumbnail エンドポイントへ正規化する
+          {%- endcomment -%}
+          {%- assign photo_url_text_norm2 = 'https://drive.google.com/thumbnail?id=' | append: drive_file_id2 | append: '&sz=w1600' -%}
+        {%- endif -%}
+        {%- assign photo_url2 = photo_url_text_norm2 -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if photo_url2 != blank -%}
+      {%- if first_written2 -%},{%- endif -%}
+      {{ esfs_kaijo_key | json }}:{{ photo_url2 | strip | json }}
+      {%- assign opt1_norm = esfs_kaijo_key | replace: '　', ' ' | strip -%}
+      {%- if opt1_norm != blank and opt1_norm != esfs_kaijo_key -%}
+        ,{{ opt1_norm | json }}:{{ photo_url2 | strip | json }}
+      {%- endif -%}
+      {%- assign first_written2 = true -%}
+    {%- endif -%}
+  {%- endfor -%}
+  }
+</script>
+
+{%- comment -%}
+  フォールバック：開催日（会場開催日オプション値）→ variant.featured_image
+{%- endcomment -%}
+<script type="application/json" id="esfs-variant-featured-image-map-by-option">
+  {
+  {%- assign first_fi2 = false -%}
+  {%- for v in product.variants -%}
+    {%- assign esfs_kaijo_key_fi = v.options[esfs_kaijo_option_index] | default: v.option1 -%}
+    {%- if v.featured_image != blank -%}
+      {%- if first_fi2 -%},{%- endif -%}
+      {{ esfs_kaijo_key_fi | json }}:"{{ v.featured_image | image_url: width: 1600 }}"
+      {%- assign opt_fi_norm = esfs_kaijo_key_fi | replace: '　', ' ' | strip -%}
+      {%- if opt_fi_norm != blank and opt_fi_norm != esfs_kaijo_key_fi -%}
+        ,"{{ opt_fi_norm }}":"{{ v.featured_image | image_url: width: 1600 }}"
+      {%- endif -%}
+      {%- assign first_fi2 = true -%}
+    {%- endif -%}
+  {%- endfor -%}
+  }
+</script>
+
+{%- comment -%}
+  講座テキスト：実キー custom.custom_daytime / custom_time / custom_mochimono / custom_kaijyo / custom_jyusho / custom_hoka
+  備考は custom.custom_biko / custom.biko もフォールバック（hoka より後）
+  （短いキーはフォールバックのみ）
+{%- endcomment -%}
+<script type="application/json" id="esfs-variant-info-map">
+  {
+  {%- for v in product.variants -%}
+    {%- if forloop.index0 > 0 -%},{%- endif -%}
+    "{{ v.id }}":{
+      {%- assign _day_mf = v.metafields.custom.custom_daytime -%}
+      {%- if _day_mf == blank -%}{%- assign _day_mf = v.metafields.custom.day -%}{%- endif -%}
+      {%- assign _time_mf = v.metafields.custom.custom_time -%}
+      {%- if _time_mf == blank -%}{%- assign _time_mf = v.metafields.custom.time -%}{%- endif -%}
+      {%- assign _mochi_mf = v.metafields.custom.custom_mochimono -%}
+      {%- if _mochi_mf == blank -%}{%- assign _mochi_mf = v.metafields.custom.mochimono -%}{%- endif -%}
+      {%- assign _kaijyo_mf = v.metafields.custom.custom_kaijyo -%}
+      {%- if _kaijyo_mf == blank -%}{%- assign _kaijyo_mf = v.metafields.custom.kaijyo -%}{%- endif -%}
+      {%- assign _jyusho_mf = v.metafields.custom.custom_jyusho -%}
+      {%- if _jyusho_mf == blank -%}{%- assign _jyusho_mf = v.metafields.custom.jyusho -%}{%- endif -%}
+      {%- assign _hoka_mf = v.metafields.custom.custom_hoka -%}
+      {%- if _hoka_mf == blank -%}{%- assign _hoka_mf = v.metafields.custom.hoka -%}{%- endif -%}
+      {%- if _hoka_mf == blank -%}{%- assign _hoka_mf = v.metafields.custom.custom_biko -%}{%- endif -%}
+      {%- if _hoka_mf == blank -%}{%- assign _hoka_mf = v.metafields.custom.biko -%}{%- endif -%}
+      {%- assign _day_s = _day_mf | metafield_text | strip -%}
+      {%- if _day_s == blank and _day_mf.value != blank -%}{%- assign _day_s = _day_mf.value | append: '' | strip -%}{%- endif -%}
+      {%- assign _time_s = _time_mf | metafield_text | strip -%}
+      {%- if _time_s == blank and _time_mf.value != blank -%}{%- assign _time_s = _time_mf.value | append: '' | strip -%}{%- endif -%}
+      {%- assign _mochi_s = _mochi_mf | metafield_text | strip -%}
+      {%- if _mochi_s == blank and _mochi_mf.value != blank -%}{%- assign _mochi_s = _mochi_mf.value | append: '' | strip -%}{%- endif -%}
+      {%- assign _kaijyo_s = _kaijyo_mf | metafield_text | strip -%}
+      {%- if _kaijyo_s == blank and _kaijyo_mf.value != blank -%}{%- assign _kaijyo_s = _kaijyo_mf.value | append: '' | strip -%}{%- endif -%}
+      {%- assign _jyusho_s = _jyusho_mf | metafield_text | strip -%}
+      {%- if _jyusho_s == blank and _jyusho_mf.value != blank -%}{%- assign _jyusho_s = _jyusho_mf.value | append: '' | strip -%}{%- endif -%}
+      {%- assign _hoka_s = _hoka_mf | metafield_text | strip -%}
+      {%- if _hoka_s == blank and _hoka_mf.value != blank -%}{%- assign _hoka_s = _hoka_mf.value | append: '' | strip -%}{%- endif -%}
+      "day":{{ _day_s | json }},
+      "time":{{ _time_s | json }},
+      "mochimono":{{ _mochi_s | json }},
+      "kaijyo":{{ _kaijyo_s | json }},
+      "jyusho":{{ _jyusho_s | json }},
+      "hoka":{{ _hoka_s | json }}
+    }
+  {%- endfor -%}
+  }
+</script>
+
+{%- comment -%}
+  開催日（会場開催日オプション値）→ 講座情報
+{%- endcomment -%}
+<script type="application/json" id="esfs-variant-info-map-by-option">
+  {
+  {%- assign first_info_written2 = false -%}
+  {%- for v in product.variants -%}
+    {%- assign esfs_kaijo_key2 = v.options[esfs_kaijo_option_index] | default: v.option1 -%}
+    {%- capture payload -%}{
+      {%- assign _day_mf2 = v.metafields.custom.custom_daytime -%}
+      {%- if _day_mf2 == blank -%}{%- assign _day_mf2 = v.metafields.custom.day -%}{%- endif -%}
+      {%- assign _time_mf2 = v.metafields.custom.custom_time -%}
+      {%- if _time_mf2 == blank -%}{%- assign _time_mf2 = v.metafields.custom.time -%}{%- endif -%}
+      {%- assign _mochi_mf2 = v.metafields.custom.custom_mochimono -%}
+      {%- if _mochi_mf2 == blank -%}{%- assign _mochi_mf2 = v.metafields.custom.mochimono -%}{%- endif -%}
+      {%- assign _kaijyo_mf2 = v.metafields.custom.custom_kaijyo -%}
+      {%- if _kaijyo_mf2 == blank -%}{%- assign _kaijyo_mf2 = v.metafields.custom.kaijyo -%}{%- endif -%}
+      {%- assign _jyusho_mf2 = v.metafields.custom.custom_jyusho -%}
+      {%- if _jyusho_mf2 == blank -%}{%- assign _jyusho_mf2 = v.metafields.custom.jyusho -%}{%- endif -%}
+      {%- assign _hoka_mf2 = v.metafields.custom.custom_hoka -%}
+      {%- if _hoka_mf2 == blank -%}{%- assign _hoka_mf2 = v.metafields.custom.hoka -%}{%- endif -%}
+      {%- if _hoka_mf2 == blank -%}{%- assign _hoka_mf2 = v.metafields.custom.custom_biko -%}{%- endif -%}
+      {%- if _hoka_mf2 == blank -%}{%- assign _hoka_mf2 = v.metafields.custom.biko -%}{%- endif -%}
+      {%- assign _day_s2 = _day_mf2 | metafield_text | strip -%}
+      {%- if _day_s2 == blank and _day_mf2.value != blank -%}{%- assign _day_s2 = _day_mf2.value | append: '' | strip -%}{%- endif -%}
+      {%- assign _time_s2 = _time_mf2 | metafield_text | strip -%}
+      {%- if _time_s2 == blank and _time_mf2.value != blank -%}{%- assign _time_s2 = _time_mf2.value | append: '' | strip -%}{%- endif -%}
+      {%- assign _mochi_s2 = _mochi_mf2 | metafield_text | strip -%}
+      {%- if _mochi_s2 == blank and _mochi_mf2.value != blank -%}{%- assign _mochi_s2 = _mochi_mf2.value | append: '' | strip -%}{%- endif -%}
+      {%- assign _kaijyo_s2 = _kaijyo_mf2 | metafield_text | strip -%}
+      {%- if _kaijyo_s2 == blank and _kaijyo_mf2.value != blank -%}{%- assign _kaijyo_s2 = _kaijyo_mf2.value | append: '' | strip -%}{%- endif -%}
+      {%- assign _jyusho_s2 = _jyusho_mf2 | metafield_text | strip -%}
+      {%- if _jyusho_s2 == blank and _jyusho_mf2.value != blank -%}{%- assign _jyusho_s2 = _jyusho_mf2.value | append: '' | strip -%}{%- endif -%}
+      {%- assign _hoka_s2 = _hoka_mf2 | metafield_text | strip -%}
+      {%- if _hoka_s2 == blank and _hoka_mf2.value != blank -%}{%- assign _hoka_s2 = _hoka_mf2.value | append: '' | strip -%}{%- endif -%}
+      "day":{{ _day_s2 | json }},
+      "time":{{ _time_s2 | json }},
+      "mochimono":{{ _mochi_s2 | json }},
+      "kaijyo":{{ _kaijyo_s2 | json }},
+      "jyusho":{{ _jyusho_s2 | json }},
+      "hoka":{{ _hoka_s2 | json }}
+    }{%- endcapture -%}
+    {%- if first_info_written2 -%},{%- endif -%}
+    {{ esfs_kaijo_key2 | json }}:{{ payload }}
+    {%- assign opt1_norm2 = esfs_kaijo_key2 | replace: '　', ' ' | strip -%}
+    {%- if opt1_norm2 != blank and opt1_norm2 != esfs_kaijo_key2 -%}
+      ,{{ opt1_norm2 | json }}:{{ payload }}
+    {%- endif -%}
+    {%- assign first_info_written2 = true -%}
+  {%- endfor -%}
+  }
+</script>
+
+{%- comment -%}
+  講座テキスト用：各値を Base64 にした配列（JSON内の引用符・改行で parse が壊れるのを防ぐ）
+{%- endcomment -%}
+<script type="application/json" id="esfs-variant-info-b64-list">
+  [
+  {%- for v in product.variants -%}
+    {%- if forloop.index0 > 0 -%},{%- endif -%}
+    {%- assign _bk = v.options[esfs_kaijo_option_index] | default: v.option1 -%}
+    {%- assign _bd_mf = v.metafields.custom.custom_daytime -%}
+    {%- if _bd_mf == blank -%}{%- assign _bd_mf = v.metafields.custom.day -%}{%- endif -%}
+    {%- assign _bd = _bd_mf | metafield_text | strip -%}
+    {%- if _bd == blank -%}{%- capture _bd -%}{{ _bd_mf.value }}{%- endcapture -%}{%- assign _bd = _bd | strip -%}{%- endif -%}
+    {%- assign _bt_mf = v.metafields.custom.custom_time -%}
+    {%- if _bt_mf == blank -%}{%- assign _bt_mf = v.metafields.custom.time -%}{%- endif -%}
+    {%- assign _bt = _bt_mf | metafield_text | strip -%}
+    {%- if _bt == blank -%}{%- capture _bt -%}{{ _bt_mf.value }}{%- endcapture -%}{%- assign _bt = _bt | strip -%}{%- endif -%}
+    {%- assign _bm_mf = v.metafields.custom.custom_mochimono -%}
+    {%- if _bm_mf == blank -%}{%- assign _bm_mf = v.metafields.custom.mochimono -%}{%- endif -%}
+    {%- assign _bm = _bm_mf | metafield_text | strip -%}
+    {%- if _bm == blank -%}{%- capture _bm -%}{{ _bm_mf.value }}{%- endcapture -%}{%- assign _bm = _bm | strip -%}{%- endif -%}
+    {%- assign _bkai_mf = v.metafields.custom.custom_kaijyo -%}
+    {%- if _bkai_mf == blank -%}{%- assign _bkai_mf = v.metafields.custom.kaijyo -%}{%- endif -%}
+    {%- assign _bkai = _bkai_mf | metafield_text | strip -%}
+    {%- if _bkai == blank -%}{%- capture _bkai -%}{{ _bkai_mf.value }}{%- endcapture -%}{%- assign _bkai = _bkai | strip -%}{%- endif -%}
+    {%- assign _bj_mf = v.metafields.custom.custom_jyusho -%}
+    {%- if _bj_mf == blank -%}{%- assign _bj_mf = v.metafields.custom.jyusho -%}{%- endif -%}
+    {%- assign _bj = _bj_mf | metafield_text | strip -%}
+    {%- if _bj == blank -%}{%- capture _bj -%}{{ _bj_mf.value }}{%- endcapture -%}{%- assign _bj = _bj | strip -%}{%- endif -%}
+    {%- assign _bh_mf = v.metafields.custom.custom_hoka -%}
+    {%- if _bh_mf == blank -%}{%- assign _bh_mf = v.metafields.custom.hoka -%}{%- endif -%}
+    {%- if _bh_mf == blank -%}{%- assign _bh_mf = v.metafields.custom.custom_biko -%}{%- endif -%}
+    {%- if _bh_mf == blank -%}{%- assign _bh_mf = v.metafields.custom.biko -%}{%- endif -%}
+    {%- assign _bh = _bh_mf | metafield_text | strip -%}
+    {%- if _bh == blank -%}{%- capture _bh -%}{{ _bh_mf.value }}{%- endcapture -%}{%- assign _bh = _bh | strip -%}{%- endif -%}
+    {
+      "id":"{{ v.id }}",
+      "opt_b64":{{ _bk | base64_encode | json }},
+      "day_b64":{{ _bd | base64_encode | json }},
+      "time_b64":{{ _bt | base64_encode | json }},
+      "mochi_b64":{{ _bm | base64_encode | json }},
+      "kaijyo_b64":{{ _bkai | base64_encode | json }},
+      "jyu_b64":{{ _bj | base64_encode | json }},
+      "hoka_b64":{{ _bh | base64_encode | json }}
+    }
+  {%- endfor -%}
+  ]
+</script>
+
+<script type="application/json" id="esfs-workshop-liquid-probe">
+  {
+    "variant_count": {{ product.variants.size | json }},
+    "kaijo_option_index": {{ esfs_kaijo_option_index | json }},
+    "first_jyusho_metafield_text_len": {% if product.variants.size > 0 %}{%- assign _pj = product.variants.first.metafields.custom.custom_jyusho -%}{%- if _pj == blank -%}{%- assign _pj = product.variants.first.metafields.custom.jyusho -%}{%- endif -%}{{ _pj | metafield_text | default: '' | size | json }}{% else %}0{% endif %},
+    "hint": "first_jyusho_metafield_text_len が 0 で管理画面に住所がある場合、各 variant メタフィールドの「ストアフロントでのアクセス」をオンにしてください"
+  }
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var scope = document.querySelector('.esfs-20xx-workshop-scope');
+    if (!scope) return;
+
+    function esfsParseJsonScript(id) {
+      try {
+        var el = document.getElementById(id);
+        if (!el || !el.textContent) return null;
+        return JSON.parse(el.textContent.trim());
+      } catch (e) {
+        return null;
+      }
+    }
+
+    /* esfsParseJsonScriptDebug: returns object with data, error, preview */
+    function esfsParseJsonScriptDebug(id) {
+      var out = { data: null, error: null, preview: '' };
+      try {
+        var el = document.getElementById(id);
+        if (!el) {
+          out.error = '要素なし id=' + id;
+          return out;
+        }
+        var raw = (el.textContent || '').trim();
+        out.preview = raw.length > 420 ? raw.slice(0, 420) + '…' : raw;
+        if (!raw) {
+          out.error = '中身が空 id=' + id;
+          return out;
+        }
+        out.data = JSON.parse(raw);
+        return out;
+      } catch (e) {
+        out.error = (e && e.message) ? e.message : String(e);
+        return out;
+      }
+    }
+
+    function esfsB64Utf8Decode(b64) {
+      if (b64 == null || b64 === '') return '';
+      var s = String(b64);
+      try {
+        var bin = atob(s);
+        if (typeof TextDecoder !== 'undefined') {
+          var u8 = new Uint8Array(bin.length);
+          for (var i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+          return new TextDecoder('utf-8').decode(u8);
+        }
+        return decodeURIComponent(escape(bin));
+      } catch (e) {
+        return '';
+      }
+    }
+
+    function esfsBuildInfoMapsFromB64List(arr) {
+      var byId = {};
+      var byOpt = {};
+      if (!Array.isArray(arr)) return { byId: byId, byOpt: byOpt };
+      for (var i = 0; i < arr.length; i++) {
+        var row = arr[i];
+        if (!row) continue;
+        var info = {
+          day: esfsB64Utf8Decode(row.day_b64),
+          time: esfsB64Utf8Decode(row.time_b64),
+          mochimono: esfsB64Utf8Decode(row.mochi_b64),
+          kaijyo: esfsB64Utf8Decode(row.kaijyo_b64),
+          jyusho: esfsB64Utf8Decode(row.jyu_b64),
+          hoka: esfsB64Utf8Decode(row.hoka_b64)
+        };
+        var id = row.id != null ? String(row.id) : '';
+        if (id) byId[id] = info;
+        var opt = esfsB64Utf8Decode(row.opt_b64);
+        if (opt) {
+          byOpt[opt] = info;
+          var nk = String(opt)
+            .replace(/\u3000/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+          if (nk && nk !== opt) byOpt[nk] = info;
+        }
+      }
+      return { byId: byId, byOpt: byOpt };
+    }
+
+    var esfsVariantPhotoMap = esfsParseJsonScript('esfs-variant-photo-map') || {};
+    var esfsVariantPhotoByOption = esfsParseJsonScript('esfs-variant-photo-map-by-option') || {};
+    var esfsVariantFeaturedImageMap = esfsParseJsonScript('esfs-variant-featured-image-map') || {};
+    var esfsVariantFeaturedImageByOption = esfsParseJsonScript('esfs-variant-featured-image-map-by-option') || {};
+
+    var _infoMapDbg = esfsParseJsonScriptDebug('esfs-variant-info-map');
+    var _infoOptDbg = esfsParseJsonScriptDebug('esfs-variant-info-map-by-option');
+    var _b64Dbg = esfsParseJsonScriptDebug('esfs-variant-info-b64-list');
+    var _probe = esfsParseJsonScriptDebug('esfs-workshop-liquid-probe');
+
+    function esfsMergeVariantInfoRows(into, from) {
+      if (!from || typeof from !== 'object' || !into || typeof into !== 'object') return;
+      var fs = ['day', 'time', 'mochimono', 'kaijyo', 'jyusho', 'hoka'];
+      for (var k in from) {
+        if (!Object.prototype.hasOwnProperty.call(from, k)) continue;
+        var a = from[k];
+        if (!a || typeof a !== 'object') continue;
+        if (!into[k]) {
+          into[k] = {
+            day: a.day || '',
+            time: a.time || '',
+            mochimono: a.mochimono || '',
+            kaijyo: a.kaijyo || '',
+            jyusho: a.jyusho || '',
+            hoka: a.hoka || ''
+          };
+          continue;
+        }
+        var b = into[k];
+        for (var i = 0; i < fs.length; i++) {
+          var f = fs[i];
+          if (String(a[f] || '').length > String(b[f] || '').length) b[f] = a[f];
+        }
+      }
+    }
+
+    var esfsVariantInfoMap = {};
+    var esfsVariantInfoByOption = {};
+    if (_b64Dbg.error == null && Array.isArray(_b64Dbg.data) && _b64Dbg.data.length > 0) {
+      var _bm2 = esfsBuildInfoMapsFromB64List(_b64Dbg.data);
+      esfsVariantInfoMap = _bm2.byId;
+      esfsVariantInfoByOption = _bm2.byOpt;
+    }
+    if (_infoMapDbg.data && typeof _infoMapDbg.data === 'object') {
+      esfsMergeVariantInfoRows(esfsVariantInfoMap, _infoMapDbg.data);
+    }
+    if (Object.keys(esfsVariantInfoMap).length === 0 && _infoMapDbg.data && typeof _infoMapDbg.data === 'object') {
+      esfsVariantInfoMap = _infoMapDbg.data;
+      esfsVariantInfoByOption =
+        _infoOptDbg.data && typeof _infoOptDbg.data === 'object' ? _infoOptDbg.data : {};
+    }
+    if (_infoOptDbg.data && typeof _infoOptDbg.data === 'object') {
+      esfsMergeVariantInfoRows(esfsVariantInfoByOption, _infoOptDbg.data);
+    }
+
+    window.esfsWorkshopLiquidProbe = _probe.data;
+
+    window.esfsDumpWorkshopDebug = function () {
+      var vid = (function () {
+        var el =
+          document.querySelector('form[action*="/cart/add"] input[name="id"].product-variant-id') ||
+          document.querySelector('form[action*="/cart/add"] input[name="id"]') ||
+          document.querySelector('form.installment input[name="id"]');
+        return el && el.value ? String(el.value) : null;
+      })();
+      var fw = document.getElementById('esfs-fw-select-date');
+      var kaijo =
+        fw && fw.value
+          ? String(fw.value)
+          : (function () {
+              var s = document.querySelector('select[name="options[会場開催日]"]');
+              return s && s.value ? String(s.value) : null;
+            })();
+      // eslint-disable-next-line no-console
+      console.group('[esfs] ワークショップ講座デバッグ（手動: esfsDumpWorkshopDebug()）');
+      // eslint-disable-next-line no-console
+      console.log('Liquidプローブ', _probe.data, _probe.error);
+      // eslint-disable-next-line no-console
+      console.log('info-map JSON', _infoMapDbg.error || 'OK', 'keys:', Object.keys(_infoMapDbg.data || {}).length);
+      // eslint-disable-next-line no-console
+      console.log('info-map-by-option JSON', _infoOptDbg.error || 'OK');
+      // eslint-disable-next-line no-console
+      console.log('b64-list JSON', _b64Dbg.error || 'OK', 'rows:', Array.isArray(_b64Dbg.data) ? _b64Dbg.data.length : 0);
+      if (_infoMapDbg.error) {
+        // eslint-disable-next-line no-console
+        console.warn('info-map 解析失敗プレビュー:', _infoMapDbg.preview);
+      }
+      if (_infoOptDbg.error) {
+        // eslint-disable-next-line no-console
+        console.warn('info-map-by-option 解析失敗プレビュー:', _infoOptDbg.preview);
+      }
+      if (_b64Dbg.error) {
+        // eslint-disable-next-line no-console
+        console.warn('b64-list 解析失敗プレビュー:', _b64Dbg.preview);
+      }
+      // eslint-disable-next-line no-console
+      console.log('現在 variant id (input):', vid, '→ map hit:', vid ? !!esfsVariantInfoMap[vid] : null);
+      // eslint-disable-next-line no-console
+      console.log('開催日キー:', kaijo);
+      // eslint-disable-next-line no-console
+      console.log('byOption hit:', kaijo ? !!esfsVariantInfoByOption[kaijo] : null);
+      if (vid && esfsVariantInfoMap[vid]) {
+        // eslint-disable-next-line no-console
+        console.log('この variant の講座データ:', esfsVariantInfoMap[vid]);
+      }
+      if (kaijo && esfsVariantInfoByOption[kaijo]) {
+        // eslint-disable-next-line no-console
+        console.log('開催日キーでの講座データ:', esfsVariantInfoByOption[kaijo]);
+      }
+      var w = document.getElementById('esfs-variant-info');
+      // eslint-disable-next-line no-console
+      console.log('#esfs-variant-info hidden?', w && w.hasAttribute('hidden'));
+      // eslint-disable-next-line no-console
+      console.groupEnd();
+    };
+    var esfsBannerWrap = document.getElementById('esfs-variant-banner');
+    var esfsBannerImg = document.getElementById('esfs-variant-banner-img');
+    /**
+     * ===== esfs DEBUG（後で削除OK）=====
+     * URL に `&esfsdebug=1`（または先頭なら `?esfsdebug=1`）を付けると詳細ログが出ます。
+     * ※ `?variant=123?esfsdebug=1` のように2つ目を `?` にしないでください（`&esfsdebug=1` にしてください）。
+     * もしくはコンソールで `window.ESFS_20XX_DEBUG = true` を実行してください。
+     */
+    window.ESFS_20XX_DEBUG = window.ESFS_20XX_DEBUG || false;
+    var esfsDebugEnabled = false;
+    try {
+      var spd = new URLSearchParams(window.location.search || '');
+      var hrefDbg = /[?&]esfsdebug=1(?:&|#|$)/.test(String(window.location.href || ''));
+      esfsDebugEnabled =
+        window.ESFS_20XX_DEBUG || spd.get('esfsdebug') === '1' || hrefDbg;
+      if (spd.get('esfsdebug') === '1' || hrefDbg) window.ESFS_20XX_DEBUG = true;
+    } catch (e) {
+      esfsDebugEnabled = window.ESFS_20XX_DEBUG;
+    }
+
+    function esfsDbg() {
+      if (!esfsDebugEnabled) return;
+      try {
+        // eslint-disable-next-line no-console
+        console.log.apply(console, arguments);
+      } catch (e) {}
+    }
+
+    if (esfsDebugEnabled) {
+      // eslint-disable-next-line no-console
+      console.info('[esfs] DEBUG enabled', window.location.href);
+    }
+
+    esfsDbg('[esfs] init', {
+      photoByVariant: Object.keys(esfsVariantPhotoMap || {}).length,
+      photoByOption: Object.keys(esfsVariantPhotoByOption || {}).length,
+      featuredByVariant: Object.keys(esfsVariantFeaturedImageMap || {}).length,
+      featuredByOption: Object.keys(esfsVariantFeaturedImageByOption || {}).length,
+      infoByVariant: Object.keys(esfsVariantInfoMap || {}).length,
+      infoByOption: Object.keys(esfsVariantInfoByOption || {}).length,
+      infoMapParseError: _infoMapDbg.error,
+      infoOptParseError: _infoOptDbg.error,
+      b64ListParseError: _b64Dbg.error,
+      liquidProbe: _probe.data
+    });
+    if (esfsDebugEnabled && typeof window.esfsDumpWorkshopDebug === 'function') {
+      window.esfsDumpWorkshopDebug();
+    }
+    if (window.ESFS_20XX_DEBUG) {
+      try {
+        esfsDbg('[esfs] sample keys', {
+          photoByVariant_first: Object.keys(esfsVariantPhotoMap || {})[0],
+          photoByOption_first: Object.keys(esfsVariantPhotoByOption || {})[0],
+          infoByVariant_first: Object.keys(esfsVariantInfoMap || {})[0],
+          infoByOption_first: Object.keys(esfsVariantInfoByOption || {})[0]
+        });
+      } catch (e) {}
+    }
+
+    function esfsNormalizeKaijoKey(v) {
+      return String(v || '')
+        .replace(/\u3000/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function esfsGetSelectedKaijoValue() {
+      var fw = document.getElementById('esfs-fw-select-date');
+      if (fw && fw.options && fw.options.length && fw.value) return String(fw.value);
+      var sel = document.querySelector('select[name="options[会場開催日]"]');
+      if (sel && sel.value) return String(sel.value);
+      var all = document.querySelectorAll('select[name="options[会場開催日]"]');
+      for (var i = 0; i < all.length; i++) {
+        if (all[i].value) return String(all[i].value);
+      }
+      return null;
+    }
+
+    function esfsSanitizeVariantIdStr(raw) {
+      if (raw == null || raw === '') return null;
+      var s = String(raw).split('?')[0].split('&')[0].trim();
+      var m = s.match(/^\d{6,20}$/);
+      if (m) return m[0];
+      var digits = s.replace(/\D/g, '');
+      return digits.length >= 10 && digits.length <= 20 ? digits : s.length ? s : null;
+    }
+
+    function esfsGetVariantIdFromUrl() {
+      try {
+        var sp = new URLSearchParams(window.location.search || '');
+        var v = sp.get('variant');
+        return esfsSanitizeVariantIdStr(v);
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function esfsGetActiveVariantIdStr() {
+      function fromInputEl(el) {
+        return el && el.value ? esfsSanitizeVariantIdStr(el.value) : null;
+      }
+      // OPTIS 等の installment フォームが実際の予約 variant と一致しやすいため優先
+      var inst = document.querySelector('form.installment input[name="id"]');
+      var vidInst = fromInputEl(inst);
+      if (vidInst) return vidInst;
+      var el =
+        document.querySelector('form[action*="/cart/add"] input[name="id"].product-variant-id') ||
+        document.querySelector('form[action*="/cart/add"] input[name="id"]');
+      var vidMain = fromInputEl(el);
+      if (vidMain) return vidMain;
+      return esfsGetVariantIdFromUrl();
+    }
+
+    function esfsGetVariantIdInputEl() {
+      return (
+        document.querySelector('form.installment input[name="id"]') ||
+        document.querySelector('form[action*="/cart/add"] input[name="id"].product-variant-id') ||
+        document.querySelector('form[action*="/cart/add"] input[name="id"]')
+      );
+    }
+
+    function esfsUpdateVariantBanner() {
+      if (!esfsBannerWrap || !esfsBannerImg) return;
+      // まず variant id で引く（最も確実）
+      var vid = esfsGetActiveVariantIdStr();
+      var url = (vid && esfsVariantPhotoMap) ? esfsVariantPhotoMap[vid] : null;
+      // fallback: 開催日文字列キー
+      if (!url) {
+        var key = esfsGetSelectedKaijoValue();
+        url = (key && esfsVariantPhotoByOption) ? esfsVariantPhotoByOption[key] : null;
+        if (!url && key) {
+          var nk = esfsNormalizeKaijoKey(key);
+          url = esfsVariantPhotoByOption[nk] || null;
+        }
+      }
+      // フォールバック: featured_image
+      if (!url) {
+        url = (vid && esfsVariantFeaturedImageMap) ? esfsVariantFeaturedImageMap[vid] : null;
+      }
+      if (!url) {
+        var key2 = esfsGetSelectedKaijoValue();
+        url = (key2 && esfsVariantFeaturedImageByOption) ? esfsVariantFeaturedImageByOption[key2] : null;
+        if (!url && key2) {
+          var nk2 = esfsNormalizeKaijoKey(key2);
+          url = esfsVariantFeaturedImageByOption[nk2] || null;
+        }
+      }
+      if (url) {
+        esfsBannerImg.src = url;
+        esfsBannerWrap.removeAttribute('hidden');
+        esfsDbg('[esfs] banner set', { vid: vid, key: esfsGetSelectedKaijoValue(), url: url });
+      } else {
+        esfsBannerImg.removeAttribute('src');
+        esfsBannerWrap.setAttribute('hidden', '');
+        esfsDbg('[esfs] banner missing', { vid: vid, key: esfsGetSelectedKaijoValue() });
+        if (esfsDebugEnabled && Object.keys(esfsVariantPhotoMap || {}).length === 0 && Object.keys(esfsVariantPhotoByOption || {}).length === 0) {
+          // eslint-disable-next-line no-console
+          console.warn('[esfs] バリアント写真（custom.custom_photo）が Liquid で取得できていません。ストアフロントでのアクセスを確認してください。');
+        }
+      }
+    }
+
+    function esfsSetText(id, v) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var t = String(v == null ? '' : v).trim();
+      el.textContent = t || '—';
+    }
+
+    function esfsSetTextWithBr(id, v) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var t = String(v || '').trim();
+      if (!t) {
+        el.textContent = '—';
+        return;
+      }
+      el.innerHTML = t.replace(/\r\n|\r|\n/g, '<br>');
+    }
+
+    function esfsInfoHasAnyText(info) {
+      if (!info || typeof info !== 'object') return false;
+      return ['day', 'time', 'mochimono', 'kaijyo', 'jyusho', 'hoka'].some(function (f) {
+        return String(info[f] || '').trim().length > 0;
+      });
+    }
+
+    function esfsUpdateVariantInfo() {
+      var wrap = document.getElementById('esfs-variant-info');
+      if (!wrap) return;
+      var vid = esfsGetActiveVariantIdStr();
+      var key = esfsGetSelectedKaijoValue();
+      var infoByOpt =
+        key && esfsVariantInfoByOption
+          ? esfsVariantInfoByOption[key] || esfsVariantInfoByOption[esfsNormalizeKaijoKey(key)]
+          : null;
+      var info = (vid && esfsVariantInfoMap) ? esfsVariantInfoMap[vid] : null;
+      // メインフォームの variant と開催日の variant がずれるとき、開催日キー側に本文があるならそちらを優先
+      if (infoByOpt && esfsInfoHasAnyText(infoByOpt) && !esfsInfoHasAnyText(info)) {
+        info = infoByOpt;
+      }
+      if (!info) {
+        info = infoByOpt;
+      }
+      if (!info) {
+        var nodes = document.querySelectorAll('select[name="options[会場開催日]"]');
+        for (var j = 0; j < nodes.length && !info; j++) {
+          var kv = nodes[j].value ? String(nodes[j].value) : '';
+          if (!kv) continue;
+          info = esfsVariantInfoByOption[kv] || esfsVariantInfoByOption[esfsNormalizeKaijoKey(kv)] || null;
+        }
+      }
+      if (!info) {
+        var footerReady = document.body.classList.contains('esfs-20xx-workshop-reserve-in-footer');
+        var dayCell = document.getElementById('esfs-variant-info-day');
+        var dayShown = dayCell && dayCell.textContent.trim() !== '' && dayCell.textContent.trim() !== '—';
+        if (!footerReady && dayShown) {
+          wrap.removeAttribute('hidden');
+          esfsDbg('[esfs] info missing (pre-footer), keep Liquid SSR', { vid: vid, key: esfsGetSelectedKaijoValue() });
+          return;
+        }
+        esfsSetText('esfs-variant-info-day', '—');
+        esfsSetText('esfs-variant-info-time', '—');
+        esfsSetTextWithBr('esfs-variant-info-mochimono', '');
+        esfsSetTextWithBr('esfs-variant-info-kaijyo', '');
+        esfsSetTextWithBr('esfs-variant-info-jyusho', '');
+        esfsSetTextWithBr('esfs-variant-info-hoka', '');
+        wrap.removeAttribute('hidden');
+        esfsDbg('[esfs] info missing after footer', { vid: vid, key: esfsGetSelectedKaijoValue() });
+        if (
+          esfsDebugEnabled &&
+          window.esfsWorkshopLiquidProbe &&
+          Number(window.esfsWorkshopLiquidProbe.first_jyusho_metafield_text_len || 0) === 0
+        ) {
+          var hh = document.getElementById('esfs-variant-info-storefront-hint');
+          if (hh) hh.removeAttribute('hidden');
+        }
+        return;
+      }
+      if (!esfsInfoHasAnyText(info)) {
+        esfsSetText('esfs-variant-info-day', info.day);
+        esfsSetText('esfs-variant-info-time', info.time);
+        esfsSetTextWithBr('esfs-variant-info-mochimono', info.mochimono);
+        esfsSetTextWithBr('esfs-variant-info-kaijyo', info.kaijyo);
+        esfsSetTextWithBr('esfs-variant-info-jyusho', info.jyusho);
+        esfsSetTextWithBr('esfs-variant-info-hoka', info.hoka);
+        wrap.removeAttribute('hidden');
+        if (
+          esfsDebugEnabled &&
+          window.esfsWorkshopLiquidProbe &&
+          Number(window.esfsWorkshopLiquidProbe.first_jyusho_metafield_text_len || 0) === 0
+        ) {
+          var h2 = document.getElementById('esfs-variant-info-storefront-hint');
+          if (h2) h2.removeAttribute('hidden');
+        }
+        esfsDbg('[esfs] info row empty (Liquid がストアで空の可能性)', { vid: vid, key: key });
+        return;
+      }
+      var hh3 = document.getElementById('esfs-variant-info-storefront-hint');
+      if (hh3) hh3.setAttribute('hidden', '');
+      esfsSetText('esfs-variant-info-day', info.day);
+      esfsSetText('esfs-variant-info-time', info.time);
+      esfsSetTextWithBr('esfs-variant-info-mochimono', info.mochimono);
+      esfsSetTextWithBr('esfs-variant-info-kaijyo', info.kaijyo);
+      esfsSetTextWithBr('esfs-variant-info-jyusho', info.jyusho);
+      esfsSetTextWithBr('esfs-variant-info-hoka', info.hoka);
+      wrap.removeAttribute('hidden');
+      esfsDbg('[esfs] info set', { vid: vid, key: esfsGetSelectedKaijoValue(), info: info });
+    }
+
+    function fetchContent(url, elementId) {
+      fetch(url)
+        .then(response => {
+         if (!response.ok) {
+          throw new Error('Network response was not ok');
+          }
+         return response.text();
+       })
+        .then(html => {
+          var element = scope.querySelector('#' + elementId);
+          if (element) {
+            element.innerHTML = html;
+          }
+        })
+        .catch(function () {
+        });
+    }
+
+    fetchContent('https://botanypainting.com/00_2024_WEB/2024_workshop/workshop_item_2025002.html', 'esfs-workshop-20xx-html');
+
+    function updateButtonText() {
+      var buttons = document.querySelectorAll('.shopify-payment-button__button--unbranded');
+      buttons.forEach(function(button) {
+        if (button && button.textContent !== "予約する") {
+          button.textContent = "予約する";
+        }
+      });
+    }
+
+    updateButtonText();
+
+    var buttonObserver = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'childList') {
+          updateButtonText();
+        }
+      });
+    });
+
+    buttonObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    // 初期表示 + バリアント切替時に開催バナー更新
+    esfsUpdateVariantBanner();
+    esfsUpdateVariantInfo();
+    // フッター側からも呼べるように公開
+    window.esfsUpdateVariantBanner = esfsUpdateVariantBanner;
+    window.esfsUpdateVariantInfo = esfsUpdateVariantInfo;
+    function esfsScrollToTopSmooth() {
+      try {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (e) {
+        window.scrollTo(0, 0);
+      }
+    }
+    window.esfsScrollToTopSmooth = esfsScrollToTopSmooth;
+
+    /*
+     * 予約ボタンの最終フォールバック:
+     * 既存ハンドラが動かない場合でも、この関数から checkout へ進めるようにする。
+     */
+    function esfsIsUnsetValue(v, jaPlaceholder) {
+      var s = String(v == null ? '' : v).trim();
+      if (!s) return true;
+      if (s.indexOf('Please select') !== -1) return true;
+      if (jaPlaceholder && s === jaPlaceholder) return true;
+      return false;
+    }
+    function esfsPickValidReserveValue(mainVal, footerVal, jaPlaceholder) {
+      var mv = String(mainVal == null ? '' : mainVal).trim();
+      var fv = String(footerVal == null ? '' : footerVal).trim();
+      if (!esfsIsUnsetValue(mv, jaPlaceholder)) return mv;
+      if (!esfsIsUnsetValue(fv, jaPlaceholder)) return fv;
+      return mv || fv || '';
+    }
+    window.esfsCanReserveSelection = function () {
+      var mainSize = document.querySelector('select.po-option--type-dropdown-menu[key="po_作品のサイズ"]')
+        || document.querySelector('select[key="po_作品のサイズ"]');
+      var mainPlant = document.querySelector('select.po-option--type-dropdown-menu[key="po_希望する植物"]')
+        || document.querySelector('select[key="po_希望する植物"]');
+      var fwSize = document.getElementById('esfs-fw-select-size');
+      var fwPlant = document.getElementById('esfs-fw-select-plant');
+
+      var sizeVal = esfsPickValidReserveValue(
+        mainSize && mainSize.value ? mainSize.value : '',
+        fwSize && fwSize.value ? fwSize.value : '',
+        'サイズを選ぶ'
+      );
+      var plantVal = esfsPickValidReserveValue(
+        mainPlant && mainPlant.value ? mainPlant.value : '',
+        fwPlant && fwPlant.value ? fwPlant.value : '',
+        '植物を選ぶ'
+      );
+
+      var sizeUnset = esfsIsUnsetValue(sizeVal, 'サイズを選ぶ');
+      var plantUnset = esfsIsUnsetValue(plantVal, '植物を選ぶ');
+      return !(sizeUnset || plantUnset);
+    };
+    function esfsReserveDebug(label, extra) {
+      if (!esfsDebugEnabled) return;
+      try {
+        var mainSize = document.querySelector('select.po-option--type-dropdown-menu[key="po_作品のサイズ"]')
+          || document.querySelector('select[key="po_作品のサイズ"]');
+        var mainPlant = document.querySelector('select.po-option--type-dropdown-menu[key="po_希望する植物"]')
+          || document.querySelector('select[key="po_希望する植物"]');
+        var fwSize = document.getElementById('esfs-fw-select-size');
+        var fwPlant = document.getElementById('esfs-fw-select-plant');
+        var qtyEl = document.getElementById('esfs-fw-qty-select');
+        var variantInput =
+          document.querySelector('form[action*="/cart/add"] input[name="id"].product-variant-id') ||
+          document.querySelector('form[action*="/cart/add"] input[name="id"]');
+        // eslint-disable-next-line no-console
+        console.log('[esfs-reserve-debug]', label, {
+          canReserve: window.esfsCanReserveSelection(),
+          mainSize: mainSize && mainSize.value ? mainSize.value : '',
+          mainPlant: mainPlant && mainPlant.value ? mainPlant.value : '',
+          footerSize: fwSize && fwSize.value ? fwSize.value : '',
+          footerPlant: fwPlant && fwPlant.value ? fwPlant.value : '',
+          qty: qtyEl && qtyEl.value ? qtyEl.value : '',
+          variantId: variantInput && variantInput.value ? variantInput.value : '',
+          url: window.location.href,
+          extra: extra || null
+        });
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log('[esfs-reserve-debug] log-failed', e);
+      }
+    }
+    window.esfsReserveDebug = esfsReserveDebug;
+    function esfsFormDataPreview(fd, maxRows) {
+      var rows = [];
+      var i = 0;
+      fd.forEach(function (v, k) {
+        if (i < maxRows) rows.push([k, String(v)]);
+        i += 1;
+      });
+      return { total: i, rows: rows };
+    }
+    window.esfsDumpCheckoutForms = function () {
+      var forms = Array.prototype.slice.call(document.querySelectorAll('form[action*="/cart/add"]'));
+      var dump = forms.map(function (f, idx) {
+        var fd = new FormData(f);
+        var p = esfsFormDataPreview(fd, 40);
+        return {
+          index: idx,
+          className: f.className || '',
+          action: f.getAttribute('action') || '',
+          hasId: !!(f.querySelector('input[name="id"]') && f.querySelector('input[name="id"]').value),
+          idValue: (f.querySelector('input[name="id"]') && f.querySelector('input[name="id"]').value) || '',
+          propertiesCount: f.querySelectorAll('input[name^="properties["], select[name^="properties["], textarea[name^="properties["]').length,
+          optionsCount: f.querySelectorAll('input[name^="options["], select[name^="options["], textarea[name^="options["]').length,
+          previewTotal: p.total,
+          previewRows: p.rows
+        };
+      });
+      return dump;
+    };
+    document.addEventListener('submit', function (e) {
+      var form = e && e.target;
+      if (!form || !form.matches || !form.matches('form[action*="/cart/add"]')) return;
+      try {
+        var fd = new FormData(form);
+        var p = esfsFormDataPreview(fd, 50);
+        esfsReserveDebug('submit-event:/cart/add', {
+          action: form.getAttribute('action') || '',
+          className: form.className || '',
+          id: (form.querySelector('input[name="id"]') && form.querySelector('input[name="id"]').value) || '',
+          returnTo: (form.querySelector('input[name="return_to"]') && form.querySelector('input[name="return_to"]').value) || '',
+          propertiesCount: form.querySelectorAll('input[name^="properties["], select[name^="properties["], textarea[name^="properties["]').length,
+          optionsCount: form.querySelectorAll('input[name^="options["], select[name^="options["], textarea[name^="options["]').length,
+          formDataTotal: p.total,
+          formDataRows: p.rows
+        });
+      } catch (err) {
+        esfsReserveDebug('submit-event:log-failed', { message: String(err && err.message ? err.message : err) });
+      }
+    }, true);
+    function setReserveBtnWaiting(waiting) {
+      var btn = document.getElementById('esfs-fw-reserve-btn');
+      if (!btn) return;
+      if (waiting) {
+        btn.classList.add('esfs-fw-reserve-btn--waiting');
+        btn.textContent = 'お待ちください。';
+        btn.setAttribute('aria-busy', 'true');
+      } else {
+        btn.classList.remove('esfs-fw-reserve-btn--waiting');
+        btn.textContent = '予約する';
+        btn.removeAttribute('aria-busy');
+      }
+    }
+    window.esfsSetReserveBtnWaiting = setReserveBtnWaiting;
+    function getSelectedSizePlantValues() {
+      var mainSize = document.querySelector('select.po-option--type-dropdown-menu[key="po_作品のサイズ"]')
+        || document.querySelector('select[key="po_作品のサイズ"]');
+      var mainPlant = document.querySelector('select.po-option--type-dropdown-menu[key="po_希望する植物"]')
+        || document.querySelector('select[key="po_希望する植物"]');
+      var fwSize = document.getElementById('esfs-fw-select-size');
+      var fwPlant = document.getElementById('esfs-fw-select-plant');
+      return {
+        size: esfsPickValidReserveValue(
+          mainSize && mainSize.value ? mainSize.value : '',
+          fwSize && fwSize.value ? fwSize.value : '',
+          'サイズを選ぶ'
+        ),
+        plant: esfsPickValidReserveValue(
+          mainPlant && mainPlant.value ? mainPlant.value : '',
+          fwPlant && fwPlant.value ? fwPlant.value : '',
+          '植物を選ぶ'
+        )
+      };
+    }
+    function setFormFieldValue(el, value) {
+      if (!el) return;
+      if (el.tagName === 'SELECT') {
+        el.value = value;
+        // OPTIS/BSS 側は input/change で内部値が更新されることがあるため両方発火
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+      } else {
+        el.value = value;
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }
+    function syncOptisValuesToCartForms() {
+      var sv = getSelectedSizePlantValues();
+      var dateSel = document.querySelector('select[name="options[会場開催日]"]');
+      var dateVal = dateSel && dateSel.value ? String(dateSel.value) : '';
+
+      function esfsNormPoText(s) {
+        return String(s == null ? '' : s)
+          .replace(/\u3000/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim();
+      }
+
+      function esfsResolvePoNameBySelectedValue(targetValue) {
+        var tv = esfsNormPoText(targetValue);
+        if (!tv) return null;
+        var els = Array.prototype.slice.call(
+          document.querySelectorAll('select[name^="po_dropdown"], input[name^="po_dropdown"]')
+        );
+        for (var i = 0; i < els.length; i++) {
+          var el = els[i];
+          var name = el && el.name ? el.name : '';
+          if (!name) continue;
+          if (el.tagName === 'SELECT' && el.options) {
+            for (var j = 0; j < el.options.length; j++) {
+              var opt = el.options[j];
+              var optText = esfsNormPoText(opt && opt.textContent ? opt.textContent : '');
+              var optVal = esfsNormPoText(opt && opt.value != null ? opt.value : '');
+              if (optText === tv || optVal === tv) return name;
+            }
+          } else {
+            var v = esfsNormPoText(el.value);
+            if (v === tv) return name;
+          }
+        }
+        return null;
+      }
+
+      var poSizeName = esfsResolvePoNameBySelectedValue(sv.size);
+      var poPlantName = esfsResolvePoNameBySelectedValue(sv.plant);
+
+      var forms = Array.prototype.slice.call(document.querySelectorAll('form[action*="/cart/add"]'));
+      forms.forEach(function (form) {
+        // サイズ/植物は po_dropdown の name がフォームによって異なるため、
+        // ページ上に存在する po_dropdown から「選択値に対応する name」を解決して強制送信
+        if (!esfsIsUnsetValue(sv.size, 'サイズを選ぶ') && poSizeName) {
+          var sField =
+            form.querySelector('select[name="' + poSizeName + '"], input[name="' + poSizeName + '"]');
+          if (!sField) {
+            sField = document.createElement('input');
+            sField.type = 'hidden';
+            sField.name = poSizeName;
+            form.appendChild(sField);
+          }
+          setFormFieldValue(sField, sv.size);
+        }
+        if (!esfsIsUnsetValue(sv.plant, '植物を選ぶ') && poPlantName) {
+          var pField =
+            form.querySelector('select[name="' + poPlantName + '"], input[name="' + poPlantName + '"]');
+          if (!pField) {
+            pField = document.createElement('input');
+            pField.type = 'hidden';
+            pField.name = poPlantName;
+            form.appendChild(pField);
+          }
+          setFormFieldValue(pField, sv.plant);
+        }
+
+        // フォーム内に po_dropdown が2つ存在する場合は従来の順序埋めも行う（補助）
+        var poFields = Array.prototype.slice.call(
+          form.querySelectorAll('select[name^="po_dropdown"], input[name^="po_dropdown"]')
+        );
+        if (poFields.length >= 1 && !esfsIsUnsetValue(sv.size, 'サイズを選ぶ') && !poSizeName) {
+          setFormFieldValue(poFields[0], sv.size);
+        }
+        if (poFields.length >= 2 && !esfsIsUnsetValue(sv.plant, '植物を選ぶ') && !poPlantName) {
+          setFormFieldValue(poFields[1], sv.plant);
+        }
+
+        if (dateVal) {
+          var dateField = form.querySelector('select[name="options[会場開催日]"], input[name="options[会場開催日]"]');
+          if (!dateField) {
+            dateField = document.createElement('input');
+            dateField.type = 'hidden';
+            dateField.name = 'options[会場開催日]';
+            form.appendChild(dateField);
+          }
+          setFormFieldValue(dateField, dateVal);
+        }
+      });
+      esfsReserveDebug('forceReserve:sync-optis-to-forms', {
+        size: sv.size,
+        plant: sv.plant,
+        poSizeName: poSizeName,
+        poPlantName: poPlantName,
+        kaijoDate: dateVal,
+        formCount: forms.length
+      });
+    }
+    function getBestCartAddForm() {
+      var forms = Array.prototype.slice.call(document.querySelectorAll('form[action*="/cart/add"]'));
+      if (!forms.length) return null;
+      forms.sort(function (a, b) {
+        var aHasId = a.querySelector('input[name="id"]') ? 1 : 0;
+        var bHasId = b.querySelector('input[name="id"]') ? 1 : 0;
+        var aPo = a.querySelectorAll('select[name^="po_dropdown"], input[name^="po_dropdown"]').length;
+        var bPo = b.querySelectorAll('select[name^="po_dropdown"], input[name^="po_dropdown"]').length;
+        var aDate = a.querySelectorAll('select[name="options[会場開催日]"], input[name="options[会場開催日]"]').length;
+        var bDate = b.querySelectorAll('select[name="options[会場開催日]"], input[name="options[会場開催日]"]').length;
+        var aProps = a.querySelectorAll('input[name^="properties["], select[name^="properties["], textarea[name^="properties["]').length;
+        var bProps = b.querySelectorAll('input[name^="properties["], select[name^="properties["], textarea[name^="properties["]').length;
+        // まず po_dropdown が2つ以上あるフォームを最優先
+        var aBonus = aPo >= 2 ? 100000 : aPo * 1000;
+        var bBonus = bPo >= 2 ? 100000 : bPo * 1000;
+
+        var aScore = aBonus + aHasId * 100 + aDate * 20 + aProps;
+        var bScore = bBonus + bHasId * 100 + bDate * 20 + bProps;
+        return bScore - aScore;
+      });
+      return forms[0];
+    }
+    function submitExistingCartFormToCheckout(form, reason) {
+      if (!form) return false;
+      syncOptisValuesToCartForms();
+      var idInput = form.querySelector('input[name="id"]');
+      if (!idInput || !idInput.value) return false;
+
+      var qtyEl = document.getElementById('esfs-fw-qty-select');
+      var qty = qtyEl ? parseInt(String(qtyEl.value || '1'), 10) : 1;
+      if (isNaN(qty) || qty < 1) qty = 1;
+      var qtyInput = form.querySelector('input[name="quantity"]');
+      if (qtyInput) qtyInput.value = String(qty);
+      var qtySelectReserve = document.querySelector('#esfs-workshop-reserve-form .esfs-quantity-select');
+      if (qtySelectReserve) qtySelectReserve.value = String(qty);
+
+      var returnTo = form.querySelector('input[name="return_to"][data-esfs-checkout="true"]');
+      if (!returnTo) {
+        returnTo = document.createElement('input');
+        returnTo.type = 'hidden';
+        returnTo.name = 'return_to';
+        returnTo.setAttribute('data-esfs-checkout', 'true');
+        form.appendChild(returnTo);
+      }
+      returnTo.value = esfsCheckoutStepUrl;
+
+      esfsReserveDebug('forceReserve:submit-existing-form', {
+        reason: reason,
+        formClass: form.className || '',
+        hasId: !!idInput.value,
+        quantity: qty,
+        propertiesCount: form.querySelectorAll('input[name^="properties["], select[name^="properties["], textarea[name^="properties["]').length
+      });
+      try {
+        var preview = esfsFormDataPreview(new FormData(form), 50);
+        esfsReserveDebug('forceReserve:formdata-preview', {
+          reason: reason,
+          total: preview.total,
+          rows: preview.rows
+        });
+      } catch (e) {
+        esfsReserveDebug('forceReserve:formdata-preview-failed', {
+          reason: reason,
+          message: String(e && e.message ? e.message : e)
+        });
+      }
+
+      var submitBtn = form.querySelector('button[type="submit"]:not([disabled]), input[type="submit"]:not([disabled])');
+      if (submitBtn && typeof submitBtn.click === 'function') {
+        submitBtn.click();
+        return true;
+      }
+      if (typeof form.requestSubmit === 'function') {
+        form.requestSubmit();
+        return true;
+      }
+      form.submit();
+      return true;
+    }
+    window.esfsForceReserve = function () {
+      if (window.esfsReserveInProgress) return;
+      window.esfsReserveInProgress = true;
+      setTimeout(function () {
+        window.esfsReserveInProgress = false;
+      }, 30000);
+      esfsReserveDebug('forceReserve:start');
+      if (!window.esfsCanReserveSelection()) return;
+      setReserveBtnWaiting(true);
+      var startHref = window.location.href;
+      var esfsCheckoutStepUrl = '/checkout?step=contact_information';
+
+      function esfsPostCartAddFormDataToCheckout(srcForm, reason) {
+        try {
+          syncOptisValuesToCartForms();
+          // フォールバックは「既存の /cart/add フォーム送信」に寄せ、
+          // 送信時JS（OPTIS/BSSの hidden properties 生成など）が確実に走るようにする
+          var qtyEl = document.getElementById('esfs-fw-qty-select');
+          var qty = qtyEl ? parseInt(String(qtyEl.value || '1'), 10) : 1;
+          if (isNaN(qty) || qty < 1) qty = 1;
+          var qtyInput = srcForm.querySelector('input[name="quantity"]');
+          if (qtyInput) qtyInput.value = String(qty);
+          var qtySelectReserve = document.querySelector('#esfs-workshop-reserve-form .esfs-quantity-select');
+          if (qtySelectReserve) qtySelectReserve.value = String(qty);
+
+          var returnTo = srcForm.querySelector('input[name="return_to"]');
+          if (!returnTo) {
+            returnTo = document.createElement('input');
+            returnTo.type = 'hidden';
+            returnTo.name = 'return_to';
+            srcForm.appendChild(returnTo);
+          }
+          returnTo.value = esfsCheckoutStepUrl;
+
+          esfsReserveDebug('fallback:submit-existing-cart-form', {
+            reason: reason,
+            formClass: srcForm.className || '',
+            returnTo: returnTo.value
+          });
+
+          // OPTIS/BSS側が change/input 後に hidden/properties を再計算するため、
+          // 反映待ちを入れてから送信する
+          setTimeout(function () {
+            var submitBtn = srcForm.querySelector(
+              'button[type="submit"]:not([disabled]), input[type="submit"]:not([disabled])'
+            );
+            if (submitBtn && typeof submitBtn.click === 'function') {
+              submitBtn.click();
+              return;
+            }
+            if (typeof srcForm.requestSubmit === 'function') {
+              srcForm.requestSubmit();
+              return;
+            }
+            srcForm.submit();
+          }, 250);
+        } catch (e) {
+          esfsReserveDebug('fallback:post-formdata-failed', {
+            reason: reason,
+            message: String(e && e.message ? e.message : e)
+          });
+          setReserveBtnWaiting(false);
+          window.location.href = '/cart';
+        }
+      }
+
+      function esfsSubmitNativeCheckoutFallback(reason) {
+        var form = getBestCartAddForm();
+        if (!form) {
+          esfsReserveDebug('forceReserve:no-form-for-fallback', { reason: reason });
+          setReserveBtnWaiting(false);
+          window.location.href = '/cart';
+          return;
+        }
+        esfsPostCartAddFormDataToCheckout(form, reason);
+      }
+      var payBtn =
+        document.querySelector('button.shopify-payment-button__button--unbranded.bss-po-btn-buyitnow[po-btn-buy-it-now="true"]') ||
+        document.querySelector('button.shopify-payment-button__button--unbranded.bss-po-btn-buyitnow') ||
+        document.querySelector('button.shopify-payment-button__button--unbranded[po-btn-buy-it-now="true"]') ||
+        document.querySelector('button.shopify-payment-button__button--unbranded');
+      if (payBtn && !payBtn.disabled && payBtn.getAttribute('aria-disabled') !== 'true') {
+        esfsReserveDebug('forceReserve:click-payBtn', { disabled: false });
+        payBtn.click();
+        // payBtn（Shopify Accelerated Checkout）は遷移開始までタイムラグがあるため、
+        // URL に checkout が出るまで長めにポーリングしてからフォールバックする
+        var fallbackMaxMs = 25000;
+        var tickMs = 250;
+        var elapsed = 0;
+        var iv = setInterval(function () {
+          elapsed += tickMs;
+          var href = String(window.location.href || '');
+          var path = String(window.location.pathname || '');
+          var hasNavigatedToCheckout =
+            href !== startHref &&
+            (path.indexOf('/checkouts') !== -1 || path.indexOf('/checkout') !== -1 || href.indexOf('/checkouts') !== -1);
+
+          if (hasNavigatedToCheckout) {
+            clearInterval(iv);
+            return;
+          }
+          if (elapsed >= fallbackMaxMs) {
+            clearInterval(iv);
+            esfsReserveDebug('forceReserve:payBtn-no-nav-fallback', { elapsedMs: elapsed });
+            esfsSubmitNativeCheckoutFallback('payBtn-no-nav');
+          }
+        }, tickMs);
+        return;
+      }
+      esfsReserveDebug('forceReserve:no-usable-payBtn', {
+        exists: !!payBtn,
+        disabled: !!(payBtn && payBtn.disabled),
+        ariaDisabled: payBtn ? payBtn.getAttribute('aria-disabled') : null
+      });
+      esfsSubmitNativeCheckoutFallback('no-usable-payBtn');
+    };
+
+    document.addEventListener('click', function (e) {
+      var t = e && e.target;
+      if (!t || !t.closest) return;
+      var btn = t.closest('#esfs-fw-reserve-btn');
+      if (!btn) return;
+      e.preventDefault();
+      e.stopPropagation();
+      window.esfsReserveGlobalHandled = true;
+      setTimeout(function () {
+        window.esfsReserveGlobalHandled = false;
+      }, 3000);
+      esfsReserveDebug('click:footer-reserve-button');
+      if (!window.esfsCanReserveSelection()) {
+        setReserveBtnWaiting(false);
+        btn.classList.add('esfs-fw-reserve-btn--muted');
+        btn.setAttribute('aria-disabled', 'true');
+        btn.setAttribute('title', '作品のサイズと希望する植物を選んでからお進みください');
+        esfsReserveDebug('click:blocked-not-selected');
+        return;
+      }
+      btn.classList.remove('esfs-fw-reserve-btn--muted');
+      btn.removeAttribute('aria-disabled');
+      btn.removeAttribute('title');
+      window.esfsForceReserve();
+    }, true);
+
+    document.addEventListener('change', function (e) {
+      var t = e && e.target;
+      if (!t) return;
+      if (t.matches && t.matches('select[name="options[会場開催日]"]')) {
+        esfsScrollToTopSmooth();
+        setTimeout(esfsUpdateVariantBanner, 120);
+        setTimeout(esfsUpdateVariantBanner, 420);
+        setTimeout(esfsUpdateVariantInfo, 120);
+        setTimeout(esfsUpdateVariantInfo, 420);
+      }
+      if (t.matches && t.matches('form[action*="/cart/add"] input[name="id"]')) {
+        setTimeout(esfsUpdateVariantBanner, 80);
+        setTimeout(esfsUpdateVariantInfo, 80);
+      }
+    });
+
+    // variant id の value 変化を監視（installment は OPTIS 注入後に現れるため毎回再取得）
+    (function esfsWatchVariantIdChanges() {
+      if (typeof MutationObserver === 'undefined') return;
+      var lastI = '';
+      var lastM = '';
+      var lastUrl = esfsGetVariantIdFromUrl();
+      var observed = new WeakSet();
+      function pickEls() {
+        var inst = document.querySelector('form.installment input[name="id"]');
+        var main =
+          document.querySelector('form[action*="/cart/add"] input[name="id"].product-variant-id') ||
+          document.querySelector('form[action*="/cart/add"] input[name="id"]');
+        return { inst: inst, main: main };
+      }
+      function tick() {
+        var els = pickEls();
+        var ni = els.inst ? String(els.inst.value) : '';
+        var nm = els.main ? String(els.main.value) : '';
+        if (ni !== lastI || nm !== lastM) {
+          lastI = ni;
+          lastM = nm;
+          esfsUpdateVariantBanner();
+          esfsUpdateVariantInfo();
+        }
+        var nowUrl = esfsGetVariantIdFromUrl();
+        if (nowUrl && nowUrl !== lastUrl) {
+          lastUrl = nowUrl;
+          esfsUpdateVariantBanner();
+          esfsUpdateVariantInfo();
+        }
+      }
+      var mo = new MutationObserver(tick);
+      function observeNew() {
+        var els = pickEls();
+        [els.inst, els.main].forEach(function (el) {
+          if (el && !observed.has(el)) {
+            try {
+              mo.observe(el, { attributes: true, attributeFilter: ['value'] });
+              observed.add(el);
+            } catch (e) {}
+          }
+        });
+      }
+      observeNew();
+      setInterval(function () {
+        observeNew();
+        tick();
+      }, 400);
+    })();
+
+    /**
+     * esfs: フローティングフッター — 会場開催日・OPTIS・人数（select）を操作し、
+     * メインフォームの select / quantity と双方向同期する。
+     */
+    (function initEsfsFloatingWorkshopFooter() {
+      // ロジック完成を優先：カスタムフローティングフッターは削除し、
+      // ネイティブの申込みセット（会場/OPTIS/数量/予約する）を画面下部に固定表示する。
+      function activateNativeFooter() {
+        var nativeInfo = document.querySelector('.product__info-wrapper');
+        var productForm = document.querySelector('product-form');
+        if (!nativeInfo || !productForm) return false;
+
+        // 念のため旧フラグを消す（他CSSの誤適用を避ける）
+        document.body.classList.remove('esfs-20xx-workshop-reserve-in-footer');
+
+        // カスタムフローティングフッターは削除
+        var customFooter = document.getElementById('esfs-floating-workshop-footer');
+        if (customFooter && customFooter.parentElement) {
+          customFooter.parentElement.removeChild(customFooter);
+        }
+
+        document.body.classList.add('esfs-20xx-workshop-native-footer-active');
+        return true;
+      }
+
+      if (activateNativeFooter()) return;
+
+      var tries = 0;
+      var iv = setInterval(function () {
+        tries += 1;
+        if (activateNativeFooter() || tries > 30) {
+          clearInterval(iv);
+        }
+      }, 200);
+
+      return;
+
+      var footer = document.getElementById('esfs-floating-workshop-footer');
+      if (!footer) return;
+
+      var selDate = document.getElementById('esfs-fw-select-date');
+      var selSize = document.getElementById('esfs-fw-select-size');
+      var selPlant = document.getElementById('esfs-fw-select-plant');
+      var qtySelect = document.getElementById('esfs-fw-qty-select');
+      var totalAmountEl = document.getElementById('esfs-fw-total-amount');
+
+      var mainDate = null;
+      var mainSize = null;
+      var mainPlant = null;
+      var syncLock = false;
+      var qtyMax = 4;
+      var qtyMin = 1;
+      var fwFooterReady = false;
+
+      function getMainDateSelect() {
+        return document.querySelector('select[name="options[会場開催日]"]');
+      }
+
+      function getMainSizeSelect() {
+        return document.querySelector('select.po-option--type-dropdown-menu[key="po_作品のサイズ"]')
+          || document.querySelector('select[key="po_作品のサイズ"]');
+      }
+
+      function getMainPlantSelect() {
+        return document.querySelector('select.po-option--type-dropdown-menu[key="po_希望する植物"]')
+          || document.querySelector('select[key="po_希望する植物"]');
+      }
+
+      var nativeOptisMoved = false;
+      function moveNativeOptisSelectsAndReserveBtn() {
+        // OPTIS/BSS は「見えるUI」として別DOMを使い、元の select は display:none のことがあります。
+        // その select をフッターへ移動すると、結果としてフッター側も CSS で見えなくなるため、
+        // ここではネイティブ select / ボタンの DOM 移動を行わない。
+        return false;
+
+        var sizeHolder = document.getElementById('esfs-fw-select-size');
+        var plantHolder = document.getElementById('esfs-fw-select-plant');
+        var reserveHolder = document.getElementById('esfs-fw-reserve-btn');
+        if (!sizeHolder || !plantHolder || !reserveHolder) return false;
+
+        // すでにネイティブ移植済みならスキップ
+        if (nativeOptisMoved && sizeHolder && sizeHolder.tagName === 'SELECT') return true;
+
+        var nativeSize = getMainSizeSelect();
+        var nativePlant = getMainPlantSelect();
+
+        var nativeReserveBtn =
+          document.querySelector(
+            'button.shopify-payment-button__button--unbranded.bss-po-btn-buyitnow[po-btn-buy-it-now="true"]'
+          ) ||
+          document.querySelector('button.shopify-payment-button__button--unbranded.bss-po-btn-buyitnow') ||
+          document.querySelector('button.shopify-payment-button__button--unbranded[po-btn-buy-it-now="true"]') ||
+          document.querySelector('button.shopify-payment-button__button--unbranded');
+
+        if (!nativeSize || !nativePlant || !nativeReserveBtn) return false;
+
+        nativeSize.id = 'esfs-fw-select-size';
+        nativePlant.id = 'esfs-fw-select-plant';
+        nativeReserveBtn.id = 'esfs-fw-reserve-btn';
+
+        nativeSize.classList.add('esfs-fw-select');
+        nativePlant.classList.add('esfs-fw-select');
+        nativeReserveBtn.classList.add('esfs-fw-reserve-btn');
+
+        // DOM移動（イベントハンドラを維持したまま表示だけをフッターへ寄せる）
+        sizeHolder.replaceWith(nativeSize);
+        plantHolder.replaceWith(nativePlant);
+        var reserveRoot =
+          nativeReserveBtn.closest('shopify-buy-it-now-button') ||
+          nativeReserveBtn.closest('[data-shopify="payment-button"]') ||
+          nativeReserveBtn.parentElement;
+        reserveHolder.replaceWith(reserveRoot);
+
+        // id 変更後に参照を更新
+        selSize = document.getElementById('esfs-fw-select-size');
+        selPlant = document.getElementById('esfs-fw-select-plant');
+
+        nativeOptisMoved = true;
+        updateEsfsReserveBtnState();
+        scheduleUpdateFooterTotal();
+        return true;
+      }
+
+      // ネイティブの「予約する」ボタンのみをフッター内へ移植（サイズ/植物 select は移植しない）
+      function moveNativeReserveButtonOnly() {
+        // DOM移動すると Accelerated Checkout が文脈を失い失敗するため、
+        // ここでは移植しない（CSSで可視化する）
+        return false;
+
+        var reserveHolder = document.getElementById('esfs-fw-reserve-btn');
+        if (!reserveHolder) return false;
+
+        if (reserveHolder.dataset && reserveHolder.dataset.esfsNativeReserveMoved === '1') return true;
+
+        // 「ネイティブの予約する（予約する）」を含む候補を探して移植する
+        // ※ Accelerated Checkout は custom element で後から描画されるため、複数候補を広く探す
+        function containsReserveLabel(el) {
+          try {
+            var btn = el && el.querySelector ? el.querySelector('button') : null;
+            var t = btn && btn.textContent ? btn.textContent : el && el.textContent ? el.textContent : '';
+            return String(t).indexOf('予約') !== -1 || String(t).indexOf('Reserve') !== -1;
+          } catch (e) {
+            return false;
+          }
+        }
+
+        var nativeBuyItNow = null;
+        var mainForm = document.querySelector('form[action*="/cart/add"]');
+        var candidates = [];
+        if (mainForm) {
+          candidates = candidates.concat(
+            Array.prototype.slice.call(mainForm.querySelectorAll('shopify-buy-it-now-button'))
+          );
+        }
+        candidates = candidates.concat(
+          Array.prototype.slice.call(document.querySelectorAll('shopify-buy-it-now-button'))
+        );
+
+        for (var i = 0; i < candidates.length; i++) {
+          if (containsReserveLabel(candidates[i])) {
+            nativeBuyItNow = candidates[i];
+            break;
+          }
+        }
+        if (!nativeBuyItNow && candidates.length) nativeBuyItNow = candidates[0];
+
+        if (!nativeBuyItNow) return false;
+
+        // フッター内のカスタム枠ごと置換し、残りボタンが発生しないようにする
+        nativeBuyItNow.setAttribute('data-esfs-native-reserve', '1');
+        reserveHolder.replaceWith(nativeBuyItNow);
+        return true;
+      }
+
+      function getQuantityInputs() {
+        var list = Array.prototype.slice.call(
+          document.querySelectorAll('form[action*="/cart/add"] input[name="quantity"]')
+        );
+        if (list.length) return list;
+        var qi =
+          document.querySelector('quantity-input input[name="quantity"]') ||
+          document.querySelector('quantity-input input[type="number"]') ||
+          document.querySelector('.product-form input[name="quantity"]');
+        return qi ? [qi] : [];
+      }
+
+      function cloneOptionsInto(targetSelect, sourceSelect) {
+        if (!targetSelect || !sourceSelect) return;
+        var prev = targetSelect.value;
+        targetSelect.innerHTML = '';
+        for (var i = 0; i < sourceSelect.options.length; i++) {
+          var o = sourceSelect.options[i];
+          var opt = document.createElement('option');
+          opt.value = o.value;
+          opt.textContent = o.textContent || o.value || o.innerText;
+          targetSelect.appendChild(opt);
+        }
+        if (prev && Array.prototype.some.call(targetSelect.options, function (x) { return x.value === prev; })) {
+          targetSelect.value = prev;
+        } else {
+          targetSelect.value = sourceSelect.value;
+        }
+      }
+
+      function dispatchChange(el) {
+        if (!el) return;
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+
+      function readQuantity() {
+        var inputs = getQuantityInputs();
+        if (!inputs.length) return qtyMin;
+        var v = parseInt(String(inputs[0].value), 10);
+        if (isNaN(v) || v < qtyMin) return qtyMin;
+        return v;
+      }
+
+      /**
+       * 1人あたり：作品サイズに「○○yen」が含まれるときのみ（未選択・他形式は null → 合計¥0）
+       * リロード直後や比較価格の誤取得を避けるため、バリアント/DOMからは取らない。
+       */
+      function perPersonYenFromSizeOnly() {
+        var sz = getMainSizeSelect();
+        if (!sz || !sz.value) return null;
+        var sv = String(sz.value).trim();
+        if (sv.indexOf('Please select') !== -1) return null;
+        if (sv === 'サイズを選ぶ') return null;
+        var m = sv.match(/(\d{3,7})\s*yen\b/i);
+        if (m) return parseInt(m[1], 10);
+        return null;
+      }
+
+      var updateTotalTimer;
+      function scheduleUpdateFooterTotal() {
+        clearTimeout(updateTotalTimer);
+        updateTotalTimer = setTimeout(function () {
+          updateFooterTotalDisplay();
+        }, 100);
+      }
+
+      function updateFooterTotalDisplay() {
+        if (!totalAmountEl) return;
+        var unit = perPersonYenFromSizeOnly();
+        var q = readQuantity();
+        var mult =
+          unit != null && !isNaN(unit) && unit > 0
+            ? Math.round(unit * q)
+            : 0;
+        totalAmountEl.textContent = '合計 ¥' + mult.toLocaleString('ja-JP');
+      }
+
+      /**
+       * OPTIS 未選択：英語プレースホルダー or 日本語初期文言（サイズを選ぶ / 植物を選ぶ）
+       */
+      function isOptisPoUnset(sel, jaPlaceholder) {
+        if (sel == null) return true;
+        var raw = typeof sel === 'string' ? sel : sel.value;
+        var v = String(raw || '').trim();
+        if (!v) return true;
+        if (v.indexOf('Please select') !== -1) return true;
+        if (jaPlaceholder && v === jaPlaceholder) return true;
+        return false;
+      }
+      function pickReserveValue(mainSel, footerSel, jaPlaceholder) {
+        var mv = mainSel && mainSel.value ? String(mainSel.value).trim() : '';
+        var fv = footerSel && footerSel.value ? String(footerSel.value).trim() : '';
+        if (!isOptisPoUnset(mv, jaPlaceholder)) return mv;
+        if (!isOptisPoUnset(fv, jaPlaceholder)) return fv;
+        return mv || fv;
+      }
+
+      function updateEsfsReserveBtnState() {
+        var btn = document.getElementById('esfs-fw-reserve-btn');
+        if (!btn) return;
+
+        // ネイティブ予約ボタンを移植できている場合、muted制御はやめて
+        // ネイティブ側（disabled / aria-disabled）に任せる
+        if (btn.dataset && btn.dataset.esfsNativeReserveMoved === '1') {
+          btn.classList.remove('esfs-fw-reserve-btn--muted');
+          btn.removeAttribute('aria-disabled');
+          btn.removeAttribute('title');
+          return;
+        }
+
+        if (window.esfsSetReserveBtnWaiting) window.esfsSetReserveBtnWaiting(false);
+        var sz = pickReserveValue(getMainSizeSelect(), selSize, 'サイズを選ぶ');
+        var pl = pickReserveValue(getMainPlantSelect(), selPlant, '植物を選ぶ');
+        var muted =
+          isOptisPoUnset(sz, 'サイズを選ぶ') ||
+          isOptisPoUnset(pl, '植物を選ぶ');
+        if (muted) {
+          btn.classList.add('esfs-fw-reserve-btn--muted');
+          btn.setAttribute('aria-disabled', 'true');
+          btn.setAttribute(
+            'title',
+            '作品のサイズと希望する植物を選んでからお進みください'
+          );
+        } else {
+          btn.classList.remove('esfs-fw-reserve-btn--muted');
+          btn.removeAttribute('aria-disabled');
+          btn.removeAttribute('title');
+        }
+      }
+
+      function ensureQtyOptionInFooter(n) {
+        if (!qtySelect) return;
+        n = Math.max(qtyMin, Math.min(qtyMax, parseInt(String(n), 10) || qtyMin));
+        qtySelect.value = String(n);
+      }
+
+      function syncQtyFooterWithInputs() {
+        var q = readQuantity();
+        if (q > qtyMax) {
+          setQuantityAll(qtyMax);
+        } else {
+          ensureQtyOptionInFooter(q);
+        }
+      }
+
+      function setQuantityAll(n) {
+        n = Math.max(qtyMin, Math.min(qtyMax, parseInt(String(n), 10) || qtyMin));
+        getQuantityInputs().forEach(function (inp) {
+          inp.value = String(n);
+          inp.dispatchEvent(new Event('input', { bubbles: true }));
+          inp.dispatchEvent(new Event('change', { bubbles: true }));
+        });
+        var qtySelectReserve = document.querySelector('#esfs-workshop-reserve-form .esfs-quantity-select');
+        if (qtySelectReserve) qtySelectReserve.value = String(n);
+        ensureQtyOptionInFooter(n);
+        scheduleUpdateFooterTotal();
+        return n;
+      }
+
+      function syncFooterFromMains() {
+        if (syncLock) return;
+        syncLock = true;
+        try {
+          if (mainDate && selDate) {
+            cloneOptionsInto(selDate, mainDate);
+            selDate.value = mainDate.value;
+            esfsUpdateDateTrigger();
+          }
+          if (mainSize && selSize) {
+            if (!nativeOptisMoved) {
+              cloneOptionsInto(selSize, mainSize);
+              selSize.value = mainSize.value;
+            }
+          }
+          if (mainPlant && selPlant) {
+            if (!nativeOptisMoved) {
+              cloneOptionsInto(selPlant, mainPlant);
+              selPlant.value = mainPlant.value;
+            }
+          }
+          syncQtyFooterWithInputs();
+        } finally {
+          syncLock = false;
+        }
+        scheduleUpdateFooterTotal();
+        updateEsfsReserveBtnState();
+      }
+
+      function applyFooterDate() {
+        if (!mainDate || !selDate) return;
+        mainDate.value = selDate.value;
+        dispatchChange(mainDate);
+        scheduleUpdateFooterTotal();
+        setTimeout(scheduleUpdateFooterTotal, 280);
+        setTimeout(scheduleUpdateFooterTotal, 650);
+      }
+
+      function applyFooterSize() {
+        if (!mainSize || !selSize) return;
+        mainSize.value = selSize.value;
+        dispatchChange(mainSize);
+        scheduleUpdateFooterTotal();
+        setTimeout(scheduleUpdateFooterTotal, 280);
+        setTimeout(scheduleUpdateFooterTotal, 650);
+        updateEsfsReserveBtnState();
+        setTimeout(updateEsfsReserveBtnState, 350);
+        setTimeout(updateEsfsReserveBtnState, 700);
+      }
+
+      function applyFooterPlant() {
+        if (!mainPlant || !selPlant) return;
+        mainPlant.value = selPlant.value;
+        dispatchChange(mainPlant);
+        scheduleUpdateFooterTotal();
+        updateEsfsReserveBtnState();
+        setTimeout(updateEsfsReserveBtnState, 350);
+        setTimeout(updateEsfsReserveBtnState, 700);
+      }
+
+      function esfsEscapeHtml(str) {
+        var d = document.createElement('div');
+        d.textContent = str == null ? '' : String(str);
+        return d.innerHTML;
+      }
+
+      /**
+       * 会場住所と日程のあいだ（全角スペース or 連続スペース）で2行に分ける
+       */
+      function esfsSplitKaijoLines(text) {
+        var t = String(text || '').trim();
+        if (!t) return { l1: '', l2: '' };
+        var u3000 = '\u3000';
+        var i = t.indexOf(u3000);
+        if (i > 0) {
+          var a = t.slice(0, i).trim();
+          var b = t.slice(i + 1).replace(/^[\s\u3000]+/, '').trim();
+          if (b.length) return { l1: a, l2: b };
+        }
+        var m = t.match(/^(.+?)(\s{2,}|\s\u3000|\u3000\s)(.+)$/);
+        if (m && m[3].length) {
+          return { l1: m[1].trim(), l2: m[3].trim() };
+        }
+        return { l1: t, l2: '' };
+      }
+
+      function esfsUpdateDateTrigger() {
+        var sel = document.getElementById('esfs-fw-select-date');
+        var el = document.getElementById('esfs-fw-date-trigger-lines');
+        if (!sel || !el) return;
+        var parts = esfsSplitKaijoLines(sel.value);
+        if (parts.l2) {
+          el.innerHTML =
+            '<span class="esfs-fw-date-line1">' +
+            esfsEscapeHtml(parts.l1) +
+            '</span><span class="esfs-fw-date-line2">' +
+            esfsEscapeHtml(parts.l2) +
+            '</span>';
+        } else {
+          el.innerHTML =
+            '<span class="esfs-fw-date-line1">' +
+            esfsEscapeHtml(parts.l1 || '—') +
+            '</span>';
+        }
+      }
+
+      function esfsCloseDatePanel() {
+        var bd = document.getElementById('esfs-fw-date-backdrop');
+        var wrap = document.getElementById('esfs-fw-date-panel-wrap');
+        var tr = document.getElementById('esfs-fw-date-trigger');
+        if (bd) bd.setAttribute('hidden', '');
+        if (wrap) wrap.setAttribute('hidden', '');
+        if (tr) tr.setAttribute('aria-expanded', 'false');
+      }
+
+      function esfsOpenDatePanel() {
+        var footer = document.getElementById('esfs-floating-workshop-footer');
+        var wrap = document.getElementById('esfs-fw-date-panel-wrap');
+        var bd = document.getElementById('esfs-fw-date-backdrop');
+        var tr = document.getElementById('esfs-fw-date-trigger');
+        if (!wrap || !bd || !tr) return;
+        esfsRenderDatePanel();
+        var topSpace = 72;
+        if (footer) {
+          var r = footer.getBoundingClientRect();
+          var avail = Math.max(160, r.top - topSpace);
+          wrap.style.maxHeight = avail + 'px';
+          wrap.style.bottom = Math.round(window.innerHeight - r.top + 10) + 'px';
+          wrap.style.top = 'auto';
+        } else {
+          wrap.style.maxHeight = '42vh';
+          wrap.style.bottom = '32%';
+          wrap.style.top = 'auto';
+        }
+        bd.removeAttribute('hidden');
+        wrap.removeAttribute('hidden');
+        tr.setAttribute('aria-expanded', 'true');
+      }
+
+      function esfsRenderDatePanel() {
+        var sel = document.getElementById('esfs-fw-select-date');
+        var panel = document.getElementById('esfs-fw-date-panel');
+        if (!sel || !panel) return;
+        panel.innerHTML = '';
+        var cur = sel.value;
+        for (var i = 0; i < sel.options.length; i++) {
+          var o = sel.options[i];
+          var v = o.value;
+          var parts = esfsSplitKaijoLines(v);
+          var li = document.createElement('li');
+          li.className = 'esfs-fw-date-item';
+          li.setAttribute('role', 'option');
+          if (v === cur) li.classList.add('esfs-fw-date-item--current');
+          var h =
+            '<span class="esfs-fw-date-item-l1">' +
+            esfsEscapeHtml(parts.l1) +
+            '</span>';
+          if (parts.l2) {
+            h +=
+              '<span class="esfs-fw-date-item-l2">' +
+              esfsEscapeHtml(parts.l2) +
+              '</span>';
+          }
+          li.innerHTML = h;
+          (function (val) {
+            li.addEventListener('click', function () {
+              esfsChooseKaijoDate(val);
+            });
+          })(v);
+          panel.appendChild(li);
+        }
+      }
+
+      function esfsChooseKaijoDate(val) {
+        var sel = document.getElementById('esfs-fw-select-date');
+        if (!sel) return;
+        sel.value = val;
+        applyFooterDate();
+        if (window.esfsUpdateVariantBanner) {
+          setTimeout(window.esfsUpdateVariantBanner, 80);
+          setTimeout(window.esfsUpdateVariantBanner, 320);
+        }
+        if (window.esfsUpdateVariantInfo) {
+          setTimeout(window.esfsUpdateVariantInfo, 80);
+          setTimeout(window.esfsUpdateVariantInfo, 320);
+        }
+        esfsUpdateDateTrigger();
+        esfsCloseDatePanel();
+        if (typeof window.esfsScrollToTopSmooth === 'function') {
+          window.esfsScrollToTopSmooth();
+        }
+      }
+
+      var esfsKaijoPickerBound = false;
+      function esfsBindKaijoDatePickerUi() {
+        if (esfsKaijoPickerBound) return;
+        esfsKaijoPickerBound = true;
+        var tr = document.getElementById('esfs-fw-date-trigger');
+        var bd = document.getElementById('esfs-fw-date-backdrop');
+        if (!tr) return;
+        tr.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var wrap = document.getElementById('esfs-fw-date-panel-wrap');
+          var open = wrap && !wrap.hasAttribute('hidden');
+          if (open) esfsCloseDatePanel();
+          else esfsOpenDatePanel();
+        });
+        if (bd) bd.addEventListener('click', esfsCloseDatePanel);
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') esfsCloseDatePanel();
+        });
+      }
+
+      function bindOnce() {
+        if (mainDate) {
+          mainDate.addEventListener('change', function () {
+            if (syncLock) return;
+            cloneOptionsInto(selDate, mainDate);
+            selDate.value = mainDate.value;
+            esfsUpdateDateTrigger();
+            scheduleUpdateFooterTotal();
+            setTimeout(scheduleUpdateFooterTotal, 300);
+          });
+        }
+        if (mainSize) {
+          mainSize.addEventListener('change', function () {
+            if (syncLock) return;
+            if (!nativeOptisMoved) {
+              cloneOptionsInto(selSize, mainSize);
+              selSize.value = mainSize.value;
+            }
+            scheduleUpdateFooterTotal();
+            setTimeout(scheduleUpdateFooterTotal, 350);
+            updateEsfsReserveBtnState();
+            setTimeout(updateEsfsReserveBtnState, 400);
+          });
+        }
+        if (mainPlant) {
+          mainPlant.addEventListener('change', function () {
+            if (syncLock) return;
+            if (!nativeOptisMoved) {
+              cloneOptionsInto(selPlant, mainPlant);
+              selPlant.value = mainPlant.value;
+            }
+            scheduleUpdateFooterTotal();
+            updateEsfsReserveBtnState();
+            setTimeout(updateEsfsReserveBtnState, 400);
+          });
+        }
+
+        getQuantityInputs().forEach(function (inp) {
+          inp.addEventListener('change', function () {
+            syncQtyFooterWithInputs();
+            scheduleUpdateFooterTotal();
+          });
+        });
+
+        if (selSize) {
+          if (!nativeOptisMoved) {
+            selSize.addEventListener('change', applyFooterSize);
+          } else {
+            selSize.addEventListener('change', function () {
+              scheduleUpdateFooterTotal();
+              updateEsfsReserveBtnState();
+            });
+          }
+        }
+        if (selPlant) {
+          if (!nativeOptisMoved) {
+            selPlant.addEventListener('change', applyFooterPlant);
+          } else {
+            selPlant.addEventListener('change', function () {
+              scheduleUpdateFooterTotal();
+              updateEsfsReserveBtnState();
+            });
+          }
+        }
+
+        if (qtySelect) {
+          qtySelect.addEventListener('change', function () {
+            setQuantityAll(qtySelect.value);
+          });
+        }
+
+        if (typeof MutationObserver !== 'undefined' && totalAmountEl) {
+          var priceMoT;
+          var priceMo = new MutationObserver(function () {
+            clearTimeout(priceMoT);
+            priceMoT = setTimeout(function () {
+              updateFooterTotalDisplay();
+            }, 450);
+          });
+          var priceRoot =
+            document.querySelector('.product__info') ||
+            document.querySelector('.product') ||
+            document.body;
+          priceMo.observe(priceRoot, { childList: true, subtree: true });
+        }
+
+        var reserveFooterBtn = document.getElementById('esfs-fw-reserve-btn');
+        function getShopifyReserveButton() {
+          return (
+            document.querySelector(
+              'button.shopify-payment-button__button--unbranded.bss-po-btn-buyitnow[po-btn-buy-it-now="true"]'
+            ) ||
+            document.querySelector('button.shopify-payment-button__button--unbranded.bss-po-btn-buyitnow') ||
+            document.querySelector('button.shopify-payment-button__button--unbranded[po-btn-buy-it-now="true"]') ||
+            document.querySelector('button.shopify-payment-button__button--unbranded')
+          );
+        }
+        function getMainCartAddForm() {
+          return (typeof getBestCartAddForm === 'function')
+            ? getBestCartAddForm()
+            : (
+              document.querySelector('product-form form[action*="/cart/add"]') ||
+              document.querySelector('form[action*="/cart/add"]')
+            );
+        }
+        function fallbackAddToCartAndCheckout() {
+          var form = getMainCartAddForm();
+          if (!form) {
+            if (window.esfsReserveDebug) window.esfsReserveDebug('fallback:no-form');
+            return;
+          }
+          if (typeof submitExistingCartFormToCheckout === 'function') {
+            if (!submitExistingCartFormToCheckout(form, 'bindOnce-fallback')) {
+              if (window.esfsReserveDebug) window.esfsReserveDebug('fallback:no-variant-id');
+              return;
+            }
+            return;
+          }
+          var fd = new FormData(form);
+          if (!fd.get('id')) {
+            if (window.esfsReserveDebug) window.esfsReserveDebug('fallback:no-variant-id');
+            return;
+          }
+        }
+
+        if (reserveFooterBtn) {
+          function tryClickRealReserve() {
+            var realBtn = getShopifyReserveButton();
+            if (
+              realBtn &&
+              !realBtn.disabled &&
+              realBtn.getAttribute('aria-disabled') !== 'true'
+            ) {
+              realBtn.click();
+              return true;
+            }
+            if (
+              realBtn &&
+              (realBtn.disabled || realBtn.getAttribute('aria-disabled') === 'true')
+            ) {
+              /* 一時的に非活性のことがあるため、成功扱いせず再試行させる */
+              return false;
+            }
+            return false;
+          }
+          reserveFooterBtn.addEventListener('click', function () {
+            // フッター内にネイティブボタンを移植できている場合は、
+            // ネイティブ側のクリックをそのまま任せる（二重処理を防ぐ）
+            if (reserveFooterBtn.dataset && reserveFooterBtn.dataset.esfsNativeReserveMoved === '1') {
+              return;
+            }
+            if (window.esfsReserveGlobalHandled) {
+              if (window.esfsReserveDebug) window.esfsReserveDebug('bindOnce:skip-duplicate-handler');
+              return;
+            }
+            /* 先に最新状態へ更新（誤判定で muted が残るケースを吸収） */
+            updateEsfsReserveBtnState();
+            if (reserveFooterBtn.classList.contains('esfs-fw-reserve-btn--muted')) {
+              if (window.esfsReserveDebug) window.esfsReserveDebug('bindOnce:blocked-muted');
+              return;
+            }
+            if (tryClickRealReserve()) {
+              if (window.esfsReserveDebug) window.esfsReserveDebug('bindOnce:clicked-real-button');
+              return;
+            }
+            if (window.esfsReserveDebug) window.esfsReserveDebug('bindOnce:start-retry-loop');
+            var tries = 0;
+            var iv = setInterval(function () {
+              tries += 1;
+              if (tryClickRealReserve() || tries >= 20) {
+                clearInterval(iv);
+                if (tries >= 20 && !getShopifyReserveButton()) {
+                  var payWrap = document.querySelector('[data-shopify="payment-button"]');
+                  if (payWrap) {
+                    payWrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }
+                  fallbackAddToCartAndCheckout();
+                } else if (tries >= 20) {
+                  fallbackAddToCartAndCheckout();
+                }
+              }
+            }, 120);
+          });
+        }
+
+        esfsBindKaijoDatePickerUi();
+      }
+
+      function updateFooterPadding() {
+        var h = footer.offsetHeight || 0;
+        scope.style.setProperty('--esfs-fw-pad', h + 'px');
+        document.body.style.paddingBottom = h + 'px';
+      }
+
+      function tryActivate() {
+        if (fwFooterReady) return true;
+
+        mainDate = getMainDateSelect();
+        mainSize = getMainSizeSelect();
+        mainPlant = getMainPlantSelect();
+
+        if (!mainDate || !mainSize || !mainPlant) return false;
+
+        // サイズ/植物はフッター側の表示用 select を使う（表示崩れを防ぐ）
+        // OPTIS の追加料金計算は、値をメインフォームへ反映して BSS/OPTIS の再計算に寄せる
+        moveNativeOptisSelectsAndReserveBtn();
+
+        cloneOptionsInto(selDate, mainDate);
+
+        selDate.value = mainDate.value;
+        if (!nativeOptisMoved) {
+          cloneOptionsInto(selSize, mainSize);
+          cloneOptionsInto(selPlant, mainPlant);
+          selSize.value = mainSize.value;
+          selPlant.value = mainPlant.value;
+        }
+
+        esfsUpdateDateTrigger();
+        esfsBindKaijoDatePickerUi();
+
+        syncQtyFooterWithInputs();
+        scheduleUpdateFooterTotal();
+        setTimeout(scheduleUpdateFooterTotal, 400);
+        setTimeout(scheduleUpdateFooterTotal, 900);
+
+        footer.removeAttribute('hidden');
+        footer.classList.add('esfs-floating-workshop-footer--active');
+        scope.classList.add('esfs-floating-workshop-footer--ready');
+        document.body.classList.add('esfs-20xx-workshop-reserve-in-footer');
+
+        bindOnce();
+        updateEsfsReserveBtnState();
+        setTimeout(updateEsfsReserveBtnState, 500);
+        setTimeout(updateEsfsReserveBtnState, 1000);
+
+        if (typeof ResizeObserver !== 'undefined') {
+          var ro = new ResizeObserver(function () {
+            updateFooterPadding();
+          });
+          ro.observe(footer);
+        }
+        if (String(window.location.search || '').indexOf('esfs_debug_show_native=1') !== -1) {
+          document.body.classList.add('esfs-debug-show-native');
+        }
+        updateFooterPadding();
+        window.addEventListener('resize', updateFooterPadding);
+
+        if (window.esfsUpdateVariantBanner) {
+          window.esfsUpdateVariantBanner();
+          setTimeout(window.esfsUpdateVariantBanner, 120);
+          setTimeout(window.esfsUpdateVariantBanner, 450);
+        }
+        if (window.esfsUpdateVariantInfo) {
+          window.esfsUpdateVariantInfo();
+          setTimeout(window.esfsUpdateVariantInfo, 120);
+          setTimeout(window.esfsUpdateVariantInfo, 450);
+          setTimeout(window.esfsUpdateVariantInfo, 900);
+        }
+
+        var mo = new MutationObserver(function () {
+          var d = getMainDateSelect();
+          var s = getMainSizeSelect();
+          var p = getMainPlantSelect();
+          if (d && s && p && (d !== mainDate || s !== mainSize || p !== mainPlant)) {
+            mainDate = d;
+            mainSize = s;
+            mainPlant = p;
+            syncFooterFromMains();
+          }
+        });
+        mo.observe(document.body, { childList: true, subtree: true });
+
+        fwFooterReady = true;
+
+        var qTries = 0;
+        var qTimer = setInterval(function () {
+          qTries += 1;
+          if (getQuantityInputs().length || qTries > 25) {
+            clearInterval(qTimer);
+            syncQtyFooterWithInputs();
+          }
+        }, 200);
+
+        return true;
+      }
+
+      var attempts = 0;
+      var timer = setInterval(function () {
+        attempts += 1;
+        if (tryActivate() || attempts > 80) {
+          clearInterval(timer);
+        }
+      }, 200);
+    })();
+  });
+</script>
+
+{%- comment -%} 選択中バリアントの講座詳細（Liquid）：JSより前に本文を出し、custom.* が取れるようにする {%- endcomment -%}
+{%- assign esfs_info_v = product.selected_or_first_available_variant -%}
+{%- assign esfs_mf_d = esfs_info_v.metafields.custom.custom_daytime -%}
+{%- if esfs_mf_d == blank -%}{%- assign esfs_mf_d = esfs_info_v.metafields.custom.day -%}{%- endif -%}
+{%- assign esfs_liq_day = esfs_mf_d | metafield_text | strip -%}
+{%- if esfs_liq_day == blank and esfs_mf_d.value != blank -%}{%- assign esfs_liq_day = esfs_mf_d.value | append: '' | strip -%}{%- endif -%}
+{%- assign esfs_mf_t = esfs_info_v.metafields.custom.custom_time -%}
+{%- if esfs_mf_t == blank -%}{%- assign esfs_mf_t = esfs_info_v.metafields.custom.time -%}{%- endif -%}
+{%- assign esfs_liq_time = esfs_mf_t | metafield_text | strip -%}
+{%- if esfs_liq_time == blank and esfs_mf_t.value != blank -%}{%- assign esfs_liq_time = esfs_mf_t.value | append: '' | strip -%}{%- endif -%}
+{%- assign esfs_mf_m = esfs_info_v.metafields.custom.custom_mochimono -%}
+{%- if esfs_mf_m == blank -%}{%- assign esfs_mf_m = esfs_info_v.metafields.custom.mochimono -%}{%- endif -%}
+{%- assign esfs_liq_mochimono = esfs_mf_m | metafield_text | strip -%}
+{%- if esfs_liq_mochimono == blank and esfs_mf_m.value != blank -%}{%- assign esfs_liq_mochimono = esfs_mf_m.value | append: '' | strip -%}{%- endif -%}
+{%- assign esfs_mf_k = esfs_info_v.metafields.custom.custom_kaijyo -%}
+{%- if esfs_mf_k == blank -%}{%- assign esfs_mf_k = esfs_info_v.metafields.custom.kaijyo -%}{%- endif -%}
+{%- assign esfs_liq_kaijyo = esfs_mf_k | metafield_text | strip -%}
+{%- if esfs_liq_kaijyo == blank and esfs_mf_k.value != blank -%}{%- assign esfs_liq_kaijyo = esfs_mf_k.value | append: '' | strip -%}{%- endif -%}
+{%- assign esfs_mf_j = esfs_info_v.metafields.custom.custom_jyusho -%}
+{%- if esfs_mf_j == blank -%}{%- assign esfs_mf_j = esfs_info_v.metafields.custom.jyusho -%}{%- endif -%}
+{%- assign esfs_liq_jyusho = esfs_mf_j | metafield_text | strip -%}
+{%- if esfs_liq_jyusho == blank and esfs_mf_j.value != blank -%}{%- assign esfs_liq_jyusho = esfs_mf_j.value | append: '' | strip -%}{%- endif -%}
+{%- assign esfs_mf_h = esfs_info_v.metafields.custom.custom_hoka -%}
+{%- if esfs_mf_h == blank -%}{%- assign esfs_mf_h = esfs_info_v.metafields.custom.hoka -%}{%- endif -%}
+{%- if esfs_mf_h == blank -%}{%- assign esfs_mf_h = esfs_info_v.metafields.custom.custom_biko -%}{%- endif -%}
+{%- if esfs_mf_h == blank -%}{%- assign esfs_mf_h = esfs_info_v.metafields.custom.biko -%}{%- endif -%}
+{%- assign esfs_liq_hoka = esfs_mf_h | metafield_text | strip -%}
+{%- if esfs_liq_hoka == blank and esfs_mf_h.value != blank -%}{%- assign esfs_liq_hoka = esfs_mf_h.value | append: '' | strip -%}{%- endif -%}
+{%- assign esfs_has_variant_detail = false -%}
+{%- if esfs_liq_day != blank or esfs_liq_time != blank or esfs_liq_mochimono != blank or esfs_liq_kaijyo != blank or esfs_liq_jyusho != blank or esfs_liq_hoka != blank -%}
+  {%- assign esfs_has_variant_detail = true -%}
+{%- endif -%}
+
+{% render 'event-jsonld' %}
+
+<div class="esfs-variant-banner" id="esfs-variant-banner" hidden>
+  <img
+    class="esfs-variant-banner__img"
+    id="esfs-variant-banner-img"
+    alt="開催バナー"
+    loading="eager"
+  >
+</div>
+
+<div class="esfs-variant-info" id="esfs-variant-info"{% unless esfs_has_variant_detail %} hidden{% endunless %}>
+  <div class="esfs-variant-info__title">講座詳細</div>
+  <p class="esfs-variant-info__hint" id="esfs-variant-info-storefront-hint" hidden>
+    【デバッグ】まだ「—」のときは、定義画面<strong>名前の下の灰色のキー</strong>（例: 日程は <code>custom.custom_daytime</code>、備考は <code>custom.hoka</code> または <code>custom.biko</code>）と Liquid の参照が一致しているか確認してください。ストアフロント公開がオンでも、<code>custom.day</code> と書くと実キーとずれて空になります。
+  </p>
+  <div class="esfs-variant-info__table-wrap">
+    <table class="esfs-variant-info__table" role="table" aria-label="講座詳細">
+      <tbody>
+        <tr>
+          <th scope="row">日程</th>
+          <td id="esfs-variant-info-day">{% if esfs_liq_day != blank %}{{ esfs_liq_day | escape }}{% else %}—{% endif %}</td>
+        </tr>
+        <tr>
+          <th scope="row">時間</th>
+          <td id="esfs-variant-info-time">{% if esfs_liq_time != blank %}{{ esfs_liq_time | escape }}{% else %}—{% endif %}</td>
+        </tr>
+        <tr class="esfs-variant-info__note-row">
+          <td colspan="2">※制作時間は３時間程度です。（会場で調整可能ですので当日講師に相談をお願い致します。）</td>
+        </tr>
+        <tr>
+          <th scope="row">持ち物</th>
+          <td id="esfs-variant-info-mochimono">{% if esfs_liq_mochimono != blank %}{{ esfs_liq_mochimono | newline_to_br }}{% else %}—{% endif %}</td>
+        </tr>
+        <tr>
+          <th scope="row">会場</th>
+          <td id="esfs-variant-info-kaijyo">{% if esfs_liq_kaijyo != blank %}{{ esfs_liq_kaijyo | newline_to_br }}{% else %}—{% endif %}</td>
+        </tr>
+        <tr>
+          <th scope="row">住所</th>
+          <td id="esfs-variant-info-jyusho">{% if esfs_liq_jyusho != blank %}{{ esfs_liq_jyusho | newline_to_br }}{% else %}—{% endif %}</td>
+        </tr>
+        <tr>
+          <th scope="row">備考</th>
+          <td id="esfs-variant-info-hoka">{% if esfs_liq_hoka != blank %}{{ esfs_liq_hoka | newline_to_br }}{% else %}—{% endif %}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="esfs-variant-info__same-detail-note">以下ワークショップ詳細は全開催同じ内容です。</p>
+  <div class="workshop-image-container esfs-workshop-detail-video">
+    <video
+      class="esfs-workshop-detail-video__player"
+      src="https://cdn.shopify.com/videos/c/o/v/ce1a23a07d4c4e82b589926bd095ed00.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      controls
+      preload="metadata"
+      aria-label="ワークショップ詳細動画"
+    >
+      <p>お使いのブラウザは動画の再生に対応していません。</p>
+    </video>
+  </div>
+</div>
+
+<div class="workshop-image-container">
+  <img src="https://cdn.shopify.com/s/files/1/0402/9110/6972/files/shizu101.webp" alt="ボタニーペインティング ワークショップ">
+</div>
+<div class="workshop-image-container">
+  <img src="https://cdn.shopify.com/s/files/1/0402/9110/6972/files/shizu102.webp" alt="ボタニーペインティング ワークショップ">
+</div>
+<div class="workshop-image-container">
+  <img src="https://cdn.shopify.com/s/files/1/0402/9110/6972/files/shizu103.webp" alt="ボタニーペインティング ワークショップ">
+</div>
+<div class="workshop-image-container">
+  <img src="https://cdn.shopify.com/s/files/1/0402/9110/6972/files/shizu104.webp" alt="ボタニーペインティング ワークショップ">
+</div>
+<div class="workshop-image-container">
+  <img src="https://cdn.shopify.com/s/files/1/0402/9110/6972/files/shizu105.webp" alt="ボタニーペインティング ワークショップ">
+</div>
+<div class="workshop-image-container">
+  <img src="https://cdn.shopify.com/s/files/1/0402/9110/6972/files/shizu106.webp" alt="ボタニーペインティング ワークショップ">
+</div>
+
+<div id="esfs-workshop-20xx-html"></div>
+
+<p id="esfs-moushikomi-20xx" class="workshop-notice">
+  画材は会場にご用意するので、【配送品はありません】が、ご予約時に配送先の入力をお願い申し上げます。<br>
+  本サービスは単発のワークショップであり、継続的な課金は発生しません。
+</p>
+
+{%- comment -%} フローティングフッター: 開催日・OPTIS・数量（main / installment フォームと JS 同期） {%- endcomment -%}
+<div
+  class="esfs-floating-workshop-footer"
+  id="esfs-floating-workshop-footer"
+  hidden
+  aria-label="予約オプション・数量・予約する"
+>
+  <div class="esfs-floating-workshop-footer__inner">
+    <div class="esfs-fw-field esfs-fw-field--date">
+      <label class="esfs-fw-label esfs-fw-label--date" for="esfs-fw-date-trigger">開催を選ぶ</label>
+      <div class="esfs-fw-date-ui">
+        <select
+          id="esfs-fw-select-date"
+          class="esfs-fw-select-date-hidden"
+          autocomplete="off"
+          aria-hidden="true"
+          tabindex="-1"
+        ></select>
+        <button
+          type="button"
+          class="esfs-fw-select esfs-fw-select--date esfs-fw-date-trigger"
+          id="esfs-fw-date-trigger"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          aria-label="会場開催日を選ぶ"
+        >
+          <span class="esfs-fw-date-trigger-lines" id="esfs-fw-date-trigger-lines"></span>
+        </button>
+      </div>
+    </div>
+    <div class="esfs-fw-row esfs-fw-row--middle">
+      <div class="esfs-fw-field">
+        <label class="esfs-fw-label" for="esfs-fw-select-size">サイズ</label>
+          <select
+            id="esfs-fw-select-size"
+            class="esfs-fw-select"
+            autocomplete="off"
+            aria-label="作品のサイズ"
+          ></select>
+      </div>
+      <div class="esfs-fw-field">
+        <label class="esfs-fw-label" for="esfs-fw-select-plant">植物</label>
+          <select
+            id="esfs-fw-select-plant"
+            class="esfs-fw-select"
+            autocomplete="off"
+            aria-label="希望する植物"
+          ></select>
+      </div>
+    </div>
+    <div class="esfs-fw-row esfs-fw-row--bottom">
+      <span class="esfs-fw-label esfs-fw-label--qty" id="esfs-fw-qty-label">{{ 'products.product.quantity.label' | t }}</span>
+      <select
+        id="esfs-fw-qty-select"
+        class="esfs-fw-select esfs-fw-select--qty"
+        autocomplete="off"
+        aria-labelledby="esfs-fw-qty-label"
+      >
+        {%- for i in (1..4) -%}
+          <option value="{{ i }}"{% if i == 1 %} selected{% endif %}>{{ i }}</option>
+        {%- endfor -%}
+      </select>
+      <span class="esfs-fw-spacer" aria-hidden="true"></span>
+      <span class="esfs-fw-total-before-reserve" aria-live="polite">
+        <span class="esfs-fw-total-one-line" id="esfs-fw-total-amount">合計 ¥0</span>
+      </span>
+      <div
+        class="esfs-fw-reserve-btn"
+        id="esfs-fw-reserve-btn"
+        role="presentation"
+        aria-hidden="true"
+      >
+        予約する
+      </div>
+    </div>
+  </div>
+  <div
+    class="esfs-fw-date-backdrop"
+    id="esfs-fw-date-backdrop"
+    hidden
+    aria-hidden="true"
+  ></div>
+  <div class="esfs-fw-date-panel-wrap" id="esfs-fw-date-panel-wrap" hidden>
+    <ul class="esfs-fw-date-panel" id="esfs-fw-date-panel" role="listbox"></ul>
+  </div>
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "20xx Workshop",
+  "tag": "section",
+  "class": "esfs-20xx-workshop-section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "esfs_header_top_offset",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "固定メニュー分の上余白",
+      "default": 72,
+      "info": "ページ上部が固定ヘッダーに重なる場合、数値を大きくしてください。"
+    }
+  ]
+}
+{% endschema %}
+

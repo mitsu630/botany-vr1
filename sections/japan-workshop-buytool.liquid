@@ -30,6 +30,19 @@
         height: calc({{ section.settings.footer_height_px }}px + env(safe-area-inset-bottom, 0px));
       }
 
+      /* OPTIS等のアプリは display:none だと初期化されないことがあるため、
+         画面外に退避してDOM上には残す */
+      #jwbt-{{ section.id }} .jwbt__app-sandbox {
+        position: fixed;
+        left: -10000px;
+        top: 0;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+      }
+
       #jwbt-{{ section.id }} .jwbt__bar {
         position: fixed;
         left: 0;
@@ -161,23 +174,11 @@
     <span class="jwbt__spacer" aria-hidden="true"></span>
 
     {%- comment -%}
-      OPTIS/BSS などのアプリは「@app ブロック」としてセクション内に挿入できるようにする。
-      ここは表示しないが、DOM上には残す（JSが option/hidden field を参照し、/cart/add.js に送る）。
-    {%- endcomment -%}
-    <div class="jwbt__optis-host" data-jwbt="optis-host" hidden>
-      {%- for block in section.blocks -%}
-        {%- if block.type == '@app' -%}
-          {% render block %}
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
-
-    {%- comment -%}
       申込みフォーム（/cart/add の実体）をこのセクション内に用意する。
       main-product を無効化していても /cart/add.js 送信ができ、OPTIS の hidden fields も同フォームへ入れられる。
     {%- endcomment -%}
     {%- assign jwbt_form_id = 'jwbt-form-' | append: section.id -%}
-    {%- form 'product', product, id: jwbt_form_id, class: 'jwbt__hidden-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+    {%- form 'product', product, id: jwbt_form_id, class: 'jwbt__hidden-form jwbt__app-sandbox', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
       <input type="hidden" name="id" value="{{ jwbt_initial_variant.id }}" class="product-variant-id">
       {%- for block in section.blocks -%}
         {%- if block.type == '@app' -%}
@@ -255,8 +256,8 @@
         var selPlant = q('[data-jwbt="plant"]');
         var selQty = q('[data-jwbt="qty"]');
         var btn = q('[data-jwbt="reserve"]');
-        var optisHost = q('[data-jwbt="optis-host"]');
         var jwbtForm = document.getElementById('{{ jwbt_form_id }}');
+        var optisHost = jwbtForm;
 
         function getMainForm() {
           return (

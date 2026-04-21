@@ -269,21 +269,88 @@
           return null;
         }
 
+        function findBssOptisFieldByLabel(labelText) {
+          var want = normalizeText(labelText);
+          if (!want) return null;
+          var roots = document.querySelectorAll('.bss-po-product-page, .po-option, .po-option--container, .po-option--block, .po-option--wrapper');
+          for (var i = 0; i < roots.length; i++) {
+            var r = roots[i];
+            if (!r) continue;
+            var labelEl = r.querySelector('.po-label, label, .po-option__label, .po-option-title');
+            var label = normalizeText((labelEl && labelEl.textContent) || r.getAttribute('data-title') || r.getAttribute('aria-label') || '');
+            if (label.indexOf(want) === -1 && normalizeText(r.textContent || '').indexOf(want) === -1) continue;
+
+            var select =
+              r.querySelector('select.po-option--type-dropdown-menu') ||
+              r.querySelector('select[name^="po_dropdown"]') ||
+              r.querySelector('select[key^="po_"]');
+            if (select) return { kind: 'select', el: select, root: r };
+
+            var input = r.querySelector('input[name^="po_dropdown"]');
+            if (input) return { kind: 'input', el: input, root: r };
+
+            // visible dropdown UI only (no obvious field)
+            var trigger =
+              r.querySelector('.po-select-dropdown-thumbnail') ||
+              r.querySelector('.po-dropdown-selected-option') ||
+              r.querySelector('[role="button"][aria-haspopup="listbox"]');
+            var list = r.querySelector('.po-dropdown-list, [role="listbox"]');
+            if (trigger || list) return { kind: 'ui', el: trigger || list, root: r };
+          }
+          return null;
+        }
+
+        function getBssOptionsFromRoot(rootEl) {
+          if (!rootEl) return [];
+          var opts = [];
+          var nodes = rootEl.querySelectorAll('.po-dropdown-option, [role="option"], option');
+          for (var i = 0; i < nodes.length; i++) {
+            var n = nodes[i];
+            var t = normalizeText((n && (n.textContent || n.value)) || '');
+            if (!t) continue;
+            // placeholder除外
+            if (t.indexOf('Please select') !== -1) continue;
+            opts.push(t);
+          }
+          // uniq
+          var seen = {};
+          var out = [];
+          for (var j = 0; j < opts.length; j++) {
+            var s = opts[j];
+            if (seen[s]) continue;
+            seen[s] = true;
+            out.push(s);
+          }
+          return out;
+        }
+
         function findOptisSelects() {
-          // OPTIS Product Options のセレクト（実装差異に耐えるため複数候補）
-          var size =
+          // OPTIS Product Options（実装差異に耐えるため複数候補）
+          var sizeSelect =
             document.querySelector('select.po-option--type-dropdown-menu[key="po_作品のサイズ"]') ||
             document.querySelector('select[key="po_作品のサイズ"]') ||
             document.querySelector('select[name*="po_作品のサイズ"]') ||
             findOptisSelectByLabel('作品のサイズ') ||
             findOptisSelectByLabel('サイズ');
-          var plant =
+          var plantSelect =
             document.querySelector('select.po-option--type-dropdown-menu[key="po_希望する植物"]') ||
             document.querySelector('select[key="po_希望する植物"]') ||
             document.querySelector('select[name*="po_希望する植物"]') ||
             findOptisSelectByLabel('希望する植物') ||
             findOptisSelectByLabel('植物');
-          return { size: size, plant: plant };
+
+          // selectが見つからない場合はBSS/OPTISのフィールド（inputやUI）も探索
+          var sizeField = sizeSelect ? { kind: 'select', el: sizeSelect } : findBssOptisFieldByLabel('サイズ');
+          if (!sizeField) sizeField = findBssOptisFieldByLabel('作品のサイズ');
+          var plantField = plantSelect ? { kind: 'select', el: plantSelect } : findBssOptisFieldByLabel('植物');
+          if (!plantField) plantField = findBssOptisFieldByLabel('希望する植物');
+
+          return {
+            size: sizeField && sizeField.el ? sizeField.el : null,
+            plant: plantField && plantField.el ? plantField.el : null,
+            sizeField: sizeField,
+            plantField: plantField,
+          };
         }
 
         function cloneOptions(target, source, placeholder) {
@@ -378,8 +445,57 @@
           if (vid && selVariant && selVariant.value !== vid) selVariant.value = vid;
 
           var opt = findOptisSelects();
-          if (opt.size) cloneOptions(selSize, opt.size, 'サイズを選ぶ');
-          if (opt.plant) cloneOptions(selPlant, opt.plant, '植物を選ぶ');
+          if (opt.size) {
+            if (opt.size.tagName === 'SELECT') {
+              cloneOptions(selSize, opt.size, 'サイズを選ぶ');
+            } else {
+              var list1 = getBssOptionsFromRoot(opt.sizeField && opt.sizeField.root ? opt.sizeField.root : null);
+              if (list1.length && selSize) {
+                selSize.innerHTML = '';
+                var ph1 = document.createElement('option');
+                ph1.value = '';
+                ph1.textContent = 'サイズを選ぶ';
+                selSize.appendChild(ph1);
+                for (var i1 = 0; i1 < list1.length; i1++) {
+                  var o1 = document.createElement('option');
+                  o1.value = list1[i1];
+                  o1.textContent = list1[i1];
+                  selSize.appendChild(o1);
+                }
+              }
+            }
+            // 現在値を反映（inputの場合）
+            if (opt.sizeField && opt.sizeField.kind === 'input' && selSize) {
+              var cur1 = normalizeText(opt.size.value || '');
+              if (cur1 && selSize.value !== cur1) selSize.value = cur1;
+            }
+          }
+
+          if (opt.plant) {
+            if (opt.plant.tagName === 'SELECT') {
+              cloneOptions(selPlant, opt.plant, '植物を選ぶ');
+            } else {
+              var list2 = getBssOptionsFromRoot(opt.plantField && opt.plantField.root ? opt.plantField.root : null);
+              if (list2.length && selPlant) {
+                selPlant.innerHTML = '';
+                var ph2 = document.createElement('option');
+                ph2.value = '';
+                ph2.textContent = '植物を選ぶ';
+                selPlant.appendChild(ph2);
+                for (var i2 = 0; i2 < list2.length; i2++) {
+                  var o2 = document.createElement('option');
+                  o2.value = list2[i2];
+                  o2.textContent = list2[i2];
+                  selPlant.appendChild(o2);
+                }
+              }
+            }
+            if (opt.plantField && opt.plantField.kind === 'input' && selPlant) {
+              var cur2 = normalizeText(opt.plant.value || '');
+              if (cur2 && selPlant.value !== cur2) selPlant.value = cur2;
+            }
+          }
+
           if (!opt.size || !opt.plant) scheduleOptisRetry();
 
           updateReserveState();
@@ -397,12 +513,43 @@
 
           var opt = findOptisSelects();
           if (opt.size && selSize) {
-            opt.size.value = selSize.value;
-            dispatchChange(opt.size);
+            if (opt.size.tagName === 'SELECT') {
+              opt.size.value = selSize.value;
+              dispatchChange(opt.size);
+            } else {
+              opt.size.value = selSize.value;
+              dispatchChange(opt.size);
+              // UI option click (best-effort)
+              if (opt.sizeField && opt.sizeField.root) {
+                var opts = opt.sizeField.root.querySelectorAll('.po-dropdown-option, [role="option"]');
+                for (var i = 0; i < opts.length; i++) {
+                  var t = normalizeText(opts[i].textContent || '');
+                  if (t && t === normalizeText(selSize.value)) {
+                    try { opts[i].click(); } catch (e) {}
+                    break;
+                  }
+                }
+              }
+            }
           }
           if (opt.plant && selPlant) {
-            opt.plant.value = selPlant.value;
-            dispatchChange(opt.plant);
+            if (opt.plant.tagName === 'SELECT') {
+              opt.plant.value = selPlant.value;
+              dispatchChange(opt.plant);
+            } else {
+              opt.plant.value = selPlant.value;
+              dispatchChange(opt.plant);
+              if (opt.plantField && opt.plantField.root) {
+                var opts2 = opt.plantField.root.querySelectorAll('.po-dropdown-option, [role="option"]');
+                for (var j = 0; j < opts2.length; j++) {
+                  var t2 = normalizeText(opts2[j].textContent || '');
+                  if (t2 && t2 === normalizeText(selPlant.value)) {
+                    try { opts2[j].click(); } catch (e) {}
+                    break;
+                  }
+                }
+              }
+            }
           }
         }
 

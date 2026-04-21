@@ -1,8 +1,25 @@
 (function () {
+  function asciiDigitsFromText(text) {
+    return text.replace(/[\uFF10-\uFF19]/g, function (ch) {
+      return String.fromCharCode(ch.charCodeAt(0) - 0xff10 + 0x30);
+    });
+  }
+
+  function findJapaneseDateInText(text) {
+    if (!text || typeof text !== 'string') return null;
+    const normalized = asciiDigitsFromText(text);
+    const m = normalized.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+    if (!m) return null;
+    const index = normalized.indexOf(m[0]);
+    if (index < 0) return null;
+    return { match: m, index: index, source: text };
+  }
+
   function parseJapaneseEventDate(text) {
     if (!text || typeof text !== 'string') return null;
-    const m = text.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
-    if (!m) return null;
+    const found = findJapaneseDateInText(text);
+    if (!found) return null;
+    const m = found.match;
     const y = parseInt(m[1], 10);
     const mo = parseInt(m[2], 10);
     const d = parseInt(m[3], 10);
@@ -41,18 +58,26 @@
     if (existingDt && (existingDt.textContent || '').trim().length > 0) return;
 
     const text = venueEl.textContent.trim();
-    const m = text.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
-    if (!m || m.index <= 0) return;
+    const found = findJapaneseDateInText(text);
+    if (!found || found.index <= 0) return;
 
-    const venueText = text.slice(0, m.index).trim();
-    const dateText = text.slice(m.index).trim();
+    const venueText = text.slice(0, found.index).trim();
+    const dateText = text.slice(found.index).trim();
     if (!venueText || !dateText) return;
 
     venueEl.textContent = venueText;
+    const row = document.createElement('div');
+    row.className = 'workshop-variant-list__meta-row';
     const p = document.createElement('p');
     p.className = 'workshop-variant-list__datetime';
     p.textContent = dateText;
-    venueEl.insertAdjacentElement('afterend', p);
+    row.appendChild(p);
+    const venueRow = venueEl.closest('.workshop-variant-list__meta-row');
+    if (venueRow) {
+      venueRow.insertAdjacentElement('afterend', row);
+    } else {
+      venueEl.insertAdjacentElement('afterend', row);
+    }
   }
 
   function initCard(card) {

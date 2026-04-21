@@ -49,10 +49,16 @@
     width: 100%;
   }
 
-  #shopify-section-{{ section.id }} .workshop-variant-list__venue {
+  #shopify-section-{{ section.id }} .workshop-variant-list__meta-row {
     display: block;
     width: 100%;
     flex: 0 0 auto;
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .workshop-variant-list__venue {
+    display: block;
+    width: 100%;
     margin: 0;
     font-size: var(--wvl-venue-fs);
     line-height: calc(1 + 0.35 / var(--font-heading-scale));
@@ -64,7 +70,6 @@
   #shopify-section-{{ section.id }} .workshop-variant-list__datetime {
     display: block;
     width: 100%;
-    flex: 0 0 auto;
     margin: 0;
     font-size: var(--wvl-datetime-fs);
     line-height: calc(1 + 0.5 / var(--font-body-scale));
@@ -167,6 +172,35 @@
                   assign datetime_line = wvl_sl[1] | strip
                 endif
               endif
+
+              if datetime_line == blank and venue != blank
+                assign v_norm = venue | strip | replace: '　', ' ' | replace: '	', ' '
+                assign parts = v_norm | split: ' '
+                assign venue_acc = ''
+                assign date_acc = ''
+                assign seen_date = false
+                for part in parts
+                  if part == blank
+                  else
+                    if seen_date
+                      assign date_acc = date_acc | append: ' ' | append: part
+                    elsif part contains '年' and part contains '月' and part contains '日'
+                      assign seen_date = true
+                      assign date_acc = part
+                    else
+                      if venue_acc == blank
+                        assign venue_acc = part
+                      else
+                        assign venue_acc = venue_acc | append: ' ' | append: part
+                      endif
+                    endif
+                  endif
+                endfor
+                if seen_date and venue_acc != blank
+                  assign venue = venue_acc | strip
+                  assign datetime_line = date_acc | strip
+                endif
+              endif
             endif
           -%}
           <li class="grid__item">
@@ -179,17 +213,23 @@
               {%- if venue != blank or datetime_line != blank -%}
                 <div class="workshop-variant-list__meta">
                   {%- if venue != blank -%}
-                    <h3 class="workshop-variant-list__venue">{{ venue | escape | newline_to_br }}</h3>
+                    <div class="workshop-variant-list__meta-row">
+                      <h3 class="workshop-variant-list__venue">{{ venue | escape | newline_to_br }}</h3>
+                    </div>
                   {%- endif -%}
                   {%- if datetime_line != blank -%}
-                    <p class="workshop-variant-list__datetime">
-                      {{- datetime_line | escape | newline_to_br -}}
-                    </p>
+                    <div class="workshop-variant-list__meta-row">
+                      <p class="workshop-variant-list__datetime">
+                        {{- datetime_line | escape | newline_to_br -}}
+                      </p>
+                    </div>
                   {%- endif -%}
                 </div>
               {%- elsif venue == blank and datetime_line == blank -%}
                 <div class="workshop-variant-list__meta">
-                  <h3 class="workshop-variant-list__venue">{{ variant.title | escape | newline_to_br }}</h3>
+                  <div class="workshop-variant-list__meta-row">
+                    <h3 class="workshop-variant-list__venue">{{ variant.title | escape | newline_to_br }}</h3>
+                  </div>
                 </div>
               {%- endif -%}
 
@@ -361,7 +401,7 @@
     },
     {
       "type": "paragraph",
-      "content": "会場と開催日は別の行に分かれて表示されます。改行、または「 / 」「／」「 | 」で区切ると分割されます。1行に「会場名2026年…月…日…」のように書いた場合も、日付の直前で自動分割されます。開催日行に年月日が含まれると、在庫ありかつ手動の workshop_deadline_note がないカードだけ「募集締切間近：…正午」を表示します。満席のときはボタン文言のみで、カード内に満席の重複表示はしません。メタフィールド workshop_venue / workshop_datetime / workshop_deadline_note（任意）またはバリエーション名「会場 || 日時」も利用できます。"
+      "content": "会場と開催日は別の行に表示されます。バリエーション名などは半角スペースで「会場名 2026年04月27日 (月) 10:00」のように区切ってください（全角スペースやタブも半角スペースに置き換えて分割します）。改行や「 / 」「／」「 | 」「会場 || 日時」形式にも対応します。スペースなしの「会場名2026年…」は表示後に日付の直前で自動分割されます。開催日行に年月日があると、在庫あり・手動締切メモなしのときだけ「募集締切間近：…正午」を出します。メタフィールド workshop_venue / workshop_datetime / workshop_deadline_note（任意）も利用できます。"
     },
     {
       "type": "header",

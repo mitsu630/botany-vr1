@@ -28,13 +28,6 @@
             "show_gift_card_recipient": true
           }
         },
-        "variant_picker_JbAPj6": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
-          }
-        },
         "quantity_selector_NfKEab": {
           "type": "quantity_selector",
           "settings": {}
@@ -42,13 +35,20 @@
         "optis_product_options_option_set_jq3hDd": {
           "type": "shopify://apps/optis-product-options/blocks/option-set/2c446099-c349-4e73-80cd-49c9770b7807",
           "settings": {}
+        },
+        "variant_picker_JbAPj6": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
         }
       },
       "block_order": [
         "buy_buttons_C6BdcF",
-        "variant_picker_JbAPj6",
         "quantity_selector_NfKEab",
-        "optis_product_options_option_set_jq3hDd"
+        "optis_product_options_option_set_jq3hDd",
+        "variant_picker_JbAPj6"
       ],
       "settings": {
         "enable_sticky_info": true,

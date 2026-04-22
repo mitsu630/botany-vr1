@@ -320,6 +320,41 @@
         "padding_bottom": 0,
         "padding_left": 0
       }
+    },
+    "multicolumn_L4KLwi": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_gr3AXm": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/1170.png",
+            "title": "自分のペースで学びたい方",
+            "text": "<p>好きなタイミングで学べる柔軟なレッスンスタイルを提供しています。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_gr3AXm"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "square",
+        "button_label": "ボタンのラベル",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-472d4f3c-364f-45e4-8e40-acdff25f287d",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -329,6 +364,7 @@
     "rich_text_nEcELQ",
     "rich_text_xdnnGy",
     "main",
-    "custom_standalone_image_MfUJqx"
+    "custom_standalone_image_MfUJqx",
+    "multicolumn_L4KLwi"
   ]
 }

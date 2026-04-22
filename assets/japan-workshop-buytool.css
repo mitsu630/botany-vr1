@@ -25,6 +25,8 @@
   --jwb-control-bg: #ffffff;
   /* \A = content 用の改行（「植物を」の直後で改行） */
   --jwb-help-text: 'ご予約はサイズと植物を\A 選んだ後に行ってください';
+  /* 案内文の最大幅（狭いと折り返しで4行になるため広めに） */
+  --jwb-help-max-w: min(28rem, calc(100% - 11rem));
 }
 
 /* テーマの .select 装飾レイヤーを切り、実線ボーダーに統一 */
@@ -279,15 +281,15 @@
   color: rgba(var(--color-foreground), 0.9);
 }
 
-/* ----- 最下段：右列＝案内を「今すぐ購入」の直左にまとめて右寄せ ----- */
+/* ----- 最下段：右列＝案内（広め）＋今すぐ購入（PC/スマホとも左寄せ） ----- */
 .product__info-container > div:has(> product-form) {
   grid-area: cta;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-end;
-  gap: 6px 8px;
+  justify-content: flex-start;
+  gap: 8px 12px;
   padding: 0 !important;
   margin: 0 !important;
   width: 100%;
@@ -295,12 +297,14 @@
   justify-self: stretch;
 }
 
-/* 案内文：ボタン幅の左隣に密着（2行・\A 改行） */
+/* 案内文：意図した2行（\A）が維持されるよう幅を確保 */
 .product__info-container > div:has(> product-form)::before {
   content: var(--jwb-help-text);
   white-space: pre-line;
-  flex: 0 0 auto;
-  max-width: 11rem;
+  flex: 0 1 auto;
+  width: auto;
+  min-width: 12rem;
+  max-width: var(--jwb-help-max-w);
   font-size: 10px;
   font-weight: bold;
   line-height: 1.35;
@@ -315,6 +319,7 @@
   min-width: 0;
   margin: 0 !important;
   padding: 0 !important;
+  align-self: flex-start;
 }
 
 .product__info-container > div:has(> product-form) product-form .form {
@@ -326,6 +331,7 @@
   width: auto;
   max-width: var(--jwb-btn-w);
   margin: 0 !important;
+  margin-right: auto !important;
   padding: 0 !important;
   position: relative;
   min-height: var(--jwb-cta-h);
@@ -413,5 +419,12 @@
     --jwb-row-h: 40px;
     --jwb-cta-h: 48px;
     --jwb-btn-w: min(100%, 200px);
+  }
+
+  /* 狭い画面でも案内が極端に細くならないよう、ボタン左・残り幅を案内に割り当て */
+  .product__info-container > div:has(> product-form)::before {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
   }
 }

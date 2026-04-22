@@ -344,15 +344,17 @@
   min-width: 0;
 }
 
-/* OPTIS（BSS）由来の transform 打ち消し */
+/* OPTIS（BSS）由来の transform 打ち消し・枠はボタン側で統一 */
 .product__info-container .shopify-payment-button.bss-po-btn-buyitnow,
 .product__info-container .shopify-payment-button,
 .product__info-container shopify-accelerated-checkout,
 .product__info-container shopify-buy-it-now-button {
   transform: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-/* Buy it now 強調 */
+/* Buy it now 強調（テーマの疑似要素ボーダー／シャドウはオフ） */
 .product__info-container .shopify-payment-button__button--unbranded,
 .product__info-container button.bss-po-btn-buyitnow.shopify-payment-button__button {
   display: block !important;
@@ -363,7 +365,9 @@
   padding: 0 13px !important;
   margin: 1px 2px !important;
   background: var(--jwb-accent) !important;
-  border-color: var(--jwb-accent) !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
   color: #fff !important;
   font-weight: 700 !important;
   border-radius: var(--jwb-radius) !important;
@@ -371,6 +375,24 @@
   width: 100% !important;
   min-width: 10rem;
   font-size: 16px !important;
+}
+
+.product__info-container .shopify-payment-button__button--unbranded::before,
+.product__info-container .shopify-payment-button__button--unbranded::after,
+.product__info-container button.bss-po-btn-buyitnow.shopify-payment-button__button::before,
+.product__info-container button.bss-po-btn-buyitnow.shopify-payment-button__button::after {
+  display: none !important;
+  content: none !important;
+}
+
+.product__info-container .shopify-payment-button__button--unbranded:hover,
+.product__info-container .shopify-payment-button__button--unbranded:focus,
+.product__info-container .shopify-payment-button__button--unbranded:focus-visible,
+.product__info-container button.bss-po-btn-buyitnow.shopify-payment-button__button:hover,
+.product__info-container button.bss-po-btn-buyitnow.shopify-payment-button__button:focus,
+.product__info-container button.bss-po-btn-buyitnow.shopify-payment-button__button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .product__info-container .po-atc-btn {

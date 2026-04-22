@@ -110,9 +110,11 @@
   box-sizing: border-box;
 }
 
-/* ----- 2–3 段目：OPTIS ----- */
+/* ----- 2–3 段目：OPTIS（アプリブロック外枠の余白を除去） ----- */
 .product__info-container > .shopify-app-block[id*='__optis_product_options_'] {
   grid-area: optis;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* OPTIS：2 プルダウンなどを同一行に横並び（狭い画面では折り返し） */

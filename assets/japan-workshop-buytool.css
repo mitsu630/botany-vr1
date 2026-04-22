@@ -18,7 +18,7 @@
   --jwb-cta-h: 52px;
   --jwb-radius: 10px;
   --jwb-btn-w: 180px;
-  /* OPTIS 準拠の枠（会場セレクト・数量プルダウンも揃える） */
+  /* 会場セレクト・数量プルダウン用（OPTIS 本体はアプリ標準スタイルのまま） */
   --jwb-control-border: 1px solid #8a8787;
   --jwb-control-radius: 4px;
   --jwb-control-bg: #ffffff;
@@ -40,16 +40,6 @@
   background-color: var(--jwb-control-bg) !important;
   box-shadow: none !important;
   min-height: var(--jwb-row-h);
-}
-
-/* OPTIS カスタムプルダウン見た目 */
-.product__info-container [id^='po_container'] .po-dropdown-selected-option,
-.product__info-container [id^='po_container'] [id^='bss-po-dropdown-selected-option'],
-.product__info-container [id^='po_container'] .po-select-dropdown-thumbnail {
-  border: var(--jwb-control-border) !important;
-  border-radius: var(--jwb-control-radius) !important;
-  background-color: var(--jwb-control-bg) !important;
-  box-sizing: border-box;
 }
 
 /* ----- メディア非表示・幅 ----- */
@@ -183,10 +173,6 @@
   margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box;
-}
-
-.product__info-container .po-select-dropdown-thumbnail {
-  min-height: var(--jwb-row-h) !important;
 }
 
 .product__info-container .po-selected-swatch,

@@ -23,7 +23,8 @@
   --jwb-control-border: 1px solid #8a8787;
   --jwb-control-radius: 4px;
   --jwb-control-bg: #ffffff;
-  --jwb-help-text: 'ご予約はサイズと植物を\n選んだ後に行ってください';
+  /* \A = content 用の改行（「植物を」の直後で改行） */
+  --jwb-help-text: 'ご予約はサイズと植物を\A 選んだ後に行ってください';
 }
 
 /* テーマの .select 装飾レイヤーを切り、実線ボーダーに統一 */
@@ -301,8 +302,9 @@
   flex: 0 1 auto;
   min-width: 0;
   max-width: 15rem;
-  font-size: 11px;
-  line-height: 1.25;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 1.35;
   color: rgba(var(--color-foreground), 0.65);
   text-align: left;
   padding: 0;

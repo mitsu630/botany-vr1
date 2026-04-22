@@ -114,6 +114,71 @@
         "padding_bottom": 36
       }
     },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 10,
+        "columns_desktop": 6,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "rich_text_nEcELQ": {
+      "type": "rich-text",
+      "blocks": {
+        "text_nxDyaz": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ボタニー®️ペインティングとは<br/>ボタニー®️ペインティングは、自然の植物、特に蓮や菩提樹の葉を使用した、独自のアート技法です。天然の葉をキャンバスや木製パネルに貼り付け、手作業で彩色することで、世界に一つだけの作品を作り上げます。<br/><br/>このアートは、自然の素材が持つ独特な形やテクスチャーを活かし、心を静め、癒しの時間を提供するものです。アート初心者でも安心して楽しめる一方、経験者には奥深い表現の幅を広げる手法として愛されています。<br/><br/>ボタニー®️ペインティングはただの装飾ではなく、自然との調和を感じながら自己表現を追求することができる、アートとセラピーが融合した特別な体験です。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_nxDyaz"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "scheme-5",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_xdnnGy": {
+      "type": "rich-text",
+      "blocks": {
+        "text_e6W8MB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>世界で唯一のボタニー®️<br/>ボタニー®️ペインティングは、自然の植物である蓮の葉やインド菩提樹の葉を使った世界で唯一のアート技法です。この希少性から生まれる独特の風合いや、美しさを活かした作品は、他にはない特別な存在感を放ちます。<br/><br/>自然素材を用いたボタニー®️ペインティングは、環境にも優しく、手に取る方々の心に響く温もりがあります。そんな唯一無二の技法を学べる資格取得講座で、貴重なスキルを身につけませんか？</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_e6W8MB"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -236,30 +301,34 @@
         "padding_bottom": 12
       }
     },
-    "related-products": {
-      "type": "related-products",
-      "disabled": true,
+    "custom_standalone_image_MfUJqx": {
+      "type": "custom-standalone-image",
+      "name": "t:sections.custom-standalone-image.presets.name",
       "settings": {
-        "heading": "You may also like",
-        "heading_size": "h2",
-        "products_to_show": 10,
-        "columns_desktop": 6,
-        "columns_mobile": "2",
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "padding_top": 36,
-        "padding_bottom": 28
+        "image": "shopify://shop_images/P1090628.webp",
+        "image_link": "",
+        "link_new_tab": false,
+        "image_alt": "",
+        "full_viewport_width": true,
+        "color_scheme": "",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0
       }
     }
   },
   "order": [
     "image_banner_nqmGac",
     "multicolumn_iinPfB",
+    "related-products",
+    "rich_text_nEcELQ",
+    "rich_text_xdnnGy",
     "main",
-    "related-products"
+    "custom_standalone_image_MfUJqx"
   ]
 }

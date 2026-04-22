@@ -152,10 +152,24 @@
     width: var(--jwb-btn-w);
     position: relative;
     min-height: 56px;
+    transform: none !important;
+  }
+
+  /*
+    Buy it now 周り：テーマに rotate は無く、OPTIS（BSS）のアプリCSSが
+    .bss-po-btn-buyitnow や親ラッパーに transform を付けることがある。
+    チェックアウト用 custom 要素まで含めて打ち消す。
+  */
+  .product__info-container .shopify-payment-button.bss-po-btn-buyitnow,
+  .product__info-container .shopify-payment-button,
+  .product__info-container shopify-accelerated-checkout,
+  .product__info-container shopify-buy-it-now-button {
+    transform: none !important;
   }
 
   /* Buy it now ボタン強調（予約する想定） — 回転・位置ずらしは無しで水平表示 */
-  .product__info-container .shopify-payment-button__button--unbranded {
+  .product__info-container .shopify-payment-button__button--unbranded,
+  .product__info-container button.bss-po-btn-buyitnow.shopify-payment-button__button {
     display: block !important;
     position: relative !important;
     left: auto !important;

@@ -295,15 +295,15 @@
   color: rgba(var(--color-foreground), 0.9);
 }
 
-/* ----- 最下段：案内は左・カート/今すぐ購入ブロックは行末へ（flex-end だと案内も右に寄るので margin-left: auto で押し出す） ----- */
+/* ----- 最下段：案内＋カート/今すぐ購入を右端でまとめる（案内はボタン側に右揃え） ----- */
 .product__info-container > div:has(> product-form) {
   grid-area: cta;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
-  gap: 8px 12px;
+  justify-content: flex-end;
+  gap: 6px 10px;
   padding: 0 !important;
   margin: 0 !important;
   width: 100%;
@@ -311,7 +311,7 @@
   justify-self: stretch;
 }
 
-/* 案内文：意図した2行（\A）が維持されるよう幅を確保 */
+/* 案内文：幅は確保しつつ、行はボタン寄りに右揃え */
 .product__info-container > div:has(> product-form)::before {
   content: var(--jwb-help-text);
   white-space: pre-line;
@@ -323,7 +323,7 @@
   font-weight: bold;
   line-height: 1.35;
   color: rgba(var(--color-foreground), 0.65);
-  text-align: left;
+  text-align: right;
   padding: 0;
   margin: 0;
 }
@@ -332,7 +332,6 @@
   flex: 0 0 auto;
   min-width: 0;
   margin: 0 !important;
-  margin-left: auto !important;
   padding: 0 !important;
   align-self: center;
 }

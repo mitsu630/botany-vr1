@@ -67,22 +67,33 @@
   display: none !important;
 }
 
-/* ----- 1 段目：会場開催日 ----- */
+/* ----- 1 段目：会場開催日（テーマの .product-form__input max-width:44rem を打ち消して親100%） ----- */
 .product__info-container > variant-selects[id^='variant-selects-'] {
   grid-area: variant;
+  display: block;
   width: 100%;
   max-width: 100%;
   min-width: 0;
   box-sizing: border-box;
 }
 
-.product__info-container > variant-selects .select,
-.product__info-container > variant-selects .select__select {
+.product__info-container variant-selects[id^='variant-selects-'] .product-form__input,
+.product__info-container variant-selects[id^='variant-selects-'] .product-form__input--dropdown {
+  max-width: 100% !important;
   width: 100%;
-  min-height: var(--jwb-row-h);
+  min-width: 0;
+  box-sizing: border-box;
 }
 
-.product__info-container > variant-selects .select__select {
+.product__info-container variant-selects[id^='variant-selects-'] .select,
+.product__info-container variant-selects[id^='variant-selects-'] .select__select {
+  width: 100%;
+  max-width: 100%;
+  min-height: var(--jwb-row-h);
+  box-sizing: border-box;
+}
+
+.product__info-container variant-selects[id^='variant-selects-'] .select__select {
   padding-right: 92px;
   margin-left: 1px;
   margin-right: 1px;

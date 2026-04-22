@@ -139,22 +139,29 @@
   .product__info-container > div:has(> pickup-availability) {
     grid-area: cta;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    gap: 0;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
   }
   .product__info-container > div:has(> product-form) .product-form__buttons {
     width: var(--jwb-btn-w);
     position: relative;
     min-height: 56px;
+    transform: rotate(-26deg);
   }
 
   /* Buy it now ボタン強調（予約する想定） */
   .product__info-container .shopify-payment-button__button--unbranded {
     display: block !important;
-    position: absolute !important;
-    left: auto !important;
-    top: auto !important;
-    transform: rotate(26deg) !important;
+    position: relative !important;
+    left: -52px !important;
+    top: -26px !important;
+    transform: matrix(0.898794, 0.438371, -0.438371, 0.898794, 0, 0) !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     margin: 1px 2px !important;

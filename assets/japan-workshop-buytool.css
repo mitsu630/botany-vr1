@@ -18,7 +18,8 @@
   --jwb-cta-h: 52px;
   --jwb-radius: 10px;
   --jwb-btn-w: 180px;
-  --jwb-qty-w: 88px;
+  /* 数量は - / 数値 / + の3区画でテーマ既定幅（約14rem）が必要。狭い固定幅は入力が消える原因になる */
+  --jwb-quantity-track-w: calc(14rem / var(--font-body-scale) + var(--inputs-border-width) * 2);
   --jwb-help-text: 'ご予約はサイズと植物を\n選んだ後に行ってください';
 }
 
@@ -169,22 +170,49 @@
   grid-area: qty;
   grid-row: 3 / span 2;
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 8px;
   margin: 0 !important;
   width: auto;
-  max-width: none;
-  min-width: 0;
+  max-width: 100%;
+  min-width: min-content;
   align-self: center;
   justify-self: start;
+  position: relative;
+  z-index: 3;
+  overflow: visible;
 }
 
-.product__info-container > [id^='Quantity-Form-'] .quantity {
-  width: var(--jwb-qty-w);
+.product__info-container > [id^='Quantity-Form-'] .price-per-item__container {
+  flex: 0 1 auto;
+  min-width: min-content;
   max-width: 100%;
-  min-height: var(--jwb-row-h);
-  background: #fff;
+}
+
+.product__info-container > [id^='Quantity-Form-'] quantity-input.quantity,
+.product__info-container > [id^='Quantity-Form-'] .quantity {
+  width: var(--jwb-quantity-track-w) !important;
+  min-width: var(--jwb-quantity-track-w);
+  max-width: 100%;
+  flex-shrink: 0;
+  min-height: max(var(--jwb-row-h), calc((var(--inputs-border-width) * 2) + 4.5rem));
+  background-color: rgb(var(--color-background));
   border-radius: var(--jwb-radius);
+  box-sizing: border-box;
+}
+
+.product__info-container > [id^='Quantity-Form-'] .quantity__button {
+  position: relative;
+  z-index: 2;
+}
+
+.product__info-container > [id^='Quantity-Form-'] .quantity__input {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+  color: rgba(var(--color-foreground), 0.9);
 }
 
 .product__info-container > [id^='Quantity-Form-'].product-form__quantity::after {
@@ -261,7 +289,6 @@
     --jwb-row-h: 46px;
     --jwb-cta-h: 50px;
     --jwb-btn-w: 100%;
-    --jwb-qty-w: 84px;
   }
 
   .product__info-container {

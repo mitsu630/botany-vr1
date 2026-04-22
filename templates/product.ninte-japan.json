@@ -46,6 +46,74 @@
         "show_text_below": true
       }
     },
+    "multicolumn_iinPfB": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_7jhXB3": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1060639.webp",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_X4XaJJ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1090098.webp",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_xjaxXx": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1090864.webp",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_TjLwXb": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1100418.webp",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_7jhXB3",
+        "column_X4XaJJ",
+        "column_xjaxXx",
+        "column_TjLwXb"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -190,6 +258,7 @@
   },
   "order": [
     "image_banner_nqmGac",
+    "multicolumn_iinPfB",
     "main",
     "related-products"
   ]

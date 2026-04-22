@@ -62,7 +62,13 @@ if (!customElements.get('price-per-item')) {
       updatePricePerItem(updatedCartQuantity) {
         if (this.input) {
           this.enteredQty = parseInt(this.input.value);
-          this.step = parseInt(this.input.step)
+          const rawStep =
+            this.input.step != null && this.input.step !== ''
+              ? parseInt(this.input.step, 10)
+              : this.input.getAttribute('step')
+                ? parseInt(this.input.getAttribute('step'), 10)
+                : 1;
+          this.step = Number.isNaN(rawStep) ? 1 : rawStep;
         }
 
         // updatedCartQuantity is undefined when qty is updated on product page. We need to sum entered qty and current qty in cart.

@@ -1,0 +1,56 @@
+{% comment %}
+  ワークショップ用: 数量をネイティブ select で選択し、後ろに「人」を付与。
+  product-info.js の .quantity__input は SELECT にも対応する。
+{% endcomment %}
+{%- liquid
+  assign v = product.selected_or_first_available_variant
+  assign qmin = v.quantity_rule.min
+  assign qstep = v.quantity_rule.increment
+  assign qmax = v.quantity_rule.max
+  if qmax == blank
+    assign cap = 30
+  else
+    assign cap = qmax
+  endif
+  if cap > 50
+    assign cap = 50
+  endif
+-%}
+<div class="jwb-quantity-dropdown-row">
+  <div class="select jwb-unified-control">
+    <select
+      id="Quantity-{{ section.id }}"
+      class="select__select quantity__input"
+      name="quantity"
+      form="{{ product_form_id }}"
+      data-cart-quantity="{{ cart_qty }}"
+      data-min="{{ qmin }}"
+      {% unless v.quantity_rule.max == blank %}
+        data-max="{{ v.quantity_rule.max }}"
+      {% endunless %}
+      step="{{ qstep }}"
+      data-cap-max="30"
+      aria-labelledby="quantity-label-{{ section.id }}"
+    >
+      {%- assign n = qmin -%}
+      {%- for i in (1..80) -%}
+        {%- if n > cap -%}
+          {%- break -%}
+        {%- endif -%}
+        <option
+          value="{{ n }}"
+          {% if n == qmin %}
+            selected
+          {% endif %}
+        >
+          {{- n -}}
+        </option>
+        {%- assign n = n | plus: qstep -%}
+      {%- endfor -%}
+    </select>
+    <span class="svg-wrapper">
+      {{- 'icon-caret.svg' | inline_asset_content -}}
+    </span>
+  </div>
+  <span class="jwb-quantity-suffix" aria-hidden="true">人</span>
+</div>

@@ -10,14 +10,15 @@
 :root {
   --jwb-bg: #fafff0;
   --jwb-accent: #d31d84;
-  --jwb-pad: 12px;
-  --jwb-gap: 8px;
-  --jwb-optis-gap: 4px;
-  --jwb-row-h: 44px;
-  --jwb-cta-h: 48px;
-  --jwb-radius: 8px;
-  --jwb-btn-w: 144px;
-  --jwb-qty-w: 80px;
+  /* 参照デザイン：行間にゆとり */
+  --jwb-pad: 16px;
+  --jwb-gap: 12px;
+  --jwb-optis-gap: 10px;
+  --jwb-row-h: 48px;
+  --jwb-cta-h: 52px;
+  --jwb-radius: 10px;
+  --jwb-btn-w: 180px;
+  --jwb-qty-w: 88px;
   --jwb-help-text: 'ご予約はサイズと植物を\n選んだ後に行ってください';
 }
 
@@ -32,33 +33,40 @@
   max-width: 100% !important;
 }
 
-/* ----- ProductInfo グリッド本体 ----- */
+/*
+ * レイアウト（参照UI）:
+ *  - 1〜3 行目: プルダウンを全幅で縦積み（会場日 / OPTIS×2）
+ *  - 4〜5 行目: 左に数量、右に案内文→その下に予約ボタン（右寄せ）
+ */
 .product__info-container {
   background: var(--jwb-bg);
   border-radius: var(--jwb-radius);
   padding: var(--jwb-pad);
   display: grid;
   gap: var(--jwb-gap);
-  grid-template-columns: minmax(76px, 112px) 1fr var(--jwb-btn-w);
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto auto auto;
   grid-template-areas:
-    'variant variant variant'
-    'optis   optis   optis'
-    'qty     help    cta';
+    'variant variant'
+    'optis optis'
+    'qty help'
+    'qty cta';
   align-items: start;
 }
 
-/* 中央の案内文（DOM追加せず CSS のみ） */
+/* 右列：案内文（ボタンのやや上・右寄せ） */
 .product__info-container::after {
   content: var(--jwb-help-text);
   grid-area: help;
-  align-self: center;
-  justify-self: center;
-  text-align: center;
+  align-self: end;
+  justify-self: end;
+  text-align: right;
   white-space: pre-line;
-  font-size: 11px;
-  line-height: 1.25;
-  color: rgba(var(--color-foreground), 0.85);
-  padding: 0 4px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: rgba(var(--color-foreground), 0.65);
+  padding: 0 0 2px;
+  max-width: min(100%, 20rem);
 }
 
 /* 不要なラベル */
@@ -130,17 +138,17 @@
   padding: 0 !important;
 }
 
-/* OPTIS：2 プルダウンなどを同一行に横並び（狭い画面では折り返し） */
+/* OPTIS：プルダウンを全幅で縦積み */
 .product__info-container [id^='po_container'].bss-po-product-page {
   display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  flex-direction: column !important;
+  align-items: stretch;
   gap: var(--jwb-optis-gap) !important;
 }
 
 .product__info-container [id^='po_container'].bss-po-product-page > * {
-  flex: 1 1 calc(50% - var(--jwb-optis-gap) / 2);
+  flex: 0 0 auto;
+  width: 100%;
   min-width: 0;
   margin: 0 !important;
   padding: 0 !important;
@@ -156,16 +164,19 @@
   display: none !important;
 }
 
-/* ----- 4 段目：数量 ----- */
+/* ----- 最下段：左＝数量（2 行にまたぎ中央寄せ） ----- */
 .product__info-container > [id^='Quantity-Form-'].product-form__quantity {
   grid-area: qty;
+  grid-row: 3 / span 2;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   margin: 0 !important;
-  width: 100%;
-  max-width: 100%;
+  width: auto;
+  max-width: none;
   min-width: 0;
+  align-self: center;
+  justify-self: start;
 }
 
 .product__info-container > [id^='Quantity-Form-'] .quantity {
@@ -178,27 +189,28 @@
 
 .product__info-container > [id^='Quantity-Form-'].product-form__quantity::after {
   content: '人';
-  font-size: 13px;
+  font-size: 14px;
   color: rgba(var(--color-foreground), 0.9);
 }
 
-/* ----- 4 段目：CTA ----- */
+/* ----- 最下段：右＝予約ボタン（右寄せ・幅は変数） ----- */
 .product__info-container > div:has(> product-form),
 .product__info-container > div:has(> pickup-availability) {
   grid-area: cta;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
   gap: 0;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
+  padding: 0;
+  margin: 0 !important;
+  width: 100%;
+  justify-self: stretch;
 }
 
 .product__info-container > div:has(> product-form) .product-form__buttons {
-  width: var(--jwb-btn-w);
+  width: 100%;
+  max-width: var(--jwb-btn-w);
   position: relative;
   min-height: var(--jwb-cta-h);
   transform: none !important;
@@ -230,7 +242,7 @@
   border-radius: var(--jwb-radius) !important;
   min-height: var(--jwb-cta-h) !important;
   width: 100% !important;
-  font-size: 15px !important;
+  font-size: 16px !important;
 }
 
 .product__info-container .po-atc-btn {
@@ -244,19 +256,43 @@
 
 @media (max-width: 749px) {
   :root {
-    --jwb-pad: 10px;
-    --jwb-gap: 8px;
-    --jwb-row-h: 42px;
-    --jwb-cta-h: 46px;
-    --jwb-btn-w: 136px;
-    --jwb-qty-w: 76px;
+    --jwb-pad: 14px;
+    --jwb-gap: 10px;
+    --jwb-row-h: 46px;
+    --jwb-cta-h: 50px;
+    --jwb-btn-w: 100%;
+    --jwb-qty-w: 84px;
   }
 
   .product__info-container {
-    grid-template-columns: minmax(72px, 100px) 1fr var(--jwb-btn-w);
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      'variant'
+      'optis'
+      'qty'
+      'help'
+      'cta';
+  }
+
+  .product__info-container > [id^='Quantity-Form-'].product-form__quantity {
+    grid-row: auto;
+    align-self: start;
   }
 
   .product__info-container::after {
-    font-size: 10px;
+    font-size: 11px;
+    justify-self: stretch;
+    text-align: center;
+    max-width: none;
+  }
+
+  .product__info-container > div:has(> product-form) .product-form__buttons {
+    max-width: none;
+  }
+
+  .product__info-container > div:has(> product-form),
+  .product__info-container > div:has(> pickup-availability) {
+    align-items: stretch;
   }
 }

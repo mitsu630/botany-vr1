@@ -333,27 +333,71 @@
             "link_label": "",
             "link": ""
           }
+        },
+        "column_B6L6Gb": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/1194.png",
+            "title": "福祉やボランティアに興味がある方",
+            "text": "<p>アートを通じて様々な方へ楽しさや喜びを伝えたい方にぴったりです。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_EWfUdC": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/1219.png",
+            "title": "アートや自然素材に興味がある方",
+            "text": "<p>天然素材を使ったユニークな表現方法に興味がある方にぴったりです。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_nC8GRB": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/1212.png",
+            "title": "新しいことに挑戦したい方",
+            "text": "<p>ボタニーペインティングは他にない技術。新しい分野でスキルを身につけたい方におすすめです。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_HJrTyH": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/1106.png",
+            "title": "副業やキャリアチェンジを考えている方",
+            "text": "<p>趣味として楽しむだけでなく、自分の作品を販売したりと多様なキャリアパスが広がります。</p>",
+            "link_label": "",
+            "link": ""
+          }
         }
       },
       "block_order": [
-        "column_gr3AXm"
+        "column_gr3AXm",
+        "column_B6L6Gb",
+        "column_EWfUdC",
+        "column_nC8GRB",
+        "column_HJrTyH"
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "",
         "heading_size": "h2",
         "image_width": "third",
-        "image_ratio": "square",
-        "button_label": "ボタンのラベル",
+        "image_ratio": "adapt",
+        "button_label": "",
         "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "primary",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "none",
         "color_scheme": "scheme-472d4f3c-364f-45e4-8e40-acdff25f287d",
         "columns_mobile": "2",
         "swipe_on_mobile": true,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },

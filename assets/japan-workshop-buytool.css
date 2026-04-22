@@ -74,6 +74,8 @@
   width: 100%;
   max-width: 100%;
   min-width: 0;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -82,7 +84,15 @@
   max-width: 100% !important;
   width: 100%;
   min-width: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none;
   box-sizing: border-box;
+}
+
+.product__info-container variant-selects[id^='variant-selects-'] .select {
+  margin: 0;
+  padding: 0;
 }
 
 .product__info-container variant-selects[id^='variant-selects-'] .select,
@@ -93,10 +103,10 @@
   box-sizing: border-box;
 }
 
+/* 入力欄：外周の margin は 0。右は矢印分だけ確保し、それ以外はテーマ既定より詰める */
 .product__info-container variant-selects[id^='variant-selects-'] .select__select {
-  padding-right: 92px;
-  margin-left: 1px;
-  margin-right: 1px;
+  margin: 0 !important;
+  padding: 0 calc(var(--inputs-border-width) + 3rem) 0 1rem;
   box-sizing: border-box;
 }
 

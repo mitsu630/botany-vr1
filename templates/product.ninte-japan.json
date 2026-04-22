@@ -399,6 +399,77 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "multirow_bjHfQJ": {
+      "type": "multirow",
+      "blocks": {
+        "row_HQEDBQ": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/nintei002.jpg",
+            "caption": "オリジナル作品の制作・販売",
+            "heading": "",
+            "text": "<p>自分でデザインした作品を作り上げ、マルシェなどのイベントで販売することができます。</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_BhkKmB": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/nintei003.jpg",
+            "caption": "幅広い活動領域",
+            "heading": "",
+            "text": "<p>国内外のショップやギャラリーでの展示など、さまざまなシーンでの活動が可能です。</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_WMkYnp": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1952.webp",
+            "caption": "資格取得後のサポート",
+            "heading": "",
+            "text": "<p>資格取得者（講師）向けのサポートや技術の提供、講師の交流会などもあり常に成長し続けられます。</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_zeFJJq": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/ninteishou.webp",
+            "caption": "認定証の発行",
+            "heading": "",
+            "text": "<p>認定書を発行致します。また民間資格取得者として履歴書などの記載も可能です</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_HQEDBQ",
+        "row_BhkKmB",
+        "row_WMkYnp",
+        "row_zeFJJq"
+      ],
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "small",
+        "image_layout": "alternate-left",
+        "heading_size": "h2",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-472d4f3c-364f-45e4-8e40-acdff25f287d",
+        "row_color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -409,6 +480,7 @@
     "rich_text_xdnnGy",
     "main",
     "custom_standalone_image_MfUJqx",
-    "multicolumn_L4KLwi"
+    "multicolumn_L4KLwi",
+    "multirow_bjHfQJ"
   ]
 }

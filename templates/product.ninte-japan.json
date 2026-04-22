@@ -851,6 +851,141 @@
         "show_text_below": true,
         "accessibility_info": "ブランドについてのスライドショー"
       }
+    },
+    "multirow_dGt9rt": {
+      "type": "multirow",
+      "blocks": {
+        "row_U86AYh": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/P1000256.webp",
+            "caption": "Lesson 1",
+            "heading": "基礎技術（インド菩提樹）",
+            "text": "<p>【対面講座】基本的な貼りつけと着色を学びます。</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_ERMcTn": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/P1000487.webp",
+            "caption": "Lesson 2",
+            "heading": "蓮の葉を使った応用技術",
+            "text": "<p>【対面講座】インド菩提樹と蓮の葉を組み合わせたパネル制作を実践。</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_XRnBfU": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4902.webp",
+            "caption": "Lesson 3",
+            "heading": "自由作品への挑戦",
+            "text": "<p>【自習】自分らしいオリジナル作品を制作。</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_6bVR6T": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/0C1A1759.webp",
+            "caption": "Lesson 4",
+            "heading": "自由作品への挑戦",
+            "text": "<p>【自習】自分らしいオリジナル作品を制作。</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_U86AYh",
+        "row_ERMcTn",
+        "row_XRnBfU",
+        "row_6bVR6T"
+      ],
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "small",
+        "image_layout": "alternate-left",
+        "heading_size": "h2",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "center",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "scheme-472d4f3c-364f-45e4-8e40-acdff25f287d",
+        "row_color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_639Vei": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_teFDV7": {
+          "type": "column",
+          "settings": {
+            "title": "初回お申し込み",
+            "text": "<p>お申し込後、認定講座に必要な画材一式をお送りします。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_cH4fWn": {
+          "type": "column",
+          "settings": {
+            "title": "受講日程の調整",
+            "text": "<p>お申し込み時にご希望の日程をお選びください。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_jFhUaB": {
+          "type": "column",
+          "settings": {
+            "title": "対面受講とオンラインサポート",
+            "text": "<p>対面講座で基礎技術を学んだ後は、プロフェッショナル講師と相談しながら技術試験まで進めていきます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_rPYqW7": {
+          "type": "column",
+          "settings": {
+            "title": "画材のサポート",
+            "text": "<p>必要な画材はプロフェッショナル講師との相談により、適宜提供いたしますので、安心して受講いただけます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_teFDV7",
+        "column_cH4fWn",
+        "column_jFhUaB",
+        "column_rPYqW7"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "認定講座へのお申し込み手順",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-472d4f3c-364f-45e4-8e40-acdff25f287d",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -870,6 +1005,8 @@
     "collage_Ux7mPJ",
     "custom_standalone_image_eqmpgY",
     "multicolumn_d8zLcB",
-    "slideshow_7XTYnE"
+    "slideshow_7XTYnE",
+    "multirow_dGt9rt",
+    "multicolumn_639Vei"
   ]
 }

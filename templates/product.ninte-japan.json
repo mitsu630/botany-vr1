@@ -986,6 +986,241 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "image_with_text_irK9dy": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_DDXqwf": {
+          "type": "heading",
+          "settings": {
+            "heading": "画材一覧(講座費に含まれます)",
+            "heading_size": "h2"
+          }
+        },
+        "text_MCP3zx": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ボタニーペインティングBOOK 1冊／専用道具箱1箱／アクリル絵の具12色／オリジナルゴールド&シルバーの絵の具／着色用刷毛 1本／ニス&レジン用刷毛 3本／専用ノリ 2個／専用ニス 1個／スポンジ／ペーパーパレット 1冊／練習紙 ４枚／練習用インド菩提樹 10枚／インド菩提樹 8枚＋(4枚☓3)／蓮の葉 ２枚+(3枚☓2)／木製パネル24cm正方形 2枚／木製パネル41㎝正方形 1枚／木製パネル直径30cm円形 1枚／アクリルパネル41㎝正方形(専用ネジ) 1枚／マットレジン1本(30g)／グロスレジン1本(30g)</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_DDXqwf",
+        "text_MCP3zx"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/nintei006.webp",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_NkcVrP": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_BmBm47": {
+          "type": "column",
+          "settings": {
+            "title": "販売価格：<strong>18万円（税込）</strong>",
+            "text": "<p>※講座費・画材一式・送料込み<br/>支払方法：銀行振込（事前にLINEに連絡をください）・クレジットカード各種対応・paidy分割対応</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_L6xk3e": {
+          "type": "column",
+          "settings": {
+            "title": "講座内容",
+            "text": "<ul><li>対面講座（1回）：基礎内容と実技指導</li><li>フォロー講座（1回）：対面またはオンラインで実施し、復習や質疑応答の機会を提供<br/>※内容はプロフェッショナル講師の指導により変更される場合がございます。その際は事前にご案内いたします。</li><li>その後、復習制作を繰り返し技術向上をプロフェッショナル講師と共に進めます</li></ul>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_te4KAJ": {
+          "type": "column",
+          "settings": {
+            "title": "講座手順",
+            "text": "<ol><li>お申込み：初回対面講座の日程を選択してお申込みください。</li><li>講師挨拶：お申込み後、担当講師より挨拶メールをお送りします。</li><li>画材発送：運営事務局から必要な画材一式をお送りします。</li><li>準備確認：講座当日までに担当講師と必要画材の確認を行います。</li></ol>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_BmBm47",
+        "column_L6xk3e",
+        "column_te4KAJ"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "講座の詳細と料金",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_99JVUT": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_cUFMtL": {
+          "type": "column",
+          "settings": {
+            "title": "手数料無料の分割支払いに対応",
+            "text": "<p>BotanyPainting 認定講座は、分割払いに対応（手数料0円）しています。<br/>ライフスタイルに合わせて、以下のプランからお選びいただけます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_iehPYt": {
+          "type": "column",
+          "settings": {
+            "title": "特徴・メリット",
+            "text": "<ul><li><strong>•</strong>分割手数料はすべて無料（安心してご利用いただけます）</li><li><strong>•</strong>翌月払い・3回・6回・12回から自由に選択可能</li><li><strong>•</strong>無理なく続けられるお支払い方法で、学びの第一歩を応援します</li></ul>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_AwV98m": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/SS_2026-04-22_22.09.26.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_cUFMtL",
+        "column_iehPYt",
+        "column_AwV98m"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "分割支払い対応",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_ta3xGF": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_dKDdMf": {
+          "type": "column",
+          "settings": {
+            "title": "認定資格取得に必要な費用",
+            "text": "<ul><li>試験費用：別途2万円（税込、画材代込み）</li><li>試験内容：30cm×60cmサイズの作品を制作し、評価表とともに写真と書類を運営事務局に提出してください。</li><li>再試験（不合格の場合）：補習費1万円（税込）で再指導を受け、30cm×30cmの作品と書類を再提出します。</li></ul>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_UCjnKN": {
+          "type": "column",
+          "settings": {
+            "title": "パートナー講師昇格申請",
+            "text": "<ul><li>申請費用：別途1万円（税込）</li><li>申請手順：昇格を希望される方は、申請作品を運営事務局にご提出ください。昇格条件や基準については担当講師よりご案内いたします。</li></ul>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_dKDdMf",
+        "column_UCjnKN"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "認定資格取得の詳細",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_w4WGra": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_GGzRdU": {
+          "type": "heading",
+          "settings": {
+            "heading": "お近くのプロフェッショナル講師にご相談ください",
+            "heading_size": "h1"
+          }
+        },
+        "text_C8Q3GM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ボタニーペインティングの講師資格講座に興味はあるけれど、<br/>ホームページだけでは分かりにくいことや、不安に感じることもあるかと思います。<br/><br/>そんな時は、ぜひお近くのプロフェッショナル講師に直接ご相談ください。<br/>講座の内容や学び方、ご自身に合った進め方など、実際の経験をもとにお話しいたします。<br/><br/>「自分にもできるのかな」「どんな活動につながるのかな」といった疑問も、<br/>直接相談することで、より具体的にイメージしていただけます。<br/><br/>まずはお気軽にご連絡ください。</p>"
+          }
+        },
+        "button_wQa7Gi": {
+          "type": "button",
+          "settings": {
+            "button_label": "お近くのプロ講師を探す",
+            "button_link": "https://botanypainting.com/2024_01/professional/index.html",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_GGzRdU",
+        "text_C8Q3GM",
+        "button_wQa7Gi"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -994,7 +1229,6 @@
     "related-products",
     "rich_text_nEcELQ",
     "rich_text_xdnnGy",
-    "main",
     "custom_standalone_image_MfUJqx",
     "multicolumn_L4KLwi",
     "multirow_bjHfQJ",
@@ -1007,6 +1241,12 @@
     "multicolumn_d8zLcB",
     "slideshow_7XTYnE",
     "multirow_dGt9rt",
-    "multicolumn_639Vei"
+    "multicolumn_639Vei",
+    "image_with_text_irK9dy",
+    "multicolumn_NkcVrP",
+    "multicolumn_99JVUT",
+    "multicolumn_ta3xGF",
+    "rich_text_w4WGra",
+    "main"
   ]
 }

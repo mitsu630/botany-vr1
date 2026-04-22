@@ -10,6 +10,9 @@
   {% endif %}
 >
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+  {%- if template.suffix == 'pro-workshop' -%}
+    {{ 'japan-workshop-buytool.css' | asset_url | stylesheet_tag }}
+  {%- endif -%}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}

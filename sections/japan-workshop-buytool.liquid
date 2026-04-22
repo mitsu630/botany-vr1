@@ -15,10 +15,9 @@
 <div class="jwb-marker" aria-hidden="true"></div>
 
 {% comment %}
-  ProductInfo（.product__info-container）のスタイルは assets/japan-workshop-buytool.css に集約。
-  テーマ設定の色だけここで :root に注入（このブロックが後勝ちになるよう stylesheet の直後に置く）。
+  japan-workshop-buytool.css は main-product 内で先読み（template.suffix == pro-workshop）。
+  テーマ設定の色だけここで :root に注入（セクション配置順に依存せず上書きできるよう末尾に残す）。
 {% endcomment %}
-{{ 'japan-workshop-buytool.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   :root {

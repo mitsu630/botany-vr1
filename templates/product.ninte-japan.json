@@ -572,6 +572,285 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "collage_iwga46": {
+      "type": "collage",
+      "blocks": {
+        "image_4KM3pR": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/DSC_0093.jpg"
+          }
+        },
+        "image_YaVm39": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/DSC_0126.jpg"
+          }
+        },
+        "image_md4YN7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/DSC_0183.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_4KM3pR",
+        "image_YaVm39",
+        "image_md4YN7"
+      ],
+      "name": "t:sections.collage.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "scheme-4",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collage_irHiCt": {
+      "type": "collage",
+      "blocks": {
+        "image_RjMcxw": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/DSC_0268.jpg"
+          }
+        },
+        "image_p7zwVq": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/DSC_0396.jpg"
+          }
+        },
+        "image_b8R9PM": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/DSC_0401.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_RjMcxw",
+        "image_p7zwVq",
+        "image_b8R9PM"
+      ],
+      "name": "t:sections.collage.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "scheme-4",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collage_Ux7mPJ": {
+      "type": "collage",
+      "blocks": {
+        "image_z8GLAQ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2564.jpg"
+          }
+        },
+        "image_4dm9pi": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IIXZ8719.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_z8GLAQ",
+        "image_4dm9pi"
+      ],
+      "name": "t:sections.collage.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "scheme-4",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "custom_standalone_image_eqmpgY": {
+      "type": "custom-standalone-image",
+      "name": "t:sections.custom-standalone-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/P1090945.webp",
+        "image_link": "",
+        "link_new_tab": false,
+        "image_alt": "",
+        "full_viewport_width": true,
+        "color_scheme": "",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0
+      }
+    },
+    "multicolumn_d8zLcB": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_AVEUEb": {
+          "type": "column",
+          "settings": {
+            "title": "",
+            "text": "<p>ボタニーペインティングの資格取得後は、皆さまの新しいキャリアのスタート地点です。私たちは、資格取得後も安心して活動を続けていただけるよう、充実したサポートとアフターフォローを提供しています。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_jd4emb": {
+          "type": "column",
+          "settings": {
+            "title": "定期的なスキルアップ講座",
+            "text": "<p>講師のスキルをさらに高めるため、最新の技法やトレンドに基づいたスキルアップ講座や講師交流会を定期的に開催しています。それにより、常に最新の技術を取り入れ、より魅力的な講座を提供できます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_j9xMiH": {
+          "type": "column",
+          "settings": {
+            "title": "個別相談やアドバイス",
+            "text": "<p>講師活動で困ったことや不安がある場合には、個別の相談にも対応しています。専門のLINEスタッフが講師としての活動をサポートし、作品制作やイベント開催など様々な問題解決に向けたアドバイスを行いますので、どんなお悩みもお気軽にご相談ください。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_JcCpef": {
+          "type": "column",
+          "settings": {
+            "title": "作品の発表・販売の機会提供",
+            "text": "<p>講師としての活動をさらに広げるために、作品を展示会に出展・販売も可能です。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_rNPCdb": {
+          "type": "column",
+          "settings": {
+            "title": "",
+            "text": "<p>講師資格を取得することで、ボタニーペインティングの魅力を伝え、受講者に感動を与える存在となれます。資格取得後も、成長を続けられるサポート体制が整っていますので、安心して講師活動を始めていただけます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_AVEUEb",
+        "column_jd4emb",
+        "column_j9xMiH",
+        "column_JcCpef",
+        "column_rNPCdb"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "受講後は、、、",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 1,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-5",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "slideshow_7XTYnE": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_4X9kb4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/P1020707.webp",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_xkNRcc": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/P1020787.webp",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_qih6GP": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/P1030513.webp",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_4X9kb4",
+        "slide_xkNRcc",
+        "slide_qih6GP"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "small",
+        "slider_visual": "counter",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": "ブランドについてのスライドショー"
+      }
     }
   },
   "order": [
@@ -585,6 +864,12 @@
     "multicolumn_L4KLwi",
     "multirow_bjHfQJ",
     "rich_text_LFtcdP",
-    "multicolumn_x8F3PQ"
+    "multicolumn_x8F3PQ",
+    "collage_iwga46",
+    "collage_irHiCt",
+    "collage_Ux7mPJ",
+    "custom_standalone_image_eqmpgY",
+    "multicolumn_d8zLcB",
+    "slideshow_7XTYnE"
   ]
 }

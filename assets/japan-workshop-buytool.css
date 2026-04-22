@@ -54,9 +54,10 @@
 }
 
 /*
- * レイアウト（参照UI）:
- *  - 1〜3 行目: プルダウンを全幅で縦積み（会場日 / OPTIS×2）
- *  - 4〜5 行目: 左に数量、右に案内文→その下に予約ボタン（右寄せ）
+ * レイアウト:
+ *  - 1〜2 行目: 会場日 / OPTIS（全幅）
+ *  - 3 行目: 左＝数量、右＝案内文（2行）＋今すぐ購入（左寄せ・案内の右隣）
+ *  PC / スマホで同じグリッド（2列）
  */
 .product__info-container {
   background: var(--jwb-bg);
@@ -64,29 +65,18 @@
   padding: var(--jwb-pad);
   display: grid;
   gap: var(--jwb-gap);
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto auto auto auto;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto auto;
   grid-template-areas:
     'variant variant'
     'optis optis'
-    'qty help'
     'qty cta';
-  align-items: start;
+  align-items: center;
 }
 
-/* 右列：案内文（ボタンのやや上・右寄せ） */
 .product__info-container::after {
-  content: var(--jwb-help-text);
-  grid-area: help;
-  align-self: end;
-  justify-self: end;
-  text-align: right;
-  white-space: pre-line;
-  font-size: 12px;
-  line-height: 1.35;
-  color: rgba(var(--color-foreground), 0.65);
-  padding: 0 0 2px;
-  max-width: min(100%, 20rem);
+  content: none;
+  display: none;
 }
 
 /* 不要なラベル */
@@ -180,10 +170,9 @@
   display: none !important;
 }
 
-/* ----- 最下段：左＝数量（2 行にまたぎ中央寄せ） ----- */
+/* ----- 最下段：左＝数量 ----- */
 .product__info-container > [id^='Quantity-Form-'].product-form__quantity {
   grid-area: qty;
-  grid-row: 3 / span 2;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -193,8 +182,8 @@
   width: auto;
   max-width: 100%;
   min-width: min-content;
-  align-self: center;
   justify-self: start;
+  align-self: center;
   position: relative;
   z-index: 3;
   overflow: visible;
@@ -265,27 +254,59 @@
   color: rgba(var(--color-foreground), 0.9);
 }
 
-/* ----- 最下段：右＝予約ボタン（右寄せ・幅は変数） ----- */
-.product__info-container > div:has(> product-form),
-.product__info-container > div:has(> pickup-availability) {
+/* ----- 最下段：右＝案内（2行・ボタンの左）＋今すぐ購入（左寄せ） ----- */
+.product__info-container > div:has(> product-form) {
   grid-area: cta;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-  gap: 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px 14px;
   padding: 0;
   margin: 0 !important;
   width: 100%;
+  min-width: 0;
   justify-self: stretch;
 }
 
+/* 案内文：ボタンの左、改行は --jwb-help-text の \n */
+.product__info-container > div:has(> product-form)::before {
+  content: var(--jwb-help-text);
+  white-space: pre-line;
+  flex: 0 1 auto;
+  min-width: 9rem;
+  max-width: 16rem;
+  font-size: 12px;
+  line-height: 1.35;
+  color: rgba(var(--color-foreground), 0.65);
+  text-align: left;
+}
+
+.product__info-container > div:has(> product-form) product-form {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
 .product__info-container > div:has(> product-form) .product-form__buttons {
-  width: 100%;
+  width: auto;
   max-width: var(--jwb-btn-w);
+  margin: 0;
   position: relative;
   min-height: var(--jwb-cta-h);
   transform: none !important;
+}
+
+.product__info-container > div:has(> pickup-availability) {
+  grid-area: cta;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  margin: 0 !important;
+  width: 100%;
+  min-width: 0;
 }
 
 /* OPTIS（BSS）由来の transform 打ち消し */
@@ -314,6 +335,7 @@
   border-radius: var(--jwb-radius) !important;
   min-height: var(--jwb-cta-h) !important;
   width: 100% !important;
+  min-width: 10rem;
   font-size: 16px !important;
 }
 
@@ -332,38 +354,7 @@
     --jwb-gap: 10px;
     --jwb-row-h: 46px;
     --jwb-cta-h: 50px;
-    --jwb-btn-w: 100%;
+    --jwb-btn-w: min(100%, 200px);
   }
 
-  .product__info-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-      'variant'
-      'optis'
-      'qty'
-      'help'
-      'cta';
-  }
-
-  .product__info-container > [id^='Quantity-Form-'].product-form__quantity {
-    grid-row: auto;
-    align-self: start;
-  }
-
-  .product__info-container::after {
-    font-size: 11px;
-    justify-self: stretch;
-    text-align: center;
-    max-width: none;
-  }
-
-  .product__info-container > div:has(> product-form) .product-form__buttons {
-    max-width: none;
-  }
-
-  .product__info-container > div:has(> product-form),
-  .product__info-container > div:has(> pickup-availability) {
-    align-items: stretch;
-  }
 }

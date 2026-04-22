@@ -55,13 +55,28 @@
   font-size: 1.3rem;
 }
 
+/*
+ * 固定は .product__info-container のみ。product-info 全体に fixed すると
+ * セクションがフローから抜けて後続ブロックが詰まるため、念のため打ち消す。
+ */
+product-info[id^='MainProduct-'] {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: 100% !important;
+  max-width: none !important;
+  z-index: auto !important;
+  transform: none !important;
+}
+
 /* ----- メディア非表示・幅 ----- */
 .product__media-wrapper {
   display: none !important;
 }
 
-.product__info-wrapper,
-.product__info-container {
+.product__info-wrapper {
   width: 100% !important;
   max-width: 100% !important;
 }
@@ -81,8 +96,11 @@
 .product__info-container {
   background: var(--jwb-bg);
   border-radius: var(--jwb-radius) var(--jwb-radius) 0 0;
-  padding: var(--jwb-pad);
+  /* 横は base.css の .page-width に合わせ（left:0 のみだと幅が不安定になりやすい） */
+  padding-top: var(--jwb-pad);
   padding-bottom: max(var(--jwb-pad), env(safe-area-inset-bottom, 0px));
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   display: grid;
   row-gap: var(--jwb-gap);
   column-gap: var(--jwb-gap);
@@ -98,6 +116,8 @@
   bottom: 0 !important;
   left: 0 !important;
   right: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
   z-index: var(--jwb-fixed-panel-z);
   max-height: min(85vh, calc(100vh - 1.5rem));
   max-height: min(85vh, calc(100dvh - 1.5rem));
@@ -106,6 +126,13 @@
   -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
   box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.08);
+}
+
+@media screen and (min-width: 750px) {
+  .product__info-container {
+    padding-left: 5rem !important;
+    padding-right: 5rem !important;
+  }
 }
 
 /* テーマの .product__info-container > * + * { margin: 1.5rem 0 } を打ち消し */

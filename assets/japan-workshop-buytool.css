@@ -90,6 +90,20 @@
   margin: 0 !important;
 }
 
+/* 隣接子以外の指定や子孫で残る margin-top もゼロに（例: テーマ .product__info-container .product-form の 2.5rem） */
+.product__info-container > * {
+  margin-top: 0 !important;
+}
+
+.product__info-container .product-form {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.product__info-container product-form + pickup-availability {
+  margin-top: 0 !important;
+}
+
 .product__info-container::after {
   content: none;
   display: none;

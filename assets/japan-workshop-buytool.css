@@ -88,6 +88,18 @@ product-info[id^='MainProduct-'] {
 }
 
 /*
+ * Dawn: .scroll-trigger.animate--slide-in が親に transform を付けると、子の position:fixed の
+ * 包含ブロックがビューポートではなくこのラッパーになり、下端固定が効かなくなる（base.css）。
+ */
+.product__info-wrapper.scroll-trigger.animate--slide-in,
+.product__info-wrapper.scroll-trigger {
+  transform: none !important;
+  opacity: 1 !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+/*
  * レイアウト:
  *  - 1〜2 行目: 会場日 / OPTIS（全幅）
  *  - 3 行目: 左＝数量、右＝案内＋購入（右寄せグループ）

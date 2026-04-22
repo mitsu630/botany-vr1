@@ -10,12 +10,11 @@
 :root {
   --jwb-bg: #fafff0;
   --jwb-accent: #d31d84;
-  /* 参照デザイン：行間にゆとり */
-  --jwb-pad: 16px;
-  --jwb-gap: 12px;
-  --jwb-optis-gap: 10px;
-  --jwb-row-h: 48px;
-  --jwb-cta-h: 52px;
+  --jwb-pad: 12px;
+  --jwb-gap: 8px;
+  --jwb-optis-gap: 6px;
+  --jwb-row-h: 46px;
+  --jwb-cta-h: 50px;
   --jwb-radius: 10px;
   --jwb-btn-w: 180px;
   /* 会場セレクト・数量プルダウン用（OPTIS 本体はアプリ標準スタイルのまま） */
@@ -56,7 +55,7 @@
 /*
  * レイアウト:
  *  - 1〜2 行目: 会場日 / OPTIS（全幅）
- *  - 3 行目: 左＝数量、右＝案内文（2行）＋今すぐ購入（左寄せ・案内の右隣）
+ *  - 3 行目: 左＝数量、右＝案内（左）＋今すぐ購入（親内で右寄せ）
  *  PC / スマホで同じグリッド（2列）
  */
 .product__info-container {
@@ -64,7 +63,8 @@
   border-radius: var(--jwb-radius);
   padding: var(--jwb-pad);
   display: grid;
-  gap: var(--jwb-gap);
+  row-gap: var(--jwb-gap);
+  column-gap: var(--jwb-gap);
   grid-template-columns: auto minmax(0, 1fr);
   grid-template-rows: auto auto auto;
   grid-template-areas:
@@ -72,6 +72,11 @@
     'optis optis'
     'qty cta';
   align-items: center;
+}
+
+/* テーマの .product__info-container > * + * { margin: 1.5rem 0 } を打ち消し */
+.product__info-container > * + * {
+  margin: 0 !important;
 }
 
 .product__info-container::after {
@@ -177,7 +182,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   margin: 0 !important;
   width: auto;
   max-width: 100%;
@@ -200,7 +205,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: nowrap;
 }
 
@@ -254,7 +259,7 @@
   color: rgba(var(--color-foreground), 0.9);
 }
 
-/* ----- 最下段：右＝案内（2行・ボタンの左）＋今すぐ購入（左寄せ） ----- */
+/* ----- 最下段：右列＝案内（左）／今すぐ購入は product-form を親内で右寄せ ----- */
 .product__info-container > div:has(> product-form) {
   grid-area: cta;
   display: flex;
@@ -262,7 +267,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  gap: 10px 14px;
+  gap: 6px 10px;
   padding: 0;
   margin: 0 !important;
   width: 100%;
@@ -270,15 +275,15 @@
   justify-self: stretch;
 }
 
-/* 案内文：ボタンの左、改行は --jwb-help-text の \n */
+/* 案内文：左寄せ・2行（\n） */
 .product__info-container > div:has(> product-form)::before {
   content: var(--jwb-help-text);
   white-space: pre-line;
   flex: 0 1 auto;
-  min-width: 9rem;
-  max-width: 16rem;
-  font-size: 12px;
-  line-height: 1.35;
+  min-width: 0;
+  max-width: 15rem;
+  font-size: 11px;
+  line-height: 1.3;
   color: rgba(var(--color-foreground), 0.65);
   text-align: left;
 }
@@ -286,6 +291,7 @@
 .product__info-container > div:has(> product-form) product-form {
   flex: 0 0 auto;
   min-width: 0;
+  margin-left: auto;
 }
 
 .product__info-container > div:has(> product-form) .product-form__buttons {
@@ -349,11 +355,11 @@
 
 @media (max-width: 749px) {
   :root {
-    --jwb-pad: 14px;
-    --jwb-gap: 10px;
-    --jwb-row-h: 46px;
-    --jwb-cta-h: 50px;
+    --jwb-pad: 10px;
+    --jwb-gap: 6px;
+    --jwb-optis-gap: 6px;
+    --jwb-row-h: 44px;
+    --jwb-cta-h: 48px;
     --jwb-btn-w: min(100%, 200px);
   }
-
 }

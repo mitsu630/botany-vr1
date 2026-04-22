@@ -77,11 +77,21 @@
   /* 1段目：会場開催日 */
   .product__info-container > variant-selects[id^='variant-selects-'] {
     grid-area: variant;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
   .product__info-container > variant-selects .select,
   .product__info-container > variant-selects .select__select {
     width: 100%;
     min-height: var(--jwb-row-h);
+  }
+  .product__info-container > variant-selects .select__select {
+    padding-right: 92px;
+    margin-left: 1px;
+    margin-right: 1px;
+    box-sizing: border-box;
   }
 
   /* 2-3段目：OPTIS（サイズ/植物） */
@@ -134,10 +144,20 @@
   }
   .product__info-container > div:has(> product-form) .product-form__buttons {
     width: var(--jwb-btn-w);
+    position: relative;
+    min-height: 56px;
   }
 
   /* Buy it now ボタン強調（予約する想定） */
   .product__info-container .shopify-payment-button__button--unbranded {
+    display: block !important;
+    position: absolute !important;
+    left: auto !important;
+    top: auto !important;
+    transform: rotate(26deg) !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 1px 2px !important;
     background: var(--jwb-accent) !important;
     border-color: var(--jwb-accent) !important;
     color: #fff !important;

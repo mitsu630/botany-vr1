@@ -281,7 +281,7 @@
   color: rgba(var(--color-foreground), 0.9);
 }
 
-/* ----- 最下段：右列＝案内（広め）＋今すぐ購入（PC/スマホとも左寄せ） ----- */
+/* ----- 最下段：案内は左・カート/今すぐ購入ブロックは行末へ（flex-end だと案内も右に寄るので margin-left: auto で押し出す） ----- */
 .product__info-container > div:has(> product-form) {
   grid-area: cta;
   display: flex;
@@ -318,8 +318,9 @@
   flex: 0 0 auto;
   min-width: 0;
   margin: 0 !important;
+  margin-left: auto !important;
   padding: 0 !important;
-  align-self: flex-start;
+  align-self: center;
 }
 
 .product__info-container > div:has(> product-form) product-form .form {
@@ -331,7 +332,6 @@
   width: auto;
   max-width: var(--jwb-btn-w);
   margin: 0 !important;
-  margin-right: auto !important;
   padding: 0 !important;
   position: relative;
   min-height: var(--jwb-cta-h);
@@ -419,12 +419,5 @@
     --jwb-row-h: 40px;
     --jwb-cta-h: 48px;
     --jwb-btn-w: min(100%, 200px);
-  }
-
-  /* 狭い画面でも案内が極端に細くならないよう、ボタン左・残り幅を案内に割り当て */
-  .product__info-container > div:has(> product-form)::before {
-    flex: 1 1 auto;
-    min-width: 0;
-    max-width: none;
   }
 }

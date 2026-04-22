@@ -115,10 +115,19 @@
   grid-area: optis;
 }
 
+/* OPTIS：2 プルダウンなどを同一行に横並び（狭い画面では折り返し） */
 .product__info-container [id^='po_container'].bss-po-product-page {
   display: flex !important;
-  flex-direction: column !important;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  align-items: flex-start;
   gap: var(--jwb-gap) !important;
+}
+
+.product__info-container [id^='po_container'].bss-po-product-page > * {
+  flex: 1 1 calc(50% - var(--jwb-gap) / 2);
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .product__info-container .po-select-dropdown-thumbnail {

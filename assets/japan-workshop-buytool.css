@@ -295,14 +295,18 @@
   color: rgba(var(--color-foreground), 0.9);
 }
 
-/* ----- 最下段：案内＋カート/今すぐ購入を右端でまとめる（案内はボタン側に右揃え） ----- */
+/*
+ * 最下段 CTA：案内（::before）＋ product-form を右端でまとめる。
+ * 注意: buy-buttons のラッパーは product-form と pickup-availability の両方を含むため、
+ * 別途 `div:has(> pickup-availability)` だけに flex-start を書くと後勝ちで左寄せになる（やり直し原因）。
+ */
 .product__info-container > div:has(> product-form) {
   grid-area: cta;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-end !important;
   gap: 6px 10px;
   padding: 0 !important;
   margin: 0 !important;
@@ -349,18 +353,6 @@
   position: relative;
   min-height: var(--jwb-cta-h);
   transform: none !important;
-}
-
-.product__info-container > div:has(> pickup-availability) {
-  grid-area: cta;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin: 0 !important;
-  width: 100%;
-  min-width: 0;
 }
 
 /* OPTIS（BSS）由来の transform 打ち消し・枠はボタン側で統一 */

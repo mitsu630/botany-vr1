@@ -1,8 +1,8 @@
 /**
  * japan-workshop-buytool — ProductInfo ブロック（#ProductInfo-* / .product__info-container）
  *
- * 読み込み元: sections/japan-workshop-buytool.liquid
- * 適用条件: 同一商品テンプレートに当該セクションを配置しているとき（運用前提）
+ * 読み込み元: sections/main-product.liquid（template.suffix == pro-workshop）
+ * 適用条件: pro-workshop 商品テンプレート（japan-workshop-buytool セクションで色・z-index・予約余白を注入）
  *
  * --jwb-bg / --jwb-accent は Liquid で上書き。
  */
@@ -27,6 +27,9 @@
   --jwb-help-text: 'ご予約はサイズと植物を\A 選んだ後に行ってください';
   /* 案内文の最大幅（狭いと折り返しで4行になるため広めに） */
   --jwb-help-max-w: min(28rem, calc(100% - 11rem));
+  /* 下端固定パネル（Liquid の japan-workshop-buytool セクションで上書き） */
+  --jwb-fixed-panel-z: 40;
+  --jwb-fixed-panel-reserve: 200px;
 }
 
 /* テーマの .select 装飾レイヤーを切り、実線ボーダーに統一 */
@@ -63,16 +66,23 @@
   max-width: 100% !important;
 }
 
+/* ProductInfo を fixed にしたためレイアウトから外れる → 列に下余白（テーマ設定の reserve と safe-area） */
+.product__info-wrapper {
+  padding-bottom: calc(var(--jwb-fixed-panel-reserve) + env(safe-area-inset-bottom, 0px)) !important;
+  box-sizing: border-box;
+}
+
 /*
  * レイアウト:
  *  - 1〜2 行目: 会場日 / OPTIS（全幅）
- *  - 3 行目: 左＝数量、右＝案内（左）＋今すぐ購入（親内で右寄せ）
- *  PC / スマホで同じグリッド（2列）
+ *  - 3 行目: 左＝数量、右＝案内＋購入（右寄せグループ）
+ *  - ブロック全体をビューポート下端に固定（product__column-sticky の sticky は無効化）
  */
 .product__info-container {
   background: var(--jwb-bg);
-  border-radius: var(--jwb-radius);
+  border-radius: var(--jwb-radius) var(--jwb-radius) 0 0;
   padding: var(--jwb-pad);
+  padding-bottom: max(var(--jwb-pad), env(safe-area-inset-bottom, 0px));
   display: grid;
   row-gap: var(--jwb-gap);
   column-gap: var(--jwb-gap);
@@ -83,6 +93,19 @@
     'optis optis'
     'qty cta';
   align-items: center;
+  position: fixed !important;
+  top: auto !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: var(--jwb-fixed-panel-z);
+  max-height: min(85vh, calc(100vh - 1.5rem));
+  max-height: min(85vh, calc(100dvh - 1.5rem));
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.08);
 }
 
 /* テーマの .product__info-container > * + * { margin: 1.5rem 0 } を打ち消し */

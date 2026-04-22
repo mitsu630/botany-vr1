@@ -3,7 +3,8 @@
 
   目的:
   - pro-workshop など「このセクションを入れた商品テンプレート」だけで、
-    OPTIS（BSS）+ 数量 + Buy it now を画面最下部に固定表示する（iPhone safe-area 考慮）
+    ProductInfo（.product__info-container）を画面下端に fixed 表示（safe-area 考慮）
+  - 固定でレイアウトから外れるぶん、--jwb-fixed-panel-reserve で本文側に下余白を確保
   - DOMは移動しない（CSSのみでレイアウトを変更）
   - 「カートに追加する」(po-atc-btn) は display:none にせず、DOM上に残したまま画面外退避
 
@@ -23,6 +24,8 @@
   :root {
     --jwb-bg: {{ section.settings.bg_color | default: '#fafff0' }};
     --jwb-accent: {{ section.settings.accent_color | default: '#d31d84' }};
+    --jwb-fixed-panel-z: {{ section.settings.z_index | default: 40 }};
+    --jwb-fixed-panel-reserve: {{ section.settings.footer_height_px | default: 200 }}px;
   }
 {%- endstyle -%}
 
@@ -49,7 +52,7 @@
       "max": 360,
       "step": 4,
       "unit": "px",
-      "label": "下部余白（固定バー分）",
+      "label": "下部余白（固定パネル下のスクロール用スペース）",
       "default": 200
     }
   ],

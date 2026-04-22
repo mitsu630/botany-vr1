@@ -470,6 +470,108 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "rich_text_LFtcdP": {
+      "type": "rich-text",
+      "blocks": {
+        "text_nBkBi9": {
+          "type": "text",
+          "settings": {
+            "text": "<h3>こんな方でも大丈夫！</h3>"
+          }
+        }
+      },
+      "block_order": [
+        "text_nBkBi9"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "multicolumn_x8F3PQ": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_9VEiJC": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/1180.png",
+            "title": "アートや物作りが初めての方",
+            "text": "<p>基本からしっかり学べる講座内容なので、アートに慣れていない方でも安心してスタートできます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_NXrDYh": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/1195.png",
+            "title": "子育てやお仕事をしている方",
+            "text": "<p>自分のペースで進められるので、忙しい方でも空いた時間に少しずつ学ぶことが可能です。（最短2日でも取得可能）</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_Er3TMP": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/784.png",
+            "title": "シニアの方",
+            "text": "<p>定年後に資格を取得し作品作りを楽しみながら、展示に出品やボランティア活動で生きがいを感じ活動している方が多くいらっしゃいます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_cmkkVj": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/1398.png",
+            "title": "講座に不安をお持ちの方",
+            "text": "<p>受講中や受講後も質問や相談ができる公式ラインや電話・メールでのサポート体制が整っているので、初めての方でも安心です。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_EbBMjV": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/740.png",
+            "title": "画材や道具をお持ちでない方",
+            "text": "<p>資格取得講座に必要な基本の器や刷毛など画材一式がセットされているため、ご自身で道具をご用意いただく必要はありません。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_9VEiJC",
+        "column_NXrDYh",
+        "column_Er3TMP",
+        "column_cmkkVj",
+        "column_EbBMjV"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "image_width": "half",
+        "image_ratio": "circle",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -481,6 +583,8 @@
     "main",
     "custom_standalone_image_MfUJqx",
     "multicolumn_L4KLwi",
-    "multirow_bjHfQJ"
+    "multirow_bjHfQJ",
+    "rich_text_LFtcdP",
+    "multicolumn_x8F3PQ"
   ]
 }

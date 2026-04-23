@@ -1,0 +1,1252 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_nqmGac": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_VzqK9j": {
+          "type": "heading",
+          "settings": {
+            "heading": "Botany Painting資格取得講座",
+            "heading_size": "h2"
+          }
+        },
+        "text_FXkz9W": {
+          "type": "text",
+          "settings": {
+            "text": "自然と調和する芸術ボタニーペインティングの世界へようこそ",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_VzqK9j",
+        "text_FXkz9W"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/IMG_4801.webp",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "scheme-4",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "multicolumn_iinPfB": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_7jhXB3": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1060639.webp",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_X4XaJJ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1090098.webp",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_xjaxXx": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1090864.webp",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_TjLwXb": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1100418.webp",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_7jhXB3",
+        "column_X4XaJJ",
+        "column_xjaxXx",
+        "column_TjLwXb"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 10,
+        "columns_desktop": 6,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "rich_text_nEcELQ": {
+      "type": "rich-text",
+      "blocks": {
+        "text_nxDyaz": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ボタニー®️ペインティングとは<br/>ボタニー®️ペインティングは、自然の植物、特に蓮や菩提樹の葉を使用した、独自のアート技法です。天然の葉をキャンバスや木製パネルに貼り付け、手作業で彩色することで、世界に一つだけの作品を作り上げます。<br/><br/>このアートは、自然の素材が持つ独特な形やテクスチャーを活かし、心を静め、癒しの時間を提供するものです。アート初心者でも安心して楽しめる一方、経験者には奥深い表現の幅を広げる手法として愛されています。<br/><br/>ボタニー®️ペインティングはただの装飾ではなく、自然との調和を感じながら自己表現を追求することができる、アートとセラピーが融合した特別な体験です。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_nxDyaz"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "scheme-5",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_xdnnGy": {
+      "type": "rich-text",
+      "blocks": {
+        "text_e6W8MB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>世界で唯一のボタニー®️<br/>ボタニー®️ペインティングは、自然の植物である蓮の葉やインド菩提樹の葉を使った世界で唯一のアート技法です。この希少性から生まれる独特の風合いや、美しさを活かした作品は、他にはない特別な存在感を放ちます。<br/><br/>自然素材を用いたボタニー®️ペインティングは、環境にも優しく、手に取る方々の心に響く温もりがあります。そんな唯一無二の技法を学べる資格取得講座で、貴重なスキルを身につけませんか？</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_e6W8MB"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "caption": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.descriptors.subtitle.value }}",
+            "text_style": "subtitle"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "square"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        },
+        "collapsible-row-0": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Materials",
+            "icon": "leather",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible-row-1": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Shipping & Returns",
+            "icon": "truck",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible-row-2": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Dimensions",
+            "icon": "ruler",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible-row-3": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Care Instructions",
+            "icon": "heart",
+            "content": "",
+            "page": ""
+          }
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "caption",
+        "price",
+        "variant_picker",
+        "buy_buttons",
+        "description",
+        "collapsible-row-0",
+        "collapsible-row-1",
+        "collapsible-row-2",
+        "collapsible-row-3",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "custom_standalone_image_MfUJqx": {
+      "type": "custom-standalone-image",
+      "name": "t:sections.custom-standalone-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/P1090628.webp",
+        "image_link": "",
+        "link_new_tab": false,
+        "image_alt": "",
+        "full_viewport_width": true,
+        "color_scheme": "",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0
+      }
+    },
+    "multicolumn_L4KLwi": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_gr3AXm": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/1170.png",
+            "title": "自分のペースで学びたい方",
+            "text": "<p>好きなタイミングで学べる柔軟なレッスンスタイルを提供しています。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_B6L6Gb": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/1194.png",
+            "title": "福祉やボランティアに興味がある方",
+            "text": "<p>アートを通じて様々な方へ楽しさや喜びを伝えたい方にぴったりです。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_EWfUdC": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/1219.png",
+            "title": "アートや自然素材に興味がある方",
+            "text": "<p>天然素材を使ったユニークな表現方法に興味がある方にぴったりです。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_nC8GRB": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/1212.png",
+            "title": "新しいことに挑戦したい方",
+            "text": "<p>ボタニーペインティングは他にない技術。新しい分野でスキルを身につけたい方におすすめです。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_HJrTyH": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/1106.png",
+            "title": "副業やキャリアチェンジを考えている方",
+            "text": "<p>趣味として楽しむだけでなく、自分の作品を販売したりと多様なキャリアパスが広がります。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_gr3AXm",
+        "column_B6L6Gb",
+        "column_EWfUdC",
+        "column_nC8GRB",
+        "column_HJrTyH"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-472d4f3c-364f-45e4-8e40-acdff25f287d",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "multirow_bjHfQJ": {
+      "type": "multirow",
+      "blocks": {
+        "row_HQEDBQ": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/nintei002.jpg",
+            "caption": "オリジナル作品の制作・販売",
+            "heading": "",
+            "text": "<p>自分でデザインした作品を作り上げ、マルシェなどのイベントで販売することができます。</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_BhkKmB": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/nintei003.jpg",
+            "caption": "幅広い活動領域",
+            "heading": "",
+            "text": "<p>国内外のショップやギャラリーでの展示など、さまざまなシーンでの活動が可能です。</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_WMkYnp": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1952.webp",
+            "caption": "資格取得後のサポート",
+            "heading": "",
+            "text": "<p>資格取得者（講師）向けのサポートや技術の提供、講師の交流会などもあり常に成長し続けられます。</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_zeFJJq": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/ninteishou.webp",
+            "caption": "認定証の発行",
+            "heading": "",
+            "text": "<p>認定書を発行致します。また民間資格取得者として履歴書などの記載も可能です</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_HQEDBQ",
+        "row_BhkKmB",
+        "row_WMkYnp",
+        "row_zeFJJq"
+      ],
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "small",
+        "image_layout": "alternate-left",
+        "heading_size": "h2",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-472d4f3c-364f-45e4-8e40-acdff25f287d",
+        "row_color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_LFtcdP": {
+      "type": "rich-text",
+      "blocks": {
+        "text_nBkBi9": {
+          "type": "text",
+          "settings": {
+            "text": "<h3>こんな方でも大丈夫！</h3>"
+          }
+        }
+      },
+      "block_order": [
+        "text_nBkBi9"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "multicolumn_x8F3PQ": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_9VEiJC": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/1180.png",
+            "title": "アートや物作りが初めての方",
+            "text": "<p>基本からしっかり学べる講座内容なので、アートに慣れていない方でも安心してスタートできます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_NXrDYh": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/1195.png",
+            "title": "子育てやお仕事をしている方",
+            "text": "<p>自分のペースで進められるので、忙しい方でも空いた時間に少しずつ学ぶことが可能です。（最短2日でも取得可能）</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_Er3TMP": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/784.png",
+            "title": "シニアの方",
+            "text": "<p>定年後に資格を取得し作品作りを楽しみながら、展示に出品やボランティア活動で生きがいを感じ活動している方が多くいらっしゃいます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_cmkkVj": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/1398.png",
+            "title": "講座に不安をお持ちの方",
+            "text": "<p>受講中や受講後も質問や相談ができる公式ラインや電話・メールでのサポート体制が整っているので、初めての方でも安心です。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_EbBMjV": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/740.png",
+            "title": "画材や道具をお持ちでない方",
+            "text": "<p>資格取得講座に必要な基本の器や刷毛など画材一式がセットされているため、ご自身で道具をご用意いただく必要はありません。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_9VEiJC",
+        "column_NXrDYh",
+        "column_Er3TMP",
+        "column_cmkkVj",
+        "column_EbBMjV"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "image_width": "half",
+        "image_ratio": "circle",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collage_iwga46": {
+      "type": "collage",
+      "blocks": {
+        "image_4KM3pR": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/DSC_0093.jpg"
+          }
+        },
+        "image_YaVm39": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/DSC_0126.jpg"
+          }
+        },
+        "image_md4YN7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/DSC_0183.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_4KM3pR",
+        "image_YaVm39",
+        "image_md4YN7"
+      ],
+      "name": "t:sections.collage.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "scheme-4",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collage_irHiCt": {
+      "type": "collage",
+      "blocks": {
+        "image_RjMcxw": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/DSC_0268.jpg"
+          }
+        },
+        "image_p7zwVq": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/DSC_0396.jpg"
+          }
+        },
+        "image_b8R9PM": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/DSC_0401.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_RjMcxw",
+        "image_p7zwVq",
+        "image_b8R9PM"
+      ],
+      "name": "t:sections.collage.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "scheme-4",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collage_Ux7mPJ": {
+      "type": "collage",
+      "blocks": {
+        "image_z8GLAQ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2564.jpg"
+          }
+        },
+        "image_4dm9pi": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IIXZ8719.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_z8GLAQ",
+        "image_4dm9pi"
+      ],
+      "name": "t:sections.collage.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "scheme-4",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "custom_standalone_image_eqmpgY": {
+      "type": "custom-standalone-image",
+      "name": "t:sections.custom-standalone-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/P1090945.webp",
+        "image_link": "",
+        "link_new_tab": false,
+        "image_alt": "",
+        "full_viewport_width": true,
+        "color_scheme": "",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0
+      }
+    },
+    "multicolumn_d8zLcB": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_AVEUEb": {
+          "type": "column",
+          "settings": {
+            "title": "",
+            "text": "<p>ボタニーペインティングの資格取得後は、皆さまの新しいキャリアのスタート地点です。私たちは、資格取得後も安心して活動を続けていただけるよう、充実したサポートとアフターフォローを提供しています。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_jd4emb": {
+          "type": "column",
+          "settings": {
+            "title": "定期的なスキルアップ講座",
+            "text": "<p>講師のスキルをさらに高めるため、最新の技法やトレンドに基づいたスキルアップ講座や講師交流会を定期的に開催しています。それにより、常に最新の技術を取り入れ、より魅力的な講座を提供できます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_j9xMiH": {
+          "type": "column",
+          "settings": {
+            "title": "個別相談やアドバイス",
+            "text": "<p>講師活動で困ったことや不安がある場合には、個別の相談にも対応しています。専門のLINEスタッフが講師としての活動をサポートし、作品制作やイベント開催など様々な問題解決に向けたアドバイスを行いますので、どんなお悩みもお気軽にご相談ください。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_JcCpef": {
+          "type": "column",
+          "settings": {
+            "title": "作品の発表・販売の機会提供",
+            "text": "<p>講師としての活動をさらに広げるために、作品を展示会に出展・販売も可能です。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_rNPCdb": {
+          "type": "column",
+          "settings": {
+            "title": "",
+            "text": "<p>講師資格を取得することで、ボタニーペインティングの魅力を伝え、受講者に感動を与える存在となれます。資格取得後も、成長を続けられるサポート体制が整っていますので、安心して講師活動を始めていただけます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_AVEUEb",
+        "column_jd4emb",
+        "column_j9xMiH",
+        "column_JcCpef",
+        "column_rNPCdb"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "受講後は、、、",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 1,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-5",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "slideshow_7XTYnE": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_4X9kb4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/P1020707.webp",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_xkNRcc": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/P1020787.webp",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_qih6GP": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/P1030513.webp",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_4X9kb4",
+        "slide_xkNRcc",
+        "slide_qih6GP"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "small",
+        "slider_visual": "counter",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": "ブランドについてのスライドショー"
+      }
+    },
+    "multirow_dGt9rt": {
+      "type": "multirow",
+      "blocks": {
+        "row_U86AYh": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/P1000256.webp",
+            "caption": "Lesson 1",
+            "heading": "基礎技術（インド菩提樹）",
+            "text": "<p>【対面講座】基本的な貼りつけと着色を学びます。</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_ERMcTn": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/P1000487.webp",
+            "caption": "Lesson 2",
+            "heading": "蓮の葉を使った応用技術",
+            "text": "<p>【対面講座】インド菩提樹と蓮の葉を組み合わせたパネル制作を実践。</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_XRnBfU": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4902.webp",
+            "caption": "Lesson 3",
+            "heading": "自由作品への挑戦",
+            "text": "<p>【自習】自分らしいオリジナル作品を制作。</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_6bVR6T": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/0C1A1759.webp",
+            "caption": "Lesson 4",
+            "heading": "自由作品への挑戦",
+            "text": "<p>【自習】自分らしいオリジナル作品を制作。</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_U86AYh",
+        "row_ERMcTn",
+        "row_XRnBfU",
+        "row_6bVR6T"
+      ],
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "small",
+        "image_layout": "alternate-left",
+        "heading_size": "h2",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "center",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "scheme-472d4f3c-364f-45e4-8e40-acdff25f287d",
+        "row_color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_639Vei": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_teFDV7": {
+          "type": "column",
+          "settings": {
+            "title": "初回お申し込み",
+            "text": "<p>お申し込後、認定講座に必要な画材一式をお送りします。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_cH4fWn": {
+          "type": "column",
+          "settings": {
+            "title": "受講日程の調整",
+            "text": "<p>お申し込み時にご希望の日程をお選びください。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_jFhUaB": {
+          "type": "column",
+          "settings": {
+            "title": "対面受講とオンラインサポート",
+            "text": "<p>対面講座で基礎技術を学んだ後は、プロフェッショナル講師と相談しながら技術試験まで進めていきます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_rPYqW7": {
+          "type": "column",
+          "settings": {
+            "title": "画材のサポート",
+            "text": "<p>必要な画材はプロフェッショナル講師との相談により、適宜提供いたしますので、安心して受講いただけます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_teFDV7",
+        "column_cH4fWn",
+        "column_jFhUaB",
+        "column_rPYqW7"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "認定講座へのお申し込み手順",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-472d4f3c-364f-45e4-8e40-acdff25f287d",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_irK9dy": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_DDXqwf": {
+          "type": "heading",
+          "settings": {
+            "heading": "画材一覧(講座費に含まれます)",
+            "heading_size": "h2"
+          }
+        },
+        "text_MCP3zx": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ボタニーペインティングBOOK 1冊／専用道具箱1箱／アクリル絵の具12色／オリジナルゴールド&シルバーの絵の具／着色用刷毛 1本／ニス&レジン用刷毛 3本／専用ノリ 2個／専用ニス 1個／スポンジ／ペーパーパレット 1冊／練習紙 ４枚／練習用インド菩提樹 10枚／インド菩提樹 8枚＋(4枚☓3)／蓮の葉 ２枚+(3枚☓2)／木製パネル24cm正方形 2枚／木製パネル41㎝正方形 1枚／木製パネル直径30cm円形 1枚／アクリルパネル41㎝正方形(専用ネジ) 1枚／マットレジン1本(30g)／グロスレジン1本(30g)</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_DDXqwf",
+        "text_MCP3zx"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/nintei006.webp",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_NkcVrP": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_BmBm47": {
+          "type": "column",
+          "settings": {
+            "title": "販売価格：<strong>18万円（税込）</strong>",
+            "text": "<p>※講座費・画材一式・送料込み<br/>支払方法：銀行振込（事前にLINEに連絡をください）・クレジットカード各種対応・paidy分割対応</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_L6xk3e": {
+          "type": "column",
+          "settings": {
+            "title": "講座内容",
+            "text": "<ul><li>対面講座（1回）：基礎内容と実技指導</li><li>フォロー講座（1回）：対面またはオンラインで実施し、復習や質疑応答の機会を提供<br/>※内容はプロフェッショナル講師の指導により変更される場合がございます。その際は事前にご案内いたします。</li><li>その後、復習制作を繰り返し技術向上をプロフェッショナル講師と共に進めます</li></ul>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_te4KAJ": {
+          "type": "column",
+          "settings": {
+            "title": "講座手順",
+            "text": "<ol><li>お申込み：初回対面講座の日程を選択してお申込みください。</li><li>講師挨拶：お申込み後、担当講師より挨拶メールをお送りします。</li><li>画材発送：運営事務局から必要な画材一式をお送りします。</li><li>準備確認：講座当日までに担当講師と必要画材の確認を行います。</li></ol>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_BmBm47",
+        "column_L6xk3e",
+        "column_te4KAJ"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "講座の詳細と料金",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_99JVUT": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_cUFMtL": {
+          "type": "column",
+          "settings": {
+            "title": "手数料無料の分割支払いに対応",
+            "text": "<p>BotanyPainting 認定講座は、分割払いに対応（手数料0円）しています。<br/>ライフスタイルに合わせて、以下のプランからお選びいただけます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_iehPYt": {
+          "type": "column",
+          "settings": {
+            "title": "特徴・メリット",
+            "text": "<ul><li><strong>•</strong>分割手数料はすべて無料（安心してご利用いただけます）</li><li><strong>•</strong>翌月払い・3回・6回・12回から自由に選択可能</li><li><strong>•</strong>無理なく続けられるお支払い方法で、学びの第一歩を応援します</li></ul>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_AwV98m": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/SS_2026-04-22_22.09.26.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_cUFMtL",
+        "column_iehPYt",
+        "column_AwV98m"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "分割支払い対応",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_ta3xGF": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_dKDdMf": {
+          "type": "column",
+          "settings": {
+            "title": "認定資格取得に必要な費用",
+            "text": "<ul><li>試験費用：別途2万円（税込、画材代込み）</li><li>試験内容：30cm×60cmサイズの作品を制作し、評価表とともに写真と書類を運営事務局に提出してください。</li><li>再試験（不合格の場合）：補習費1万円（税込）で再指導を受け、30cm×30cmの作品と書類を再提出します。</li></ul>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_UCjnKN": {
+          "type": "column",
+          "settings": {
+            "title": "パートナー講師昇格申請",
+            "text": "<ul><li>申請費用：別途1万円（税込）</li><li>申請手順：昇格を希望される方は、申請作品を運営事務局にご提出ください。昇格条件や基準については担当講師よりご案内いたします。</li></ul>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_dKDdMf",
+        "column_UCjnKN"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "認定資格取得の詳細",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_w4WGra": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_GGzRdU": {
+          "type": "heading",
+          "settings": {
+            "heading": "お近くのプロフェッショナル講師にご相談ください",
+            "heading_size": "h1"
+          }
+        },
+        "text_C8Q3GM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ボタニーペインティングの講師資格講座に興味はあるけれど、<br/>ホームページだけでは分かりにくいことや、不安に感じることもあるかと思います。<br/><br/>そんな時は、ぜひお近くのプロフェッショナル講師に直接ご相談ください。<br/>講座の内容や学び方、ご自身に合った進め方など、実際の経験をもとにお話しいたします。<br/><br/>「自分にもできるのかな」「どんな活動につながるのかな」といった疑問も、<br/>直接相談することで、より具体的にイメージしていただけます。<br/><br/>まずはお気軽にご連絡ください。</p>"
+          }
+        },
+        "button_wQa7Gi": {
+          "type": "button",
+          "settings": {
+            "button_label": "お近くのプロ講師を探す",
+            "button_link": "https://botanypainting.com/2024_01/professional/index.html",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_GGzRdU",
+        "text_C8Q3GM",
+        "button_wQa7Gi"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "image_banner_nqmGac",
+    "multicolumn_iinPfB",
+    "related-products",
+    "rich_text_nEcELQ",
+    "rich_text_xdnnGy",
+    "custom_standalone_image_MfUJqx",
+    "multicolumn_L4KLwi",
+    "multirow_bjHfQJ",
+    "rich_text_LFtcdP",
+    "multicolumn_x8F3PQ",
+    "collage_iwga46",
+    "collage_irHiCt",
+    "collage_Ux7mPJ",
+    "custom_standalone_image_eqmpgY",
+    "multicolumn_d8zLcB",
+    "slideshow_7XTYnE",
+    "multirow_dGt9rt",
+    "multicolumn_639Vei",
+    "image_with_text_irK9dy",
+    "multicolumn_NkcVrP",
+    "multicolumn_99JVUT",
+    "multicolumn_ta3xGF",
+    "rich_text_w4WGra",
+    "main"
+  ]
+}

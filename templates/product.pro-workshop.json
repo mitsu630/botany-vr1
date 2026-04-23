@@ -50,6 +50,7 @@
         "quantity_selector_NfKEab",
         "buy_buttons_C6BdcF"
       ],
+      "disabled": true,
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
@@ -64,6 +65,16 @@
         "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 12
+      }
+    },
+    "japan_workshop_buytool_iUQMip": {
+      "type": "japan-workshop-buytool",
+      "name": "japan-workshop-buytool",
+      "settings": {
+        "bg_color": "#eef2e6",
+        "accent_color": "#d31d84",
+        "z_index": 9999,
+        "footer_height_px": 200
       }
     },
     "related-products": {
@@ -85,21 +96,495 @@
         "padding_bottom": 28
       }
     },
-    "japan_workshop_buytool_iUQMip": {
-      "type": "japan-workshop-buytool",
-      "name": "japan-workshop-buytool",
+    "autoplay_loop_video_ETx7df": {
+      "type": "autoplay-loop-video",
+      "name": "t:sections.autoplay-loop-video.presets.name",
       "settings": {
-        "bg_color": "#eef2e6",
-        "accent_color": "#d31d84",
-        "z_index": 9999,
-        "footer_height_px": 200
+        "heading": "",
+        "heading_size": "h1",
+        "video": "shopify://files/videos/ce1a23a07d4c4e82b589926bd095ed00.mp4",
+        "show_controls": false,
+        "description": "",
+        "full_width": true,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "custom_standalone_image_FJCfPF": {
+      "type": "custom-standalone-image",
+      "name": "t:sections.custom-standalone-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/shizu101_04f79893-5988-4e45-bf6f-b55db319e3a7.webp",
+        "image_link": "",
+        "link_new_tab": false,
+        "image_alt": "",
+        "full_viewport_width": false,
+        "color_scheme": "",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0
+      }
+    },
+    "custom_standalone_image_ytdCcG": {
+      "type": "custom-standalone-image",
+      "name": "t:sections.custom-standalone-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/shizu102_42255704-5cab-41ff-a0da-4cf7c7b4b7d3.webp",
+        "image_link": "",
+        "link_new_tab": false,
+        "image_alt": "",
+        "full_viewport_width": false,
+        "color_scheme": "",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0
+      }
+    },
+    "custom_standalone_image_agbXCQ": {
+      "type": "custom-standalone-image",
+      "name": "t:sections.custom-standalone-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/shizu103_49ad1eef-5aa0-4587-8a9c-1414d4b66fbc.webp",
+        "image_link": "",
+        "link_new_tab": false,
+        "image_alt": "",
+        "full_viewport_width": false,
+        "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0
+      }
+    },
+    "custom_standalone_image_Dxhtt8": {
+      "type": "custom-standalone-image",
+      "name": "t:sections.custom-standalone-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/shizu104_3f02e749-6ef0-4d47-b291-22e6a21ba723.webp",
+        "image_link": "",
+        "link_new_tab": false,
+        "image_alt": "",
+        "full_viewport_width": false,
+        "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0
+      }
+    },
+    "custom_standalone_image_X7aEGJ": {
+      "type": "custom-standalone-image",
+      "name": "t:sections.custom-standalone-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/shizu105_63382465-7a83-458b-a8ed-cd8ba847c2d7.webp",
+        "image_link": "",
+        "link_new_tab": false,
+        "image_alt": "",
+        "full_viewport_width": false,
+        "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0
+      }
+    },
+    "custom_standalone_image_cQTq7i": {
+      "type": "custom-standalone-image",
+      "name": "t:sections.custom-standalone-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/shizu106_f87441a7-3e3e-4825-869a-0169e619b606.webp",
+        "image_link": "",
+        "link_new_tab": false,
+        "image_alt": "",
+        "full_viewport_width": false,
+        "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0
+      }
+    },
+    "custom_standalone_image_6FQaWq": {
+      "type": "custom-standalone-image",
+      "name": "t:sections.custom-standalone-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/003.webp",
+        "image_link": "",
+        "link_new_tab": false,
+        "image_alt": "",
+        "full_viewport_width": false,
+        "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0
+      }
+    },
+    "multicolumn_ChgyVi": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_fh39Y6": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4417.webp",
+            "title": "画材は会場に",
+            "text": "<h5>アートに必要な画材は会場に用意しています<br/>※画像はイメージです。</h5>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_zRmDpU": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/LINE_ALBUM_20240421_240424_46.webp",
+            "title": "植物の魅力",
+            "text": "<p>リピータの方はモンステラの葉やカラテアの葉も使えます</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_bt8qNE": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1070032.webp",
+            "title": "インテリアの完成",
+            "text": "<p>その日にインテリアとして彩り豊かな生活を楽しめます</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_HgdDVG": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/insutanado.webp",
+            "title": "",
+            "text": "<p>制作はとても簡単！大人の塗り絵感覚で作品が完成<br/>作品はSNSで公開も可能</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_fh39Y6",
+        "column_zRmDpU",
+        "column_bt8qNE",
+        "column_HgdDVG"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 2,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "video_rXFqX6": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "enable_video_looping": true,
+        "video": "shopify://files/videos/何か足りない。｜ボタニーペインティング　ワークショップに参加_v1 (1080p).mp4",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "description": "",
+        "full_width": true,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "custom_standalone_image_brCbFk": {
+      "type": "custom-standalone-image",
+      "name": "t:sections.custom-standalone-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/ws2025-001-002.webp",
+        "image_link": "",
+        "link_new_tab": false,
+        "image_alt": "",
+        "full_viewport_width": false,
+        "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0
+      }
+    },
+    "slideshow_AVnHCY": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_q9Atri": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2557.webp",
+            "image_overlay_opacity": 0,
+            "heading": "「初めてでも楽しく参加できました！」",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_LwFeGw": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_5098.webp",
+            "image_overlay_opacity": 0,
+            "heading": "「友達と一緒に楽しい時間を過ごしました。」",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_fT6Wpc": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/P1020041.webp",
+            "image_overlay_opacity": 0,
+            "heading": "「完成作品が想像以上で感動しました！」",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_C4Ay3d": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/P1030908.webp",
+            "image_overlay_opacity": 0,
+            "heading": "「講師の方が丁寧にサポートしてくれました。」",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_mFTDPM": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/P1030920.webp",
+            "image_overlay_opacity": 0,
+            "heading": "「世界に一つの作品を作れて嬉しいです！」",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_EjMa93": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/P1020364.webp",
+            "image_overlay_opacity": 0,
+            "heading": "「また参加したいと思います！」",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_dHaEie": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/IMG_8291.webp",
+            "image_overlay_opacity": 0,
+            "heading": "「自分だけのアートを作れて感動！」",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_DiwKnD": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/P1070798.webp",
+            "image_overlay_opacity": 0,
+            "heading": "「作る工程が楽しかったです！」",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_KMyxJK": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/P1080941.webp",
+            "image_overlay_opacity": 0,
+            "heading": "「リラックスしながら楽しめました。」",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        }
+      },
+      "block_order": [
+        "slide_q9Atri",
+        "slide_LwFeGw",
+        "slide_fT6Wpc",
+        "slide_C4Ay3d",
+        "slide_mFTDPM",
+        "slide_EjMa93",
+        "slide_dHaEie",
+        "slide_DiwKnD",
+        "slide_KMyxJK"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "medium",
+        "slider_visual": "counter",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "image_behavior": "ambient",
+        "show_text_below": false,
+        "accessibility_info": "ブランドについてのスライドショー"
+      }
+    },
+    "rich_text_jAcGJd": {
+      "type": "rich-text",
+      "blocks": {
+        "text_6HEkKU": {
+          "type": "text",
+          "settings": {
+            "text": "<p>画材は会場にご用意するので、【配送品はありません】が、ご予約時に配送先の入力をお願い申し上げます。<br/>本サービスは単発のワークショップであり、継続的な課金は発生しません。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_6HEkKU"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     }
   },
   "order": [
     "workshop_dynamic_header_NCVnWe",
     "main",
+    "japan_workshop_buytool_iUQMip",
     "related-products",
-    "japan_workshop_buytool_iUQMip"
+    "autoplay_loop_video_ETx7df",
+    "custom_standalone_image_FJCfPF",
+    "custom_standalone_image_ytdCcG",
+    "custom_standalone_image_agbXCQ",
+    "custom_standalone_image_Dxhtt8",
+    "custom_standalone_image_X7aEGJ",
+    "custom_standalone_image_cQTq7i",
+    "custom_standalone_image_6FQaWq",
+    "multicolumn_ChgyVi",
+    "video_rXFqX6",
+    "custom_standalone_image_brCbFk",
+    "slideshow_AVnHCY",
+    "rich_text_jAcGJd"
   ]
 }

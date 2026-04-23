@@ -1,0 +1,174 @@
+/* Self Reset Common Styles */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&display=swap');
+
+/* Common Variables */
+:root {
+  --color-text: #333;
+  --color-text-light: #666;
+  --color-background: #fff;
+  --color-background-gradient: linear-gradient(135deg, #faf7f2 0%, #fff 100%);
+  --color-shadow: rgba(0, 0, 0, 0.05);
+  --color-shadow-hover: rgba(0, 0, 0, 0.1);
+  --border-radius: 2rem;
+  --spacing-section: 6rem;
+  --spacing-card: 2.5rem;
+  --transition: 0.3s ease;
+}
+
+/* Common Base Styles */
+.selfreset-section {
+  padding: var(--spacing-section) 0;
+  background: var(--color-background-gradient);
+}
+
+.selfreset-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.selfreset-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 2.2rem;
+  font-weight: 300;
+  line-height: 1.8;
+  text-align: center;
+  color: var(--color-text);
+  margin-bottom: 4rem;
+  letter-spacing: 0.02em;
+}
+
+.selfreset-card {
+  background: var(--color-background);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-card);
+  box-shadow: 0 4px 15px var(--color-shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.selfreset-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px var(--color-shadow-hover);
+}
+
+.selfreset-card-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.selfreset-card-content {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--color-text-light);
+  letter-spacing: 0.02em;
+}
+
+/* Common Grid Layout */
+.selfreset-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.selfreset-grid-full {
+  grid-column: 1 / -1;
+}
+
+/* Common Image Styles */
+.selfreset-image {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 4px 15px var(--color-shadow);
+}
+
+.selfreset-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition);
+}
+
+.selfreset-image:hover img {
+  transform: scale(1.02);
+}
+
+/* Common Button Styles */
+.selfreset-button {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--color-text);
+  background: var(--color-background);
+  border: 1px solid var(--color-text-light);
+  border-radius: 9999px;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  letter-spacing: 0.02em;
+}
+
+.selfreset-button:hover {
+  color: var(--color-text);
+  border-color: var(--color-text);
+  background: var(--color-background);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--color-shadow);
+}
+
+/* Common Animation Classes */
+.selfreset-fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.selfreset-fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .selfreset-section {
+    padding: 4rem 0;
+  }
+
+  .selfreset-content {
+    padding: 0 1.5rem;
+  }
+
+  .selfreset-title {
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+  }
+
+  .selfreset-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .selfreset-card {
+    padding: 2rem;
+  }
+
+  .selfreset-card-title {
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .selfreset-card-content {
+    font-size: 0.95rem;
+  }
+
+  .selfreset-button {
+    padding: 0.6rem 1.5rem;
+  }
+} 

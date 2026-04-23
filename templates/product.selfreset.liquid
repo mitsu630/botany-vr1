@@ -1,0 +1,64 @@
+{% comment %}
+  Template: product.selfreset
+  Description: Self Reset Art 商品ページ用テンプレート
+{% endcomment %}
+
+<!-- Debug Info -->
+<div style="display: none;">
+  Template: {{ template.name }}
+  Product Handle: {{ product.handle }}
+  Product Title: {{ product.title }}
+  Product ID: {{ product.id }}
+</div>
+
+{% layout 'selfreset' %}
+
+<!-- 商品画像セクション -->
+{% section 'selfreset-hero' %}
+
+<!-- イントロセクション -->
+{% section 'selfreset-intro' %}
+{% section 'selfreset-intro2' %}
+
+<!-- 商品情報セクション -->
+{% section 'product-selfreset' %}
+
+
+<!-- 素材情報&クロージング-->
+{% section 'selfreset-materials' %}
+
+
+<!-- バリアント選択セクション -->
+{% section 'selfreset-variant-selector' %}
+
+{% comment %}
+<!-- 関連商品セクション -->
+{% section 'selfreset-related' %}
+{% endcomment %}
+
+<!-- 特定商取引法 -->
+{% section 'selfreset-legal' %}
+
+<!-- プライバシーポリシー -->
+{% section 'selfreset-policy' %}
+
+<!-- 会社情報 -->
+{% section 'selfreset-company' %}
+
+<!-- 利用規約 -->
+{% section 'selfreset-terms' %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // スクロールボタンの機能
+  const scrollButton = document.querySelector('.scroll-to-buy');
+  if (scrollButton) {
+    scrollButton.addEventListener('click', function() {
+      const buySection = document.querySelector('.buy');
+      if (buySection) {
+        buySection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+});
+</script> 

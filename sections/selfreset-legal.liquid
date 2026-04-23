@@ -1,0 +1,165 @@
+{% schema %}
+{
+  "name": "特定商取引法に基づく表記",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "タイトル",
+      "default": "特定商取引法に基づく表記"
+    }
+  ],
+  "presets": [
+    {
+      "name": "特定商取引法に基づく表記"
+    }
+  ]
+}
+{% endschema %}
+
+{% if template == 'product.selfreset' %}
+<div class="legal-section">
+  <div class="legal-container">
+    <h2 class="legal-title">{{ section.settings.title }}</h2>
+    
+    <div class="legal-table">
+      <table>
+        <tbody>
+          <tr>
+            <th>販売業者名</th>
+            <td>株式会社アントレ・サン・フラッペ</td>
+          </tr>
+          <tr>
+            <th>運営責任者</th>
+            <td>杉本 光俊（スギモト ミツトシ）</td>
+          </tr>
+          <tr>
+            <th>所在地</th>
+            <td>〒411-0016<br>静岡県三島市塚原新田24-3</td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td>055-983-3361<br>※お急ぎでない場合は、できるだけメールでのご連絡をお願いいたします。</td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td>info@botanypainting.com</td>
+          </tr>
+          <tr>
+            <th>販売価格</th>
+            <td>各商品ページに記載しております。</td>
+          </tr>
+          <tr>
+            <th>商品代金以外の必要料金</th>
+            <td>消費税、送料（地域により異なります）、振込手数料（銀行振込を選択された場合）</td>
+          </tr>
+          <tr>
+            <th>お支払い方法</th>
+            <td>クレジットカード決済 / 銀行振込 / その他（決済ページに記載）</td>
+          </tr>
+          <tr>
+            <th>お支払い時期</th>
+            <td>ご注文確定時に決済が完了します。</td>
+          </tr>
+          <tr>
+            <th>商品引き渡し時期</th>
+            <td>ご注文から7営業日以内に発送いたします。遅延が発生する場合は、事前にご連絡差し上げます。</td>
+          </tr>
+          <tr>
+            <th>返品・交換・キャンセルについて</th>
+            <td>商品の性質上、発送後のお客様都合による返品・交換・キャンセルは承っておりません。<br>万が一不良品や配送中の破損があった場合は、商品到着後7日以内にご連絡ください。誠意をもって対応させていただきます。</td>
+          </tr>
+          <tr>
+            <th>販売数量の制限等特別な条件</th>
+            <td>限定商品や材料に限りがある場合、販売数量に制限を設けることがございます。各商品ページにてご案内いたします。</td>
+          </tr>
+          <tr>
+            <th>お問い合わせ窓口</th>
+            <td>info@botanypainting.com</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style>
+.legal-section {
+  padding: 1rem;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "HGS明朝E", "MS P明朝", serif;
+  color: #333;
+  background: #fff;
+}
+
+.legal-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.legal-title {
+  font-size: 1rem;
+  font-weight: normal;
+  text-align: center;
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
+  color: #333;
+}
+
+.legal-table table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #eee;
+}
+
+.legal-table th {
+  font-size: 1rem;
+  font-weight: normal;
+  color: #666;
+  letter-spacing: 0.05em;
+  padding: 0.4rem 0.6rem;
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  width: 25%;
+  text-align: left;
+  vertical-align: top;
+}
+
+.legal-table td {
+  padding: 0.4rem 0.6rem;
+  color: #666;
+  border: 1px solid #eee;
+  width: 75%;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 767px) {
+  .legal-section {
+    padding: 0.8rem;
+  }
+
+  .legal-table th,
+  .legal-table td {
+    display: block;
+    width: 100%;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .legal-table th {
+    background: #f9f9f9;
+    border-bottom: none;
+  }
+
+  .legal-table td {
+    border-top: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .legal-section {
+    padding: 2rem;
+  }
+}
+</style>
+{% endif %} 

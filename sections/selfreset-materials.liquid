@@ -1,0 +1,265 @@
+{% schema %}
+{
+  "name": "セルフリセット 内容とメッセージ",
+  "settings": [
+    {
+      "type": "header",
+      "content": "お届け内容"
+    },
+    {
+      "type": "image_picker",
+      "id": "delivery_image",
+      "label": "内容物の写真"
+    },
+    {
+      "type": "header",
+      "content": "商品写真"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image_1",
+      "label": "商品写真1"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image_2",
+      "label": "商品写真2"
+    },
+    {
+      "type": "header",
+      "content": "クロージングメッセージ"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "default": "#fdf6f5"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.delivery-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.delivery-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0;
+  color: #333;
+}
+
+.delivery-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.delivery-image {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.delivery-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.delivery-list {
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: 'Noto Serif JP', serif;
+  color: #555;
+  line-height: 2;
+}
+
+.delivery-list li {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.delivery-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #888;
+}
+
+.closing-section {
+  padding: 6rem 1rem;
+  text-align: center;
+  background-color: {{ section.settings.background_color }};
+}
+
+.closing-message {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Noto Serif JP', serif;
+  color: #333;
+}
+
+.closing-text {
+  font-size: 1.2rem;
+  line-height: 2;
+  margin-bottom: 2rem;
+}
+
+.closing-cta {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #666;
+}
+
+.lotus-description {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 0 1rem;
+  font-family: 'Noto Serif JP', serif;
+  color: #555;
+}
+
+.lotus-title {
+  font-size: 1.3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+  font-weight: normal;
+}
+
+.lotus-text {
+  line-height: 2;
+  margin-bottom: 2rem;
+}
+
+.lotus-details {
+  background-color: #fff9f8;
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.lotus-details p {
+  margin-bottom: 1.5rem;
+}
+
+.lotus-details ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.lotus-details li {
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.lotus-details li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #888;
+}
+
+.product-images {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.product-image {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.product-image:hover img {
+  transform: scale(1.02);
+}
+</style>
+
+<!-- お届け内容セクション -->
+<div class="delivery-section">
+  <h2 class="delivery-title">お届けするもの</h2>
+  <div class="delivery-content">
+    <div class="delivery-image">
+      {% if section.settings.delivery_image %}
+        {{ section.settings.delivery_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: 'お届け内容' }}
+      {% endif %}
+    </div>
+    <ul class="delivery-list">
+      <li>セルフリセット説明書</li>
+      <li>着色方法の動画URL</li>
+      <li>着色用スポンジ（６個）</li>
+      <li>蓮の葉付きパネル<br>（24cm / 30cm / 41cm）（※選択により1枚）</li>
+      <li>アクリル絵の具12色セット（※選択による）</li>
+      <li>ゴールド・シルバーの絵の具（※選択による）</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 商品写真セクション -->
+<div class="product-images">
+  <div class="product-image">
+    {% if section.settings.product_image_1 %}
+      {{ section.settings.product_image_1 | image_url: width: 800 | image_tag: loading: 'lazy', alt: '商品写真1' }}
+    {% else %}
+      <img src="https://botanypainting.com/00_sra_img/item_poto001.webp" alt="商品写真1" loading="lazy">
+    {% endif %}
+  </div>
+  <div class="product-image">
+    {% if section.settings.product_image_2 %}
+      {{ section.settings.product_image_2 | image_url: width: 800 | image_tag: loading: 'lazy', alt: '商品写真2' }}
+    {% else %}
+      <img src="https://botanypainting.com/00_sra_img/item_poto002.webp" alt="商品写真2" loading="lazy">
+    {% endif %}
+  </div>
+</div>
+
+<!-- 蓮の葉アート説明セクション -->
+<div class="lotus-description">
+  <h2 class="lotus-title">ひとつとして同じものがない、<br>あなただけの蓮の葉アート。</h2>
+  
+  <p class="lotus-text">使用している蓮の葉は、すべて天然のもの。<br>そのため、1枚1枚に違った表情があり、同じ作品はひとつとして存在しません。</p>
+  
+  <div class="lotus-details">
+    <p>パネルには以下の枚数をバランスよく配置しています。</p>
+    <ul>
+      <li>41cm 正方形：3枚前後</li>
+      <li>30cm 円形　：3枚前後</li>
+      <li>24cm 正方形：2〜3枚</li>
+    </ul>
+    
+    <p>葉の貼り付けは、静岡のアトリエにて職人が1枚ずつ手作業で行っております。<br>天然素材のため、葉の表面に小さな傷やスレ、色のムラなどがある場合がございますが、<br>それも「自然の風合い」としてお楽しみいただけたら幸いです。</p>
+    
+    <p>木製パネルは、日本国内の工場（倉敷）と自社の製作チームで丁寧に製造しています。<br>すべての素材と工程に、想いを込めています。</p>
+  </div>
+</div>
+
+<!-- クロージングセクション -->
+<div class="closing-section">
+  <div class="closing-message">
+    <p class="closing-text">上手に描かなくていい。<br>"心のままに"で、大丈夫。</p>
+    <p class="closing-cta">あなただけの"リセット時間"、<br>始めてみませんか？</p>
+  </div>
+</div> 

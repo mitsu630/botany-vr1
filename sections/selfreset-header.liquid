@@ -1,0 +1,65 @@
+{% schema %}
+{
+  "name": "Self Reset Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "ブランド名",
+      "default": "Self Reset Art"
+    }
+  ]
+}
+{% endschema %}
+
+<!-- 固定ヘッダー -->
+<div class="fixed top-0 left-0 right-0 z-50">
+  <!-- ヘッダー本体 -->
+  <header class="bg-white">
+    <div class="max-w-7xl mx-auto h-10 flex items-center justify-between px-4">
+      <!-- 左：ロゴ -->
+      <div class="flex items-center">
+        <img 
+          src="https://botanypainting.com/00_sra_img/sr_rogo.svg" 
+          alt="Self Reset Art" 
+          class="h-6 w-auto"
+          width="120"
+          height="24"
+        >
+      </div>
+
+      <!-- 右：公式へリンク -->
+      <a 
+        href="https://botanypainting.com/" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="text-xs px-3 py-1 border border-gray-300 rounded-full text-gray-500 hover:bg-gray-100 transition mr-4"
+      >
+        ボタニーペインティング<span class="text-[0.6em] align-top">®️</span>公式へ
+      </a>
+    </div>
+  </header>
+
+  <!-- 波のアニメーション -->
+  <div class="h-[60px] relative overflow-hidden -mt-[3px] bg-transparent">
+    <svg class="absolute bottom-0 left-0 w-[calc(100%+240px)] h-[60px] wave-motion" viewBox="0 0 1680 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,0 L1680,0 L1680,40 C1540,50 1400,30 1260,40 C1120,50 980,30 840,40 C700,50 560,30 420,40 C280,50 140,30 0,40 Z" fill="#ffffff" />
+    </svg>
+  </div>
+</div>
+
+<!-- ヘッダーと波の高さ分のスペーサー -->
+<div class="h-[100px]"></div>
+
+<style>
+@keyframes waveMotion {
+  0% { transform: translateX(-120px); }
+  50% { transform: translateX(0); }
+  100% { transform: translateX(-120px); }
+}
+
+.wave-motion {
+  animation: waveMotion 8s linear infinite;
+  transform-origin: 50% 50%;
+}
+</style>

@@ -1,0 +1,57 @@
+{% schema %}
+{
+  "name": "Self Reset Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "コピーライトテキスト",
+      "default": "© 2024, Botany Painting"
+    }
+  ]
+}
+{% endschema %}
+
+<footer>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- 言語と通貨の選択 -->
+    <div class="border-t border-gray-200 py-4">
+      <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <div class="flex items-center space-x-4">
+          {%- form 'localization', class: 'flex items-center space-x-4' -%}
+            <div class="relative">
+              <select name="locale_code" class="appearance-none bg-white border border-gray-300 rounded-md py-2 pl-3 pr-8 text-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                {%- for locale in shop.published_locales -%}
+                  <option value="{{ locale.iso_code }}" {% if locale.iso_code == request.locale.iso_code %}selected{% endif %}>
+                    {{ locale.endonym_name }}
+                  </option>
+                {%- endfor -%}
+              </select>
+            </div>
+
+            <div class="relative">
+              <select name="currency_code" class="appearance-none bg-white border border-gray-300 rounded-md py-2 pl-3 pr-8 text-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                {%- for currency in shop.enabled_currencies -%}
+                  <option value="{{ currency.iso_code }}" {% if currency.iso_code == cart.currency.iso_code %}selected{% endif %}>
+                    {{ currency.iso_code }} {% if currency.symbol %}{{ currency.symbol }}{% endif %}
+                  </option>
+                {%- endfor -%}
+              </select>
+            </div>
+
+            <button type="submit" class="text-sm text-gray-600 hover:text-gray-900">
+              {{ 'general.localization.update' | t }}
+            </button>
+          {%- endform -%}
+        </div>
+      </div>
+    </div>
+
+    <!-- コピーライトと特商法 -->
+    <div class="border-t border-gray-200 pt-8">
+      <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <p class="text-sm text-gray-500">{{ section.settings.copyright }}</p>
+      </div>
+    </div>
+  </div>
+</footer> 

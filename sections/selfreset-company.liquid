@@ -1,0 +1,166 @@
+{% schema %}
+{
+  "name": "会社情報",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "タイトル",
+      "default": "会社情報"
+    }
+  ],
+  "presets": [
+    {
+      "name": "会社情報"
+    }
+  ]
+}
+{% endschema %}
+
+{% if template == 'product.selfreset' %}
+<div class="company-section">
+  <div class="company-container">
+    <h2 class="company-title">{{ section.settings.title }}</h2>
+    
+    <div class="company-content">
+      <div class="company-item">
+        <h3>運営会社</h3>
+        <p>株式会社アントレ・サン・フラッペ<br>ENTREZ SANS FRAPPER Inc.</p>
+      </div>
+
+      <div class="company-item">
+        <h3>本社</h3>
+        <p>〒411-0016<br>静岡県三島市塚原新田24-3</p>
+      </div>
+
+      <div class="company-item">
+        <h3>配送部</h3>
+        <p>静岡県三島市塚原新田218-6</p>
+      </div>
+
+      <div class="company-item">
+        <h3>代表者</h3>
+        <p>杉本 光俊（Mitsutoshi Sugimoto）</p>
+      </div>
+
+      <div class="company-item">
+        <h3>設立</h3>
+        <p>2009年</p>
+      </div>
+
+      <div class="company-item">
+        <h3>事業内容</h3>
+        <ul>
+          <li>アートワークショップの企画・運営</li>
+          <li>通信講座の企画・販売</li>
+          <li>蓮の葉や自然素材を用いたアート作品の制作</li>
+          <li>全国インストラクターの育成および支援</li>
+          <li>海外向けカルチャープログラムの展開</li>
+        </ul>
+      </div>
+
+      <div class="company-item">
+        <h3>お問い合わせ先</h3>
+        <p>Mail: info@botanypainting.com<br>Web: https://botanypainting.com</p>
+      </div>
+
+      <div class="company-item">
+        <h3>SNS</h3>
+        <p>Instagram: @botanypainting<br>Facebook: BotanyPainting 公式ページ</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.company-section {
+  padding: 2rem 1rem;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "HGS明朝E", "MS P明朝", serif;
+  color: #333;
+  background: #fff;
+}
+
+.company-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.company-title {
+  font-size: 1rem;
+  font-weight: normal;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 0.1em;
+  color: #333;
+}
+
+.company-content {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.company-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.company-item h3 {
+  font-size: 0.75rem;
+  font-weight: normal;
+  margin: 0;
+  color: #666;
+  letter-spacing: 0.05em;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.company-item p {
+  margin: 0;
+  color: #666;
+  flex-grow: 1;
+}
+
+.company-item ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #666;
+  flex-grow: 1;
+}
+
+.company-item li {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 767px) {
+  .company-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .company-item {
+    gap: 0.5rem;
+  }
+  
+  .company-item h3 {
+    min-width: 70px;
+  }
+}
+
+@media (min-width: 768px) {
+  .company-section {
+    padding: 3rem 2rem;
+  }
+
+  .company-item {
+    padding: 0 2rem;
+  }
+}
+</style>
+{% endif %} 

@@ -1,0 +1,26 @@
+<div id="sankeien"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // HTMLコンテンツをフェッチする関数
+        function fetchContent(url, elementId) {
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    document.getElementById(elementId).innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('HTML の読み込み中にエラーが発生しました:', error);
+                });
+        }
+
+        // 外部HTMLを読み込む
+        fetchContent('https://botanypainting.com/00_2024_WEB/2024_workshop/workshop_item_sankeien.html', 'sankeien');
+    });
+</script>
+</section>
+

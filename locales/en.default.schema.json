@@ -560,7 +560,7 @@
       "name": "Simple fixed quick links",
       "settings": {
         "paragraph_intro": {
-          "content": "Small text buttons fixed on screen. Help visitors who find the hamburger menu hard to use. Add a label and link for each button you need (up to five)."
+          "content": "Small text buttons fixed on screen. Add this section from Header → Add section, or from the Floating quick links group. Add a label and URL for each button (up to five)."
         },
         "visibility": {
           "label": "Show on",

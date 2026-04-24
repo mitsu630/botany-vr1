@@ -50,7 +50,6 @@
         "quantity_selector_NfKEab",
         "buy_buttons_C6BdcF"
       ],
-      "disabled": true,
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
@@ -103,6 +102,7 @@
         "heading": "",
         "heading_size": "h1",
         "video": "shopify://files/videos/ce1a23a07d4c4e82b589926bd095ed00.mp4",
+        "video_url": "",
         "show_controls": false,
         "description": "",
         "full_width": true,

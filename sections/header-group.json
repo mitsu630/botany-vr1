@@ -32,12 +32,13 @@
     },
     "simple_fixed_nav_header": {
       "type": "simple-fixed-nav",
+      "disabled": true,
       "name": "t:sections.simple-fixed-nav.presets.name",
       "settings": {
         "visibility": "all",
         "vertical_anchor": "bottom",
         "horizontal_anchor": "left",
-        "inset_vertical": 130,
+        "inset_vertical": 0,
         "inset_horizontal": 0,
         "z_index": 30,
         "max_width": 280,

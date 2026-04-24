@@ -29,9 +29,35 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "announcement_bar_iQXtf4": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_ygNCMa": {
+          "type": "announcement",
+          "settings": {
+            "text": "ホームページを更新しました！メニューは左上にあります。（2026年4月24日）",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_ygNCMa"
+      ],
+      "name": "t:sections.announcement-bar.presets.name",
+      "settings": {
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "color_scheme": "scheme-1",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
     }
   },
   "order": [
-    "header"
+    "header",
+    "announcement_bar_iQXtf4"
   ]
 }

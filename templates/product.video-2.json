@@ -251,6 +251,190 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "multicolumn_LNrrnW": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_jPb9mG": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1001520.jpg",
+            "title": "",
+            "text": "<p>ボタニーペインティングで一番人気の蓮の葉は、泥の中からきれいな花を咲かせるということから「浄化」や「繁栄」のメッセージを持っています。蓮の葉のインテリアでお部屋を彩りましょう。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_iUmJD7": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1001520.jpg",
+            "title": "",
+            "text": "<p>※着色は一例です。ご自身のお好みで着色してください。<br/>※着色させずに葉をパネルに貼り付けた状態で完成の方もいます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_jPb9mG",
+        "column_iUmJD7"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "蓮の葉 (Lotus)",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_NGC6fN": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_V8nhen": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1001514.jpg",
+            "title": "",
+            "text": "<p>カラテアルテアの葉は、羽のような形をした葉で、「飛躍」、「強い思い」、「あたたかい心」などのメッセージを持っています。ボタニーペインティングでは、蓮の葉に次いで人気のある植物の葉です。カラテアルテアの葉を使って、自分だけの華やかなインテリア作品を作りましょう。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_mUDVUN": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/IMG_8745.jpg",
+            "title": "",
+            "text": "<p>※着色は一例です。ご自身のお好みで着色してください。<br/>※着色させずに葉をパネルに貼り付けた状態で完成の方もいます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_V8nhen",
+        "column_mUDVUN"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "カラテアルテア (Calathea)",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_xTwKa4": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_XTCt4G": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1001516.jpg",
+            "title": "",
+            "text": "<p>モンステラの葉は、その独特な切れ込みと鮮やかな緑色で「先を見通す力」や「明るい未来」のメッセージを持っています。ボタニーペインティングでは、その魅力的な形状とメッセージ性から多くの人々に選ばれています。モンステラの葉を使って、個性的で美しいインテリア作品を作りましょう。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_FEgUch": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/IMG_8029.jpg",
+            "title": "",
+            "text": "<p>※着色は一例です。ご自身のお好みで着色してください。<br/>※着色させずに葉をパネルに貼り付けた状態で完成の方もいます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_XTCt4G",
+        "column_FEgUch"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "モンステラ (Monstera)",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_DQeTth": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_3ty8Yx": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1001525.jpg",
+            "title": "",
+            "text": "<p>インド菩提樹の葉は、その歴史的な背景と深い宗教的意味で「悟り」や「平和」のメッセージを持っています。お釈迦様がこの木の下で悟りを開いたと言われることから、特に重要視されています。ボタニーペインティングでは、その意味深いメッセージと美しい形状から多くの方に愛されています。インド菩提樹の葉を使って、心が安らぐインテリア作品を作りましょう。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_eJ9eKK": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1050686.jpg",
+            "title": "",
+            "text": "<p>※着色は一例です。ご自身のお好みで着色してください。<br/>※着色させずに葉をパネルに貼り付けた状態で完成の方もいます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_3ty8Yx",
+        "column_eJ9eKK"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "インド菩提樹 (Bodhi Tree)",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -259,6 +443,10 @@
     "promo_framed_content_XE3Jam",
     "promo_framed_content_TEXzdh",
     "main",
-    "related-products"
+    "related-products",
+    "multicolumn_LNrrnW",
+    "multicolumn_NGC6fN",
+    "multicolumn_xTwKa4",
+    "multicolumn_DQeTth"
   ]
 }

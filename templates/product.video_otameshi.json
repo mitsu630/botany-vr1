@@ -108,6 +108,226 @@
         "content_alignment": "center"
       }
     },
+    "17767608404f8e6a1c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "multicolumn_MWHcC7": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_naFPpb": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1001778-min.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_AnbmdU": {
+          "type": "column",
+          "settings": {
+            "title": "蓮の葉1枚",
+            "text": "<p>手を広げたくらいの大きさ（約23cm）の蓮の葉です。ボタニーペインティングで一番人気の本物の蓮の葉を画材用に加工したものになります。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_gyGLEC": {
+          "type": "column",
+          "settings": {
+            "title": "桐板2枚",
+            "text": "<p>手のひらサイズ（幅94mm高さ200mm厚み15mm）の軽い桐の板材になります。表面に蓮の葉を貼り付け、裏面には展示用の穴（虫ピンで展示可能）とボタニーペインティングのロゴマークあります。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_f4iziD": {
+          "type": "column",
+          "settings": {
+            "title": "のり",
+            "text": "<p>ボタニーペインティング専用の糊になります。蓮の葉を貼り付けしやすくするために特別に作られた水分を多く含んでいる糊です。水溶性でホルムアルデヒド等は化合されていない扱いやすい製品です。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_CqY9mr": {
+          "type": "column",
+          "settings": {
+            "title": "スポンジ",
+            "text": "<p>ボタニーペインティングでは刷毛以外でもスポンジで塗る簡単な着色を皆様にご案内しています。お化粧をするように蓮の葉に好きな色を簡単に着色することができます。スポンジに慣れたら刷毛や水を使う着色をおすすめしています。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_naFPpb",
+        "column_AnbmdU",
+        "column_gyGLEC",
+        "column_f4iziD",
+        "column_CqY9mr"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "コース内容　1. 基本セット",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "promo_framed_content_A8fBwX": {
+      "type": "promo-framed-content",
+      "blocks": {
+        "heading_DfafQ7": {
+          "type": "heading",
+          "settings": {
+            "heading": "2. 選べる絵の具セット",
+            "heading_size": "h2"
+          }
+        },
+        "text_FRN6MH": {
+          "type": "text",
+          "settings": {
+            "text": "<p>4種類の季節テーマからお好みのセットをお選びいただけます。絵の具は高品質で使いやすいターナーU35 11mlの絵の具です。。この絵の具は、鮮やかな発色と優れた耐光性が特徴で、初心者からプロまで幅広く愛用されています。水彩のように溶けて、アクリル絵の具のように乾くという独特の性質を持ち、様々な表現技法に対応できます。また、乾燥後は耐水性となるため、完成した作品を長く楽しむことができます。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_DfafQ7",
+        "text_FRN6MH"
+      ],
+      "name": "t:sections.promo-framed-content.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "box_background": "#FFFFFF",
+        "box_border_color": "#E8E8E8",
+        "box_border_width": 1,
+        "box_radius": 16,
+        "box_padding_top": 32,
+        "box_padding_right": 28,
+        "box_padding_bottom": 32,
+        "box_padding_left": 28,
+        "show_badge": false,
+        "badge_text": "",
+        "badge_background": "#FFFFFF",
+        "badge_text_color": "#121212",
+        "badge_border_color": "#E8E8E8",
+        "badge_border_width": 1,
+        "content_alignment": "center"
+      }
+    },
+    "slideshow_9ETwEn": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_E7F7bA": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/SS_2026-04-24_16.16.50.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_zaVJUE": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/SS_2026-04-24_16.16.57.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_6Fiy8A": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/SS_2026-04-24_16.17.06.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_GMdb8p": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/SS_2026-04-24_16.17.12.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_E7F7bA",
+        "slide_zaVJUE",
+        "slide_6Fiy8A",
+        "slide_GMdb8p"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "large",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": ""
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -248,94 +468,111 @@
         "padding_bottom": 28
       }
     },
-    "17767608404f8e6a1c": {
-      "type": "apps",
-      "settings": {
-        "include_margins": true
-      }
-    },
-    "multicolumn_MWHcC7": {
-      "type": "multicolumn",
+    "multirow_mrqKWy": {
+      "type": "multirow",
       "blocks": {
-        "column_naFPpb": {
-          "type": "column",
+        "row_VUqqK8": {
+          "type": "row",
           "settings": {
-            "image": "shopify://shop_images/P1001778-min.jpg",
-            "title": "",
+            "image": "shopify://shop_images/P1001783-min.jpg",
+            "caption": "",
+            "heading": "蓮の葉を桐板に配置します。",
             "text": "",
-            "link_label": "",
-            "link": ""
+            "button_label": "",
+            "button_link": ""
           }
         },
-        "column_AnbmdU": {
-          "type": "column",
+        "row_VbjnFp": {
+          "type": "row",
           "settings": {
-            "title": "蓮の葉1枚",
-            "text": "<p>手を広げたくらいの大きさ（約23cm）の蓮の葉です。ボタニーペインティングで一番人気の本物の蓮の葉を画材用に加工したものになります。</p>",
-            "link_label": "",
-            "link": ""
+            "image": "shopify://shop_images/P1001789-min_c38b17c8-146b-42ac-a41a-ef43f7fb00db.jpg",
+            "caption": "",
+            "heading": "桐板2枚に1枚の蓮の葉を貼ります",
+            "text": "",
+            "button_label": "",
+            "button_link": ""
           }
         },
-        "column_gyGLEC": {
-          "type": "column",
+        "row_riUbUX": {
+          "type": "row",
           "settings": {
-            "title": "桐板2枚",
-            "text": "<p>手のひらサイズ（幅94mm高さ200mm厚み15mm）の軽い桐の板材になります。表面に蓮の葉を貼り付け、裏面には展示用の穴（虫ピンで展示可能）とボタニーペインティングのロゴマークあります。</p>",
-            "link_label": "",
-            "link": ""
+            "image": "shopify://shop_images/P1001792-min.jpg",
+            "caption": "",
+            "heading": "蓮の葉を2つに切り落とします",
+            "text": "",
+            "button_label": "",
+            "button_link": ""
           }
         },
-        "column_f4iziD": {
-          "type": "column",
+        "row_xRf9YM": {
+          "type": "row",
           "settings": {
-            "title": "のり",
-            "text": "<p>ボタニーペインティング専用の糊になります。蓮の葉を貼り付けしやすくするために特別に作られた水分を多く含んでいる糊です。水溶性でホルムアルデヒド等は化合されていない扱いやすい製品です。</p>",
-            "link_label": "",
-            "link": ""
+            "image": "shopify://shop_images/P1001793-min.jpg",
+            "caption": "",
+            "heading": "2つの作品が作れます",
+            "text": "",
+            "button_label": "",
+            "button_link": ""
           }
         },
-        "column_CqY9mr": {
-          "type": "column",
+        "row_T3WDCK": {
+          "type": "row",
           "settings": {
-            "title": "スポンジ",
-            "text": "<p>ボタニーペインティングでは刷毛以外でもスポンジで塗る簡単な着色を皆様にご案内しています。お化粧をするように蓮の葉に好きな色を簡単に着色することができます。スポンジに慣れたら刷毛や水を使う着色をおすすめしています。</p>",
-            "link_label": "",
-            "link": ""
+            "image": "shopify://shop_images/P1020713-min_293e0505-dc4e-4947-a607-57771adb2013.jpg",
+            "caption": "",
+            "heading": "スポンジで自由に着色を楽しめます",
+            "text": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_YgBYQM": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/P1020980-min.jpg",
+            "caption": "",
+            "heading": "スポンジで自由に着色を楽しめます",
+            "text": "<p><strong>自宅でご用意いただくもの：</strong> カッター、テーブル養生、紙皿（パレット代わり）</p>",
+            "button_label": "",
+            "button_link": ""
           }
         }
       },
       "block_order": [
-        "column_naFPpb",
-        "column_AnbmdU",
-        "column_gyGLEC",
-        "column_f4iziD",
-        "column_CqY9mr"
+        "row_VUqqK8",
+        "row_VbjnFp",
+        "row_riUbUX",
+        "row_xRf9YM",
+        "row_T3WDCK",
+        "row_YgBYQM"
       ],
-      "name": "t:sections.multicolumn.presets.name",
+      "name": "t:sections.multirow.presets.name",
       "settings": {
-        "title": "コース内容　1. 基本セット",
+        "image_height": "adapt",
+        "desktop_image_width": "small",
+        "image_layout": "alternate-left",
         "heading_size": "h2",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "ボタンのラベル",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "primary",
-        "color_scheme": "",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "center",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
   "order": [
     "rich_text_hxtYhn",
     "promo_framed_content_FhEzL4",
+    "17767608404f8e6a1c",
+    "multicolumn_MWHcC7",
+    "promo_framed_content_A8fBwX",
+    "slideshow_9ETwEn",
     "main",
     "related-products",
-    "17767608404f8e6a1c",
-    "multicolumn_MWHcC7"
+    "multirow_mrqKWy"
   ]
 }

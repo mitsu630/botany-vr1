@@ -45,10 +45,19 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "custom_liquid_GjjmpM": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "ホームページを更新しました！講師専用ページは左上のメニューをご確認ください。（2026年4月24日）",
+        "color_scheme": "",
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
     }
   },
   "order": [
-    "top-announcement",
     "header"
   ]
 }

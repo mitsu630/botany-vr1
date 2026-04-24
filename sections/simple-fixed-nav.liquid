@@ -1,15 +1,17 @@
 {%- liquid
-  assign has_link = false
-  if section.settings.button_1_label != blank and section.settings.button_1_link != blank
-    assign has_link = true
-  elsif section.settings.button_2_label != blank and section.settings.button_2_link != blank
-    assign has_link = true
-  elsif section.settings.button_3_label != blank and section.settings.button_3_link != blank
-    assign has_link = true
-  elsif section.settings.button_4_label != blank and section.settings.button_4_link != blank
-    assign has_link = true
-  elsif section.settings.button_5_label != blank and section.settings.button_5_link != blank
-    assign has_link = true
+  assign in_theme_editor = false
+  if request.design_mode or request.visual_preview_mode
+    assign in_theme_editor = true
+  endif
+
+  assign has_any_label = false
+  if section.settings.button_1_label != blank or section.settings.button_2_label != blank or section.settings.button_3_label != blank or section.settings.button_4_label != blank or section.settings.button_5_label != blank
+    assign has_any_label = true
+  endif
+
+  assign show_section = false
+  if has_any_label or in_theme_editor
+    assign show_section = true
   endif
 
   assign bg_alpha = section.settings.background_opacity | divided_by: 100.0
@@ -33,7 +35,7 @@
   endif
 -%}
 
-{%- if has_link or request.design_mode -%}
+{%- if show_section -%}
   {%- style -%}
     #shopify-section-{{ section.id }} {
       padding: 0 !important;
@@ -175,6 +177,11 @@
       outline-offset: 2px;
     }
 
+    .simple-fixed-nav--{{ section.id }} .simple-fixed-nav__link--nolink {
+      cursor: default;
+      opacity: 0.88;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .simple-fixed-nav--{{ section.id }} .simple-fixed-nav__link {
         transition: none;
@@ -187,62 +194,82 @@
     {{ section.shopify_attributes }}
   >
     <nav class="simple-fixed-nav__inner{{ layout_class }}" aria-label="{{ nav_label | escape }}">
-      {%- if section.settings.button_1_label != blank and section.settings.button_1_link != blank -%}
-        <a
-          href="{{ section.settings.button_1_link }}"
-          class="simple-fixed-nav__link"
-          {% if section.settings.open_new_tab %}
-            target="_blank" rel="noopener noreferrer"
-          {% endif %}
-        >
-          {{- section.settings.button_1_label | escape -}}
-        </a>
+      {%- if section.settings.button_1_label != blank -%}
+        {%- if section.settings.button_1_link != blank -%}
+          <a
+            href="{{ section.settings.button_1_link }}"
+            class="simple-fixed-nav__link"
+            {% if section.settings.open_new_tab %}
+              target="_blank" rel="noopener noreferrer"
+            {% endif %}
+          >
+            {{- section.settings.button_1_label | escape -}}
+          </a>
+        {%- else -%}
+          <span class="simple-fixed-nav__link simple-fixed-nav__link--nolink">{{ section.settings.button_1_label | escape }}</span>
+        {%- endif -%}
       {%- endif -%}
-      {%- if section.settings.button_2_label != blank and section.settings.button_2_link != blank -%}
-        <a
-          href="{{ section.settings.button_2_link }}"
-          class="simple-fixed-nav__link"
-          {% if section.settings.open_new_tab %}
-            target="_blank" rel="noopener noreferrer"
-          {% endif %}
-        >
-          {{- section.settings.button_2_label | escape -}}
-        </a>
+      {%- if section.settings.button_2_label != blank -%}
+        {%- if section.settings.button_2_link != blank -%}
+          <a
+            href="{{ section.settings.button_2_link }}"
+            class="simple-fixed-nav__link"
+            {% if section.settings.open_new_tab %}
+              target="_blank" rel="noopener noreferrer"
+            {% endif %}
+          >
+            {{- section.settings.button_2_label | escape -}}
+          </a>
+        {%- else -%}
+          <span class="simple-fixed-nav__link simple-fixed-nav__link--nolink">{{ section.settings.button_2_label | escape }}</span>
+        {%- endif -%}
       {%- endif -%}
-      {%- if section.settings.button_3_label != blank and section.settings.button_3_link != blank -%}
-        <a
-          href="{{ section.settings.button_3_link }}"
-          class="simple-fixed-nav__link"
-          {% if section.settings.open_new_tab %}
-            target="_blank" rel="noopener noreferrer"
-          {% endif %}
-        >
-          {{- section.settings.button_3_label | escape -}}
-        </a>
+      {%- if section.settings.button_3_label != blank -%}
+        {%- if section.settings.button_3_link != blank -%}
+          <a
+            href="{{ section.settings.button_3_link }}"
+            class="simple-fixed-nav__link"
+            {% if section.settings.open_new_tab %}
+              target="_blank" rel="noopener noreferrer"
+            {% endif %}
+          >
+            {{- section.settings.button_3_label | escape -}}
+          </a>
+        {%- else -%}
+          <span class="simple-fixed-nav__link simple-fixed-nav__link--nolink">{{ section.settings.button_3_label | escape }}</span>
+        {%- endif -%}
       {%- endif -%}
-      {%- if section.settings.button_4_label != blank and section.settings.button_4_link != blank -%}
-        <a
-          href="{{ section.settings.button_4_link }}"
-          class="simple-fixed-nav__link"
-          {% if section.settings.open_new_tab %}
-            target="_blank" rel="noopener noreferrer"
-          {% endif %}
-        >
-          {{- section.settings.button_4_label | escape -}}
-        </a>
+      {%- if section.settings.button_4_label != blank -%}
+        {%- if section.settings.button_4_link != blank -%}
+          <a
+            href="{{ section.settings.button_4_link }}"
+            class="simple-fixed-nav__link"
+            {% if section.settings.open_new_tab %}
+              target="_blank" rel="noopener noreferrer"
+            {% endif %}
+          >
+            {{- section.settings.button_4_label | escape -}}
+          </a>
+        {%- else -%}
+          <span class="simple-fixed-nav__link simple-fixed-nav__link--nolink">{{ section.settings.button_4_label | escape }}</span>
+        {%- endif -%}
       {%- endif -%}
-      {%- if section.settings.button_5_label != blank and section.settings.button_5_link != blank -%}
-        <a
-          href="{{ section.settings.button_5_link }}"
-          class="simple-fixed-nav__link"
-          {% if section.settings.open_new_tab %}
-            target="_blank" rel="noopener noreferrer"
-          {% endif %}
-        >
-          {{- section.settings.button_5_label | escape -}}
-        </a>
+      {%- if section.settings.button_5_label != blank -%}
+        {%- if section.settings.button_5_link != blank -%}
+          <a
+            href="{{ section.settings.button_5_link }}"
+            class="simple-fixed-nav__link"
+            {% if section.settings.open_new_tab %}
+              target="_blank" rel="noopener noreferrer"
+            {% endif %}
+          >
+            {{- section.settings.button_5_label | escape -}}
+          </a>
+        {%- else -%}
+          <span class="simple-fixed-nav__link simple-fixed-nav__link--nolink">{{ section.settings.button_5_label | escape }}</span>
+        {%- endif -%}
       {%- endif -%}
-      {%- if request.design_mode and has_link == false -%}
+      {%- if in_theme_editor and has_any_label == false -%}
         <span class="simple-fixed-nav__link" role="note">
           {{- 'sections.simple_fixed_nav.editor_hint' | t -}}
         </span>

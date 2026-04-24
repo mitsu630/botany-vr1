@@ -124,7 +124,9 @@
     .product-intro-card-a--{{ section.id }} .product-intro-card-a__media-grid {
       display: grid;
       gap: var(--pica-gap);
-      grid-auto-rows: 1fr;
+      /* `aspect-ratio` に任せて高さを決める（モバイルでの崩れ防止） */
+      grid-auto-rows: auto;
+      align-items: start;
     }
 
     .product-intro-card-a--{{ section.id }} .product-intro-card-a__media {

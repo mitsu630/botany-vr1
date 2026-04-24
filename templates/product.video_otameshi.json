@@ -36,64 +36,76 @@
         "content_alignment": "center",
         "color_scheme": "scheme-3",
         "full_width": true,
-        "padding_top": 20,
+        "padding_top": 28,
         "padding_bottom": 20
       }
     },
-    "multirow_EhzpXD": {
-      "type": "multirow",
+    "promo_framed_content_FhEzL4": {
+      "type": "promo-framed-content",
       "blocks": {
-        "row_TCdVkt": {
-          "type": "row",
+        "heading_VPjRDY": {
+          "type": "heading",
           "settings": {
-            "caption": "キャプション",
-            "heading": "行",
-            "text": "<p>選択した商品、コレクション、ブログ記事に注目を集めるため、テキストと画像を組み合わせます。可用性、スタイル、またはレビュー提供についての詳細を追加します。</p>",
-            "button_label": "ボタンのラベル",
-            "button_link": ""
+            "heading": "コースの特徴",
+            "heading_size": "h1"
           }
         },
-        "row_A497Pj": {
-          "type": "row",
+        "text_HBJyMm": {
+          "type": "text",
           "settings": {
-            "caption": "キャプション",
-            "heading": "行",
-            "text": "<p>選択した商品、コレクション、ブログ記事に注目を集めるため、テキストと画像を組み合わせます。可用性、スタイル、またはレビュー提供についての詳細を追加します。</p>",
-            "button_label": "ボタンのラベル",
-            "button_link": ""
+            "text": "<p>「本格画材で楽しむ自宅で楽しむ動画体験コース」では、プロ仕様の画材を使って、YouTubeの動画を見ながら気軽にアートを楽しむことができます。</p>"
           }
         },
-        "row_cEpAgj": {
-          "type": "row",
+        "image_grid_DmpJEP": {
+          "type": "image_grid",
           "settings": {
-            "caption": "キャプション",
-            "heading": "行",
-            "text": "<p>選択した商品、コレクション、ブログ記事に注目を集めるため、テキストと画像を組み合わせます。可用性、スタイル、またはレビュー提供についての詳細を追加します。</p>",
-            "button_label": "ボタンのラベル",
-            "button_link": ""
+            "image_1": "shopify://shop_images/otameshi001.jpg",
+            "link_1": "",
+            "image_2": "shopify://shop_images/otameshi004.jpg",
+            "link_2": "",
+            "image_3": "shopify://shop_images/otameshi002.jpg",
+            "link_3": "",
+            "image_4": "shopify://shop_images/otameshi003.jpg",
+            "link_4": "",
+            "grid_gap": 12,
+            "image_radius": 8
+          }
+        },
+        "text_Q3tEBY": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>アート初心者の方</strong><br/>「失敗したらどうしよう」という不安を解消できます<br/><strong><br/>講師資格に興味がある方</strong><br/>まずは体験から始められます<br/><br/><strong>色のセンスに自信がない方</strong><br/>季節テーマのセットで簡単に美しい作品が作れます</p>"
           }
         }
       },
       "block_order": [
-        "row_TCdVkt",
-        "row_A497Pj",
-        "row_cEpAgj"
+        "heading_VPjRDY",
+        "text_HBJyMm",
+        "image_grid_DmpJEP",
+        "text_Q3tEBY"
       ],
-      "name": "t:sections.multirow.presets.name",
+      "name": "t:sections.promo-framed-content.presets.name",
       "settings": {
-        "image_height": "medium",
-        "desktop_image_width": "medium",
-        "image_layout": "alternate-left",
-        "heading_size": "h1",
-        "text_style": "body",
-        "button_style": "secondary",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "mobile_content_alignment": "left",
-        "section_color_scheme": "",
-        "row_color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "color_scheme": "",
+        "margin_top": 20,
+        "margin_right": 0,
+        "margin_bottom": 20,
+        "margin_left": 0,
+        "box_background": "#FFFFFF",
+        "box_border_color": "#E8E8E8",
+        "box_border_width": 1,
+        "box_radius": 16,
+        "box_padding_top": 32,
+        "box_padding_right": 28,
+        "box_padding_bottom": 32,
+        "box_padding_left": 28,
+        "show_badge": false,
+        "badge_text": "",
+        "badge_background": "#FFFFFF",
+        "badge_text_color": "#121212",
+        "badge_border_color": "#E8E8E8",
+        "badge_border_width": 1,
+        "content_alignment": "center"
       }
     },
     "main": {
@@ -242,81 +254,88 @@
         "include_margins": true
       }
     },
-    "promo_framed_content_FhEzL4": {
-      "type": "promo-framed-content",
+    "multicolumn_MWHcC7": {
+      "type": "multicolumn",
       "blocks": {
-        "heading_VPjRDY": {
-          "type": "heading",
+        "column_naFPpb": {
+          "type": "column",
           "settings": {
-            "heading": "コースの特徴",
-            "heading_size": "h1"
+            "image": "shopify://shop_images/P1001778-min.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
           }
         },
-        "text_HBJyMm": {
-          "type": "text",
+        "column_AnbmdU": {
+          "type": "column",
           "settings": {
-            "text": "<p>「本格画材で楽しむ自宅で楽しむ動画体験コース」では、プロ仕様の画材を使って、YouTubeの動画を見ながら気軽にアートを楽しむことができます。</p>"
+            "title": "蓮の葉1枚",
+            "text": "<p>手を広げたくらいの大きさ（約23cm）の蓮の葉です。ボタニーペインティングで一番人気の本物の蓮の葉を画材用に加工したものになります。</p>",
+            "link_label": "",
+            "link": ""
           }
         },
-        "image_grid_DmpJEP": {
-          "type": "image_grid",
+        "column_gyGLEC": {
+          "type": "column",
           "settings": {
-            "image_1": "shopify://shop_images/otameshi001.jpg",
-            "link_1": "",
-            "image_2": "shopify://shop_images/otameshi004.jpg",
-            "link_2": "",
-            "image_3": "shopify://shop_images/otameshi002.jpg",
-            "link_3": "",
-            "image_4": "shopify://shop_images/otameshi003.jpg",
-            "link_4": "",
-            "grid_gap": 12,
-            "image_radius": 8
+            "title": "桐板2枚",
+            "text": "<p>手のひらサイズ（幅94mm高さ200mm厚み15mm）の軽い桐の板材になります。表面に蓮の葉を貼り付け、裏面には展示用の穴（虫ピンで展示可能）とボタニーペインティングのロゴマークあります。</p>",
+            "link_label": "",
+            "link": ""
           }
         },
-        "text_Q3tEBY": {
-          "type": "text",
+        "column_f4iziD": {
+          "type": "column",
           "settings": {
-            "text": "<p><strong>アート初心者の方</strong><br/>「失敗したらどうしよう」という不安を解消できます<br/><strong><br/>講師資格に興味がある方</strong><br/>まずは体験から始められます<br/><br/><strong>色のセンスに自信がない方</strong><br/>季節テーマのセットで簡単に美しい作品が作れます</p>"
+            "title": "のり",
+            "text": "<p>ボタニーペインティング専用の糊になります。蓮の葉を貼り付けしやすくするために特別に作られた水分を多く含んでいる糊です。水溶性でホルムアルデヒド等は化合されていない扱いやすい製品です。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_CqY9mr": {
+          "type": "column",
+          "settings": {
+            "title": "スポンジ",
+            "text": "<p>ボタニーペインティングでは刷毛以外でもスポンジで塗る簡単な着色を皆様にご案内しています。お化粧をするように蓮の葉に好きな色を簡単に着色することができます。スポンジに慣れたら刷毛や水を使う着色をおすすめしています。</p>",
+            "link_label": "",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "heading_VPjRDY",
-        "text_HBJyMm",
-        "image_grid_DmpJEP",
-        "text_Q3tEBY"
+        "column_naFPpb",
+        "column_AnbmdU",
+        "column_gyGLEC",
+        "column_f4iziD",
+        "column_CqY9mr"
       ],
-      "name": "t:sections.promo-framed-content.presets.name",
+      "name": "t:sections.multicolumn.presets.name",
       "settings": {
+        "title": "コース内容　1. 基本セット",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "ボタンのラベル",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
         "color_scheme": "",
-        "margin_top": 0,
-        "margin_right": 0,
-        "margin_bottom": 0,
-        "margin_left": 0,
-        "box_background": "#FFFFFF",
-        "box_border_color": "#E8E8E8",
-        "box_border_width": 1,
-        "box_radius": 16,
-        "box_padding_top": 32,
-        "box_padding_right": 28,
-        "box_padding_bottom": 32,
-        "box_padding_left": 28,
-        "show_badge": false,
-        "badge_text": "",
-        "badge_background": "#FFFFFF",
-        "badge_text_color": "#121212",
-        "badge_border_color": "#E8E8E8",
-        "badge_border_width": 1,
-        "content_alignment": "center"
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     }
   },
   "order": [
     "rich_text_hxtYhn",
-    "multirow_EhzpXD",
+    "promo_framed_content_FhEzL4",
     "main",
     "related-products",
     "17767608404f8e6a1c",
-    "promo_framed_content_FhEzL4"
+    "multicolumn_MWHcC7"
   ]
 }

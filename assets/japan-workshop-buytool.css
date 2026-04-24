@@ -495,3 +495,7 @@ product-info[id^='MainProduct-'] {
     --jwb-btn-w: min(100%, 200px);
   }
 }
+
+.po-option--container {
+  margin-top: 0 !important;
+}

@@ -590,7 +590,8 @@
           "label": "Distance from screen edge"
         },
         "z_index": {
-          "label": "Stack order (z-index)"
+          "label": "Stack order (z-index)",
+          "info": "Whole number (e.g. 30). Higher values stack in front of lower layers."
         },
         "max_width": {
           "label": "Maximum width of button group"

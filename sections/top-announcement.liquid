@@ -9,11 +9,11 @@
 -%}
 
 {%- if show_section or request.design_mode -%}
-  {%- if section.settings.font != blank -%}
-    {{ section.settings.font | font_face: font_display: 'swap' }}
-  {%- endif -%}
-
   {%- style -%}
+    {%- if section.settings.font != blank -%}
+      {{ section.settings.font | font_face: font_display: 'swap' }}
+    {%- endif -%}
+
     .top-announcement-{{ section.id }} {
       margin-top: {{ section.settings.margin_top }}px;
       margin-bottom: {{ section.settings.margin_bottom }}px;

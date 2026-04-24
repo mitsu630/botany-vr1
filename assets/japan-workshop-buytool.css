@@ -274,10 +274,7 @@ product-info[id^='MainProduct-'] {
 .product__info-container [id^='po_container'] .po-select-dropdown-thumbnail {
   height: 40px;
   line-height: 40px;
-  border: solid #8a8787 1px;
-  border-radius: 4px;
   background-color: #ffffff;
-  box-sizing: border-box;
 }
 
 /* ----- 最下段：左＝数量 ----- */

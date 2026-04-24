@@ -1,0 +1,298 @@
+{%- liquid
+  assign steps = section.blocks | where: 'type', 'step'
+
+  assign show_section = false
+  if section.settings.heading != blank or steps.size > 0
+    assign show_section = true
+  endif
+
+  if request.design_mode and show_section == false
+    assign show_section = true
+  endif
+
+  assign body_opacity = section.settings.body_opacity | divided_by: 100.0
+-%}
+
+{%- if show_section -%}
+  {%- style -%}
+    /* Capsule scope: only inside this section instance */
+    #shopify-section-{{ section.id }} {
+      --sc-gap: {{ section.settings.gap }}px;
+      --sc-card-radius: {{ section.settings.card_radius }}px;
+      --sc-card-pad-x: {{ section.settings.card_padding_x }}px;
+      --sc-card-pad-y: {{ section.settings.card_padding_y }}px;
+
+      --sc-number-size: {{ section.settings.number_size }}px;
+
+      --sc-title-size: {{ section.settings.title_size }}px;
+      --sc-body-size: {{ section.settings.body_size }}px;
+      --sc-body-opacity: {{ body_opacity }};
+
+      --sc-media-radius: {{ section.settings.media_radius }}px;
+    }
+
+    #shopify-section-{{ section.id }} .step-cards--{{ section.id }} {
+      color: {{ section.settings.text_color }};
+    }
+
+    #shopify-section-{{ section.id }} .step-cards--{{ section.id }} .step-cards__heading {
+      text-align: {{ section.settings.heading_align }};
+      margin: 0 0 {{ section.settings.heading_bottom_margin }}px;
+    }
+
+    #shopify-section-{{ section.id }} .step-cards--{{ section.id }} .step-cards__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sc-gap);
+      align-items: stretch;
+    }
+
+    @media screen and (min-width: 750px) {
+      #shopify-section-{{ section.id }} .step-cards--{{ section.id }} .step-cards__grid {
+        grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
+      }
+    }
+
+    #shopify-section-{{ section.id }} .step-cards--{{ section.id }} .step-cards__card {
+      position: relative;
+      background: {{ section.settings.card_background }};
+      border-radius: var(--sc-card-radius);
+      padding: var(--sc-card-pad-y) var(--sc-card-pad-x);
+      min-height: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .step-cards--{{ section.id }} .step-cards__num {
+      position: absolute;
+      top: calc(var(--sc-number-size) * -0.35);
+      left: 50%;
+      transform: translateX(-50%);
+      width: var(--sc-number-size);
+      height: var(--sc-number-size);
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: {{ section.settings.number_background }};
+      color: {{ section.settings.number_text_color }};
+      font-weight: 700;
+      line-height: 1;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #shopify-section-{{ section.id }} .step-cards--{{ section.id }} .step-cards__title {
+      margin: calc(var(--sc-number-size) * 0.25) 0 10px;
+      text-align: center;
+      font-weight: 700;
+      font-size: var(--sc-title-size);
+      letter-spacing: 0.02em;
+    }
+
+    #shopify-section-{{ section.id }} .step-cards--{{ section.id }} .step-cards__text {
+      margin: 0 0 14px;
+      text-align: center;
+      font-size: var(--sc-body-size);
+      line-height: 1.7;
+      opacity: var(--sc-body-opacity);
+    }
+
+    #shopify-section-{{ section.id }} .step-cards--{{ section.id }} .step-cards__media {
+      border-radius: var(--sc-media-radius);
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    #shopify-section-{{ section.id }} .step-cards--{{ section.id }} .step-cards__media img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: {{ section.settings.image_aspect_ratio }};
+    }
+
+    #shopify-section-{{ section.id }} .step-cards--{{ section.id }} .step-cards__media--placeholder {
+      aspect-ratio: {{ section.settings.image_aspect_ratio }};
+      display: grid;
+      place-items: center;
+    }
+  {%- endstyle -%}
+
+  <section class="step-cards step-cards--{{ section.id }} color-{{ section.settings.color_scheme }} gradient" {{ section.shopify_attributes }}>
+    <div class="page-width section-{{ section.id }}-padding">
+      {%- style -%}
+        #shopify-section-{{ section.id }} .section-{{ section.id }}-padding {
+          padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+          padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+        }
+        @media screen and (min-width: 750px) {
+          #shopify-section-{{ section.id }} .section-{{ section.id }}-padding {
+            padding-top: {{ section.settings.padding_top }}px;
+            padding-bottom: {{ section.settings.padding_bottom }}px;
+          }
+        }
+      {%- endstyle -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="step-cards__heading {{ section.settings.heading_size }}">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      <div class="step-cards__grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'step' -%}
+            {%- liquid
+              assign num = block.settings.number
+              if num == blank
+                assign num = forloop.index
+              endif
+
+              assign card_bg = block.settings.card_bg | default: section.settings.card_background
+              assign nb = block.settings.number_bg | default: section.settings.number_background
+              assign nc = block.settings.number_color | default: section.settings.number_text_color
+            -%}
+
+            <div class="step-cards__card" style="background: {{ card_bg }};" {{ block.shopify_attributes }}>
+              <div class="step-cards__num" style="background: {{ nb }}; color: {{ nc }};">
+                {{- num -}}
+              </div>
+
+              {%- if block.settings.title != blank -%}
+                <div class="step-cards__title">{{ block.settings.title | escape }}</div>
+              {%- elsif request.design_mode -%}
+                <div class="step-cards__title" role="note">（タイトルを設定できます）</div>
+              {%- endif -%}
+
+              {%- if block.settings.text != blank -%}
+                <div class="step-cards__text rte">{{ block.settings.text }}</div>
+              {%- elsif request.design_mode -%}
+                <div class="step-cards__text" role="note">（説明文を設定できます）</div>
+              {%- endif -%}
+
+              {%- if block.settings.image != blank -%}
+                <div class="step-cards__media">
+                  {{
+                    block.settings.image
+                    | image_url: width: 1600
+                    | image_tag: loading: 'lazy', widths: '360, 540, 720, 900, 1200, 1600'
+                  }}
+                </div>
+              {%- else -%}
+                <div class="step-cards__media step-cards__media--placeholder" aria-hidden="true">
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if request.design_mode and steps.size == 0 -%}
+          <div class="step-cards__card" role="note">（ステップブロックを最大6つまで追加できます）</div>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ステップカード",
+  "tag": "section",
+  "class": "section step-cards",
+  "max_blocks": 6,
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "inline_richtext", "id": "heading", "label": "見出し", "default": "制作の工程" },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "見出しサイズ",
+      "options": [
+        { "value": "h2", "label": "小" },
+        { "value": "h1", "label": "中" },
+        { "value": "h0", "label": "大" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "select",
+      "id": "heading_align",
+      "label": "見出し位置",
+      "options": [
+        { "value": "left", "label": "左" },
+        { "value": "center", "label": "中央" },
+        { "value": "right", "label": "右" }
+      ],
+      "default": "center"
+    },
+    { "type": "range", "id": "heading_bottom_margin", "min": 0, "max": 48, "step": 2, "unit": "px", "label": "見出し下余白", "default": 18 },
+
+    { "type": "header", "content": "レイアウト" },
+    { "type": "range", "id": "columns_desktop", "min": 2, "max": 6, "step": 1, "label": "PCの列数", "default": 3 },
+    { "type": "range", "id": "gap", "min": 6, "max": 40, "step": 2, "unit": "px", "label": "カード間隔", "default": 16 },
+
+    { "type": "header", "content": "カード" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "配色", "default": "scheme-1" },
+    { "type": "color", "id": "text_color", "label": "文字色（任意）", "default": "#1b1b1b" },
+    { "type": "color", "id": "card_background", "label": "カード背景（デフォルト）", "default": "#f3d0cf" },
+    { "type": "range", "id": "card_radius", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "カード角丸", "default": 16 },
+    { "type": "range", "id": "card_padding_x", "min": 8, "max": 48, "step": 2, "unit": "px", "label": "カード左右余白", "default": 18 },
+    { "type": "range", "id": "card_padding_y", "min": 8, "max": 48, "step": 2, "unit": "px", "label": "カード上下余白", "default": 18 },
+
+    { "type": "header", "content": "番号バッジ" },
+    { "type": "range", "id": "number_size", "min": 28, "max": 80, "step": 2, "unit": "px", "label": "番号サイズ", "default": 44 },
+    { "type": "color", "id": "number_background", "label": "番号背景（デフォルト）", "default": "#ffffff" },
+    { "type": "color", "id": "number_text_color", "label": "番号文字色（デフォルト）", "default": "#3a3a3a" },
+
+    { "type": "header", "content": "テキスト" },
+    { "type": "range", "id": "title_size", "min": 12, "max": 28, "step": 1, "unit": "px", "label": "タイトル文字サイズ", "default": 18 },
+    { "type": "range", "id": "body_size", "min": 10, "max": 20, "step": 1, "unit": "px", "label": "本文文字サイズ", "default": 13 },
+    { "type": "range", "id": "body_opacity", "min": 60, "max": 100, "step": 5, "unit": "%", "label": "本文の濃さ", "default": 90 },
+
+    { "type": "header", "content": "画像" },
+    {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "アスペクト比",
+      "options": [
+        { "value": "1 / 1", "label": "1:1（正方形）" },
+        { "value": "4 / 3", "label": "4:3" },
+        { "value": "3 / 4", "label": "3:4（縦長）" },
+        { "value": "16 / 9", "label": "16:9（横長）" }
+      ],
+      "default": "4 / 3"
+    },
+    { "type": "range", "id": "media_radius", "min": 0, "max": 32, "step": 2, "unit": "px", "label": "画像角丸", "default": 12 },
+
+    { "type": "header", "content": "セクション余白" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "上の余白", "default": 24 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "下の余白", "default": 24 }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "ステップ",
+      "limit": 6,
+      "settings": [
+        { "type": "text", "id": "number", "label": "番号（空なら自動）" },
+        { "type": "text", "id": "title", "label": "タイトル", "default": "並べる" },
+        { "type": "richtext", "id": "text", "label": "説明", "default": "<p>説明文を入力してください。</p>" },
+        { "type": "image_picker", "id": "image", "label": "画像" },
+
+        { "type": "header", "content": "このステップだけ個別に上書き（任意）" },
+        { "type": "color", "id": "card_bg", "label": "カード背景（このステップ）" },
+        { "type": "color", "id": "number_bg", "label": "番号背景（このステップ）" },
+        { "type": "color", "id": "number_color", "label": "番号文字色（このステップ）" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ステップカード",
+      "blocks": [
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

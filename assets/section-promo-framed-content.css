@@ -153,6 +153,18 @@
   color: inherit;
 }
 
+.pfc__grid-cell--text .pfc__grid-cell-aspect {
+  height: auto;
+  padding-bottom: 0;
+}
+
+.pfc__grid-cell--text .pfc__grid-link--text {
+  position: static;
+  inset: auto;
+  overflow: visible;
+  line-height: 1.35;
+}
+
 .pfc__grid-text {
   width: 100%;
   max-width: 100%;

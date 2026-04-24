@@ -30,34 +30,19 @@
         "padding_bottom": 20
       }
     },
-    "announcement_bar_iQXtf4": {
-      "type": "announcement-bar",
-      "blocks": {
-        "announcement_ygNCMa": {
-          "type": "announcement",
-          "settings": {
-            "text": "ホームページを更新しました！メニューは左上にあります。（2026年4月24日）",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "announcement_ygNCMa"
-      ],
-      "name": "t:sections.announcement-bar.presets.name",
+    "custom_liquid_GjjmpM": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
       "settings": {
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "color_scheme": "scheme-1",
-        "show_line_separator": true,
-        "show_social": false,
-        "enable_country_selector": false,
-        "enable_language_selector": false
+        "custom_liquid": "ホームページを更新しました！講師専用ページは左上のメニューをご確認ください。（2026年4月24日）",
+        "color_scheme": "",
+        "padding_top": 12,
+        "padding_bottom": 12
       }
     }
   },
   "order": [
     "header",
-    "announcement_bar_iQXtf4"
+    "custom_liquid_GjjmpM"
   ]
 }

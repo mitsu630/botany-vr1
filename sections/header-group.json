@@ -30,31 +30,15 @@
         "padding_bottom": 20
       }
     },
-    "top_announcement_G6yhcb": {
-      "type": "top-announcement",
-      "name": "t:sections.top-announcement.presets.name",
-      "settings": {
-        "show_on_home_only": false,
-        "message": "<p>◎ホームページを更新しました！（2026年4月24日）</p>",
-        "color_scheme": "scheme-2",
-        "use_custom_colors": false,
-        "text_color": "#121212",
-        "background_color": "#f5f5f5",
-        "font": "assistant_n4",
-        "font_size": 12,
-        "margin_top": 0,
-        "margin_bottom": 0,
-        "padding_top": 12,
-        "padding_bottom": 12
-      }
-    },
     "simple_fixed_nav_header": {
       "type": "simple-fixed-nav",
       "name": "t:sections.simple-fixed-nav.presets.name",
       "settings": {
         "visibility": "all",
-        "position": "bottom_right",
-        "offset": 8,
+        "vertical_anchor": "bottom",
+        "horizontal_anchor": "right",
+        "inset_vertical": 8,
+        "inset_horizontal": 8,
         "z_index": 30,
         "max_width": 280,
         "layout_direction": "horizontal",
@@ -83,11 +67,29 @@
         "border_radius": 2,
         "enable_shadow": false
       }
+    },
+    "top_announcement_G6yhcb": {
+      "type": "top-announcement",
+      "name": "t:sections.top-announcement.presets.name",
+      "settings": {
+        "show_on_home_only": false,
+        "message": "<p>◎ホームページを更新しました！（2026年4月24日）</p>",
+        "color_scheme": "scheme-2",
+        "use_custom_colors": false,
+        "text_color": "#121212",
+        "background_color": "#f5f5f5",
+        "font": "assistant_n4",
+        "font_size": 12,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
     }
   },
   "order": [
     "header",
-    "top_announcement_G6yhcb",
-    "simple_fixed_nav_header"
+    "simple_fixed_nav_header",
+    "top_announcement_G6yhcb"
   ]
 }

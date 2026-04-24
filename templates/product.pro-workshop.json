@@ -53,7 +53,7 @@
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
-        "media_size": "large",
+        "media_size": "small",
         "constrain_to_viewport": true,
         "media_fit": "contain",
         "gallery_layout": "stacked",
@@ -570,7 +570,6 @@
   },
   "order": [
     "workshop_dynamic_header_NCVnWe",
-    "main",
     "japan_workshop_buytool_iUQMip",
     "related-products",
     "autoplay_loop_video_ETx7df",
@@ -585,6 +584,7 @@
     "video_rXFqX6",
     "custom_standalone_image_brCbFk",
     "slideshow_AVnHCY",
-    "rich_text_jAcGJd"
+    "rich_text_jAcGJd",
+    "main"
   ]
 }

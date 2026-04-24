@@ -277,6 +277,10 @@
     "top-announcement": {
       "placeholder": "Add announcement text in the section settings."
     },
+    "simple_fixed_nav": {
+      "default_aria_label": "Quick links",
+      "editor_hint": "Set button labels and links in this section’s settings."
+    },
 
     "header": {
       "announcement": "Announcement",

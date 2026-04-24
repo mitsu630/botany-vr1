@@ -278,6 +278,10 @@
     "top-announcement": {
       "placeholder": "セクション設定から告知テキストを入力してください。"
     },
+    "simple_fixed_nav": {
+      "default_aria_label": "かんたんメニュー",
+      "editor_hint": "右の設定でボタン名とリンクを入力してください。"
+    },
     "cart": {
       "title": "あなたのカート",
       "caption": "カートアイテム",

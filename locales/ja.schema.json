@@ -553,6 +553,153 @@
         "name": "トップ告知"
       }
     },
+    "floating_nav_group": {
+      "name": "固定かんたんメニュー"
+    },
+    "simple-fixed-nav": {
+      "name": "シンプル固定ボタン（かんたんメニュー）",
+      "settings": {
+        "paragraph_intro": {
+          "content": "画面に固定される小さなテキストボタンです。バーガーメニューが分かりにくい方への導線に使えます。使う分だけ「ボタン名」と「リンク」を設定してください（最大5つ）。"
+        },
+        "visibility": {
+          "label": "表示する端末",
+          "options__1": {
+            "label": "すべて"
+          },
+          "options__2": {
+            "label": "スマホのみ"
+          },
+          "options__3": {
+            "label": "パソコンのみ"
+          }
+        },
+        "position": {
+          "label": "画面の位置",
+          "options__1": {
+            "label": "右下"
+          },
+          "options__2": {
+            "label": "左下"
+          },
+          "options__3": {
+            "label": "右上"
+          },
+          "options__4": {
+            "label": "左上"
+          }
+        },
+        "offset": {
+          "label": "画面端からの余白"
+        },
+        "z_index": {
+          "label": "重なり順（z-index）"
+        },
+        "max_width": {
+          "label": "ボタン全体の最大幅"
+        },
+        "layout_direction": {
+          "label": "ボタンの並び",
+          "options__1": {
+            "label": "横に並べる"
+          },
+          "options__2": {
+            "label": "縦に積む"
+          }
+        },
+        "open_new_tab": {
+          "label": "リンクを新しいタブで開く"
+        },
+        "aria_label": {
+          "label": "アクセシビリティ用の名前",
+          "info": "読み上げ用の短い説明（例：「主要なページ」）。"
+        },
+        "header_buttons": {
+          "content": "ボタン（各ボタン名とURL）"
+        },
+        "button_1_label": {
+          "label": "ボタン1の名前"
+        },
+        "button_1_link": {
+          "label": "ボタン1のリンク"
+        },
+        "button_2_label": {
+          "label": "ボタン2の名前"
+        },
+        "button_2_link": {
+          "label": "ボタン2のリンク"
+        },
+        "button_3_label": {
+          "label": "ボタン3の名前"
+        },
+        "button_3_link": {
+          "label": "ボタン3のリンク"
+        },
+        "button_4_label": {
+          "label": "ボタン4の名前"
+        },
+        "button_4_link": {
+          "label": "ボタン4のリンク"
+        },
+        "button_5_label": {
+          "label": "ボタン5の名前"
+        },
+        "button_5_link": {
+          "label": "ボタン5のリンク"
+        },
+        "header_style": {
+          "content": "見た目"
+        },
+        "font_size": {
+          "label": "文字サイズ"
+        },
+        "font_weight": {
+          "label": "文字の太さ",
+          "options__1": {
+            "label": "標準"
+          },
+          "options__2": {
+            "label": "やや太い"
+          },
+          "options__3": {
+            "label": "太め"
+          }
+        },
+        "gap": {
+          "label": "ボタン同士の間隔"
+        },
+        "padding_vertical": {
+          "label": "ボタン内の余白（上下）"
+        },
+        "padding_horizontal": {
+          "label": "ボタン内の余白（左右）"
+        },
+        "text_color": {
+          "label": "文字色"
+        },
+        "background_color": {
+          "label": "ボタンの背景色"
+        },
+        "background_opacity": {
+          "label": "背景の透明度"
+        },
+        "border_width": {
+          "label": "枠線の太さ"
+        },
+        "border_color": {
+          "label": "枠線の色"
+        },
+        "border_radius": {
+          "label": "角の丸み"
+        },
+        "enable_shadow": {
+          "label": "うっすら影を付ける"
+        }
+      },
+      "presets": {
+        "name": "シンプル固定ボタン"
+      }
+    },
     "collage": {
       "name": "コラージュ",
       "settings": {

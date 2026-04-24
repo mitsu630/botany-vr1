@@ -165,8 +165,8 @@
         "margin_right": 0,
         "margin_bottom": 0,
         "margin_left": 0,
-        "box_background": "#FFFFFF",
-        "box_border_color": "#E8E8E8",
+        "box_background": "#ffffff",
+        "box_border_color": "#e8e8e8",
         "box_border_width": 1,
         "box_radius": 16,
         "box_padding_top": 32,
@@ -175,10 +175,94 @@
         "box_padding_left": 28,
         "show_badge": true,
         "badge_text": "動画講座の概要",
-        "badge_background": "#FFFFFF",
+        "badge_background": "#ffffff",
         "badge_text_color": "#121212",
-        "badge_border_color": "#E8E8E8",
+        "badge_border_color": "#e8e8e8",
         "badge_border_width": 1,
+        "grid_gap": 12,
+        "grid_item_radius": 8,
+        "content_alignment": "center"
+      }
+    },
+    "promo_framed_content_TEXzdh": {
+      "type": "promo-framed-content",
+      "blocks": {
+        "grid_item_KNf9PF": {
+          "type": "grid_item",
+          "settings": {
+            "item_kind": "text",
+            "text": "<p><strong>1. 葉を貼って塗るだけの簡単アート</strong><br/>白いキャンバスに絵を描くのではなく、葉を貼って色を塗るだけなので、初めての方でも安心してインテリア作品を作れます。色を塗らずにオーガニックなインテリアにする方もいらっしゃいます。</p>",
+            "link": ""
+          }
+        },
+        "grid_item_TmUcWi": {
+          "type": "grid_item",
+          "settings": {
+            "item_kind": "text",
+            "text": "<p><strong>2. 必要な画材はお届けいたしますのでご安心ください</strong><br/>絵の具や刷毛など講座に必要なものをセットにしてお送りします。A4用紙にコピーしたテキストではなく、しっかりとした書籍タイプのテキストもご用意しています。</p>",
+            "link": ""
+          }
+        },
+        "grid_item_NjFbDj": {
+          "type": "grid_item",
+          "settings": {
+            "item_kind": "text",
+            "text": "<p><strong>3. 講座中のフォローは公式LINEで対応いたします</strong><br/>講座中に不明な点や質問があれば、公式LINEを通じてリアルタイムでサポートいたしますので、安心して受講いただけます。</p>",
+            "link": ""
+          }
+        },
+        "grid_item_qDYtRd": {
+          "type": "grid_item",
+          "settings": {
+            "item_kind": "text",
+            "text": "<p><strong>4. 一つの講座を受講すると、他の葉の画材を専用サイトよりお求めいただけます</strong><br/>受講後は、専用サイトを通じて他の種類の葉や画材を購入でき、さらなる創作活動を楽しむことができます。</p>",
+            "link": ""
+          }
+        },
+        "text_kFKmxT": {
+          "type": "text",
+          "settings": {
+            "text": "<p>テキスト本とネット動画で見て学べる！<br/>絵心が無くても安心して作品が作れる！<br/>作品の提出はなく自由に楽しめる！<br/>受講中の相談はLINEでフォローします！<br/>受講中、受講後、趣味として画材が専用サイトでお求めできます！</p>"
+          }
+        },
+        "text_K9YGBV": {
+          "type": "text",
+          "settings": {
+            "text": "<p>※別の植物のみやパネルも追加でお求めできます。<br/>自宅に届いたキットで天然の葉を使った作品づくりを楽しめます。動画はいつでも繰り返し閲覧できます</p>"
+          }
+        }
+      },
+      "block_order": [
+        "grid_item_KNf9PF",
+        "grid_item_TmUcWi",
+        "grid_item_NjFbDj",
+        "grid_item_qDYtRd",
+        "text_kFKmxT",
+        "text_K9YGBV"
+      ],
+      "name": "t:sections.promo-framed-content.presets.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "margin_top": 48,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "box_background": "#ffffff",
+        "box_border_color": "#e8e8e8",
+        "box_border_width": 1,
+        "box_radius": 16,
+        "box_padding_top": 28,
+        "box_padding_right": 28,
+        "box_padding_bottom": 32,
+        "box_padding_left": 28,
+        "show_badge": true,
+        "badge_text": "講座内容",
+        "badge_background": "#ffffff",
+        "badge_text_color": "#121212",
+        "badge_border_color": "#e8e8e8",
+        "badge_border_width": 1,
+        "grid_gap": 12,
+        "grid_item_radius": 8,
         "content_alignment": "center"
       }
     }
@@ -188,6 +272,7 @@
     "related-products",
     "17767608404f8e6a1c",
     "rich_text_Y66ktN",
-    "promo_framed_content_XE3Jam"
+    "promo_framed_content_XE3Jam",
+    "promo_framed_content_TEXzdh"
   ]
 }

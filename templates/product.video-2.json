@@ -106,11 +106,88 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "rich_text_Y66ktN": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_iCqAfY": {
+          "type": "heading",
+          "settings": {
+            "heading": "動画講座",
+            "heading_size": "h1"
+          }
+        },
+        "text_6jkHyM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ボタニーペインティングでは天然の蓮の葉やモンステラのカラテアルテア・インド菩提樹を自分でパネルにデザインして好きな色を着色するアート講座です。動画講座は自宅で自由な時間に楽しめる講座です。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_iCqAfY",
+        "text_6jkHyM"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "promo_framed_content_XE3Jam": {
+      "type": "promo-framed-content",
+      "blocks": {
+        "text_zAJzzX": {
+          "type": "text",
+          "settings": {
+            "text": "<p>テキスト本とネット動画で見て学べる！<br/>絵心が無くても安心して作品が作れる！<br/>作品の提出はなく自由に楽しめる！<br/>受講中の相談はLINEでフォローします！<br/>受講中、受講後、趣味として画材が専用サイトでお求めできます！</p>"
+          }
+        },
+        "text_ByFmLN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>※別の植物のみやパネルも追加でお求めできます。<br/>自宅に届いたキットで天然の葉を使った作品づくりを楽しめます。動画はいつでも繰り返し閲覧できます</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_zAJzzX",
+        "text_ByFmLN"
+      ],
+      "name": "t:sections.promo-framed-content.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "box_background": "#FFFFFF",
+        "box_border_color": "#E8E8E8",
+        "box_border_width": 1,
+        "box_radius": 16,
+        "box_padding_top": 32,
+        "box_padding_right": 28,
+        "box_padding_bottom": 32,
+        "box_padding_left": 28,
+        "show_badge": true,
+        "badge_text": "動画講座の概要",
+        "badge_background": "#FFFFFF",
+        "badge_text_color": "#121212",
+        "badge_border_color": "#E8E8E8",
+        "badge_border_width": 1,
+        "content_alignment": "center"
+      }
     }
   },
   "order": [
     "main",
     "related-products",
-    "17767608404f8e6a1c"
+    "17767608404f8e6a1c",
+    "rich_text_Y66ktN",
+    "promo_framed_content_XE3Jam"
   ]
 }

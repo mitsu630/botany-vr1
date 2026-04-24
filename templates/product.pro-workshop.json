@@ -18,54 +18,6 @@
         "padding_bottom": 36
       }
     },
-    "main": {
-      "type": "main-product",
-      "blocks": {
-        "variant_picker_JbAPj6": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "dropdown",
-            "swatch_shape": "none"
-          }
-        },
-        "optis_product_options_option_set_jq3hDd": {
-          "type": "shopify://apps/optis-product-options/blocks/option-set/2c446099-c349-4e73-80cd-49c9770b7807",
-          "settings": {}
-        },
-        "quantity_selector_NfKEab": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy_buttons_C6BdcF": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
-          }
-        }
-      },
-      "block_order": [
-        "variant_picker_JbAPj6",
-        "optis_product_options_option_set_jq3hDd",
-        "quantity_selector_NfKEab",
-        "buy_buttons_C6BdcF"
-      ],
-      "settings": {
-        "enable_sticky_info": true,
-        "color_scheme": "scheme-1",
-        "media_size": "small",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "stacked",
-        "mobile_thumbnails": "hide",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "hide_variants": false,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
-      }
-    },
     "japan_workshop_buytool_iUQMip": {
       "type": "japan-workshop-buytool",
       "name": "japan-workshop-buytool",
@@ -565,6 +517,54 @@
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 52
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "variant_picker_JbAPj6": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "none"
+          }
+        },
+        "optis_product_options_option_set_jq3hDd": {
+          "type": "shopify://apps/optis-product-options/blocks/option-set/2c446099-c349-4e73-80cd-49c9770b7807",
+          "settings": {}
+        },
+        "quantity_selector_NfKEab": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_C6BdcF": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        }
+      },
+      "block_order": [
+        "variant_picker_JbAPj6",
+        "optis_product_options_option_set_jq3hDd",
+        "quantity_selector_NfKEab",
+        "buy_buttons_C6BdcF"
+      ],
+      "settings": {
+        "enable_sticky_info": false,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": false,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "none",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },

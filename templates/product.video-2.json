@@ -9,6 +9,157 @@
  */
 {
   "sections": {
+    "17767608404f8e6a1c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "rich_text_Y66ktN": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_iCqAfY": {
+          "type": "heading",
+          "settings": {
+            "heading": "動画講座",
+            "heading_size": "h1"
+          }
+        },
+        "text_6jkHyM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ボタニーペインティングでは天然の蓮の葉やモンステラのカラテアルテア・インド菩提樹を自分でパネルにデザインして好きな色を着色するアート講座です。動画講座は自宅で自由な時間に楽しめる講座です。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_iCqAfY",
+        "text_6jkHyM"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "promo_framed_content_XE3Jam": {
+      "type": "promo-framed-content",
+      "blocks": {
+        "text_zAJzzX": {
+          "type": "text",
+          "settings": {
+            "text": "<p>テキスト本とネット動画で見て学べる！<br/>絵心が無くても安心して作品が作れる！<br/>作品の提出はなく自由に楽しめる！<br/>受講中の相談はLINEでフォローします！<br/>受講中、受講後、趣味として画材が専用サイトでお求めできます！</p>"
+          }
+        },
+        "text_ByFmLN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>※別の植物のみやパネルも追加でお求めできます。<br/>自宅に届いたキットで天然の葉を使った作品づくりを楽しめます。動画はいつでも繰り返し閲覧できます</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_zAJzzX",
+        "text_ByFmLN"
+      ],
+      "name": "t:sections.promo-framed-content.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "box_background": "#ffffff",
+        "box_border_color": "#e8e8e8",
+        "box_border_width": 1,
+        "box_radius": 16,
+        "box_padding_top": 32,
+        "box_padding_right": 28,
+        "box_padding_bottom": 32,
+        "box_padding_left": 28,
+        "show_badge": true,
+        "badge_text": "動画講座の概要",
+        "badge_background": "#ffffff",
+        "badge_text_color": "#121212",
+        "badge_border_color": "#e8e8e8",
+        "badge_border_width": 1,
+        "grid_gap": 12,
+        "grid_item_radius": 8,
+        "content_alignment": "center"
+      }
+    },
+    "promo_framed_content_TEXzdh": {
+      "type": "promo-framed-content",
+      "blocks": {
+        "grid_item_KNf9PF": {
+          "type": "grid_item",
+          "settings": {
+            "item_kind": "text",
+            "text": "<p><strong>1. 葉を貼って塗るだけの簡単アート</strong><br/>白いキャンバスに絵を描くのではなく、葉を貼って色を塗るだけなので、初めての方でも安心してインテリア作品を作れます。色を塗らずにオーガニックなインテリアにする方もいらっしゃいます。</p>",
+            "link": ""
+          }
+        },
+        "grid_item_TmUcWi": {
+          "type": "grid_item",
+          "settings": {
+            "item_kind": "text",
+            "text": "<p><strong>2. 必要な画材はお届けいたしますのでご安心ください</strong><br/>絵の具や刷毛など講座に必要なものをセットにしてお送りします。A4用紙にコピーしたテキストではなく、しっかりとした書籍タイプのテキストもご用意しています。</p>",
+            "link": ""
+          }
+        },
+        "grid_item_NjFbDj": {
+          "type": "grid_item",
+          "settings": {
+            "item_kind": "text",
+            "text": "<p><strong>3. 講座中のフォローは公式LINEで対応いたします</strong><br/>講座中に不明な点や質問があれば、公式LINEを通じてリアルタイムでサポートいたしますので、安心して受講いただけます。</p>",
+            "link": ""
+          }
+        },
+        "grid_item_qDYtRd": {
+          "type": "grid_item",
+          "settings": {
+            "item_kind": "text",
+            "text": "<p><strong>4. 一つの講座を受講すると、他の葉の画材を専用サイトよりお求めいただけます</strong><br/>受講後は、専用サイトを通じて他の種類の葉や画材を購入でき、さらなる創作活動を楽しむことができます。</p>",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "grid_item_KNf9PF",
+        "grid_item_TmUcWi",
+        "grid_item_NjFbDj",
+        "grid_item_qDYtRd"
+      ],
+      "name": "t:sections.promo-framed-content.presets.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "margin_top": 48,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "box_background": "#ffffff",
+        "box_border_color": "#e8e8e8",
+        "box_border_width": 1,
+        "box_radius": 16,
+        "box_padding_top": 28,
+        "box_padding_right": 28,
+        "box_padding_bottom": 32,
+        "box_padding_left": 28,
+        "show_badge": true,
+        "badge_text": "講座内容",
+        "badge_background": "#ffffff",
+        "badge_text_color": "#121212",
+        "badge_border_color": "#e8e8e8",
+        "badge_border_width": 1,
+        "grid_gap": 4,
+        "grid_item_radius": 0,
+        "content_alignment": "left"
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -101,93 +252,201 @@
         "padding_bottom": 28
       }
     },
-    "17767608404f8e6a1c": {
-      "type": "apps",
-      "settings": {
-        "include_margins": true
-      }
-    },
-    "rich_text_Y66ktN": {
-      "type": "rich-text",
+    "multicolumn_LNrrnW": {
+      "type": "multicolumn",
       "blocks": {
-        "heading_iCqAfY": {
-          "type": "heading",
+        "column_jPb9mG": {
+          "type": "column",
           "settings": {
-            "heading": "動画講座",
-            "heading_size": "h1"
+            "image": "shopify://shop_images/P1001520.jpg",
+            "title": "",
+            "text": "<p>ボタニーペインティングで一番人気の蓮の葉は、泥の中からきれいな花を咲かせるということから「浄化」や「繁栄」のメッセージを持っています。蓮の葉のインテリアでお部屋を彩りましょう。</p>",
+            "link_label": "",
+            "link": ""
           }
         },
-        "text_6jkHyM": {
-          "type": "text",
+        "column_iUmJD7": {
+          "type": "column",
           "settings": {
-            "text": "<p>ボタニーペインティングでは天然の蓮の葉やモンステラのカラテアルテア・インド菩提樹を自分でパネルにデザインして好きな色を着色するアート講座です。動画講座は自宅で自由な時間に楽しめる講座です。</p>"
+            "image": "shopify://shop_images/P1001520.jpg",
+            "title": "",
+            "text": "<p>※着色は一例です。ご自身のお好みで着色してください。<br/>※着色させずに葉をパネルに貼り付けた状態で完成の方もいます。</p>",
+            "link_label": "",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "heading_iCqAfY",
-        "text_6jkHyM"
+        "column_jPb9mG",
+        "column_iUmJD7"
       ],
-      "name": "t:sections.rich-text.presets.name",
+      "name": "t:sections.multicolumn.presets.name",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
+        "title": "蓮の葉 (Lotus)",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
         "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
-    "promo_framed_content_XE3Jam": {
-      "type": "promo-framed-content",
+    "multicolumn_NGC6fN": {
+      "type": "multicolumn",
       "blocks": {
-        "text_zAJzzX": {
-          "type": "text",
+        "column_V8nhen": {
+          "type": "column",
           "settings": {
-            "text": "<p>テキスト本とネット動画で見て学べる！<br/>絵心が無くても安心して作品が作れる！<br/>作品の提出はなく自由に楽しめる！<br/>受講中の相談はLINEでフォローします！<br/>受講中、受講後、趣味として画材が専用サイトでお求めできます！</p>"
+            "image": "shopify://shop_images/P1001514.jpg",
+            "title": "",
+            "text": "<p>カラテアルテアの葉は、羽のような形をした葉で、「飛躍」、「強い思い」、「あたたかい心」などのメッセージを持っています。ボタニーペインティングでは、蓮の葉に次いで人気のある植物の葉です。カラテアルテアの葉を使って、自分だけの華やかなインテリア作品を作りましょう。</p>",
+            "link_label": "",
+            "link": ""
           }
         },
-        "text_ByFmLN": {
-          "type": "text",
+        "column_mUDVUN": {
+          "type": "column",
           "settings": {
-            "text": "<p>※別の植物のみやパネルも追加でお求めできます。<br/>自宅に届いたキットで天然の葉を使った作品づくりを楽しめます。動画はいつでも繰り返し閲覧できます</p>"
+            "image": "shopify://shop_images/IMG_8745.jpg",
+            "title": "",
+            "text": "<p>※着色は一例です。ご自身のお好みで着色してください。<br/>※着色させずに葉をパネルに貼り付けた状態で完成の方もいます。</p>",
+            "link_label": "",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "text_zAJzzX",
-        "text_ByFmLN"
+        "column_V8nhen",
+        "column_mUDVUN"
       ],
-      "name": "t:sections.promo-framed-content.presets.name",
+      "name": "t:sections.multicolumn.presets.name",
       "settings": {
+        "title": "カラテアルテア (Calathea)",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
         "color_scheme": "",
-        "margin_top": 0,
-        "margin_right": 0,
-        "margin_bottom": 0,
-        "margin_left": 0,
-        "box_background": "#FFFFFF",
-        "box_border_color": "#E8E8E8",
-        "box_border_width": 1,
-        "box_radius": 16,
-        "box_padding_top": 32,
-        "box_padding_right": 28,
-        "box_padding_bottom": 32,
-        "box_padding_left": 28,
-        "show_badge": true,
-        "badge_text": "動画講座の概要",
-        "badge_background": "#FFFFFF",
-        "badge_text_color": "#121212",
-        "badge_border_color": "#E8E8E8",
-        "badge_border_width": 1,
-        "content_alignment": "center"
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_xTwKa4": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_XTCt4G": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1001516.jpg",
+            "title": "",
+            "text": "<p>モンステラの葉は、その独特な切れ込みと鮮やかな緑色で「先を見通す力」や「明るい未来」のメッセージを持っています。ボタニーペインティングでは、その魅力的な形状とメッセージ性から多くの人々に選ばれています。モンステラの葉を使って、個性的で美しいインテリア作品を作りましょう。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_FEgUch": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/IMG_8029.jpg",
+            "title": "",
+            "text": "<p>※着色は一例です。ご自身のお好みで着色してください。<br/>※着色させずに葉をパネルに貼り付けた状態で完成の方もいます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_XTCt4G",
+        "column_FEgUch"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "モンステラ (Monstera)",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_DQeTth": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_3ty8Yx": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1001525.jpg",
+            "title": "",
+            "text": "<p>インド菩提樹の葉は、その歴史的な背景と深い宗教的意味で「悟り」や「平和」のメッセージを持っています。お釈迦様がこの木の下で悟りを開いたと言われることから、特に重要視されています。ボタニーペインティングでは、その意味深いメッセージと美しい形状から多くの方に愛されています。インド菩提樹の葉を使って、心が安らぐインテリア作品を作りましょう。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_eJ9eKK": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1050686.jpg",
+            "title": "",
+            "text": "<p>※着色は一例です。ご自身のお好みで着色してください。<br/>※着色させずに葉をパネルに貼り付けた状態で完成の方もいます。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_3ty8Yx",
+        "column_eJ9eKK"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "インド菩提樹 (Bodhi Tree)",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     }
   },
   "order": [
-    "main",
-    "related-products",
     "17767608404f8e6a1c",
     "rich_text_Y66ktN",
-    "promo_framed_content_XE3Jam"
+    "promo_framed_content_XE3Jam",
+    "promo_framed_content_TEXzdh",
+    "main",
+    "related-products",
+    "multicolumn_LNrrnW",
+    "multicolumn_NGC6fN",
+    "multicolumn_xTwKa4",
+    "multicolumn_DQeTth"
   ]
 }

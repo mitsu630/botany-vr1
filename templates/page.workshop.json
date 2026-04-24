@@ -17,6 +17,29 @@
         "padding_bottom": 28
       }
     },
+    "rich_text_WA9QYd": {
+      "type": "rich-text",
+      "blocks": {
+        "text_L8tKY8": {
+          "type": "text",
+          "settings": {
+            "text": "<p>カンテレで、ボタニーペインティングをご紹介いただく予定です。<br/>放送後は、カンテレ放送エリアを中心にお申込みが増え、<br/>各会場が満席となる可能性がございます。<br/>ご参加を検討中の方は、ぜひお早めにご予約ください。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_L8tKY8"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "workshop_variant_list_Mz7Ei3": {
       "type": "workshop-variant-list",
       "name": "ワークショップ日程リスト",
@@ -40,6 +63,7 @@
   },
   "order": [
     "main",
+    "rich_text_WA9QYd",
     "workshop_variant_list_Mz7Ei3"
   ]
 }

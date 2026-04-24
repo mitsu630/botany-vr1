@@ -328,24 +328,6 @@
         "accessibility_info": ""
       }
     },
-    "related-products": {
-      "type": "related-products",
-      "settings": {
-        "heading": "おすすめ商品",
-        "heading_size": "h2",
-        "products_to_show": 4,
-        "columns_desktop": 4,
-        "columns_mobile": "2",
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "padding_top": 36,
-        "padding_bottom": 28
-      }
-    },
     "multirow_mrqKWy": {
       "type": "multirow",
       "blocks": {
@@ -605,6 +587,164 @@
         "padding_top": 36,
         "padding_bottom": 12
       }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "おすすめ商品",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "featured_product_hpXYai": {
+      "type": "featured-product",
+      "blocks": {
+        "text_wtTiDa": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_bkA3w9": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_U74ptY": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_Tj6j3n": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_m3m67V": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_tRCybp": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_kFQtwX": {
+          "type": "share",
+          "settings": {
+            "share_label": "共有"
+          }
+        }
+      },
+      "block_order": [
+        "text_wtTiDa",
+        "title_bkA3w9",
+        "price_U74ptY",
+        "variant_picker_Tj6j3n",
+        "quantity_selector_m3m67V",
+        "buy_buttons_tRCybp",
+        "share_kFQtwX"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "自宅で楽しむ体験コース-bookセット",
+        "color_scheme": "scheme-1",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_product_gqCe8X": {
+      "type": "featured-product",
+      "blocks": {
+        "text_eGRXtj": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_BQ9Fhh": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_Nn3AAp": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_V9Abjk": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_itimpP": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_KHFKGT": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_YgPDmc": {
+          "type": "share",
+          "settings": {
+            "share_label": "共有"
+          }
+        }
+      },
+      "block_order": [
+        "text_eGRXtj",
+        "title_BQ9Fhh",
+        "price_Nn3AAp",
+        "variant_picker_V9Abjk",
+        "quantity_selector_itimpP",
+        "buy_buttons_KHFKGT",
+        "share_YgPDmc"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "video_otameshi",
+        "color_scheme": "scheme-1",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -618,6 +758,8 @@
     "custom_standalone_image_ay87NT",
     "rich_text_xFyRDk",
     "main",
+    "featured_product_hpXYai",
+    "featured_product_gqCe8X",
     "related-products"
   ]
 }

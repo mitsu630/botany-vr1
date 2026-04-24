@@ -53,8 +53,10 @@
       "name": "t:sections.simple-fixed-nav.presets.name",
       "settings": {
         "visibility": "all",
-        "position": "bottom_right",
-        "offset": 8,
+        "vertical_anchor": "bottom",
+        "horizontal_anchor": "right",
+        "inset_vertical": 8,
+        "inset_horizontal": 8,
         "z_index": 30,
         "max_width": 280,
         "layout_direction": "horizontal",

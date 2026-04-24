@@ -571,23 +571,37 @@
             "label": "パソコンのみ"
           }
         },
-        "position": {
-          "label": "画面の位置",
+        "vertical_anchor": {
+          "label": "縦の位置",
           "options__1": {
-            "label": "右下"
+            "label": "上"
           },
           "options__2": {
-            "label": "左下"
+            "label": "中央"
           },
           "options__3": {
-            "label": "右上"
-          },
-          "options__4": {
-            "label": "左上"
+            "label": "下"
           }
         },
-        "offset": {
-          "label": "画面端からの余白"
+        "horizontal_anchor": {
+          "label": "横の位置",
+          "options__1": {
+            "label": "左"
+          },
+          "options__2": {
+            "label": "中央"
+          },
+          "options__3": {
+            "label": "右"
+          }
+        },
+        "inset_vertical": {
+          "label": "縦方向の余白（px）",
+          "info": "上端／下端からの距離です。縦が「中央」のときは、中央からの上下の微調整になります。負の数も使えます。"
+        },
+        "inset_horizontal": {
+          "label": "横方向の余白（px）",
+          "info": "左端／右端からの距離です。横が「中央」のときは、中央からの左右の微調整になります。負の数も使えます。"
         },
         "z_index": {
           "label": "重なり順（z-index）",

@@ -43,8 +43,13 @@
     .simple-fixed-nav--{{ section.id }} {
       position: fixed;
       z-index: {{ section.settings.z_index }};
-      max-width: min({{ section.settings.max_width }}px, calc(100vw - {{ section.settings.offset }}px * 2));
+      max-width: min({{ section.settings.max_width }}px, calc(100vw - 24px));
       pointer-events: none;
+      top: auto;
+      right: auto;
+      bottom: auto;
+      left: auto;
+      transform: none;
     }
 
     .simple-fixed-nav--{{ section.id }} .simple-fixed-nav__inner {
@@ -54,56 +59,81 @@
       pointer-events: auto;
       {%- if section.settings.layout_direction == 'vertical' -%}
         flex-direction: column;
-        {%- if section.settings.position contains 'right' -%}
+        {%- if section.settings.horizontal_anchor == 'right' -%}
           align-items: flex-end;
+        {%- elsif section.settings.horizontal_anchor == 'center' -%}
+          align-items: center;
         {%- else -%}
           align-items: flex-start;
         {%- endif -%}
       {%- else -%}
         flex-direction: row;
         align-items: center;
+        {%- if section.settings.horizontal_anchor == 'right' -%}
+          justify-content: flex-end;
+        {%- elsif section.settings.horizontal_anchor == 'center' -%}
+          justify-content: center;
+        {%- else -%}
+          justify-content: flex-start;
+        {%- endif -%}
       {%- endif -%}
     }
 
-    {%- if section.settings.position == 'bottom_left' -%}
+    {%- liquid
+      assign v = section.settings.vertical_anchor
+      assign h = section.settings.horizontal_anchor
+      assign iy = section.settings.inset_vertical
+      assign ix = section.settings.inset_horizontal
+    -%}
+    {%- if v == 'top' and h == 'left' -%}
       .simple-fixed-nav--{{ section.id }} {
-        bottom: calc(env(safe-area-inset-bottom, 0px) + {{ section.settings.offset }}px);
-        left: calc(env(safe-area-inset-left, 0px) + {{ section.settings.offset }}px);
-        right: auto;
-        top: auto;
+        top: calc(env(safe-area-inset-top, 0px) + {{ iy }}px);
+        left: calc(env(safe-area-inset-left, 0px) + {{ ix }}px);
       }
-      .simple-fixed-nav--{{ section.id }} .simple-fixed-nav__inner {
-        justify-content: flex-start;
-      }
-    {%- elsif section.settings.position == 'bottom_right' -%}
+    {%- elsif v == 'top' and h == 'center' -%}
       .simple-fixed-nav--{{ section.id }} {
-        bottom: calc(env(safe-area-inset-bottom, 0px) + {{ section.settings.offset }}px);
-        right: calc(env(safe-area-inset-right, 0px) + {{ section.settings.offset }}px);
-        left: auto;
-        top: auto;
+        top: calc(env(safe-area-inset-top, 0px) + {{ iy }}px);
+        left: 50%;
+        transform: translateX(calc(-50% + {{ ix }}px));
       }
-      .simple-fixed-nav--{{ section.id }} .simple-fixed-nav__inner {
-        justify-content: flex-end;
-      }
-    {%- elsif section.settings.position == 'top_left' -%}
+    {%- elsif v == 'top' and h == 'right' -%}
       .simple-fixed-nav--{{ section.id }} {
-        top: calc(env(safe-area-inset-top, 0px) + {{ section.settings.offset }}px);
-        left: calc(env(safe-area-inset-left, 0px) + {{ section.settings.offset }}px);
-        right: auto;
-        bottom: auto;
+        top: calc(env(safe-area-inset-top, 0px) + {{ iy }}px);
+        right: calc(env(safe-area-inset-right, 0px) + {{ ix }}px);
       }
-      .simple-fixed-nav--{{ section.id }} .simple-fixed-nav__inner {
-        justify-content: flex-start;
+    {%- elsif v == 'center' and h == 'left' -%}
+      .simple-fixed-nav--{{ section.id }} {
+        top: 50%;
+        left: calc(env(safe-area-inset-left, 0px) + {{ ix }}px);
+        transform: translateY(calc(-50% + {{ iy }}px));
+      }
+    {%- elsif v == 'center' and h == 'center' -%}
+      .simple-fixed-nav--{{ section.id }} {
+        top: 50%;
+        left: 50%;
+        transform: translate(calc(-50% + {{ ix }}px), calc(-50% + {{ iy }}px));
+      }
+    {%- elsif v == 'center' and h == 'right' -%}
+      .simple-fixed-nav--{{ section.id }} {
+        top: 50%;
+        right: calc(env(safe-area-inset-right, 0px) + {{ ix }}px);
+        transform: translateY(calc(-50% + {{ iy }}px));
+      }
+    {%- elsif v == 'bottom' and h == 'left' -%}
+      .simple-fixed-nav--{{ section.id }} {
+        bottom: calc(env(safe-area-inset-bottom, 0px) + {{ iy }}px);
+        left: calc(env(safe-area-inset-left, 0px) + {{ ix }}px);
+      }
+    {%- elsif v == 'bottom' and h == 'center' -%}
+      .simple-fixed-nav--{{ section.id }} {
+        bottom: calc(env(safe-area-inset-bottom, 0px) + {{ iy }}px);
+        left: 50%;
+        transform: translateX(calc(-50% + {{ ix }}px));
       }
     {%- else -%}
       .simple-fixed-nav--{{ section.id }} {
-        top: calc(env(safe-area-inset-top, 0px) + {{ section.settings.offset }}px);
-        right: calc(env(safe-area-inset-right, 0px) + {{ section.settings.offset }}px);
-        left: auto;
-        bottom: auto;
-      }
-      .simple-fixed-nav--{{ section.id }} .simple-fixed-nav__inner {
-        justify-content: flex-end;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + {{ iy }}px);
+        right: calc(env(safe-area-inset-right, 0px) + {{ ix }}px);
       }
     {%- endif -%}
 
@@ -256,37 +286,57 @@
     },
     {
       "type": "select",
-      "id": "position",
-      "label": "t:sections.simple-fixed-nav.settings.position.label",
+      "id": "vertical_anchor",
+      "label": "t:sections.simple-fixed-nav.settings.vertical_anchor.label",
       "options": [
         {
-          "value": "bottom_right",
-          "label": "t:sections.simple-fixed-nav.settings.position.options__1.label"
+          "value": "top",
+          "label": "t:sections.simple-fixed-nav.settings.vertical_anchor.options__1.label"
         },
         {
-          "value": "bottom_left",
-          "label": "t:sections.simple-fixed-nav.settings.position.options__2.label"
+          "value": "center",
+          "label": "t:sections.simple-fixed-nav.settings.vertical_anchor.options__2.label"
         },
         {
-          "value": "top_right",
-          "label": "t:sections.simple-fixed-nav.settings.position.options__3.label"
-        },
-        {
-          "value": "top_left",
-          "label": "t:sections.simple-fixed-nav.settings.position.options__4.label"
+          "value": "bottom",
+          "label": "t:sections.simple-fixed-nav.settings.vertical_anchor.options__3.label"
         }
       ],
-      "default": "bottom_right"
+      "default": "bottom"
     },
     {
-      "type": "range",
-      "id": "offset",
-      "min": 4,
-      "max": 32,
-      "step": 2,
-      "unit": "px",
-      "label": "t:sections.simple-fixed-nav.settings.offset.label",
-      "default": 8
+      "type": "select",
+      "id": "horizontal_anchor",
+      "label": "t:sections.simple-fixed-nav.settings.horizontal_anchor.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.simple-fixed-nav.settings.horizontal_anchor.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.simple-fixed-nav.settings.horizontal_anchor.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.simple-fixed-nav.settings.horizontal_anchor.options__3.label"
+        }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "number",
+      "id": "inset_vertical",
+      "label": "t:sections.simple-fixed-nav.settings.inset_vertical.label",
+      "default": 8,
+      "info": "t:sections.simple-fixed-nav.settings.inset_vertical.info"
+    },
+    {
+      "type": "number",
+      "id": "inset_horizontal",
+      "label": "t:sections.simple-fixed-nav.settings.inset_horizontal.label",
+      "default": 8,
+      "info": "t:sections.simple-fixed-nav.settings.inset_horizontal.info"
     },
     {
       "type": "number",

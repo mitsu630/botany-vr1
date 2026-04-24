@@ -571,23 +571,37 @@
             "label": "Desktop only"
           }
         },
-        "position": {
-          "label": "Screen position",
+        "vertical_anchor": {
+          "label": "Vertical position",
           "options__1": {
-            "label": "Bottom right"
+            "label": "Top"
           },
           "options__2": {
-            "label": "Bottom left"
+            "label": "Middle"
           },
           "options__3": {
-            "label": "Top right"
-          },
-          "options__4": {
-            "label": "Top left"
+            "label": "Bottom"
           }
         },
-        "offset": {
-          "label": "Distance from screen edge"
+        "horizontal_anchor": {
+          "label": "Horizontal position",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Right"
+          }
+        },
+        "inset_vertical": {
+          "label": "Vertical inset (px)",
+          "info": "Distance from the top or bottom edge (or nudge when vertically centered). Use negative values to fine-tune."
+        },
+        "inset_horizontal": {
+          "label": "Horizontal inset (px)",
+          "info": "Distance from the left or right edge (or nudge when horizontally centered). Use negative values to fine-tune."
         },
         "z_index": {
           "label": "Stack order (z-index)",

@@ -562,6 +562,49 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "custom_standalone_image_ay87NT": {
+      "type": "custom-standalone-image",
+      "name": "t:sections.custom-standalone-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/IMG_1729.jpg",
+        "image_link": "",
+        "link_new_tab": false,
+        "image_alt": "",
+        "full_viewport_width": false,
+        "color_scheme": "",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0
+      }
+    },
+    "rich_text_xFyRDk": {
+      "type": "rich-text",
+      "blocks": {
+        "text_JTzpMX": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>お申し込みからのSTEP</h2><ol><li><strong>お申し込み</strong><br/>上記【お申し込み】ボタンより講座のお申し込みをお願いします。<br/></li><li><strong>講座到着後</strong><br/>動画URLを見ながら講座をお楽しみください。<br/>動画はいつでも好きな時間に視聴可能です。動画を見ながら作品づくりを楽しむか、動画を先に見た後に同封のテキストに沿って講座を楽しむこともできます。<br/>スマートフォンでも閲覧可能な一般非公開の特別講座です。<br/></li><li><strong>作品鑑賞</strong><br/>桐板の背部には展示用の穴が空いていますので、マンションなどでも安心の虫ピンでお部屋のニッチスペースに展示可能です。壁掛けやそのまま立てかける等、展示をお楽しみください。<br/></li><li><strong>講座に関心のある方へ</strong><br/>全国で活躍しているプロフェッショナルやパートナー講師の講座にご参加ください。<br/>対面やオンラインでも受講は可能です。希望の方は講師資格にもチャレンジできます。</li></ol>"
+          }
+        }
+      },
+      "block_order": [
+        "text_JTzpMX"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -573,6 +616,8 @@
     "slideshow_9ETwEn",
     "main",
     "related-products",
-    "multirow_mrqKWy"
+    "multirow_mrqKWy",
+    "custom_standalone_image_ay87NT",
+    "rich_text_xFyRDk"
   ]
 }

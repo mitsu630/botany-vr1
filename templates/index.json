@@ -611,7 +611,7 @@
         "variant_picker_JfQCVQ": {
           "type": "variant_picker",
           "settings": {
-            "picker_type": "button",
+            "picker_type": "dropdown",
             "swatch_shape": "circle"
           }
         },
@@ -644,7 +644,7 @@
       ],
       "name": "t:sections.featured-product.presets.name",
       "settings": {
-        "product": "testworkshop-test",
+        "product": "nintei",
         "color_scheme": "",
         "secondary_background": false,
         "media_size": "medium",

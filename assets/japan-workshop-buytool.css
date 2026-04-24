@@ -267,10 +267,10 @@ product-info[id^='MainProduct-'] {
   display: none !important;
 }
 
-.product__info-container [id^='po_container'].po-dropdown-selected-option,
-.product__info-container [id^='po_container'].po-font_picker-selected-option,
-.product__info-container [id^='po_container'][id^='bss-po-dropdown-selected-option'],
-.product__info-container [id^='po_container'].po-select-dropdown-thumbnail {
+.product__info-container [id^='po_container'] .po-dropdown-selected-option,
+.product__info-container [id^='po_container'] .po-font_picker-selected-option,
+.product__info-container [id^='po_container'] [id^='bss-po-dropdown-selected-option'],
+.product__info-container [id^='po_container'] .po-select-dropdown-thumbnail {
   height: 40px;
   line-height: 40px;
   background-color: #ffffff;

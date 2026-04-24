@@ -269,9 +269,14 @@ product-info[id^='MainProduct-'] {
 
 /* OPTIS プルダウン行の高さを会場セレクトに近づける（見た目のみ・枠はアプリ標準） */
 .product__info-container [id^='po_container'] .po-dropdown-selected-option,
+.product__info-container [id^='po_container'] .po-font_picker-selected-option,
 .product__info-container [id^='po_container'] [id^='bss-po-dropdown-selected-option'],
 .product__info-container [id^='po_container'] .po-select-dropdown-thumbnail {
-  min-height: var(--jwb-dropdown-h) !important;
+  height: 40px;
+  line-height: 40px;
+  border: solid #8a8787 1px;
+  border-radius: 4px;
+  background-color: #ffffff;
   box-sizing: border-box;
 }
 

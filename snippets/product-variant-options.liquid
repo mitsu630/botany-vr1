@@ -99,14 +99,14 @@
       {{ label_unavailable }}
     </label>
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
-    {%- if option_disabled -%}
-      {%- continue -%}
-    {%- endif -%}
     <option
       id="{{ input_id }}"
       value="{{ escaped_value }}"
       {% if value.selected %}
         selected="selected"
+      {% endif %}
+      {% if option_disabled %}
+        disabled
       {% endif %}
       {% if swatch_value and picker_type == 'swatch_dropdown' %}
         data-option-swatch-value="{{ swatch_value }}"
@@ -116,7 +116,11 @@
       {% endif %}
       {{ input_dataset }}
     >
-      {{- value -}}
+      {%- if option_disabled -%}
+        {{- 'products.product.value_unavailable' | t: option_value: value -}}
+      {%- else -%}
+        {{- value -}}
+      {%- endif -%}
     </option>
   {%- endif -%}
 {%- endfor -%}

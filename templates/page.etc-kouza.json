@@ -15,9 +15,57 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "product_intro_card_a_chHXwE": {
+      "type": "product-intro-card-a",
+      "blocks": {
+        "image_8BbRtn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/P1001778-min.jpg"
+          }
+        },
+        "image_XLUKRY": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/P1001789-min.jpg"
+          }
+        },
+        "image_wJw4nz": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/P1020713-min.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_8BbRtn",
+        "image_XLUKRY",
+        "image_wJw4nz"
+      ],
+      "name": "商品紹介カードA",
+      "settings": {
+        "badge_text": "一般向け",
+        "title": "自宅で楽しむ動画体験コース",
+        "text": "<p>・一般の方向け<br/>・自宅で楽しめる講座<br/>・<strong>4000円</strong>の体験コース<br/>・画材一式が自宅に届く</p>",
+        "price_text": "",
+        "button_label": "詳細はこちらから",
+        "button_link": "",
+        "color_scheme": "",
+        "heading_size": "h1",
+        "image_radius": 12,
+        "image_gap": 12,
+        "media_border_width": 0,
+        "media_border_color": "#000000",
+        "button_bg_color": "#0AA37F",
+        "button_text_color": "#FFFFFF",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "product_intro_card_a_chHXwE"
   ]
 }

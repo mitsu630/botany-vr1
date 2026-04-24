@@ -274,6 +274,9 @@
       "announcement": "Announcement",
       "announcement_bar": "Announcement bar"
     },
+    "top-announcement": {
+      "placeholder": "Add announcement text in the section settings."
+    },
 
     "header": {
       "announcement": "Announcement",

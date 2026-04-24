@@ -506,6 +506,53 @@
         "name": "告知バー"
       }
     },
+    "top-announcement": {
+      "name": "トップ告知",
+      "settings": {
+        "show_on_home_only": {
+          "label": "トップページのみ表示",
+          "info": "オンにすると、ホーム以外のページではこの告知を表示しません。"
+        },
+        "header_content": {
+          "content": "コンテンツ"
+        },
+        "message": {
+          "label": "テキスト",
+          "default": "<p>キャンペーンや重要なお知らせを入力してください。</p>"
+        },
+        "color_scheme": {
+          "info": "カスタムの文字色・背景色をオフにしたときに使われます。"
+        },
+        "use_custom_colors": {
+          "label": "文字色・背景色をカスタムする",
+          "info": "オンにすると、カラースキームの文字・背景より優先されます。"
+        },
+        "text_color": {
+          "label": "文字色"
+        },
+        "background_color": {
+          "label": "背景色"
+        },
+        "header_typography": {
+          "content": "タイポグラフィ"
+        },
+        "font": {
+          "label": "フォント"
+        },
+        "font_size": {
+          "label": "文字サイズ"
+        },
+        "margin_top": {
+          "label": "上マージン"
+        },
+        "margin_bottom": {
+          "label": "下マージン"
+        }
+      },
+      "presets": {
+        "name": "トップ告知"
+      }
+    },
     "collage": {
       "name": "コラージュ",
       "settings": {

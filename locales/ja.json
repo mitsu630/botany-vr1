@@ -275,6 +275,9 @@
         "other": "{{ count }}個のアイテム"
       }
     },
+    "top-announcement": {
+      "placeholder": "セクション設定から告知テキストを入力してください。"
+    },
     "cart": {
       "title": "あなたのカート",
       "caption": "カートアイテム",

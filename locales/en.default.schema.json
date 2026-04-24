@@ -506,6 +506,53 @@
         "name": "Announcement bar"
       }
     },
+    "top-announcement": {
+      "name": "Top announcement",
+      "settings": {
+        "show_on_home_only": {
+          "label": "Show on home page only",
+          "info": "When enabled, this banner is hidden on all pages except the home page."
+        },
+        "header_content": {
+          "content": "Content"
+        },
+        "message": {
+          "label": "Text",
+          "default": "<p>Announce a promotion or important message to your customers.</p>"
+        },
+        "color_scheme": {
+          "info": "Used when custom text and background colors are disabled."
+        },
+        "use_custom_colors": {
+          "label": "Use custom text and background colors",
+          "info": "Overrides the color scheme background and text colors."
+        },
+        "text_color": {
+          "label": "Text color"
+        },
+        "background_color": {
+          "label": "Background color"
+        },
+        "header_typography": {
+          "content": "Typography"
+        },
+        "font": {
+          "label": "Font"
+        },
+        "font_size": {
+          "label": "Font size"
+        },
+        "margin_top": {
+          "label": "Top margin"
+        },
+        "margin_bottom": {
+          "label": "Bottom margin"
+        }
+      },
+      "presets": {
+        "name": "Top announcement"
+      }
+    },
     "apps": {
       "name": "Apps",
       "settings": {

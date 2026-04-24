@@ -1,0 +1,186 @@
+{%- liquid
+  assign show_section = false
+  if section.settings.message != blank
+    assign show_section = true
+  endif
+  if section.settings.show_on_home_only and request.page_type != 'index'
+    assign show_section = false
+  endif
+-%}
+
+{%- if show_section or request.design_mode -%}
+  {%- if section.settings.font != blank -%}
+    {{ section.settings.font | font_face: font_display: 'swap' }}
+  {%- endif -%}
+
+  {%- style -%}
+    .top-announcement-{{ section.id }} {
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+    }
+
+    .top-announcement-{{ section.id }} .top-announcement__inner {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      font-size: {{ section.settings.font_size }}px;
+      {%- if section.settings.font != blank -%}
+        font-family: {{ section.settings.font.family }}, {{ section.settings.font.fallback_families }};
+        font-style: {{ section.settings.font.style }};
+        font-weight: {{ section.settings.font.weight }};
+      {%- endif -%}
+      {%- if section.settings.use_custom_colors -%}
+        color: {{ section.settings.text_color }};
+        background-color: {{ section.settings.background_color }};
+      {%- endif -%}
+    }
+
+    {%- if section.settings.use_custom_colors -%}
+      .top-announcement-{{ section.id }} .top-announcement__text a {
+        color: inherit;
+      }
+    {%- endif -%}
+  {%- endstyle -%}
+
+  <div
+    class="top-announcement top-announcement-{{ section.id }}{% unless section.settings.use_custom_colors %} color-{{ section.settings.color_scheme }} gradient{% endunless %}"
+    {{ section.shopify_attributes }}
+  >
+    <div class="top-announcement__inner">
+      <div class="page-width">
+        {%- if section.settings.message != blank -%}
+          <div class="rte top-announcement__text">
+            {{ section.settings.message }}
+          </div>
+        {%- elsif request.design_mode -%}
+          <div class="rte top-announcement__text">
+            <p>{{ 'sections.top-announcement.placeholder' | t }}</p>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.top-announcement.name",
+  "class": "top-announcement-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_on_home_only",
+      "default": true,
+      "label": "t:sections.top-announcement.settings.show_on_home_only.label",
+      "info": "t:sections.top-announcement.settings.show_on_home_only.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.top-announcement.settings.header_content.content"
+    },
+    {
+      "type": "richtext",
+      "id": "message",
+      "default": "t:sections.top-announcement.settings.message.default",
+      "label": "t:sections.top-announcement.settings.message.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1",
+      "info": "t:sections.top-announcement.settings.color_scheme.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_custom_colors",
+      "default": false,
+      "label": "t:sections.top-announcement.settings.use_custom_colors.label",
+      "info": "t:sections.top-announcement.settings.use_custom_colors.info"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:sections.top-announcement.settings.text_color.label",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:sections.top-announcement.settings.background_color.label",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.top-announcement.settings.header_typography.content"
+    },
+    {
+      "type": "font_picker",
+      "id": "font",
+      "default": "assistant_n4",
+      "label": "t:sections.top-announcement.settings.font.label"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.top-announcement.settings.font_size.label",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.top-announcement.settings.margin_top.label",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.top-announcement.settings.margin_bottom.label",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.top-announcement.presets.name"
+    }
+  ]
+}
+{% endschema %}

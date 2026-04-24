@@ -47,10 +47,36 @@
         "padding_top": 12,
         "padding_bottom": 12
       }
+    },
+    "simple_fixed_nav_header": {
+      "type": "simple-fixed-nav",
+      "name": "t:sections.simple-fixed-nav.presets.name",
+      "settings": {
+        "visibility": "all",
+        "position": "bottom_right",
+        "offset": 8,
+        "z_index": 30,
+        "max_width": 280,
+        "layout_direction": "horizontal",
+        "open_new_tab": false,
+        "font_size": 11,
+        "font_weight": "500",
+        "gap": 4,
+        "padding_vertical": 6,
+        "padding_horizontal": 10,
+        "text_color": "#333333",
+        "background_color": "#ffffff",
+        "background_opacity": 92,
+        "border_width": 1,
+        "border_color": "#cccccc",
+        "border_radius": 2,
+        "enable_shadow": false
+      }
     }
   },
   "order": [
     "header",
-    "top_announcement_G6yhcb"
+    "top_announcement_G6yhcb",
+    "simple_fixed_nav_header"
   ]
 }

@@ -553,14 +553,11 @@
         "name": "Top announcement"
       }
     },
-    "floating_nav_group": {
-      "name": "Floating quick links"
-    },
     "simple-fixed-nav": {
-      "name": "Simple fixed quick links",
+      "name": "Fixed quick menu",
       "settings": {
         "paragraph_intro": {
-          "content": "Small text buttons fixed on screen. Add this section from Header → Add section, or from the Floating quick links group. Add a label and URL for each button (up to five)."
+          "content": "Small fixed text buttons for quick links. Add from Header → Add section. Set a label and URL for each button you need (up to five)."
         },
         "visibility": {
           "label": "Show on",
@@ -697,7 +694,7 @@
         }
       },
       "presets": {
-        "name": "Simple fixed quick links"
+        "name": "Fixed quick menu"
       }
     },
     "apps": {

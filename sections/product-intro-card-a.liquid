@@ -1,0 +1,490 @@
+{%- liquid
+  assign image_count = 0
+  assign bullet_count = 0
+
+  for b in section.blocks
+    if b.type == 'image' and b.settings.image != blank
+      assign image_count = image_count | plus: 1
+    elsif b.type == 'bullet' and b.settings.text != blank
+      assign bullet_count = bullet_count | plus: 1
+    endif
+  endfor
+
+  assign show_section = false
+  if image_count > 0 or section.settings.title != blank or section.settings.text != blank or bullet_count > 0 or section.settings.button_label != blank
+    assign show_section = true
+  endif
+
+  if request.design_mode and show_section == false
+    assign show_section = true
+  endif
+-%}
+
+{%- if show_section -%}
+  {%- style -%}
+    #shopify-section-{{ section.id }} {
+      --pica-gap: {{ section.settings.image_gap | default: 12 }}px;
+      --pica-radius: {{ section.settings.image_radius | default: 12 }}px;
+      --pica-media-border: {{ section.settings.media_border_width | default: 0 }}px;
+      --pica-media-border-color: {{ section.settings.media_border_color | default: '#000000' }};
+    }
+
+    .product-intro-card-a--{{ section.id }} {
+      display: block;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__inner {
+      display: grid;
+      gap: clamp(16px, 3vw, 28px);
+      align-items: start;
+    }
+
+    @media screen and (min-width: 750px) {
+      .product-intro-card-a--{{ section.id }} .product-intro-card-a__inner {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        align-items: center;
+      }
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.06);
+      font-size: 12px;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+      margin: 0 0 14px;
+      width: fit-content;
+      max-width: 100%;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__title {
+      margin: 0 0 10px;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__text {
+      margin: 0 0 14px;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__bullets {
+      margin: 0 0 16px;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__bullets li {
+      display: grid;
+      grid-template-columns: 16px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__bullets li::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: currentColor;
+      opacity: 0.55;
+      margin-top: 8px;
+      justify-self: center;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__price {
+      margin: 0 0 18px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      line-height: 1.1;
+      border: 0;
+      cursor: pointer;
+      background: {{ section.settings.button_bg_color }};
+      color: {{ section.settings.button_text_color }};
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__cta:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 3px;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__media-grid {
+      display: grid;
+      gap: var(--pica-gap);
+      grid-auto-rows: 1fr;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__media {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--pica-radius);
+      border: var(--pica-media-border) solid var(--pica-media-border-color);
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__media-grid--1 {
+      grid-template-columns: 1fr;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__media-grid--1 .product-intro-card-a__media {
+      aspect-ratio: 3 / 4;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__media-grid--2 {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__media-grid--2 .product-intro-card-a__media {
+      aspect-ratio: 3 / 4;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__media-grid--3 {
+      grid-template-columns: 1.618fr 1fr;
+      grid-template-areas:
+        'big top'
+        'big bottom';
+      align-items: stretch;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__media-grid--3 .is-big {
+      grid-area: big;
+      aspect-ratio: 3 / 4;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__media-grid--3 .is-top,
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__media-grid--3 .is-bottom {
+      aspect-ratio: 1 / 1;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__media-grid--3 .is-top {
+      grid-area: top;
+    }
+
+    .product-intro-card-a--{{ section.id }} .product-intro-card-a__media-grid--3 .is-bottom {
+      grid-area: bottom;
+    }
+
+    @media screen and (max-width: 749px) {
+      .product-intro-card-a--{{ section.id }} .product-intro-card-a__media-grid--3 {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+          'big big'
+          'top bottom';
+      }
+
+      .product-intro-card-a--{{ section.id }} .product-intro-card-a__media-grid--3 .is-big {
+        aspect-ratio: 3 / 4;
+      }
+    }
+  {%- endstyle -%}
+
+  <section class="product-intro-card-a product-intro-card-a--{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+    <div class="page-width section-{{ section.id }}-padding">
+      {%- style -%}
+        .section-{{ section.id }}-padding {
+          padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+          padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+        }
+        @media screen and (min-width: 750px) {
+          .section-{{ section.id }}-padding {
+            padding-top: {{ section.settings.padding_top }}px;
+            padding-bottom: {{ section.settings.padding_bottom }}px;
+          }
+        }
+      {%- endstyle -%}
+
+      <div class="product-intro-card-a__inner">
+        <div class="product-intro-card-a__media-col">
+          {%- if image_count > 0 -%}
+            <div class="product-intro-card-a__media-grid product-intro-card-a__media-grid--{{ image_count }}">
+              {%- liquid
+                assign image_index = 0
+              -%}
+              {%- for b in section.blocks -%}
+                {%- if b.type == 'image' and b.settings.image != blank -%}
+                  {%- liquid
+                    assign image_index = image_index | plus: 1
+
+                    assign extra_class = ''
+                    if image_count == 3
+                      if image_index == 1
+                        assign extra_class = ' is-big'
+                      elsif image_index == 2
+                        assign extra_class = ' is-top'
+                      else
+                        assign extra_class = ' is-bottom'
+                      endif
+                    endif
+                  -%}
+                  <div class="product-intro-card-a__media{{ extra_class }}" {{ b.shopify_attributes }}>
+                    {{
+                      b.settings.image
+                      | image_url: width: 2000
+                      | image_tag: loading: 'lazy', widths: '360, 540, 720, 900, 1200, 1600, 2000'
+                    }}
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          {%- else -%}
+            <div class="product-intro-card-a__media" role="note">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div class="product-intro-card-a__content-col">
+          {%- if section.settings.badge_text != blank -%}
+            <div class="product-intro-card-a__badge">{{ section.settings.badge_text | escape }}</div>
+          {%- elsif request.design_mode -%}
+            <div class="product-intro-card-a__badge" role="note">（バッジ文言を設定できます）</div>
+          {%- endif -%}
+
+          {%- if section.settings.title != blank -%}
+            <h2 class="product-intro-card-a__title {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+          {%- endif -%}
+
+          {%- if section.settings.text != blank -%}
+            <div class="product-intro-card-a__text rte">{{ section.settings.text }}</div>
+          {%- endif -%}
+
+          {%- if bullet_count > 0 -%}
+            <ul class="product-intro-card-a__bullets">
+              {%- for b in section.blocks -%}
+                {%- if b.type == 'bullet' and b.settings.text != blank -%}
+                  <li {{ b.shopify_attributes }}>{{ b.settings.text | escape }}</li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- elsif request.design_mode -%}
+            <ul class="product-intro-card-a__bullets" role="note">
+              <li>（箇条書きブロックを追加できます）</li>
+            </ul>
+          {%- endif -%}
+
+          {%- if section.settings.price_text != blank -%}
+            <p class="product-intro-card-a__price">{{ section.settings.price_text | escape }}</p>
+          {%- endif -%}
+
+          {%- if section.settings.button_label != blank -%}
+            <a
+              class="product-intro-card-a__cta"
+              {% if section.settings.button_link == blank %}
+                role="link" aria-disabled="true"
+              {% else %}
+                href="{{ section.settings.button_link }}"
+              {% endif %}
+            >
+              {{ section.settings.button_label | escape }}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "商品紹介カードA",
+  "tag": "section",
+  "class": "section product-intro-card-a",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "バッジ（任意）",
+      "default": "一般向け"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "見出し",
+      "default": "自宅で楽しむ動画体験コース"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "説明（任意）"
+    },
+    {
+      "type": "text",
+      "id": "price_text",
+      "label": "価格/注記（任意）",
+      "default": "4000円の体験コース"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "ボタン文言",
+      "default": "詳細はこちらから"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "ボタンリンク"
+    },
+    {
+      "type": "header",
+      "content": "見た目"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "配色",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "見出しサイズ",
+      "options": [
+        { "value": "h2", "label": "小" },
+        { "value": "h1", "label": "中" },
+        { "value": "h0", "label": "大" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "min": 0,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "画像の角丸",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "image_gap",
+      "min": 0,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "画像間の余白",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "media_border_width",
+      "min": 0,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "label": "画像枠線（太さ）",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "media_border_color",
+      "label": "画像枠線（色）",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "ボタン色"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "ボタン背景色",
+      "default": "#0AA37F"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "ボタン文字色",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "余白"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "上の余白",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "下の余白",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "写真",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "画像"
+        }
+      ]
+    },
+    {
+      "type": "bullet",
+      "name": "箇条書き",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "文言",
+          "default": "一般の方向け"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "商品紹介カードA",
+      "blocks": [
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "bullet" },
+        { "type": "bullet" },
+        { "type": "bullet" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

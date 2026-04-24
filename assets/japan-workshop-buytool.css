@@ -49,15 +49,15 @@
 }
 
 /*
- * 会場（バリアント）プルダウンのみ 40px 固定。
+ * 会場（バリアント）プルダウン: 高さはパディング＋文字に任せる。
  * base.css の .select__select { height: 4.5rem } を確実に上書き（本ファイルは pro-workshop のみ読込）。
  * 数量プルダウンは .jwb-unified-control 側のルールのまま。
  */
 .product__info-container variant-selects .select__select {
-  height: 40px !important;
-  min-height: 40px !important;
+  height: auto !important;
+  min-height: 0 !important;
   line-height: 1.2;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   box-sizing: border-box !important;
 }
 
@@ -117,8 +117,8 @@ product-info[id^='MainProduct-'] {
   /* 横は base.css の .page-width に合わせ（left:0 のみだと幅が不安定になりやすい） */
   padding-top: var(--jwb-pad);
   padding-bottom: max(var(--jwb-pad), env(safe-area-inset-bottom, 0px));
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   display: grid;
   row-gap: var(--jwb-gap);
   column-gap: var(--jwb-gap);
@@ -220,10 +220,10 @@ product-info[id^='MainProduct-'] {
   box-sizing: border-box;
 }
 
-/* 会場セレクト：内側余白（矢印分は確保・上下をやや詰める） */
+/* 会場セレクト：上下左 1rem、右は 1rem＋矢印分（ネイティブ▼と重ならないよう base と同様に確保） */
 .product__info-container variant-selects[id^='variant-selects-'] .select__select {
   margin: 0 !important;
-  padding: 2px calc(var(--inputs-border-width) + 3rem) 2px 0.8rem;
+  padding: 1rem calc(1rem + var(--inputs-border-width) + 3rem) 1rem 1rem;
   box-sizing: border-box;
 }
 

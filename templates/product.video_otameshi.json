@@ -1,0 +1,765 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "rich_text_hxtYhn": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_ePMdEf": {
+          "type": "heading",
+          "settings": {
+            "heading": "本格画材で楽しむお試し・レッスンコース",
+            "heading_size": "h2"
+          }
+        },
+        "text_MjTdEF": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ボタニーペインティングの魅力を、自宅で手軽に体験してみませんか？</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_ePMdEf",
+        "text_MjTdEF"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "full_width": true,
+        "padding_top": 28,
+        "padding_bottom": 20
+      }
+    },
+    "promo_framed_content_FhEzL4": {
+      "type": "promo-framed-content",
+      "blocks": {
+        "heading_VPjRDY": {
+          "type": "heading",
+          "settings": {
+            "heading": "コースの特徴",
+            "heading_size": "h1"
+          }
+        },
+        "text_HBJyMm": {
+          "type": "text",
+          "settings": {
+            "text": "<p>「本格画材で楽しむ自宅で楽しむ動画体験コース」では、プロ仕様の画材を使って、YouTubeの動画を見ながら気軽にアートを楽しむことができます。</p>"
+          }
+        },
+        "image_grid_DmpJEP": {
+          "type": "image_grid",
+          "settings": {
+            "image_1": "shopify://shop_images/otameshi001.jpg",
+            "link_1": "",
+            "image_2": "shopify://shop_images/otameshi004.jpg",
+            "link_2": "",
+            "image_3": "shopify://shop_images/otameshi002.jpg",
+            "link_3": "",
+            "image_4": "shopify://shop_images/otameshi003.jpg",
+            "link_4": "",
+            "grid_gap": 12,
+            "image_radius": 8
+          }
+        },
+        "text_Q3tEBY": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>アート初心者の方</strong><br/>「失敗したらどうしよう」という不安を解消できます<br/><strong><br/>講師資格に興味がある方</strong><br/>まずは体験から始められます<br/><br/><strong>色のセンスに自信がない方</strong><br/>季節テーマのセットで簡単に美しい作品が作れます</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_VPjRDY",
+        "text_HBJyMm",
+        "image_grid_DmpJEP",
+        "text_Q3tEBY"
+      ],
+      "name": "t:sections.promo-framed-content.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "margin_top": 20,
+        "margin_right": 0,
+        "margin_bottom": 20,
+        "margin_left": 0,
+        "box_background": "#FFFFFF",
+        "box_border_color": "#E8E8E8",
+        "box_border_width": 1,
+        "box_radius": 16,
+        "box_padding_top": 32,
+        "box_padding_right": 28,
+        "box_padding_bottom": 32,
+        "box_padding_left": 28,
+        "show_badge": false,
+        "badge_text": "",
+        "badge_background": "#FFFFFF",
+        "badge_text_color": "#121212",
+        "badge_border_color": "#E8E8E8",
+        "badge_border_width": 1,
+        "content_alignment": "center"
+      }
+    },
+    "17767608404f8e6a1c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "multicolumn_MWHcC7": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_naFPpb": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/P1001778-min.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_AnbmdU": {
+          "type": "column",
+          "settings": {
+            "title": "蓮の葉1枚",
+            "text": "<p>手を広げたくらいの大きさ（約23cm）の蓮の葉です。ボタニーペインティングで一番人気の本物の蓮の葉を画材用に加工したものになります。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_gyGLEC": {
+          "type": "column",
+          "settings": {
+            "title": "桐板2枚",
+            "text": "<p>手のひらサイズ（幅94mm高さ200mm厚み15mm）の軽い桐の板材になります。表面に蓮の葉を貼り付け、裏面には展示用の穴（虫ピンで展示可能）とボタニーペインティングのロゴマークあります。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_f4iziD": {
+          "type": "column",
+          "settings": {
+            "title": "のり",
+            "text": "<p>ボタニーペインティング専用の糊になります。蓮の葉を貼り付けしやすくするために特別に作られた水分を多く含んでいる糊です。水溶性でホルムアルデヒド等は化合されていない扱いやすい製品です。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_CqY9mr": {
+          "type": "column",
+          "settings": {
+            "title": "スポンジ",
+            "text": "<p>ボタニーペインティングでは刷毛以外でもスポンジで塗る簡単な着色を皆様にご案内しています。お化粧をするように蓮の葉に好きな色を簡単に着色することができます。スポンジに慣れたら刷毛や水を使う着色をおすすめしています。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_naFPpb",
+        "column_AnbmdU",
+        "column_gyGLEC",
+        "column_f4iziD",
+        "column_CqY9mr"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "コース内容　1. 基本セット",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "promo_framed_content_A8fBwX": {
+      "type": "promo-framed-content",
+      "blocks": {
+        "heading_DfafQ7": {
+          "type": "heading",
+          "settings": {
+            "heading": "2. 選べる絵の具セット",
+            "heading_size": "h2"
+          }
+        },
+        "text_FRN6MH": {
+          "type": "text",
+          "settings": {
+            "text": "<p>4種類の季節テーマからお好みのセットをお選びいただけます。絵の具は高品質で使いやすいターナーU35 11mlの絵の具です。。この絵の具は、鮮やかな発色と優れた耐光性が特徴で、初心者からプロまで幅広く愛用されています。水彩のように溶けて、アクリル絵の具のように乾くという独特の性質を持ち、様々な表現技法に対応できます。また、乾燥後は耐水性となるため、完成した作品を長く楽しむことができます。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_DfafQ7",
+        "text_FRN6MH"
+      ],
+      "name": "t:sections.promo-framed-content.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "box_background": "#FFFFFF",
+        "box_border_color": "#E8E8E8",
+        "box_border_width": 1,
+        "box_radius": 16,
+        "box_padding_top": 32,
+        "box_padding_right": 28,
+        "box_padding_bottom": 32,
+        "box_padding_left": 28,
+        "show_badge": false,
+        "badge_text": "",
+        "badge_background": "#FFFFFF",
+        "badge_text_color": "#121212",
+        "badge_border_color": "#E8E8E8",
+        "badge_border_width": 1,
+        "content_alignment": "center"
+      }
+    },
+    "slideshow_9ETwEn": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_E7F7bA": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/SS_2026-04-24_16.16.50.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_zaVJUE": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/SS_2026-04-24_16.16.57.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_6Fiy8A": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/SS_2026-04-24_16.17.06.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_GMdb8p": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/SS_2026-04-24_16.17.12.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_E7F7bA",
+        "slide_zaVJUE",
+        "slide_6Fiy8A",
+        "slide_GMdb8p"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "large",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": ""
+      }
+    },
+    "multirow_mrqKWy": {
+      "type": "multirow",
+      "blocks": {
+        "row_VUqqK8": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/P1001783-min.jpg",
+            "caption": "",
+            "heading": "蓮の葉を桐板に配置します。",
+            "text": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_VbjnFp": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/P1001789-min_c38b17c8-146b-42ac-a41a-ef43f7fb00db.jpg",
+            "caption": "",
+            "heading": "桐板2枚に1枚の蓮の葉を貼ります",
+            "text": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_riUbUX": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/P1001792-min.jpg",
+            "caption": "",
+            "heading": "蓮の葉を2つに切り落とします",
+            "text": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_xRf9YM": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/P1001793-min.jpg",
+            "caption": "",
+            "heading": "2つの作品が作れます",
+            "text": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_T3WDCK": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/P1020713-min_293e0505-dc4e-4947-a607-57771adb2013.jpg",
+            "caption": "",
+            "heading": "スポンジで自由に着色を楽しめます",
+            "text": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_YgBYQM": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/P1020980-min.jpg",
+            "caption": "",
+            "heading": "スポンジで自由に着色を楽しめます",
+            "text": "<p><strong>自宅でご用意いただくもの：</strong> カッター、テーブル養生、紙皿（パレット代わり）</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_VUqqK8",
+        "row_VbjnFp",
+        "row_riUbUX",
+        "row_xRf9YM",
+        "row_T3WDCK",
+        "row_YgBYQM"
+      ],
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "adapt",
+        "desktop_image_width": "small",
+        "image_layout": "alternate-left",
+        "heading_size": "h2",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "center",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_standalone_image_ay87NT": {
+      "type": "custom-standalone-image",
+      "name": "t:sections.custom-standalone-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/IMG_1729.jpg",
+        "image_link": "",
+        "link_new_tab": false,
+        "image_alt": "",
+        "full_viewport_width": false,
+        "color_scheme": "",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0
+      }
+    },
+    "rich_text_xFyRDk": {
+      "type": "rich-text",
+      "blocks": {
+        "text_JTzpMX": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>お申し込みからのSTEP</h2><ol><li><strong>お申し込み</strong><br/>上記【お申し込み】ボタンより講座のお申し込みをお願いします。<br/></li><li><strong>講座到着後</strong><br/>動画URLを見ながら講座をお楽しみください。<br/>動画はいつでも好きな時間に視聴可能です。動画を見ながら作品づくりを楽しむか、動画を先に見た後に同封のテキストに沿って講座を楽しむこともできます。<br/>スマートフォンでも閲覧可能な一般非公開の特別講座です。<br/></li><li><strong>作品鑑賞</strong><br/>桐板の背部には展示用の穴が空いていますので、マンションなどでも安心の虫ピンでお部屋のニッチスペースに展示可能です。壁掛けやそのまま立てかける等、展示をお楽しみください。<br/></li><li><strong>講座に関心のある方へ</strong><br/>全国で活躍しているプロフェッショナルやパートナー講師の講座にご参加ください。<br/>対面やオンラインでも受講は可能です。希望の方は講師資格にもチャレンジできます。</li></ol>"
+          }
+        }
+      },
+      "block_order": [
+        "text_JTzpMX"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "caption": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.descriptors.subtitle.value }}",
+            "text_style": "subtitle"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "collapsible-row-0": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Materials",
+            "icon": "leather",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible-row-1": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Shipping & Returns",
+            "icon": "truck",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible-row-2": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Dimensions",
+            "icon": "ruler",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible-row-3": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Care Instructions",
+            "icon": "heart",
+            "content": "",
+            "page": ""
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "caption",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "description",
+        "collapsible-row-0",
+        "collapsible-row-1",
+        "collapsible-row-2",
+        "collapsible-row-3",
+        "share"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "おすすめ商品",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "featured_product_hpXYai": {
+      "type": "featured-product",
+      "blocks": {
+        "text_wtTiDa": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_bkA3w9": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_U74ptY": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_Tj6j3n": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_m3m67V": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_tRCybp": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_kFQtwX": {
+          "type": "share",
+          "settings": {
+            "share_label": "共有"
+          }
+        }
+      },
+      "block_order": [
+        "text_wtTiDa",
+        "title_bkA3w9",
+        "price_U74ptY",
+        "variant_picker_Tj6j3n",
+        "quantity_selector_m3m67V",
+        "buy_buttons_tRCybp",
+        "share_kFQtwX"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "自宅で楽しむ体験コース-bookセット",
+        "color_scheme": "scheme-1",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_product_gqCe8X": {
+      "type": "featured-product",
+      "blocks": {
+        "text_eGRXtj": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_BQ9Fhh": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_Nn3AAp": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_V9Abjk": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_itimpP": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_KHFKGT": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_YgPDmc": {
+          "type": "share",
+          "settings": {
+            "share_label": "共有"
+          }
+        }
+      },
+      "block_order": [
+        "text_eGRXtj",
+        "title_BQ9Fhh",
+        "price_Nn3AAp",
+        "variant_picker_V9Abjk",
+        "quantity_selector_itimpP",
+        "buy_buttons_KHFKGT",
+        "share_YgPDmc"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "video_otameshi",
+        "color_scheme": "scheme-1",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "rich_text_hxtYhn",
+    "promo_framed_content_FhEzL4",
+    "17767608404f8e6a1c",
+    "multicolumn_MWHcC7",
+    "promo_framed_content_A8fBwX",
+    "slideshow_9ETwEn",
+    "multirow_mrqKWy",
+    "custom_standalone_image_ay87NT",
+    "rich_text_xFyRDk",
+    "main",
+    "featured_product_hpXYai",
+    "featured_product_gqCe8X",
+    "related-products"
+  ]
+}

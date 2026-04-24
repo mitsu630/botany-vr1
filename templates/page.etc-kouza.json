@@ -51,14 +51,14 @@
         "price_text": "",
         "button_label": "詳細はこちらから",
         "button_link": "",
-        "color_scheme": "",
+        "color_scheme": "scheme-3",
         "heading_size": "h1",
         "image_radius": 12,
         "image_gap": 12,
         "media_border_width": 0,
         "media_border_color": "#000000",
-        "button_bg_color": "#0AA37F",
-        "button_text_color": "#FFFFFF",
+        "button_bg_color": "#418071",
+        "button_text_color": "#ffffff",
         "padding_top": 24,
         "padding_bottom": 24
       }

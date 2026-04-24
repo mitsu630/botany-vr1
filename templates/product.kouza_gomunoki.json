@@ -1,0 +1,387 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "17767608404f8e6a1c": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "rich_text_brBARc": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_AYYJq7": {
+          "type": "heading",
+          "settings": {
+            "heading": "ゴムの木の葉のモビール",
+            "heading_size": "h2"
+          }
+        },
+        "text_LnjXaB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>天然のゴムの木の葉を使ったモビールの制作を楽しめる講座です。全長約80cmモビールが柔らかい風とともにお部屋を彩ります。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_AYYJq7",
+        "text_LnjXaB"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "custom_standalone_image_wwhrii": {
+      "type": "custom-standalone-image",
+      "name": "t:sections.custom-standalone-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/P1001229_09924b0f-82df-4607-953e-31e8e36d624c.jpg",
+        "image_link": "",
+        "link_new_tab": false,
+        "image_alt": "",
+        "full_viewport_width": true,
+        "color_scheme": "",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "multirow_LewgQ6": {
+      "type": "multirow",
+      "blocks": {
+        "row_Vehiwe": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/P1001151.jpg",
+            "caption": "ご自宅に届く制作キット",
+            "heading": "キットはすべて一式お届け",
+            "text": "<p>ゴムの木の葉が100枚入！キットには絵の具や刷毛、ナイロン線に針金と必要な画材をお届けします。ご自宅では、刷毛を洗う水入れやカッター、グルーガン(100円均一店などでお求めできます。)をご用意して、自宅でアートを楽しみましょう<br/>※ご自宅のポストにお届け(ネコポス)</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_gN6xP9": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/P1001160.jpg",
+            "caption": "簡単に着色",
+            "heading": "動画を見ながらゴムの木の葉に着色",
+            "text": "<p>スマホで見れる動画で、アクリル絵の具を使って着色！アクリル絵の具は簡単に扱える絵の具ですので安心。刷毛を使ってゴムの木の葉を染める作業です。お好きな色で着色を楽しんでください。ゴムの木の葉は100枚入っています。そのうち使用する枚数は60枚ほどですので、練習も十分に楽しめます。※絵の具は３色（青・緑・黄色）を混色して色を使ったり、市販のアクリル絵の具でお好きな色に着色しても大丈夫！塗り方は動画説明の方法で使えます</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_yErECw": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/P1001168.jpg",
+            "caption": "接着作業",
+            "heading": "ナイロン線に接着",
+            "text": "<p>ゴムの木の葉をナイロン線にグルーガンを使って接着します。ナイロン線の長さも６パターンご用意していますので自由に接着を楽しんでください</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_kDn4tn": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/P1001205_e7803b15-03d0-4556-aa56-92ef70b6f575.jpg",
+            "caption": "完成！",
+            "heading": "ゴムの木の葉のモビール",
+            "text": "<p>自分の好きな色に染めたゴムの木の葉のモビールでリビングに新しい風が流れます。</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_Vehiwe",
+        "row_gN6xP9",
+        "row_yErECw",
+        "row_kDn4tn"
+      ],
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "small",
+        "image_layout": "alternate-left",
+        "heading_size": "h2",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "row_color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "custom_standalone_image_nPxeh3": {
+      "type": "custom-standalone-image",
+      "name": "t:sections.custom-standalone-image.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/P1001229_7e90adc7-c872-4bdb-9192-253ae6afbae3.jpg",
+        "image_link": "",
+        "link_new_tab": false,
+        "image_alt": "",
+        "full_viewport_width": true,
+        "color_scheme": "",
+        "margin_top": 0,
+        "margin_right": 0,
+        "margin_bottom": 0,
+        "margin_left": 0,
+        "padding_top": 0,
+        "padding_right": 0,
+        "padding_bottom": 0,
+        "padding_left": 0
+      }
+    },
+    "rich_text_GpEaWp": {
+      "type": "rich-text",
+      "blocks": {
+        "caption_AUFD6c": {
+          "type": "caption",
+          "settings": {
+            "caption": "ゴムの木の葉のモビール",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading_jV3QUB": {
+          "type": "heading",
+          "settings": {
+            "heading": "ゴムの木の葉のモビール",
+            "heading_size": "h2"
+          }
+        },
+        "text_Vkbzcf": {
+          "type": "text",
+          "settings": {
+            "text": "<p>画材：着色動画のURL・ゴムの木の葉50枚✕2セット（使用枚数60枚程度）・カットナイロン線100cm✕65本(使用枚数60本)：ステンレス針金100cm✕1本・アクリル絵の具3色（青・緑・黄）・スポンジ<br/>ご自宅でご用意いただくもの：グルーガン（100円均一店などにあります。）・パレットの代用（紙皿など）・水入れ・キッチンペーパー・はさみ・不要な紙</p>"
+          }
+        },
+        "button_6jkxVC": {
+          "type": "button",
+          "settings": {
+            "button_label": "ボタンのラベル",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "caption_AUFD6c",
+        "heading_jV3QUB",
+        "text_Vkbzcf",
+        "button_6jkxVC"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "caption": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.descriptors.subtitle.value }}",
+            "text_style": "subtitle"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "caption",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "rich_text_q9mPd3": {
+      "type": "rich-text",
+      "blocks": {
+        "text_M76G34": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>【発送スケジュール】</strong><br/>翌営業日配送（翌営業日配送・ポストにお届け＜ネコポス＞）<br/>(クレジット決済/銀行振込)<br/>※天然の植物ですので、毎月ご用意できる葉に限りがございます。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_M76G34"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_XnwKdF": {
+      "type": "rich-text",
+      "blocks": {
+        "text_xAwXbt": {
+          "type": "text",
+          "settings": {
+            "text": "<p>注意事項<br/>※1）講座受講にはインターネットが接続された機器でYOUTUBEをご覧いただける方のみ受講できます。講座動画への閲覧費用一切はご負担をよろしくお願いします。<br/><br/>※2）材料の葉は天然の為、カビの発生を防ぐために、到着後次第直ぐに開封してください。<br/><br/>※3）使用期限を過ぎたカビ発生の材料の交換は致しかねますのご了承ください。<br/><br/>※4）材料の葉は天然の為、サイズや色、形、傷、汚れ、による交換はご遠慮ください。（検査発送をしておりますが、天然の素材ならではのものです。ご了承お願いします。）<br/><br/>※5）お申込み後のキャンセルはご遠慮ください。<br/><br/>※6）通常画材を使っていますが、必ず換気をして作業を行ってください。<br/><br/>※7）画材はお子様の手の届かないところに置き、安全に保管、作業をしてください。<br/><br/>※8）絵の具が足りなくなった場合は、画材店でも同様の画材が購入できます。<br/><br/>※9）接着溶剤、定着溶剤は特殊な溶剤ですので、足りなくなった場合はご注文ください。<br/><br/>※10）本講座で制作した作品の販売はご遠慮ください。<br/><br/>※11）本講座で届いた画材を使った他人への講座指導はご遠慮ください。<br/><br/>※12）本講座で届いた画材の譲渡、販売はご遠慮ください。<br/><br/>※13）未成年者のお申込みはできません。<br/><br/>※14）天然の葉を使った類似講座の関係者の受講はできません。<br/><br/>※15）作業は自己責任にてお願いします。事故や損害について、当社では一切の責任は負いません。<br/><br/>※16）事前連絡がなく、宅配業者の保存期間が過ぎて返送された場合は、発送費用をご請求させて頂きます。<br/><br/>※17）申込者が多数の場合応募を中止する場合があります。<br/><br/>※18）暴力団等反社会的勢力に関わる方のお申し込みはできません。<br/><br/>※19）ボタニー、ボタニーペインティングは株式会社アントレ・サン・フラッペの商標登録です。（2020年2月1日改変）</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_xAwXbt"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_WK3Dxi": {
+      "type": "rich-text",
+      "blocks": {
+        "text_FBpM4J": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>情報の知的財産権</strong><br/>すべての情報は、株式会社アントレ・サン・フラッペの有する財産であり、著作権その他の知的財産権として保護されています。お客様は、株式会社アントレ・サン・フラッペの書面による明示の同意がない場合には、いかなる方法においても、通信講座の複製、再送信、配信、販売、頒布、出版、放送、回覧、商業的利用、変更もしくは改変を行わないことに同意します。また、お客様は、情報を違法な目的のために利用しないことに同意します。<br/><br/><strong>特定商取引法の表示</strong><br/>販売価格／4,800円(税込み)<br/>代金支払い時期＜一括支払い＞／クレジットにて申込み時に支払い<br/>商品の引渡時期／上記記載<br/>商品の売買契約の申込み撤回又は解除に関する事項／上記記載<br/>事業者／株式会社アントレ・サン・フラッペ　責任者：杉本光俊<br/>411-0016　静岡県三島市塚原新田24-3<br/>e-mail info@botanypainting.com<br/>Tel　055-983-3361</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_FBpM4J"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "17767608404f8e6a1c",
+    "rich_text_brBARc",
+    "custom_standalone_image_wwhrii",
+    "related-products",
+    "multirow_LewgQ6",
+    "custom_standalone_image_nPxeh3",
+    "rich_text_GpEaWp",
+    "main",
+    "rich_text_q9mPd3",
+    "rich_text_XnwKdF",
+    "rich_text_WK3Dxi"
+  ]
+}

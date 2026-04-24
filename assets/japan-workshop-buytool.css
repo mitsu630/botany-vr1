@@ -48,11 +48,17 @@
   box-shadow: none !important;
 }
 
-/* 会場プルダウンのみ低め（数量プルダウンは --jwb-row-h） */
+/*
+ * 会場（バリアント）プルダウンのみ 40px 固定。
+ * base.css の .select__select { height: 4.5rem } を確実に上書き（本ファイルは pro-workshop のみ読込）。
+ * 数量プルダウンは .jwb-unified-control 側のルールのまま。
+ */
 .product__info-container variant-selects .select__select {
-  min-height: var(--jwb-dropdown-h) !important;
+  height: 40px !important;
+  min-height: 40px !important;
   line-height: 1.2;
   font-size: 1.3rem;
+  box-sizing: border-box !important;
 }
 
 /*
@@ -148,12 +154,12 @@ product-info[id^='MainProduct-'] {
 }
 
 /* テーマの .product__info-container > * + * { margin: 1.5rem 0 } を打ち消し */
-.product__info-container > * + * {
+.product__info-container>*+* {
   margin: 0 !important;
 }
 
 /* 隣接子以外の指定や子孫で残る margin-top もゼロに（例: テーマ .product__info-container .product-form の 2.5rem） */
-.product__info-container > * {
+.product__info-container>* {
   margin-top: 0 !important;
 }
 
@@ -162,7 +168,7 @@ product-info[id^='MainProduct-'] {
   margin-bottom: 0 !important;
 }
 
-.product__info-container product-form + pickup-availability {
+.product__info-container product-form+pickup-availability {
   margin-top: 0 !important;
 }
 
@@ -180,7 +186,7 @@ product-info[id^='MainProduct-'] {
 }
 
 /* ----- 1 段目：会場開催日（テーマの .product-form__input max-width:44rem を打ち消して親100%） ----- */
-.product__info-container > variant-selects[id^='variant-selects-'] {
+.product__info-container>variant-selects[id^='variant-selects-'] {
   grid-area: variant;
   display: block;
   width: 100%;
@@ -222,7 +228,7 @@ product-info[id^='MainProduct-'] {
 }
 
 /* ----- 2–3 段目：OPTIS（アプリブロック〜内側まで余白を詰める） ----- */
-.product__info-container > .shopify-app-block[id*='__optis_product_options_'] {
+.product__info-container>.shopify-app-block[id*='__optis_product_options_'] {
   grid-area: optis;
   margin: 0 !important;
   padding: 0 !important;
@@ -247,7 +253,7 @@ product-info[id^='MainProduct-'] {
   gap: var(--jwb-optis-gap) !important;
 }
 
-.product__info-container [id^='po_container'].bss-po-product-page > * {
+.product__info-container [id^='po_container'].bss-po-product-page>* {
   flex: 0 0 auto;
   width: 100%;
   min-width: 0;
@@ -270,7 +276,7 @@ product-info[id^='MainProduct-'] {
 }
 
 /* ----- 最下段：左＝数量 ----- */
-.product__info-container > [id^='Quantity-Form-'].product-form__quantity {
+.product__info-container>[id^='Quantity-Form-'].product-form__quantity {
   grid-area: qty;
   display: flex;
   flex-direction: row;
@@ -289,7 +295,7 @@ product-info[id^='MainProduct-'] {
   overflow: visible;
 }
 
-.product__info-container > [id^='Quantity-Form-'] .price-per-item__container {
+.product__info-container>[id^='Quantity-Form-'] .price-per-item__container {
   flex: 0 1 auto;
   min-width: min-content;
   max-width: 100%;
@@ -332,8 +338,8 @@ product-info[id^='MainProduct-'] {
 }
 
 /* 他テンプレ用: +/- 数量（フォールバック） */
-.product__info-container > [id^='Quantity-Form-'] quantity-input.quantity,
-.product__info-container > [id^='Quantity-Form-'] .quantity {
+.product__info-container>[id^='Quantity-Form-'] quantity-input.quantity,
+.product__info-container>[id^='Quantity-Form-'] .quantity {
   width: calc(14rem / var(--font-body-scale) + var(--inputs-border-width) * 2) !important;
   min-width: calc(14rem / var(--font-body-scale) + var(--inputs-border-width) * 2);
   max-width: 100%;
@@ -345,12 +351,12 @@ product-info[id^='MainProduct-'] {
   border: var(--jwb-control-border);
 }
 
-.product__info-container > [id^='Quantity-Form-'] .quantity__button {
+.product__info-container>[id^='Quantity-Form-'] .quantity__button {
   position: relative;
   z-index: 2;
 }
 
-.product__info-container > [id^='Quantity-Form-'] .quantity__input:not(.select__select) {
+.product__info-container>[id^='Quantity-Form-'] .quantity__input:not(.select__select) {
   position: relative;
   z-index: 2;
   opacity: 1;
@@ -362,7 +368,7 @@ product-info[id^='MainProduct-'] {
  * 注意: buy-buttons のラッパーは product-form と pickup-availability の両方を含むため、
  * 別途 `div:has(> pickup-availability)` だけに flex-start を書くと後勝ちで左寄せになる（やり直し原因）。
  */
-.product__info-container > div:has(> product-form) {
+.product__info-container>div:has(> product-form) {
   grid-area: cta;
   display: flex;
   flex-direction: row;
@@ -378,7 +384,7 @@ product-info[id^='MainProduct-'] {
 }
 
 /* 案内文：幅は確保しつつ、行はボタン寄りに右揃え */
-.product__info-container > div:has(> product-form)::before {
+.product__info-container>div:has(> product-form)::before {
   content: var(--jwb-help-text);
   white-space: pre-line;
   flex: 0 1 auto;
@@ -394,7 +400,7 @@ product-info[id^='MainProduct-'] {
   margin: 0;
 }
 
-.product__info-container > div:has(> product-form) product-form {
+.product__info-container>div:has(> product-form) product-form {
   flex: 0 0 auto;
   min-width: 0;
   margin: 0 !important;
@@ -402,12 +408,12 @@ product-info[id^='MainProduct-'] {
   align-self: center;
 }
 
-.product__info-container > div:has(> product-form) product-form .form {
+.product__info-container>div:has(> product-form) product-form .form {
   margin: 0 !important;
   padding: 0 !important;
 }
 
-.product__info-container > div:has(> product-form) .product-form__buttons {
+.product__info-container>div:has(> product-form) .product-form__buttons {
   width: auto;
   max-width: var(--jwb-btn-w);
   margin: 0 !important;

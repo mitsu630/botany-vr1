@@ -143,6 +143,27 @@
   overflow: hidden;
 }
 
+.pfc__grid-link--text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+  line-height: 1.35;
+  text-decoration: none;
+  color: inherit;
+}
+
+.pfc__grid-text {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.pfc__grid-cell--text {
+  background-color: rgba(var(--color-foreground), 0.04);
+}
+
 /* background-size: cover は img + object-fit よりテーマCSSとの干渉が少なく、正方形クロップが安定 */
 .pfc__grid-bg {
   position: absolute;

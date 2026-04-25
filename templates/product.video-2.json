@@ -628,6 +628,7 @@
             "image": "shopify://shop_images/P1001531.jpg",
             "aspect_ratio": "4 / 3",
             "image_fit": "cover",
+            "image_width_mode": "box",
             "image_box_width": 1200,
             "image_box_height": 720,
             "image_align": "center",
@@ -667,6 +668,7 @@
             "image": "shopify://shop_images/Leafs.jpg",
             "aspect_ratio": "1 / 1",
             "image_fit": "contain",
+            "image_width_mode": "box",
             "image_box_width": 1200,
             "image_box_height": 720,
             "image_align": "center",
@@ -704,6 +706,86 @@
         "padding_top_mobile": 32,
         "padding_bottom_mobile": 28
       }
+    },
+    "testimonials_bento_MMWaAU": {
+      "type": "testimonials-bento",
+      "blocks": {
+        "testimonial_qzWJDr": {
+          "type": "testimonial",
+          "settings": {
+            "title": "",
+            "body": "<p>自宅で好きな時間にできるので、とても便利でした。動画も分かりやすく、テキストも充実していました。</p>",
+            "rating": 5,
+            "name": "大島ひとみ様"
+          }
+        },
+        "testimonial_UHnPmH": {
+          "type": "testimonial",
+          "settings": {
+            "title": "",
+            "body": "<p>絵心がない私でも、簡単に綺麗な作品が作れました。LINEでのサポートもあり、安心して進められました。</p>",
+            "rating": 5,
+            "name": "佐藤陽子様"
+          }
+        },
+        "testimonial_G4WT38": {
+          "type": "testimonial",
+          "settings": {
+            "title": "",
+            "body": "<p>材料が全て揃っているので、すぐに始められました。動画を見ながら進められるので、初めてでも安心でした。</p>",
+            "rating": 5,
+            "name": "T.K様"
+          }
+        },
+        "testimonial_BamcQA": {
+          "type": "testimonial",
+          "settings": {
+            "title": "",
+            "body": "<p>仕事が忙しい中でも、空いた時間で進められるのが良かったです。完成した作品は家族にも好評でした。</p>",
+            "rating": 5,
+            "name": "山本彩花様"
+          }
+        },
+        "testimonial_jMVTBz": {
+          "type": "testimonial",
+          "settings": {
+            "title": "",
+            "body": "<p>受講後も画材を追加で購入できるのが便利です。作品作りが趣味になりました。</p>",
+            "rating": 5,
+            "name": "M.N様"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_qzWJDr",
+        "testimonial_UHnPmH",
+        "testimonial_G4WT38",
+        "testimonial_BamcQA",
+        "testimonial_jMVTBz"
+      ],
+      "name": "お客様の声",
+      "settings": {
+        "heading": "受講者の声",
+        "heading_alignment": "center",
+        "heading_font_size": 27,
+        "section_background_color": "#ffffff",
+        "block_background_color": "#f2f7ec",
+        "heading_color": "#4b4b4b",
+        "block_title_color": "#2d2620",
+        "body_text_color": "#4b4b4b",
+        "name_color": "#4b4b4b",
+        "star_color": "#e27bca",
+        "block_title_font_size": 14,
+        "body_font_size": 13,
+        "star_size": 18,
+        "name_font_size": 13,
+        "block_border_radius": 11,
+        "block_padding": 28,
+        "block_gap": 24,
+        "padding_top": 28,
+        "padding_bottom": 32,
+        "max_width": 1200
+      }
     }
   },
   "order": [
@@ -718,6 +800,7 @@
     "multicolumn_xTwKa4",
     "multicolumn_DQeTth",
     "step_cards_dWQBVG",
-    "big_card_8fhxXf"
+    "big_card_8fhxXf",
+    "testimonials_bento_MMWaAU"
   ]
 }

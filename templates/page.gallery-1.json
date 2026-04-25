@@ -11,6 +11,7 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
@@ -19,17 +20,17 @@
     "google_photo_gallery_7mxbDm": {
       "type": "google-photo-gallery",
       "blocks": {
-        "album_UN9Qm4": {
+        "album_EGPWUi": {
           "type": "album",
           "settings": {
             "album_title": "",
             "album_description": "",
-            "gas_web_app_url": "https://drive.google.com/drive/folders/1PBUw4YylpW99dsIoqmPgm31dlv_EpQJ9?usp=sharing"
+            "gas_web_app_url": "https://script.google.com/macros/s/AKfycbxwPuxPdHsU7v6ahYlfg0xmxoDPiG7XdJi3O0oZFTWDApkah7AZVlmVA2GnQHXp6zA6/exec?folderId=1PBUw4YylpW99dsIoqmPgm31dlv_EpQJ9"
           }
         }
       },
       "block_order": [
-        "album_UN9Qm4"
+        "album_EGPWUi"
       ],
       "name": "Googleフォトギャラリー",
       "settings": {

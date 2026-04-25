@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "general": {
     "password_page": {
@@ -373,6 +382,13 @@
       "min_error": "此品項下限為 {{ min }}",
       "max_error": "此品項上限為 {{ max }}",
       "step_error": "只能以 {{ step }} 為增量新增此品項"
+    },
+    "top-announcement": {
+      "placeholder": "請在區塊設定中輸入通知文字。"
+    },
+    "simple_fixed_nav": {
+      "default_aria_label": "快速選單",
+      "editor_hint": "請在右側設定中輸入按鈕名稱和連結。"
     }
   },
   "localization": {

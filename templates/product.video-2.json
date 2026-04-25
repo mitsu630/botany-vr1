@@ -512,19 +512,6 @@
     "big_card_8fhxXf": {
       "type": "big-card",
       "blocks": {
-        "images_2_8AcVQr": {
-          "type": "images_2",
-          "settings": {
-            "image_1": "shopify://shop_images/P1001275.jpg",
-            "image_2": "shopify://shop_images/tsushin_book-min.jpg",
-            "aspect_ratio": "3 / 2",
-            "grid_gap": 16,
-            "padding_top": 0,
-            "padding_bottom": 0,
-            "margin_top": 0,
-            "margin_bottom": 0
-          }
-        },
         "text_fBrdxx": {
           "type": "text",
           "settings": {
@@ -583,15 +570,28 @@
             "margin_top": 0,
             "margin_bottom": 0
           }
+        },
+        "images_2_8AcVQr": {
+          "type": "images_2",
+          "settings": {
+            "image_1": "shopify://shop_images/P1001275.jpg",
+            "image_2": "shopify://shop_images/tsushin_book-min.jpg",
+            "aspect_ratio": "1 / 1",
+            "grid_gap": 16,
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
         }
       },
       "block_order": [
-        "images_2_8AcVQr",
         "text_fBrdxx",
         "text_GNzjbL",
         "video_9wmDie",
         "text_aYFcrb",
-        "text_twMfJJ"
+        "text_twMfJJ",
+        "images_2_8AcVQr"
       ],
       "name": "ビックカード",
       "settings": {

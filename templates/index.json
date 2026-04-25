@@ -77,8 +77,8 @@
       ],
       "name": "ボタンズ (custom-buttons)",
       "settings": {
-        "desktop_alignment": "center",
-        "mobile_alignment": "center",
+        "desktop_alignment": "right",
+        "mobile_alignment": "right",
         "padding_top": 8,
         "padding_bottom": 8,
         "button_gap": 10,

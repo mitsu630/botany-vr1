@@ -1,0 +1,1379 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --big-card-background: {{ section.settings.background_color }};
+    --big-card-text-color: {{ section.settings.text_color }};
+    --big-card-max-width: {{ section.settings.max_width }}px;
+    --big-card-radius: {{ section.settings.border_radius }}px;
+    --big-card-block-gap: {{ section.settings.block_gap }}px;
+    --big-card-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+    --big-card-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --big-card-padding-top-desktop: {{ section.settings.padding_top_desktop }}px;
+    --big-card-padding-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;
+  }
+
+  #shopify-section-{{ section.id }} .big-card {
+    background: var(--big-card-background);
+    color: var(--big-card-text-color);
+    padding-top: var(--big-card-padding-top-mobile);
+    padding-bottom: var(--big-card-padding-bottom-mobile);
+  }
+
+  #shopify-section-{{ section.id }} .big-card__inner {
+    width: min(100% - 32px, var(--big-card-max-width));
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  #shopify-section-{{ section.id }} .big-card__blocks {
+    display: flex;
+    flex-direction: column;
+    gap: var(--big-card-block-gap);
+  }
+
+  #shopify-section-{{ section.id }} .big-card__block {
+    margin-top: var(--big-card-block-margin-top);
+    margin-bottom: var(--big-card-block-margin-bottom);
+    padding-top: var(--big-card-block-padding-top);
+    padding-bottom: var(--big-card-block-padding-bottom);
+  }
+
+  #shopify-section-{{ section.id }} .big-card__title,
+  #shopify-section-{{ section.id }} .big-card__text,
+  #shopify-section-{{ section.id }} .big-card__text-column,
+  #shopify-section-{{ section.id }} .big-card__text-cell {
+    color: var(--big-card-block-color);
+    font-size: var(--big-card-block-font-size);
+    line-height: 1.7;
+  }
+
+  #shopify-section-{{ section.id }} .big-card__title {
+    line-height: 1.25;
+  }
+
+  #shopify-section-{{ section.id }} .big-card__title > *:first-child,
+  #shopify-section-{{ section.id }} .big-card__text > *:first-child,
+  #shopify-section-{{ section.id }} .big-card__text-column > *:first-child,
+  #shopify-section-{{ section.id }} .big-card__text-cell > *:first-child {
+    margin-top: 0;
+  }
+
+  #shopify-section-{{ section.id }} .big-card__title > *:last-child,
+  #shopify-section-{{ section.id }} .big-card__text > *:last-child,
+  #shopify-section-{{ section.id }} .big-card__text-column > *:last-child,
+  #shopify-section-{{ section.id }} .big-card__text-cell > *:last-child {
+    margin-bottom: 0;
+  }
+
+  #shopify-section-{{ section.id }} .big-card__media,
+  #shopify-section-{{ section.id }} .big-card__image,
+  #shopify-section-{{ section.id }} .big-card__video,
+  #shopify-section-{{ section.id }} .big-card__placeholder {
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--big-card-radius);
+  }
+
+  #shopify-section-{{ section.id }} .big-card__image,
+  #shopify-section-{{ section.id }} .big-card__video,
+  #shopify-section-{{ section.id }} .big-card__placeholder {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  #shopify-section-{{ section.id }} .big-card__image img,
+  #shopify-section-{{ section.id }} .big-card__placeholder svg {
+    display: block;
+    width: 100%;
+    aspect-ratio: var(--big-card-media-ratio);
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .big-card__video video,
+  #shopify-section-{{ section.id }} .big-card__video iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    border: 0;
+  }
+
+  #shopify-section-{{ section.id }} .big-card__video--contained {
+    max-width: 880px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  #shopify-section-{{ section.id }} .big-card__image-grid,
+  #shopify-section-{{ section.id }} .big-card__text-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--big-card-grid-gap);
+  }
+
+  #shopify-section-{{ section.id }} .big-card__button-wrap {
+    text-align: var(--big-card-button-align);
+  }
+
+  #shopify-section-{{ section.id }} .big-card__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 12px 24px;
+    border: 1px solid var(--big-card-button-background);
+    border-radius: var(--big-card-radius);
+    font: inherit;
+    line-height: 1.3;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  #shopify-section-{{ section.id }} .big-card__button:hover {
+    opacity: 0.82;
+  }
+
+  #shopify-section-{{ section.id }} .big-card__button--primary {
+    background: var(--big-card-button-background);
+    color: var(--big-card-button-color);
+  }
+
+  #shopify-section-{{ section.id }} .big-card__button--secondary {
+    background: transparent;
+    color: var(--big-card-button-background);
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .big-card {
+      padding-top: var(--big-card-padding-top-desktop);
+      padding-bottom: var(--big-card-padding-bottom-desktop);
+    }
+
+    #shopify-section-{{ section.id }} .big-card__inner {
+      width: min(100% - 64px, var(--big-card-max-width));
+    }
+
+    #shopify-section-{{ section.id }} .big-card__image-grid--two,
+    #shopify-section-{{ section.id }} .big-card__text-grid--two,
+    #shopify-section-{{ section.id }} .big-card__image-grid--four,
+    #shopify-section-{{ section.id }} .big-card__text-grid--four {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+{%- endstyle -%}
+
+<section class="big-card" {{ section.shopify_attributes }}>
+  <div class="big-card__inner">
+    <div class="big-card__blocks">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign block_color = block.settings.color | default: section.settings.text_color
+          assign block_font_size = block.settings.font_size | default: 16
+          assign block_padding_top = block.settings.padding_top | default: 0
+          assign block_padding_bottom = block.settings.padding_bottom | default: 0
+          assign block_margin_top = block.settings.margin_top | default: 0
+          assign block_margin_bottom = block.settings.margin_bottom | default: 0
+          assign media_ratio = block.settings.aspect_ratio | default: '16 / 9'
+          assign grid_gap = block.settings.grid_gap | default: 16
+        -%}
+
+        <div
+          class="big-card__block big-card__block--{{ block.type }}"
+          style="
+            --big-card-block-color: {{ block_color }};
+            --big-card-block-font-size: {{ block_font_size }}px;
+            --big-card-block-padding-top: {{ block_padding_top }}px;
+            --big-card-block-padding-bottom: {{ block_padding_bottom }}px;
+            --big-card-block-margin-top: {{ block_margin_top }}px;
+            --big-card-block-margin-bottom: {{ block_margin_bottom }}px;
+            --big-card-media-ratio: {{ media_ratio }};
+            --big-card-grid-gap: {{ grid_gap }}px;
+          "
+          {{ block.shopify_attributes }}
+        >
+          {%- case block.type -%}
+            {%- when 'title' -%}
+              {%- if block.settings.title != blank -%}
+                <div class="big-card__title rte">
+                  {{ block.settings.title }}
+                </div>
+              {%- endif -%}
+
+            {%- when 'text' -%}
+              {%- if block.settings.text != blank -%}
+                <div class="big-card__text rte">
+                  {{ block.settings.text }}
+                </div>
+              {%- endif -%}
+
+            {%- when 'video' -%}
+              <div class="big-card__media">
+                <div class="big-card__video">
+                  {%- if block.settings.video != blank -%}
+                    {{ block.settings.video | video_tag: controls: true, image_size: '1600x' }}
+                  {%- elsif block.settings.video_url != blank -%}
+                    {{ block.settings.video_url | external_video_tag }}
+                  {%- elsif request.design_mode -%}
+                    <div class="big-card__placeholder">
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+
+            {%- when 'image' -%}
+              <div class="big-card__media">
+                <div class="big-card__image">
+                  {%- if block.settings.image != blank -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 2000
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '360, 540, 720, 900, 1200, 1600, 2000',
+                        sizes: '(min-width: 750px) 100vw, 100vw'
+                    }}
+                  {%- elsif request.design_mode -%}
+                    <div class="big-card__placeholder">
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+
+            {%- when 'images_2' -%}
+              <div class="big-card__image-grid big-card__image-grid--two">
+                <div class="big-card__image">
+                  {%- if block.settings.image_1 != blank -%}
+                    {{
+                      block.settings.image_1
+                      | image_url: width: 1200
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '360, 540, 720, 900, 1200',
+                        sizes: '(min-width: 750px) 50vw, 100vw'
+                    }}
+                  {%- elsif request.design_mode -%}
+                    <div class="big-card__placeholder">
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                  {%- endif -%}
+                </div>
+
+                <div class="big-card__image">
+                  {%- if block.settings.image_2 != blank -%}
+                    {{
+                      block.settings.image_2
+                      | image_url: width: 1200
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '360, 540, 720, 900, 1200',
+                        sizes: '(min-width: 750px) 50vw, 100vw'
+                    }}
+                  {%- elsif request.design_mode -%}
+                    <div class="big-card__placeholder">
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+
+            {%- when 'images_4' -%}
+              <div class="big-card__image-grid big-card__image-grid--four">
+                <div class="big-card__image">
+                  {%- if block.settings.image_1 != blank -%}
+                    {{
+                      block.settings.image_1
+                      | image_url: width: 1000
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '360, 540, 720, 900, 1000',
+                        sizes: '(min-width: 750px) 50vw, 100vw'
+                    }}
+                  {%- elsif request.design_mode -%}
+                    <div class="big-card__placeholder">
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                  {%- endif -%}
+                </div>
+
+                <div class="big-card__image">
+                  {%- if block.settings.image_2 != blank -%}
+                    {{
+                      block.settings.image_2
+                      | image_url: width: 1000
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '360, 540, 720, 900, 1000',
+                        sizes: '(min-width: 750px) 50vw, 100vw'
+                    }}
+                  {%- elsif request.design_mode -%}
+                    <div class="big-card__placeholder">
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                  {%- endif -%}
+                </div>
+
+                <div class="big-card__image">
+                  {%- if block.settings.image_3 != blank -%}
+                    {{
+                      block.settings.image_3
+                      | image_url: width: 1000
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '360, 540, 720, 900, 1000',
+                        sizes: '(min-width: 750px) 50vw, 100vw'
+                    }}
+                  {%- elsif request.design_mode -%}
+                    <div class="big-card__placeholder">
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                  {%- endif -%}
+                </div>
+
+                <div class="big-card__image">
+                  {%- if block.settings.image_4 != blank -%}
+                    {{
+                      block.settings.image_4
+                      | image_url: width: 1000
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '360, 540, 720, 900, 1000',
+                        sizes: '(min-width: 750px) 50vw, 100vw'
+                    }}
+                  {%- elsif request.design_mode -%}
+                    <div class="big-card__placeholder">
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+
+            {%- when 'text_2' -%}
+              <div class="big-card__text-grid big-card__text-grid--two">
+                {%- if block.settings.left_text != blank -%}
+                  <div class="big-card__text-column rte">
+                    {{ block.settings.left_text }}
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.right_text != blank -%}
+                  <div class="big-card__text-column rte">
+                    {{ block.settings.right_text }}
+                  </div>
+                {%- endif -%}
+              </div>
+
+            {%- when 'text_4' -%}
+              <div class="big-card__text-grid big-card__text-grid--four">
+                {%- if block.settings.text_1 != blank -%}
+                  <div class="big-card__text-cell rte">
+                    {{ block.settings.text_1 }}
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.text_2 != blank -%}
+                  <div class="big-card__text-cell rte">
+                    {{ block.settings.text_2 }}
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.text_3 != blank -%}
+                  <div class="big-card__text-cell rte">
+                    {{ block.settings.text_3 }}
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.text_4 != blank -%}
+                  <div class="big-card__text-cell rte">
+                    {{ block.settings.text_4 }}
+                  </div>
+                {%- endif -%}
+              </div>
+
+            {%- when 'single_video' -%}
+              <div class="big-card__media">
+                <div class="big-card__video big-card__video--{{ block.settings.video_width }}">
+                  {%- if block.settings.video != blank -%}
+                    {{ block.settings.video | video_tag: controls: true, image_size: '1600x' }}
+                  {%- elsif block.settings.video_url != blank -%}
+                    {{ block.settings.video_url | external_video_tag }}
+                  {%- elsif request.design_mode -%}
+                    <div class="big-card__placeholder">
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+
+            {%- when 'button' -%}
+              {%- if block.settings.label != blank -%}
+                <div
+                  class="big-card__button-wrap"
+                  style="
+                    --big-card-button-align: {{ block.settings.align }};
+                    --big-card-button-background: {{ block.settings.button_background }};
+                    --big-card-button-color: {{ block.settings.button_color }};
+                  "
+                >
+                  <a
+                    class="big-card__button big-card__button--{{ block.settings.style }}"
+                    {% if block.settings.link != blank %}
+                      href="{{ block.settings.link }}"
+                    {% else %}
+                      role="link"
+                      aria-disabled="true"
+                    {% endif %}
+                  >
+                    {{ block.settings.label | escape }}
+                  </a>
+                </div>
+              {%- endif -%}
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "ビックカード",
+  "tag": "section",
+  "class": "section big-card-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "全体の背景色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "全体の文字色",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "コンテンツの最大幅",
+      "min": 720,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "角丸",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "block_gap",
+      "label": "ブロック間の余白",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "セクション余白 Desktop"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "上余白 Desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "下余白 Desktop",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "セクション余白 Mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "上余白 Mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "下余白 Mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "タイトル",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "タイトル",
+          "default": "<p>タイトルを入力してください</p>"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "フォントサイズ",
+          "min": 18,
+          "max": 72,
+          "step": 1,
+          "unit": "px",
+          "default": 40
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "文字色",
+          "default": "#111111"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "上パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "下パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "上マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "下マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "テキスト",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "テキスト",
+          "default": "<p>本文を入力してください。</p>"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "フォントサイズ",
+          "min": 12,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "文字色",
+          "default": "#111111"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "上パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "下パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "上マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "下マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "動画",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Shopify動画"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "外部動画URL",
+          "accept": ["youtube", "vimeo"]
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "上パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "下パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "上マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "下マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "1枚画像",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "画像"
+        },
+        {
+          "type": "select",
+          "id": "aspect_ratio",
+          "label": "アスペクト比",
+          "options": [
+            {
+              "value": "1 / 1",
+              "label": "1:1"
+            },
+            {
+              "value": "4 / 3",
+              "label": "4:3"
+            },
+            {
+              "value": "3 / 2",
+              "label": "3:2"
+            },
+            {
+              "value": "16 / 9",
+              "label": "16:9"
+            },
+            {
+              "value": "21 / 9",
+              "label": "21:9"
+            }
+          ],
+          "default": "16 / 9"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "上パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "下パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "上マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "下マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "images_2",
+      "name": "2列画像",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "画像 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "画像 2"
+        },
+        {
+          "type": "select",
+          "id": "aspect_ratio",
+          "label": "アスペクト比",
+          "options": [
+            {
+              "value": "1 / 1",
+              "label": "1:1"
+            },
+            {
+              "value": "4 / 3",
+              "label": "4:3"
+            },
+            {
+              "value": "3 / 2",
+              "label": "3:2"
+            },
+            {
+              "value": "16 / 9",
+              "label": "16:9"
+            }
+          ],
+          "default": "1 / 1"
+        },
+        {
+          "type": "range",
+          "id": "grid_gap",
+          "label": "画像間の余白",
+          "min": 0,
+          "max": 48,
+          "step": 4,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "上パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "下パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "上マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "下マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "images_4",
+      "name": "2×2画像",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "画像 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "画像 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "画像 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "画像 4"
+        },
+        {
+          "type": "select",
+          "id": "aspect_ratio",
+          "label": "アスペクト比",
+          "options": [
+            {
+              "value": "1 / 1",
+              "label": "1:1"
+            },
+            {
+              "value": "4 / 3",
+              "label": "4:3"
+            },
+            {
+              "value": "3 / 2",
+              "label": "3:2"
+            },
+            {
+              "value": "16 / 9",
+              "label": "16:9"
+            }
+          ],
+          "default": "1 / 1"
+        },
+        {
+          "type": "range",
+          "id": "grid_gap",
+          "label": "画像間の余白",
+          "min": 0,
+          "max": 48,
+          "step": 4,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "上パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "下パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "上マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "下マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "text_2",
+      "name": "2列テキスト",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "left_text",
+          "label": "左テキスト",
+          "default": "<p>左側のテキスト</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "right_text",
+          "label": "右テキスト",
+          "default": "<p>右側のテキスト</p>"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "フォントサイズ",
+          "min": 12,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "文字色",
+          "default": "#111111"
+        },
+        {
+          "type": "range",
+          "id": "grid_gap",
+          "label": "列間の余白",
+          "min": 0,
+          "max": 48,
+          "step": 4,
+          "unit": "px",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "上パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "下パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "上マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "下マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "text_4",
+      "name": "2×2テキスト",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text_1",
+          "label": "テキスト 1",
+          "default": "<p>テキスト 1</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "text_2",
+          "label": "テキスト 2",
+          "default": "<p>テキスト 2</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "text_3",
+          "label": "テキスト 3",
+          "default": "<p>テキスト 3</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "text_4",
+          "label": "テキスト 4",
+          "default": "<p>テキスト 4</p>"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "フォントサイズ",
+          "min": 12,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "文字色",
+          "default": "#111111"
+        },
+        {
+          "type": "range",
+          "id": "grid_gap",
+          "label": "グリッド間の余白",
+          "min": 0,
+          "max": 48,
+          "step": 4,
+          "unit": "px",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "上パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "下パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "上マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "下マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "single_video",
+      "name": "1枚動画",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Shopify動画"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "外部動画URL",
+          "accept": ["youtube", "vimeo"]
+        },
+        {
+          "type": "select",
+          "id": "video_width",
+          "label": "表示幅",
+          "options": [
+            {
+              "value": "full",
+              "label": "フル幅"
+            },
+            {
+              "value": "contained",
+              "label": "中央寄せ"
+            }
+          ],
+          "default": "full"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "上パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "下パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "上マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "下マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "ボタン",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "ラベル",
+          "default": "詳しく見る"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "リンク"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "スタイル",
+          "options": [
+            {
+              "value": "primary",
+              "label": "塗りつぶし"
+            },
+            {
+              "value": "secondary",
+              "label": "アウトライン"
+            }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "select",
+          "id": "align",
+          "label": "配置",
+          "options": [
+            {
+              "value": "left",
+              "label": "左"
+            },
+            {
+              "value": "center",
+              "label": "中央"
+            },
+            {
+              "value": "right",
+              "label": "右"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "color",
+          "id": "button_background",
+          "label": "ボタン背景色",
+          "default": "#111111"
+        },
+        {
+          "type": "color",
+          "id": "button_color",
+          "label": "ボタン文字色",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "label": "上パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "下パディング",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "label": "上マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "label": "下マージン",
+          "min": 0,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ビックカード",
+      "blocks": [
+        {
+          "type": "title"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

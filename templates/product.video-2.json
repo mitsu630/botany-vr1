@@ -160,80 +160,6 @@
         "content_alignment": "center"
       }
     },
-    "main": {
-      "type": "main-product",
-      "blocks": {
-        "vendor": {
-          "type": "text",
-          "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
-          }
-        },
-        "title": {
-          "type": "title",
-          "settings": {}
-        },
-        "caption": {
-          "type": "text",
-          "settings": {
-            "text": "{{ product.metafields.descriptors.subtitle.value }}",
-            "text_style": "subtitle"
-          }
-        },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
-          }
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
-          }
-        },
-        "description": {
-          "type": "description",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "vendor",
-        "title",
-        "caption",
-        "price",
-        "variant_picker",
-        "quantity_selector",
-        "buy_buttons",
-        "description"
-      ],
-      "settings": {
-        "enable_sticky_info": true,
-        "color_scheme": "",
-        "media_size": "large",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "stacked",
-        "mobile_thumbnails": "hide",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "hide_variants": true,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
-      }
-    },
     "related-products": {
       "type": "related-products",
       "settings": {
@@ -786,6 +712,212 @@
         "padding_bottom": 32,
         "max_width": 1200
       }
+    },
+    "legal_notes_GDJXD7": {
+      "type": "legal-notes",
+      "blocks": {
+        "note_CCpiNC": {
+          "type": "note",
+          "settings": {
+            "marker_text": "※",
+            "text": "<p>※1）講座受講にはインターネットが接続された機器でYOUTUBEをご覧いただける方のみ受講できます。講座動画への閲覧費用一切はご負担をよろしくお願いします。</p><p>※2）材料の葉は天然の為、カビの発生を防ぐために、到着後次第直ぐに開封してください。</p><p>※3）使用期限を過ぎたカビ発生の材料の交換は致しかねますのご了承ください。</p><p>※4）材料の葉は天然の為、サイズや色、形、傷、汚れ、による交換はご遠慮ください。（検査発送をしておりますが、天然の素材ならではのものです。ご了承お願いします。）</p><p>※5）お申込み後のキャンセルはご遠慮ください。※画材を準備している関係上、講座途中でのキャンセルはご遠慮ください。</p><p>※6）通常画材を使っていますが、必ず換気をして作業を行ってください。</p><p>※7）画材はお子様の手の届かないところに置き、安全に保管、作業をしてください。</p><p>※8）絵の具が足りなくなった場合は、画材店でも同様の画材が購入できます。</p><p>※9）接着溶剤、定着溶剤は特殊な溶剤ですので、足りなくなった場合はご注文ください。</p><p>※10）本講座で制作した作品の販売はご遠慮ください。</p><p>※11）本講座で届いた画材を使った他人への講座指導はご遠慮ください。</p><p>※12）本講座で届いた画材の譲渡、販売はご遠慮ください。</p><p>※13）未成年者のお申込みはできません。</p><p>※14）天然の葉を使った類似講座の関係者の受講はできません。</p><p>※15）通信講座での作業は自己責任にてお願いします。事故や損害について、当社では一切の責任は負いません。</p><p>※16）事前連絡がなく、宅配業者の保存期間が過ぎて返送された場合は、発送費用をご請求させて頂きます。</p><p>※17）申込者が多数の場合応募を中止する場合があります。</p><p>※18）暴力団等反社会的勢力に関わる方のお申し込みはできません。</p><p>※19）ボタニー、ボタニーペインティングは株式会社アントレ・サン・フラッペの商標登録です。（2020年2月1日改変）</p>"
+          }
+        }
+      },
+      "block_order": [
+        "note_CCpiNC"
+      ],
+      "name": "法律表記 (legal-notes)",
+      "settings": {
+        "title": "注意事項",
+        "title_color": "#8b4f63",
+        "title_font_size": 16,
+        "mobile_title_font_size": 14,
+        "title_font_weight": "700",
+        "section_background_color": "#fbe9e9",
+        "card_background_color": "#ffffff",
+        "card_border_color": "#f0dede",
+        "card_border_radius": 14,
+        "max_width": 980,
+        "card_padding_top": 36,
+        "card_padding_right": 40,
+        "card_padding_bottom": 36,
+        "card_padding_left": 40,
+        "mobile_card_padding_top": 24,
+        "mobile_card_padding_right": 20,
+        "mobile_card_padding_bottom": 24,
+        "mobile_card_padding_left": 20,
+        "margin_top": 40,
+        "margin_bottom": 40,
+        "text_color": "#333333",
+        "text_font_size": 12,
+        "mobile_text_font_size": 12,
+        "text_line_height": 120,
+        "item_gap": 0,
+        "marker_mode": "auto"
+      }
+    },
+    "legal_notes_qyzKXn": {
+      "type": "legal-notes",
+      "blocks": {
+        "note_HwwMmp": {
+          "type": "note",
+          "settings": {
+            "marker_text": "※",
+            "text": "<p>すべての情報は、株式会社アントレ・サン・フラッペの有する財産であり、著作権その他の知的財産権として保護されています。お客様は、株式会社アントレ・サン・フラッペの書面による明示の同意がない場合には、いかなる方法においても、通信講座の複製、再送信、配信、販売、頒布、出版、放送、回覧、商業的利用、変更もしくは改変を行わないことに同意します。また、お客様は、情報を違法な目的のために利用しないことに同意します。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "note_HwwMmp"
+      ],
+      "name": "法律表記 (legal-notes)",
+      "settings": {
+        "title": "情報の知的財産権",
+        "title_color": "#8b4f63",
+        "title_font_size": 16,
+        "mobile_title_font_size": 14,
+        "title_font_weight": "700",
+        "section_background_color": "#fbe9e9",
+        "card_background_color": "#ffffff",
+        "card_border_color": "#f0dede",
+        "card_border_radius": 14,
+        "max_width": 980,
+        "card_padding_top": 36,
+        "card_padding_right": 40,
+        "card_padding_bottom": 36,
+        "card_padding_left": 40,
+        "mobile_card_padding_top": 24,
+        "mobile_card_padding_right": 20,
+        "mobile_card_padding_bottom": 24,
+        "mobile_card_padding_left": 20,
+        "margin_top": 40,
+        "margin_bottom": 40,
+        "text_color": "#333333",
+        "text_font_size": 12,
+        "mobile_text_font_size": 12,
+        "text_line_height": 120,
+        "item_gap": 0,
+        "marker_mode": "manual"
+      }
+    },
+    "legal_notes_4KMcdT": {
+      "type": "legal-notes",
+      "blocks": {
+        "note_RmGQta": {
+          "type": "note",
+          "settings": {
+            "marker_text": "※",
+            "text": "<p>販売価格／14,000円(代引手数料込み・税込み・送料込み)<br/>代金支払い時期＜一括支払い＞／クレジット・銀行振込を申込み時に支払い<br/>代金支払い時期＜都度支払い＞／各材料受取とともに　代金引換発送を宅配業者に支払い<br/>商品の引渡時期／上記記載<br/>商品の売買契約の申込み撤回又は解除に関する事項／上記記載<br/>事業者／株式会社アントレ・サン・フラッペ　責任者：杉本光俊<br/>411-0016　静岡県三島市塚原新田24-3<br/>e-mail info@botanypainting.com<br/>Tel　055-983-3361</p>"
+          }
+        }
+      },
+      "block_order": [
+        "note_RmGQta"
+      ],
+      "name": "法律表記 (legal-notes)",
+      "settings": {
+        "title": "特定商取引法の表示",
+        "title_color": "#8b4f63",
+        "title_font_size": 16,
+        "mobile_title_font_size": 14,
+        "title_font_weight": "700",
+        "section_background_color": "#fbe9e9",
+        "card_background_color": "#ffffff",
+        "card_border_color": "#f0dede",
+        "card_border_radius": 14,
+        "max_width": 980,
+        "card_padding_top": 36,
+        "card_padding_right": 40,
+        "card_padding_bottom": 36,
+        "card_padding_left": 40,
+        "mobile_card_padding_top": 24,
+        "mobile_card_padding_right": 20,
+        "mobile_card_padding_bottom": 24,
+        "mobile_card_padding_left": 20,
+        "margin_top": 40,
+        "margin_bottom": 40,
+        "text_color": "#333333",
+        "text_font_size": 12,
+        "mobile_text_font_size": 12,
+        "text_line_height": 120,
+        "item_gap": 0,
+        "marker_mode": "auto"
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "caption": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.descriptors.subtitle.value }}",
+            "text_style": "subtitle"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "caption",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
     }
   },
   "order": [
@@ -793,14 +925,17 @@
     "rich_text_Y66ktN",
     "promo_framed_content_XE3Jam",
     "promo_framed_content_TEXzdh",
-    "main",
-    "related-products",
     "multicolumn_LNrrnW",
     "multicolumn_NGC6fN",
     "multicolumn_xTwKa4",
     "multicolumn_DQeTth",
     "step_cards_dWQBVG",
     "big_card_8fhxXf",
-    "testimonials_bento_MMWaAU"
+    "testimonials_bento_MMWaAU",
+    "legal_notes_GDJXD7",
+    "legal_notes_qyzKXn",
+    "legal_notes_4KMcdT",
+    "main",
+    "related-products"
   ]
 }

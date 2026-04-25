@@ -15,9 +15,42 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "google_photo_gallery_7mxbDm": {
+      "type": "google-photo-gallery",
+      "blocks": {
+        "album_UN9Qm4": {
+          "type": "album",
+          "settings": {
+            "album_title": "",
+            "album_description": "",
+            "gas_web_app_url": "https://drive.google.com/drive/folders/1PBUw4YylpW99dsIoqmPgm31dlv_EpQJ9?usp=sharing"
+          }
+        }
+      },
+      "block_order": [
+        "album_UN9Qm4"
+      ],
+      "name": "Googleフォトギャラリー",
+      "settings": {
+        "heading": "",
+        "description": "",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "color_scheme": "",
+        "image_ratio": "square",
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "grid_gap": 12,
+        "corner_radius": 12,
+        "skeleton_count": 8,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "google_photo_gallery_7mxbDm"
   ]
 }

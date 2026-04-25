@@ -157,7 +157,7 @@
         "badge_border_width": 1,
         "grid_gap": 4,
         "grid_item_radius": 0,
-        "content_alignment": "left"
+        "content_alignment": "center"
       }
     },
     "main": {
@@ -446,7 +446,7 @@
             "title": "並べる",
             "text": "<p>木製パネルに自由に葉をレイアウトします。葉がパネルからはみ出ても大丈夫（貼付け後切り落とします）。</p>",
             "image": "shopify://shop_images/P1000412.jpg",
-            "card_bg": "#f4b9b0",
+            "card_bg": "#eda69b",
             "number_bg": "",
             "number_color": ""
           }
@@ -467,8 +467,9 @@
           "type": "step",
           "settings": {
             "number": "",
-            "title": "並べる",
-            "text": "<p>説明文を入力してください。</p>",
+            "title": "着色",
+            "text": "<p>スポンジを使ってアクリル絵の具を葉にお化粧をするように塗っていきます。無になれる時間をゆっくりと楽しんでください。</p>",
+            "image": "shopify://shop_images/P1000491.jpg",
             "card_bg": "",
             "number_bg": "",
             "number_color": ""
@@ -489,7 +490,7 @@
         "columns_desktop": 3,
         "gap": 16,
         "color_scheme": "",
-        "text_color": "#1b1b1b",
+        "text_color": "#ffffff",
         "card_background": "#f3d0cf",
         "card_radius": 16,
         "card_padding_x": 18,
@@ -500,6 +501,8 @@
         "title_size": 18,
         "body_size": 13,
         "body_opacity": 90,
+        "body_text_color": "#ffffff",
+        "body_font": "assistant_n4",
         "image_aspect_ratio": "4 / 3",
         "media_radius": 12,
         "padding_top": 24,

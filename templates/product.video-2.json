@@ -435,6 +435,76 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "step_cards_dWQBVG": {
+      "type": "step-cards",
+      "blocks": {
+        "step_BE9Bj6": {
+          "type": "step",
+          "settings": {
+            "number": "1",
+            "title": "並べる",
+            "text": "<p>木製パネルに自由に葉をレイアウトします。葉がパネルからはみ出ても大丈夫（貼付け後切り落とします）。</p>",
+            "image": "shopify://shop_images/P1000412.jpg",
+            "card_bg": "#f4b9b0",
+            "number_bg": "",
+            "number_color": ""
+          }
+        },
+        "step_Kn3jWr": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "title": "貼り付け",
+            "text": "<p>専用のノリを使って葉を貼り付けます。手のひらで天然の植物に触れるリラックス効果を感じてください。</p>",
+            "image": "shopify://shop_images/P1000412.jpg",
+            "card_bg": "#987892",
+            "number_bg": "",
+            "number_color": ""
+          }
+        },
+        "step_hEUANq": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "title": "並べる",
+            "text": "<p>説明文を入力してください。</p>",
+            "card_bg": "",
+            "number_bg": "",
+            "number_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_BE9Bj6",
+        "step_Kn3jWr",
+        "step_hEUANq"
+      ],
+      "name": "ステップカード",
+      "settings": {
+        "heading": "制作の工程",
+        "heading_size": "h2",
+        "heading_align": "center",
+        "heading_bottom_margin": 30,
+        "columns_desktop": 3,
+        "gap": 16,
+        "color_scheme": "",
+        "text_color": "#1b1b1b",
+        "card_background": "#f3d0cf",
+        "card_radius": 16,
+        "card_padding_x": 18,
+        "card_padding_y": 18,
+        "number_size": 44,
+        "number_background": "#ffffff",
+        "number_text_color": "#3a3a3a",
+        "title_size": 18,
+        "body_size": 13,
+        "body_opacity": 90,
+        "image_aspect_ratio": "4 / 3",
+        "media_radius": 12,
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
     }
   },
   "order": [
@@ -447,6 +517,7 @@
     "multicolumn_LNrrnW",
     "multicolumn_NGC6fN",
     "multicolumn_xTwKa4",
-    "multicolumn_DQeTth"
+    "multicolumn_DQeTth",
+    "step_cards_dWQBVG"
   ]
 }

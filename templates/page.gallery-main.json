@@ -56,22 +56,21 @@
     "google_photo_gallery_mwQqxL": {
       "type": "google-photo-gallery",
       "blocks": {
-        "album_MnwYyr": {
+        "album_QMPazR": {
           "type": "album",
           "settings": {
-            "album_title": "BOTANY!",
+            "album_title": "",
             "album_description": "",
             "gas_web_app_url": "https://script.google.com/macros/s/AKfycbxwPuxPdHsU7v6ahYlfg0xmxoDPiG7XdJi3O0oZFTWDApkah7AZVlmVA2GnQHXp6zA6/exec?folderId=17zfL86x3vaNsFXLXDT3c08Bg9-IY32v4"
           }
         }
       },
       "block_order": [
-        "album_MnwYyr"
+        "album_QMPazR"
       ],
-      "disabled": true,
       "name": "googleDrivephoto",
       "settings": {
-        "heading": "Googleフォトギャラリー",
+        "heading": "",
         "description": "",
         "heading_size": "h1",
         "heading_alignment": "center",

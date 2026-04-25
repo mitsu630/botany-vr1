@@ -70,7 +70,7 @@
       "settings": {
         "collection": "講座一覧",
         "products_to_show": 25,
-        "title": "特集コレクション",
+        "title": "",
         "heading_size": "h2",
         "description": "",
         "show_description": false,

@@ -11,13 +11,85 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "custom_buttons_pE38jh": {
+      "type": "custom-buttons",
+      "blocks": {
+        "button_fDeaLR": {
+          "type": "button",
+          "settings": {
+            "text": "BOTANY",
+            "link": "",
+            "open_new_tab": false,
+            "background_color": "#711a2e",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 25,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 10,
+            "padding_x": 16,
+            "font_size": 16,
+            "font_weight": "600"
+          }
+        }
+      },
+      "block_order": [
+        "button_fDeaLR"
+      ],
+      "name": "ボタンズ (custom-buttons)",
+      "settings": {
+        "desktop_alignment": "center",
+        "mobile_alignment": "center",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "button_gap": 16,
+        "background_color": "#e9dccd"
+      }
+    },
+    "google_photo_gallery_mwQqxL": {
+      "type": "google-photo-gallery",
+      "blocks": {
+        "album_MnwYyr": {
+          "type": "album",
+          "settings": {
+            "album_title": "BOTANY!",
+            "album_description": "",
+            "gas_web_app_url": "https://script.google.com/macros/s/AKfycbxwPuxPdHsU7v6ahYlfg0xmxoDPiG7XdJi3O0oZFTWDApkah7AZVlmVA2GnQHXp6zA6/exec?folderId=17zfL86x3vaNsFXLXDT3c08Bg9-IY32v4"
+          }
+        }
+      },
+      "block_order": [
+        "album_MnwYyr"
+      ],
+      "disabled": true,
+      "name": "googleDrivephoto",
+      "settings": {
+        "heading": "Googleフォトギャラリー",
+        "description": "",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "color_scheme": "",
+        "image_ratio": "square",
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "grid_gap": 12,
+        "corner_radius": 12,
+        "skeleton_count": 8,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "custom_buttons_pE38jh",
+    "google_photo_gallery_mwQqxL"
   ]
 }

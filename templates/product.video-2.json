@@ -576,8 +576,60 @@
           "settings": {
             "image_1": "shopify://shop_images/P1001275.jpg",
             "image_2": "shopify://shop_images/tsushin_book-min.jpg",
-            "aspect_ratio": "1 / 1",
+            "aspect_ratio": "4 / 3",
             "grid_gap": 16,
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_3rBCKk": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>講座基本セット</strong></p>",
+            "font_size": 16,
+            "color": "#595555",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 28,
+            "margin_bottom": 0
+          }
+        },
+        "text_XnppXp": {
+          "type": "text",
+          "settings": {
+            "text": "<p>動画のURLとテキストBOOKの他、講座を楽しむための画材セットをお送りします。セット内容には、30cm正方形木製パネル1枚、アクリル絵の具12色、ゴールド・シルバー絵の具、ペーパーパレット、専用糊、着色用スポンジ、専用ニス、ニス用刷毛、動画URL、受講者専用画材サイトのURLが含まれます。</p>",
+            "font_size": 13,
+            "color": "#3d3d3d",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_2_gBWJFD": {
+          "type": "text_2",
+          "settings": {
+            "left_text": "<ul><li>30cm正方形木製パネル1枚</li><li>アクリル絵の具12色</li><li>ゴールド絵の具・シルバー絵の具</li><li>ペーパーパレット</li><li>専用糊</li></ul>",
+            "right_text": "<ul><li>着色用スポンジ</li><li>専用ニス</li><li>ニス用刷毛</li><li>動画URL</li><li>受講者専用画材サイトのURL</li></ul>",
+            "font_size": 16,
+            "color": "#111111",
+            "grid_gap": 24,
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "image_4jWBKi": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/P1001531.jpg",
+            "aspect_ratio": "4 / 3",
+            "image_box_width": 1200,
+            "image_box_height": 720,
+            "image_align": "center",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -591,7 +643,11 @@
         "video_9wmDie",
         "text_aYFcrb",
         "text_twMfJJ",
-        "images_2_8AcVQr"
+        "images_2_8AcVQr",
+        "text_3rBCKk",
+        "text_XnppXp",
+        "text_2_gBWJFD",
+        "image_4jWBKi"
       ],
       "name": "ビックカード",
       "settings": {

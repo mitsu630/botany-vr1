@@ -89,6 +89,17 @@
     height: var(--big-card-image-box-height);
   }
 
+  #shopify-section-{{ section.id }} .big-card__media--content .big-card__image--boxed,
+  #shopify-section-{{ section.id }} .big-card__media--full .big-card__image--boxed {
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .big-card__media--full {
+    width: 100vw;
+    margin-right: calc(50% - 50vw);
+    margin-left: calc(50% - 50vw);
+  }
+
   #shopify-section-{{ section.id }} .big-card__image--crop {
     width: 100%;
     height: auto;
@@ -244,6 +255,7 @@
           assign image_box_height = block.settings.image_box_height | default: 720
           assign image_align = block.settings.image_align | default: 'center'
           assign image_fit = block.settings.image_fit | default: 'cover'
+          assign image_width_mode = block.settings.image_width_mode | default: 'box'
         -%}
 
         <div
@@ -293,7 +305,7 @@
               </div>
 
             {%- when 'image' -%}
-              <div class="big-card__media">
+              <div class="big-card__media big-card__media--{{ image_width_mode }}">
                 <div class="big-card__image big-card__image--boxed big-card__image--{{ image_fit }} big-card__image--{{ image_align }}">
                   {%- if block.settings.image != blank -%}
                     {{
@@ -853,6 +865,26 @@
             }
           ],
           "default": "cover"
+        },
+        {
+          "type": "select",
+          "id": "image_width_mode",
+          "label": "画像の幅",
+          "options": [
+            {
+              "value": "box",
+              "label": "指定ボックス幅"
+            },
+            {
+              "value": "content",
+              "label": "コンテンツ幅いっぱい"
+            },
+            {
+              "value": "full",
+              "label": "画面幅いっぱい"
+            }
+          ],
+          "default": "box"
         },
         {
           "type": "range",

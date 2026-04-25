@@ -12,11 +12,11 @@
     "custom_buttons_B7pFbJ": {
       "type": "custom-buttons",
       "blocks": {
-        "button_wC4AAQ": {
+        "button_PXhdqG": {
           "type": "button",
           "settings": {
-            "text": "講師専用サイト",
-            "link": "https://shop.botanypainting.com/p/login?redirect=%2Fmy%2Ftop%3F_gl%3D1*1s6i12s*_gcl_au*MzYwNjM1Njk2LjE3NzM3MjczNDAuMTMzNjQyODkxMi4xNzc2MzE4Mjc5LjE3NzYzMTgyOTQ.*_ga*NDMwNDk0NzU2LjE3NjUyNDc1NjU.*_ga_10Y31BPHE9*czE3NzcwODU4MTIkbzI4NCRnMSR0MTc3NzA4NjQyMiRqNjAkbDAkaDA.",
+            "text": "認定講座",
+            "link": "shopify://products/nintei",
             "open_new_tab": false,
             "background_color": "#e26262",
             "text_color": "#ffffff",
@@ -50,11 +50,11 @@
             "font_weight": "400"
           }
         },
-        "button_PXhdqG": {
+        "button_wC4AAQ": {
           "type": "button",
           "settings": {
-            "text": "認定講座",
-            "link": "shopify://products/nintei",
+            "text": "講師専用サイト",
+            "link": "https://shop.botanypainting.com/p/login?redirect=%2Fmy%2Ftop%3F_gl%3D1*1s6i12s*_gcl_au*MzYwNjM1Njk2LjE3NzM3MjczNDAuMTMzNjQyODkxMi4xNzc2MzE4Mjc5LjE3NzYzMTgyOTQ.*_ga*NDMwNDk0NzU2LjE3NjUyNDc1NjU.*_ga_10Y31BPHE9*czE3NzcwODU4MTIkbzI4NCRnMSR0MTc3NzA4NjQyMiRqNjAkbDAkaDA.",
             "open_new_tab": false,
             "background_color": "#e26262",
             "text_color": "#ffffff",
@@ -71,9 +71,9 @@
         }
       },
       "block_order": [
-        "button_wC4AAQ",
+        "button_PXhdqG",
         "button_eUqV96",
-        "button_PXhdqG"
+        "button_wC4AAQ"
       ],
       "name": "ボタンズ (custom-buttons)",
       "settings": {

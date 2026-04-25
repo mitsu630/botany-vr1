@@ -17,6 +17,142 @@
         "padding_bottom": 28
       }
     },
+    "custom_buttons_4er6E8": {
+      "type": "custom-buttons",
+      "blocks": {
+        "button_rzzJdm": {
+          "type": "button",
+          "settings": {
+            "text": "botany",
+            "link": "shopify://pages/gallery-main",
+            "open_new_tab": false,
+            "background_color": "#79414d",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 25,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 10,
+            "padding_x": 16,
+            "font_size": 16,
+            "font_weight": "600"
+          }
+        },
+        "button_XmzYgy": {
+          "type": "button",
+          "settings": {
+            "text": "work",
+            "link": "shopify://pages/gallery-work",
+            "open_new_tab": false,
+            "background_color": "#79414d",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 25,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 10,
+            "padding_x": 16,
+            "font_size": 16,
+            "font_weight": "600"
+          }
+        },
+        "button_ygKEtX": {
+          "type": "button",
+          "settings": {
+            "text": "finish",
+            "link": "shopify://pages/gallery-finish",
+            "open_new_tab": false,
+            "background_color": "#79414d",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 25,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 10,
+            "padding_x": 16,
+            "font_size": 16,
+            "font_weight": "600"
+          }
+        },
+        "button_pb7GHB": {
+          "type": "button",
+          "settings": {
+            "text": "round",
+            "link": "shopify://pages/gallery-round",
+            "open_new_tab": false,
+            "background_color": "#79414d",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 25,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 10,
+            "padding_x": 16,
+            "font_size": 16,
+            "font_weight": "600"
+          }
+        },
+        "button_VjbeFK": {
+          "type": "button",
+          "settings": {
+            "text": "basket",
+            "link": "shopify://pages/gallery-basket",
+            "open_new_tab": false,
+            "background_color": "#e3bab3",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 25,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 10,
+            "padding_x": 16,
+            "font_size": 16,
+            "font_weight": "600"
+          }
+        },
+        "button_nQcnnV": {
+          "type": "button",
+          "settings": {
+            "text": "etc",
+            "link": "shopify://pages/gallery-etc",
+            "open_new_tab": false,
+            "background_color": "#79414d",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 25,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 10,
+            "padding_x": 16,
+            "font_size": 16,
+            "font_weight": "600"
+          }
+        }
+      },
+      "block_order": [
+        "button_rzzJdm",
+        "button_XmzYgy",
+        "button_ygKEtX",
+        "button_pb7GHB",
+        "button_VjbeFK",
+        "button_nQcnnV"
+      ],
+      "name": "ボタンズ (custom-buttons)",
+      "settings": {
+        "desktop_alignment": "center",
+        "mobile_alignment": "center",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "button_gap": 16,
+        "background_color": "#e9dccd"
+      }
+    },
     "google_photo_gallery_gwaaY6": {
       "type": "google-photo-gallery",
       "blocks": {
@@ -52,6 +188,7 @@
   },
   "order": [
     "main",
+    "custom_buttons_4er6E8",
     "google_photo_gallery_gwaaY6"
   ]
 }

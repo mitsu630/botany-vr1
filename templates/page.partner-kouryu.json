@@ -23,14 +23,14 @@
         "heading_AV6Wz7": {
           "type": "heading",
           "settings": {
-            "heading": "講師交流会２回目",
+            "heading": "講師交流会4回目",
             "heading_size": "h2"
           }
         },
         "text_jfW7N6": {
           "type": "text",
           "settings": {
-            "text": "<p>レジンを使った着色硬化技術講座<br/>講師：浅岡先生<br/>&lt;終了しました&gt;</p>",
+            "text": "<p>色のイロイロ講座<br/>講師：YURI先生<br/>&lt;終了しました&gt;</p>",
             "text_style": "body"
           }
         }
@@ -41,7 +41,85 @@
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "image": "shopify://shop_images/IMG_0407-min.jpg",
+        "image": "shopify://shop_images/inoue.webp",
+        "height": "adapt",
+        "desktop_image_width": "small",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_z6NPyL": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_qEQdcx": {
+          "type": "heading",
+          "settings": {
+            "heading": "講師交流会３回目",
+            "heading_size": "h2"
+          }
+        },
+        "text_U4T4wM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>世界で一つだけの蓮の葉バッグを作ってみよう！<br/>講師：緒方先生<br/>&lt;終了しました&gt;</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_qEQdcx",
+        "text_U4T4wM"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/ogata-min-1.jpg",
+        "height": "adapt",
+        "desktop_image_width": "small",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_E8LzTf": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_b8HRnb": {
+          "type": "heading",
+          "settings": {
+            "heading": "講師交流会２回目",
+            "heading_size": "h2"
+          }
+        },
+        "text_h7Yhtw": {
+          "type": "text",
+          "settings": {
+            "text": "<p>レジンを使った着色硬化技術講座<br/>講師：浅岡先生<br/>&lt;終了しました&gt;</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_b8HRnb",
+        "text_h7Yhtw"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/asaoka-min.jpg",
         "height": "adapt",
         "desktop_image_width": "small",
         "layout": "image_first",
@@ -99,6 +177,8 @@
   "order": [
     "main",
     "image_with_text_UDMNxR",
+    "image_with_text_z6NPyL",
+    "image_with_text_E8LzTf",
     "image_with_text_dirGtW"
   ]
 }

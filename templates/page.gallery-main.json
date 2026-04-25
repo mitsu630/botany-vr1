@@ -17,16 +17,35 @@
         "padding_bottom": 28
       }
     },
-    "custom_buttons_pE38jh": {
+    "custom_buttons_Cmcr8q": {
       "type": "custom-buttons",
       "blocks": {
-        "button_fDeaLR": {
+        "button_ri9KzH": {
           "type": "button",
           "settings": {
             "text": "BOTANY",
+            "link": "shopify://pages/gallery-main",
+            "open_new_tab": false,
+            "background_color": "#e3bab3",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 25,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 10,
+            "padding_x": 16,
+            "font_size": 16,
+            "font_weight": "600"
+          }
+        },
+        "button_zabj4w": {
+          "type": "button",
+          "settings": {
+            "text": "FINISH",
             "link": "",
             "open_new_tab": false,
-            "background_color": "#711a2e",
+            "background_color": "#50191e",
             "text_color": "#ffffff",
             "border_color": "#111111",
             "border_width": 0,
@@ -41,7 +60,8 @@
         }
       },
       "block_order": [
-        "button_fDeaLR"
+        "button_ri9KzH",
+        "button_zabj4w"
       ],
       "name": "ボタンズ (custom-buttons)",
       "settings": {
@@ -88,7 +108,7 @@
   },
   "order": [
     "main",
-    "custom_buttons_pE38jh",
+    "custom_buttons_Cmcr8q",
     "google_photo_gallery_mwQqxL"
   ]
 }

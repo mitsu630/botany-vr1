@@ -445,6 +445,7 @@
             "number": "1",
             "title": "並べる",
             "text": "<p>木製パネルに自由に葉をレイアウトします。葉がパネルからはみ出ても大丈夫（貼付け後切り落とします）。</p>",
+            "image": "shopify://shop_images/P1000412.jpg",
             "card_bg": "#f4b9b0",
             "number_bg": "",
             "number_color": ""
@@ -454,9 +455,10 @@
           "type": "step",
           "settings": {
             "number": "",
-            "title": "並べる",
-            "text": "<p>説明文を入力してください。</p>",
-            "card_bg": "",
+            "title": "貼り付け",
+            "text": "<p>専用のノリを使って葉を貼り付けます。手のひらで天然の植物に触れるリラックス効果を感じてください。</p>",
+            "image": "shopify://shop_images/P1000412.jpg",
+            "card_bg": "#987892",
             "number_bg": "",
             "number_color": ""
           }

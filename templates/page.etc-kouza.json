@@ -99,19 +99,19 @@
         "image_nkgJE8": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/P1001778-min.jpg"
+            "image": "shopify://shop_images/asaoka-min.webp"
           }
         },
         "image_f7AddJ": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/P1001789-min.jpg"
+            "image": "shopify://shop_images/inoue-1.webp"
           }
         },
         "image_iDacen": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/P1020713-min.jpg"
+            "image": "shopify://shop_images/ogata-min-1.webp"
           }
         }
       },
@@ -128,7 +128,7 @@
         "price_text": "",
         "button_label": "詳細はこちらから",
         "button_link": "shopify://pages/partner-event",
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-2",
         "heading_size": "h1",
         "image_radius": 12,
         "image_gap": 12,

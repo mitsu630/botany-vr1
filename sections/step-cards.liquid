@@ -15,6 +15,10 @@
 
 {%- if show_section -%}
   {%- style -%}
+    {%- if section.settings.body_font != blank -%}
+      {{ section.settings.body_font | font_face: font_display: 'swap' }}
+    {%- endif -%}
+
     /* Capsule scope: only inside this section instance */
     #shopify-section-{{ section.id }} {
       --sc-gap: {{ section.settings.gap }}px;
@@ -93,6 +97,12 @@
       font-size: var(--sc-body-size);
       line-height: 1.7;
       opacity: var(--sc-body-opacity);
+      color: {{ section.settings.body_text_color }};
+      {%- if section.settings.body_font != blank -%}
+        font-family: {{ section.settings.body_font.family }}, {{ section.settings.body_font.fallback_families }};
+        font-style: {{ section.settings.body_font.style }};
+        font-weight: {{ section.settings.body_font.weight }};
+      {%- endif -%}
     }
 
     #shopify-section-{{ section.id }} .step-cards--{{ section.id }} .step-cards__media {
@@ -245,6 +255,8 @@
     { "type": "range", "id": "title_size", "min": 12, "max": 28, "step": 1, "unit": "px", "label": "タイトル文字サイズ", "default": 18 },
     { "type": "range", "id": "body_size", "min": 10, "max": 20, "step": 1, "unit": "px", "label": "本文文字サイズ", "default": 13 },
     { "type": "range", "id": "body_opacity", "min": 60, "max": 100, "step": 5, "unit": "%", "label": "本文の濃さ", "default": 90 },
+    { "type": "color", "id": "body_text_color", "label": "本文文字色", "default": "#3a3a3a" },
+    { "type": "font_picker", "id": "body_font", "label": "本文フォント", "default": "assistant_n4" },
 
     { "type": "header", "content": "画像" },
     {

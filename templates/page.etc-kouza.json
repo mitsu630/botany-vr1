@@ -63,10 +63,159 @@
         "padding_top": 24,
         "padding_bottom": 24
       }
+    },
+    "product_intro_card_a_YDEHpL": {
+      "type": "product-intro-card-a",
+      "blocks": {
+        "image_XgaBA3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/P1001778-min.jpg"
+          }
+        },
+        "image_JEegWc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/P1001789-min.jpg"
+          }
+        },
+        "image_Fk94By": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/P1020713-min.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_XgaBA3",
+        "image_JEegWc",
+        "image_Fk94By"
+      ],
+      "name": "商品紹介カードA",
+      "settings": {
+        "badge_text": "一般向け",
+        "title": "自宅で楽しむ動画体験コース",
+        "text": "<p>・一般の方向け<br/>・自宅で楽しめる講座<br/>・<strong>4000円</strong>の体験コース<br/>・画材一式が自宅に届く</p>",
+        "price_text": "",
+        "button_label": "詳細はこちらから",
+        "button_link": "shopify://products/video_otameshi",
+        "color_scheme": "scheme-3",
+        "heading_size": "h1",
+        "image_radius": 12,
+        "image_gap": 12,
+        "media_border_width": 0,
+        "media_border_color": "#000000",
+        "button_bg_color": "#418071",
+        "button_text_color": "#ffffff",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "featured_product_kJAjMc": {
+      "type": "featured-product",
+      "blocks": {
+        "text_FHKUd8": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "body"
+          }
+        },
+        "title_VK7pVM": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h2"
+          }
+        },
+        "price_7DmTFx": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_fqibCL": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_86KxHV": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_9rzazL": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_z6pQQn": {
+          "type": "share",
+          "settings": {
+            "share_label": "共有"
+          }
+        }
+      },
+      "block_order": [
+        "text_FHKUd8",
+        "title_VK7pVM",
+        "price_7DmTFx",
+        "variant_picker_fqibCL",
+        "quantity_selector_86KxHV",
+        "buy_buttons_9rzazL",
+        "share_z6pQQn"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "ボタニーペインティング通信講座",
+        "color_scheme": "",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection_3TDeQK": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "講座一覧",
+        "products_to_show": 25,
+        "title": "特集コレクション",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "main",
-    "product_intro_card_a_chHXwE"
+    "product_intro_card_a_chHXwE",
+    "product_intro_card_a_YDEHpL",
+    "featured_product_kJAjMc",
+    "featured_collection_3TDeQK"
   ]
 }

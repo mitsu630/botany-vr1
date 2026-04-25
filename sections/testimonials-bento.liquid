@@ -1,0 +1,447 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --testimonials-bento-bg-color: {{ section.settings.section_background_color }};
+    --testimonials-bento-block-bg-color: {{ section.settings.block_background_color }};
+    --testimonials-bento-heading-color: {{ section.settings.heading_color }};
+    --testimonials-bento-title-color: {{ section.settings.block_title_color }};
+    --testimonials-bento-text-color: {{ section.settings.body_text_color }};
+    --testimonials-bento-name-color: {{ section.settings.name_color }};
+    --testimonials-bento-star-color: {{ section.settings.star_color }};
+    --testimonials-bento-heading-size: {{ section.settings.heading_font_size }}px;
+    --testimonials-bento-title-size: {{ section.settings.block_title_font_size }}px;
+    --testimonials-bento-text-size: {{ section.settings.body_font_size }}px;
+    --testimonials-bento-star-size: {{ section.settings.star_size }}px;
+    --testimonials-bento-name-size: {{ section.settings.name_font_size }}px;
+    --testimonials-bento-radius: {{ section.settings.block_border_radius }}px;
+    --testimonials-bento-padding: {{ section.settings.block_padding }}px;
+    --testimonials-bento-gap: {{ section.settings.block_gap }}px;
+    --testimonials-bento-section-padding-top: {{ section.settings.padding_top }}px;
+    --testimonials-bento-section-padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-bento {
+    background: var(--testimonials-bento-bg-color);
+    padding-top: var(--testimonials-bento-section-padding-top);
+    padding-bottom: var(--testimonials-bento-section-padding-bottom);
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-bento__inner {
+    width: min(100% - 32px, {{ section.settings.max_width }}px);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-bento__heading {
+    margin: 0 0 32px;
+    color: var(--testimonials-bento-heading-color);
+    font-size: var(--testimonials-bento-heading-size);
+    line-height: 1.25;
+    text-align: {{ section.settings.heading_alignment }};
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-bento__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--testimonials-bento-gap);
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-bento__card {
+    overflow: hidden;
+    background: var(--testimonials-bento-block-bg-color);
+    border-radius: var(--testimonials-bento-radius);
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-bento__card--with-image {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-bento__image {
+    min-height: 220px;
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-bento__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-bento__content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: var(--testimonials-bento-padding);
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-bento__title {
+    margin: 0;
+    color: var(--testimonials-bento-title-color);
+    font-size: var(--testimonials-bento-title-size);
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-bento__stars {
+    display: flex;
+    gap: 2px;
+    color: var(--testimonials-bento-star-color);
+    font-size: var(--testimonials-bento-star-size);
+    line-height: 1;
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-bento__name {
+    margin: 0;
+    color: var(--testimonials-bento-name-color);
+    font-size: var(--testimonials-bento-name-size);
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-bento__body {
+    color: var(--testimonials-bento-text-color);
+    font-size: var(--testimonials-bento-text-size);
+    line-height: 1.75;
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-bento__body > *:first-child {
+    margin-top: 0;
+  }
+
+  #shopify-section-{{ section.id }} .testimonials-bento__body > *:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .testimonials-bento__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #shopify-section-{{ section.id }} .testimonials-bento__card--with-image {
+      grid-template-columns: minmax(160px, 42%) minmax(0, 1fr);
+    }
+
+    #shopify-section-{{ section.id }} .testimonials-bento__image,
+    #shopify-section-{{ section.id }} .testimonials-bento__image img {
+      min-height: 100%;
+    }
+  }
+{%- endstyle -%}
+
+<div class="testimonials-bento">
+  <div class="testimonials-bento__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="testimonials-bento__heading">
+        {{ section.settings.heading | escape }}
+      </h2>
+    {%- endif -%}
+
+    <div class="testimonials-bento__grid">
+      {%- for block in section.blocks -%}
+        {%- assign rating = block.settings.rating | default: 5 | plus: 0 -%}
+        <article
+          class="testimonials-bento__card{% if block.settings.image != blank %} testimonials-bento__card--with-image{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.image != blank -%}
+            <div class="testimonials-bento__image">
+              {{
+                block.settings.image
+                | image_url: width: 1200
+                | image_tag:
+                  widths: '300, 450, 600, 750, 900, 1200',
+                  sizes: '(min-width: 750px) 21vw, calc(100vw - 32px)',
+                  loading: 'lazy',
+                  alt: block.settings.image.alt
+              }}
+            </div>
+          {%- endif -%}
+
+          <div class="testimonials-bento__content">
+            {%- if block.settings.title != blank -%}
+              <h3 class="testimonials-bento__title">
+                {{ block.settings.title | escape }}
+              </h3>
+            {%- endif -%}
+
+            <div class="testimonials-bento__stars" aria-label="{{ rating }}つ星の評価">
+              {%- for i in (1..5) -%}
+                {%- if i <= rating -%}
+                  <span aria-hidden="true">★</span>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+
+            {%- if block.settings.name != blank -%}
+              <p class="testimonials-bento__name">
+                {{ block.settings.name | escape }}
+              </p>
+            {%- endif -%}
+
+            {%- if block.settings.body != blank -%}
+              <div class="testimonials-bento__body rte">
+                {{ block.settings.body }}
+              </div>
+            {%- endif -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "お客様の声",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "親タイトル"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "お客様の声",
+      "label": "親タイトル"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "左寄せ"
+        },
+        {
+          "value": "center",
+          "label": "中央寄せ"
+        }
+      ],
+      "default": "center",
+      "label": "親タイトルの配置"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 20,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "default": 36,
+      "label": "親タイトルのフォントサイズ"
+    },
+    {
+      "type": "header",
+      "content": "カラー"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "default": "#ffffff",
+      "label": "セクション背景色"
+    },
+    {
+      "type": "color",
+      "id": "block_background_color",
+      "default": "#f7f2ec",
+      "label": "ブロック背景色"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#2d2620",
+      "label": "親タイトルの文字色"
+    },
+    {
+      "type": "color",
+      "id": "block_title_color",
+      "default": "#2d2620",
+      "label": "ブロック内タイトルの文字色"
+    },
+    {
+      "type": "color",
+      "id": "body_text_color",
+      "default": "#4d4339",
+      "label": "本文の文字色"
+    },
+    {
+      "type": "color",
+      "id": "name_color",
+      "default": "#2d2620",
+      "label": "氏名の文字色"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "default": "#d8a642",
+      "label": "星の色"
+    },
+    {
+      "type": "header",
+      "content": "サイズ"
+    },
+    {
+      "type": "range",
+      "id": "block_title_font_size",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 22,
+      "label": "ブロック内タイトルのフォントサイズ"
+    },
+    {
+      "type": "range",
+      "id": "body_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16,
+      "label": "本文のフォントサイズ"
+    },
+    {
+      "type": "range",
+      "id": "star_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 20,
+      "label": "星のサイズ"
+    },
+    {
+      "type": "range",
+      "id": "name_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 15,
+      "label": "氏名のフォントサイズ"
+    },
+    {
+      "type": "header",
+      "content": "余白・形状"
+    },
+    {
+      "type": "range",
+      "id": "block_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 20,
+      "label": "各ブロックの角丸"
+    },
+    {
+      "type": "range",
+      "id": "block_padding",
+      "min": 12,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 28,
+      "label": "各ブロックの内側の余白"
+    },
+    {
+      "type": "range",
+      "id": "block_gap",
+      "min": 8,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 24,
+      "label": "ブロック間の余白"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64,
+      "label": "セクション上の余白"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64,
+      "label": "セクション下の余白"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 900,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1200,
+      "label": "コンテンツ最大幅"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "お客様の声",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "default": "想像以上の仕上がりでした",
+          "label": "タイトル"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "default": "<p>作品づくりの時間も楽しく、完成した作品を飾るたびに嬉しい気持ちになります。</p>",
+          "label": "本文文章"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5,
+          "label": "星の評価"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "default": "山田 花子様",
+          "label": "氏名"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "作品写真"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "お客様の声",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

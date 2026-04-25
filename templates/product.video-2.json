@@ -508,6 +508,103 @@
         "padding_top": 24,
         "padding_bottom": 24
       }
+    },
+    "big_card_8fhxXf": {
+      "type": "big-card",
+      "blocks": {
+        "text_fBrdxx": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>動画を見て学ぶ</strong></p>",
+            "font_size": 16,
+            "color": "#595555",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_GNzjbL": {
+          "type": "text",
+          "settings": {
+            "text": "<p>スマホやパソコンで繰り返し視聴できる一般非公開のネット動画で、丁寧に説明します。（以下画像はサンプルです）</p>",
+            "font_size": 13,
+            "color": "#3d3d3d",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "video_9wmDie": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/ボタニーペインティング　通信講座　サンプル (540p).mp4",
+            "video_url": "",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_aYFcrb": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>動画を見て学ぶ</strong></p>",
+            "font_size": 16,
+            "color": "#595555",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 28,
+            "margin_bottom": 0
+          }
+        },
+        "text_twMfJJ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ボタニーペインティングの基本と応用がわかるテキストBOOKを同封。アートの着色の基礎や応用について学べ、講師の作品集も豊富に掲載しています。一般書店でも販売されている本格的な本で、しっかりと学ぶことができます。</p>",
+            "font_size": 13,
+            "color": "#3d3d3d",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "images_2_8AcVQr": {
+          "type": "images_2",
+          "settings": {
+            "image_1": "shopify://shop_images/P1001275.jpg",
+            "image_2": "shopify://shop_images/tsushin_book-min.jpg",
+            "aspect_ratio": "1 / 1",
+            "grid_gap": 16,
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "text_fBrdxx",
+        "text_GNzjbL",
+        "video_9wmDie",
+        "text_aYFcrb",
+        "text_twMfJJ",
+        "images_2_8AcVQr"
+      ],
+      "name": "ビックカード",
+      "settings": {
+        "background_color": "#f7dfdb",
+        "text_color": "#3d3d3d",
+        "max_width": 1400,
+        "border_radius": 16,
+        "block_gap": 12,
+        "padding_top_desktop": 52,
+        "padding_bottom_desktop": 52,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 28
+      }
     }
   },
   "order": [
@@ -521,6 +618,7 @@
     "multicolumn_NGC6fN",
     "multicolumn_xTwKa4",
     "multicolumn_DQeTth",
-    "step_cards_dWQBVG"
+    "step_cards_dWQBVG",
+    "big_card_8fhxXf"
   ]
 }

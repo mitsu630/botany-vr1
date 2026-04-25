@@ -20,10 +20,10 @@
     "custom_buttons_Cmcr8q": {
       "type": "custom-buttons",
       "blocks": {
-        "button_ri9KzH": {
+        "button_zabj4w": {
           "type": "button",
           "settings": {
-            "text": "BOTANY",
+            "text": "botany",
             "link": "shopify://pages/gallery-main",
             "open_new_tab": false,
             "background_color": "#e3bab3",
@@ -39,13 +39,89 @@
             "font_weight": "600"
           }
         },
-        "button_zabj4w": {
+        "button_9Jamrb": {
           "type": "button",
           "settings": {
-            "text": "FINISH",
+            "text": "work",
+            "link": "shopify://pages/gallery-work",
+            "open_new_tab": false,
+            "background_color": "#79414d",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 25,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 10,
+            "padding_x": 16,
+            "font_size": 16,
+            "font_weight": "600"
+          }
+        },
+        "button_TdWBcJ": {
+          "type": "button",
+          "settings": {
+            "text": "finish",
             "link": "shopify://pages/gallery-finish",
             "open_new_tab": false,
-            "background_color": "#50191e",
+            "background_color": "#79414d",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 25,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 10,
+            "padding_x": 16,
+            "font_size": 16,
+            "font_weight": "600"
+          }
+        },
+        "button_9yzQrE": {
+          "type": "button",
+          "settings": {
+            "text": "round",
+            "link": "shopify://pages/gallery-round",
+            "open_new_tab": false,
+            "background_color": "#79414d",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 25,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 10,
+            "padding_x": 16,
+            "font_size": 16,
+            "font_weight": "600"
+          }
+        },
+        "button_idFB3m": {
+          "type": "button",
+          "settings": {
+            "text": "basket",
+            "link": "shopify://pages/gallery-basket",
+            "open_new_tab": false,
+            "background_color": "#79414d",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 25,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 10,
+            "padding_x": 16,
+            "font_size": 16,
+            "font_weight": "600"
+          }
+        },
+        "button_knJeKf": {
+          "type": "button",
+          "settings": {
+            "text": "etc",
+            "link": "shopify://pages/gallery-etc",
+            "open_new_tab": false,
+            "background_color": "#79414d",
             "text_color": "#ffffff",
             "border_color": "#111111",
             "border_width": 0,
@@ -60,8 +136,12 @@
         }
       },
       "block_order": [
-        "button_ri9KzH",
-        "button_zabj4w"
+        "button_zabj4w",
+        "button_9Jamrb",
+        "button_TdWBcJ",
+        "button_9yzQrE",
+        "button_idFB3m",
+        "button_knJeKf"
       ],
       "name": "ボタンズ (custom-buttons)",
       "settings": {

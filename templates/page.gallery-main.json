@@ -43,7 +43,7 @@
           "type": "button",
           "settings": {
             "text": "FINISH",
-            "link": "",
+            "link": "shopify://pages/gallery-finish",
             "open_new_tab": false,
             "background_color": "#50191e",
             "text_color": "#ffffff",

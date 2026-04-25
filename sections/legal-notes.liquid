@@ -1,0 +1,467 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --legal-notes-section-bg: {{ section.settings.section_background_color }};
+    --legal-notes-card-bg: {{ section.settings.card_background_color }};
+    --legal-notes-border-color: {{ section.settings.card_border_color }};
+    --legal-notes-title-color: {{ section.settings.title_color }};
+    --legal-notes-text-color: {{ section.settings.text_color }};
+    --legal-notes-card-radius: {{ section.settings.card_border_radius }}px;
+    --legal-notes-card-padding-top: {{ section.settings.card_padding_top }}px;
+    --legal-notes-card-padding-right: {{ section.settings.card_padding_right }}px;
+    --legal-notes-card-padding-bottom: {{ section.settings.card_padding_bottom }}px;
+    --legal-notes-card-padding-left: {{ section.settings.card_padding_left }}px;
+    --legal-notes-section-margin-top: {{ section.settings.margin_top }}px;
+    --legal-notes-section-margin-bottom: {{ section.settings.margin_bottom }}px;
+    --legal-notes-title-size: {{ section.settings.title_font_size }}px;
+    --legal-notes-title-weight: {{ section.settings.title_font_weight }};
+    --legal-notes-text-size: {{ section.settings.text_font_size }}px;
+    --legal-notes-line-height: {{ section.settings.text_line_height | divided_by: 100.0 }};
+    --legal-notes-item-gap: {{ section.settings.item_gap }}px;
+    --legal-notes-mobile-card-padding-top: {{ section.settings.mobile_card_padding_top }}px;
+    --legal-notes-mobile-card-padding-right: {{ section.settings.mobile_card_padding_right }}px;
+    --legal-notes-mobile-card-padding-bottom: {{ section.settings.mobile_card_padding_bottom }}px;
+    --legal-notes-mobile-card-padding-left: {{ section.settings.mobile_card_padding_left }}px;
+    --legal-notes-mobile-title-size: {{ section.settings.mobile_title_font_size }}px;
+    --legal-notes-mobile-text-size: {{ section.settings.mobile_text_font_size }}px;
+  }
+
+  #shopify-section-{{ section.id }} .legal-notes {
+    margin-top: var(--legal-notes-section-margin-top);
+    margin-bottom: var(--legal-notes-section-margin-bottom);
+    background: var(--legal-notes-section-bg);
+  }
+
+  #shopify-section-{{ section.id }} .legal-notes__inner {
+    width: min(100% - 32px, {{ section.settings.max_width }}px);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  #shopify-section-{{ section.id }} .legal-notes__card {
+    background: var(--legal-notes-card-bg);
+    border: 1px solid var(--legal-notes-border-color);
+    border-radius: var(--legal-notes-card-radius);
+    padding: var(--legal-notes-card-padding-top) var(--legal-notes-card-padding-right) var(--legal-notes-card-padding-bottom) var(--legal-notes-card-padding-left);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  #shopify-section-{{ section.id }} .legal-notes__title {
+    margin: 0 0 28px;
+    color: var(--legal-notes-title-color);
+    font-size: var(--legal-notes-title-size);
+    font-weight: var(--legal-notes-title-weight);
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ section.id }} .legal-notes__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--legal-notes-item-gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #shopify-section-{{ section.id }} .legal-notes__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.35em;
+    color: var(--legal-notes-text-color);
+    font-size: var(--legal-notes-text-size);
+    line-height: var(--legal-notes-line-height);
+  }
+
+  #shopify-section-{{ section.id }} .legal-notes__marker {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .legal-notes__content {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  #shopify-section-{{ section.id }} .legal-notes__content > * {
+    margin-top: 0;
+  }
+
+  #shopify-section-{{ section.id }} .legal-notes__content > *:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .legal-notes__inner {
+      width: min(100% - 24px, {{ section.settings.max_width }}px);
+    }
+
+    #shopify-section-{{ section.id }} .legal-notes__card {
+      padding: var(--legal-notes-mobile-card-padding-top) var(--legal-notes-mobile-card-padding-right) var(--legal-notes-mobile-card-padding-bottom) var(--legal-notes-mobile-card-padding-left);
+    }
+
+    #shopify-section-{{ section.id }} .legal-notes__title {
+      margin-bottom: 20px;
+      font-size: var(--legal-notes-mobile-title-size);
+    }
+
+    #shopify-section-{{ section.id }} .legal-notes__item {
+      font-size: var(--legal-notes-mobile-text-size);
+    }
+  }
+{%- endstyle -%}
+
+<section class="legal-notes">
+  <div class="legal-notes__inner">
+    <div class="legal-notes__card">
+      {%- if section.settings.title != blank -%}
+        <h2 class="legal-notes__title">{{ section.settings.title | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ol class="legal-notes__list" role="list">
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign marker = ''
+              if section.settings.marker_mode == 'auto'
+                assign marker = '※' | append: forloop.index
+              elsif block.settings.marker_text != blank
+                assign marker = block.settings.marker_text
+              endif
+            -%}
+
+            <li class="legal-notes__item" {{ block.shopify_attributes }}>
+              {%- if marker != blank -%}
+                <span class="legal-notes__marker" aria-hidden="true">{{ marker | escape }}</span>
+              {%- endif -%}
+              <div class="legal-notes__content">
+                {{ block.settings.text }}
+              </div>
+            </li>
+          {%- endfor -%}
+        </ol>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "法律表記 (legal-notes)",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "親タイトル",
+      "default": "注意事項"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "親タイトルの文字色",
+      "default": "#8b4f63"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "親タイトルの文字サイズ",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_font_size",
+      "label": "親タイトルの文字サイズ（スマホ）",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "親タイトルの太さ",
+      "default": "700",
+      "options": [
+        {
+          "value": "400",
+          "label": "標準"
+        },
+        {
+          "value": "500",
+          "label": "中太"
+        },
+        {
+          "value": "600",
+          "label": "やや太い"
+        },
+        {
+          "value": "700",
+          "label": "太い"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "背景・カード"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "セクション全体の背景色",
+      "default": "#fbe9e9"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "カード全体の背景色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "カードの枠線の色",
+      "default": "#f0dede"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "カードの角丸",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "カードの最大幅",
+      "min": 640,
+      "max": 1400,
+      "step": 20,
+      "unit": "px",
+      "default": 980
+    },
+    {
+      "type": "header",
+      "content": "余白"
+    },
+    {
+      "type": "range",
+      "id": "card_padding_top",
+      "label": "内側の余白（上）",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "card_padding_right",
+      "label": "内側の余白（右）",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "card_padding_bottom",
+      "label": "内側の余白（下）",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "card_padding_left",
+      "label": "内側の余白（左）",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_padding_top",
+      "label": "内側の余白（上・スマホ）",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_padding_right",
+      "label": "内側の余白（右・スマホ）",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_padding_bottom",
+      "label": "内側の余白（下・スマホ）",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_padding_left",
+      "label": "内側の余白（左・スマホ）",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "外側の余白（上）",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "外側の余白（下）",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "リスト"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "リスト内の文字色",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "text_font_size",
+      "label": "リスト内の文字サイズ",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_text_font_size",
+      "label": "リスト内の文字サイズ（スマホ）",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "text_line_height",
+      "label": "行間",
+      "min": 120,
+      "max": 220,
+      "step": 5,
+      "unit": "%",
+      "default": 170
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "リスト項目の間隔",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "marker_mode",
+      "label": "文頭の記号",
+      "default": "auto",
+      "options": [
+        {
+          "value": "auto",
+          "label": "自動で付与（※1、※2...）"
+        },
+        {
+          "value": "manual",
+          "label": "手動入力"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "note",
+      "name": "リスト項目",
+      "settings": [
+        {
+          "type": "text",
+          "id": "marker_text",
+          "label": "文頭の記号（手動入力時）",
+          "default": "※"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "リスト項目",
+          "default": "<p>講座受講にはインターネットが接続された機器でYOUTUBEをご覧いただける方のみ受講できます。</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "法律表記 (legal-notes)",
+      "blocks": [
+        {
+          "type": "note",
+          "settings": {
+            "text": "<p>講座受講にはインターネットが接続された機器でYOUTUBEをご覧いただける方のみ受講できます。講座動画への閲覧費用一切はご負担をよろしくお願いします。</p>"
+          }
+        },
+        {
+          "type": "note",
+          "settings": {
+            "text": "<p>材料の葉は天然の為、カビの発生を防ぐために、到着後次第直ぐに開封してください。</p>"
+          }
+        },
+        {
+          "type": "note",
+          "settings": {
+            "text": "<p>使用期限を過ぎたカビ発生の材料の交換は致しかねますのでご了承ください。</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

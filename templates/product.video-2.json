@@ -627,6 +627,46 @@
           "settings": {
             "image": "shopify://shop_images/P1001531.jpg",
             "aspect_ratio": "4 / 3",
+            "image_fit": "cover",
+            "image_box_width": 1200,
+            "image_box_height": 720,
+            "image_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_acAcWh": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>選べる植物</strong></p>",
+            "font_size": 16,
+            "color": "#595555",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 28,
+            "margin_bottom": 0
+          }
+        },
+        "text_WeaTVp": {
+          "type": "text",
+          "settings": {
+            "text": "<p>講座お申し込み時に、初回の葉をお選びいただけます。講座を受講すると別の植物の葉も購入できます。</p>",
+            "font_size": 13,
+            "color": "#3d3d3d",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "image_rxjzyA": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Leafs.jpg",
+            "aspect_ratio": "1 / 1",
+            "image_fit": "contain",
             "image_box_width": 1200,
             "image_box_height": 720,
             "image_align": "center",
@@ -647,7 +687,10 @@
         "text_3rBCKk",
         "text_XnppXp",
         "text_2_gBWJFD",
-        "image_4jWBKi"
+        "image_4jWBKi",
+        "text_acAcWh",
+        "text_WeaTVp",
+        "image_rxjzyA"
       ],
       "name": "ビックカード",
       "settings": {

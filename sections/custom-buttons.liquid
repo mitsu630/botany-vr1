@@ -1,0 +1,435 @@
+{%- liquid
+  assign desktop_justify = 'center'
+  case section.settings.desktop_alignment
+    when 'left'
+      assign desktop_justify = 'flex-start'
+    when 'right'
+      assign desktop_justify = 'flex-end'
+  endcase
+
+  assign mobile_justify = 'center'
+  case section.settings.mobile_alignment
+    when 'left'
+      assign mobile_justify = 'flex-start'
+    when 'right'
+      assign mobile_justify = 'flex-end'
+  endcase
+-%}
+
+<style>
+  #CustomButtons-{{ section.id }} {
+    --custom-buttons-background: {{ section.settings.background_color }};
+    --custom-buttons-padding-top: {{ section.settings.padding_top }}px;
+    --custom-buttons-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --custom-buttons-gap: {{ section.settings.button_gap }}px;
+    --custom-buttons-justify-desktop: {{ desktop_justify }};
+    --custom-buttons-justify-mobile: {{ mobile_justify }};
+
+    background: var(--custom-buttons-background);
+  }
+
+  #CustomButtons-{{ section.id }} .custom-buttons__inner {
+    padding-top: var(--custom-buttons-padding-top);
+    padding-bottom: var(--custom-buttons-padding-bottom);
+  }
+
+  #CustomButtons-{{ section.id }} .custom-buttons__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: var(--custom-buttons-justify-desktop);
+    gap: var(--custom-buttons-gap);
+  }
+
+  #CustomButtons-{{ section.id }} .custom-buttons__item {
+    display: flex;
+    flex: 0 0 auto;
+    max-width: 100%;
+  }
+
+  #CustomButtons-{{ section.id }} .custom-buttons__item--full {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  #CustomButtons-{{ section.id }} .custom-buttons__item--custom {
+    width: min(var(--custom-button-width), 100%);
+  }
+
+  #CustomButtons-{{ section.id }} .custom-buttons__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    padding: var(--custom-button-padding-y) var(--custom-button-padding-x);
+    border: var(--custom-button-border-width) solid var(--custom-button-border-color);
+    border-radius: var(--custom-button-radius);
+    background: var(--custom-button-background);
+    color: var(--custom-button-color);
+    font-size: var(--custom-button-font-size);
+    font-weight: var(--custom-button-font-weight);
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    overflow-wrap: anywhere;
+  }
+
+  #CustomButtons-{{ section.id }} .custom-buttons__button:hover {
+    color: var(--custom-button-color);
+    opacity: 0.85;
+  }
+
+  #CustomButtons-{{ section.id }} .custom-buttons__button[aria-disabled='true'] {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  @media screen and (max-width: 749px) {
+    #CustomButtons-{{ section.id }} .custom-buttons__list {
+      justify-content: var(--custom-buttons-justify-mobile);
+    }
+  }
+</style>
+
+<div
+  id="CustomButtons-{{ section.id }}"
+  class="custom-buttons isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+>
+  <div class="page-width custom-buttons__inner">
+    <div class="custom-buttons__list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign width_class = 'custom-buttons__item--auto'
+          if block.settings.width_type == 'full'
+            assign width_class = 'custom-buttons__item--full'
+          elsif block.settings.width_type == 'custom'
+            assign width_class = 'custom-buttons__item--custom'
+          endif
+        -%}
+
+        <div
+          class="custom-buttons__item {{ width_class }}"
+          style="
+            --custom-button-background: {{ block.settings.background_color }};
+            --custom-button-color: {{ block.settings.text_color }};
+            --custom-button-border-color: {{ block.settings.border_color }};
+            --custom-button-border-width: {{ block.settings.border_width }}px;
+            --custom-button-radius: {{ block.settings.border_radius }}px;
+            --custom-button-width: {{ block.settings.custom_width }}px;
+            --custom-button-padding-y: {{ block.settings.padding_y }}px;
+            --custom-button-padding-x: {{ block.settings.padding_x }}px;
+            --custom-button-font-size: {{ block.settings.font_size }}px;
+            --custom-button-font-weight: {{ block.settings.font_weight }};
+          "
+          {{ block.shopify_attributes }}
+        >
+          <a
+            class="custom-buttons__button"
+            {% if block.settings.link == blank %}
+              role="link"
+              aria-disabled="true"
+            {% else %}
+              href="{{ block.settings.link }}"
+              {% if block.settings.open_new_tab %}
+                target="_blank" rel="noopener noreferrer"
+              {% endif %}
+            {% endif %}
+          >
+            {{- block.settings.text | escape -}}
+          </a>
+        </div>
+      {%- else -%}
+        <div class="custom-buttons__item">
+          <span
+            class="custom-buttons__button"
+            style="
+              --custom-button-background: #111111;
+              --custom-button-color: #ffffff;
+              --custom-button-border-color: #111111;
+              --custom-button-border-width: 1px;
+              --custom-button-radius: 8px;
+              --custom-button-padding-y: 12px;
+              --custom-button-padding-x: 24px;
+              --custom-button-font-size: 16px;
+              --custom-button-font-weight: 600;
+            "
+            aria-disabled="true"
+          >
+            ボタンブロックを追加してください
+          </span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ボタンズ (custom-buttons)",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "配置設定"
+    },
+    {
+      "type": "select",
+      "id": "desktop_alignment",
+      "label": "PC時の配置",
+      "options": [
+        {
+          "value": "left",
+          "label": "左寄せ"
+        },
+        {
+          "value": "center",
+          "label": "中央揃え"
+        },
+        {
+          "value": "right",
+          "label": "右寄せ"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "mobile_alignment",
+      "label": "スマホ時の配置",
+      "options": [
+        {
+          "value": "left",
+          "label": "左寄せ"
+        },
+        {
+          "value": "center",
+          "label": "中央揃え"
+        },
+        {
+          "value": "right",
+          "label": "右寄せ"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "余白・背景"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "セクション上余白",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "セクション下余白",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "button_gap",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "ボタン同士の間隔",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "button",
+      "name": "ボタン",
+      "settings": [
+        {
+          "type": "header",
+          "content": "基本"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "ボタンテキスト",
+          "default": "ボタン"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "リンク先"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_tab",
+          "label": "別タブで開く",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "デザイン"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "ボタンの背景色",
+          "default": "#111111"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "文字色",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "枠線の色",
+          "default": "#111111"
+        },
+        {
+          "type": "range",
+          "id": "border_width",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "unit": "px",
+          "label": "枠線の太さ",
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "角丸",
+          "default": 8
+        },
+        {
+          "type": "select",
+          "id": "width_type",
+          "label": "ボタンの幅設定",
+          "options": [
+            {
+              "value": "auto",
+              "label": "自動"
+            },
+            {
+              "value": "custom",
+              "label": "px指定"
+            },
+            {
+              "value": "full",
+              "label": "100%"
+            }
+          ],
+          "default": "auto"
+        },
+        {
+          "type": "range",
+          "id": "custom_width",
+          "min": 80,
+          "max": 600,
+          "step": 10,
+          "unit": "px",
+          "label": "ボタン幅（px指定時）",
+          "default": 200
+        },
+        {
+          "type": "range",
+          "id": "padding_y",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "label": "内側余白（上下）",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "padding_x",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "label": "内側余白（左右）",
+          "default": 24
+        },
+        {
+          "type": "header",
+          "content": "フォント"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "min": 10,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "label": "文字サイズ",
+          "default": 16
+        },
+        {
+          "type": "select",
+          "id": "font_weight",
+          "label": "文字の太さ",
+          "options": [
+            {
+              "value": "400",
+              "label": "通常"
+            },
+            {
+              "value": "500",
+              "label": "中太"
+            },
+            {
+              "value": "600",
+              "label": "太字"
+            },
+            {
+              "value": "700",
+              "label": "極太"
+            }
+          ],
+          "default": "600"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ボタンズ (custom-buttons)",
+      "blocks": [
+        {
+          "type": "button"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -66,6 +66,9 @@
     },
     "featured_collection_3TDeQK": {
       "type": "featured-collection",
+      "custom_css": [
+        ".price {display: none;}"
+      ],
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "collection": "講座一覧",

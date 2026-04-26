@@ -141,14 +141,6 @@
           "brand_name": "Self Reset Art"
         }
       },
-      "selfreset-header-localization": {
-        "type": "selfreset-header-localization",
-        "settings": {
-          "show_section": false,
-          "show_language": false,
-          "show_currency": false
-        }
-      },
       "selfreset-hero": {
         "type": "selfreset-hero",
         "settings": {
@@ -223,6 +215,11 @@
     "blocks": {
       "5918707185744429496": {
         "type": "shopify://apps/optis-product-options/blocks/bss-po-script/2c446099-c349-4e73-80cd-49c9770b7807",
+        "disabled": false,
+        "settings": {}
+      },
+      "6860625604077830985": {
+        "type": "shopify://apps/securify/blocks/browser-blocker/e3ed2576-9111-486f-86eb-a36b6bee4e94",
         "disabled": false,
         "settings": {}
       }

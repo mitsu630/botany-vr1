@@ -74,7 +74,6 @@
         "column_JXRPYH": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/LINE_ALBUM_20250210_250222_17.jpg",
             "title": "會場地點",
             "text": "<p>106 台北市大安區忠孝東路四段181巷38號</p>",
             "link_label": "",
@@ -113,7 +112,7 @@
         "map_QUXxAA": {
           "type": "map",
           "settings": {
-            "address": "106 台北市大安區忠孝東路四段181巷38號",
+            "address": "",
             "display_address": "<p>106 台北市大安區忠孝東路四段181巷38號</p>",
             "map_height": 410
           }
@@ -127,12 +126,12 @@
         "title": "",
         "title_color": "#111111",
         "title_font_size": 28,
-        "background_color": "#ffffff",
+        "background_color": "#e9ddcd",
         "columns_desktop": 3,
         "grid_gap": 16,
         "color_scheme": "",
-        "padding_top": 40,
-        "padding_bottom": 40,
+        "padding_top": 0,
+        "padding_bottom": 0,
         "margin_top": 0,
         "margin_bottom": 0
       }

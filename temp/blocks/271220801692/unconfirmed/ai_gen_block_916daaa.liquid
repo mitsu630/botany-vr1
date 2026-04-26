@@ -1,0 +1,185 @@
+{% doc %}
+  @prompt
+    Large bold text filled with an image. Include a setting to control the background color.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-image-text-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding }}px;
+  }
+
+  .ai-image-text-container-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ai-image-text-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.font_size }}px;
+    font-weight: {{ block.settings.font_weight }};
+    line-height: 1.1;
+    margin: 0;
+    background-image: url('{{ block.settings.fill_image | image_url: width: 2000 }}');
+    background-size: cover;
+    background-position: center;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-image-text-heading-{{ ai_gen_id }}--no-image {
+    background-image: none;
+    -webkit-text-fill-color: initial;
+    color: {{ block.settings.fallback_text_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-image-text-heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.font_size }}px * 0.6);
+    }
+  }
+{% endstyle %}
+
+<image-filled-text-{{ ai_gen_id }}
+  class="ai-image-text-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-image-text-container-{{ ai_gen_id }}">
+    {% if block.settings.fill_image %}
+      <h2 class="ai-image-text-heading-{{ ai_gen_id }}">
+        {{ block.settings.text }}
+      </h2>
+    {% else %}
+      <h2 class="ai-image-text-heading-{{ ai_gen_id }} ai-image-text-heading-{{ ai_gen_id }}--no-image">
+        {{ block.settings.text }}
+      </h2>
+    {% endif %}
+  </div>
+</image-filled-text-{{ ai_gen_id }}>
+
+{% schema %}
+{
+  "name": "Image filled text",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "テキスト"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "テキスト",
+      "default": "BOTANY"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "フォントサイズ",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "フォントの太さ",
+      "options": [
+        {
+          "value": "400",
+          "label": "標準"
+        },
+        {
+          "value": "700",
+          "label": "太字"
+        },
+        {
+          "value": "900",
+          "label": "極太"
+        }
+      ],
+      "default": "900"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "テキストの配置",
+      "options": [
+        {
+          "value": "left",
+          "label": "左"
+        },
+        {
+          "value": "center",
+          "label": "中央"
+        },
+        {
+          "value": "right",
+          "label": "右"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "画像"
+    },
+    {
+      "type": "image_picker",
+      "id": "fill_image",
+      "label": "塗りつぶし画像"
+    },
+    {
+      "type": "color",
+      "id": "fallback_text_color",
+      "label": "代替テキスト色",
+      "default": "#36384c"
+    },
+    {
+      "type": "header",
+      "content": "背景"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "default": "#e9dccd"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "パディング",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "デスクトップ幅",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image filled text"
+    }
+  ]
+}
+{% endschema %}

@@ -81,7 +81,6 @@
             tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
             data-tabbed-faq-tab
             data-panel-id="tabbed-faq-panel-{{ sid }}-{{ block.id }}"
-            {{ block.shopify_attributes }}
           >
             {{ block.settings.tab_title | escape }}
           </button>
@@ -94,9 +93,7 @@
         {%- liquid
           assign cat_first = forloop.first
           assign qa_raw = block.settings.qa_content | strip
-          assign nl = '
-'
-          assign qa_lines = qa_raw | split: nl
+          assign qa_lines = qa_raw | newline_to_br | split: '<br />'
         -%}
         <div
           class="tabbed-faq__panel{% if forloop.first %} is-active{% endif %}"
@@ -105,6 +102,7 @@
           aria-labelledby="tabbed-faq-tab-{{ sid }}-{{ block.id }}"
           {% unless forloop.first %}hidden{% endunless %}
           data-tabbed-faq-panel
+          {{ block.shopify_attributes }}
         >
           {%- if block.settings.tab_title != blank -%}
             <div class="tabbed-faq__content-head">
@@ -116,56 +114,55 @@
             {%- assign pair_index = 0 -%}
             {%- for line in qa_lines -%}
               {%- assign line_stripped = line | strip -%}
-              {%- if line_stripped == '' -%}
-                {%- continue -%}
-              {%- endif -%}
-              {%- assign sep = ' : ' -%}
-              {%- unless line_stripped contains sep -%}
-                {%- assign sep = ':' -%}
-              {%- endunless -%}
-              {%- if line_stripped contains sep -%}
-                {%- assign parts = line_stripped | split: sep -%}
-                {%- assign question = parts | first | strip -%}
-                {%- assign answer = '' -%}
-                {%- for p in parts -%}
-                  {%- unless forloop.first -%}
-                    {%- if answer == '' -%}
-                      {%- assign answer = p | strip -%}
-                    {%- else -%}
-                      {%- assign answer = answer | append: sep | append: p -%}
-                    {%- endif -%}
-                  {%- endunless -%}
-                {%- endfor -%}
-                {%- assign answer = answer | strip -%}
-                {%- if question != blank -%}
-                  {%- assign pair_index = pair_index | plus: 1 -%}
-                  <div
-                    class="tabbed-faq__item{% if cat_first and pair_index == 1 %} is-open{% endif %}"
-                    data-tabbed-faq-item
-                  >
-                    <button
-                      type="button"
-                      class="tabbed-faq__question"
-                      aria-expanded="{% if cat_first and pair_index == 1 %}true{% else %}false{% endif %}"
-                      data-tabbed-faq-trigger
-                      id="tabbed-faq-q-{{ sid }}-{{ block.id }}-{{ pair_index }}"
-                    >
-                      <span class="tabbed-faq__q-label">Q.</span>
-                      <span class="tabbed-faq__q-text">{{ question | escape }}</span>
-                      <span class="tabbed-faq__icon" aria-hidden="true" data-tabbed-faq-icon></span>
-                    </button>
+              {%- if line_stripped != blank -%}
+                {%- assign sep = ' : ' -%}
+                {%- unless line_stripped contains sep -%}
+                  {%- assign sep = ':' -%}
+                {%- endunless -%}
+                {%- if line_stripped contains sep -%}
+                  {%- assign parts = line_stripped | split: sep -%}
+                  {%- assign question = parts | first | strip -%}
+                  {%- assign answer = '' -%}
+                  {%- for p in parts -%}
+                    {%- unless forloop.first -%}
+                      {%- if answer == '' -%}
+                        {%- assign answer = p | strip -%}
+                      {%- else -%}
+                        {%- assign answer = answer | append: sep | append: p -%}
+                      {%- endif -%}
+                    {%- endunless -%}
+                  {%- endfor -%}
+                  {%- assign answer = answer | strip -%}
+                  {%- if question != blank -%}
+                    {%- assign pair_index = pair_index | plus: 1 -%}
                     <div
-                      class="tabbed-faq__answer"
-                      id="tabbed-faq-a-{{ sid }}-{{ block.id }}-{{ pair_index }}"
-                      role="region"
-                      aria-labelledby="tabbed-faq-q-{{ sid }}-{{ block.id }}-{{ pair_index }}"
-                      {% unless cat_first and pair_index == 1 %}hidden{% endunless %}
-                      data-tabbed-faq-answer
+                      class="tabbed-faq__item{% if cat_first and pair_index == 1 %} is-open{% endif %}"
+                      data-tabbed-faq-item
                     >
-                      <span class="tabbed-faq__a-label">A.</span>
-                      <div class="tabbed-faq__a-text">{{ answer | escape | newline_to_br }}</div>
+                      <button
+                        type="button"
+                        class="tabbed-faq__question"
+                        aria-expanded="{% if cat_first and pair_index == 1 %}true{% else %}false{% endif %}"
+                        data-tabbed-faq-trigger
+                        id="tabbed-faq-q-{{ sid }}-{{ block.id }}-{{ pair_index }}"
+                      >
+                        <span class="tabbed-faq__q-label">Q.</span>
+                        <span class="tabbed-faq__q-text">{{ question | escape }}</span>
+                        <span class="tabbed-faq__icon" aria-hidden="true" data-tabbed-faq-icon></span>
+                      </button>
+                      <div
+                        class="tabbed-faq__answer"
+                        id="tabbed-faq-a-{{ sid }}-{{ block.id }}-{{ pair_index }}"
+                        role="region"
+                        aria-labelledby="tabbed-faq-q-{{ sid }}-{{ block.id }}-{{ pair_index }}"
+                        {% unless cat_first and pair_index == 1 %}hidden{% endunless %}
+                        data-tabbed-faq-answer
+                      >
+                        <span class="tabbed-faq__a-label">A.</span>
+                        <div class="tabbed-faq__a-text">{{ answer | escape | newline_to_br }}</div>
+                      </div>
                     </div>
-                  </div>
+                  {%- endif -%}
                 {%- endif -%}
               {%- endif -%}
             {%- endfor -%}
@@ -439,7 +436,7 @@
 
 {% schema %}
 {
-  "name": "タブQ&A",
+  "name": "タブQ&A (tabbed-faq)",
   "tag": "section",
   "class": "section",
   "disabled_on": {
@@ -722,7 +719,7 @@
   ],
   "presets": [
     {
-      "name": "タブQ&A",
+      "name": "タブQ&A (tabbed-faq)",
       "blocks": [
         {
           "type": "category",

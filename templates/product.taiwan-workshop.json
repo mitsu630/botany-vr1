@@ -406,6 +406,28 @@
         "padding_bottom_mobile": 48
       }
     },
+    "image_comparison_slider_JCYgFh": {
+      "type": "image-comparison-slider",
+      "name": "ハンドルスライダー",
+      "settings": {
+        "title": "選擇作品的完成方式",
+        "description": "",
+        "text_color": "#111111",
+        "background_color": "#849974",
+        "max_width": 1100,
+        "before_image": "shopify://shop_images/4328195267_1dc2ac39-55e9-46a4-b470-b4b9767ca6e7.jpg",
+        "after_image": "shopify://shop_images/IMG_4650.jpg",
+        "initial_position": 50,
+        "handle_circle_color": "#111111",
+        "handle_arrow_color": "#ffffff",
+        "border_radius": 17,
+        "show_labels": true,
+        "before_label": "木製畫板",
+        "after_label": "完成後加裝壓克力板作為保護罩",
+        "padding_top": 28,
+        "padding_bottom": 36
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -519,6 +541,7 @@
     "multicolumn_YztMbi",
     "custom_google_maps_7JJLBe",
     "big_card_ibmJcY",
+    "image_comparison_slider_JCYgFh",
     "main",
     "related-products",
     "17767608404f8e6a1c"

@@ -474,6 +474,21 @@
         "padding_bottom": 36
       }
     },
+    "video_zG4qec": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "enable_video_looping": false,
+        "video_url": "https://www.youtube.com/watch?v=3vTg8FbDYGo",
+        "description": "",
+        "full_width": true,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -589,6 +604,7 @@
     "big_card_ibmJcY",
     "image_comparison_slider_JCYgFh",
     "multicolumn_t7zeD3",
+    "video_zG4qec",
     "main",
     "related-products",
     "17767608404f8e6a1c"

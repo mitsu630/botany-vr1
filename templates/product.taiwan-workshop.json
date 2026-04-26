@@ -228,6 +228,184 @@
         "padding_bottom": 36
       }
     },
+    "custom_google_maps_7JJLBe": {
+      "type": "custom-google-maps",
+      "blocks": {
+        "map_Te6dzg": {
+          "type": "map",
+          "settings": {
+            "address": "106 台北市大安區忠孝東路四段181巷38號",
+            "display_address": "",
+            "map_height": 340
+          }
+        }
+      },
+      "block_order": [
+        "map_Te6dzg"
+      ],
+      "name": "グーグル・マップ",
+      "settings": {
+        "title": "",
+        "title_color": "#111111",
+        "title_font_size": 28,
+        "background_color": "#e9ddcd",
+        "columns_desktop": 3,
+        "grid_gap": 16,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "big_card_ibmJcY": {
+      "type": "big-card",
+      "blocks": {
+        "text_pzFAW3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>安排配置</p>",
+            "font_size": 16,
+            "color": "#111111",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_yQhtY8": {
+          "type": "text",
+          "settings": {
+            "text": "<p>在木製畫版上自由擺放葉子。就算超出畫板也沒有關係。（在粘貼後會將超出部分裁掉。）</p>",
+            "font_size": 16,
+            "color": "#111111",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "image_YChrb6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/P1060430_1a583118-15d5-448f-9f26-8a51f2c4091b.jpg",
+            "aspect_ratio": "1 / 1",
+            "image_fit": "cover",
+            "image_width_mode": "box",
+            "image_box_width": 1200,
+            "image_box_height": 360,
+            "image_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_8mGGaN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>黏貼</p>",
+            "font_size": 16,
+            "color": "#111111",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_phQTgN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>用專用的膠水將葉子貼上。用手掌觸摸天然植物，可感受其帶來的放鬆效果。</p>",
+            "font_size": 16,
+            "color": "#111111",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "image_rpKpQz": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/P1090837.jpg",
+            "aspect_ratio": "1 / 1",
+            "image_fit": "cover",
+            "image_width_mode": "box",
+            "image_box_width": 1200,
+            "image_box_height": 360,
+            "image_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_AhWMqB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>上色</p>",
+            "font_size": 16,
+            "color": "#111111",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_UJjA9P": {
+          "type": "text",
+          "settings": {
+            "text": "<p>使使用海綿將壓克力顏料像化妝一樣塗在葉子上。請放鬆心情，慢慢享受這段無思無慮的時光。</p>",
+            "font_size": 16,
+            "color": "#111111",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "image_A7ah9B": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/P1090409_4272b47b-0f83-4944-bccf-ac51d1d64c3a.jpg",
+            "aspect_ratio": "1 / 1",
+            "image_fit": "cover",
+            "image_width_mode": "box",
+            "image_box_width": 1200,
+            "image_box_height": 360,
+            "image_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "text_pzFAW3",
+        "text_yQhtY8",
+        "image_YChrb6",
+        "text_8mGGaN",
+        "text_phQTgN",
+        "image_rpKpQz",
+        "text_AhWMqB",
+        "text_UJjA9P",
+        "image_A7ah9B"
+      ],
+      "name": "ビックカード",
+      "settings": {
+        "background_color": "#e9dccd",
+        "text_color": "#111111",
+        "max_width": 1200,
+        "border_radius": 16,
+        "block_gap": 24,
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -339,6 +517,8 @@
     "slideshow_xWt8J6",
     "rich_text_RqgYcL",
     "multicolumn_YztMbi",
+    "custom_google_maps_7JJLBe",
+    "big_card_ibmJcY",
     "main",
     "related-products",
     "17767608404f8e6a1c"

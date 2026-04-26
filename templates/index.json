@@ -666,52 +666,6 @@
         "padding_bottom": 0
       }
     },
-    "multicolumn_AYBqPY": {
-      "type": "multicolumn",
-      "blocks": {
-        "column_NjNzDF": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/S__52781059.jpg",
-            "title": "竹內靜流",
-            "text": "<p>Botany Painting 工作人員<br/>工作坊並非以追求作品完成度為目的，而是重視創作過程中所帶來的樂趣與體驗。期盼在輕鬆舒適的氛圍中，讓您發現屬於自己的獨特表現。</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_CXWVf8": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/2351bdb6b585482a30104f68c0a38900_1bd1213c-c4cb-49ef-9eb4-d18b0a2a9a39.png",
-            "title": "王唯真",
-            "text": "<p>口譯員<br/>出身於台灣台北的自由接案口譯員。活躍於日本酒、咖啡、藝術、鐵道、醫療、觀光等多個領域。全心全力支持在台日兩地努力奮鬥的人們，以深化日本與台灣的交流為使命。</p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_NjNzDF",
-        "column_CXWVf8"
-      ],
-      "name": "t:sections.multicolumn.presets.name",
-      "settings": {
-        "title": "工作人員介紹",
-        "heading_size": "h2",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 2,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "color_scheme": "",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "featured_product_mcjbRH": {
       "type": "featured-product",
       "blocks": {
@@ -794,7 +748,6 @@
     "multicolumn_fmMNbk",
     "slideshow_WAxXXG",
     "video_7rBJ6d",
-    "multicolumn_AYBqPY",
     "featured_product_mcjbRH"
   ]
 }

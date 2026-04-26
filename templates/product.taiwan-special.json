@@ -206,6 +206,386 @@
         "padding_bottom": 36
       }
     },
+    "big_card_BQGQFe": {
+      "type": "big-card",
+      "blocks": {
+        "title_YU8prg": {
+          "type": "title",
+          "settings": {
+            "title": "<p>關於師資取得課程</p>",
+            "font_size": 28,
+            "color": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_maAwje": {
+          "type": "text",
+          "settings": {
+            "text": "<p>授課兩次即可取得講師資格，內容分別為【講解與實作】以及【技術試驗】</p>",
+            "font_size": 16,
+            "color": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "title_bzeeUD": {
+          "type": "title",
+          "settings": {
+            "title": "<p>第一天｜課程講解 & 實際操作</p>",
+            "font_size": 23,
+            "color": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 24,
+            "margin_bottom": 0
+          }
+        },
+        "text_jtR8jw": {
+          "type": "text",
+          "settings": {
+            "text": "<p>除了學習植物彩繪獨有的藝術特色課程外，還能了解有關畫材的基礎知識。接著，將實際體驗如何貼合印度菩提葉與蓮葉的基本技巧，並享受著色的樂趣。＜6個小時＞</p>",
+            "font_size": 16,
+            "color": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "image_HEarLW": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/LINE_ALBUM_20250210_250222_6_17d95e8f-9833-4272-a090-0db46e6784dc.jpg",
+            "aspect_ratio": "1 / 1",
+            "image_fit": "cover",
+            "image_width_mode": "box",
+            "image_box_width": 1200,
+            "image_box_height": 340,
+            "image_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "title_fQUNrF": {
+          "type": "title",
+          "settings": {
+            "title": "<p>第二天｜技術試驗</p>",
+            "font_size": 23,
+            "color": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 24,
+            "margin_bottom": 0
+          }
+        },
+        "text_B9Vznx": {
+          "type": "text",
+          "settings": {
+            "text": "<p>在考試中，學員將使用大型畫板進行作品製作， 並在製作過程中隨時確認疑問點，累積成為講師所需的實作經驗。 考試的重點在於葉片的黏貼方式與漸層上色技巧。<br/>作品的評價標準並非以藝術美感為主，而是以技術面進行評估。<br/>※考試作品將於會場內完成，完成後會拍攝作品照片並提交給日本本部進行審查。 結果將於當天告知，如未通過，也備有補課機會，敬請放心。&lt;4個小時&gt;</p>",
+            "font_size": 16,
+            "color": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "image_fdjfMq": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2026-04-13_17.15.37.png",
+            "aspect_ratio": "1 / 1",
+            "image_fit": "cover",
+            "image_width_mode": "box",
+            "image_box_width": 1200,
+            "image_box_height": 340,
+            "image_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_YU8prg",
+        "text_maAwje",
+        "title_bzeeUD",
+        "text_jtR8jw",
+        "image_HEarLW",
+        "title_fQUNrF",
+        "text_B9Vznx",
+        "image_fdjfMq"
+      ],
+      "name": "ビックカード",
+      "settings": {
+        "background_color": "#613a43",
+        "text_color": "#ffffff",
+        "max_width": 1200,
+        "border_radius": 16,
+        "block_gap": 24,
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
+      }
+    },
+    "step_cards_J86HBP": {
+      "type": "step-cards",
+      "blocks": {
+        "step_cU8jQY": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "title": "課程講解畫材",
+            "text": "<p>練習紙4張、菩提樹葉10片、菩提樹4片、蓮花葉2片、木製畫板(24cm×24cm)1個、壓克力顏料13色、金・銀色顏料、毛刷1支、紙調色盤、海綿、黏膠</p>",
+            "image": "shopify://shop_images/0C1A1494.jpg",
+            "card_bg": "",
+            "number_bg": "",
+            "number_color": ""
+          }
+        },
+        "step_DR6mL7": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "title": "試驗畫材",
+            "text": "<p>菩提樹葉8片、蓮花葉5片、黏膠、木製畫板(30cm×60cm)1個。包含技術試驗所需的全套材料，當天於會場備妥。</p>",
+            "image": "shopify://shop_images/0C1A1503.jpg",
+            "card_bg": "",
+            "number_bg": "",
+            "number_color": ""
+          }
+        },
+        "step_WpHBrK": {
+          "type": "step",
+          "settings": {
+            "number": "",
+            "title": "隨附的教材書",
+            "text": "<p> 您可以學習藝術著色的基礎和應用，書中還收錄了講師們的豐富作品。※本書為日文書籍，但我們也有隨附中文翻譯的書冊，敬請安心。</p>",
+            "image": "shopify://shop_images/2026-04-14_15.20.11.png",
+            "card_bg": "",
+            "number_bg": "",
+            "number_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_cU8jQY",
+        "step_DR6mL7",
+        "step_WpHBrK"
+      ],
+      "name": "ステップカード",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "heading_align": "center",
+        "heading_bottom_margin": 18,
+        "columns_desktop": 3,
+        "gap": 16,
+        "color_scheme": "scheme-3",
+        "text_color": "#1b1b1b",
+        "card_background": "#e9dccd",
+        "card_radius": 16,
+        "card_padding_x": 18,
+        "card_padding_y": 18,
+        "number_size": 44,
+        "number_background": "#ffffff",
+        "number_text_color": "#3a3a3a",
+        "title_size": 18,
+        "body_size": 13,
+        "body_opacity": 90,
+        "body_text_color": "#3a3a3a",
+        "body_font": "assistant_n4",
+        "image_aspect_ratio": "4 / 3",
+        "media_radius": 12,
+        "padding_top": 80,
+        "padding_bottom": 24
+      }
+    },
+    "big_card_wadV4e": {
+      "type": "big-card",
+      "blocks": {
+        "text_Ff6bbd": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A greeting from Mitsutoshi Sugimoto</p>",
+            "font_size": 15,
+            "color": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "title_TjVmjk": {
+          "type": "title",
+          "settings": {
+            "title": "<p>來自植物彩繪代表 杉本光俊的問候</p>",
+            "font_size": 18,
+            "color": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "image_diz7fw": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2774.jpg",
+            "aspect_ratio": "16 / 9",
+            "image_fit": "cover",
+            "image_width_mode": "box",
+            "image_box_width": 1200,
+            "image_box_height": 300,
+            "image_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_NYAEKN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>在日本，許多人在參與植物彩繪的課程中，與我們共同度過了許多愉快的藝術時光。即使是從未學習過繪畫的人，也可以學習如何教授植物彩繪，並在教學中找到自己的生活意義。有些人甚至表示，植物彩繪改變了他們的人生！這讓我深刻體會到，植物彩繪不僅僅是一門藝術，它還包含著更深層次的價值。 希望能讓台灣的朋友們也認識這門「非藝術的藝術課程」——植物彩繪。</p>",
+            "font_size": 15,
+            "color": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "text_Ff6bbd",
+        "title_TjVmjk",
+        "image_diz7fw",
+        "text_NYAEKN"
+      ],
+      "name": "ビックカード",
+      "settings": {
+        "background_color": "#36384c",
+        "text_color": "#ffffff",
+        "max_width": 1200,
+        "border_radius": 16,
+        "block_gap": 24,
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
+      }
+    },
+    "image_with_text_T8fxfw": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_ydcamt": {
+          "type": "heading",
+          "settings": {
+            "heading": "王唯真",
+            "heading_size": "h2"
+          }
+        },
+        "text_FrKN6j": {
+          "type": "text",
+          "settings": {
+            "text": "<p>口譯員<br/><br/>出身於台灣台北的自由接案口譯員。活躍於日本酒、咖啡、藝術、鐵道、醫療、觀光等多個領域。全心全力支持在台日兩地努力奮鬥的人們，以深化日本與台灣的交流為使命。</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_ydcamt",
+        "text_FrKN6j"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/2351bdb6b585482a30104f68c0a38900_1bd1213c-c4cb-49ef-9eb4-d18b0a2a9a39.png",
+        "height": "large",
+        "desktop_image_width": "small",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-5",
+        "color_scheme": "scheme-3",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collapsible_content_YiWjhb": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_EzieYw": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "我沒有美感, 對繪畫也沒自信,也可以參加課程嗎？",
+            "icon": "check_mark",
+            "row_content": "<p>多數參加者都是繪畫初學者。植物彩繪的特點是葉脈自然突顯了色彩的美感，只要學習基本技術並反覆練習，就能逐漸提升技能。90%的講師都是從初學者開始的，您可以安心參加課程。</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_iEzPxm": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "如果未通過考試會怎麼處理？另外，有多少人未通過考試？",
+            "icon": "check_mark",
+            "row_content": "<p>技術測驗主要提供一個場地讓大家確認、詢問不清楚的地方，最重要的目的是解決有關植物彩繪的所有疑惑。在測驗中發現不明白的地方，請大膽詢問並確認。目前在台灣舉行的測驗中，所有參加者皆順利通過。</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_LBYDEQ": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "通過考試後，畫材要如何購買？",
+            "icon": "check_mark",
+            "row_content": "<p>總部有提供講師專用的畫材購買網站。 除了蓮葉等天然植物之外，還備有畫筆、定著劑、顏料等各類畫材供您選購。 不過，天然植物以外的畫材（如顏料、工具等）也可在台灣的畫材店購買，因此您不必完全依賴總部供應，請放心選擇最適合您的方式。</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_tXMrxV": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "如果講座當天因故無法參加該怎麼辦？",
+            "icon": "check_mark",
+            "row_content": "<p>如果您臨時無法參加講座當天的課程，請提前與我們的營運事務局聯繫。我們將與您個別討論改期或其他應對方式。</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_EzieYw",
+        "collapsible_row_iEzPxm",
+        "collapsible_row_LBYDEQ",
+        "collapsible_row_tXMrxV"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "Q＆A",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "layout": "none",
+        "container_color_scheme": "scheme-3",
+        "color_scheme": "scheme-5",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -429,6 +809,11 @@
     "custom_google_maps_J7NLNn",
     "image_with_text_bKPk6H",
     "image_with_text_tT6JLi",
+    "big_card_BQGQFe",
+    "step_cards_J86HBP",
+    "big_card_wadV4e",
+    "image_with_text_T8fxfw",
+    "collapsible_content_YiWjhb",
     "main",
     "related-products",
     "17767608404f8e6a1c",

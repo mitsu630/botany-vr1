@@ -164,6 +164,70 @@
         "padding_bottom": 52
       }
     },
+    "multicolumn_YztMbi": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_cfJT9R": {
+          "type": "column",
+          "settings": {
+            "title": "【台北10期】5月22日（五）〜 5月24日（日）",
+            "text": "<p>※ 請期間內任選一天參加｜NT$ 4,180 起（信用卡付款）</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_jP3rBG": {
+          "type": "column",
+          "settings": {
+            "title": "12:45 開始報到 ／ 13:00 正式開始",
+            "text": "<p>場地將於活動前20分鐘開放，並在活動前15分鐘開始報到。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_8U8fyY": {
+          "type": "column",
+          "settings": {
+            "title": "當日攜帶物品",
+            "text": "<p>畫材現場皆已為您準備好，當天請輕鬆空手前來參加即可。 我們也會為您準備好可攜帶作品回家的提袋，請放心。 現場將提供圍裙，但若您擔心衣服或雙手弄髒，也歡迎自備一次性手套等防護用品。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_bUCM3b": {
+          "type": "column",
+          "settings": {
+            "title": "會場地點",
+            "text": "<p>106 台北市大安區忠孝東路四段181巷38號</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_cfJT9R",
+        "column_jP3rBG",
+        "column_8U8fyY",
+        "column_bUCM3b"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "課程資訊",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 1,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -274,6 +338,7 @@
   "order": [
     "slideshow_xWt8J6",
     "rich_text_RqgYcL",
+    "multicolumn_YztMbi",
     "main",
     "related-products",
     "17767608404f8e6a1c"

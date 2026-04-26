@@ -1,0 +1,484 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  #ImageComparisonSlider-{{ section.id }} {
+    background: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__container {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__heading {
+    margin: 0 0 0.75rem 0;
+    color: {{ section.settings.text_color }};
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__description {
+    margin: 0 0 1.25rem 0;
+    color: {{ section.settings.text_color }};
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__stage {
+    --pos: {{ section.settings.initial_position | default: 50 }}%;
+    --radius: {{ section.settings.border_radius }}px;
+    --handle-bg: {{ section.settings.handle_circle_color }};
+    --handle-fg: {{ section.settings.handle_arrow_color }};
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius);
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__media img,
+  #ImageComparisonSlider-{{ section.id }} .ics__media svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__after {
+    z-index: 1;
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__before {
+    z-index: 2;
+    width: var(--pos);
+    overflow: hidden;
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__before .ics__media {
+    width: 100%;
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__handle {
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    bottom: 0;
+    left: var(--pos);
+    transform: translateX(-50%);
+    width: 0;
+    pointer-events: none;
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__handle-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    background: rgba(255, 255, 255, 0.85);
+    mix-blend-mode: difference;
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__handle-knob {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: var(--handle-bg);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__handle-knob svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__handle-knob svg path {
+    fill: var(--handle-fg);
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__labels {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__label {
+    position: absolute;
+    top: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__label--before {
+    left: 12px;
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__label--after {
+    right: 12px;
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__range {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: ew-resize;
+  }
+
+  #ImageComparisonSlider-{{ section.id }} .ics__stage:focus-within {
+    outline: 2px solid rgba(0, 0, 0, 0.25);
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #ImageComparisonSlider-{{ section.id }} .ics__stage {
+      scroll-behavior: auto;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign ratio = 1.0
+  if section.settings.after_image != blank and section.settings.after_image.aspect_ratio
+    assign ratio = section.settings.after_image.aspect_ratio
+  elsif section.settings.before_image != blank and section.settings.before_image.aspect_ratio
+    assign ratio = section.settings.before_image.aspect_ratio
+  endif
+  assign padding_bottom = 100 | divided_by: ratio
+-%}
+
+<section id="ImageComparisonSlider-{{ section.id }}" class="section section-{{ section.id }}-padding" data-image-comparison-section>
+  <div class="ics__container">
+    {%- if section.settings.title != blank -%}
+      <h2 class="ics__heading">{{ section.settings.title | escape }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.description != blank -%}
+      <div class="ics__description rte">
+        {{ section.settings.description }}
+      </div>
+    {%- endif -%}
+
+    <div
+      class="ics__stage"
+      data-image-comparison
+      style="padding-bottom: {{ padding_bottom }}%;"
+      aria-label="画像比較スライダー"
+    >
+      <div class="ics__after ics__media" aria-hidden="true">
+        {%- if section.settings.after_image != blank -%}
+          {{
+            section.settings.after_image
+            | image_url: width: 2400
+            | image_tag: widths: '375, 550, 750, 1100, 1500, 2000, 2400', sizes: '(min-width: 990px) {{ section.settings.max_width }}px, 100vw'
+          }}
+        {%- else -%}
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+
+      <div class="ics__before" aria-hidden="true">
+        <div class="ics__media">
+          {%- if section.settings.before_image != blank -%}
+            {{
+              section.settings.before_image
+              | image_url: width: 2400
+              | image_tag: widths: '375, 550, 750, 1100, 1500, 2000, 2400', sizes: '(min-width: 990px) {{ section.settings.max_width }}px, 100vw'
+            }}
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- if section.settings.show_labels -%}
+        <div class="ics__labels" aria-hidden="true">
+          {%- if section.settings.before_label != blank -%}
+            <div class="ics__label ics__label--before">{{ section.settings.before_label | escape }}</div>
+          {%- endif -%}
+          {%- if section.settings.after_label != blank -%}
+            <div class="ics__label ics__label--after">{{ section.settings.after_label | escape }}</div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <div class="ics__handle" aria-hidden="true">
+        <div class="ics__handle-line"></div>
+        <div class="ics__handle-knob">
+          <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+            <path d="M9.4 7.2 4.6 12l4.8 4.8 1.4-1.4L7.4 12l3.4-3.4-1.4-1.4Zm5.2 0-1.4 1.4 3.4 3.4-3.4 3.4 1.4 1.4 4.8-4.8-4.8-4.8Z" />
+          </svg>
+        </div>
+      </div>
+
+      <input
+        class="ics__range"
+        type="range"
+        min="0"
+        max="100"
+        step="0.1"
+        value="{{ section.settings.initial_position | default: 50 }}"
+        aria-label="比較位置"
+        data-image-comparison-range
+      >
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const root = document.querySelector('#ImageComparisonSlider-{{ section.id }}');
+      if (!root) return;
+      const stage = root.querySelector('[data-image-comparison]');
+      const range = root.querySelector('[data-image-comparison-range]');
+      if (!stage || !range) return;
+
+      const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+      const setPos = (pct) => {
+        const p = clamp(pct, 0, 100);
+        stage.style.setProperty('--pos', p + '%');
+        range.value = String(p);
+      };
+
+      setPos(parseFloat(range.value || '50'));
+
+      let dragging = false;
+      let raf = 0;
+      let pendingClientX = null;
+
+      const updateFromClientX = (clientX) => {
+        const rect = stage.getBoundingClientRect();
+        const x = clamp(clientX - rect.left, 0, rect.width || 1);
+        const pct = (x / (rect.width || 1)) * 100;
+        setPos(pct);
+      };
+
+      const requestUpdate = (clientX) => {
+        pendingClientX = clientX;
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          if (pendingClientX == null) return;
+          updateFromClientX(pendingClientX);
+          pendingClientX = null;
+        });
+      };
+
+      range.addEventListener('input', (e) => {
+        const v = parseFloat(e.target.value);
+        if (Number.isFinite(v)) setPos(v);
+      }, { passive: true });
+
+      const onPointerDown = (e) => {
+        dragging = true;
+        stage.setPointerCapture?.(e.pointerId);
+        requestUpdate(e.clientX);
+      };
+
+      const onPointerMove = (e) => {
+        if (!dragging) return;
+        requestUpdate(e.clientX);
+      };
+
+      const endDrag = (e) => {
+        if (!dragging) return;
+        dragging = false;
+        try { stage.releasePointerCapture?.(e.pointerId); } catch (_) {}
+      };
+
+      stage.addEventListener('pointerdown', onPointerDown);
+      window.addEventListener('pointermove', onPointerMove, { passive: true });
+      window.addEventListener('pointerup', endDrag, { passive: true });
+      window.addEventListener('pointercancel', endDrag, { passive: true });
+    })();
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "ハンドルスライダー",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "全体設定"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "親タイトル",
+      "default": "Before / After"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "説明文",
+      "default": "<p>中央のハンドルをドラッグ（スマホはスワイプ）して比較できます。</p>"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "親タイトル・説明文の文字色",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "セクション全体の背景色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "コンテンツの最大幅",
+      "min": 320,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 1100
+    },
+    {
+      "type": "header",
+      "content": "比較画像（スライダー設定）"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "画像1（Before）"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "画像2（After）"
+    },
+    {
+      "type": "range",
+      "id": "initial_position",
+      "label": "初期位置（0%〜100%）",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "ハンドルのデザイン"
+    },
+    {
+      "type": "color",
+      "id": "handle_circle_color",
+      "label": "円の色",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "handle_arrow_color",
+      "label": "矢印の色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "スタイル"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "スライダー全体の角丸",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "checkbox",
+      "id": "show_labels",
+      "label": "Before / After ラベルを表示する",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Before ラベル",
+      "default": "Before"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "After ラベル",
+      "default": "After"
+    },
+    {
+      "type": "header",
+      "content": "上下パディング"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "上パディング",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "下パディング",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "ハンドルスライダー"
+    }
+  ]
+}
+{% endschema %}

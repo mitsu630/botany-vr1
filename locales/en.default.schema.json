@@ -1683,6 +1683,19 @@
           "label": "Language selector",
           "info": "[Manage languages](/admin/settings/languages)"
         },
+        "header__mobile_localization": {
+          "content": "Mobile compact selectors"
+        },
+        "enable_mobile_compact_localization": {
+          "label": "Show compact language & currency on mobile",
+          "info": "Adds small dropdowns under the header on screens up to 749px wide. Hides the duplicate language/country selectors in the menu drawer."
+        },
+        "mobile_compact_show_language": {
+          "label": "Language dropdown"
+        },
+        "mobile_compact_show_currency": {
+          "label": "Currency dropdown"
+        },
         "margin_bottom": {
           "label": "Bottom margin"
         },

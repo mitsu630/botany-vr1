@@ -1,0 +1,61 @@
+{% comment %}
+  Compact language & currency row for mobile (header section).
+  @param section {object} Header section (settings: mobile_compact_show_*)
+  @param compact_show_lang {boolean}
+  @param compact_show_curr {boolean}
+{% endcomment %}
+
+{%- liquid
+  assign currency_aria = 'Currency'
+  if request.locale.iso_code == 'ja'
+    assign currency_aria = '通貨'
+  endif
+-%}
+
+<div
+  class="header-mobile-localization-compact{% if section.settings.color_scheme != blank %} color-{{ section.settings.color_scheme }} gradient{% endif %}"
+  {{ section.shopify_attributes }}
+>
+  <div class="page-width">
+    {%- form 'localization', id: 'HeaderMobileCompactLocalization', class: 'header-mobile-localization-compact__form' -%}
+      {%- unless compact_show_lang -%}
+        <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
+      {%- endunless -%}
+      {%- unless compact_show_curr -%}
+        <input type="hidden" name="currency_code" value="{{ cart.currency.iso_code }}">
+      {%- endunless -%}
+
+      {%- if compact_show_lang -%}
+        <label class="visually-hidden" for="HeaderMobileCompactLocale">{{ 'localization.language_label' | t }}</label>
+        <select
+          id="HeaderMobileCompactLocale"
+          name="locale_code"
+          aria-label="{{ 'localization.language_label' | t }}"
+          onchange="this.form.requestSubmit ? this.form.requestSubmit() : this.form.submit()"
+        >
+          {%- for language in localization.available_languages -%}
+            <option value="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %}selected{% endif %}>
+              {{ language.endonym_name }}
+            </option>
+          {%- endfor -%}
+        </select>
+      {%- endif -%}
+
+      {%- if compact_show_curr -%}
+        <label class="visually-hidden" for="HeaderMobileCompactCurrency">{{ currency_aria }}</label>
+        <select
+          id="HeaderMobileCompactCurrency"
+          name="currency_code"
+          aria-label="{{ currency_aria }}"
+          onchange="this.form.requestSubmit ? this.form.requestSubmit() : this.form.submit()"
+        >
+          {%- for currency in shop.enabled_currencies -%}
+            <option value="{{ currency.iso_code }}" {% if currency.iso_code == cart.currency.iso_code %}selected{% endif %}>
+              {{ currency.iso_code }}{% if currency.symbol %} {{ currency.symbol }}{% endif %}
+            </option>
+          {%- endfor -%}
+        </select>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</div>

@@ -64,7 +64,54 @@
     line-height: calc(1 + 0.8 / var(--font-body-scale));
   }
 
+  @media screen and (max-width: 749px) {
+    .header-wrapper .header-mobile-localization-compact {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .header-mobile-localization-compact .page-width {
+      width: 100%;
+    }
+
+    .header-mobile-localization-compact {
+      border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
+    }
+
+    .header-mobile-localization-compact .header-mobile-localization-compact__form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0.6rem 0 0.8rem;
+    }
+
+    .header-mobile-localization-compact select {
+      font-family: var(--font-body-family);
+      font-style: var(--font-body-style);
+      font-weight: var(--font-body-weight);
+      font-size: 1.1rem;
+      line-height: 1.3;
+      padding: 0.4rem 2.4rem 0.4rem 0.8rem;
+      border-radius: var(--inputs-radius);
+      border: 0.1rem solid rgba(var(--color-foreground), 0.2);
+      background-color: rgb(var(--color-background));
+      color: rgb(var(--color-foreground));
+      max-width: 42vw;
+      margin: 0;
+    }
+  }
+
   @media screen and (min-width: 750px) {
+    .header-wrapper .header-mobile-localization-compact {
+      display: none !important;
+    }
+
     .list-menu__item--link {
       padding-bottom: 0.5rem;
       padding-top: 0.5rem;
@@ -118,6 +165,9 @@
   {%- liquid
     assign social_links = false
     assign localization_forms = false
+    assign compact_show_lang = false
+    assign compact_show_curr = false
+    assign show_mobile_compact_localization_bar = false
 
     if settings.social_twitter_link != blank or settings.social_facebook_link != blank or settings.social_pinterest_link != blank or settings.social_instagram_link != blank or settings.social_youtube_link != blank or settings.social_vimeo_link != blank or settings.social_tiktok_link != blank or settings.social_tumblr_link != blank or settings.social_snapchat_link != blank
       assign social_links = true
@@ -126,11 +176,23 @@
     if localization.available_countries.size > 1 and section.settings.enable_country_selector or section.settings.enable_language_selector and localization.available_languages.size > 1
       assign localization_forms = true
     endif
+
+    if section.settings.enable_mobile_compact_localization
+      if section.settings.mobile_compact_show_language and localization.available_languages.size > 1
+        assign compact_show_lang = true
+      endif
+      if section.settings.mobile_compact_show_currency and shop.enabled_currencies.size > 1
+        assign compact_show_curr = true
+      endif
+      if compact_show_lang or compact_show_curr
+        assign show_mobile_compact_localization_bar = true
+      endif
+    endif
   -%}
   <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
     {%- liquid
       if section.settings.menu != blank
-        render 'header-drawer'
+        render 'header-drawer', hide_drawer_localization: show_mobile_compact_localization_bar
       endif
 
       if section.settings.logo_position == 'top-center' or section.settings.menu == blank
@@ -288,6 +350,13 @@
       </a>
     </div>
   </header>
+  {%- if show_mobile_compact_localization_bar -%}
+    {% render 'header-mobile-localization-compact',
+      section: section,
+      compact_show_lang: compact_show_lang,
+      compact_show_curr: compact_show_curr
+    %}
+  {%- endif -%}
 </{{ header_tag }}>
 
 {%- if settings.cart_type == "notification" -%}
@@ -582,6 +651,29 @@
       "default": true,
       "label": "t:sections.header.settings.enable_language_selector.label",
       "info":"t:sections.header.settings.enable_language_selector.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.header__mobile_localization.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_compact_localization",
+      "default": false,
+      "label": "t:sections.header.settings.enable_mobile_compact_localization.label",
+      "info": "t:sections.header.settings.enable_mobile_compact_localization.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_compact_show_language",
+      "default": true,
+      "label": "t:sections.header.settings.mobile_compact_show_language.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_compact_show_currency",
+      "default": true,
+      "label": "t:sections.header.settings.mobile_compact_show_currency.label"
     },
     {
       "type": "checkbox",

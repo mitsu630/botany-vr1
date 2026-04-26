@@ -1531,6 +1531,19 @@
           "label": "言語セレクター",
           "info": "[言語の管理](/admin/settings/languages)"
         },
+        "header__mobile_localization": {
+          "content": "モバイルの言語・通貨（コンパクト）"
+        },
+        "enable_mobile_compact_localization": {
+          "label": "モバイルでコンパクトな言語・通貨を表示",
+          "info": "画面幅749px以下で、ヘッダー直下に小さなプルダウンを表示します。メニュードロワー内の言語・国セレクターは重複しないよう非表示にします。"
+        },
+        "mobile_compact_show_language": {
+          "label": "言語のプルダウン"
+        },
+        "mobile_compact_show_currency": {
+          "label": "通貨のプルダウン"
+        },
         "header__1": {
           "content": "色"
         },

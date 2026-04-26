@@ -11,13 +11,215 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "slideshow_fbMJg6": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_gJg4RL": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/39190047_741112469557062_8327759304236990464_n.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_wNPbGR": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/P1090409_4272b47b-0f83-4944-bccf-ac51d1d64c3a.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_rhWJTP": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/P1090098_8ae65612-e9e0-4df9-881f-4503fbc40fbc.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_tBw63L": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/SS_2026-04-26_8.11.24.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_gJg4RL",
+        "slide_wNPbGR",
+        "slide_rhWJTP",
+        "slide_tBw63L"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "medium",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": "ブランドについてのスライドショー"
+      }
+    },
+    "rich_text_iiyaDG": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_HjJA9K": {
+          "type": "heading",
+          "settings": {
+            "heading": "ABOUT BOTANY PAINTING",
+            "heading_size": "h1"
+          }
+        },
+        "text_9jRQqn": {
+          "type": "text",
+          "settings": {
+            "text": "<h4>以自然之葉，<br/>為生活增添色彩</h4><p>植物彩繪（Botany Painting）是一種運用天然蓮葉或菩提葉，親手排列、黏貼，並對葉片上色的藝術創作。即使沒有繪畫經驗，也能輕鬆完成專屬於自己的獨特作品。這些結合自然與創意的畫作，不僅是獨一無二的藝術品，也能作為優雅的空間裝飾，為日常生活增添自然氣息與色彩。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_HjJA9K",
+        "text_9jRQqn"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "video_7GzqbP": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "enable_video_looping": false,
+        "video": "shopify://files/videos/AD102_47b936c9-012b-4a88-85b4-3803a102f2f5.mp4",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "description": "",
+        "full_width": true,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multirow_nfArPR": {
+      "type": "multirow",
+      "blocks": {
+        "row_iGhbqh": {
+          "type": "row",
+          "settings": {
+            "caption": "キャプション",
+            "heading": "行",
+            "text": "<p>選択した商品、コレクション、ブログ記事に注目を集めるため、テキストと画像を組み合わせます。可用性、スタイル、またはレビュー提供についての詳細を追加します。</p>",
+            "button_label": "ボタンのラベル",
+            "button_link": ""
+          }
+        },
+        "row_tyyk6M": {
+          "type": "row",
+          "settings": {
+            "caption": "キャプション",
+            "heading": "行",
+            "text": "<p>選択した商品、コレクション、ブログ記事に注目を集めるため、テキストと画像を組み合わせます。可用性、スタイル、またはレビュー提供についての詳細を追加します。</p>",
+            "button_label": "ボタンのラベル",
+            "button_link": ""
+          }
+        },
+        "row_AiA8Wn": {
+          "type": "row",
+          "settings": {
+            "caption": "キャプション",
+            "heading": "行",
+            "text": "<p>選択した商品、コレクション、ブログ記事に注目を集めるため、テキストと画像を組み合わせます。可用性、スタイル、またはレビュー提供についての詳細を追加します。</p>",
+            "button_label": "ボタンのラベル",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_iGhbqh",
+        "row_tyyk6M",
+        "row_AiA8Wn"
+      ],
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "slideshow_fbMJg6",
+    "rich_text_iiyaDG",
+    "video_7GzqbP",
+    "multirow_nfArPR"
   ]
 }

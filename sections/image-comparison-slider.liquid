@@ -179,13 +179,25 @@
 {%- endstyle -%}
 
 {%- liquid
-  assign ratio = 1.0
+  assign ratio = 1
   if section.settings.after_image != blank and section.settings.after_image.aspect_ratio
     assign ratio = section.settings.after_image.aspect_ratio
   elsif section.settings.before_image != blank and section.settings.before_image.aspect_ratio
     assign ratio = section.settings.before_image.aspect_ratio
   endif
-  assign padding_bottom = 100 | divided_by: ratio
+
+  assign padding_bottom = 100
+  if ratio
+    assign padding_bottom = 1 | divided_by: ratio | times: 100
+  endif
+
+  capture sizes_attr
+    echo '(min-width: '
+    echo section.settings.max_width
+    echo 'px) '
+    echo section.settings.max_width
+    echo 'px, 100vw'
+  endcapture
 -%}
 
 <section id="ImageComparisonSlider-{{ section.id }}" class="section section-{{ section.id }}-padding" data-image-comparison-section>
@@ -211,7 +223,7 @@
           {{
             section.settings.after_image
             | image_url: width: 2400
-            | image_tag: widths: '375, 550, 750, 1100, 1500, 2000, 2400', sizes: '(min-width: 990px) {{ section.settings.max_width }}px, 100vw'
+            | image_tag: widths: '375, 550, 750, 1100, 1500, 2000, 2400', sizes: sizes_attr
           }}
         {%- else -%}
           {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -224,7 +236,7 @@
             {{
               section.settings.before_image
               | image_url: width: 2400
-              | image_tag: widths: '375, 550, 750, 1100, 1500, 2000, 2400', sizes: '(min-width: 990px) {{ section.settings.max_width }}px, 100vw'
+              | image_tag: widths: '375, 550, 750, 1100, 1500, 2000, 2400', sizes: sizes_attr
             }}
           {%- else -%}
             {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}

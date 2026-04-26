@@ -10,19 +10,23 @@
   if request.locale.iso_code == 'ja'
     assign currency_aria = '通貨'
   endif
+
+  assign compact_locale_code = request.locale.iso_code
+  if localization.language
+    assign compact_locale_code = localization.language.iso_code
+  endif
+
+  assign compact_currency_code = cart.currency.iso_code
 -%}
 
-<div
-  class="header-mobile-localization-compact{% if section.settings.color_scheme != blank %} color-{{ section.settings.color_scheme }} gradient{% endif %}"
-  {{ section.shopify_attributes }}
->
+<div class="header-mobile-localization-compact{% if section.settings.color_scheme != blank %} color-{{ section.settings.color_scheme }} gradient{% endif %}">
   <div class="page-width">
     {%- form 'localization', id: 'HeaderMobileCompactLocalization', class: 'header-mobile-localization-compact__form' -%}
       {%- unless compact_show_lang -%}
-        <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
+        <input type="hidden" name="locale_code" value="{{ compact_locale_code | escape }}">
       {%- endunless -%}
       {%- unless compact_show_curr -%}
-        <input type="hidden" name="currency_code" value="{{ cart.currency.iso_code }}">
+        <input type="hidden" name="currency_code" value="{{ compact_currency_code | escape }}">
       {%- endunless -%}
 
       {%- if compact_show_lang -%}
@@ -34,7 +38,7 @@
           onchange="this.form.requestSubmit ? this.form.requestSubmit() : this.form.submit()"
         >
           {%- for language in localization.available_languages -%}
-            <option value="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %}selected{% endif %}>
+            <option value="{{ language.iso_code | escape }}" {% if language.iso_code == compact_locale_code %}selected{% endif %}>
               {{ language.endonym_name }}
             </option>
           {%- endfor -%}
@@ -50,7 +54,7 @@
           onchange="this.form.requestSubmit ? this.form.requestSubmit() : this.form.submit()"
         >
           {%- for currency in shop.enabled_currencies -%}
-            <option value="{{ currency.iso_code }}" {% if currency.iso_code == cart.currency.iso_code %}selected{% endif %}>
+            <option value="{{ currency.iso_code | escape }}" {% if currency.iso_code == compact_currency_code %}selected{% endif %}>
               {{ currency.iso_code }}{% if currency.symbol %} {{ currency.symbol }}{% endif %}
             </option>
           {%- endfor -%}

@@ -178,10 +178,18 @@
     endif
 
     if section.settings.enable_mobile_compact_localization
-      if section.settings.mobile_compact_show_language and localization.available_languages.size > 1
+      assign _avail_lang_n = 0
+      if localization.available_languages
+        assign _avail_lang_n = localization.available_languages.size
+      endif
+      assign _avail_curr_n = 0
+      if shop.enabled_currencies
+        assign _avail_curr_n = shop.enabled_currencies.size
+      endif
+      if section.settings.mobile_compact_show_language and _avail_lang_n > 1
         assign compact_show_lang = true
       endif
-      if section.settings.mobile_compact_show_currency and shop.enabled_currencies.size > 1
+      if section.settings.mobile_compact_show_currency and _avail_curr_n > 1
         assign compact_show_curr = true
       endif
       if compact_show_lang or compact_show_curr
@@ -190,11 +198,10 @@
     endif
   -%}
   <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
+    {%- if section.settings.menu != blank -%}
+      {% render 'header-drawer', hide_drawer_localization: show_mobile_compact_localization_bar %}
+    {%- endif -%}
     {%- liquid
-      if section.settings.menu != blank
-        render 'header-drawer', hide_drawer_localization: show_mobile_compact_localization_bar
-      endif
-
       if section.settings.logo_position == 'top-center' or section.settings.menu == blank
         render 'header-search', input_id: 'Search-In-Modal-1'
       endif

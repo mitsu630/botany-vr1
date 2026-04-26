@@ -22,7 +22,7 @@
     --cgm-title-color: {{ section.settings.title_color }};
     --cgm-title-size: {{ section.settings.title_font_size }}px;
     --cgm-gap: {{ section.settings.grid_gap }}px;
-    --cgm-cols-desktop: {{ section.settings.columns_desktop }};
+    --cgm-cols-desktop: {% if section.blocks.size == 1 %}1{% else %}{{ section.settings.columns_desktop }}{% endif %};
   }
 {%- endstyle -%}
 

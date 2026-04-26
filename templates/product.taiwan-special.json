@@ -152,24 +152,46 @@
             "text": "<ol><li>可以用夥伴講師的價格購買植物彩繪的畫材。</li><li>可以販賣自己的作品，也可以展示發表。</li><li>可以舉辦與本部所辦相同的工作坊。</li><li>可以舉辦本部所辦之不同類型的小型工作坊。</li><li>可以與藝術或療癒機構共同企劃舉辦工作坊。</li><li>可以用新製作的作品類型舉辦工作坊。<br/><br/>※夥伴講師自行舉辦活動時，其參加費用由各講師自行決定。<br/>※ 可以自由選擇在出租場所或咖啡廳等場地舉辦。</li></ol>",
             "text_style": "body"
           }
-        },
-        "button_NcUXeW": {
-          "type": "button",
-          "settings": {
-            "button_label": "ボタンのラベル",
-            "button_link": "",
-            "button_style_secondary": false
-          }
         }
       },
       "block_order": [
         "heading_6tdtm4",
-        "text_xPtMtP",
-        "button_NcUXeW"
+        "text_xPtMtP"
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "image": "shopify://shop_images/SS_2025-02-21_17.50.12.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_tT6JLi": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_UwTKeF": {
+          "type": "heading",
+          "settings": {
+            "heading": "在日本活躍的講師們（2024年於日本六本木 / 新國立美術館展出的作品展示情景）",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_UwTKeF"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/LINE_ALBUM_20241130_250222_5.jpg",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "image_first",
@@ -406,6 +428,7 @@
     "multicolumn_dhaHX8",
     "custom_google_maps_J7NLNn",
     "image_with_text_bKPk6H",
+    "image_with_text_tT6JLi",
     "main",
     "related-products",
     "17767608404f8e6a1c",

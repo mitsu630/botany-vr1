@@ -107,6 +107,36 @@
         "padding_bottom": 36
       }
     },
+    "custom_google_maps_J7NLNn": {
+      "type": "custom-google-maps",
+      "blocks": {
+        "map_QUXxAA": {
+          "type": "map",
+          "settings": {
+            "address": "106 台北市大安區忠孝東路四段181巷38號",
+            "display_address": "<p>106 台北市大安區忠孝東路四段181巷38號</p>",
+            "map_height": 410
+          }
+        }
+      },
+      "block_order": [
+        "map_QUXxAA"
+      ],
+      "name": "グーグル・マップ",
+      "settings": {
+        "title": "",
+        "title_color": "#111111",
+        "title_font_size": 28,
+        "background_color": "#ffffff",
+        "columns_desktop": 3,
+        "grid_gap": 16,
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -327,6 +357,7 @@
   "order": [
     "rich_text_UwXfF3",
     "multicolumn_dhaHX8",
+    "custom_google_maps_J7NLNn",
     "main",
     "related-products",
     "17767608404f8e6a1c",

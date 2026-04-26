@@ -608,8 +608,9 @@
       "settings": {
         "heading": "",
         "heading_size": "h1",
-        "enable_video_looping": false,
-        "video_url": "https://www.youtube.com/watch?v=3vTg8FbDYGo",
+        "enable_video_looping": true,
+        "video": "shopify://files/videos/植物彩繪 師資取得課程botanypainting.mp4",
+        "video_url": "",
         "description": "",
         "full_width": true,
         "color_scheme": "",

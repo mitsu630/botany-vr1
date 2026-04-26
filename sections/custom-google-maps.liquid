@@ -1,0 +1,236 @@
+{{ 'section-custom-google-maps.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-spacing {
+    padding-top: calc({{ section.settings.padding_top }}px * 0.75);
+    padding-bottom: calc({{ section.settings.padding_bottom }}px * 0.75);
+    margin-top: calc({{ section.settings.margin_top }}px * 0.75);
+    margin-bottom: calc({{ section.settings.margin_bottom }}px * 0.75);
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-spacing {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+    }
+  }
+
+  #CustomGoogleMaps-{{ section.id }} {
+    --cgm-bg: {{ section.settings.background_color }};
+    --cgm-title-color: {{ section.settings.title_color }};
+    --cgm-title-size: {{ section.settings.title_font_size }}px;
+    --cgm-gap: {{ section.settings.grid_gap }}px;
+    --cgm-cols-desktop: {{ section.settings.columns_desktop }};
+  }
+{%- endstyle -%}
+
+<section
+  id="CustomGoogleMaps-{{ section.id }}"
+  class="custom-google-maps color-{{ section.settings.color_scheme }} gradient"
+>
+  <div class="custom-google-maps__outer section-{{ section.id }}-spacing">
+    <div class="page-width">
+      {%- if section.settings.title != blank -%}
+        <div class="custom-google-maps__header">
+          <h2 class="custom-google-maps__title">
+            {{ section.settings.title }}
+          </h2>
+        </div>
+      {%- endif -%}
+
+      <div class="custom-google-maps__grid" role="list">
+        {%- for block in section.blocks -%}
+          {%- assign address = block.settings.address | strip -%}
+
+          <article class="custom-google-maps__item" role="listitem" {{ block.shopify_attributes }}>
+            {%- if address != blank -%}
+              <div
+                class="custom-google-maps__frame"
+                style="--cgm-map-height: {{ block.settings.map_height }}px;"
+              >
+                <iframe
+                  class="custom-google-maps__iframe"
+                  src="https://www.google.com/maps?q={{ address | url_encode }}&output=embed"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  allowfullscreen
+                  title="{{ address | escape }}"
+                ></iframe>
+              </div>
+            {%- else -%}
+              <div class="custom-google-maps__empty">
+                住所を入力してください。
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.display_address != blank -%}
+              <div class="custom-google-maps__address rte">
+                {{ block.settings.display_address }}
+              </div>
+            {%- endif -%}
+          </article>
+        {%- else -%}
+          <div class="custom-google-maps__empty custom-google-maps__empty--section">
+            テーマエディタで「マップ」ブロックを追加してください。
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "グーグル・マップ",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "親タイトル",
+      "default": "アクセス"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "親タイトルの文字色",
+      "default": "#111111"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "親タイトルの文字サイズ",
+      "min": 14,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "セクション背景色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "レイアウト"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "PCの列数（最大3列）",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "グリッドの間隔",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "配色（テキストなど）",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "余白"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "上パディング",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "下パディング",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "上マージン",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "下マージン",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "map",
+      "name": "マップ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "address",
+          "label": "住所入力（Googleマップ検索用）",
+          "default": "東京都渋谷区神南1-1-1"
+        },
+        {
+          "type": "richtext",
+          "id": "display_address",
+          "label": "表示用住所テキスト（マップ下）",
+          "default": "<p>〒150-0000 東京都渋谷区神南1-1-1<br>サンプルビル 2F</p>"
+        },
+        {
+          "type": "range",
+          "id": "map_height",
+          "label": "マップの高さ",
+          "min": 180,
+          "max": 680,
+          "step": 10,
+          "unit": "px",
+          "default": 300
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "グーグル・マップ",
+      "blocks": [
+        { "type": "map" },
+        { "type": "map" },
+        { "type": "map" }
+      ]
+    }
+  ]
+}
+{% endschema %}

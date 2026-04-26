@@ -134,6 +134,89 @@
         "settings": {
           "color_scheme": "scheme-1"
         }
+      },
+      "selfreset-header": {
+        "type": "selfreset-header",
+        "settings": {
+          "brand_name": "Self Reset Art"
+        }
+      },
+      "selfreset-header-localization": {
+        "type": "selfreset-header-localization",
+        "settings": {
+          "show_section": false,
+          "show_language": false,
+          "show_currency": false
+        }
+      },
+      "selfreset-hero": {
+        "type": "selfreset-hero",
+        "settings": {
+          "video_url": "https://esfs.jp/botanypainting/00_sra_img/sra001_AD.mp4"
+        }
+      },
+      "selfreset-intro": {
+        "type": "selfreset-intro",
+        "settings": {
+          "title": "Self Reset Intro",
+          "subtitle": "Self Reset Art"
+        }
+      },
+      "selfreset-intro2": {
+        "type": "selfreset-intro2",
+        "settings": {
+          "title": "Self Reset Art",
+          "button_text": "購入する",
+          "button_link": ""
+        }
+      },
+      "product-selfreset": {
+        "type": "product-selfreset",
+        "settings": {
+          "title": "商品情報"
+        }
+      },
+      "selfreset-materials": {
+        "type": "selfreset-materials",
+        "settings": {
+          "background_color": "#fdf6f5"
+        }
+      },
+      "selfreset-variant-selector": {
+        "type": "selfreset-variant-selector",
+        "settings": {
+          "title": "あなたの Self Reset <br>をカスタマイズ"
+        }
+      },
+      "selfreset-legal": {
+        "type": "selfreset-legal",
+        "settings": {
+          "title": "特定商取引法に基づく表記"
+        }
+      },
+      "selfreset-policy": {
+        "type": "selfreset-policy",
+        "settings": {
+          "title": "プライバシーポリシー"
+        }
+      },
+      "selfreset-company": {
+        "type": "selfreset-company",
+        "settings": {
+          "title": "会社情報"
+        }
+      },
+      "selfreset-terms": {
+        "type": "selfreset-terms",
+        "settings": {
+          "title": "利用規約"
+        }
+      },
+      "selfreset-footer": {
+        "type": "selfreset-footer",
+        "settings": {
+          "copyright": "© 2024, Botany Painting"
+        }
       }
     },
     "content_for_index": [],

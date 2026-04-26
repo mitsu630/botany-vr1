@@ -11,6 +11,7 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
@@ -50,8 +51,84 @@
         "text": "<p>・一般の方向け<br/>・自宅で楽しめる講座<br/>・<strong>4000円</strong>の体験コース<br/>・画材一式が自宅に届く</p>",
         "price_text": "",
         "button_label": "詳細はこちらから",
-        "button_link": "",
+        "button_link": "shopify://products/video_otameshi",
         "color_scheme": "scheme-3",
+        "heading_size": "h1",
+        "image_radius": 12,
+        "image_gap": 12,
+        "media_border_width": 0,
+        "media_border_color": "#000000",
+        "button_bg_color": "#418071",
+        "button_text_color": "#ffffff",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "featured_collection_3TDeQK": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "講座一覧",
+        "products_to_show": 25,
+        "title": "",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "product_intro_card_a_XDcc9T": {
+      "type": "product-intro-card-a",
+      "blocks": {
+        "image_nkgJE8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/asaoka-min.webp"
+          }
+        },
+        "image_f7AddJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/inoue-1.webp"
+          }
+        },
+        "image_iDacen": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ogata-min-1.webp"
+          }
+        }
+      },
+      "block_order": [
+        "image_nkgJE8",
+        "image_f7AddJ",
+        "image_iDacen"
+      ],
+      "name": "商品紹介カードA",
+      "settings": {
+        "badge_text": "講師向け",
+        "title": "講師限定講座",
+        "text": "<p>・講師の方向け</p>",
+        "price_text": "",
+        "button_label": "詳細はこちらから",
+        "button_link": "shopify://pages/partner-event",
+        "color_scheme": "scheme-2",
         "heading_size": "h1",
         "image_radius": 12,
         "image_gap": 12,
@@ -66,6 +143,8 @@
   },
   "order": [
     "main",
-    "product_intro_card_a_chHXwE"
+    "product_intro_card_a_chHXwE",
+    "featured_collection_3TDeQK",
+    "product_intro_card_a_XDcc9T"
   ]
 }

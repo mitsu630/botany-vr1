@@ -164,45 +164,36 @@
         "row_iGhbqh": {
           "type": "row",
           "settings": {
-            "caption": "キャプション",
-            "heading": "行",
-            "text": "<p>選択した商品、コレクション、ブログ記事に注目を集めるため、テキストと画像を組み合わせます。可用性、スタイル、またはレビュー提供についての詳細を追加します。</p>",
-            "button_label": "ボタンのラベル",
-            "button_link": ""
+            "image": "shopify://shop_images/P1090409_4272b47b-0f83-4944-bccf-ac51d1d64c3a.jpg",
+            "caption": "10期 參與為期兩天的面授課程並參加考試",
+            "heading": "師資取得課程",
+            "text": "<p>本課程為期兩天，並非以培養美術專業人士為目的，而是設計給初學者也能輕鬆參加的內容。 即使沒有藝術經驗，也能透過課程取得植物彩繪的講師資格，開始從事教學與藝術活動。 完成課程並通過測驗後，即可取得「夥伴講師資格」，可自行舉辦工作坊、展示作品並進行販售。</p>",
+            "button_label": "詳細請點此查看",
+            "button_link": "shopify://products/taiwan-special"
           }
         },
         "row_tyyk6M": {
           "type": "row",
           "settings": {
-            "caption": "キャプション",
-            "heading": "行",
-            "text": "<p>選択した商品、コレクション、ブログ記事に注目を集めるため、テキストと画像を組み合わせます。可用性、スタイル、またはレビュー提供についての詳細を追加します。</p>",
-            "button_label": "ボタンのラベル",
-            "button_link": ""
-          }
-        },
-        "row_AiA8Wn": {
-          "type": "row",
-          "settings": {
-            "caption": "キャプション",
-            "heading": "行",
-            "text": "<p>選択した商品、コレクション、ブログ記事に注目を集めるため、テキストと画像を組み合わせます。可用性、スタイル、またはレビュー提供についての詳細を追加します。</p>",
-            "button_label": "ボタンのラベル",
-            "button_link": ""
+            "image": "shopify://shop_images/0A3A4998.jpg",
+            "caption": "",
+            "heading": "單日體驗課程",
+            "text": "<p>約3小時的課程中，您可於當天完成作品並攜帶回家。在台灣，參與者的年齡層非常廣泛，從年輕人到年長者都有。其中90%的參與者都是首次參加。如果您對創作感到擔心，我們也可以提供講師的製作協助。</p>",
+            "button_label": "詳細請點此查看",
+            "button_link": "shopify://products/taiwan-workshop-1"
           }
         }
       },
       "block_order": [
         "row_iGhbqh",
-        "row_tyyk6M",
-        "row_AiA8Wn"
+        "row_tyyk6M"
       ],
       "name": "t:sections.multirow.presets.name",
       "settings": {
         "image_height": "medium",
         "desktop_image_width": "medium",
         "image_layout": "alternate-left",
-        "heading_size": "h1",
+        "heading_size": "h2",
         "text_style": "body",
         "button_style": "secondary",
         "desktop_content_position": "middle",

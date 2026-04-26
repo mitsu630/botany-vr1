@@ -18,16 +18,6 @@
         "padding_bottom": 36
       }
     },
-    "japan_workshop_buytool_iUQMip": {
-      "type": "japan-workshop-buytool",
-      "name": "japan-workshop-buytool",
-      "settings": {
-        "bg_color": "#eef2e6",
-        "accent_color": "#d31d84",
-        "z_index": 9999,
-        "footer_height_px": 200
-      }
-    },
     "related-products": {
       "type": "related-products",
       "disabled": true,
@@ -492,7 +482,7 @@
         "auto_rotate": true,
         "change_slides_speed": 5,
         "image_behavior": "ambient",
-        "show_text_below": false,
+        "show_text_below": true,
         "accessibility_info": "ブランドについてのスライドショー"
       }
     },
@@ -517,6 +507,16 @@
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 52
+      }
+    },
+    "japan_workshop_buytool_iUQMip": {
+      "type": "japan-workshop-buytool",
+      "name": "japan-workshop-buytool",
+      "settings": {
+        "bg_color": "#eef2e6",
+        "accent_color": "#d31d84",
+        "z_index": 9999,
+        "footer_height_px": 200
       }
     },
     "main": {
@@ -566,35 +566,11 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
-    },
-    "rich_text_diEzGy": {
-      "type": "rich-text",
-      "blocks": {
-        "text_GdKkdp": {
-          "type": "text",
-          "settings": {
-            "text": "<p>カンテレで、ボタニーペインティングをご紹介いただく予定です。<br/>放送後は、カンテレ放送エリアを中心にお申込みが増え、<br/>各会場が満席となる可能性がございます。<br/>ご参加を検討中の方は、ぜひお早めにご予約ください。</p>"
-          }
-        }
-      },
-      "block_order": [
-        "text_GdKkdp"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
     }
   },
   "order": [
     "workshop_dynamic_header_NCVnWe",
     "related-products",
-    "rich_text_diEzGy",
     "autoplay_loop_video_ETx7df",
     "custom_standalone_image_FJCfPF",
     "custom_standalone_image_ytdCcG",

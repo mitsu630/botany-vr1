@@ -792,13 +792,13 @@
         "heading_size": "h2",
         "image_width": "full",
         "image_ratio": "adapt",
-        "button_label": "ボタンのラベル",
+        "button_label": "",
         "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "left",
+        "columns_desktop": 2,
+        "column_alignment": "center",
         "background_style": "primary",
         "color_scheme": "",
-        "columns_mobile": "1",
+        "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
@@ -816,8 +816,8 @@
     "multicolumn_fmMNbk",
     "slideshow_WAxXXG",
     "video_7rBJ6d",
-    "featured_product_mcjbRH",
     "image_comparison_slider_9QBRkq",
-    "multicolumn_AYBqPY"
+    "multicolumn_AYBqPY",
+    "featured_product_mcjbRH"
   ]
 }

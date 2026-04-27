@@ -1,0 +1,66 @@
+{
+  "sections": {
+    "instructor_profile": {
+      "type": "instructor-profile",
+      "blocks": {
+        "profile_header": {
+          "type": "profile_header",
+          "settings": {
+            "show_rank": true,
+            "show_license": false,
+            "show_sns": true
+          }
+        },
+        "bio": {
+          "type": "bio",
+          "settings": {
+            "heading": "プロフィール"
+          }
+        },
+        "gallery": {
+          "type": "gallery",
+          "settings": {
+            "heading": "作品ギャラリー",
+            "columns": 3
+          }
+        },
+        "workshops": {
+          "type": "workshops",
+          "settings": {
+            "heading": "担当ワークショップ",
+            "show_product_image": true
+          }
+        },
+        "artworks": {
+          "type": "artworks",
+          "settings": {
+            "heading": "関連作品"
+          }
+        },
+        "ig_embed": {
+          "type": "ig_embed",
+          "settings": {
+            "heading": "Instagram"
+          }
+        }
+      },
+      "block_order": [
+        "profile_header",
+        "bio",
+        "gallery",
+        "workshops",
+        "artworks",
+        "ig_embed"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "not_found_message": "講師情報が見つかりませんでした。",
+        "padding_top": 36,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "instructor_profile"
+  ]
+}

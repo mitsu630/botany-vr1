@@ -23,7 +23,6 @@
         "eyebrow": "INSTRUCTORS",
         "title": "講師一覧",
         "subtitle": "全国のプロ講師",
-        "only_active": true,
         "rank_filter": "pro",
         "detail_page": "pro-instructor",
         "enable_region_filter": true,

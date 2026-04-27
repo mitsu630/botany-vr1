@@ -17,7 +17,7 @@
       if m.bp_is_active and m.bp_is_active.value
         assign is_active = true
       endif
-      if section.settings.only_active and is_active == false
+      if is_active == false
         continue
       endif
 
@@ -52,7 +52,7 @@
       if m.bp_is_active and m.bp_is_active.value
         assign is_active = true
       endif
-      if section.settings.only_active and is_active == false
+      if is_active == false
         continue
       endif
 
@@ -346,7 +346,7 @@
                 if m.bp_is_active and m.bp_is_active.value
                   assign is_active = true
                 endif
-                if section.settings.only_active and is_active == false
+                if is_active == false
                   continue
                 endif
 
@@ -627,10 +627,8 @@
       "content": "データ"
     },
     {
-      "type": "checkbox",
-      "id": "only_active",
-      "label": "アクティブ講師のみ表示",
-      "default": true
+      "type": "paragraph",
+      "content": "bp_is_active=true の講師のみ表示されます（固定）。"
     },
     {
       "type": "select",

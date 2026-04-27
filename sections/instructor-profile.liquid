@@ -21,16 +21,6 @@
       endif
     endif
   endif
-  if instructor == nil and ip_param != ''
-    if shop.metaobjects.instructors
-      for m in shop.metaobjects.instructors.values
-        if m and m.bp_id and m.bp_id.value == ip_param
-          assign instructor = m
-          break
-        endif
-      endfor
-    endif
-  endif
   if instructor == nil and request.design_mode
     if shop.metaobjects.instructors
       for m in shop.metaobjects.instructors.values

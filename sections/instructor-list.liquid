@@ -389,9 +389,6 @@
                 endif
 
                 assign link_id = m.system.handle
-                if m.bp_id and m.bp_id.value != blank
-                  assign link_id = m.bp_id.value
-                endif
 
                 assign detail_base_url = ''
                 if section.settings.detail_page != blank

@@ -53,6 +53,34 @@
     });
   }
 
+  function isBuyItNowClickTarget(el) {
+    if (!(el instanceof Element)) return false;
+    return Boolean(
+      el.closest(
+        [
+          // Native Shopify payment button
+          '.shopify-payment-button__button',
+          '.shopify-payment-button',
+          // Accelerated checkout custom elements
+          'shopify-accelerated-checkout',
+          'shopify-buy-it-now-button',
+          // Some apps wrap/replace the button but keep these classes
+          '.bss-po-btn-buyitnow',
+        ].join(', ')
+      )
+    );
+  }
+
+  function syncClosestWorkshopSelectFromEventTarget(target) {
+    if (!(target instanceof Element)) return;
+    const root =
+      target.closest('product-info') ||
+      target.closest('.product__info-container') ||
+      document;
+    const select = root.querySelector(SELECT_SELECTOR);
+    if (select) syncSelectToHidden(select);
+  }
+
   // Event delegation for user changes
   document.addEventListener(
     'change',
@@ -61,6 +89,17 @@
       if (!(t instanceof HTMLSelectElement)) return;
       if (!t.matches(SELECT_SELECTOR)) return;
       syncSelectToHidden(t);
+    },
+    true
+  );
+
+  // Ensure quantity is synced immediately before accelerated checkout reads it.
+  // Use capture phase so it runs before Shopify/app click handlers.
+  document.addEventListener(
+    'click',
+    (e) => {
+      if (!isBuyItNowClickTarget(e.target)) return;
+      syncClosestWorkshopSelectFromEventTarget(e.target);
     },
     true
   );

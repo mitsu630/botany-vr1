@@ -1,8 +1,21 @@
 {%- liquid
   assign ip_param = request.params.id | default: ''
+
   if ip_param == blank and request.query_string != blank
     assign ip_pairs = request.query_string | split: '&'
     for ip_pair in ip_pairs
+      assign ip_kv = ip_pair | split: '='
+      if ip_kv[0] == 'id'
+        assign ip_param = ip_kv[1] | url_decode
+        break
+      endif
+    endfor
+  endif
+
+  if ip_param == blank and request.url contains '?'
+    assign ip_qs = request.url | split: '?' | last
+    assign ip_pairs_2 = ip_qs | split: '&'
+    for ip_pair in ip_pairs_2
       assign ip_kv = ip_pair | split: '='
       if ip_kv[0] == 'id'
         assign ip_param = ip_kv[1] | url_decode
@@ -452,6 +465,16 @@
   <div class="instructor-profile__bg-overlay" aria-hidden="true"></div>
   <div class="page-width section-{{ section.id }}-padding">
     <div class="instructor-profile__inner">
+
+    {%- if section.settings.debug -%}
+      <div style="margin: 0 0 1.2rem; padding: 1.2rem 1.4rem; border: 1px dashed rgba(var(--color-foreground), 0.25); border-radius: 0.8rem; font-size: 12px; background: rgba(255,255,255,0.6);">
+        <div><strong>debug</strong></div>
+        <div>id(param): <code>{{ ip_param | escape }}</code></div>
+        <div>found: <code>{% if instructor %}true{% else %}false{% endif %}</code></div>
+        <div>handle: <code>{% if instructor %}{{ instructor.system.handle | escape }}{% else %}-{% endif %}</code></div>
+        <div>bp_is_active: <code>{% if instructor and instructor.bp_is_active %}{{ instructor.bp_is_active.value | json }}{% else %}-{% endif %}</code></div>
+      </div>
+    {%- endif -%}
 
     {%- if instructor == nil or is_active == false -%}
 
@@ -928,6 +951,12 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "debug",
+      "label": "デバッグ表示（id/取得結果）",
+      "default": false
     },
     {
       "type": "header",

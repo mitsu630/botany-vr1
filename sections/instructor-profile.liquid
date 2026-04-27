@@ -2,8 +2,38 @@
   assign ip_param = ''
 
   {%- capture _cfh -%}{{ content_for_header }}{%- endcapture -%}
-  {%- assign _pageurl = _cfh | split: '"pageurl":"' | last | split: '"' | first -%}
-  {%- assign _pageurl = _pageurl | replace: '\/', '/' | replace: '%20', ' ' | replace: '\\u0026', '&' | replace: '%26', '&' -%}
+
+  {%- assign _pageurl = '' -%}
+  {%- assign _pageurl_try = _cfh | split: 'pageurl":"' | last -%}
+  {%- if _pageurl_try != _cfh -%}
+    {%- assign _pageurl = _pageurl_try | split: '"' | first -%}
+  {%- endif -%}
+
+  {%- if _pageurl == blank -%}
+    {%- assign _pageurl_try = _cfh | split: '"pageurl":"' | last -%}
+    {%- if _pageurl_try != _cfh -%}
+      {%- assign _pageurl = _pageurl_try | split: '"' | first -%}
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- if _pageurl == blank -%}
+    {%- assign _pageurl_try = _cfh | split: '\u0022pageurl\u0022:\u0022' | last -%}
+    {%- if _pageurl_try != _cfh -%}
+      {%- assign _pageurl = _pageurl_try | split: '\u0022' | first -%}
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- if _pageurl != blank -%}
+    {%- assign _pageurl = _pageurl
+      | replace: '\/', '/'
+      | replace: '\\u0026', '&'
+      | replace: '\u0026', '&'
+      | replace: '%26', '&'
+      | replace: '%3D', '='
+      | replace: '%3F', '?'
+      | replace: '%20', ' '
+    -%}
+  {%- endif -%}
 
   {%- if _pageurl contains '?' -%}
     {%- assign _qs = _pageurl | split: '?' | last -%}
@@ -462,6 +492,7 @@
     {%- if section.settings.debug -%}
       <div style="margin: 0 0 1.2rem; padding: 1.2rem 1.4rem; border: 1px dashed rgba(var(--color-foreground), 0.25); border-radius: 0.8rem; font-size: 12px; background: rgba(255,255,255,0.6);">
         <div><strong>debug</strong></div>
+        <div>pageurl: <code>{{ _pageurl | escape }}</code></div>
         <div>id(param): <code>{{ ip_param | escape }}</code></div>
         <div>found: <code>{% if instructor %}true{% else %}false{% endif %}</code></div>
         <div>handle: <code>{% if instructor %}{{ instructor.system.handle | escape }}{% else %}-{% endif %}</code></div>

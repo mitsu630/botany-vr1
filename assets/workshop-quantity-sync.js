@@ -27,7 +27,13 @@
     if (!hidden) return;
 
     const v = select.value;
-    if (v != null && v !== '') hidden.value = v;
+    if (v != null && v !== '') {
+      hidden.value = v;
+      // Some Shopify accelerated checkout flows rely on input/change events
+      // rather than reading .value at click time.
+      hidden.dispatchEvent(new Event('input', { bubbles: true }));
+      hidden.dispatchEvent(new Event('change', { bubbles: true }));
+    }
   }
 
   function setupObserver(select) {

@@ -57,10 +57,13 @@
         >
 
         <input
-          type="hidden"
+          type="number"
           name="quantity"
           value="{{ product.selected_or_first_available_variant.quantity_rule.min | default: 1 }}"
-          class="jwb-hidden-quantity"
+          class="quantity__input jwb-hidden-quantity"
+          tabindex="-1"
+          aria-hidden="true"
+          style="position:fixed;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;"
         >
 
         {%- if gift_card_recipient_feature_active -%}

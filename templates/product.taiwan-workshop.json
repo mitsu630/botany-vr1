@@ -590,6 +590,60 @@
         "padding_bottom": 28
       }
     },
+    "multicolumn_dVWmHw": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_wf8VVB": {
+          "type": "column",
+          "settings": {
+            "title": "<strong>報名方式</strong>",
+            "text": "<p>請透過官方網站完成報名。</p><p>所有課程（包含講師培訓課程與一日體驗工作坊）皆可於官方網站進行報名。<br/>請選擇您希望參加的課程場次，並依照頁面指示完成報名與付款流程。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_PnmdmN": {
+          "type": "column",
+          "settings": {
+            "title": "<strong>關於畫材準備</strong>",
+            "text": "<p>課程所需之畫材皆由我們為您完整準備。</p><p>包含葉材、顏料、海綿、畫板等，皆已事先備妥，初學者亦可安心參加。<br/>當日可輕鬆空手前來，我們亦會提供可攜帶作品回家的提袋，敬請放心。<br/></p><p>現場備有圍裙，如您擔心衣物或雙手沾染顏料，亦歡迎自行攜帶一次性手套等防護用品。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_8F96xf": {
+          "type": "column",
+          "settings": {
+            "title": "<strong>報名諮詢與相關說明</strong>",
+            "text": "<p>若您於報名前有任何疑問，歡迎透過官方LINE帳號與我們聯繫。由負責台灣業務之日本籍工作人員提供協助，中文與日文皆可使用。</p><p></p><p>完成報名後，相關聯繫將由台灣籍工作人員以中文為您說明與協助，包含課程地點、課前提醒及各項通知等，敬請安心。</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_wf8VVB",
+        "column_PnmdmN",
+        "column_8F96xf"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "17767608404f8e6a1c": {
       "type": "apps",
       "settings": {
@@ -608,6 +662,7 @@
     "video_RRyp7q",
     "main",
     "related-products",
+    "multicolumn_dVWmHw",
     "17767608404f8e6a1c"
   ]
 }

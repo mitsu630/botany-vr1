@@ -40,6 +40,10 @@
         "include_margins": true
       }
     },
+    "1777270507fa5a07b8": {
+      "type": "_blocks",
+      "settings": {}
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -293,6 +297,7 @@
   },
   "order": [
     "1776662935994908ce",
+    "1777270507fa5a07b8",
     "footer"
   ]
 }

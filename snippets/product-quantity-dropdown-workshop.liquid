@@ -8,7 +8,7 @@
   assign qstep = v.quantity_rule.increment
   assign qmax = v.quantity_rule.max
   if qmax == blank
-    assign cap = 30
+    assign cap = 5
   else
     assign cap = qmax
   endif
@@ -29,7 +29,7 @@
         data-max="{{ v.quantity_rule.max }}"
       {% endunless %}
       step="{{ qstep }}"
-      data-cap-max="30"
+      data-cap-max="5"
       aria-labelledby="quantity-label-{{ section.id }}"
     >
       {%- assign n = qmin -%}

@@ -648,6 +648,12 @@
       assign bio = m.bp_bio.value | default: ''
       assign ig_embed = m.bp_sns_ig_embed.value | default: ''
 
+      assign nickname = ''
+      if m.bp_nickname and m.bp_nickname.value != blank
+        assign nickname = m.bp_nickname.value
+      endif
+      assign hero_label = nickname | default: name
+
       assign works = m.bp_photo_work001.value
     -%}
     {
@@ -667,7 +673,7 @@
       "bio": {{ bio | json }},
       "ig_embed": {{ ig_embed | json }},
       "kicker": {{ section.settings.hero_kicker | json }},
-      "hero_label": {{ (m.bp_nickname.value | default: name) | json }},
+      "hero_label": {{ hero_label | json }},
       "works": [
         {%- if works != blank and works.size > 0 -%}
           {%- for img in works -%}

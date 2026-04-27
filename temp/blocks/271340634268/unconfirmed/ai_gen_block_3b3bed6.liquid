@@ -1,6 +1,921 @@
+{% doc %}
+  @prompt
+    {% comment %} bp-information.liquid {% endcomment %}
+    
+    <section class="bp-info" aria-label="最新消息">
+      <div class="bp-info__inner">
+    
+        <header class="bp-info__head">
+          <h2 class="bp-info__title">{{ section.settings.title }}</h2>
+          {% if section.settings.subtitle != blank %}
+            <p class="bp-info__subtitle">{{ section.settings.subtitle }}</p>
+          {% endif %}
+        </header>
+    
+        <ul class="bp-info__list">
+          {% for block in section.blocks %}
+            <li class="bp-info__item" {{ block.shopify_attributes }}>
+              <a class="bp-info__thumb" href="{{ block.settings.link }}">
+                {% if block.settings.image != blank %}
+                  {{ block.settings.image | image_url: width: 600 | image_tag: alt: block.settings.title, loading: 'lazy' }}
+                {% else %}
+                  <div style="width:100%;height:100%;background:#ece6d8;"></div>
+                {% endif %}
+              </a>
+              <div class="bp-info__body">
+                <h3 class="bp-info__item-title">{{ block.settings.title }}</h3>
+                <div class="bp-info__meta">
+                  {% if block.settings.date != blank %}
+                    <span class="bp-info__date">{{ block.settings.date }}</span>
+                  {% endif %}
+                  {% if block.settings.show_new %}
+                    <span class="bp-info__new">New</span>
+                  {% endif %}
+                </div>
+              </div>
+              {% if block.settings.link != blank %}
+                <a class="bp-info__check" href="{{ block.settings.link }}">Check</a>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+    
+        {% if section.settings.view_more_link != blank %}
+          <div class="bp-info__more">
+            <a class="bp-info__more-btn" href="{{ section.settings.view_more_link }}">View more</a>
+          </div>
+        {% endif %}
+    
+      </div>
+    </section>
+    
+    <style>
+      .bp-info {
+        background: #f7f4ee;
+        padding: 80px 20px;
+        color: #2d2a25;
+        -webkit-font-smoothing: antialiased;
+      }
+      .bp-info__inner { max-width: 980px; margin: 0 auto; }
+    
+      .bp-info__head {
+        text-align: center;
+        border-top: 1px solid #2d2a25;
+        border-bottom: 1px solid #2d2a25;
+        padding: 28px 16px;
+        margin-bottom: 56px;
+      }
+      .bp-info__title {
+        font-size: clamp(32px, 5vw, 44px);
+        font-weight: 800;
+        letter-spacing: .02em;
+        margin: 0 0 8px;
+        color: #2d2a25;
+      }
+      .bp-info__subtitle {
+        font-size: 14px; color: #5e5b53; margin: 0; letter-spacing: .05em;
+      }
+    
+      .bp-info__list {
+        list-style: none; margin: 0; padding: 0;
+        display: flex; flex-direction: column; gap: 32px;
+      }
+      .bp-info__item {
+        display: grid;
+        grid-template-columns: 240px 1fr auto;
+        align-items: center;
+        gap: 32px;
+        padding: 4px 12px;
+      }
+      .bp-info__thumb {
+        width: 240px; height: 180px;
+        overflow: hidden; border-radius: 4px;
+        background: #ece6d8; display: block; flex-shrink: 0;
+      }
+      .bp-info__thumb img {
+        width: 100%; height: 100%; object-fit: cover; display: block;
+        transition: transform .4s ease;
+      }
+      .bp-info__item:hover .bp-info__thumb img { transform: scale(1.04); }
+    
+      .bp-info__body { display: flex; flex-direction: column; gap: 14px; }
+      .bp-info__item-title {
+        font-size: 18px; font-weight: 600; line-height: 1.6;
+        color: #2d2a25; margin: 0; letter-spacing: .02em;
+      }
+      .bp-info__meta {
+        display: flex; align-items: center; gap: 12px;
+        color: #5e5b53; font-size: 14px; letter-spacing: .04em;
+      }
+      .bp-info__date { font-weight: 500; }
+    
+      .bp-info__new {
+        display: inline-block;
+        background: #c98a7a;
+        color: #fff;
+        font-size: 11px; font-weight: 600;
+        letter-spacing: .12em;
+        padding: 3px 10px;
+        border-radius: 3px;
+        text-transform: uppercase;
+      }
+    
+      .bp-info__check {
+        display: inline-block;
+        background: #7a8b6f;
+        color: #fff !important;
+        text-decoration: none;
+        font-size: 13px; letter-spacing: .15em;
+        padding: 10px 32px;
+        border-radius: 999px;
+        transition: background .2s ease, transform .2s ease;
+        white-space: nowrap;
+      }
+      .bp-info__check:hover { background: #65755b; transform: translateY(-1px); }
+    
+      .bp-info__more {
+        text-align: center;
+        margin-top: 48px;
+      }
+      .bp-info__more-btn {
+        display: inline-block;
+        background: #2d2a25;
+        color: #fff !important;
+        text-decoration: none;
+        font-size: 13px; letter-spacing: .15em;
+        padding: 12px 40px;
+        border-radius: 999px;
+        transition: background .2s ease;
+      }
+      .bp-info__more-btn:hover { background: #4a4640; }
+    
+      @media (max-width: 720px) {
+        .bp-info { padding: 56px 16px; }
+        .bp-info__head { padding: 22px 12px; margin-bottom: 36px; }
+        .bp-info__list { gap: 28px; }
+        .bp-info__item { grid-template-columns: 130px 1fr; gap: 16px; padding: 0; }
+        .bp-info__thumb { width: 130px; height: 100px; }
+        .bp-info__item-title { font-size: 14.5px; }
+        .bp-info__meta { font-size: 12.5px; gap: 8px; flex-wrap: wrap; }
+        .bp-info__check {
+          grid-column: 1 / -1; justify-self: end; margin-top: -4px;
+          font-size: 12px; padding: 8px 24px;
+        }
+      }
+    </st
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .bp-info-{{ ai_gen_id }} {
+    display: block;
+    background: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding_top }}px {{ block.settings.padding_horizontal }}px {{ block.settings.padding_bottom }}px;
+    color: {{ block.settings.text_color }};
+    -webkit-font-smoothing: antialiased;
+    width: 100%;
+  }
+
+  .bp-info__inner-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  .bp-info__head-{{ ai_gen_id }} {
+    text-align: center;
+    border-top: {{ block.settings.header_border_thickness }}px solid {{ block.settings.border_color }};
+    border-bottom: {{ block.settings.header_border_thickness }}px solid {{ block.settings.border_color }};
+    padding: {{ block.settings.header_padding }}px 16px;
+    margin-bottom: {{ block.settings.header_margin_bottom }}px;
+  }
+
+  .bp-info__title-{{ ai_gen_id }} {
+    font-size: clamp({{ block.settings.title_size_mobile }}px, 5vw, {{ block.settings.title_size }}px);
+    font-weight: {{ block.settings.title_weight }};
+    letter-spacing: .02em;
+    margin: 0 0 8px;
+    color: {{ block.settings.text_color }};
+  }
+
+  .bp-info__subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size }}px;
+    color: {{ block.settings.subtitle_color }};
+    margin: 0;
+    letter-spacing: .05em;
+  }
+
+  .bp-info__list-{{ ai_gen_id }} {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.item_gap }}px;
+  }
+
+  .bp-info__item-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: {{ block.settings.image_width }}px 1fr auto;
+    align-items: center;
+    gap: {{ block.settings.item_gap }}px;
+    padding: 4px 12px;
+  }
+
+  .bp-info__thumb-{{ ai_gen_id }} {
+    width: {{ block.settings.image_width }}px;
+    height: {{ block.settings.image_height }}px;
+    overflow: hidden;
+    border-radius: {{ block.settings.image_radius }}px;
+    background: {{ block.settings.image_placeholder_color }};
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .bp-info__thumb-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .4s ease;
+  }
+
+  .bp-info__item-{{ ai_gen_id }}:hover .bp-info__thumb-{{ ai_gen_id }} img {
+    transform: scale(1.04);
+  }
+
+  .bp-info__body-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .bp-info__item-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.item_title_size }}px;
+    font-weight: {{ block.settings.item_title_weight }};
+    line-height: 1.6;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+    letter-spacing: .02em;
+  }
+
+  .bp-info__meta-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: {{ block.settings.meta_color }};
+    font-size: {{ block.settings.meta_size }}px;
+    letter-spacing: .04em;
+  }
+
+  .bp-info__date-{{ ai_gen_id }} {
+    font-weight: 500;
+  }
+
+  .bp-info__new-{{ ai_gen_id }} {
+    display: inline-block;
+    background: {{ block.settings.new_badge_bg }};
+    color: {{ block.settings.new_badge_text }};
+    font-size: {{ block.settings.new_badge_size }}px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    padding: 3px 10px;
+    border-radius: {{ block.settings.new_badge_radius }}px;
+    text-transform: uppercase;
+  }
+
+  .bp-info__check-{{ ai_gen_id }} {
+    display: inline-block;
+    background: {{ block.settings.check_button_bg }};
+    color: {{ block.settings.check_button_text_color }} !important;
+    text-decoration: none;
+    font-size: {{ block.settings.check_button_size }}px;
+    letter-spacing: .15em;
+    padding: 10px 32px;
+    border-radius: {{ block.settings.check_button_radius }}px;
+    transition: background .2s ease, transform .2s ease;
+    white-space: nowrap;
+  }
+
+  .bp-info__check-{{ ai_gen_id }}:hover {
+    background: {{ block.settings.check_button_hover_bg }};
+    transform: translateY(-1px);
+  }
+
+  .bp-info__more-{{ ai_gen_id }} {
+    text-align: center;
+    margin-top: {{ block.settings.more_button_margin_top }}px;
+  }
+
+  .bp-info__more-btn-{{ ai_gen_id }} {
+    display: inline-block;
+    background: {{ block.settings.more_button_bg }};
+    color: {{ block.settings.more_button_text_color }} !important;
+    text-decoration: none;
+    font-size: {{ block.settings.more_button_size }}px;
+    letter-spacing: .15em;
+    padding: 12px 40px;
+    border-radius: {{ block.settings.more_button_radius }}px;
+    transition: background .2s ease;
+  }
+
+  .bp-info__more-btn-{{ ai_gen_id }}:hover {
+    background: {{ block.settings.more_button_hover_bg }};
+  }
+
+  @media (max-width: 749px) {
+    .bp-info-{{ ai_gen_id }} {
+      padding: {{ block.settings.padding_top_mobile }}px {{ block.settings.padding_horizontal_mobile }}px {{ block.settings.padding_bottom_mobile }}px;
+    }
+
+    .bp-info__head-{{ ai_gen_id }} {
+      padding: 22px 12px;
+      margin-bottom: 36px;
+    }
+
+    .bp-info__list-{{ ai_gen_id }} {
+      gap: 28px;
+    }
+
+    .bp-info__item-{{ ai_gen_id }} {
+      grid-template-columns: {{ block.settings.image_width_mobile }}px 1fr;
+      gap: 16px;
+      padding: 0;
+    }
+
+    .bp-info__thumb-{{ ai_gen_id }} {
+      width: {{ block.settings.image_width_mobile }}px;
+      height: {{ block.settings.image_height_mobile }}px;
+    }
+
+    .bp-info__item-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.item_title_size_mobile }}px;
+    }
+
+    .bp-info__meta-{{ ai_gen_id }} {
+      font-size: {{ block.settings.meta_size_mobile }}px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .bp-info__check-{{ ai_gen_id }} {
+      grid-column: 1 / -1;
+      justify-self: end;
+      margin-top: -4px;
+      font-size: {{ block.settings.check_button_size_mobile }}px;
+      padding: 8px 24px;
+    }
+  }
+{% endstyle %}
+
+<bp-information-{{ ai_gen_id }} class="bp-info-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="bp-info__inner-{{ ai_gen_id }}">
+    {% if block.settings.title != blank or block.settings.subtitle != blank %}
+      <header class="bp-info__head-{{ ai_gen_id }}">
+        {% if block.settings.title != blank %}
+          <h2 class="bp-info__title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+        {% endif %}
+        {% if block.settings.subtitle != blank %}
+          <p class="bp-info__subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</p>
+        {% endif %}
+      </header>
+    {% endif %}
+
+    {% if block.settings.articles != blank %}
+      <ul class="bp-info__list-{{ ai_gen_id }}">
+        {% for article in block.settings.articles %}
+          <li class="bp-info__item-{{ ai_gen_id }}">
+            <a class="bp-info__thumb-{{ ai_gen_id }}" href="{{ article.url }}">
+              {% if article.image != blank %}
+                {{ article.image | image_url: width: 600 | image_tag: alt: article.title, loading: 'lazy' }}
+              {% else %}
+                <div style="width:100%;height:100%;background:{{ block.settings.image_placeholder_color }};"></div>
+              {% endif %}
+            </a>
+            <div class="bp-info__body-{{ ai_gen_id }}">
+              <h3 class="bp-info__item-title-{{ ai_gen_id }}">{{ article.title }}</h3>
+              <div class="bp-info__meta-{{ ai_gen_id }}">
+                <span class="bp-info__date-{{ ai_gen_id }}">{{ article.published_at | date: '%Y.%m.%d' }}</span>
+                {% assign days_since_published = 'now' | date: '%s' | minus: article.published_at | date: '%s' | divided_by: 86400 %}
+                {% if days_since_published <= block.settings.new_badge_days %}
+                  <span class="bp-info__new-{{ ai_gen_id }}">New</span>
+                {% endif %}
+              </div>
+            </div>
+            <a class="bp-info__check-{{ ai_gen_id }}" href="{{ article.url }}">{{ block.settings.check_button_label }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if block.settings.view_more_link != blank %}
+      <div class="bp-info__more-{{ ai_gen_id }}">
+        <a class="bp-info__more-btn-{{ ai_gen_id }}" href="{{ block.settings.view_more_link }}">{{ block.settings.view_more_label }}</a>
+      </div>
+    {% endif %}
+  </div>
+</bp-information-{{ ai_gen_id }}>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "BP information",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "コンテンツ"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "タイトル",
+      "default": "最新消息"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subtitle",
+      "label": "サブタイトル"
+    },
+    {
+      "type": "blog",
+      "id": "articles",
+      "label": "ブログ"
+    },
+    {
+      "type": "range",
+      "id": "new_badge_days",
+      "label": "Newバッジ表示日数",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "unit": "日",
+      "default": 7
+    },
+    {
+      "type": "inline_richtext",
+      "id": "check_button_label",
+      "label": "チェックボタンラベル",
+      "default": "Check"
+    },
+    {
+      "type": "url",
+      "id": "view_more_link",
+      "label": "もっと見るリンク"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "view_more_label",
+      "label": "もっと見るラベル",
+      "default": "View more"
+    },
+    {
+      "type": "header",
+      "content": "レイアウト"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "最大幅",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "default": 980
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "上部パディング",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "下部パディング",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "左右パディング",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "上部パディング（モバイル）",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "下部パディング（モバイル）",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "label": "左右パディング（モバイル）",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "アイテム間隔",
+      "min": 16,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "ヘッダー"
+    },
+    {
+      "type": "range",
+      "id": "header_border_thickness",
+      "label": "ボーダー太さ",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "header_padding",
+      "label": "パディング",
+      "min": 16,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "header_margin_bottom",
+      "label": "下部マージン",
+      "min": 20,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "タイトルサイズ",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "label": "タイトルサイズ（モバイル）",
+      "min": 20,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "title_weight",
+      "label": "タイトル太さ",
+      "min": 400,
+      "max": 900,
+      "step": 100,
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "label": "サブタイトルサイズ",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "画像"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "label": "画像幅",
+      "min": 120,
+      "max": 360,
+      "step": 10,
+      "unit": "px",
+      "default": 240
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "画像高さ",
+      "min": 90,
+      "max": 270,
+      "step": 10,
+      "unit": "px",
+      "default": 180
+    },
+    {
+      "type": "range",
+      "id": "image_width_mobile",
+      "label": "画像幅（モバイル）",
+      "min": 80,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 130
+    },
+    {
+      "type": "range",
+      "id": "image_height_mobile",
+      "label": "画像高さ（モバイル）",
+      "min": 60,
+      "max": 150,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "label": "画像角丸",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "アイテムテキスト"
+    },
+    {
+      "type": "range",
+      "id": "item_title_size",
+      "label": "タイトルサイズ",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "item_title_size_mobile",
+      "label": "タイトルサイズ（モバイル）",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "item_title_weight",
+      "label": "タイトル太さ",
+      "min": 400,
+      "max": 900,
+      "step": 100,
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "meta_size",
+      "label": "メタサイズ",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "meta_size_mobile",
+      "label": "メタサイズ（モバイル）",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Newバッジ"
+    },
+    {
+      "type": "range",
+      "id": "new_badge_size",
+      "label": "フォントサイズ",
+      "min": 8,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "new_badge_radius",
+      "label": "角丸",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 3
+    },
+    {
+      "type": "color",
+      "id": "new_badge_bg",
+      "label": "背景色",
+      "default": "#c98a7a"
+    },
+    {
+      "type": "color",
+      "id": "new_badge_text",
+      "label": "テキスト色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "チェックボタン"
+    },
+    {
+      "type": "range",
+      "id": "check_button_size",
+      "label": "フォントサイズ",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "check_button_size_mobile",
+      "label": "フォントサイズ（モバイル）",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "check_button_radius",
+      "label": "角丸",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "check_button_bg",
+      "label": "背景色",
+      "default": "#7a8b6f"
+    },
+    {
+      "type": "color",
+      "id": "check_button_hover_bg",
+      "label": "ホバー背景色",
+      "default": "#65755b"
+    },
+    {
+      "type": "color",
+      "id": "check_button_text_color",
+      "label": "テキスト色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "もっと見るボタン"
+    },
+    {
+      "type": "range",
+      "id": "more_button_margin_top",
+      "label": "上部マージン",
+      "min": 20,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "more_button_size",
+      "label": "フォントサイズ",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "more_button_radius",
+      "label": "角丸",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "more_button_bg",
+      "label": "背景色",
+      "default": "#2d2a25"
+    },
+    {
+      "type": "color",
+      "id": "more_button_hover_bg",
+      "label": "ホバー背景色",
+      "default": "#4a4640"
+    },
+    {
+      "type": "color",
+      "id": "more_button_text_color",
+      "label": "テキスト色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "カラー"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "default": "#f7f4ee"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "テキスト色",
+      "default": "#2d2a25"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "サブタイトル色",
+      "default": "#5e5b53"
+    },
+    {
+      "type": "color",
+      "id": "meta_color",
+      "label": "メタ色",
+      "default": "#5e5b53"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "ボーダー色",
+      "default": "#2d2a25"
+    },
+    {
+      "type": "color",
+      "id": "image_placeholder_color",
+      "label": "画像プレースホルダー色",
+      "default": "#ece6d8"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BP information"
+    }
+  ]
+}
 {% endschema %}

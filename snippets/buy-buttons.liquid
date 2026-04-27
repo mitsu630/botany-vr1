@@ -56,6 +56,13 @@
           class="product-variant-id"
         >
 
+        <input
+          type="hidden"
+          name="quantity"
+          value="{{ product.selected_or_first_available_variant.quantity_rule.min | default: 1 }}"
+          class="jwb-hidden-quantity"
+        >
+
         {%- if gift_card_recipient_feature_active -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}

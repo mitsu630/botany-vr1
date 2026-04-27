@@ -20,10 +20,30 @@
     "instructor_list": {
       "type": "instructor-list",
       "settings": {
+        "eyebrow": "INSTRUCTORS",
+        "title": "講師一覧",
+        "subtitle": "全国のプロ講師",
         "only_active": true,
         "rank_filter": "pro",
+        "detail_page": "pro-instructor",
         "enable_region_filter": true,
-        "group_by_region": true
+        "group_by_region": true,
+        "region_filter_label": "地域で絞り込む",
+        "region_filter_placeholder": "都道府県を選択",
+        "reset_label": "リセット",
+        "count_suffix": "名表示中",
+        "group_count_suffix": "名",
+        "unknown_region_label": "その他",
+        "color_scheme": "",
+        "background_color": "#ffffff",
+        "filter_bg_color": "#f7f7f7",
+        "accent_color": "#2d5a27",
+        "tag_bg_color": "#edf4ea",
+        "tag_text_color": "#2d5a27",
+        "empty_title": "該当する講師が見つかりませんでした",
+        "empty_subtitle": "条件を変更してお試しください",
+        "padding_top": 0,
+        "padding_bottom": 40
       }
     }
   },
@@ -32,4 +52,3 @@
     "instructor_list"
   ]
 }
-

@@ -215,6 +215,7 @@
     color: inherit;
     transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
   }
+  .instructor-card[aria-disabled="true"] { pointer-events: none; opacity: 0.65; }
   .instructor-card:hover {
     border-color: rgba(var(--color-foreground), 0.22);
     transform: translateY(-1px);
@@ -300,10 +301,14 @@
           <div class="instructor-list__selectwrap">
             <select class="instructor-list__select" id="InstructorRegionSelect-{{ section.id }}">
               <option value="">{{ section.settings.region_filter_placeholder | escape }}</option>
-              {%- assign regions_list = regions_key | split: '||' -%}
-              {%- for r in regions_list -%}
-                {%- if r != blank -%}
-                  <option value="{{ r | escape }}">{{ r }}</option>
+              {%- liquid
+                assign pref_order = '北海道|青森県|岩手県|宮城県|秋田県|山形県|福島県|茨城県|栃木県|群馬県|埼玉県|千葉県|東京都|神奈川県|新潟県|富山県|石川県|福井県|山梨県|長野県|岐阜県|静岡県|愛知県|三重県|滋賀県|京都府|大阪府|兵庫県|奈良県|和歌山県|鳥取県|島根県|岡山県|広島県|山口県|徳島県|香川県|愛媛県|高知県|福岡県|佐賀県|長崎県|熊本県|大分県|宮崎県|鹿児島県|沖縄県'
+                assign pref_list = pref_order | split: '|'
+              -%}
+              {%- for pref in pref_list -%}
+                {%- assign token = '||' | append: pref | append: '||' -%}
+                {%- if regions_key contains token -%}
+                  <option value="{{ pref | escape }}">{{ pref }}</option>
                 {%- endif -%}
               {%- endfor -%}
             </select>
@@ -394,8 +399,21 @@
                 endif
               -%}
 
-              <div class="instructor-list__item" data-region="{{ region | escape }}" data-rank="{{ rank | escape }}">
-                <a class="instructor-card" href="{{ detail_url }}">
+              <div
+                class="instructor-list__item"
+                data-region="{{ region | escape }}"
+                data-rank="{{ rank | escape }}"
+                data-has-photo="{% if photo != blank %}1{% else %}0{% endif %}"
+                data-sort-name="{{ name | escape }}"
+                data-sort-kana="{{ kana | escape }}"
+              >
+                <a
+                  class="instructor-card"
+                  href="{{ detail_url }}"
+                  {%- if detail_url == '#' -%}
+                    aria-disabled="true"
+                  {%- endif -%}
+                >
                   <div class="instructor-card__img">
                     {%- if photo != blank -%}
                       <img
@@ -451,8 +469,46 @@
         const items = Array.from(root.querySelectorAll('.instructor-list__item'));
         const groupBy = {{ section.settings.group_by_region | json }};
         const unknownLabel = {{ section.settings.unknown_region_label | json }};
+        const prefOrder = [
+          '北海道','青森県','岩手県','宮城県','秋田県','山形県','福島県',
+          '茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県',
+          '新潟県','富山県','石川県','福井県','山梨県','長野県',
+          '岐阜県','静岡県','愛知県','三重県',
+          '滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県',
+          '鳥取県','島根県','岡山県','広島県','山口県',
+          '徳島県','香川県','愛媛県','高知県',
+          '福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県'
+        ];
+
+        function regionIndex(r) {
+          const idx = prefOrder.indexOf(r);
+          return idx === -1 ? 999 : idx;
+        }
+
+        function sortItems(list) {
+          return list.slice().sort((a, b) => {
+            const ra = (a.getAttribute('data-region') || '').trim() || unknownLabel;
+            const rb = (b.getAttribute('data-region') || '').trim() || unknownLabel;
+            const da = regionIndex(ra);
+            const db = regionIndex(rb);
+            if (da !== db) return da - db;
+
+            const pa = a.getAttribute('data-has-photo') === '1' ? 1 : 0;
+            const pb = b.getAttribute('data-has-photo') === '1' ? 1 : 0;
+            if (pa !== pb) return pb - pa;
+
+            const ka = (a.getAttribute('data-sort-kana') || '').trim();
+            const kb = (b.getAttribute('data-sort-kana') || '').trim();
+            if (ka && kb && ka !== kb) return ka.localeCompare(kb, 'ja');
+
+            const na = (a.getAttribute('data-sort-name') || '').trim();
+            const nb = (b.getAttribute('data-sort-name') || '').trim();
+            return na.localeCompare(nb, 'ja');
+          });
+        }
 
         function buildGroups(visibleItems) {
+          const sorted = sortItems(visibleItems);
           if (!groupBy) {
             // ensure flat grid
             const flat = document.getElementById('InstructorFlat-{{ section.id }}');
@@ -465,12 +521,12 @@
               root.insertBefore(grid, emptyEl);
             }
             grid.innerHTML = '';
-            visibleItems.forEach(el => grid.appendChild(el));
+            sorted.forEach(el => grid.appendChild(el));
             return;
           }
 
           const map = new Map();
-          visibleItems.forEach(el => {
+          sorted.forEach(el => {
             const region = (el.getAttribute('data-region') || '').trim() || unknownLabel;
             if (!map.has(region)) map.set(region, []);
             map.get(region).push(el);
@@ -480,7 +536,10 @@
           Array.from(root.querySelectorAll('[data-rendered-group]')).forEach(n => n.remove());
 
           // render groups
-          for (const [region, els] of map.entries()) {
+          // render groups in north->south order
+          const regionKeys = Array.from(map.keys()).sort((a, b) => regionIndex(a) - regionIndex(b));
+          for (const region of regionKeys) {
+            const els = map.get(region) || [];
             const hdr = document.createElement('div');
             hdr.className = 'instructor-list__areahdr';
             hdr.setAttribute('data-rendered-group', 'true');

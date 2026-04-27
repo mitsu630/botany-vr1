@@ -37,6 +37,29 @@
         "padding_bottom": 28
       }
     },
+    "rich_text_nKXQka": {
+      "type": "rich-text",
+      "blocks": {
+        "text_kbK8Rc": {
+          "type": "text",
+          "settings": {
+            "text": "<p>複数名でお申込みをご希望の方へ<br/>同じ作品サイズ・同じ植物でご参加の場合は、下記お申込みフォームの「数量」より、参加人数分をお選びください。<br/>なお、会場でご用意できる画材の在庫状況により、ご希望人数分をご予約いただけない場合がございます。あらかじめご了承ください。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_kbK8Rc"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": false,
+        "padding_top": 8,
+        "padding_bottom": 8
+      }
+    },
     "autoplay_loop_video_ETx7df": {
       "type": "autoplay-loop-video",
       "name": "t:sections.autoplay-loop-video.presets.name",
@@ -571,6 +594,7 @@
   "order": [
     "workshop_dynamic_header_NCVnWe",
     "related-products",
+    "rich_text_nKXQka",
     "autoplay_loop_video_ETx7df",
     "custom_standalone_image_FJCfPF",
     "custom_standalone_image_ytdCcG",

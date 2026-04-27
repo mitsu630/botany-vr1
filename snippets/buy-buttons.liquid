@@ -18,9 +18,21 @@
         assign gift_card_recipient_feature_active = true
       endif
 
+      assign workshop_force_sold_out = false
+      if template.suffix == 'pro-workshop'
+        assign v = product.selected_or_first_available_variant
+        if v != null and v.inventory_management == 'shopify' and v.inventory_quantity <= 0
+          assign workshop_force_sold_out = true
+        endif
+      endif
+
       assign show_dynamic_checkout = false
       if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
         assign show_dynamic_checkout = true
+      endif
+
+      if workshop_force_sold_out
+        assign show_dynamic_checkout = false
       endif
     -%}
 
@@ -49,6 +61,7 @@
           value="{{ product.selected_or_first_available_variant.id }}"
           {% if product.selected_or_first_available_variant.available == false
             or quantity_rule_soldout
+            or workshop_force_sold_out
             or product.selected_or_first_available_variant == null
           %}
             disabled
@@ -87,6 +100,7 @@
             class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
             {% if product.selected_or_first_available_variant.available == false
               or quantity_rule_soldout
+              or workshop_force_sold_out
               or product.selected_or_first_available_variant == null
             %}
               disabled
@@ -95,7 +109,7 @@
             <span>
               {%- if product.selected_or_first_available_variant == null -%}
                 {{ 'products.product.unavailable' | t }}
-              {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+              {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout or workshop_force_sold_out -%}
                 {{ 'products.product.sold_out' | t }}
               {%- else -%}
                 {{ 'products.product.add_to_cart' | t }}

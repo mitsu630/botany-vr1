@@ -15,6 +15,20 @@
   if cap > 50
     assign cap = 50
   endif
+
+  assign inv_cap = blank
+  if v.inventory_management == 'shopify'
+    assign inv_cap = v.inventory_quantity
+  endif
+
+  assign is_sold_out = false
+  if inv_cap != blank and inv_cap <= 0
+    assign is_sold_out = true
+  endif
+
+  if inv_cap != blank and inv_cap > 0
+    assign cap = cap | at_most: inv_cap
+  endif
 -%}
 <div class="jwb-quantity-dropdown-row">
   <div class="select jwb-unified-control">
@@ -32,9 +46,15 @@
       step="{{ qstep }}"
       data-cap-max="5"
       aria-labelledby="quantity-label-{{ section.id }}"
+      {% if is_sold_out %}
+        disabled
+      {% endif %}
     >
       {%- assign n = qmin -%}
       {%- for i in (1..80) -%}
+        {%- if is_sold_out -%}
+          {%- break -%}
+        {%- endif -%}
         {%- if n > cap -%}
           {%- break -%}
         {%- endif -%}

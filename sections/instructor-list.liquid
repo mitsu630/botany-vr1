@@ -1,0 +1,706 @@
+{%- liquid
+  assign instructors_src = shop.metaobjects.instructors
+  assign instructors = blank
+  if instructors_src
+    assign instructors = instructors_src.values
+  endif
+
+  assign initial_count = 0
+  assign regions_key = ''
+  if section.settings.enable_region_filter and instructors != blank
+    for m in instructors
+      if m == blank
+        continue
+      endif
+
+      assign is_active = false
+      if m.bp_is_active and m.bp_is_active.value
+        assign is_active = true
+      endif
+      if section.settings.only_active and is_active == false
+        continue
+      endif
+
+      assign rank = ''
+      if m.bp_rank and m.bp_rank.value != blank
+        assign rank = m.bp_rank.value
+      endif
+      if section.settings.rank_filter != 'all' and rank != section.settings.rank_filter
+        continue
+      endif
+
+      assign initial_count = initial_count | plus: 1
+
+      assign region = ''
+      if m.bp_region and m.bp_region.value != blank
+        assign region = m.bp_region.value
+      endif
+      if region != blank
+        assign token = '||' | append: region | append: '||'
+        unless regions_key contains token
+          assign regions_key = regions_key | append: token
+        endunless
+      endif
+    endfor
+  elsif instructors != blank
+    for m in instructors
+      if m == blank
+        continue
+      endif
+
+      assign is_active = false
+      if m.bp_is_active and m.bp_is_active.value
+        assign is_active = true
+      endif
+      if section.settings.only_active and is_active == false
+        continue
+      endif
+
+      assign rank = ''
+      if m.bp_rank and m.bp_rank.value != blank
+        assign rank = m.bp_rank.value
+      endif
+      if section.settings.rank_filter != 'all' and rank != section.settings.rank_filter
+        continue
+      endif
+
+      assign initial_count = initial_count | plus: 1
+    endfor
+  endif
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .instructor-list {
+    background: {{ section.settings.background_color }};
+  }
+
+  .instructor-list__titlebar {
+    padding: 2.8rem 2.4rem 2rem;
+    border-bottom: 1px solid rgba(var(--color-foreground), 0.10);
+  }
+  .instructor-list__eyebrow {
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    color: rgba(var(--color-foreground), 0.55);
+    margin: 0 0 0.6rem;
+  }
+  .instructor-list__title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin: 0;
+    color: rgba(var(--color-foreground), 0.9);
+  }
+  .instructor-list__subtitle {
+    font-size: 1.3rem;
+    color: rgba(var(--color-foreground), 0.75);
+    margin: 0.6rem 0 0;
+  }
+
+  .instructor-list__filters {
+    padding: 1.6rem 2.4rem;
+    border-bottom: 1px solid rgba(var(--color-foreground), 0.10);
+    background: {{ section.settings.filter_bg_color }};
+  }
+  .instructor-list__filterrow {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+  .instructor-list__filterlabel {
+    font-size: 1.2rem;
+    color: rgba(var(--color-foreground), 0.75);
+    white-space: nowrap;
+  }
+  .instructor-list__select {
+    appearance: none;
+    background: rgba(255,255,255,0.8);
+    border: 1px solid rgba(var(--color-foreground), 0.18);
+    border-radius: 0.8rem;
+    padding: 0.8rem 3.2rem 0.8rem 1.2rem;
+    font-size: 1.3rem;
+    color: rgba(var(--color-foreground), 0.9);
+    cursor: pointer;
+    min-width: 18rem;
+  }
+  .instructor-list__selectwrap { position: relative; display: inline-block; }
+  .instructor-list__caret {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: rgba(var(--color-foreground), 0.55);
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .instructor-list__reset {
+    font-size: 1.2rem;
+    color: rgba(var(--color-foreground), 0.55);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    display: none;
+  }
+
+  .instructor-list__statusbar {
+    padding: 1.2rem 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+  }
+  .instructor-list__count {
+    font-size: 1.2rem;
+    color: rgba(var(--color-foreground), 0.55);
+  }
+  .instructor-list__count strong {
+    font-weight: 600;
+    color: rgba(var(--color-foreground), 0.9);
+  }
+
+  .instructor-list__gridwrap { padding: 0 2.4rem 2.4rem; }
+  .instructor-list__areahdr {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.8rem 0 1.2rem;
+  }
+  .instructor-list__areatitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: {{ section.settings.accent_color }};
+    white-space: nowrap;
+  }
+  .instructor-list__arealine { flex: 1; height: 1px; background: rgba(var(--color-foreground), 0.12); }
+  .instructor-list__badge {
+    background: rgba(var(--color-foreground), 0.04);
+    border-radius: 2rem;
+    padding: 0.2rem 0.8rem;
+    font-size: 1.1rem;
+    color: rgba(var(--color-foreground), 0.55);
+    white-space: nowrap;
+  }
+
+  .instructor-list__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+  @media screen and (min-width: 750px) {
+    .instructor-list__grid { gap: 1.2rem; }
+  }
+
+  .instructor-card {
+    display: block;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid rgba(var(--color-foreground), 0.12);
+    border-radius: 1.2rem;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+  .instructor-card:hover {
+    border-color: rgba(var(--color-foreground), 0.22);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+  }
+  .instructor-card__img {
+    height: 12rem;
+    background: rgba(var(--color-foreground), 0.06);
+    overflow: hidden;
+  }
+  .instructor-card__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .instructor-card__body { padding: 1rem; }
+  .instructor-card__toprow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+  .instructor-card__tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    padding: 0.2rem 0.9rem;
+    border-radius: 2rem;
+    background: {{ section.settings.tag_bg_color }};
+    color: {{ section.settings.tag_text_color }};
+    border: 1px solid rgba(var(--color-foreground), 0.10);
+    white-space: nowrap;
+  }
+  .instructor-card__region {
+    font-size: 1rem;
+    color: rgba(var(--color-foreground), 0.55);
+    white-space: nowrap;
+  }
+  .instructor-card__name {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: rgba(var(--color-foreground), 0.9);
+    margin: 0 0 0.1rem;
+    line-height: 1.2;
+  }
+  .instructor-card__kana {
+    font-size: 1rem;
+    color: rgba(var(--color-foreground), 0.55);
+    margin: 0;
+    letter-spacing: 0.06em;
+  }
+
+  .instructor-list__empty {
+    display: none;
+    text-align: center;
+    padding: 6rem 2rem;
+  }
+  .instructor-list__empty-title {
+    font-size: 1.3rem;
+    color: rgba(var(--color-foreground), 0.55);
+    margin: 0;
+  }
+  .instructor-list__empty-sub {
+    font-size: 1.2rem;
+    color: rgba(var(--color-foreground), 0.45);
+    margin: 0.6rem 0 0;
+  }
+{%- endstyle -%}
+
+<section class="instructor-list color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width section-{{ section.id }}-padding">
+
+    <div class="instructor-list__titlebar">
+      <p class="instructor-list__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h1 class="instructor-list__title">{{ section.settings.title | escape }}</h1>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="instructor-list__subtitle">{{ section.settings.subtitle | escape }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.enable_region_filter -%}
+      <div class="instructor-list__filters">
+        <div class="instructor-list__filterrow">
+          <span class="instructor-list__filterlabel">{{ section.settings.region_filter_label | escape }}</span>
+          <div class="instructor-list__selectwrap">
+            <select class="instructor-list__select" id="InstructorRegionSelect-{{ section.id }}">
+              <option value="">{{ section.settings.region_filter_placeholder | escape }}</option>
+              {%- assign regions_list = regions_key | split: '||' -%}
+              {%- for r in regions_list -%}
+                {%- if r != blank -%}
+                  <option value="{{ r | escape }}">{{ r }}</option>
+                {%- endif -%}
+              {%- endfor -%}
+            </select>
+            <svg class="instructor-list__caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </div>
+          <button class="instructor-list__reset" type="button" id="InstructorRegionReset-{{ section.id }}">{{ section.settings.reset_label | escape }}</button>
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div class="instructor-list__statusbar">
+      <div class="instructor-list__count">
+        <strong id="InstructorResultCount-{{ section.id }}">{{ initial_count }}</strong> {{ section.settings.count_suffix | escape }}
+      </div>
+    </div>
+
+    <div class="instructor-list__gridwrap" id="InstructorGridWrap-{{ section.id }}">
+      {%- if initial_count == 0 -%}
+        <div class="instructor-list__empty" style="display:block;">
+          <p class="instructor-list__empty-title">{{ section.settings.empty_title | escape }}</p>
+          <p class="instructor-list__empty-sub">{{ section.settings.empty_subtitle | escape }}</p>
+        </div>
+      {%- else -%}
+        <div class="instructor-list__flat" id="InstructorFlat-{{ section.id }}">
+          {%- if instructors != blank -%}
+            {%- for m in instructors -%}
+              {%- liquid
+                if m == blank
+                  continue
+                endif
+
+                assign is_active = false
+                if m.bp_is_active and m.bp_is_active.value
+                  assign is_active = true
+                endif
+                if section.settings.only_active and is_active == false
+                  continue
+                endif
+
+                assign rank = ''
+                if m.bp_rank and m.bp_rank.value != blank
+                  assign rank = m.bp_rank.value
+                endif
+                if section.settings.rank_filter != 'all' and rank != section.settings.rank_filter
+                  continue
+                endif
+
+                assign region = ''
+                if m.bp_region and m.bp_region.value != blank
+                  assign region = m.bp_region.value
+                endif
+
+                assign country = ''
+                if m.bp_country and m.bp_country.value != blank
+                  assign country = m.bp_country.value
+                endif
+
+                assign name = m.name.value
+                if name == blank
+                  assign name = m.system.handle
+                endif
+
+                assign kana_last = ''
+                if m.bp_last_name_kana and m.bp_last_name_kana.value != blank
+                  assign kana_last = m.bp_last_name_kana.value
+                endif
+                assign kana_first = ''
+                if m.bp_first_name_kana and m.bp_first_name_kana.value != blank
+                  assign kana_first = m.bp_first_name_kana.value
+                endif
+                assign kana = kana_last | append: ' ' | append: kana_first | strip
+
+                assign photo = blank
+                if m.bp_photo_profile and m.bp_photo_profile.value != blank
+                  assign photo = m.bp_photo_profile.value
+                endif
+
+                assign link_id = m.system.handle
+                if m.bp_id and m.bp_id.value != blank
+                  assign link_id = m.bp_id.value
+                endif
+
+                assign detail_url = '#'
+                if section.settings.detail_page != blank
+                  assign detail_url = section.settings.detail_page.url | append: '?id=' | append: link_id | escape
+                endif
+              -%}
+
+              <div class="instructor-list__item" data-region="{{ region | escape }}" data-rank="{{ rank | escape }}">
+                <a class="instructor-card" href="{{ detail_url }}">
+                  <div class="instructor-card__img">
+                    {%- if photo != blank -%}
+                      <img
+                        src="{{ photo | image_url: width: 480, height: 360, crop: 'center' }}"
+                        alt="{{ name | escape }}"
+                        width="480"
+                        height="360"
+                        loading="lazy"
+                      >
+                    {%- endif -%}
+                  </div>
+                  <div class="instructor-card__body">
+                    <div class="instructor-card__toprow">
+                      {%- if rank != blank -%}
+                        <span class="instructor-card__tag">{{ rank | escape }}</span>
+                      {%- endif -%}
+                      {%- if region != blank -%}
+                        <span class="instructor-card__region">{{ region | escape }}</span>
+                      {%- elsif country != blank -%}
+                        <span class="instructor-card__region">{{ country | escape }}</span>
+                      {%- endif -%}
+                    </div>
+                    <p class="instructor-card__name">{{ name | escape }}</p>
+                    {%- if kana != blank -%}
+                      <p class="instructor-card__kana">{{ kana | escape }}</p>
+                    {%- endif -%}
+                  </div>
+                </a>
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+
+        <div class="instructor-list__empty" id="InstructorEmpty-{{ section.id }}">
+          <p class="instructor-list__empty-title">{{ section.settings.empty_title | escape }}</p>
+          <p class="instructor-list__empty-sub">{{ section.settings.empty_subtitle | escape }}</p>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if section.settings.enable_region_filter -%}
+    <script>
+      (function () {
+        const root = document.getElementById('InstructorGridWrap-{{ section.id }}');
+        if (!root) return;
+
+        const select = document.getElementById('InstructorRegionSelect-{{ section.id }}');
+        const reset = document.getElementById('InstructorRegionReset-{{ section.id }}');
+        const countEl = document.getElementById('InstructorResultCount-{{ section.id }}');
+        const emptyEl = document.getElementById('InstructorEmpty-{{ section.id }}');
+
+        const items = Array.from(root.querySelectorAll('.instructor-list__item'));
+        const groupBy = {{ section.settings.group_by_region | json }};
+        const unknownLabel = {{ section.settings.unknown_region_label | json }};
+
+        function buildGroups(visibleItems) {
+          if (!groupBy) {
+            // ensure flat grid
+            const flat = document.getElementById('InstructorFlat-{{ section.id }}');
+            if (!flat) return;
+            let grid = root.querySelector('.instructor-list__grid[data-flat]');
+            if (!grid) {
+              grid = document.createElement('div');
+              grid.className = 'instructor-list__grid';
+              grid.setAttribute('data-flat', 'true');
+              root.insertBefore(grid, emptyEl);
+            }
+            grid.innerHTML = '';
+            visibleItems.forEach(el => grid.appendChild(el));
+            return;
+          }
+
+          const map = new Map();
+          visibleItems.forEach(el => {
+            const region = (el.getAttribute('data-region') || '').trim() || unknownLabel;
+            if (!map.has(region)) map.set(region, []);
+            map.get(region).push(el);
+          });
+
+          // clear previous grouped nodes
+          Array.from(root.querySelectorAll('[data-rendered-group]')).forEach(n => n.remove());
+
+          // render groups
+          for (const [region, els] of map.entries()) {
+            const hdr = document.createElement('div');
+            hdr.className = 'instructor-list__areahdr';
+            hdr.setAttribute('data-rendered-group', 'true');
+            hdr.innerHTML = `
+              <span class="instructor-list__areatitle">${region}</span>
+              <span class="instructor-list__arealine" aria-hidden="true"></span>
+              <span class="instructor-list__badge">${els.length}{{ section.settings.group_count_suffix | escape }}</span>
+            `;
+
+            const grid = document.createElement('div');
+            grid.className = 'instructor-list__grid';
+            grid.setAttribute('data-rendered-group', 'true');
+            els.forEach(el => grid.appendChild(el));
+
+            root.insertBefore(hdr, emptyEl);
+            root.insertBefore(grid, emptyEl);
+          }
+        }
+
+        function updateCounts() {
+          // total visible
+          const visibleItems = items.filter(el => el.style.display !== 'none');
+          if (countEl) countEl.textContent = String(visibleItems.length);
+
+          // empty state
+          if (emptyEl) emptyEl.style.display = visibleItems.length === 0 ? 'block' : 'none';
+          if (visibleItems.length > 0) buildGroups(visibleItems);
+        }
+
+        function applyFilter() {
+          const val = select && select.value ? select.value : '';
+          items.forEach(el => {
+            const r = el.getAttribute('data-region') || '';
+            el.style.display = !val || r === val ? '' : 'none';
+          });
+          if (reset) reset.style.display = val ? 'inline' : 'none';
+          updateCounts();
+        }
+
+        if (select) select.addEventListener('change', applyFilter);
+        if (reset) reset.addEventListener('click', function () {
+          if (select) select.value = '';
+          applyFilter();
+        });
+
+        // initial counts
+        updateCounts();
+      })();
+    </script>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Instructor list",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "タイトル"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "上部ラベル",
+      "default": "INSTRUCTORS"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "ページタイトル",
+      "default": "講師一覧"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "サブタイトル",
+      "default": "全国のプロ講師"
+    },
+    {
+      "type": "header",
+      "content": "データ"
+    },
+    {
+      "type": "checkbox",
+      "id": "only_active",
+      "label": "アクティブ講師のみ表示",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "rank_filter",
+      "label": "ランク",
+      "default": "pro",
+      "options": [
+        { "value": "pro", "label": "プロ講師（pro）" },
+        { "value": "all", "label": "すべて（開発用）" }
+      ]
+    },
+    {
+      "type": "page",
+      "id": "detail_page",
+      "label": "講師詳細ページ（page.instructor を適用したページ）"
+    },
+    {
+      "type": "header",
+      "content": "絞り込み"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_region_filter",
+      "label": "地域フィルター（プルダウン）を表示",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "group_by_region",
+      "label": "地域ごとにグループ表示",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "region_filter_label",
+      "label": "フィルター見出し",
+      "default": "地域で絞り込む"
+    },
+    {
+      "type": "text",
+      "id": "region_filter_placeholder",
+      "label": "プルダウン初期表示",
+      "default": "都道府県を選択"
+    },
+    {
+      "type": "text",
+      "id": "reset_label",
+      "label": "リセット文言",
+      "default": "リセット"
+    },
+    {
+      "type": "text",
+      "id": "count_suffix",
+      "label": "件数表示の後ろ",
+      "default": "名表示中"
+    },
+    {
+      "type": "text",
+      "id": "group_count_suffix",
+      "label": "地域件数表示の後ろ",
+      "default": "名"
+    },
+    {
+      "type": "text",
+      "id": "unknown_region_label",
+      "label": "地域が空の表示名",
+      "default": "その他"
+    },
+    {
+      "type": "header",
+      "content": "デザイン"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "filter_bg_color",
+      "label": "フィルター背景色",
+      "default": "#f7f7f7"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "アクセント色（地域タイトル）",
+      "default": "#2d5a27"
+    },
+    {
+      "type": "color",
+      "id": "tag_bg_color",
+      "label": "タグ背景色",
+      "default": "#edf4ea"
+    },
+    {
+      "type": "color",
+      "id": "tag_text_color",
+      "label": "タグ文字色",
+      "default": "#2d5a27"
+    },
+    {
+      "type": "header",
+      "content": "空のとき"
+    },
+    {
+      "type": "text",
+      "id": "empty_title",
+      "label": "0件メッセージ（1行目）",
+      "default": "該当する講師が見つかりませんでした"
+    },
+    {
+      "type": "text",
+      "id": "empty_subtitle",
+      "label": "0件メッセージ（2行目）",
+      "default": "条件を変更してお試しください"
+    },
+    { "type": "header",  "content": "t:sections.all.padding.section_padding_heading" },
+    { "type": "range", "id": "padding_top",    "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_top",    "default": 0 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_bottom", "default": 40 }
+  ],
+  "presets": [
+    { "name": "Instructor list" }
+  ]
+}
+{% endschema %}
+

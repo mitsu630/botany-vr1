@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "instructor_list": {
+      "type": "instructor-list",
+      "settings": {
+        "only_active": true,
+        "rank_filter": "pro",
+        "enable_region_filter": true,
+        "group_by_region": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "instructor_list"
+  ]
+}
+

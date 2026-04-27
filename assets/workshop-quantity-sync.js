@@ -23,17 +23,20 @@
     const form = getTargetForm(select);
     if (!form) return;
 
-    const hidden = form.querySelector(HIDDEN_SELECTOR) || form.querySelector('input[name="quantity"]');
-    if (!hidden) return;
-
     const v = select.value;
-    if (v != null && v !== '') {
-      hidden.value = v;
-      // Some Shopify accelerated checkout flows rely on input/change events
-      // rather than reading .value at click time.
-      hidden.dispatchEvent(new Event('input', { bubbles: true }));
-      hidden.dispatchEvent(new Event('change', { bubbles: true }));
-    }
+    if (v != null && v !== '') syncQuantityIntoForm(form, v);
+  }
+
+  function syncQuantityIntoForm(form, value) {
+    if (!(form instanceof HTMLFormElement)) return;
+    const qtyInput =
+      form.querySelector(HIDDEN_SELECTOR) || form.querySelector('input[name="quantity"]');
+    if (!qtyInput) return;
+    qtyInput.value = value;
+    // Some Shopify accelerated checkout flows rely on input/change events
+    // rather than reading .value at click time.
+    qtyInput.dispatchEvent(new Event('input', { bubbles: true }));
+    qtyInput.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
   function setupObserver(select) {
@@ -78,7 +81,20 @@
       target.closest('.product__info-container') ||
       document;
     const select = root.querySelector(SELECT_SELECTOR);
-    if (select) syncSelectToHidden(select);
+    if (!select) return;
+
+    // For accelerated checkout, the button may read quantity from the closest form
+    // (not necessarily the same form id used by the select).
+    const btnForm =
+      target.closest('form') ||
+      target.closest('product-form')?.querySelector('form') ||
+      null;
+    if (btnForm) {
+      syncQuantityIntoForm(btnForm, select.value);
+      return;
+    }
+
+    syncSelectToHidden(select);
   }
 
   // Event delegation for user changes

@@ -492,7 +492,9 @@
     var id = (getParam('id') || '').trim();
     var dataEl = document.getElementById('InstructorProfileData-{{ section.id }}');
     var instructors = [];
-    try { instructors = JSON.parse(dataEl && dataEl.textContent ? dataEl.textContent : '[]'); } catch (e) {}
+    var parseError = '';
+    var raw = (dataEl && dataEl.textContent) ? dataEl.textContent : '';
+    try { instructors = JSON.parse(raw || '[]'); } catch (e) { parseError = (e && e.message) ? String(e.message) : 'parse failed'; }
 
     var instructor = instructors.find(function (x) {
       if (!x) return false;
@@ -501,10 +503,15 @@
     var isActive = instructor && instructor.bp_is_active === true;
 
     if ({{ section.settings.debug | json }}) {
+      var sample = (instructors || []).slice(0, 8).map(function (x) { return x && (x.handle || x.bp_id) ? (x.handle || x.bp_id) : ''; }).filter(Boolean);
       debugMount.innerHTML =
         '<div style="margin: 0 0 1.2rem; padding: 1.2rem 1.4rem; border: 1px dashed rgba(var(--color-foreground), 0.25); border-radius: 0.8rem; font-size: 12px; background: rgba(255,255,255,0.6);">' +
         '<div><strong>debug</strong></div>' +
         '<div>id(param): <code>' + escapeHtml(id) + '</code></div>' +
+        '<div>json_raw_len: <code>' + String(raw ? raw.length : 0) + '</code></div>' +
+        '<div>parse_error: <code>' + escapeHtml(parseError || '-') + '</code></div>' +
+        '<div>count: <code>' + String((instructors && instructors.length) ? instructors.length : 0) + '</code></div>' +
+        '<div>sample(handles): <code>' + escapeHtml(sample.join(', ') || '-') + '</code></div>' +
         '<div>found: <code>' + (instructor ? 'true' : 'false') + '</code></div>' +
         '<div>handle: <code>' + escapeHtml(instructor && instructor.handle) + '</code></div>' +
         '<div>bp_id: <code>' + escapeHtml(instructor && instructor.bp_id) + '</code></div>' +

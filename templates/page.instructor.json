@@ -70,7 +70,19 @@
         "ig_embed"
       ],
       "settings": {
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
+        "background_image_opacity": 35,
+        "background_color": "#edf4ea",
+        "background_overlay_color": "#ffffff",
+        "background_overlay_opacity": 0,
+        "card_background_color": "#e9dccd",
+        "tag_bg_color": "#edf4ea",
+        "tag_text_color": "#2d5a27",
+        "card_background_opacity": 75,
+        "card_blur": 6,
+        "card_radius": 16,
+        "content_max_width": 1040,
+        "hero_kicker": "Botany Japan Professional",
         "not_found_message": "講師情報が見つかりませんでした。",
         "padding_top": 36,
         "padding_bottom": 60

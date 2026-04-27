@@ -62,6 +62,67 @@
 
   .instructor-profile__block + .instructor-profile__block { margin-top: 5.6rem; }
 
+  .instructor-profile {
+    position: relative;
+    background-color: {{ section.settings.background_color }};
+  }
+
+  .instructor-profile__bg {
+    position: absolute;
+    inset: 0;
+    background-image: {% if section.settings.background_image != blank %}url({{ section.settings.background_image | image_url: width: 2400 }}){% else %}none{% endif %};
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: {{ section.settings.background_image_opacity | divided_by: 100.0 }};
+    pointer-events: none;
+  }
+
+  .instructor-profile__bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: {{ section.settings.background_overlay_color }};
+    opacity: {{ section.settings.background_overlay_opacity | divided_by: 100.0 }};
+    pointer-events: none;
+  }
+
+  .instructor-profile__inner {
+    position: relative;
+    max-width: {{ section.settings.content_max_width }}px;
+    margin: 0 auto;
+  }
+
+  .instructor-profile__card {
+    background: {{ section.settings.card_background_color }};
+    opacity: {{ section.settings.card_background_opacity | divided_by: 100.0 }};
+    border-radius: {{ section.settings.card_radius }}px;
+    border: 1px solid rgba(var(--color-foreground), 0.08);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.10);
+    overflow: hidden;
+    backdrop-filter: blur({{ section.settings.card_blur }}px);
+    -webkit-backdrop-filter: blur({{ section.settings.card_blur }}px);
+  }
+
+  .instructor-profile__card--hero {
+    padding: 3rem 3rem 2.4rem;
+  }
+
+  .instructor-profile__card--bio {
+    padding: 2.6rem 3rem 3rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .instructor-profile__card--hero { padding: 2.2rem 2rem 1.8rem; }
+    .instructor-profile__card--bio  { padding: 2.2rem 2rem 2.4rem; }
+  }
+
+  .instructor-profile__hero-label {
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    color: rgba(var(--color-foreground), 0.7);
+    margin: 0 0 1.8rem;
+  }
+
   /* Header */
   .instructor-profile__header {
     display: flex;
@@ -70,7 +131,7 @@
     align-items: center;
   }
   @media screen and (min-width: 750px) {
-    .instructor-profile__header { flex-direction: row; align-items: flex-start; gap: 4rem; }
+    .instructor-profile__header { flex-direction: row; align-items: center; gap: 4rem; }
   }
   .instructor-profile__photo {
     flex: 0 0 auto;
@@ -89,14 +150,53 @@
   }
   .instructor-profile__photo-placeholder svg { width: 5rem; height: 5rem; }
   .instructor-profile__info { flex: 1 1 0; min-width: 0; }
+  .instructor-profile__kicker {
+    font-size: 1.6rem;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    color: rgba(var(--color-foreground), 0.35);
+    margin: 0 0 0.6rem;
+    text-align: center;
+  }
+  @media screen and (min-width: 750px) { .instructor-profile__kicker { text-align: left; } }
+
   .instructor-profile__name {
-    font-size: 2.4rem; font-weight: 700; margin: 0 0 0.4rem; line-height: 1.2;
+    font-size: 3.6rem;
+    font-weight: 700;
+    margin: 0 0 1.6rem;
+    line-height: 1.1;
+    font-family: var(--font-heading-family);
+    font-style: italic;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.18);
+    color: rgba(var(--color-foreground), 0.85);
+    text-align: center;
   }
-  @media screen and (min-width: 750px) { .instructor-profile__name { font-size: 3rem; } }
+  @media screen and (max-width: 749px) { .instructor-profile__name { font-size: 3rem; } }
+  @media screen and (min-width: 750px) { .instructor-profile__name { text-align: left; } }
+
   .instructor-profile__name-kana {
-    font-size: 1.3rem; color: rgba(var(--color-foreground), 0.6);
-    margin: 0 0 1.2rem; letter-spacing: 0.06em;
+    font-size: 1.3rem;
+    color: rgba(var(--color-foreground), 0.55);
+    margin: -1.2rem 0 1.2rem;
+    letter-spacing: 0.06em;
+    text-align: center;
   }
+  @media screen and (min-width: 750px) { .instructor-profile__name-kana { text-align: left; } }
+
+  .instructor-profile__meta {
+    display: grid;
+    gap: 0;
+    margin-bottom: 1.2rem;
+  }
+  .instructor-profile__meta-item {
+    font-size: 1.35rem;
+    padding: 0.8rem 0;
+    color: rgba(var(--color-foreground), 0.75);
+    margin: 0;
+    border-top: 1px solid rgba(var(--color-foreground), 0.18);
+  }
+  .instructor-profile__meta-item:first-child { border-top: 0; }
+
   .instructor-profile__rank {
     display: inline-block;
     padding: 0.3rem 1rem;
@@ -105,8 +205,6 @@
     font-size: 1.2rem; font-weight: 600; letter-spacing: 0.05em;
     margin: 0 0 1.2rem;
   }
-  .instructor-profile__meta { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.6rem; }
-  .instructor-profile__meta-item { font-size: 1.4rem; color: rgba(var(--color-foreground), 0.7); margin: 0; }
   .instructor-profile__sns { display: flex; gap: 1.2rem; flex-wrap: wrap; }
   .instructor-profile__sns-link {
     display: inline-flex; align-items: center; gap: 0.5rem;
@@ -119,7 +217,7 @@
   /* Section heading */
   .instructor-profile__section-heading {
     font-size: 1.8rem; font-weight: 700;
-    margin: 0 0 2rem;
+    margin: 0 0 1.6rem;
     padding-bottom: 0.8rem;
     border-bottom: 2px solid rgba(var(--color-foreground), 0.12);
   }
@@ -261,8 +359,11 @@
   }
 {%- endstyle -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient">
+<div class="instructor-profile color-{{ section.settings.color_scheme }} gradient">
+  <div class="instructor-profile__bg" aria-hidden="true"></div>
+  <div class="instructor-profile__bg-overlay" aria-hidden="true"></div>
   <div class="page-width section-{{ section.id }}-padding">
+    <div class="instructor-profile__inner">
 
     {%- if instructor == nil or is_active == false -%}
 
@@ -310,82 +411,94 @@
         {%- case block.type -%}
 
           {%- when 'profile_header' -%}
-            <div class="instructor-profile__block instructor-profile__header" {{ block.shopify_attributes }}>
-              <div class="instructor-profile__photo">
-                {%- if prof_photo != blank -%}
-                  <img
-                    src="{{ prof_photo | image_url: width: 440 }}"
-                    alt="{{ prof_name | escape }}"
-                    width="440"
-                    height="440"
-                    loading="eager"
-                  >
-                {%- else -%}
-                  <div class="instructor-profile__photo-placeholder" aria-hidden="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-                    </svg>
-                  </div>
-                {%- endif -%}
-              </div>
-              <div class="instructor-profile__info">
-                <h1 class="instructor-profile__name">{{ prof_name | escape }}</h1>
-                {%- if prof_kana != blank and prof_kana != ' ' -%}
-                  <p class="instructor-profile__name-kana">{{ prof_kana | escape }}</p>
-                {%- endif -%}
-                {%- if block.settings.show_rank and prof_rank != blank -%}
-                  <div><span class="instructor-profile__rank">{{ prof_rank | escape }}</span></div>
-                {%- endif -%}
-                <div class="instructor-profile__meta">
-                  {%- if prof_nickname != blank -%}
-                    <p class="instructor-profile__meta-item">{{ prof_nickname | escape }}</p>
+            {%- liquid
+              assign hero_label = prof_nickname | default: prof_name
+              if hero_label == blank
+                assign hero_label = prof_name
+              endif
+            -%}
+            <div class="instructor-profile__block instructor-profile__card instructor-profile__card--hero" {{ block.shopify_attributes }}>
+              <p class="instructor-profile__hero-label">{{ hero_label | escape }} 先生</p>
+              <div class="instructor-profile__header">
+                <div class="instructor-profile__photo">
+                  {%- if prof_photo != blank -%}
+                    <img
+                      src="{{ prof_photo | image_url: width: 440 }}"
+                      alt="{{ prof_name | escape }}"
+                      width="440"
+                      height="440"
+                      loading="eager"
+                    >
+                  {%- else -%}
+                    <div class="instructor-profile__photo-placeholder" aria-hidden="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+                      </svg>
+                    </div>
                   {%- endif -%}
-                  {%- if block.settings.show_license -%}
-                    {%- if prof_license != blank -%}
-                      <p class="instructor-profile__meta-item">ライセンス番号：{{ prof_license | escape }}</p>
+                </div>
+                <div class="instructor-profile__info">
+                  {%- if section.settings.hero_kicker != blank -%}
+                    <p class="instructor-profile__kicker">{{ section.settings.hero_kicker | escape }}</p>
+                  {%- endif -%}
+                  <h1 class="instructor-profile__name">{{ prof_name | escape }}</h1>
+                  {%- if prof_kana != blank and prof_kana != ' ' -%}
+                    <p class="instructor-profile__name-kana">{{ prof_kana | escape }}</p>
+                  {%- endif -%}
+                  {%- if block.settings.show_rank and prof_rank != blank -%}
+                    <div><span class="instructor-profile__rank">{{ prof_rank | escape }}</span></div>
+                  {%- endif -%}
+                  <div class="instructor-profile__meta">
+                    {%- if prof_nickname != blank -%}
+                      <p class="instructor-profile__meta-item">{{ prof_nickname | escape }}</p>
                     {%- endif -%}
-                    {%- if prof_status != blank -%}
-                      <p class="instructor-profile__meta-item">{{ prof_status | escape }}</p>
+                    {%- if block.settings.show_license -%}
+                      {%- if prof_license != blank -%}
+                        <p class="instructor-profile__meta-item">ライセンス番号：{{ prof_license | escape }}</p>
+                      {%- endif -%}
+                      {%- if prof_status != blank -%}
+                        <p class="instructor-profile__meta-item">{{ prof_status | escape }}</p>
+                      {%- endif -%}
+                    {%- endif -%}
+                  </div>
+                  {%- if block.settings.show_sns -%}
+                    {%- if prof_ig_url != blank or prof_fb_url != blank -%}
+                    <div class="instructor-profile__sns">
+                      {%- if prof_ig_url != blank -%}
+                        <a
+                          href="{{ prof_ig_url | escape }}"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="instructor-profile__sns-link"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                          </svg>
+                          Instagram
+                        </a>
+                      {%- endif -%}
+                      {%- if prof_fb_url != blank -%}
+                        <a
+                          href="{{ prof_fb_url | escape }}"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="instructor-profile__sns-link"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                          </svg>
+                          Facebook
+                        </a>
+                      {%- endif -%}
+                    </div>
                     {%- endif -%}
                   {%- endif -%}
                 </div>
-                {%- if block.settings.show_sns -%}
-                  {%- if prof_ig_url != blank or prof_fb_url != blank -%}
-                  <div class="instructor-profile__sns">
-                    {%- if prof_ig_url != blank -%}
-                      <a
-                        href="{{ prof_ig_url | escape }}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="instructor-profile__sns-link"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                        Instagram
-                      </a>
-                    {%- endif -%}
-                    {%- if prof_fb_url != blank -%}
-                      <a
-                        href="{{ prof_fb_url | escape }}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="instructor-profile__sns-link"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                        </svg>
-                        Facebook
-                      </a>
-                    {%- endif -%}
-                  </div>
-                  {%- endif -%}
-                {%- endif -%}
               </div>
             </div>
 
           {%- when 'bio' -%}
-            <div class="instructor-profile__block" {{ block.shopify_attributes }}>
+            <div class="instructor-profile__block instructor-profile__card instructor-profile__card--bio" {{ block.shopify_attributes }}>
               {%- if block.settings.heading != blank -%}
                 <h2 class="instructor-profile__section-heading">{{ block.settings.heading | escape }}</h2>
               {%- endif -%}
@@ -434,7 +547,7 @@
                     <button class="instructor-lightbox__btn instructor-lightbox__close" type="button" data-lightbox-close aria-label="閉じる">&#215;</button>
                     <div class="instructor-lightbox__img-wrap">
                       <button class="instructor-lightbox__btn instructor-lightbox__prev" type="button" data-lightbox-prev aria-label="前の画像">&#8249;</button>
-                      <img class="instructor-lightbox__img" src="" alt="" data-lightbox-img>
+                      <img class="instructor-lightbox__img" src="" alt="" width="1600" height="1600" data-lightbox-img>
                       <button class="instructor-lightbox__btn instructor-lightbox__next" type="button" data-lightbox-next aria-label="次の画像">&#8250;</button>
                     </div>
                   </div>
@@ -559,6 +672,7 @@
 
     {%- endif -%}
 
+    </div>
   </div>
 </div>
 
@@ -682,6 +796,99 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "背景・カードデザイン"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "背景画像"
+    },
+    {
+      "type": "range",
+      "id": "background_image_opacity",
+      "label": "背景画像の濃さ",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 35
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "default": "#f4f1f3"
+    },
+    {
+      "type": "color",
+      "id": "background_overlay_color",
+      "label": "背景オーバーレイ色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "background_overlay_opacity",
+      "label": "背景オーバーレイ濃さ",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "カード背景色",
+      "default": "#f6e7ee"
+    },
+    {
+      "type": "range",
+      "id": "card_background_opacity",
+      "label": "カード背景の透明度",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 75
+    },
+    {
+      "type": "range",
+      "id": "card_blur",
+      "label": "カードのぼかし",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "カード角丸",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "コンテンツ最大幅",
+      "min": 760,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "default": 1040
+    },
+    {
+      "type": "text",
+      "id": "hero_kicker",
+      "label": "肩書き（タイトル上）",
+      "default": "Botany Japan Professional"
     },
     {
       "type": "text",

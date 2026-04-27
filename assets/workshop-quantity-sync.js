@@ -14,7 +14,7 @@
   function getTargetForm(select) {
     // If the element uses the HTML "form" attribute, browsers expose select.form.
     if (select.form) return select.form;
-    const formId = select.getAttribute('form');
+    const formId = select.dataset.jwbFormId || select.getAttribute('form');
     if (!formId) return null;
     return document.getElementById(formId);
   }

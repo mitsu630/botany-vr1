@@ -21,8 +21,9 @@
     <select
       id="Quantity-{{ section.id }}"
       class="select__select quantity__input"
-      form="{{ product_form_id }}"
+      name="quantity"
       data-jwb-quantity-select="true"
+      data-jwb-form-id="{{ product_form_id }}"
       data-cart-quantity="{{ cart_qty }}"
       data-min="{{ qmin }}"
       {% unless v.quantity_rule.max == blank %}

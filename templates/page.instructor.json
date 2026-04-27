@@ -1,5 +1,13 @@
 {
   "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
     "instructor_profile": {
       "type": "instructor-profile",
       "blocks": {
@@ -61,6 +69,7 @@
     }
   },
   "order": [
+    "main",
     "instructor_profile"
   ]
 }

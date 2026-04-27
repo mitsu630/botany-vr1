@@ -609,7 +609,12 @@
     mount.querySelectorAll('[data-instructor-gallery]').forEach(initGallery);
   }
 
-  render();
+  // JSONデータ用scriptがこのscriptの後ろにあるため、DOM構築後に実行する
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', render);
+  } else {
+    render();
+  }
 })();
 </script>
 

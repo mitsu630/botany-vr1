@@ -393,9 +393,16 @@
                   assign link_id = m.bp_id.value
                 endif
 
-                assign detail_url = '#'
+                assign detail_url = ''
                 if section.settings.detail_page != blank
-                  assign detail_url = section.settings.detail_page.url | append: '?id=' | append: link_id | escape
+                  assign detail_url = section.settings.detail_page.url
+                elsif pages[section.settings.detail_page_handle] != blank
+                  assign detail_url = pages[section.settings.detail_page_handle].url
+                endif
+                if detail_url != blank
+                  assign detail_url = detail_url | append: '?id=' | append: link_id | escape
+                else
+                  assign detail_url = '#'
                 endif
               -%}
 
@@ -644,6 +651,13 @@
       "type": "page",
       "id": "detail_page",
       "label": "講師詳細ページ（page.instructor を適用したページ）"
+    },
+    {
+      "type": "text",
+      "id": "detail_page_handle",
+      "label": "講師詳細ページのhandle（自動リンク用）",
+      "default": "instructor",
+      "info": "detail_page が未設定の場合、/pages/<handle> を自動で参照します。例: /pages/instructor?id=yamada-hanako"
     },
     {
       "type": "header",

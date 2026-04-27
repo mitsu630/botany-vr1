@@ -93,8 +93,7 @@
   }
 
   .instructor-profile__card {
-    background: {{ section.settings.card_background_color }};
-    opacity: {{ section.settings.card_background_opacity | divided_by: 100.0 }};
+    background: {{ section.settings.card_background_color | color_modify: 'alpha', section.settings.card_background_opacity | divided_by: 100.0 }};
     border-radius: {{ section.settings.card_radius }}px;
     border: 1px solid rgba(var(--color-foreground), 0.08);
     box-shadow: 0 10px 28px rgba(0,0,0,0.10);

@@ -1,38 +1,21 @@
 {%- liquid
   assign ip_param = ''
 
-  if request.query_parameters and request.query_parameters.id != blank
-    assign ip_param = request.query_parameters.id | url_decode
-  endif
+  {%- capture _cfh -%}{{ content_for_header }}{%- endcapture -%}
+  {%- assign _pageurl = _cfh | split: '"pageurl":"' | last | split: '"' | first -%}
+  {%- assign _pageurl = _pageurl | replace: '\/', '/' | replace: '%20', ' ' | replace: '\\u0026', '&' | replace: '%26', '&' -%}
 
-  if ip_param == blank and request.params
-    if request.params['id'] != blank
-      assign ip_param = request.params['id'] | url_decode
-    endif
-  endif
-
-  if ip_param == blank and request.query_string != blank
-    assign ip_pairs = request.query_string | split: '&'
-    for ip_pair in ip_pairs
-      assign ip_kv = ip_pair | split: '='
-      if ip_kv[0] == 'id'
-        assign ip_param = ip_kv[1] | url_decode
-        break
-      endif
-    endfor
-  endif
-
-  if ip_param == blank and request.url contains '?'
-    assign ip_qs = request.url | split: '?' | last
-    assign ip_pairs_2 = ip_qs | split: '&'
-    for ip_pair in ip_pairs_2
-      assign ip_kv = ip_pair | split: '='
-      if ip_kv[0] == 'id'
-        assign ip_param = ip_kv[1] | url_decode
-        break
-      endif
-    endfor
-  endif
+  {%- if _pageurl contains '?' -%}
+    {%- assign _qs = _pageurl | split: '?' | last -%}
+    {%- assign _pairs = _qs | split: '&' -%}
+    {%- for p in _pairs -%}
+      {%- assign kv = p | split: '=' -%}
+      {%- if kv[0] == 'id' -%}
+        {%- assign ip_param = kv[1] | url_decode -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
 
   assign instructor = nil
   if ip_param != ''

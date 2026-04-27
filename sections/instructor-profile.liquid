@@ -489,12 +489,15 @@
     var debugMount = document.getElementById('InstructorProfileDebug-{{ section.id }}');
     if (!mount || !nf) return;
 
-    var id = getParam('id');
+    var id = (getParam('id') || '').trim();
     var dataEl = document.getElementById('InstructorProfileData-{{ section.id }}');
     var instructors = [];
     try { instructors = JSON.parse(dataEl && dataEl.textContent ? dataEl.textContent : '[]'); } catch (e) {}
 
-    var instructor = instructors.find(function (x) { return x && x.handle === id; }) || null;
+    var instructor = instructors.find(function (x) {
+      if (!x) return false;
+      return (x.handle && x.handle === id) || (x.bp_id && x.bp_id === id);
+    }) || null;
     var isActive = instructor && instructor.bp_is_active === true;
 
     if ({{ section.settings.debug | json }}) {
@@ -504,6 +507,7 @@
         '<div>id(param): <code>' + escapeHtml(id) + '</code></div>' +
         '<div>found: <code>' + (instructor ? 'true' : 'false') + '</code></div>' +
         '<div>handle: <code>' + escapeHtml(instructor && instructor.handle) + '</code></div>' +
+        '<div>bp_id: <code>' + escapeHtml(instructor && instructor.bp_id) + '</code></div>' +
         '<div>bp_is_active: <code>' + (instructor ? String(instructor.bp_is_active) : '-') + '</code></div>' +
         '</div>';
     }
@@ -634,6 +638,11 @@
       assign location = m.bp_location.value | default: ''
       assign country = m.bp_country.value | default: ''
 
+      assign bp_id = ''
+      if m.bp_id and m.bp_id.value != blank
+        assign bp_id = m.bp_id.value
+      endif
+
       assign fact_1 = m.bp_fact_1.value | default: ''
       assign fact_2 = m.bp_fact_2.value | default: ''
       assign fact_3 = m.bp_fact_3.value | default: ''
@@ -658,6 +667,7 @@
     -%}
     {
       "handle": {{ m.system.handle | json }},
+      "bp_id": {{ bp_id | json }},
       "bp_is_active": {{ is_active | json }},
       "name": {{ name | json }},
       "kana": {{ kana | json }},

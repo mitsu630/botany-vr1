@@ -215,7 +215,7 @@
     color: inherit;
     transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
   }
-  .instructor-card[aria-disabled="true"] { pointer-events: none; opacity: 0.65; }
+  .instructor-card[aria-disabled="true"] { pointer-events: none; }
   .instructor-card:hover {
     border-color: rgba(var(--color-foreground), 0.22);
     transform: translateY(-1px);
@@ -393,17 +393,15 @@
                   assign link_id = m.bp_id.value
                 endif
 
-                assign detail_url = ''
+                assign detail_base_url = ''
                 if section.settings.detail_page != blank
-                  assign detail_url = section.settings.detail_page.url
-                elsif pages[section.settings.detail_page_handle] != blank
-                  assign detail_url = pages[section.settings.detail_page_handle].url
-                endif
-                if detail_url != blank
-                  assign detail_url = detail_url | append: '?id=' | append: link_id | escape
+                  assign detail_base_url = section.settings.detail_page.url
                 else
-                  assign detail_url = '#'
+                  assign handle = section.settings.detail_page_handle | default: 'instructor'
+                  assign detail_base_url = routes.root_url | append: 'pages/' | append: handle
                 endif
+
+                assign detail_url = detail_base_url | append: '?id=' | append: link_id | escape
               -%}
 
               <div

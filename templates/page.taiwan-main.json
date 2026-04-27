@@ -111,6 +111,10 @@
         "accessibility_info": "ブランドについてのスライドショー"
       }
     },
+    "177727528054584d37": {
+      "type": "_blocks",
+      "settings": {}
+    },
     "rich_text_iiyaDG": {
       "type": "rich-text",
       "blocks": {
@@ -141,6 +145,14 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
+    },
+    "1777275720a6934574": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "177727699136dadc7e": {
+      "type": "_blocks",
+      "settings": {}
     },
     "video_7GzqbP": {
       "type": "video",
@@ -263,7 +275,10 @@
   "order": [
     "main",
     "slideshow_fbMJg6",
+    "177727528054584d37",
     "rich_text_iiyaDG",
+    "1777275720a6934574",
+    "177727699136dadc7e",
     "video_7GzqbP",
     "multirow_nfArPR",
     "multicolumn_7dkJqp"

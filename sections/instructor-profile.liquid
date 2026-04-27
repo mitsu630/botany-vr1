@@ -1,5 +1,15 @@
 {%- liquid
-  assign ip_param = request.params.id | default: ''
+  assign ip_param = ''
+
+  if request.query_parameters and request.query_parameters.id != blank
+    assign ip_param = request.query_parameters.id | url_decode
+  endif
+
+  if ip_param == blank and request.params
+    if request.params['id'] != blank
+      assign ip_param = request.params['id'] | url_decode
+    endif
+  endif
 
   if ip_param == blank and request.query_string != blank
     assign ip_pairs = request.query_string | split: '&'

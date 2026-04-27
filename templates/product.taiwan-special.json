@@ -618,6 +618,38 @@
         "padding_bottom": 16
       }
     },
+    "big_card_UQpEFg": {
+      "type": "big-card",
+      "blocks": {
+        "text_KLkCiq": {
+          "type": "text",
+          "settings": {
+            "text": "<p>【注意事項】<br/>※本次課程恕不事先寄送畫材，所有上課所需材料將於活動當天在會場為您準備齊全。<br/>※本課程為由五感寄合所有限公司主辦的免費課程，為期兩天。<br/>因此不收取課程費用，僅需負擔畫材材料費用。敬請理解與配合。<br/><br/></p><p>【關於營運體制】<br/>株式會社アントレ・サン・フラッペ 植物彩繪事業部在台灣的活動安排如下：<br/>課程的預約、付款管理及畫材寄送責任由日本本部（株式會社アントレ・サン・フラッペ，日本法人番號：4080101007800）負責，在台灣舉辦課程的執行與運營責任則由台灣代理店 五感寄合所負責。（統一編號：60656028）</p><p>【關於講師認證課程】<br/>植物彩繪講師認證課程是透過學習作品製作的基礎技術，並通過規定的技術審查，取得正式作為植物彩繪講師進行活動的資格之課程。</p><p>【營運責任・聯絡資訊】<br/>■ 營運代表（預約管理／畫材寄送責任）<br/>株式會社アントレ・サン・フラッペ 植物彩繪事業部<br/>日本法人番號：4080101007800<br/>日本靜岡縣三島市塚原新田24-3<br/>[taiwan@botanypainting.com]（日本在住台灣籍負責人）<br/>+81-559-83-3361（僅限日文應對）</p><p>■ 免費講座主辦代理（台灣場執行與運營責任）<br/>五感寄合所有限公司<br/>統一編號：60656028<br/>公司地址：台灣台北市北投區致遠一路二段45巷10號2樓<br/>聯絡電話：886-988-891-602<br/>E-mail：info@5kanjo.com</p>",
+            "font_size": 16,
+            "color": "#111111",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "text_KLkCiq"
+      ],
+      "name": "ビックカード",
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#111111",
+        "max_width": 1200,
+        "border_radius": 16,
+        "block_gap": 24,
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -847,38 +879,6 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "big_card_UQpEFg": {
-      "type": "big-card",
-      "blocks": {
-        "text_KLkCiq": {
-          "type": "text",
-          "settings": {
-            "text": "<p>【注意事項】<br/>※本次課程恕不事先寄送畫材，所有上課所需材料將於活動當天在會場為您準備齊全。<br/>※本課程為由五感寄合所有限公司主辦的免費課程，為期兩天。<br/>因此不收取課程費用，僅需負擔畫材材料費用。敬請理解與配合。<br/><br/></p><p>【關於營運體制】<br/>株式會社アントレ・サン・フラッペ 植物彩繪事業部在台灣的活動安排如下：<br/>課程的預約、付款管理及畫材寄送責任由日本本部（株式會社アントレ・サン・フラッペ，日本法人番號：4080101007800）負責，在台灣舉辦課程的執行與運營責任則由台灣代理店 五感寄合所負責。（統一編號：60656028）</p><p>【關於講師認證課程】<br/>植物彩繪講師認證課程是透過學習作品製作的基礎技術，並通過規定的技術審查，取得正式作為植物彩繪講師進行活動的資格之課程。</p><p>【營運責任・聯絡資訊】<br/>■ 營運代表（預約管理／畫材寄送責任）<br/>株式會社アントレ・サン・フラッペ 植物彩繪事業部<br/>日本法人番號：4080101007800<br/>日本靜岡縣三島市塚原新田24-3<br/>[taiwan@botanypainting.com]（日本在住台灣籍負責人）<br/>+81-559-83-3361（僅限日文應對）</p><p>■ 免費講座主辦代理（台灣場執行與運營責任）<br/>五感寄合所有限公司<br/>統一編號：60656028<br/>公司地址：台灣台北市北投區致遠一路二段45巷10號2樓<br/>聯絡電話：886-988-891-602<br/>E-mail：info@5kanjo.com</p>",
-            "font_size": 16,
-            "color": "#111111",
-            "padding_top": 0,
-            "padding_bottom": 0,
-            "margin_top": 0,
-            "margin_bottom": 0
-          }
-        }
-      },
-      "block_order": [
-        "text_KLkCiq"
-      ],
-      "name": "ビックカード",
-      "settings": {
-        "background_color": "#ffffff",
-        "text_color": "#111111",
-        "max_width": 1200,
-        "border_radius": 16,
-        "block_gap": 24,
-        "padding_top_desktop": 80,
-        "padding_bottom_desktop": 80,
-        "padding_top_mobile": 48,
-        "padding_bottom_mobile": 48
-      }
     }
   },
   "order": [
@@ -894,11 +894,11 @@
     "image_with_text_T8fxfw",
     "collapsible_content_YiWjhb",
     "video_rAgXHQ",
+    "big_card_UQpEFg",
     "main",
     "related-products",
     "17767608404f8e6a1c",
     "featured_product_HDVArt",
-    "multicolumn_JemUdF",
-    "big_card_UQpEFg"
+    "multicolumn_JemUdF"
   ]
 }

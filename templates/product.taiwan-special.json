@@ -461,7 +461,7 @@
             "image_fit": "cover",
             "image_width_mode": "box",
             "image_box_width": 1200,
-            "image_box_height": 300,
+            "image_box_height": 500,
             "image_align": "center",
             "padding_top": 0,
             "padding_bottom": 0,
@@ -525,7 +525,7 @@
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "image": "shopify://shop_images/2351bdb6b585482a30104f68c0a38900_1bd1213c-c4cb-49ef-9eb4-d18b0a2a9a39.png",
+        "image": "shopify://shop_images/2026-04-27_15.42.39.png",
         "height": "large",
         "desktop_image_width": "small",
         "layout": "image_first",
@@ -607,15 +607,15 @@
       "name": "t:sections.video.presets.name",
       "settings": {
         "heading": "",
-        "heading_size": "h1",
+        "heading_size": "h2",
         "enable_video_looping": true,
         "video": "shopify://files/videos/植物彩繪 師資取得課程botanypainting.mp4",
         "video_url": "",
         "description": "",
-        "full_width": true,
+        "full_width": false,
         "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 16,
+        "padding_bottom": 16
       }
     },
     "main": {

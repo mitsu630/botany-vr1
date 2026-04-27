@@ -1,8 +1,7 @@
 {%- liquid
-  assign ip_param = ''
-  if request.url contains '?'
-    assign ip_qs = request.url | split: '?' | last
-    assign ip_pairs = ip_qs | split: '&'
+  assign ip_param = request.params.id | default: ''
+  if ip_param == blank and request.query_string != blank
+    assign ip_pairs = request.query_string | split: '&'
     for ip_pair in ip_pairs
       assign ip_kv = ip_pair | split: '='
       if ip_kv[0] == 'id'

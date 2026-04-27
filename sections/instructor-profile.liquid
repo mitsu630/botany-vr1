@@ -1,85 +1,8 @@
 {%- liquid
-  assign ip_param = ''
-
-  {%- capture _cfh -%}{{ content_for_header }}{%- endcapture -%}
-
-  {%- assign _pageurl = '' -%}
-  {%- assign _pageurl_try = _cfh | split: 'pageurl":"' | last -%}
-  {%- if _pageurl_try != _cfh -%}
-    {%- assign _pageurl = _pageurl_try | split: '"' | first -%}
-  {%- endif -%}
-
-  {%- if _pageurl == blank -%}
-    {%- assign _pageurl_try = _cfh | split: '"pageurl":"' | last -%}
-    {%- if _pageurl_try != _cfh -%}
-      {%- assign _pageurl = _pageurl_try | split: '"' | first -%}
-    {%- endif -%}
-  {%- endif -%}
-
-  {%- if _pageurl == blank -%}
-    {%- assign _pageurl_try = _cfh | split: '\u0022pageurl\u0022:\u0022' | last -%}
-    {%- if _pageurl_try != _cfh -%}
-      {%- assign _pageurl = _pageurl_try | split: '\u0022' | first -%}
-    {%- endif -%}
-  {%- endif -%}
-
-  {%- if _pageurl != blank -%}
-    {%- assign _pageurl = _pageurl
-      | replace: '\/', '/'
-      | replace: '\\u0026', '&'
-      | replace: '\u0026', '&'
-      | replace: '%26', '&'
-      | replace: '%3D', '='
-      | replace: '%3F', '?'
-      | replace: '%20', ' '
-    -%}
-  {%- endif -%}
-
-  {%- if _pageurl contains '?' -%}
-    {%- assign _qs = _pageurl | split: '?' | last -%}
-    {%- assign _pairs = _qs | split: '&' -%}
-    {%- for p in _pairs -%}
-      {%- assign kv = p | split: '=' -%}
-      {%- if kv[0] == 'id' -%}
-        {%- assign ip_param = kv[1] | url_decode -%}
-        {%- break -%}
-      {%- endif -%}
-    {%- endfor -%}
-  {%- endif -%}
-
-  assign instructor = nil
-  if ip_param != ''
-    if shop.metaobjects.instructors
-      assign _try = shop.metaobjects.instructors[ip_param]
-      if _try and _try.system and _try.system.handle != blank
-        assign instructor = _try
-      endif
-    endif
-  endif
-  if instructor == nil and ip_param != ''
-    if shop.metaobjects.instructors
-      for m in shop.metaobjects.instructors.values
-        if m and m.bp_id and m.bp_id.value == ip_param
-          assign instructor = m
-          break
-        endif
-      endfor
-    endif
-  endif
-  if instructor == nil and request.design_mode
-    if shop.metaobjects.instructors
-      for m in shop.metaobjects.instructors.values
-        if m
-          assign instructor = m
-          break
-        endif
-      endfor
-    endif
-  endif
-
-  assign is_active = false
-  if instructor and instructor.bp_is_active and instructor.bp_is_active.value
-    assign is_active = true
+  assign instructors_src = shop.metaobjects.instructors
+  assign instructors = blank
+  if instructors_src
+    assign instructors = instructors_src.values
   endif
 -%}
 
@@ -489,367 +412,11 @@
   <div class="page-width section-{{ section.id }}-padding">
     <div class="instructor-profile__inner">
 
-    {%- if section.settings.debug -%}
-      <div style="margin: 0 0 1.2rem; padding: 1.2rem 1.4rem; border: 1px dashed rgba(var(--color-foreground), 0.25); border-radius: 0.8rem; font-size: 12px; background: rgba(255,255,255,0.6);">
-        <div><strong>debug</strong></div>
-        <div>pageurl: <code>{{ _pageurl | escape }}</code></div>
-        <div>id(param): <code>{{ ip_param | escape }}</code></div>
-        <div>found: <code>{% if instructor %}true{% else %}false{% endif %}</code></div>
-        <div>handle: <code>{% if instructor %}{{ instructor.system.handle | escape }}{% else %}-{% endif %}</code></div>
-        <div>bp_is_active: <code>{% if instructor and instructor.bp_is_active %}{{ instructor.bp_is_active.value | json }}{% else %}-{% endif %}</code></div>
+      <div id="InstructorProfileDebug-{{ section.id }}"></div>
+      <div class="instructor-profile__not-found" id="InstructorProfileNotFound-{{ section.id }}" hidden>
+        <p>{{ section.settings.not_found_message | escape }}</p>
       </div>
-    {%- endif -%}
-
-    {%- if instructor == nil or is_active == false -%}
-
-      {%- unless request.design_mode -%}
-        <div class="instructor-profile__not-found">
-          <p>{{ section.settings.not_found_message | escape }}</p>
-        </div>
-      {%- else -%}
-        <div class="instructor-profile__not-found">
-          <p>テーマエディター表示中：メタオブジェクト「instructors」にデータを登録すると、ここにプロフィールが表示されます。</p>
-        </div>
-      {%- endunless -%}
-
-    {%- else -%}
-
-      {%- liquid
-        assign prof_name = instructor.name.value
-        if prof_name == blank
-          assign _last  = instructor.bp_last_name.value  | default: ''
-          assign _first = instructor.bp_first_name.value | default: ''
-          assign prof_name = _last | append: ' ' | append: _first | strip
-        endif
-        if prof_name == blank
-          assign prof_name = instructor.system.handle
-        endif
-        assign prof_kana_last  = instructor.bp_last_name_kana.value  | default: ''
-        assign prof_kana_first = instructor.bp_first_name_kana.value | default: ''
-        assign prof_kana = prof_kana_last | append: ' ' | append: prof_kana_first | strip
-        assign prof_photo    = instructor.bp_photo_profile.value
-        assign prof_rank     = instructor.bp_rank.value
-        assign prof_nickname = instructor.bp_nickname.value
-        assign prof_license  = instructor.bp_license_no.value
-        assign prof_status   = instructor.bp_status.value
-        assign prof_bio      = instructor.bp_bio.value
-        assign prof_ig_url   = instructor.bp_sns_ig.value
-        assign prof_fb_url   = instructor.bp_sns_fb.value
-        assign prof_ig_embed = instructor.bp_sns_ig_embed.value
-        assign prof_works    = instructor.bp_photo_work001.value
-        assign prof_artworks = instructor.bp_related_artworks.value
-        assign prof_workshops = instructor.bp_related_workshops.value
-
-        assign prof_location = ''
-        if instructor.bp_location and instructor.bp_location.value != blank
-          assign prof_location = instructor.bp_location.value
-        endif
-        assign prof_country = ''
-        if instructor.bp_country and instructor.bp_country.value != blank
-          assign prof_country = instructor.bp_country.value
-        endif
-
-        assign prof_fact_1 = ''
-        if instructor.bp_fact_1 and instructor.bp_fact_1.value != blank
-          assign prof_fact_1 = instructor.bp_fact_1.value
-        endif
-        assign prof_fact_2 = ''
-        if instructor.bp_fact_2 and instructor.bp_fact_2.value != blank
-          assign prof_fact_2 = instructor.bp_fact_2.value
-        endif
-        assign prof_fact_3 = ''
-        if instructor.bp_fact_3 and instructor.bp_fact_3.value != blank
-          assign prof_fact_3 = instructor.bp_fact_3.value
-        endif
-        assign prof_fact_4 = ''
-        if instructor.bp_fact_4 and instructor.bp_fact_4.value != blank
-          assign prof_fact_4 = instructor.bp_fact_4.value
-        endif
-      -%}
-
-      {%- for block in section.blocks -%}
-
-        {%- case block.type -%}
-
-          {%- when 'profile_header' -%}
-            {%- liquid
-              assign hero_label = prof_nickname | default: prof_name
-              if hero_label == blank
-                assign hero_label = prof_name
-              endif
-            -%}
-            <div class="instructor-profile__block instructor-profile__card instructor-profile__card--hero" {{ block.shopify_attributes }}>
-              <p class="instructor-profile__hero-label">{{ hero_label | escape }} 先生</p>
-              <div class="instructor-profile__header">
-                <div class="instructor-profile__photo">
-                  {%- if prof_photo != blank -%}
-                    <img
-                      src="{{ prof_photo | image_url: width: 440 }}"
-                      alt="{{ prof_name | escape }}"
-                      width="440"
-                      height="440"
-                      loading="eager"
-                    >
-                  {%- else -%}
-                    <div class="instructor-profile__photo-placeholder" aria-hidden="true">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-                      </svg>
-                    </div>
-                  {%- endif -%}
-                </div>
-                <div class="instructor-profile__info">
-                <div class="instructor-profile__tagrow">
-                  {%- if prof_rank != blank -%}
-                    <span class="instructor-profile__tag">{{ prof_rank | escape }}</span>
-                  {%- endif -%}
-                  {%- if prof_location != blank or prof_country != blank -%}
-                    <span class="instructor-profile__tagmeta">
-                      {%- if prof_location != blank -%}{{ prof_location | escape }}{%- endif -%}
-                      {%- if prof_location != blank and prof_country != blank -%} / {%- endif -%}
-                      {%- if prof_country != blank -%}{{ prof_country | escape }}{%- endif -%}
-                    </span>
-                  {%- endif -%}
-                </div>
-                {%- if section.settings.hero_kicker != blank -%}
-                  <p class="instructor-profile__kicker">{{ section.settings.hero_kicker | escape }}</p>
-                {%- endif -%}
-                  <h1 class="instructor-profile__name">{{ prof_name | escape }}</h1>
-                  {%- if prof_kana != blank and prof_kana != ' ' -%}
-                    <p class="instructor-profile__name-kana">{{ prof_kana | escape }}</p>
-                  {%- endif -%}
-                  <div class="instructor-profile__meta">
-                  {%- if prof_fact_1 != blank -%}<p class="instructor-profile__meta-item">{{ prof_fact_1 | escape }}</p>{%- endif -%}
-                  {%- if prof_fact_2 != blank -%}<p class="instructor-profile__meta-item">{{ prof_fact_2 | escape }}</p>{%- endif -%}
-                  {%- if prof_fact_3 != blank -%}<p class="instructor-profile__meta-item">{{ prof_fact_3 | escape }}</p>{%- endif -%}
-                  {%- if prof_fact_4 != blank -%}<p class="instructor-profile__meta-item">{{ prof_fact_4 | escape }}</p>{%- endif -%}
-                    {%- if block.settings.show_license -%}
-                      {%- if prof_license != blank -%}
-                        <p class="instructor-profile__meta-item">ライセンス番号：{{ prof_license | escape }}</p>
-                      {%- endif -%}
-                      {%- if prof_status != blank -%}
-                        <p class="instructor-profile__meta-item">{{ prof_status | escape }}</p>
-                      {%- endif -%}
-                    {%- endif -%}
-                  </div>
-                  {%- if block.settings.show_sns -%}
-                    {%- if prof_ig_url != blank or prof_fb_url != blank -%}
-                    <div class="instructor-profile__sns">
-                      {%- if prof_ig_url != blank -%}
-                        <a
-                          href="{{ prof_ig_url | escape }}"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="instructor-profile__sns-link"
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                          </svg>
-                          Instagram
-                        </a>
-                      {%- endif -%}
-                      {%- if prof_fb_url != blank -%}
-                        <a
-                          href="{{ prof_fb_url | escape }}"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="instructor-profile__sns-link"
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                          </svg>
-                          Facebook
-                        </a>
-                      {%- endif -%}
-                    </div>
-                    {%- endif -%}
-                  {%- endif -%}
-                </div>
-              </div>
-            </div>
-            <hr class="instructor-profile__divider">
-
-          {%- when 'bio' -%}
-            <div class="instructor-profile__block instructor-profile__card instructor-profile__card--bio" {{ block.shopify_attributes }}>
-              {%- if block.settings.heading != blank -%}
-                <div class="instructor-profile__section-label">{{ block.settings.heading | escape }}</div>
-              {%- endif -%}
-              {%- if prof_bio != blank -%}
-                <p class="instructor-profile__bio">{{ prof_bio | escape }}</p>
-              {%- elsif request.design_mode -%}
-                <p class="instructor-profile__bio" style="opacity:0.4;">（プロフィール文が未設定です）</p>
-              {%- endif -%}
-            </div>
-            <hr class="instructor-profile__divider">
-
-          {%- when 'gallery' -%}
-            <div class="instructor-profile__block" {{ block.shopify_attributes }}>
-              {%- if block.settings.heading != blank -%}
-                <div class="instructor-profile__section-label">{{ block.settings.heading | escape }}</div>
-              {%- endif -%}
-              {%- if prof_works != blank and prof_works.size > 0 -%}
-                <div data-instructor-gallery>
-                  <div class="instructor-profile__gallery-grid">
-                    {%- for img in prof_works -%}
-                      <button
-                        class="instructor-profile__gallery-item"
-                        type="button"
-                        data-lightbox-trigger
-                        data-lightbox-src="{{ img | image_url: width: 1600 }}"
-                        aria-label="{{ prof_name | escape }} 作品 {{ forloop.index }}"
-                      >
-                        <img
-                          src="{{ img | image_url: width: 600, height: 600, crop: 'center' }}"
-                          alt=""
-                          width="600"
-                          height="600"
-                          loading="lazy"
-                        >
-                        <span class="instructor-profile__gallery-overlay" aria-hidden="true"></span>
-                      </button>
-                    {%- endfor -%}
-                  </div>
-                  <div
-                    class="instructor-lightbox"
-                    role="dialog"
-                    aria-modal="true"
-                    aria-label="作品ギャラリー"
-                    data-lightbox-modal
-                    tabindex="-1"
-                  >
-                    <button class="instructor-lightbox__btn instructor-lightbox__close" type="button" data-lightbox-close aria-label="閉じる">&#215;</button>
-                    <div class="instructor-lightbox__img-wrap">
-                      <button class="instructor-lightbox__btn instructor-lightbox__prev" type="button" data-lightbox-prev aria-label="前の画像">&#8249;</button>
-                      <img class="instructor-lightbox__img" src="" alt="" width="1600" height="1600" data-lightbox-img>
-                      <button class="instructor-lightbox__btn instructor-lightbox__next" type="button" data-lightbox-next aria-label="次の画像">&#8250;</button>
-                    </div>
-                  </div>
-                </div>
-              {%- elsif request.design_mode -%}
-                <p style="opacity:0.4;">（作品写真が未設定です）</p>
-              {%- endif -%}
-            </div>
-            <hr class="instructor-profile__divider">
-
-          {%- when 'workshops' -%}
-            <div class="instructor-profile__block" {{ block.shopify_attributes }}>
-              {%- if block.settings.heading != blank -%}
-                <div class="instructor-profile__section-label">{{ block.settings.heading | escape }}</div>
-              {%- endif -%}
-              {%- if prof_workshops != blank and prof_workshops.size > 0 -%}
-                <div class="instructor-profile__workshops">
-                  {%- for ws in prof_workshops -%}
-                    <div class="instructor-profile__workshop-item">
-                      <div class="instructor-profile__workshop-card">
-                        <div class="instructor-profile__workshop-row">
-                          {%- if block.settings.show_product_image and ws.featured_image != blank -%}
-                            <div class="instructor-profile__workshop-thumb-wrap">
-                              <img
-                                src="{{ ws.featured_image | image_url: width: 360, height: 360, crop: 'center' }}"
-                                alt="{{ ws.title | escape }}"
-                                width="360"
-                                height="360"
-                                loading="lazy"
-                              >
-                            </div>
-                          {%- endif -%}
-                          <div class="instructor-profile__workshop-body">
-                            <h3 class="instructor-profile__workshop-title">
-                              <a href="{{ ws.url }}">{{ ws.title | escape }}</a>
-                            </h3>
-                            <p class="instructor-profile__workshop-price">
-                              {%- if ws.price_varies -%}
-                                {{ ws.price_min | money }}〜
-                              {%- else -%}
-                                {{ ws.price | money }}
-                              {%- endif -%}
-                            </p>
-                            <div class="instructor-profile__workshop-dates">
-                              {%- if ws.has_only_default_variant -%}
-                                <a
-                                  href="{{ ws.url }}"
-                                  class="instructor-profile__ws-date {% if ws.available %}instructor-profile__ws-date--available{% else %}instructor-profile__ws-date--soldout{% endif %}"
-                                >
-                                  {%- if ws.available -%}詳細・お申込み{%- else -%}満席{%- endif -%}
-                                </a>
-                              {%- else -%}
-                                {%- for variant in ws.variants -%}
-                                  <a
-                                    href="{{ variant.url }}"
-                                    class="instructor-profile__ws-date {% if variant.available %}instructor-profile__ws-date--available{% else %}instructor-profile__ws-date--soldout{% endif %}"
-                                    {%- unless variant.available %} aria-disabled="true"{% endunless %}
-                                  >
-                                    {{ variant.title | escape }}
-                                  </a>
-                                {%- endfor -%}
-                              {%- endif -%}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  {%- endfor -%}
-                </div>
-              {%- elsif request.design_mode -%}
-                <p style="opacity:0.4;">（担当ワークショップが未設定です）</p>
-              {%- endif -%}
-            </div>
-            <hr class="instructor-profile__divider">
-
-          {%- when 'artworks' -%}
-            <div class="instructor-profile__block" {{ block.shopify_attributes }}>
-              {%- if block.settings.heading != blank -%}
-                <h2 class="instructor-profile__section-heading">{{ block.settings.heading | escape }}</h2>
-              {%- endif -%}
-              {%- if prof_artworks != blank and prof_artworks.size > 0 -%}
-                <div class="instructor-profile__artworks-grid">
-                  {%- for artwork in prof_artworks -%}
-                    <a href="{{ artwork.url }}" class="instructor-profile__artwork-card">
-                      <div class="instructor-profile__artwork-img-wrap">
-                        {%- if artwork.featured_image != blank -%}
-                          <img
-                            class="instructor-profile__artwork-img"
-                            src="{{ artwork.featured_image | image_url: width: 400, height: 400, crop: 'center' }}"
-                            alt="{{ artwork.title | escape }}"
-                            width="400"
-                            height="400"
-                            loading="lazy"
-                          >
-                        {%- endif -%}
-                      </div>
-                      <p class="instructor-profile__artwork-title">{{ artwork.title | escape }}</p>
-                      <p class="instructor-profile__artwork-price">
-                        {%- if artwork.price_varies -%}
-                          {{ artwork.price_min | money }} 〜
-                        {%- else -%}
-                          {{ artwork.price | money }}
-                        {%- endif -%}
-                      </p>
-                    </a>
-                  {%- endfor -%}
-                </div>
-              {%- elsif request.design_mode -%}
-                <p style="opacity:0.4;">（関連作品が未設定です）</p>
-              {%- endif -%}
-            </div>
-
-          {%- when 'ig_embed' -%}
-            <div class="instructor-profile__block" {{ block.shopify_attributes }}>
-              {%- if block.settings.heading != blank -%}
-                <h2 class="instructor-profile__section-heading">{{ block.settings.heading | escape }}</h2>
-              {%- endif -%}
-              {%- if prof_ig_embed != blank -%}
-                <div class="instructor-profile__ig-embed">{{ prof_ig_embed }}</div>
-              {%- elsif request.design_mode -%}
-                <p style="opacity:0.4;">（Instagram埋め込みコードが未設定です）</p>
-              {%- endif -%}
-            </div>
-
-        {%- endcase -%}
-
-      {%- endfor -%}
-
-    {%- endif -%}
+      <div id="InstructorProfileMount-{{ section.id }}"></div>
 
     </div>
   </div>
@@ -899,10 +466,219 @@
     });
   }
 
-  document
-    .querySelectorAll('#shopify-section-{{ section.id }} [data-instructor-gallery]')
-    .forEach(initGallery);
+  function escapeHtml(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function getParam(name) {
+    try {
+      return new URLSearchParams(window.location.search).get(name) || '';
+    } catch (e) {
+      return '';
+    }
+  }
+
+  function render() {
+    var mount = document.getElementById('InstructorProfileMount-{{ section.id }}');
+    var nf = document.getElementById('InstructorProfileNotFound-{{ section.id }}');
+    var debugMount = document.getElementById('InstructorProfileDebug-{{ section.id }}');
+    if (!mount || !nf) return;
+
+    var id = getParam('id');
+    var dataEl = document.getElementById('InstructorProfileData-{{ section.id }}');
+    var instructors = [];
+    try { instructors = JSON.parse(dataEl && dataEl.textContent ? dataEl.textContent : '[]'); } catch (e) {}
+
+    var instructor = instructors.find(function (x) { return x && x.handle === id; }) || null;
+    var isActive = instructor && instructor.bp_is_active === true;
+
+    if ({{ section.settings.debug | json }}) {
+      debugMount.innerHTML =
+        '<div style="margin: 0 0 1.2rem; padding: 1.2rem 1.4rem; border: 1px dashed rgba(var(--color-foreground), 0.25); border-radius: 0.8rem; font-size: 12px; background: rgba(255,255,255,0.6);">' +
+        '<div><strong>debug</strong></div>' +
+        '<div>id(param): <code>' + escapeHtml(id) + '</code></div>' +
+        '<div>found: <code>' + (instructor ? 'true' : 'false') + '</code></div>' +
+        '<div>handle: <code>' + escapeHtml(instructor && instructor.handle) + '</code></div>' +
+        '<div>bp_is_active: <code>' + (instructor ? String(instructor.bp_is_active) : '-') + '</code></div>' +
+        '</div>';
+    }
+
+    if (!instructor || !isActive) {
+      nf.hidden = false;
+      mount.innerHTML = '';
+      return;
+    }
+
+    nf.hidden = true;
+
+    var hero = '';
+    hero += '<div class="instructor-profile__block instructor-profile__card instructor-profile__card--hero">';
+    hero += '<p class="instructor-profile__hero-label">' + escapeHtml(instructor.hero_label || instructor.name) + ' 先生</p>';
+    hero += '<div class="instructor-profile__header">';
+    hero += '<div class="instructor-profile__photo">';
+    if (instructor.photo) {
+      hero += '<img src="' + escapeHtml(instructor.photo) + '" alt="' + escapeHtml(instructor.name) + '" width="440" height="440" loading="eager">';
+    } else {
+      hero += '<div class="instructor-profile__photo-placeholder" aria-hidden="true"></div>';
+    }
+    hero += '</div>';
+    hero += '<div class="instructor-profile__info">';
+    hero += '<div class="instructor-profile__tagrow">';
+    if (instructor.rank) hero += '<span class="instructor-profile__tag">' + escapeHtml(instructor.rank) + '</span>';
+    if (instructor.location || instructor.country) {
+      hero += '<span class="instructor-profile__tagmeta">' + escapeHtml(instructor.location || '') +
+        ((instructor.location && instructor.country) ? ' / ' : '') + escapeHtml(instructor.country || '') + '</span>';
+    }
+    hero += '</div>';
+    if (instructor.kicker) hero += '<p class="instructor-profile__kicker">' + escapeHtml(instructor.kicker) + '</p>';
+    hero += '<h1 class="instructor-profile__name">' + escapeHtml(instructor.name) + '</h1>';
+    if (instructor.kana) hero += '<p class="instructor-profile__name-kana">' + escapeHtml(instructor.kana) + '</p>';
+    hero += '<div class="instructor-profile__meta">';
+    (instructor.facts || []).forEach(function (f) {
+      if (!f) return;
+      hero += '<p class="instructor-profile__meta-item">' + escapeHtml(f) + '</p>';
+    });
+    if (instructor.license) hero += '<p class="instructor-profile__meta-item">ライセンス番号：' + escapeHtml(instructor.license) + '</p>';
+    if (instructor.status) hero += '<p class="instructor-profile__meta-item">' + escapeHtml(instructor.status) + '</p>';
+    hero += '</div>';
+    if (instructor.sns_ig || instructor.sns_fb) {
+      hero += '<div class="instructor-profile__sns">';
+      if (instructor.sns_ig) hero += '<a class="instructor-profile__sns-link" href="' + escapeHtml(instructor.sns_ig) + '" target="_blank" rel="noopener noreferrer">Instagram</a>';
+      if (instructor.sns_fb) hero += '<a class="instructor-profile__sns-link" href="' + escapeHtml(instructor.sns_fb) + '" target="_blank" rel="noopener noreferrer">Facebook</a>';
+      hero += '</div>';
+    }
+    hero += '</div></div></div><hr class="instructor-profile__divider">';
+
+    var bio = '';
+    if (instructor.bio) {
+      bio += '<div class="instructor-profile__block instructor-profile__card instructor-profile__card--bio">';
+      bio += '<div class="instructor-profile__section-label">プロフィール</div>';
+      bio += '<p class="instructor-profile__bio">' + escapeHtml(instructor.bio) + '</p>';
+      bio += '</div><hr class="instructor-profile__divider">';
+    }
+
+    var gallery = '';
+    if (instructor.works && instructor.works.length) {
+      gallery += '<div class="instructor-profile__block">';
+      gallery += '<div class="instructor-profile__section-label">作品</div>';
+      gallery += '<div data-instructor-gallery>';
+      gallery += '<div class="instructor-profile__gallery-grid">';
+      instructor.works.forEach(function (u, idx) {
+        if (!u) return;
+        gallery += '<button class="instructor-profile__gallery-item" type="button" data-lightbox-trigger data-lightbox-src="' + escapeHtml(u) + '" aria-label="作品 ' + (idx+1) + '">';
+        gallery += '<img src="' + escapeHtml(u) + '" alt="" width="600" height="600" loading="lazy">';
+        gallery += '<span class="instructor-profile__gallery-overlay" aria-hidden="true"></span></button>';
+      });
+      gallery += '</div>';
+      gallery += '<div class="instructor-lightbox" role="dialog" aria-modal="true" aria-label="作品ギャラリー" data-lightbox-modal tabindex="-1">';
+      gallery += '<button class="instructor-lightbox__btn instructor-lightbox__close" type="button" data-lightbox-close aria-label="閉じる">&#215;</button>';
+      gallery += '<div class="instructor-lightbox__img-wrap">';
+      gallery += '<button class="instructor-lightbox__btn instructor-lightbox__prev" type="button" data-lightbox-prev aria-label="前の画像">&#8249;</button>';
+      gallery += '<img class="instructor-lightbox__img" src="" alt="" width="1600" height="1600" data-lightbox-img>';
+      gallery += '<button class="instructor-lightbox__btn instructor-lightbox__next" type="button" data-lightbox-next aria-label="次の画像">&#8250;</button>';
+      gallery += '</div></div></div></div><hr class="instructor-profile__divider">';
+    }
+
+    var ig = '';
+    if (instructor.ig_embed) {
+      ig += '<div class="instructor-profile__block">';
+      ig += '<div class="instructor-profile__section-label">Instagram</div>';
+      ig += '<div class="instructor-profile__ig-embed">' + instructor.ig_embed + '</div>';
+      ig += '</div>';
+    }
+
+    mount.innerHTML = hero + bio + gallery + ig;
+
+    // init lightbox galleries after render
+    mount.querySelectorAll('[data-instructor-gallery]').forEach(initGallery);
+  }
+
+  render();
 })();
+</script>
+
+<script type="application/json" id="InstructorProfileData-{{ section.id }}">
+[
+{%- if instructors != blank -%}
+  {%- for m in instructors -%}
+    {%- liquid
+      if m == blank
+        continue
+      endif
+
+      assign is_active = false
+      if m.bp_is_active and m.bp_is_active.value
+        assign is_active = true
+      endif
+
+      assign name = m.name.value
+      if name == blank
+        assign name = m.system.handle
+      endif
+
+      assign kana_last = m.bp_last_name_kana.value | default: ''
+      assign kana_first = m.bp_first_name_kana.value | default: ''
+      assign kana = kana_last | append: ' ' | append: kana_first | strip
+
+      assign photo_url = ''
+      if m.bp_photo_profile and m.bp_photo_profile.value != blank
+        assign photo_url = m.bp_photo_profile.value | image_url: width: 440, height: 440, crop: 'center'
+      endif
+
+      assign rank = m.bp_rank.value | default: ''
+      assign location = m.bp_location.value | default: ''
+      assign country = m.bp_country.value | default: ''
+
+      assign fact_1 = m.bp_fact_1.value | default: ''
+      assign fact_2 = m.bp_fact_2.value | default: ''
+      assign fact_3 = m.bp_fact_3.value | default: ''
+      assign fact_4 = m.bp_fact_4.value | default: ''
+
+      assign license = m.bp_license_no.value | default: ''
+      assign status = m.bp_status.value | default: ''
+
+      assign sns_ig = m.bp_sns_ig.value | default: ''
+      assign sns_fb = m.bp_sns_fb.value | default: ''
+
+      assign bio = m.bp_bio.value | default: ''
+      assign ig_embed = m.bp_sns_ig_embed.value | default: ''
+
+      assign works = m.bp_photo_work001.value
+    -%}
+    {
+      "handle": {{ m.system.handle | json }},
+      "bp_is_active": {{ is_active | json }},
+      "name": {{ name | json }},
+      "kana": {{ kana | json }},
+      "photo": {{ photo_url | json }},
+      "rank": {{ rank | json }},
+      "location": {{ location | json }},
+      "country": {{ country | json }},
+      "facts": [{{ fact_1 | json }}, {{ fact_2 | json }}, {{ fact_3 | json }}, {{ fact_4 | json }}],
+      "license": {{ license | json }},
+      "status": {{ status | json }},
+      "sns_ig": {{ sns_ig | json }},
+      "sns_fb": {{ sns_fb | json }},
+      "bio": {{ bio | json }},
+      "ig_embed": {{ ig_embed | json }},
+      "kicker": {{ section.settings.hero_kicker | json }},
+      "hero_label": {{ (m.bp_nickname.value | default: name) | json }},
+      "works": [
+        {%- if works != blank and works.size > 0 -%}
+          {%- for img in works -%}
+            {{ img | image_url: width: 1600 | json }}{% unless forloop.last %},{% endunless %}
+          {%- endfor -%}
+        {%- endif -%}
+      ]
+    }{% unless forloop.last %},{% endunless %}
+  {%- endfor -%}
+{%- endif -%}
+]
 </script>
 
 {% schema %}

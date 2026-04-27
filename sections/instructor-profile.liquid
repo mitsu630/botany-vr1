@@ -14,28 +14,36 @@
 
   assign instructor = nil
   if ip_param != ''
-    assign _try = shop.metaobjects.instructors[ip_param]
-    if _try.system.handle != blank
-      assign instructor = _try
+    if shop.metaobjects.instructors
+      assign _try = shop.metaobjects.instructors[ip_param]
+      if _try and _try.system and _try.system.handle != blank
+        assign instructor = _try
+      endif
     endif
   endif
   if instructor == nil and ip_param != ''
-    for m in shop.metaobjects.instructors.values
-      if m.bp_id.value == ip_param
-        assign instructor = m
-        break
-      endif
-    endfor
+    if shop.metaobjects.instructors
+      for m in shop.metaobjects.instructors.values
+        if m and m.bp_id and m.bp_id.value == ip_param
+          assign instructor = m
+          break
+        endif
+      endfor
+    endif
   endif
   if instructor == nil and request.design_mode
-    for m in shop.metaobjects.instructors.values
-      assign instructor = m
-      break
-    endfor
+    if shop.metaobjects.instructors
+      for m in shop.metaobjects.instructors.values
+        if m
+          assign instructor = m
+          break
+        endif
+      endfor
+    endif
   endif
 
   assign is_active = false
-  if instructor != nil and instructor.bp_is_active.value
+  if instructor and instructor.bp_is_active and instructor.bp_is_active.value
     assign is_active = true
   endif
 -%}
@@ -341,7 +349,8 @@
                     {%- endif -%}
                   {%- endif -%}
                 </div>
-                {%- if block.settings.show_sns and (prof_ig_url != blank or prof_fb_url != blank) -%}
+                {%- if block.settings.show_sns -%}
+                  {%- if prof_ig_url != blank or prof_fb_url != blank -%}
                   <div class="instructor-profile__sns">
                     {%- if prof_ig_url != blank -%}
                       <a
@@ -370,6 +379,7 @@
                       </a>
                     {%- endif -%}
                   </div>
+                  {%- endif -%}
                 {%- endif -%}
               </div>
             </div>

@@ -385,21 +385,23 @@
             </div>
 
           {%- when 'bio' -%}
-            {%- if prof_bio != blank -%}
-              <div class="instructor-profile__block" {{ block.shopify_attributes }}>
-                {%- if block.settings.heading != blank -%}
-                  <h2 class="instructor-profile__section-heading">{{ block.settings.heading | escape }}</h2>
-                {%- endif -%}
+            <div class="instructor-profile__block" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}
+                <h2 class="instructor-profile__section-heading">{{ block.settings.heading | escape }}</h2>
+              {%- endif -%}
+              {%- if prof_bio != blank -%}
                 <p class="instructor-profile__bio">{{ prof_bio | escape }}</p>
-              </div>
-            {%- endif -%}
+              {%- elsif request.design_mode -%}
+                <p class="instructor-profile__bio" style="opacity:0.4;">（プロフィール文が未設定です）</p>
+              {%- endif -%}
+            </div>
 
           {%- when 'gallery' -%}
-            {%- if prof_works != blank and prof_works.size > 0 -%}
-              <div class="instructor-profile__block" {{ block.shopify_attributes }}>
-                {%- if block.settings.heading != blank -%}
-                  <h2 class="instructor-profile__section-heading">{{ block.settings.heading | escape }}</h2>
-                {%- endif -%}
+            <div class="instructor-profile__block" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}
+                <h2 class="instructor-profile__section-heading">{{ block.settings.heading | escape }}</h2>
+              {%- endif -%}
+              {%- if prof_works != blank and prof_works.size > 0 -%}
                 <div data-instructor-gallery>
                   <div class="instructor-profile__gallery-grid">
                     {%- for img in prof_works -%}
@@ -437,15 +439,17 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            {%- endif -%}
+              {%- elsif request.design_mode -%}
+                <p style="opacity:0.4;">（作品写真が未設定です）</p>
+              {%- endif -%}
+            </div>
 
           {%- when 'workshops' -%}
-            {%- if prof_workshops != blank and prof_workshops.size > 0 -%}
-              <div class="instructor-profile__block" {{ block.shopify_attributes }}>
-                {%- if block.settings.heading != blank -%}
-                  <h2 class="instructor-profile__section-heading">{{ block.settings.heading | escape }}</h2>
-                {%- endif -%}
+            <div class="instructor-profile__block" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}
+                <h2 class="instructor-profile__section-heading">{{ block.settings.heading | escape }}</h2>
+              {%- endif -%}
+              {%- if prof_workshops != blank and prof_workshops.size > 0 -%}
                 <div class="instructor-profile__workshops">
                   {%- for ws in prof_workshops -%}
                     <div class="instructor-profile__workshop-item">
@@ -495,15 +499,17 @@
                     </div>
                   {%- endfor -%}
                 </div>
-              </div>
-            {%- endif -%}
+              {%- elsif request.design_mode -%}
+                <p style="opacity:0.4;">（担当ワークショップが未設定です）</p>
+              {%- endif -%}
+            </div>
 
           {%- when 'artworks' -%}
-            {%- if prof_artworks != blank and prof_artworks.size > 0 -%}
-              <div class="instructor-profile__block" {{ block.shopify_attributes }}>
-                {%- if block.settings.heading != blank -%}
-                  <h2 class="instructor-profile__section-heading">{{ block.settings.heading | escape }}</h2>
-                {%- endif -%}
+            <div class="instructor-profile__block" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}
+                <h2 class="instructor-profile__section-heading">{{ block.settings.heading | escape }}</h2>
+              {%- endif -%}
+              {%- if prof_artworks != blank and prof_artworks.size > 0 -%}
                 <div class="instructor-profile__artworks-grid">
                   {%- for artwork in prof_artworks -%}
                     <a href="{{ artwork.url }}" class="instructor-profile__artwork-card">
@@ -530,18 +536,22 @@
                     </a>
                   {%- endfor -%}
                 </div>
-              </div>
-            {%- endif -%}
+              {%- elsif request.design_mode -%}
+                <p style="opacity:0.4;">（関連作品が未設定です）</p>
+              {%- endif -%}
+            </div>
 
           {%- when 'ig_embed' -%}
-            {%- if prof_ig_embed != blank -%}
-              <div class="instructor-profile__block" {{ block.shopify_attributes }}>
-                {%- if block.settings.heading != blank -%}
-                  <h2 class="instructor-profile__section-heading">{{ block.settings.heading | escape }}</h2>
-                {%- endif -%}
+            <div class="instructor-profile__block" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}
+                <h2 class="instructor-profile__section-heading">{{ block.settings.heading | escape }}</h2>
+              {%- endif -%}
+              {%- if prof_ig_embed != blank -%}
                 <div class="instructor-profile__ig-embed">{{ prof_ig_embed }}</div>
-              </div>
-            {%- endif -%}
+              {%- elsif request.design_mode -%}
+                <p style="opacity:0.4;">（Instagram埋め込みコードが未設定です）</p>
+              {%- endif -%}
+            </div>
 
         {%- endcase -%}
 

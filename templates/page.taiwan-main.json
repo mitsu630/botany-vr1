@@ -146,11 +146,59 @@
         "padding_bottom": 52
       }
     },
+    "177733747206bf508a": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "1777337008087e206a": {
+      "type": "_blocks",
+      "settings": {}
+    },
     "1777275720a6934574": {
       "type": "_blocks",
       "settings": {}
     },
     "177727699136dadc7e": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "multirow_7MRGkE": {
+      "type": "multirow",
+      "blocks": {
+        "row_kamCh3": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/line_oa_chat_260401_150845.jpg",
+            "caption": "Information",
+            "heading": "台湾展覧会・開幕活動圓満落幕",
+            "text": "<p>2026.03.27 – 03.29 NEW</p>",
+            "button_label": "Check",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_kamCh3"
+      ],
+      "disabled": true,
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "adapt",
+        "desktop_image_width": "small",
+        "image_layout": "align-left",
+        "heading_size": "h2",
+        "text_style": "subtitle",
+        "button_style": "primary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "scheme-5",
+        "row_color_scheme": "scheme-5",
+        "padding_top": 4,
+        "padding_bottom": 4
+      }
+    },
+    "1777336773a4c32e06": {
       "type": "_blocks",
       "settings": {}
     },
@@ -277,8 +325,12 @@
     "slideshow_fbMJg6",
     "177727528054584d37",
     "rich_text_iiyaDG",
+    "177733747206bf508a",
+    "1777337008087e206a",
     "1777275720a6934574",
     "177727699136dadc7e",
+    "multirow_7MRGkE",
+    "1777336773a4c32e06",
     "video_7GzqbP",
     "multirow_nfArPR",
     "multicolumn_7dkJqp"

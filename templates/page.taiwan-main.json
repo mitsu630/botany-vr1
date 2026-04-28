@@ -167,6 +167,7 @@
       "blocks": {
         "row_kamCh3": {
           "type": "row",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/line_oa_chat_260401_150845.jpg",
             "caption": "Information",
@@ -180,7 +181,6 @@
       "block_order": [
         "row_kamCh3"
       ],
-      "disabled": true,
       "name": "t:sections.multirow.presets.name",
       "settings": {
         "image_height": "adapt",
@@ -201,6 +201,17 @@
     "1777336773a4c32e06": {
       "type": "_blocks",
       "settings": {}
+    },
+    "custom_liquid_NMzFDg": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n  .bp-info {\n    background: #f7f4ee;\n    padding: 80px 20px;\n    color: #2d2a25;\n    font-family: \"Noto Sans TC\", \"Hiragino Sans\", \"Helvetica Neue\", Arial, \"Microsoft JhengHei\", sans-serif;\n    -webkit-font-smoothing: antialiased;\n  }\n  .bp-info__inner { max-width: 980px; margin: 0 auto; }\n  .bp-info__head {\n    text-align: center;\n    border-top: 1px solid #2d2a25;\n    border-bottom: 1px solid #2d2a25;\n    padding: 28px 16px;\n    margin-bottom: 56px;\n  }\n  .bp-info__title {\n    font-size: clamp(32px, 5vw, 44px);\n    font-weight: 800;\n    letter-spacing: .02em;\n    margin: 0 0 8px;\n    color: #2d2a25;\n    font-family: \"Helvetica Neue\", \"Hiragino Sans\", \"Noto Sans TC\", sans-serif;\n  }\n  .bp-info__subtitle {\n    font-size: 14px; color: #5e5b53; margin: 0; letter-spacing: .05em;\n  }\n  .bp-info__list {\n    list-style: none; margin: 0; padding: 0;\n    display: flex; flex-direction: column; gap: 32px;\n  }\n  .bp-info__item {\n    display: grid;\n    grid-template-columns: 240px 1fr auto;\n    align-items: center;\n    gap: 32px;\n    padding: 4px 12px;\n  }\n  .bp-info__thumb {\n    width: 240px; height: 180px;\n    overflow: hidden; border-radius: 4px;\n    background: #ece6d8; display: block;\n  }\n  .bp-info__thumb img {\n    width: 100%; height: 100%; object-fit: cover; display: block;\n    transition: transform .4s ease;\n  }\n  .bp-info__item:hover .bp-info__thumb img { transform: scale(1.04); }\n  .bp-info__body { display: flex; flex-direction: column; gap: 14px; }\n  .bp-info__item-title {\n    font-size: 18px; font-weight: 600; line-height: 1.6;\n    color: #2d2a25; margin: 0; letter-spacing: .02em;\n  }\n  .bp-info__meta {\n    display: flex; align-items: center; gap: 12px;\n    color: #5e5b53; font-size: 14px; letter-spacing: .04em;\n  }\n  .bp-info__date { font-weight: 500; }\n  .bp-info__new {\n    display: inline-block;\n    background: #c98a7a;\n    color: #fff;\n    font-size: 11px; font-weight: 600;\n    letter-spacing: .12em;\n    padding: 3px 10px;\n    border-radius: 3px;\n    text-transform: uppercase;\n  }\n  .bp-info__check {\n    display: inline-block;\n    background: #7a8b6f;\n    color: #fff !important;\n    text-decoration: none;\n    font-size: 13px; letter-spacing: .15em;\n    padding: 10px 32px;\n    border-radius: 999px;\n    transition: background .2s ease, transform .2s ease;\n    white-space: nowrap;\n  }\n  .bp-info__check:hover { background: #65755b; transform: translateY(-1px); }\n  @media (max-width: 720px) {\n    .bp-info { padding: 56px 16px; }\n    .bp-info__head { padding: 22px 12px; margin-bottom: 36px; }\n    .bp-info__list { gap: 28px; }\n    .bp-info__item { grid-template-columns: 130px 1fr; gap: 16px; padding: 0; }\n    .bp-info__thumb { width: 130px; height: 100px; }\n    .bp-info__item-title { font-size: 14.5px; }\n    .bp-info__meta { font-size: 12.5px; gap: 8px; flex-wrap: wrap; }\n    .bp-info__check {\n      grid-column: 1 / -1; justify-self: end; margin-top: -4px;\n      font-size: 12px; padding: 8px 24px;\n    }\n  }\n</style>\n\n<section class=\"bp-info\" aria-label=\"最新消息\">\n  <div class=\"bp-info__inner\">\n    <header class=\"bp-info__head\">\n      <h2 class=\"bp-info__title\">Information</h2>\n      <p class=\"bp-info__subtitle\">隨時掌握植物彩繪的最新消息</p>\n    </header>\n    <ul class=\"bp-info__list\">\n      <li class=\"bp-info__item\">\n        <a class=\"bp-info__thumb\" href=\"#\">\n          <!-- ↓ ここを Shopify Files にアップした写真URLに差し替え -->\n          <img src=\"\nline_oa_chat_260401_150845\" alt=\"台灣展覽會 開幕活動報導\">\n        </a>\n        <div class=\"bp-info__body\">\n          <h3 class=\"bp-info__item-title\">台灣展覽會・開幕活動圓滿落幕</h3>\n          <div class=\"bp-info__meta\">\n            <span class=\"bp-info__date\">2026.03.27 – 03.29</span>\n            <span class=\"bp-info__new\">New</span>\n          </div>\n        </div>\n        <a class=\"bp-info__check\" href=\"#\">Check</a>\n      </li>\n    </ul>\n  </div>\n</section>",
+        "color_scheme": "scheme-1",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     },
     "video_7GzqbP": {
       "type": "video",
@@ -331,6 +342,7 @@
     "177727699136dadc7e",
     "multirow_7MRGkE",
     "1777336773a4c32e06",
+    "custom_liquid_NMzFDg",
     "video_7GzqbP",
     "multirow_nfArPR",
     "multicolumn_7dkJqp"

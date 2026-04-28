@@ -136,6 +136,38 @@
         "heading_HjJA9K",
         "text_9jRQqn"
       ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_LEPFa6": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_TRnWwx": {
+          "type": "heading",
+          "settings": {
+            "heading": "LIFE is ART",
+            "heading_size": "h1"
+          }
+        },
+        "text_XDeqfr": {
+          "type": "text",
+          "settings": {
+            "text": "<p>植物彩繪是一種將真實葉片貼於畫板上，<br/>表達自我「喜好」的藝術創作。</p><p>創作的過程，<br/>不僅成為心靈的支撐，<br/>也賦予生活更多意義。</p><p>透過創作，<br/>心靈得以放鬆，<br/>並能遇見一幅令人感動的作品，<br/>體會其中的喜悅。</p><p>LIFE is ART<br/>在平凡的生活之中，<br/>即使覺得自己平凡，<br/>也能展現豐富的表達。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_TRnWwx",
+        "text_XDeqfr"
+      ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
@@ -154,9 +186,15 @@
       "type": "_blocks",
       "settings": {}
     },
-    "1777275720a6934574": {
-      "type": "_blocks",
-      "settings": {}
+    "custom_liquid_witELW": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n  .bp-cta-slim {\n    padding: 20px;\n    background: transparent;\n    color: #2d2a25;\n    font-family: \"Noto Sans TC\", \"Hiragino Sans\", \"Helvetica Neue\", Arial, \"Microsoft JhengHei\", sans-serif;\n    -webkit-font-smoothing: antialiased;\n  }\n  .bp-cta-slim__inner {\n    max-width: 760px;\n    margin: 0 auto;\n    display: flex;\n    gap: 10px;\n    justify-content: center;\n    flex-wrap: wrap;\n  }\n\n  .bp-cta-slim__btn {\n    flex: 1 1 0;\n    min-width: 200px;\n    display: inline-flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 14px;\n    padding: 14px 22px;\n    background: #ffffff;\n    border: 1px solid #d8d2c2;\n    text-decoration: none;\n    color: #2d2a25;\n    font-size: 14.5px;\n    letter-spacing: .1em;\n    font-family: \"Noto Serif TC\", \"Yu Mincho\", \"Hiragino Mincho ProN\", serif;\n    font-weight: 500;\n    transition: background .25s ease, border-color .25s ease, transform .25s ease;\n  }\n  .bp-cta-slim__btn:hover {\n    background: #f7f4ee;\n    border-color: #b08d5a;\n    transform: translateY(-1px);\n  }\n\n  .bp-cta-slim__btn--pick {\n    background: linear-gradient(180deg, #f5ede0 0%, #faf3e3 100%);\n    border-color: #c4a87a;\n  }\n  .bp-cta-slim__btn--pick:hover {\n    background: linear-gradient(180deg, #f0e5d0 0%, #f5ecd9 100%);\n    border-color: #a8865c;\n  }\n\n  /* 矢印 */\n  .bp-cta-slim__arrow {\n    position: relative;\n    display: inline-block;\n    width: 14px;\n    height: 1px;\n    background: currentColor;\n    flex-shrink: 0;\n    transition: width .25s ease;\n    color: #8a8270;\n  }\n  .bp-cta-slim__btn--pick .bp-cta-slim__arrow { color: #9c7a52; }\n  .bp-cta-slim__arrow::after {\n    content: \"\";\n    position: absolute;\n    right: 0;\n    top: 50%;\n    width: 5px;\n    height: 5px;\n    border-top: 1px solid currentColor;\n    border-right: 1px solid currentColor;\n    transform: translateY(-50%) rotate(45deg);\n  }\n  .bp-cta-slim__btn:hover .bp-cta-slim__arrow { width: 20px; }\n\n  @media (max-width: 480px) {\n    .bp-cta-slim__inner { gap: 8px; }\n    .bp-cta-slim__btn {\n      padding: 12px 16px;\n      font-size: 13.5px;\n      letter-spacing: .05em;\n      min-width: 0;\n    }\n  }\n</style>\n\n<section class=\"bp-cta-slim\" aria-label=\"課程報名\">\n  <div class=\"bp-cta-slim__inner\">\n\n    <a class=\"bp-cta-slim__btn bp-cta-slim__btn--pick\" href=\"https://botanypainting.com/products/taiwan-special\">\n      <span>師資取得課程</span>\n      <span class=\"bp-cta-slim__arrow\"></span>\n    </a>\n\n    <a class=\"bp-cta-slim__btn\" href=\"https://botanypainting.com/products/taiwan-workshop-1\">\n      <span>單日體驗課程</span>\n      <span class=\"bp-cta-slim__arrow\"></span>\n    </a>\n\n  </div>\n</section>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     },
     "177727699136dadc7e": {
       "type": "_blocks",
@@ -164,22 +202,6 @@
     },
     "multirow_7MRGkE": {
       "type": "multirow",
-      "blocks": {
-        "row_kamCh3": {
-          "type": "row",
-          "settings": {
-            "image": "shopify://shop_images/line_oa_chat_260401_150845.jpg",
-            "caption": "Information",
-            "heading": "台湾展覧会・開幕活動圓満落幕",
-            "text": "<p>2026.03.27 – 03.29 NEW</p>",
-            "button_label": "Check",
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "row_kamCh3"
-      ],
       "disabled": true,
       "name": "t:sections.multirow.presets.name",
       "settings": {
@@ -202,8 +224,34 @@
       "type": "_blocks",
       "settings": {}
     },
+    "custom_liquid_NMzFDg": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n  .bp-info {\n    background: #f7f4ee;\n    padding: 56px 20px;\n    color: #2d2a25;\n    font-family: \"Noto Sans TC\", \"Hiragino Sans\", \"Helvetica Neue\", Arial, \"Microsoft JhengHei\", sans-serif;\n    -webkit-font-smoothing: antialiased;\n  }\n  .bp-info__inner { max-width: 980px; margin: 0 auto; }\n  .bp-info__head {\n    text-align: center;\n    border-top: 1px solid #2d2a25;\n    border-bottom: 1px solid #2d2a25;\n    padding: 16px 16px 18px;\n    margin-bottom: 40px;\n  }\n  .bp-info__title {\n    font-size: clamp(26px, 4vw, 34px);\n    font-weight: 800;\n    letter-spacing: .02em;\n    margin: 0 0 4px;\n    color: #2d2a25;\n    line-height: 1.2;\n    font-family: \"Helvetica Neue\", \"Hiragino Sans\", \"Noto Sans TC\", sans-serif;\n  }\n  .bp-info__subtitle {\n    font-size: 13px; color: #5e5b53; margin: 0; letter-spacing: .05em;\n  }\n  .bp-info__list {\n    list-style: none; margin: 0; padding: 0;\n    display: flex; flex-direction: column; gap: 32px;\n  }\n  .bp-info__item {\n    display: grid;\n    grid-template-columns: 260px 1fr;\n    align-items: flex-start;\n    gap: 32px;\n    padding: 4px 12px;\n  }\n  .bp-info__thumb {\n    width: 260px; height: 195px;\n    overflow: hidden; border-radius: 4px;\n    background: #ece6d8; display: block;\n  }\n  .bp-info__thumb img {\n    width: 100%; height: 100%; object-fit: cover; display: block;\n    transition: transform .4s ease;\n  }\n  .bp-info__item:hover .bp-info__thumb img { transform: scale(1.04); }\n  .bp-info__body { display: flex; flex-direction: column; gap: 12px; padding-top: 4px; }\n\n  /* タイトル（英文 + 中文 2段） */\n  .bp-info__item-title {\n    margin: 0;\n    line-height: 1.4;\n    color: #2d2a25;\n  }\n  .bp-info__title-en {\n    display: block;\n    font-size: 13px;\n    letter-spacing: .18em;\n    color: #8a8676;\n    font-weight: 500;\n    margin-bottom: 6px;\n    font-family: \"Helvetica Neue\", \"Hiragino Sans\", Arial, sans-serif;\n    text-transform: uppercase;\n  }\n  .bp-info__title-tc {\n    display: block;\n    font-size: 20px;\n    font-weight: 600;\n    letter-spacing: .04em;\n    color: #2d2a25;\n  }\n\n  /* 詳細文 */\n  .bp-info__desc {\n    font-size: 14.5px;\n    line-height: 1.85;\n    color: #5e5b53;\n    margin: 4px 0 0;\n    letter-spacing: .02em;\n  }\n\n  /* メタ情報（日付 + NEW を必ず横並び） */\n  .bp-info__meta {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    color: #5e5b53;\n    font-size: 14px;\n    letter-spacing: .04em;\n    flex-wrap: nowrap;\n    margin-top: 4px;\n  }\n  .bp-info__date {\n    font-weight: 500;\n    white-space: nowrap;\n  }\n  .bp-info__new {\n    display: inline-block;\n    background: #c98a7a;\n    color: #fff;\n    font-size: 11px; font-weight: 600;\n    letter-spacing: .12em;\n    padding: 3px 10px;\n    border-radius: 3px;\n    text-transform: uppercase;\n    white-space: nowrap;\n  }\n\n  /* スマホ */\n  @media (max-width: 720px) {\n    .bp-info { padding: 44px 16px; }\n    .bp-info__head { padding: 12px 12px 14px; margin-bottom: 28px; }\n    .bp-info__list { gap: 28px; }\n    .bp-info__item {\n      grid-template-columns: 1fr;\n      gap: 16px;\n      padding: 0;\n    }\n    .bp-info__thumb { width: 100%; height: 220px; }\n    .bp-info__body { gap: 10px; padding-top: 0; }\n    .bp-info__title-en { font-size: 11px; letter-spacing: .15em; }\n    .bp-info__title-tc { font-size: 17px; }\n    .bp-info__desc { font-size: 13.5px; line-height: 1.8; }\n    .bp-info__meta { font-size: 13px; gap: 10px; }\n    .bp-info__new { font-size: 10px; padding: 2px 8px; }\n  }\n</style>\n\n<section class=\"bp-info\" aria-label=\"最新消息\">\n  <div class=\"bp-info__inner\">\n    <header class=\"bp-info__head\">\n      <h2 class=\"bp-info__title\">Information</h2>\n      <p class=\"bp-info__subtitle\">最新消息</p>\n    </header>\n    <ul class=\"bp-info__list\">\n      <li class=\"bp-info__item\">\n        <a class=\"bp-info__thumb\" href=\"#\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0402/9110/6972/files/line_oa_chat_260401_150845.jpg?v=1777336496\" alt=\"Lotus Lake Botanica 荷池植物藝術展\">\n        </a>\n        <div class=\"bp-info__body\">\n          <h3 class=\"bp-info__item-title\">\n            <span class=\"bp-info__title-en\">Lotus Lake Botanica</span>\n            <span class=\"bp-info__title-tc\">荷池植物藝術展</span>\n          </h3>\n          <p class=\"bp-info__desc\">\n            於台中舉辦了由完成師資培訓課程並取得講師資格的13位講師所舉辦的作品展覽。當日除本會代表杉本親自出席外，亦榮幸邀請到台中市文化局副局長蒞臨參觀。\n          </p>\n          <div class=\"bp-info__meta\">\n            <span class=\"bp-info__date\">2026.03.27 – 03.29</span>\n            <span class=\"bp-info__new\">New</span>\n          </div>\n        </div>\n      </li>\n    </ul>\n  </div>\n</section>",
+        "color_scheme": "scheme-1",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "custom_liquid_QpjFWC": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n  .bp-info {\n    background: #f7f4ee;\n    padding: 56px 20px;\n    color: #2d2a25;\n    font-family: \"Noto Sans TC\", \"Hiragino Sans\", \"Helvetica Neue\", Arial, \"Microsoft JhengHei\", sans-serif;\n    -webkit-font-smoothing: antialiased;\n  }\n  .bp-info__inner { max-width: 980px; margin: 0 auto; }\n  .bp-info__head {\n    text-align: center;\n    border-top: 1px solid #2d2a25;\n    border-bottom: 1px solid #2d2a25;\n    padding: 16px 16px 18px;\n    margin-bottom: 40px;\n  }\n  .bp-info__title {\n    font-size: clamp(26px, 4vw, 34px);\n    font-weight: 800;\n    letter-spacing: .02em;\n    margin: 0 0 4px;\n    color: #2d2a25;\n    line-height: 1.2;\n    font-family: \"Helvetica Neue\", \"Hiragino Sans\", \"Noto Sans TC\", sans-serif;\n  }\n  .bp-info__subtitle {\n    font-size: 13px; color: #5e5b53; margin: 0; letter-spacing: .05em;\n  }\n  .bp-info__list {\n    list-style: none; margin: 0; padding: 0;\n    display: flex; flex-direction: column; gap: 32px;\n  }\n  .bp-info__item {\n    display: grid;\n    grid-template-columns: 260px 1fr;\n    align-items: flex-start;\n    gap: 32px;\n    padding: 4px 12px;\n  }\n\n  /* ===== メディア部（メイン画像 + サムネイル） ===== */\n  .bp-info__media {\n    width: 260px;\n    display: flex;\n    flex-direction: column;\n    gap: 8px;\n  }\n  .bp-info__thumb {\n    width: 260px; height: 195px;\n    overflow: hidden; border-radius: 4px;\n    background: #ece6d8; display: block;\n    position: relative;\n  }\n  .bp-info__main-img {\n    width: 100%; height: 100%; object-fit: cover; display: block;\n    transition: opacity .3s ease;\n  }\n\n  /* サムネイル一覧 */\n  .bp-info__minis {\n    display: flex;\n    gap: 6px;\n    margin-top: 2px;\n  }\n  .bp-info__thumb-mini {\n    flex: 1 1 0;\n    min-width: 0;\n    aspect-ratio: 1 / 1;\n    padding: 0;\n    border: 1.5px solid transparent;\n    border-radius: 3px;\n    background: #ece6d8;\n    cursor: pointer;\n    overflow: hidden;\n    transition: border-color .2s ease, opacity .2s ease;\n    opacity: .65;\n  }\n  .bp-info__thumb-mini img {\n    width: 100%; height: 100%;\n    object-fit: cover; display: block;\n  }\n  .bp-info__thumb-mini:hover { opacity: 1; }\n  .bp-info__thumb-mini.is-active {\n    border-color: #b08d5a;\n    opacity: 1;\n  }\n\n  .bp-info__body { display: flex; flex-direction: column; gap: 12px; padding-top: 4px; }\n\n  /* タイトル（英文 + 中文 2段） */\n  .bp-info__item-title { margin: 0; line-height: 1.4; color: #2d2a25; }\n  .bp-info__title-en {\n    display: block;\n    font-size: 13px;\n    letter-spacing: .18em;\n    color: #8a8676;\n    font-weight: 500;\n    margin-bottom: 6px;\n    font-family: \"Helvetica Neue\", \"Hiragino Sans\", Arial, sans-serif;\n    text-transform: uppercase;\n  }\n  .bp-info__title-tc {\n    display: block;\n    font-size: 20px;\n    font-weight: 600;\n    letter-spacing: .04em;\n    color: #2d2a25;\n  }\n  .bp-info__desc {\n    font-size: 14.5px;\n    line-height: 1.85;\n    color: #5e5b53;\n    margin: 4px 0 0;\n    letter-spacing: .02em;\n  }\n  .bp-info__meta {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    color: #5e5b53;\n    font-size: 14px;\n    letter-spacing: .04em;\n    flex-wrap: nowrap;\n    margin-top: 4px;\n  }\n  .bp-info__date { font-weight: 500; white-space: nowrap; }\n  .bp-info__new {\n    display: inline-block;\n    background: #c98a7a;\n    color: #fff;\n    font-size: 11px; font-weight: 600;\n    letter-spacing: .12em;\n    padding: 3px 10px;\n    border-radius: 3px;\n    text-transform: uppercase;\n    white-space: nowrap;\n  }\n\n  /* スマホ */\n  @media (max-width: 720px) {\n    .bp-info { padding: 44px 16px; }\n    .bp-info__head { padding: 12px 12px 14px; margin-bottom: 28px; }\n    .bp-info__list { gap: 28px; }\n    .bp-info__item {\n      grid-template-columns: 1fr;\n      gap: 16px;\n      padding: 0;\n    }\n    .bp-info__media { width: 100%; gap: 6px; }\n    .bp-info__thumb { width: 100%; height: 220px; }\n    .bp-info__body { gap: 10px; padding-top: 0; }\n    .bp-info__title-en { font-size: 11px; letter-spacing: .15em; }\n    .bp-info__title-tc { font-size: 17px; }\n    .bp-info__desc { font-size: 13.5px; line-height: 1.8; }\n    .bp-info__meta { font-size: 13px; gap: 10px; }\n    .bp-info__new { font-size: 10px; padding: 2px 8px; }\n    .bp-info__minis { gap: 5px; }\n  }\n</style>\n\n<section class=\"bp-info\" aria-label=\"最新消息\">\n  <div class=\"bp-info__inner\">\n    <header class=\"bp-info__head\">\n      <h2 class=\"bp-info__title\">Information</h2>\n      <p class=\"bp-info__subtitle\">最新消息</p>\n    </header>\n    <ul class=\"bp-info__list\">\n      <li class=\"bp-info__item\">\n\n        <!-- ▼ 画像エリア（メイン + サムネイル5枚） -->\n        <div class=\"bp-info__media\">\n          <div class=\"bp-info__thumb\">\n            <img class=\"bp-info__main-img\"\n                 src=\"https://cdn.shopify.com/s/files/1/0402/9110/6972/files/line_oa_chat_260401_150845_1.jpg?v=1777343375\"\n                 alt=\"Lotus Lake Botanica 荷池植物藝術展\">\n          </div>\n          <div class=\"bp-info__minis\">\n            <button type=\"button\" class=\"bp-info__thumb-mini\"\n                    data-full=\"https://cdn.shopify.com/s/files/1/0402/9110/6972/files/line_oa_chat_260401_150905.jpg?v=1777343483\"\n                    aria-label=\"照片 1\">\n              <img src=\"https://cdn.shopify.com/s/files/1/0402/9110/6972/files/line_oa_chat_260401_150905.jpg?v=1777343483\" alt=\"\">\n            </button>\n            <button type=\"button\" class=\"bp-info__thumb-mini is-active\"\n                    data-full=\"https://cdn.shopify.com/s/files/1/0402/9110/6972/files/line_oa_chat_260401_150845_1.jpg?v=1777343375\"\n                    aria-label=\"照片 2\">\n              <img src=\"https://cdn.shopify.com/s/files/1/0402/9110/6972/files/line_oa_chat_260401_150845_1.jpg?v=1777343375\" alt=\"\">\n            </button>\n            <button type=\"button\" class=\"bp-info__thumb-mini\"\n                    data-full=\"https://cdn.shopify.com/s/files/1/0402/9110/6972/files/line_oa_chat_260401_150724.jpg?v=1777343375\"\n                    aria-label=\"照片 3\">\n              <img src=\"https://cdn.shopify.com/s/files/1/0402/9110/6972/files/line_oa_chat_260401_150724.jpg?v=1777343375\" alt=\"\">\n            </button>\n            <button type=\"button\" class=\"bp-info__thumb-mini\"\n                    data-full=\"https://cdn.shopify.com/s/files/1/0402/9110/6972/files/2_4x-100_0af2a312-529c-4da6-aa93-637e39e8c656.jpg?v=1777343374\"\n                    aria-label=\"照片 4\">\n              <img src=\"https://cdn.shopify.com/s/files/1/0402/9110/6972/files/2_4x-100_0af2a312-529c-4da6-aa93-637e39e8c656.jpg?v=1777343374\" alt=\"\">\n            </button>\n          </div>\n        </div>\n\n        <div class=\"bp-info__body\">\n          <h3 class=\"bp-info__item-title\">\n            <span class=\"bp-info__title-en\">Lotus Lake Botanica</span>\n            <span class=\"bp-info__title-tc\">荷池植物藝術展</span>\n          </h3>\n          <p class=\"bp-info__desc\">\n            於台中舉辦了由完成師資培訓課程並取得講師資格的13位講師所舉辦的作品展覽。當日除本會代表杉本親自出席外，亦榮幸邀請到台中市文化局副局長蒞臨參觀。\n          </p>\n          <div class=\"bp-info__meta\">\n            <span class=\"bp-info__date\">2026.03.27 – 03.29</span>\n            <span class=\"bp-info__new\">New</span>\n          </div>\n        </div>\n      </li>\n    </ul>\n  </div>\n</section>\n\n<script>\n  (function() {\n    var items = document.querySelectorAll('.bp-info__item');\n    items.forEach(function(item) {\n      var mainImg = item.querySelector('.bp-info__main-img');\n      var minis = item.querySelectorAll('.bp-info__thumb-mini');\n      if (!mainImg || !minis.length) return;\n      minis.forEach(function(mini) {\n        mini.addEventListener('click', function(e) {\n          e.preventDefault();\n          var url = mini.getAttribute('data-full');\n          if (!url) return;\n          // フェードして差し替え\n          mainImg.style.opacity = '0';\n          var pre = new Image();\n          pre.onload = function() {\n            mainImg.src = url;\n            mainImg.style.opacity = '1';\n          };\n          pre.src = url;\n          // アクティブ切替\n          minis.forEach(function(m) { m.classList.remove('is-active'); });\n          mini.classList.add('is-active');\n        });\n      });\n    });\n  })();\n</script>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "1777275720a6934574": {
+      "type": "_blocks",
+      "settings": {}
+    },
     "video_7GzqbP": {
       "type": "video",
+      "disabled": true,
       "name": "t:sections.video.presets.name",
       "settings": {
         "heading": "",
@@ -218,6 +266,56 @@
         "padding_bottom": 36
       }
     },
+    "17773409594bf018b1": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "big_card_VV87c4": {
+      "type": "big-card",
+      "blocks": {
+        "button_zHrhEn": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "label": "立即報名",
+            "link": "shopify://products/taiwan-special",
+            "style": "primary",
+            "align": "center",
+            "button_background": "#849974",
+            "button_color": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "button_zHrhEn"
+      ],
+      "name": "ビックカード",
+      "settings": {
+        "background_color": "#e9dccd",
+        "text_color": "#111111",
+        "max_width": 1200,
+        "border_radius": 16,
+        "block_gap": 24,
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "custom_liquid_YNKmfD": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n  .bp-video {\n    background: #fbf9f4;\n    padding: 60px 20px;\n    color: #2d2a25;\n    font-family: \"Noto Sans TC\", \"Hiragino Sans\", \"Helvetica Neue\", Arial, \"Microsoft JhengHei\", sans-serif;\n    -webkit-font-smoothing: antialiased;\n  }\n  .bp-video__inner {\n    max-width: 400px;\n    margin: 0 auto;\n  }\n\n  /* ===== サムネイル（トリガー） ===== */\n  .bp-video__trigger {\n    position: relative;\n    display: block;\n    width: 100%;\n    aspect-ratio: 3 / 4;\n    overflow: hidden;\n    border-radius: 4px;\n    cursor: pointer;\n    background: #ece6d8;\n    border: none;\n    padding: 0;\n    transition: transform .35s ease, box-shadow .35s ease;\n  }\n  .bp-video__trigger:hover {\n    transform: translateY(-3px);\n    box-shadow: 0 16px 40px rgba(80, 70, 50, .15);\n  }\n  .bp-video__thumb {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n    display: block;\n    transition: transform .6s ease, filter .35s ease;\n  }\n  .bp-video__trigger:hover .bp-video__thumb {\n    transform: scale(1.04);\n    filter: brightness(0.92);\n  }\n\n  /* オーバーレイ＆プレイボタン */\n  .bp-video__overlay {\n    position: absolute;\n    inset: 0;\n    background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,.18) 100%);\n    pointer-events: none;\n  }\n  .bp-video__play {\n    position: absolute;\n    top: 50%; left: 50%;\n    transform: translate(-50%, -50%);\n    width: 76px; height: 76px;\n    background: rgba(255, 255, 255, .85);\n    border-radius: 50%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: transform .3s ease, background .3s ease;\n    backdrop-filter: blur(4px);\n    -webkit-backdrop-filter: blur(4px);\n    box-shadow: 0 6px 20px rgba(0, 0, 0, .12);\n  }\n  .bp-video__play::after {\n    content: \"\";\n    width: 0;\n    height: 0;\n    border-style: solid;\n    border-width: 12px 0 12px 20px;\n    border-color: transparent transparent transparent #2d2a25;\n    margin-left: 5px;\n  }\n  .bp-video__trigger:hover .bp-video__play {\n    transform: translate(-50%, -50%) scale(1.08);\n    background: #fff;\n  }\n\n  /* ラベル */\n  .bp-video__label {\n    position: absolute;\n    bottom: 18px;\n    left: 20px;\n    color: #fff;\n    font-size: 11px;\n    letter-spacing: .35em;\n    text-transform: uppercase;\n    font-weight: 500;\n    text-shadow: 0 1px 4px rgba(0, 0, 0, .4);\n    font-family: \"Helvetica Neue\", \"Hiragino Sans\", sans-serif;\n  }\n\n  /* ===== モーダル ===== */\n  .bp-video__modal {\n    position: fixed;\n    inset: 0;\n    background: rgba(20, 18, 14, 0.94);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    z-index: 9999;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity .35s ease;\n    backdrop-filter: blur(6px);\n    -webkit-backdrop-filter: blur(6px);\n    padding: 24px;\n  }\n  .bp-video__modal.is-active {\n    opacity: 1;\n    pointer-events: auto;\n  }\n  .bp-video__modal-inner {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background: transparent;\n    transform: scale(0.94);\n    transition: transform .35s ease;\n    max-width: 100%;\n    max-height: 100%;\n  }\n  .bp-video__modal.is-active .bp-video__modal-inner {\n    transform: scale(1);\n  }\n  /* 動画は本来の縦横比のままビューポートに収まるサイズで表示 */\n  .bp-video__modal video {\n    display: block;\n    width: auto;\n    height: auto;\n    max-width: 92vw;\n    max-height: 88vh;\n    background: #000;\n    border-radius: 4px;\n    box-shadow: 0 30px 80px rgba(0, 0, 0, .5);\n  }\n\n  /* 閉じるボタン */\n  .bp-video__close {\n    position: absolute;\n    top: 24px;\n    right: 24px;\n    width: 44px;\n    height: 44px;\n    background: transparent;\n    border: 1px solid rgba(255, 255, 255, 0.4);\n    border-radius: 50%;\n    cursor: pointer;\n    color: #fff;\n    transition: background .2s ease, border-color .2s ease, transform .2s ease;\n    z-index: 10000;\n    padding: 0;\n  }\n  .bp-video__close:hover {\n    background: rgba(255, 255, 255, .12);\n    border-color: rgba(255, 255, 255, .8);\n    transform: rotate(90deg);\n  }\n  .bp-video__close::before,\n  .bp-video__close::after {\n    content: \"\";\n    position: absolute;\n    top: 50%; left: 50%;\n    width: 18px; height: 1px;\n    background: currentColor;\n  }\n  .bp-video__close::before { transform: translate(-50%, -50%) rotate(45deg); }\n  .bp-video__close::after  { transform: translate(-50%, -50%) rotate(-45deg); }\n\n  /* スマホ */\n  @media (max-width: 720px) {\n    .bp-video { padding: 40px 16px; }\n    .bp-video__play { width: 60px; height: 60px; }\n    .bp-video__play::after {\n      border-width: 10px 0 10px 16px;\n      margin-left: 4px;\n    }\n    .bp-video__label { font-size: 10px; bottom: 14px; left: 14px; letter-spacing: .3em; }\n    .bp-video__close { top: 16px; right: 16px; width: 38px; height: 38px; }\n  }\n</style>\n\n<section class=\"bp-video\" aria-label=\"介紹影片\">\n  <div class=\"bp-video__inner\">\n\n    <button type=\"button\"\n            class=\"bp-video__trigger\"\n            id=\"bpVideoTrigger\"\n            aria-label=\"播放介紹影片\">\n      <img class=\"bp-video__thumb\"\n           src=\"https://botanypainting.com/cdn/shop/files/preview_images/4fa181e408c2430b9401f5a7e5b44239.thumbnail.0000000000_1100x.jpg?v=1777164328\"\n           alt=\"Botany Painting 介紹影片\">\n      <span class=\"bp-video__overlay\"></span>\n      <span class=\"bp-video__play\" aria-hidden=\"true\"></span>\n      <span class=\"bp-video__label\">Watch the Film</span>\n    </button>\n\n  </div>\n</section>\n\n<!-- モーダル -->\n<div class=\"bp-video__modal\" id=\"bpVideoModal\" aria-hidden=\"true\" role=\"dialog\">\n  <div class=\"bp-video__modal-inner\">\n    <video id=\"bpVideoElement\"\n           src=\"https://cdn.shopify.com/videos/c/o/v/4fa181e408c2430b9401f5a7e5b44239.mp4\"\n           controls\n           playsinline\n           preload=\"none\"\n           poster=\"https://botanypainting.com/cdn/shop/files/preview_images/4fa181e408c2430b9401f5a7e5b44239.thumbnail.0000000000_1100x.jpg?v=1777164328\"></video>\n  </div>\n  <button type=\"button\" class=\"bp-video__close\" id=\"bpVideoClose\" aria-label=\"關閉\"></button>\n</div>\n\n<script>\n  (function() {\n    var trigger = document.getElementById('bpVideoTrigger');\n    var modal   = document.getElementById('bpVideoModal');\n    var video   = document.getElementById('bpVideoElement');\n    var closeBtn = document.getElementById('bpVideoClose');\n    if (!trigger || !modal || !video) return;\n\n    function openModal() {\n      modal.classList.add('is-active');\n      modal.setAttribute('aria-hidden', 'false');\n      document.body.style.overflow = 'hidden';\n      // 少し遅延させてからプレイ（フェードイン中）\n      setTimeout(function() {\n        video.play().catch(function() {});\n      }, 120);\n    }\n    function closeModal() {\n      modal.classList.remove('is-active');\n      modal.setAttribute('aria-hidden', 'true');\n      document.body.style.overflow = '';\n      video.pause();\n      video.currentTime = 0;\n    }\n\n    trigger.addEventListener('click', openModal);\n    closeBtn.addEventListener('click', closeModal);\n    // 背景クリックで閉じる\n    modal.addEventListener('click', function(e) {\n      if (e.target === modal) closeModal();\n    });\n    // Escキーで閉じる\n    document.addEventListener('keydown', function(e) {\n      if (e.key === 'Escape' && modal.classList.contains('is-active')) closeModal();\n    });\n  })();\n</script>",
+        "color_scheme": "scheme-1",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "multirow_nfArPR": {
       "type": "multirow",
       "blocks": {
@@ -225,9 +323,9 @@
           "type": "row",
           "settings": {
             "image": "shopify://shop_images/P1090409_4272b47b-0f83-4944-bccf-ac51d1d64c3a.jpg",
-            "caption": "10期 參與為期兩天的面授課程並參加考試",
+            "caption": "",
             "heading": "師資取得課程",
-            "text": "<p>本課程為期兩天，並非以培養美術專業人士為目的，而是設計給初學者也能輕鬆參加的內容。 即使沒有藝術經驗，也能透過課程取得植物彩繪的講師資格，開始從事教學與藝術活動。 完成課程並通過測驗後，即可取得「夥伴講師資格」，可自行舉辦工作坊、展示作品並進行販售。</p>",
+            "text": "<p>本課程為期兩天，並非以培養美術專業人士為目的，而是設計給初學者也能輕鬆參加的內容。即使沒有藝術經驗，也能透過課程學習植物彩繪，並取得講師資格，開始從事教學與藝術活動。<br/><br/>完成為期兩天的面授課程並通過測驗後，即可取得「夥伴講師資格」，未來可自行舉辦工作坊、展示作品並進行販售。</p>",
             "button_label": "詳細請點此查看",
             "button_link": "shopify://products/taiwan-special"
           }
@@ -264,6 +362,40 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "custom_liquid_tLnDYd": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n  .bp-compare {\n    background: #fbf9f4;\n    padding: 88px 20px;\n    color: #2d2a25;\n    font-family: \"Noto Sans TC\", \"Hiragino Sans\", \"Helvetica Neue\", Arial, \"Microsoft JhengHei\", sans-serif;\n    -webkit-font-smoothing: antialiased;\n  }\n  .bp-compare__inner {\n    max-width: 880px;\n    margin: 0 auto;\n  }\n\n  /* ===== テーブル ===== */\n  .bp-compare__table {\n    width: 100%;\n    border-collapse: collapse;\n    table-layout: fixed;\n  }\n  .bp-compare__table th,\n  .bp-compare__table td {\n    padding: 28px 18px;\n    text-align: center;\n    font-size: 16px;\n    line-height: 1.7;\n    border-bottom: 1px solid #ebe4d3;\n    vertical-align: middle;\n    color: #2d2a25;\n  }\n\n  /* 1列目（項目名）— 小さめ・トラッキング広めで上品に */\n  .bp-compare__table th:first-child,\n  .bp-compare__table td:first-child {\n    text-align: left;\n    color: #8a8270;\n    font-weight: 500;\n    font-size: 13px;\n    letter-spacing: .25em;\n    width: 24%;\n    padding-left: 4px;\n  }\n\n  /* ===== ヘッダー ===== */\n  .bp-compare__table thead th {\n    font-family: \"Noto Serif TC\", \"Source Han Serif TC\", \"Yu Mincho\", \"Hiragino Mincho ProN\", serif;\n    font-size: 19px;\n    font-weight: 500;\n    letter-spacing: .18em;\n    padding: 30px 18px 34px;\n    border-bottom: 1px solid #2d2a25;\n    position: relative;\n  }\n  .bp-compare__table thead th:first-child {\n    border-bottom: 1px solid transparent;\n  }\n\n  /* 推奨カラム — クリームのハイライト */\n  .bp-compare__table .is-pick {\n    background: #f5ede0;\n  }\n\n  /* 推奨カラム上部の細いゴールドライン */\n  .bp-compare__table thead th.is-pick::before {\n    content: \"\";\n    position: absolute;\n    top: 0;\n    left: 14%;\n    right: 14%;\n    height: 1.5px;\n    background: #b08d5a;\n  }\n\n  /* 推奨カラム下部のゴールドライン */\n  .bp-compare__table tbody tr:last-child td.is-pick {\n    border-bottom: 1.5px solid #b08d5a;\n  }\n  .bp-compare__table tbody tr:last-child td:not(.is-pick):not(:first-child) {\n    border-bottom: 1px solid #2d2a25;\n  }\n  .bp-compare__table tbody tr:last-child td:first-child {\n    border-bottom: 1px solid transparent;\n  }\n\n  /* ===== チェック・ダッシュ ===== */\n  .bp-compare__check {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    width: 28px;\n    height: 28px;\n    border: 1px solid #c8c1ad;\n    border-radius: 50%;\n    font-size: 13px;\n    color: #6b6760;\n    font-weight: 500;\n  }\n  .is-pick .bp-compare__check {\n    border-color: #b08d5a;\n    color: #b08d5a;\n  }\n  .bp-compare__dash {\n    color: #c4bda9;\n    font-size: 20px;\n    letter-spacing: 0;\n  }\n\n  /* ===== 価格 ===== */\n  .bp-compare__price {\n    font-family: \"Helvetica Neue\", \"Hiragino Sans\", sans-serif;\n    font-size: 17px;\n    letter-spacing: .04em;\n    font-weight: 500;\n  }\n  .is-pick .bp-compare__price {\n    font-size: 19px;\n    font-weight: 600;\n    color: #2d2a25;\n  }\n  .bp-compare__price-unit {\n    font-size: 12px;\n    color: #8a8270;\n    letter-spacing: .15em;\n    margin-right: 4px;\n    font-weight: 400;\n  }\n\n  /* ===== スマホ ===== */\n  @media (max-width: 720px) {\n    .bp-compare { padding: 60px 14px; }\n    .bp-compare__table th,\n    .bp-compare__table td {\n      padding: 20px 6px;\n      font-size: 14px;\n    }\n    .bp-compare__table th:first-child,\n    .bp-compare__table td:first-child {\n      width: 28%;\n      font-size: 11px;\n      letter-spacing: .15em;\n      padding-left: 2px;\n    }\n    .bp-compare__table thead th {\n      font-size: 15px;\n      padding: 20px 6px 24px;\n      letter-spacing: .12em;\n    }\n    .bp-compare__table thead th.is-pick::before {\n      left: 8%;\n      right: 8%;\n    }\n    .bp-compare__check {\n      width: 24px;\n      height: 24px;\n      font-size: 11px;\n    }\n    .bp-compare__dash { font-size: 17px; }\n    .bp-compare__price { font-size: 14.5px; }\n    .is-pick .bp-compare__price { font-size: 15.5px; }\n    .bp-compare__price-unit { font-size: 10.5px; }\n  }\n</style>\n\n<section class=\"bp-compare\" aria-label=\"課程比較\">\n  <div class=\"bp-compare__inner\">\n    <table class=\"bp-compare__table\">\n      <thead>\n        <tr>\n          <th></th>\n          <th class=\"is-pick\">師資取得課程</th>\n          <th>體驗工作坊</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td>時間</td>\n          <td class=\"is-pick\">2 天</td>\n          <td>約 3 小時</td>\n        </tr>\n        <tr>\n          <td>費用</td>\n          <td class=\"is-pick\"><span class=\"bp-compare__price\"><span class=\"bp-compare__price-unit\">NT$</span>28,000</span></td>\n          <td><span class=\"bp-compare__price\"><span class=\"bp-compare__price-unit\">NT$</span>4,180〜</span></td>\n        </tr>\n        <tr>\n          <td>含畫材</td>\n          <td class=\"is-pick\"><span class=\"bp-compare__check\">✓</span></td>\n          <td><span class=\"bp-compare__check\">✓</span></td>\n        </tr>\n        <tr>\n          <td>認證證書</td>\n          <td class=\"is-pick\"><span class=\"bp-compare__check\">✓</span></td>\n          <td><span class=\"bp-compare__dash\">—</span></td>\n        </tr>\n        <tr>\n          <td>可開課販售作品</td>\n          <td class=\"is-pick\"><span class=\"bp-compare__check\">✓</span></td>\n          <td><span class=\"bp-compare__dash\">—</span></td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</section>",
+        "color_scheme": "scheme-1",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "custom_liquid_iXxthy": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n  .bp-cta-mini {\n    background: #fbf9f4;\n    padding: 36px 20px;\n    color: #2d2a25;\n    font-family: \"Noto Sans TC\", \"Hiragino Sans\", \"Helvetica Neue\", Arial, \"Microsoft JhengHei\", sans-serif;\n    -webkit-font-smoothing: antialiased;\n  }\n  .bp-cta-mini__inner {\n    max-width: 880px;\n    margin: 0 auto;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: 14px;\n  }\n\n  /* ===== ボタン ===== */\n  .bp-cta-mini__btn {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 16px;\n    padding: 18px 24px;\n    background: #ffffff;\n    border: 1px solid #d8d2c2;\n    text-decoration: none;\n    color: #2d2a25;\n    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease, background .3s ease;\n  }\n  .bp-cta-mini__btn:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 10px 24px rgba(80, 70, 50, .08);\n    border-color: #b08d5a;\n  }\n\n  /* 推奨ボタン */\n  .bp-cta-mini__btn--pick {\n    background: linear-gradient(180deg, #f5ede0 0%, #faf3e3 100%);\n    border-color: #c4a87a;\n  }\n  .bp-cta-mini__btn--pick:hover {\n    background: linear-gradient(180deg, #f0e5d0 0%, #f5ecd9 100%);\n    border-color: #a8865c;\n  }\n\n  /* 左側ラベル */\n  .bp-cta-mini__label {\n    display: flex;\n    flex-direction: column;\n    align-items: flex-start;\n    gap: 4px;\n    min-width: 0;\n  }\n  .bp-cta-mini__sub {\n    font-size: 10px;\n    letter-spacing: .35em;\n    color: #9c7a52;\n    text-transform: uppercase;\n    font-weight: 500;\n    font-family: \"Helvetica Neue\", \"Hiragino Sans\", sans-serif;\n  }\n  .bp-cta-mini__title {\n    font-family: \"Noto Serif TC\", \"Source Han Serif TC\", \"Yu Mincho\", \"Hiragino Mincho ProN\", serif;\n    font-size: 16.5px;\n    font-weight: 500;\n    letter-spacing: .15em;\n    color: #2d2a25;\n    line-height: 1.3;\n    white-space: nowrap;\n  }\n\n  /* 右側アクション */\n  .bp-cta-mini__action {\n    display: inline-flex;\n    align-items: center;\n    gap: 10px;\n    font-size: 12px;\n    letter-spacing: .25em;\n    color: #6b6760;\n    flex-shrink: 0;\n    font-weight: 500;\n    transition: color .3s ease, gap .3s ease;\n  }\n  .bp-cta-mini__btn--pick .bp-cta-mini__action { color: #8a6c3d; }\n  .bp-cta-mini__btn:hover .bp-cta-mini__action { color: #2d2a25; gap: 14px; }\n  .bp-cta-mini__btn--pick:hover .bp-cta-mini__action { color: #6b5025; }\n\n  /* 矢印 */\n  .bp-cta-mini__arrow {\n    position: relative;\n    display: inline-block;\n    width: 14px;\n    height: 1px;\n    background: currentColor;\n    transition: width .3s ease;\n  }\n  .bp-cta-mini__arrow::after {\n    content: \"\";\n    position: absolute;\n    right: 0;\n    top: 50%;\n    width: 5px;\n    height: 5px;\n    border-top: 1px solid currentColor;\n    border-right: 1px solid currentColor;\n    transform: translateY(-50%) rotate(45deg);\n  }\n  .bp-cta-mini__btn:hover .bp-cta-mini__arrow { width: 20px; }\n\n  /* スマホ */\n  @media (max-width: 720px) {\n    .bp-cta-mini { padding: 28px 16px; }\n    .bp-cta-mini__inner { grid-template-columns: 1fr; gap: 10px; }\n    .bp-cta-mini__btn { padding: 16px 20px; }\n    .bp-cta-mini__title { font-size: 15px; letter-spacing: .1em; }\n    .bp-cta-mini__sub { font-size: 9px; letter-spacing: .3em; }\n    .bp-cta-mini__action { font-size: 11px; letter-spacing: .2em; }\n  }\n</style>\n\n<section class=\"bp-cta-mini\" aria-label=\"課程報名\">\n  <div class=\"bp-cta-mini__inner\">\n\n    <!-- 師資取得課程（推奨） -->\n    <a class=\"bp-cta-mini__btn bp-cta-mini__btn--pick\" href=\"https://botanypainting.com/products/taiwan-special\">\n      <span class=\"bp-cta-mini__label\">\n        <span class=\"bp-cta-mini__sub\">Instructor License</span>\n        <span class=\"bp-cta-mini__title\">師資取得課程</span>\n      </span>\n      <span class=\"bp-cta-mini__action\">\n        立即報名\n        <span class=\"bp-cta-mini__arrow\"></span>\n      </span>\n    </a>\n\n    <!-- 單日體驗課程 -->\n    <a class=\"bp-cta-mini__btn\" href=\"https://botanypainting.com/products/taiwan-workshop-1\">\n      <span class=\"bp-cta-mini__label\">\n        <span class=\"bp-cta-mini__sub\">One-Day Workshop</span>\n        <span class=\"bp-cta-mini__title\">單日體驗課程</span>\n      </span>\n      <span class=\"bp-cta-mini__action\">\n        立即報名\n        <span class=\"bp-cta-mini__arrow\"></span>\n      </span>\n    </a>\n\n  </div>\n</section>",
+        "color_scheme": "scheme-1",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "custom_liquid_pwfgAW": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n  .bp-faq {\n    background: #fbf9f4;\n    padding: 88px 20px;\n    color: #2d2a25;\n    font-family: \"Noto Sans TC\", \"Hiragino Sans\", \"Helvetica Neue\", Arial, \"Microsoft JhengHei\", sans-serif;\n    -webkit-font-smoothing: antialiased;\n  }\n  .bp-faq__inner {\n    max-width: 880px;\n    margin: 0 auto;\n  }\n\n  /* ===== ヘッダー ===== */\n  .bp-faq__head {\n    text-align: center;\n    margin-bottom: 56px;\n  }\n  .bp-faq__eyebrow {\n    display: inline-block;\n    letter-spacing: .45em;\n    font-size: 11px;\n    color: #9c7a52;\n    margin-bottom: 16px;\n    text-transform: uppercase;\n    font-weight: 500;\n    font-family: \"Helvetica Neue\", \"Hiragino Sans\", sans-serif;\n  }\n  .bp-faq__title {\n    font-family: \"Noto Serif TC\", \"Source Han Serif TC\", \"Yu Mincho\", \"Hiragino Mincho ProN\", \"MS Mincho\", serif;\n    font-size: clamp(26px, 3.4vw, 34px);\n    font-weight: 400;\n    letter-spacing: .35em;\n    margin: 0;\n    color: #2d2a25;\n    padding-left: .35em;\n  }\n  .bp-faq__rule {\n    display: block;\n    width: 36px;\n    height: 1px;\n    background: #a8957a;\n    margin: 22px auto 0;\n    border: none;\n  }\n\n  /* ===== リスト ===== */\n  .bp-faq__list {\n    border-top: 1px solid #d8d2c2;\n  }\n  .bp-faq__item {\n    border-bottom: 1px solid #d8d2c2;\n  }\n\n  /* 質問ボタン */\n  .bp-faq__q {\n    width: 100%;\n    display: flex;\n    align-items: flex-start;\n    gap: 18px;\n    padding: 26px 4px;\n    background: transparent;\n    border: none;\n    cursor: pointer;\n    text-align: left;\n    color: #2d2a25;\n    font: inherit;\n    transition: color .2s ease;\n  }\n  .bp-faq__q:hover { color: #6b5a3d; }\n\n  .bp-faq__q-mark {\n    font-family: \"Noto Serif TC\", \"Yu Mincho\", \"Hiragino Mincho ProN\", serif;\n    font-size: 19px;\n    color: #b08d5a;\n    letter-spacing: .04em;\n    flex-shrink: 0;\n    line-height: 1.5;\n  }\n  .bp-faq__q-text {\n    flex: 1;\n    font-size: 16px;\n    line-height: 1.6;\n    font-weight: 500;\n    letter-spacing: .03em;\n    padding-right: 8px;\n    padding-top: 1px;\n  }\n\n  /* 開閉アイコン（＋／−） */\n  .bp-faq__icon {\n    position: relative;\n    flex-shrink: 0;\n    width: 18px;\n    height: 18px;\n    margin-top: 4px;\n  }\n  .bp-faq__icon::before,\n  .bp-faq__icon::after {\n    content: \"\";\n    position: absolute;\n    background: #8a8270;\n    transition: transform .3s ease, opacity .3s ease;\n  }\n  .bp-faq__icon::before {\n    top: 50%; left: 0;\n    width: 100%; height: 1px;\n    transform: translateY(-50%);\n  }\n  .bp-faq__icon::after {\n    top: 0; left: 50%;\n    width: 1px; height: 100%;\n    transform: translateX(-50%);\n  }\n  .bp-faq__item.is-open .bp-faq__icon::after {\n    transform: translateX(-50%) scaleY(0);\n    opacity: 0;\n  }\n\n  /* 回答パネル（grid-template-rowsで滑らかに展開） */\n  .bp-faq__a {\n    display: grid;\n    grid-template-rows: 0fr;\n    transition: grid-template-rows .4s ease;\n  }\n  .bp-faq__a-inner {\n    overflow: hidden;\n  }\n  .bp-faq__a-content {\n    display: flex;\n    align-items: flex-start;\n    gap: 18px;\n    padding: 0 4px 28px;\n  }\n  .bp-faq__a-mark {\n    font-family: \"Noto Serif TC\", \"Yu Mincho\", \"Hiragino Mincho ProN\", serif;\n    font-size: 19px;\n    color: #8a8270;\n    flex-shrink: 0;\n    line-height: 1.7;\n  }\n  .bp-faq__a-text {\n    flex: 1;\n    font-size: 14.5px;\n    line-height: 2;\n    color: #5e5b53;\n    margin: 0;\n    letter-spacing: .04em;\n  }\n\n  /* 開いた状態 */\n  .bp-faq__item.is-open .bp-faq__a {\n    grid-template-rows: 1fr;\n  }\n\n  /* スマホ */\n  @media (max-width: 720px) {\n    .bp-faq { padding: 60px 16px; }\n    .bp-faq__head { margin-bottom: 36px; }\n    .bp-faq__title { letter-spacing: .2em; padding-left: .2em; }\n    .bp-faq__q { padding: 20px 2px; gap: 12px; }\n    .bp-faq__q-mark { font-size: 16px; }\n    .bp-faq__q-text { font-size: 14px; line-height: 1.65; padding-right: 4px; }\n    .bp-faq__icon { width: 14px; height: 14px; margin-top: 3px; }\n    .bp-faq__a-content { gap: 12px; padding: 0 2px 24px; }\n    .bp-faq__a-mark { font-size: 16px; }\n    .bp-faq__a-text { font-size: 13.5px; line-height: 1.9; letter-spacing: .02em; }\n  }\n</style>\n\n<section class=\"bp-faq\" aria-label=\"常見問題\">\n  <div class=\"bp-faq__inner\">\n\n    <div class=\"bp-faq__list\">\n\n      <!-- Q1 -->\n      <div class=\"bp-faq__item is-open\">\n        <button type=\"button\" class=\"bp-faq__q\" aria-expanded=\"true\">\n          <span class=\"bp-faq__q-mark\">Q.</span>\n          <span class=\"bp-faq__q-text\">我沒有美感，對繪畫也沒自信，也可以參加課程嗎？</span>\n          <span class=\"bp-faq__icon\" aria-hidden=\"true\"></span>\n        </button>\n        <div class=\"bp-faq__a\">\n          <div class=\"bp-faq__a-inner\">\n            <div class=\"bp-faq__a-content\">\n              <span class=\"bp-faq__a-mark\">A.</span>\n              <p class=\"bp-faq__a-text\">多數參加者都是繪畫初學者。植物彩繪的特點是葉脈自然突顯了色彩的美感，只要學習基本技術並反覆練習，就能逐漸提升技能。90% 的講師都是從初學者開始的，您可以安心參加課程。</p>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <!-- Q2 -->\n      <div class=\"bp-faq__item\">\n        <button type=\"button\" class=\"bp-faq__q\" aria-expanded=\"false\">\n          <span class=\"bp-faq__q-mark\">Q.</span>\n          <span class=\"bp-faq__q-text\">如果未通過考試會怎麼處理？另外，有多少人未通過考試？</span>\n          <span class=\"bp-faq__icon\" aria-hidden=\"true\"></span>\n        </button>\n        <div class=\"bp-faq__a\">\n          <div class=\"bp-faq__a-inner\">\n            <div class=\"bp-faq__a-content\">\n              <span class=\"bp-faq__a-mark\">A.</span>\n              <p class=\"bp-faq__a-text\">技術測驗主要提供一個場地讓大家確認、詢問不清楚的地方，最重要的目的是解決有關植物彩繪的所有疑惑。在測驗中發現不明白的地方，請大膽詢問並確認。目前在台灣舉行的測驗中，所有參加者皆順利通過。</p>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <!-- Q3 -->\n      <div class=\"bp-faq__item\">\n        <button type=\"button\" class=\"bp-faq__q\" aria-expanded=\"false\">\n          <span class=\"bp-faq__q-mark\">Q.</span>\n          <span class=\"bp-faq__q-text\">通過考試後，畫材要如何購買？</span>\n          <span class=\"bp-faq__icon\" aria-hidden=\"true\"></span>\n        </button>\n        <div class=\"bp-faq__a\">\n          <div class=\"bp-faq__a-inner\">\n            <div class=\"bp-faq__a-content\">\n              <span class=\"bp-faq__a-mark\">A.</span>\n              <p class=\"bp-faq__a-text\">總部有提供講師專用的畫材購買網站。除了蓮葉等天然植物之外，還備有畫筆、定著劑、顏料等各類畫材供您選購。不過，天然植物以外的畫材（如顏料、工具等）也可在台灣的畫材店購買，因此您不必完全依賴總部供應，請放心選擇最適合您的方式。</p>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <!-- Q4 -->\n      <div class=\"bp-faq__item\">\n        <button type=\"button\" class=\"bp-faq__q\" aria-expanded=\"false\">\n          <span class=\"bp-faq__q-mark\">Q.</span>\n          <span class=\"bp-faq__q-text\">如果講座當天因故無法參加該怎麼辦？</span>\n          <span class=\"bp-faq__icon\" aria-hidden=\"true\"></span>\n        </button>\n        <div class=\"bp-faq__a\">\n          <div class=\"bp-faq__a-inner\">\n            <div class=\"bp-faq__a-content\">\n              <span class=\"bp-faq__a-mark\">A.</span>\n              <p class=\"bp-faq__a-text\">如果您臨時無法參加講座當天的課程，請提前與我們的營運事務局聯繫。我們將與您個別討論改期或其他應對方式。</p>\n            </div>\n          </div>\n        </div>\n      </div>\n\n    </div>\n  </div>\n</section>\n\n<script>\n  (function() {\n    var btns = document.querySelectorAll('.bp-faq__q');\n    btns.forEach(function(btn) {\n      btn.addEventListener('click', function() {\n        var item = btn.closest('.bp-faq__item');\n        var isOpen = item.classList.toggle('is-open');\n        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');\n      });\n    });\n  })();\n</script>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "17773581734e14a287": {
+      "type": "_blocks",
+      "settings": {}
     },
     "multicolumn_7dkJqp": {
       "type": "multicolumn",
@@ -312,7 +444,7 @@
         "columns_desktop": 3,
         "column_alignment": "left",
         "background_style": "primary",
-        "color_scheme": "",
+        "color_scheme": "scheme-3",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
@@ -325,14 +457,25 @@
     "slideshow_fbMJg6",
     "177727528054584d37",
     "rich_text_iiyaDG",
+    "rich_text_LEPFa6",
     "177733747206bf508a",
     "1777337008087e206a",
-    "1777275720a6934574",
+    "custom_liquid_witELW",
     "177727699136dadc7e",
     "multirow_7MRGkE",
     "1777336773a4c32e06",
+    "custom_liquid_NMzFDg",
+    "custom_liquid_QpjFWC",
+    "1777275720a6934574",
     "video_7GzqbP",
+    "17773409594bf018b1",
+    "big_card_VV87c4",
+    "custom_liquid_YNKmfD",
     "multirow_nfArPR",
+    "custom_liquid_tLnDYd",
+    "custom_liquid_iXxthy",
+    "custom_liquid_pwfgAW",
+    "17773581734e14a287",
     "multicolumn_7dkJqp"
   ]
 }

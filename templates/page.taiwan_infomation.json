@@ -8,12 +8,16 @@
  * ------------------------------------------------------------
  */
 {
-  "markets": {
-    "jp": {
-      "parent": "@default"
-    },
-    "台湾": {
-      "parent": "@default"
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
     }
-  }
+  },
+  "order": [
+    "main"
+  ]
 }

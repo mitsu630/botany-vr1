@@ -11,6 +11,9 @@
   "markets": {
     "jp": {
       "parent": "@default"
+    },
+    "台湾": {
+      "parent": "@default"
     }
   }
 }

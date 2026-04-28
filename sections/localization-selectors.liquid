@@ -25,6 +25,8 @@
   .localization-selectors-{{ section.id }} {
     display: flex;
     justify-content: {{ section.settings.content_alignment }};
+    position: relative;
+    z-index: 50;
   }
 
   .localization-selectors-{{ section.id }} .localization-selectors__forms {
@@ -47,6 +49,18 @@
 
   .localization-selectors-{{ section.id }} .localization-form__select {
     margin: 0;
+  }
+
+  .localization-selectors-{{ section.id }} .disclosure {
+    z-index: 10000;
+  }
+
+  .localization-selectors-{{ section.id }} .disclosure__list-wrapper {
+    z-index: 10000;
+  }
+
+  .localization-selectors-{{ section.id }} .country-selector__overlay {
+    z-index: 9999;
   }
 
   .localization-selectors-{{ section.id }} .disclosure__list-wrapper:not(.country-selector) {

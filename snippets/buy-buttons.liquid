@@ -21,7 +21,7 @@
       assign workshop_force_sold_out = false
       if template.suffix == 'pro-workshop'
         assign v = product.selected_or_first_available_variant
-        if v != null and v.inventory_management == 'shopify' and v.inventory_quantity <= 0
+        if v != null and v.inventory_management == 'shopify' and v.inventory_quantity == 0
           assign workshop_force_sold_out = true
         endif
       endif
@@ -89,7 +89,7 @@
             if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
               assign check_against_inventory = false
             endif
-            if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
+            if product.selected_or_first_available_variant.inventory_quantity >= 0 and product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
               assign quantity_rule_soldout = true
             endif
           -%}

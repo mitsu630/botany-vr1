@@ -16,13 +16,14 @@
     assign cap = 50
   endif
 
+  # 販売可能に寄せるため在庫追跡時は inventory_quantity で上限を絞る。負値は cap に使わない。
   assign inv_cap = blank
-  if v.inventory_management == 'shopify'
+  if v.inventory_management == 'shopify' and v.inventory_quantity >= 0
     assign inv_cap = v.inventory_quantity
   endif
 
   assign is_sold_out = false
-  if inv_cap != blank and inv_cap <= 0
+  if inv_cap != blank and inv_cap == 0
     assign is_sold_out = true
   endif
 
@@ -40,8 +41,13 @@
       data-jwb-form-id="{{ product_form_id }}"
       data-cart-quantity="{{ cart_qty }}"
       data-min="{{ qmin }}"
-      {% unless v.quantity_rule.max == blank %}
-        data-max="{{ v.quantity_rule.max }}"
+      {% if inv_cap != blank %}
+        data-jwb-inv-cap="{{ inv_cap }}"
+      {% endif %}
+      {% unless is_sold_out %}
+        {% unless qmax == blank %}
+          data-max="{{ qmax }}"
+        {% endunless %}
       {% endunless %}
       step="{{ qstep }}"
       data-cap-max="5"

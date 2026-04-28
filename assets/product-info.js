@@ -347,15 +347,38 @@ if (!customElements.get('product-info')) {
       syncQuantitySelect(data) {
         const select = this.quantityInput;
         let min = data.min;
-        const maxAfterCart = data.max === null ? null : data.max - data.cartQuantity;
-        if (maxAfterCart !== null) min = Math.min(min, maxAfterCart);
-        if (data.cartQuantity >= data.min) min = Math.min(min, data.step);
 
-        const cap =
+        const workshopCap =
           select.dataset.capMax != null && select.dataset.capMax !== ''
             ? parseInt(select.dataset.capMax, 10)
             : 30;
-        let upper = maxAfterCart === null ? cap : Math.min(cap, maxAfterCart);
+
+        const ruleMaxParsed =
+          select.dataset.max != null && select.dataset.max !== ''
+            ? parseInt(select.dataset.max, 10)
+            : null;
+
+        const invCapRaw = select.dataset.jwbInvCap;
+        const invCapParsed =
+          invCapRaw != null && invCapRaw !== '' ? parseInt(invCapRaw, 10) : null;
+        const invCap =
+          invCapParsed != null && !Number.isNaN(invCapParsed) && invCapParsed >= 0
+            ? invCapParsed
+            : null;
+
+        let effMax = workshopCap;
+        if (ruleMaxParsed !== null && !Number.isNaN(ruleMaxParsed)) {
+          effMax = Math.min(effMax, ruleMaxParsed);
+        }
+        if (invCap !== null) {
+          effMax = Math.min(effMax, invCap);
+        }
+
+        const maxAfterCart = effMax - data.cartQuantity;
+        min = Math.min(min, maxAfterCart);
+        if (data.cartQuantity >= data.min) min = Math.min(min, data.step);
+
+        let upper = maxAfterCart;
         if (upper < min) upper = min;
 
         select.innerHTML = '';
@@ -400,7 +423,14 @@ if (!customElements.get('product-info')) {
           const updated = quantityFormUpdated.querySelector(selector);
           if (!current || !updated) continue;
           if (selector === '.quantity__input') {
-            const attributes = ['data-cart-quantity', 'data-min', 'data-max', 'step', 'data-cap-max'];
+            const attributes = [
+              'data-cart-quantity',
+              'data-min',
+              'data-max',
+              'step',
+              'data-cap-max',
+              'data-jwb-inv-cap',
+            ];
             for (let attribute of attributes) {
               const valueUpdated = updated.getAttribute(attribute);
               if (valueUpdated !== null) {

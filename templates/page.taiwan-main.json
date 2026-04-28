@@ -9,6 +9,20 @@
  */
 {
   "sections": {
+    "localization_selectors_6XALWq": {
+      "type": "localization-selectors",
+      "name": "言語・通貨表示",
+      "settings": {
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "content_alignment": "center",
+        "mobile_layout": "column",
+        "full_width": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 100
+      }
+    },
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -453,6 +467,7 @@
     }
   },
   "order": [
+    "localization_selectors_6XALWq",
     "main",
     "slideshow_fbMJg6",
     "177727528054584d37",

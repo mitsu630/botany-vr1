@@ -9,6 +9,20 @@
  */
 {
   "sections": {
+    "localization_selectors_Ag3icD": {
+      "type": "localization-selectors",
+      "name": "言語・通貨表示",
+      "settings": {
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "content_alignment": "center",
+        "mobile_layout": "column",
+        "full_width": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 100
+      }
+    },
     "video_yHt8Ha": {
       "type": "video",
       "name": "t:sections.video.presets.name",
@@ -882,6 +896,7 @@
     }
   },
   "order": [
+    "localization_selectors_Ag3icD",
     "video_yHt8Ha",
     "rich_text_UwXfF3",
     "multicolumn_dhaHX8",

@@ -164,6 +164,7 @@
     },
     "multirow_7MRGkE": {
       "type": "multirow",
+      "disabled": true,
       "name": "t:sections.multirow.presets.name",
       "settings": {
         "image_height": "adapt",
@@ -218,9 +219,9 @@
           "type": "row",
           "settings": {
             "image": "shopify://shop_images/P1090409_4272b47b-0f83-4944-bccf-ac51d1d64c3a.jpg",
-            "caption": "10期 參與為期兩天的面授課程並參加考試",
+            "caption": "",
             "heading": "師資取得課程",
-            "text": "<p>本課程為期兩天，並非以培養美術專業人士為目的，而是設計給初學者也能輕鬆參加的內容。 即使沒有藝術經驗，也能透過課程取得植物彩繪的講師資格，開始從事教學與藝術活動。 完成課程並通過測驗後，即可取得「夥伴講師資格」，可自行舉辦工作坊、展示作品並進行販售。</p>",
+            "text": "<p>本課程為期兩天，並非以培養美術專業人士為目的，而是設計給初學者也能輕鬆參加的內容。即使沒有藝術經驗，也能透過課程學習植物彩繪，並取得講師資格，開始從事教學與藝術活動。<br/><br/>完成為期兩天的面授課程並通過測驗後，即可取得「夥伴講師資格」，未來可自行舉辦工作坊、展示作品並進行販售。</p>",
             "button_label": "詳細請點此查看",
             "button_link": "shopify://products/taiwan-special"
           }

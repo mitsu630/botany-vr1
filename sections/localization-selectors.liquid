@@ -11,9 +11,7 @@
   endif
 
   assign country_form_id = 'SectionCountryForm-' | append: section.id
-  assign country_position = 'SectionCountry-' | append: section.id
   assign language_form_id = 'SectionLanguageForm-' | append: section.id
-  assign language_position = 'SectionLanguage-' | append: section.id
 -%}
 
 {%- style -%}
@@ -26,7 +24,7 @@
     display: flex;
     justify-content: {{ section.settings.content_alignment }};
     position: relative;
-    z-index: 50;
+    z-index: 2;
   }
 
   .localization-selectors-{{ section.id }} .localization-selectors__forms {
@@ -38,35 +36,22 @@
     width: 100%;
   }
 
-  .localization-selectors-{{ section.id }} localization-form {
-    display: block;
-  }
-
-  .localization-selectors-{{ section.id }} .localization-form {
-    padding: 0;
+  .localization-selectors-{{ section.id }} .localization-selectors__form {
+    flex: 0 1 24rem;
     margin: 0;
   }
 
-  .localization-selectors-{{ section.id }} .localization-form__select {
-    margin: 0;
-  }
-
-  .localization-selectors-{{ section.id }} .disclosure {
-    z-index: 10000;
-  }
-
-  .localization-selectors-{{ section.id }} .disclosure__list-wrapper {
-    z-index: 10000;
-  }
-
-  .localization-selectors-{{ section.id }} .country-selector__overlay {
-    z-index: 9999;
-  }
-
-  .localization-selectors-{{ section.id }} .disclosure__list-wrapper:not(.country-selector) {
-    bottom: auto;
-    top: 100%;
-    transform: translateY(0.6rem);
+  .localization-selectors-{{ section.id }} .localization-selectors__select {
+    width: 100%;
+    min-height: 4.4rem;
+    padding: 1rem 3.6rem 1rem 1.4rem;
+    border: var(--inputs-border-width) solid rgba(var(--color-foreground), var(--inputs-border-opacity));
+    border-radius: var(--inputs-radius-outset);
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    font-family: var(--font-body-family);
+    font-size: 1.4rem;
+    line-height: calc(1 + 0.5 / var(--font-body-scale));
   }
 
   .localization-selectors-{{ section.id }} .localization-selectors__empty {
@@ -79,37 +64,9 @@
       align-items: stretch;
     }
 
-    .localization-selectors-{{ section.id }} localization-form,
-    .localization-selectors-{{ section.id }} .localization-form,
-    .localization-selectors-{{ section.id }} .localization-form__select {
+    .localization-selectors-{{ section.id }} .localization-selectors__form {
+      flex: 1 1 {% if section.settings.mobile_layout == 'row' %}0{% else %}100%{% endif %};
       width: 100%;
-    }
-
-    .localization-selectors-{{ section.id }} .disclosure__list-wrapper.country-selector {
-      position: absolute;
-      top: 100%;
-      bottom: auto;
-      left: 0;
-      width: 100%;
-      height: auto;
-      max-height: 32rem;
-      border-width: var(--popup-border-width);
-      border-style: solid;
-      border-color: rgba(var(--color-foreground), var(--popup-border-opacity));
-      border-radius: var(--popup-corner-radius);
-      box-shadow: var(--popup-shadow-horizontal-offset) var(--popup-shadow-vertical-offset) var(--popup-shadow-blur-radius)
-        rgba(var(--color-shadow), var(--popup-shadow-opacity));
-      transform: translateY(0.6rem);
-    }
-
-    .localization-selectors-{{ section.id }} .disclosure__list.country-selector__list {
-      min-width: 100%;
-      max-height: 24rem;
-    }
-
-    .localization-selectors-{{ section.id }} .country-selector__close-button,
-    .localization-selectors-{{ section.id }} .country-selector__overlay {
-      display: none;
     }
   }
 
@@ -122,12 +79,6 @@
     .localization-selectors-{{ section.id }} .localization-selectors__forms {
       width: auto;
     }
-
-    .localization-selectors-{{ section.id }} .disclosure__list-wrapper {
-      bottom: auto;
-      top: 100%;
-      transform: translateY(0.6rem);
-    }
   }
 {%- endstyle -%}
 
@@ -138,29 +89,56 @@
         {%- if show_country_selector or show_language_selector -%}
           <div class="localization-selectors__forms">
             {%- if show_country_selector -%}
-              <localization-form>
-                {%- form 'localization', id: country_form_id, class: 'localization-form' -%}
-                  <div>
-                    <h2 class="visually-hidden" id="{{ country_position }}Label">
-                      {{ 'localization.country_label' | t }}
-                    </h2>
-                    {%- render 'country-localization', localPosition: country_position -%}
-                  </div>
-                {%- endform -%}
-              </localization-form>
+              {%- form 'localization', id: country_form_id, class: 'localization-selectors__form' -%}
+                <label class="visually-hidden" for="{{ country_form_id }}-country">
+                  {{ 'localization.country_label' | t }}
+                </label>
+                <select
+                  id="{{ country_form_id }}-country"
+                  class="localization-selectors__select"
+                  name="country_code"
+                  aria-label="{{ 'localization.country_label' | t }}"
+                  onchange="this.form.requestSubmit ? this.form.requestSubmit() : this.form.submit()"
+                >
+                  {%- for country in localization.available_countries -%}
+                    <option
+                      value="{{ country.iso_code | escape }}"
+                      {% if country.iso_code == localization.country.iso_code %}
+                        selected
+                      {% endif %}
+                    >
+                      {{ country.name }} | {{ country.currency.iso_code }}
+                      {{ country.currency.symbol }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+              {%- endform -%}
             {%- endif -%}
 
             {%- if show_language_selector -%}
-              <localization-form>
-                {%- form 'localization', id: language_form_id, class: 'localization-form' -%}
-                  <div>
-                    <h2 class="visually-hidden" id="{{ language_position }}Label">
-                      {{ 'localization.language_label' | t }}
-                    </h2>
-                    {%- render 'language-localization', localPosition: language_position -%}
-                  </div>
-                {%- endform -%}
-              </localization-form>
+              {%- form 'localization', id: language_form_id, class: 'localization-selectors__form' -%}
+                <label class="visually-hidden" for="{{ language_form_id }}-language">
+                  {{ 'localization.language_label' | t }}
+                </label>
+                <select
+                  id="{{ language_form_id }}-language"
+                  class="localization-selectors__select"
+                  name="locale_code"
+                  aria-label="{{ 'localization.language_label' | t }}"
+                  onchange="this.form.requestSubmit ? this.form.requestSubmit() : this.form.submit()"
+                >
+                  {%- for language in localization.available_languages -%}
+                    <option
+                      value="{{ language.iso_code | escape }}"
+                      {% if language.iso_code == localization.language.iso_code %}
+                        selected
+                      {% endif %}
+                    >
+                      {{ language.endonym_name | capitalize }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+              {%- endform -%}
             {%- endif -%}
           </div>
         {%- elsif request.design_mode -%}

@@ -60,13 +60,14 @@
 
   @media screen and (max-width: 749px) {
     .localization-selectors-{{ section.id }} .localization-selectors__forms {
-      flex-direction: {{ section.settings.mobile_layout }};
+      flex-direction: column;
       align-items: stretch;
     }
 
     .localization-selectors-{{ section.id }} .localization-selectors__form {
-      flex: 1 1 {% if section.settings.mobile_layout == 'row' %}0{% else %}100%{% endif %};
+      flex: 1 1 100%;
       width: 100%;
+      max-width: 100%;
     }
   }
 
@@ -191,22 +192,6 @@
       ],
       "default": "center",
       "label": "配置"
-    },
-    {
-      "type": "select",
-      "id": "mobile_layout",
-      "options": [
-        {
-          "value": "column",
-          "label": "縦並び"
-        },
-        {
-          "value": "row",
-          "label": "横並び"
-        }
-      ],
-      "default": "column",
-      "label": "スマホ表示"
     },
     {
       "type": "checkbox",

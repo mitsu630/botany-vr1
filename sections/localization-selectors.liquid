@@ -84,6 +84,33 @@
     .localization-selectors-{{ section.id }} .localization-form__select {
       width: 100%;
     }
+
+    .localization-selectors-{{ section.id }} .disclosure__list-wrapper.country-selector {
+      position: absolute;
+      top: 100%;
+      bottom: auto;
+      left: 0;
+      width: 100%;
+      height: auto;
+      max-height: 32rem;
+      border-width: var(--popup-border-width);
+      border-style: solid;
+      border-color: rgba(var(--color-foreground), var(--popup-border-opacity));
+      border-radius: var(--popup-corner-radius);
+      box-shadow: var(--popup-shadow-horizontal-offset) var(--popup-shadow-vertical-offset) var(--popup-shadow-blur-radius)
+        rgba(var(--color-shadow), var(--popup-shadow-opacity));
+      transform: translateY(0.6rem);
+    }
+
+    .localization-selectors-{{ section.id }} .disclosure__list.country-selector__list {
+      min-width: 100%;
+      max-height: 24rem;
+    }
+
+    .localization-selectors-{{ section.id }} .country-selector__close-button,
+    .localization-selectors-{{ section.id }} .country-selector__overlay {
+      display: none;
+    }
   }
 
   @media screen and (min-width: 750px) {

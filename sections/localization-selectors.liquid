@@ -29,16 +29,19 @@
 
   .localization-selectors-{{ section.id }} .localization-selectors__forms {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: stretch;
     justify-content: {{ section.settings.content_alignment }};
     gap: 1.2rem;
     width: 100%;
   }
 
   .localization-selectors-{{ section.id }} .localization-selectors__form {
-    flex: 0 1 24rem;
+    flex: 1 1 100%;
     margin: 0;
+    max-width: 100%;
+    width: 100%;
   }
 
   .localization-selectors-{{ section.id }} .localization-selectors__select {
@@ -58,26 +61,22 @@
     margin: 0;
   }
 
-  @media screen and (max-width: 749px) {
-    .localization-selectors-{{ section.id }} .localization-selectors__forms {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .localization-selectors-{{ section.id }} .localization-selectors__form {
-      flex: 1 1 100%;
-      width: 100%;
-      max-width: 100%;
-    }
-  }
-
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+  }
 
+  @media screen and (min-width: 990px) {
     .localization-selectors-{{ section.id }} .localization-selectors__forms {
+      flex-direction: row;
+      align-items: flex-start;
+      width: auto;
+    }
+
+    .localization-selectors-{{ section.id }} .localization-selectors__form {
+      flex: 0 1 24rem;
       width: auto;
     }
   }

@@ -136,6 +136,38 @@
         "heading_HjJA9K",
         "text_9jRQqn"
       ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_LEPFa6": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_TRnWwx": {
+          "type": "heading",
+          "settings": {
+            "heading": "LIFE is ART",
+            "heading_size": "h1"
+          }
+        },
+        "text_XDeqfr": {
+          "type": "text",
+          "settings": {
+            "text": "<p>植物彩繪是一種將真實葉片貼於畫板上，<br/>表達自我「喜好」的藝術創作。</p><p>創作的過程，<br/>不僅成為心靈的支撐，<br/>也賦予生活更多意義。</p><p>透過創作，<br/>心靈得以放鬆，<br/>並能遇見一幅令人感動的作品，<br/>體會其中的喜悅。</p><p>LIFE is ART<br/>在平凡的生活之中，<br/>即使覺得自己平凡，<br/>也能展現豐富的表達。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_TRnWwx",
+        "text_XDeqfr"
+      ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
@@ -358,6 +390,7 @@
     "slideshow_fbMJg6",
     "177727528054584d37",
     "rich_text_iiyaDG",
+    "rich_text_LEPFa6",
     "177733747206bf508a",
     "1777337008087e206a",
     "1777275720a6934574",

@@ -54,7 +54,7 @@
           "type": "button",
           "settings": {
             "text": "取得講師",
-            "link": "shopify://products/taiwan-workshop-1",
+            "link": "shopify://pages/world001",
             "open_new_tab": false,
             "background_color": "#c44e93",
             "text_color": "#ffffff",

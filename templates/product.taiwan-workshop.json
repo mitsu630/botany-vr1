@@ -53,7 +53,7 @@
         "button_mk4Dnz": {
           "type": "button",
           "settings": {
-            "text": "取得講師",
+            "text": "認證講師",
             "link": "shopify://pages/world001",
             "open_new_tab": false,
             "background_color": "#c44e93",

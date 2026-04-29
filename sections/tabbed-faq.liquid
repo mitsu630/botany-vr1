@@ -7,6 +7,8 @@
   assign faqs = blank
   if shop.metaobjects.qfa
     assign faqs = shop.metaobjects.qfa.values
+  elsif shop.metaobjects.qa
+    assign faqs = shop.metaobjects.qa.values
   endif
 -%}
 
@@ -135,6 +137,8 @@
                   assign faq_group = ''
                   if faq.group and faq.group.value != blank
                     assign faq_group = faq.group.value | strip
+                  elsif faq['group'] and faq['group'].value != blank
+                    assign faq_group = faq['group'].value | strip
                   endif
 
                   assign faq_handle = ''
@@ -147,11 +151,15 @@
                   assign question = ''
                   if faq.question and faq.question.value != blank
                     assign question = faq.question.value | strip
+                  elsif faq['question'] and faq['question'].value != blank
+                    assign question = faq['question'].value | strip
                   endif
 
                   assign answer = ''
                   if faq.answer and faq.answer.value != blank
                     assign answer = faq.answer.value | strip
+                  elsif faq['answer'] and faq['answer'].value != blank
+                    assign answer = faq['answer'].value | strip
                   endif
                 -%}
 
@@ -184,10 +192,14 @@
                       assign question = ''
                       if faq.question and faq.question.value != blank
                         assign question = faq.question.value | strip
+                      elsif faq['question'] and faq['question'].value != blank
+                        assign question = faq['question'].value | strip
                       endif
                       assign answer = ''
                       if faq.answer and faq.answer.value != blank
                         assign answer = faq.answer.value | strip
+                      elsif faq['answer'] and faq['answer'].value != blank
+                        assign answer = faq['answer'].value | strip
                       endif
                     -%}
                     {%- if question != blank and answer != blank -%}

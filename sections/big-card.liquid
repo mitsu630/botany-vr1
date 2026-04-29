@@ -42,8 +42,12 @@
   #shopify-section-{{ section.id }} .big-card__text-column,
   #shopify-section-{{ section.id }} .big-card__text-cell {
     color: var(--big-card-block-color);
+    font-family: var(--big-card-block-font-family, inherit);
     font-size: var(--big-card-block-font-size);
+    font-style: var(--big-card-block-font-style, inherit);
+    font-weight: var(--big-card-block-font-weight, inherit);
     line-height: 1.7;
+    text-align: var(--big-card-block-text-align, inherit);
   }
 
   #shopify-section-{{ section.id }} .big-card__title {
@@ -249,6 +253,7 @@
           assign block_padding_bottom = block.settings.padding_bottom | default: 0
           assign block_margin_top = block.settings.margin_top | default: 0
           assign block_margin_bottom = block.settings.margin_bottom | default: 0
+          assign block_text_align = block.settings.text_align | default: 'left'
           assign media_ratio = block.settings.aspect_ratio | default: '16 / 9'
           assign grid_gap = block.settings.grid_gap | default: 16
           assign image_box_width = block.settings.image_box_width | default: 1200
@@ -267,6 +272,12 @@
             --big-card-block-padding-bottom: {{ block_padding_bottom }}px;
             --big-card-block-margin-top: {{ block_margin_top }}px;
             --big-card-block-margin-bottom: {{ block_margin_bottom }}px;
+            --big-card-block-text-align: {{ block_text_align }};
+            {%- if block.settings.font != blank -%}
+              --big-card-block-font-family: {{ block.settings.font.family }}, {{ block.settings.font.fallback_families }};
+              --big-card-block-font-style: {{ block.settings.font.style }};
+              --big-card-block-font-weight: {{ block.settings.font.weight }};
+            {%- endif -%}
             --big-card-media-ratio: {{ media_ratio }};
             --big-card-grid-gap: {{ grid_gap }}px;
             --big-card-image-box-width: {{ image_box_width }}px;
@@ -631,6 +642,12 @@
           "default": "<p>タイトルを入力してください</p>"
         },
         {
+          "type": "font_picker",
+          "id": "font",
+          "label": "フォント",
+          "default": "assistant_n4"
+        },
+        {
           "type": "range",
           "id": "font_size",
           "label": "フォントサイズ",
@@ -643,8 +660,28 @@
         {
           "type": "color",
           "id": "color",
-          "label": "文字色",
+          "label": "フォントカラー",
           "default": "#111111"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "文字位置",
+          "options": [
+            {
+              "value": "left",
+              "label": "左"
+            },
+            {
+              "value": "center",
+              "label": "中央"
+            },
+            {
+              "value": "right",
+              "label": "右"
+            }
+          ],
+          "default": "left"
         },
         {
           "type": "range",
@@ -699,6 +736,12 @@
           "default": "<p>本文を入力してください。</p>"
         },
         {
+          "type": "font_picker",
+          "id": "font",
+          "label": "フォント",
+          "default": "assistant_n4"
+        },
+        {
           "type": "range",
           "id": "font_size",
           "label": "フォントサイズ",
@@ -711,8 +754,28 @@
         {
           "type": "color",
           "id": "color",
-          "label": "文字色",
+          "label": "フォントカラー",
           "default": "#111111"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "文字位置",
+          "options": [
+            {
+              "value": "left",
+              "label": "左"
+            },
+            {
+              "value": "center",
+              "label": "中央"
+            },
+            {
+              "value": "right",
+              "label": "右"
+            }
+          ],
+          "default": "left"
         },
         {
           "type": "range",
@@ -1175,6 +1238,12 @@
           "default": "<p>右側のテキスト</p>"
         },
         {
+          "type": "font_picker",
+          "id": "font",
+          "label": "フォント",
+          "default": "assistant_n4"
+        },
+        {
           "type": "range",
           "id": "font_size",
           "label": "フォントサイズ",
@@ -1187,8 +1256,28 @@
         {
           "type": "color",
           "id": "color",
-          "label": "文字色",
+          "label": "フォントカラー",
           "default": "#111111"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "文字位置",
+          "options": [
+            {
+              "value": "left",
+              "label": "左"
+            },
+            {
+              "value": "center",
+              "label": "中央"
+            },
+            {
+              "value": "right",
+              "label": "右"
+            }
+          ],
+          "default": "left"
         },
         {
           "type": "range",
@@ -1271,6 +1360,12 @@
           "default": "<p>テキスト 4</p>"
         },
         {
+          "type": "font_picker",
+          "id": "font",
+          "label": "フォント",
+          "default": "assistant_n4"
+        },
+        {
           "type": "range",
           "id": "font_size",
           "label": "フォントサイズ",
@@ -1283,8 +1378,28 @@
         {
           "type": "color",
           "id": "color",
-          "label": "文字色",
+          "label": "フォントカラー",
           "default": "#111111"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "文字位置",
+          "options": [
+            {
+              "value": "left",
+              "label": "左"
+            },
+            {
+              "value": "center",
+              "label": "中央"
+            },
+            {
+              "value": "right",
+              "label": "右"
+            }
+          ],
+          "default": "left"
         },
         {
           "type": "range",

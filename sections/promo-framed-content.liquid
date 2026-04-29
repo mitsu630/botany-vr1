@@ -42,7 +42,15 @@
 {%- endstyle -%}
 
 <div id="pfc-{{ section.id }}" class="pfc isolate color-{{ section.settings.color_scheme }} gradient" {{ section.shopify_attributes }}>
-  <div class="pfc__outer page-width" style="margin-top: {{ mt }}px; margin-right: {{ mr }}px; margin-bottom: {{ mb }}px; margin-left: {{ ml }}px;">
+  <div
+    class="pfc__outer page-width"
+    style="
+      margin-top: {{ mt }}px;
+      margin-right: {% if mr > 0 %}{{ mr }}px{% else %}auto{% endif %};
+      margin-bottom: {{ mb }}px;
+      margin-left: {% if ml > 0 %}{{ ml }}px{% else %}auto{% endif %};
+    "
+  >
     <div class="pfc__frame-wrap">
       {%- if section.settings.show_badge and section.settings.badge_text != blank -%}
         <div

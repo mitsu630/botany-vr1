@@ -112,6 +112,12 @@
       <img alt="" data-lightbox-image loading="eager" width="2048" height="2048">
       <p class="google-photo-gallery__lightbox-caption" data-lightbox-caption></p>
     </div>
+    <button class="google-photo-gallery__lightbox-nav google-photo-gallery__lightbox-nav--previous" type="button" data-lightbox-previous aria-label="前の写真">
+      &#8249;
+    </button>
+    <button class="google-photo-gallery__lightbox-nav google-photo-gallery__lightbox-nav--next" type="button" data-lightbox-next aria-label="次の写真">
+      &#8250;
+    </button>
   </div>
 </google-photo-gallery>
 
@@ -365,6 +371,8 @@
     border-radius: calc(var(--gpg-radius) * 0.75);
     object-fit: contain;
     box-shadow: 0 2.4rem 7rem rgba(0, 0, 0, 0.28);
+    transition: transform 220ms ease, opacity 220ms ease;
+    will-change: transform, opacity;
   }
 
   .google-photo-gallery__lightbox-caption {
@@ -413,6 +421,50 @@
     stroke: currentColor;
     stroke-width: 1.4;
     stroke-linecap: round;
+  }
+
+  .google-photo-gallery__lightbox-nav {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: clamp(4.4rem, 8vw, 7.2rem);
+    height: clamp(7rem, 18vw, 12rem);
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    color: rgba(255, 255, 255, 0.82);
+    background: transparent;
+    cursor: pointer;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(5.2rem, 11vw, 8.8rem);
+    font-weight: 200;
+    line-height: 1;
+    transform: translateY(-50%);
+    transition: color 180ms ease, opacity 180ms ease, transform 180ms ease;
+  }
+
+  .google-photo-gallery__lightbox-nav:hover,
+  .google-photo-gallery__lightbox-nav:focus-visible {
+    color: #fff;
+    transform: translateY(-50%) scale(1.04);
+  }
+
+  .google-photo-gallery__lightbox-nav:focus-visible {
+    outline: 0.1rem solid rgba(255, 255, 255, 0.72);
+    outline-offset: 0.4rem;
+  }
+
+  .google-photo-gallery__lightbox-nav[hidden] {
+    display: none;
+  }
+
+  .google-photo-gallery__lightbox-nav--previous {
+    left: clamp(0.4rem, 2vw, 2.4rem);
+  }
+
+  .google-photo-gallery__lightbox-nav--next {
+    right: clamp(0.4rem, 2vw, 2.4rem);
   }
 
   body.google-photo-gallery-lock {
@@ -480,20 +532,27 @@
         this.lightboxImage = this.querySelector('[data-lightbox-image]');
         this.lightboxCaption = this.querySelector('[data-lightbox-caption]');
         this.closeButton = this.querySelector('[data-lightbox-close]');
+        this.previousButton = this.querySelector('[data-lightbox-previous]');
+        this.nextButton = this.querySelector('[data-lightbox-next]');
         this.previousBodyPaddingRight = '';
         this.currentPhotos = [];
         this.currentPhotoIndex = 0;
         this.touchStartX = 0;
         this.touchStartY = 0;
+        this.touchCurrentX = 0;
+        this.lightboxAnimationId = 0;
         this.boundHandleKeydown = this.handleKeydown.bind(this);
 
         this.closeButton?.addEventListener('click', () => this.closeLightbox());
+        this.previousButton?.addEventListener('click', () => this.showPreviousPhoto());
+        this.nextButton?.addEventListener('click', () => this.showNextPhoto());
         this.lightbox?.addEventListener('click', (event) => {
           if (event.target === this.lightbox) {
             this.closeLightbox();
           }
         });
         this.lightbox?.addEventListener('touchstart', (event) => this.handleTouchStart(event), { passive: true });
+        this.lightbox?.addEventListener('touchmove', (event) => this.handleTouchMove(event), { passive: true });
         this.lightbox?.addEventListener('touchend', (event) => this.handleTouchEnd(event), { passive: true });
 
         this.loadAlbums();
@@ -601,6 +660,7 @@
         this.currentPhotos = photos;
         this.currentPhotoIndex = index;
         this.showLightboxPhoto(index);
+        this.updateLightboxNavigation();
         this.lightbox.classList.add('is-open');
         this.lightbox.setAttribute('aria-hidden', 'false');
         this.lockScroll();
@@ -608,7 +668,7 @@
         this.closeButton?.focus();
       }
 
-      showLightboxPhoto(index) {
+      showLightboxPhoto(index, direction = null) {
         if (!this.lightboxImage || !this.currentPhotos.length) {
           return;
         }
@@ -617,9 +677,51 @@
         this.currentPhotoIndex = (index + photoCount) % photoCount;
         const photo = this.currentPhotos[this.currentPhotoIndex];
 
+        if (direction) {
+          this.animateLightboxPhoto(photo, direction);
+          return;
+        }
+
         this.lightboxImage.src = photo.full || photo.thumbnail;
         this.lightboxImage.alt = photo.alt || '';
         this.lightboxCaption.textContent = photo.caption || '';
+      }
+
+      animateLightboxPhoto(photo, direction) {
+        const image = this.lightboxImage;
+        const caption = this.lightboxCaption;
+        const animationId = ++this.lightboxAnimationId;
+        const exitX = direction === 'next' ? -52 : 52;
+        const enterX = direction === 'next' ? 52 : -52;
+        const startTransform = image.style.transform || 'translateX(0)';
+        const startOpacity = image.style.opacity || '1';
+
+        image.animate(
+          [
+            { opacity: startOpacity, transform: startTransform },
+            { opacity: 0, transform: `translateX(${exitX}px)` }
+          ],
+          { duration: 150, easing: 'cubic-bezier(0.4, 0, 0.2, 1)' }
+        ).onfinish = () => {
+          if (animationId !== this.lightboxAnimationId) {
+            return;
+          }
+
+          image.src = photo.full || photo.thumbnail;
+          image.alt = photo.alt || '';
+          caption.textContent = photo.caption || '';
+          image.style.transform = `translateX(${enterX}px)`;
+          image.style.opacity = '0';
+
+          requestAnimationFrame(() => {
+            if (animationId !== this.lightboxAnimationId) {
+              return;
+            }
+
+            image.style.transform = 'translateX(0)';
+            image.style.opacity = '1';
+          });
+        };
       }
 
       showNextPhoto() {
@@ -627,7 +729,7 @@
           return;
         }
 
-        this.showLightboxPhoto(this.currentPhotoIndex + 1);
+        this.showLightboxPhoto(this.currentPhotoIndex + 1, 'next');
       }
 
       showPreviousPhoto() {
@@ -635,7 +737,13 @@
           return;
         }
 
-        this.showLightboxPhoto(this.currentPhotoIndex - 1);
+        this.showLightboxPhoto(this.currentPhotoIndex - 1, 'previous');
+      }
+
+      updateLightboxNavigation() {
+        const shouldShow = this.currentPhotos.length > 1;
+        this.previousButton?.toggleAttribute('hidden', !shouldShow);
+        this.nextButton?.toggleAttribute('hidden', !shouldShow);
       }
 
       closeLightbox() {
@@ -646,8 +754,12 @@
         this.lightbox.classList.remove('is-open');
         this.lightbox.setAttribute('aria-hidden', 'true');
         this.lightboxImage.src = '';
+        this.lightboxImage.style.transform = '';
+        this.lightboxImage.style.opacity = '';
+        this.lightboxImage.style.transition = '';
         this.currentPhotos = [];
         this.currentPhotoIndex = 0;
+        this.updateLightboxNavigation();
         this.unlockScroll();
         document.removeEventListener('keydown', this.boundHandleKeydown);
       }
@@ -669,6 +781,26 @@
 
         this.touchStartX = event.touches[0].clientX;
         this.touchStartY = event.touches[0].clientY;
+        this.touchCurrentX = this.touchStartX;
+        this.lightboxImage.style.transition = 'none';
+      }
+
+      handleTouchMove(event) {
+        if (!this.lightbox?.classList.contains('is-open') || event.touches.length !== 1 || this.currentPhotos.length < 2) {
+          return;
+        }
+
+        this.touchCurrentX = event.touches[0].clientX;
+        const deltaX = this.touchCurrentX - this.touchStartX;
+        const deltaY = event.touches[0].clientY - this.touchStartY;
+
+        if (Math.abs(deltaX) < Math.abs(deltaY)) {
+          return;
+        }
+
+        const dragX = Math.max(-90, Math.min(90, deltaX * 0.38));
+        this.lightboxImage.style.transform = `translateX(${dragX}px)`;
+        this.lightboxImage.style.opacity = `${Math.max(0.68, 1 - Math.abs(deltaX) / 420)}`;
       }
 
       handleTouchEnd(event) {
@@ -680,8 +812,11 @@
         const touchEndY = event.changedTouches[0].clientY;
         const deltaX = touchEndX - this.touchStartX;
         const deltaY = touchEndY - this.touchStartY;
+        this.lightboxImage.style.transition = '';
 
         if (Math.abs(deltaX) < 50 || Math.abs(deltaX) < Math.abs(deltaY)) {
+          this.lightboxImage.style.transform = 'translateX(0)';
+          this.lightboxImage.style.opacity = '1';
           return;
         }
 

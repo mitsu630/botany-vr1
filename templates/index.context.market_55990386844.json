@@ -12,7 +12,14 @@
     "market": "台湾"
   },
   "parent": "index.json",
-  "sections": {},
+  "sections": {
+    "featured_product_mcjbRH": {
+      "settings": {
+        "product": "taiwan-special"
+      },
+      "blocks": {}
+    }
+  },
   "order": [
     "custom_buttons_B7pFbJ",
     "autoplay_loop_video_qjVFkb",

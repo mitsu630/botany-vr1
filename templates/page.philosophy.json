@@ -1,0 +1,228 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "big_card_tMEn4d": {
+      "type": "big-card",
+      "blocks": {
+        "title_yqHyPb": {
+          "type": "title",
+          "settings": {
+            "title": "<p>Botany Painting</p>",
+            "text_font": "serif",
+            "font_size": 29,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 4,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_dDrhhz": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Philosophy</p>",
+            "text_font": "assistant_n4",
+            "font_size": 13,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_tUQWWP": {
+          "type": "text",
+          "settings": {
+            "text": "<p><em>\"The Compass is Always Within You.\"<br/></em>羅針盤は、あなたの中に。</p>",
+            "text_font": "serif",
+            "font_size": 13,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_a9gr7R": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ボタニーペインティングは、<br/>植物という生命の断片に、<br/>自分自身を映し出す行為です。<br/>そこには、誰かが決めた「正解」も、<br/>なぞるべき「手本」も存在しません。</p>",
+            "text_font": "serif",
+            "font_size": 13,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_6GM8De": {
+          "type": "text",
+          "settings": {
+            "text": "<p>自分の外に、答えを求めない<br/><em>Non-Conformity</em></p>",
+            "text_font": "serif",
+            "font_size": 14,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_cPBTi6": {
+          "type": "text",
+          "settings": {
+            "text": "<p>指導者や既存の価値観<br/>私たちは知らず知らずのうちに、<br/>外側の「正解」に頼ることに慣れてしまっています。<br/>ボタニーペインティングにおいて、<br/>価値の基準は描くあなた自身の中にしかありません。<br/>他者の歩んだ軌跡をなぞるのではなく、<br/>あなた自身の直感を信じてください。</p>",
+            "text_font": "serif",
+            "font_size": 13,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_JhU7RR": {
+          "type": "text",
+          "settings": {
+            "text": "<p>植物と、対等に向き合う<br/><em>Resonance</em></p>",
+            "text_font": "serif",
+            "font_size": 14,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 20,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_jemnam": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ボタニーペインティングは、<br/>自然（植物）と自己（人間）が対等に向き合うスタイルです。<br/>蓮や菩提樹の葉<br/>自然が生み出した唯一無二のかたちに、<br/>あなたという生命の色を重ねていく。<br/>その共鳴のプロセスを通じて、<br/>言葉を超えた自己との対話が静かに始まります。</p>",
+            "text_font": "serif",
+            "font_size": 13,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_FFAEwW": {
+          "type": "text",
+          "settings": {
+            "text": "<p>自分だけの真実を、映し出す<br/><em>Self-Reliance</em></p>",
+            "text_font": "serif",
+            "font_size": 14,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 16,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_LA7WBq": {
+          "type": "text",
+          "settings": {
+            "text": "<p>基礎という「型」は、感性を縛る鎖ではなく、自由へ向かうための土台です。<br/>学んだあとは、自ら研究し、<br/>自ら発見してください。<br/>筆を動かすその一瞬、色を選ぶその迷い。<br/>そのすべてが、あなたという人間の真実です。<br/>その探究の先にのみ、<br/>揺るぎない自己信頼が育っていきます。</p>",
+            "text_font": "serif",
+            "font_size": 13,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_q3fYAt": {
+          "type": "text",
+          "settings": {
+            "text": "<p>筆を置いたとき、目の前に現れた作品が、<br/>今のあなたそのものです。<br/>その「作品」を愛せるなら、<br/>あなたは真に自分を信頼したと言えるでしょう。</p><p>「羅針盤は、あなたの中に。」</p><p>この意味がすこし腑に落ちたとき、<br/>ボタニーペインティングの本当の旅が始まります。<br/><br/><em>\"Stop seeking answers from without; reflect your own truth upon the fragments of nature—<br/>the compass is always within you.\"<br/>botanypainting.com</em></p>",
+            "text_font": "serif",
+            "font_size": 13,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 20,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "image_WF9CVk": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/3_2x_a8f90f3c-bb60-4099-8cbc-c36dba5123c3.png",
+            "aspect_ratio": "1 / 1",
+            "image_fit": "contain",
+            "image_width_mode": "box",
+            "image_box_width": 600,
+            "image_box_height": 300,
+            "image_align": "center",
+            "image_background_transparent": true,
+            "image_background_color": "#f2f2f2",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_yqHyPb",
+        "text_dDrhhz",
+        "text_tUQWWP",
+        "text_a9gr7R",
+        "text_6GM8De",
+        "text_cPBTi6",
+        "text_JhU7RR",
+        "text_jemnam",
+        "text_FFAEwW",
+        "text_LA7WBq",
+        "text_q3fYAt",
+        "image_WF9CVk"
+      ],
+      "name": "ビックカード",
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#606060",
+        "max_width": 1200,
+        "border_radius": 16,
+        "block_gap": 24,
+        "padding_top_desktop": 112,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 76,
+        "padding_bottom_mobile": 48
+      }
+    }
+  },
+  "order": [
+    "main",
+    "big_card_tMEn4d"
+  ]
+}

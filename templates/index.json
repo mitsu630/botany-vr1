@@ -847,8 +847,30 @@
             "margin_top": 0,
             "margin_bottom": 0
           }
-        },
-        "title_3jRFYB": {
+        }
+      },
+      "block_order": [
+        "title_KnETdW",
+        "text_zXfrax",
+        "text_jMQVpN"
+      ],
+      "name": "ビックカード",
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#606060",
+        "max_width": 1200,
+        "border_radius": 16,
+        "block_gap": 24,
+        "padding_top_desktop": 112,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 76,
+        "padding_bottom_mobile": 48
+      }
+    },
+    "big_card_RGRFDU": {
+      "type": "big-card",
+      "blocks": {
+        "title_iKaEVd": {
           "type": "title",
           "settings": {
             "title": "<p>Mark I</p>",
@@ -862,7 +884,7 @@
             "margin_bottom": 0
           }
         },
-        "title_HDh8Ln": {
+        "title_ewR6p3": {
           "type": "title",
           "settings": {
             "title": "<p><em>Fern Origin</em></p>",
@@ -876,7 +898,7 @@
             "margin_bottom": 0
           }
         },
-        "image_bP9zUQ": {
+        "image_QiQrkn": {
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/1_2x_20478165-d5c2-4b92-95a2-8d13108a85ee.png",
@@ -886,13 +908,15 @@
             "image_box_width": 300,
             "image_box_height": 300,
             "image_align": "center",
+            "image_background_transparent": true,
+            "image_background_color": "#ffffff",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
             "margin_bottom": 0
           }
         },
-        "text_jMAbNH": {
+        "text_H8qdqQ": {
           "type": "text",
           "settings": {
             "text": "<p>最初のロゴマークは、インド菩提樹の葉をかたちにしたものでした。</p><p>菩提樹は、学びや気づきの象徴として古くから親しまれてきた木です。その葉の繊細な葉脈に、植物への敬意と、アートをはじめる喜びを重ねました。</p><p>このマークは後に、パートナー講師の皆さんが自由に使えるマークとして受け継がれました。教える人が増え、各地にボタニーペインティングが広がっていく——そんな草の根の動きを、この小さな葉が静かに見守ってきました。</p>",
@@ -908,15 +932,192 @@
         }
       },
       "block_order": [
-        "title_KnETdW",
-        "text_zXfrax",
-        "text_jMQVpN",
-        "title_3jRFYB",
-        "title_HDh8Ln",
-        "image_bP9zUQ",
-        "text_jMAbNH"
+        "title_iKaEVd",
+        "title_ewR6p3",
+        "image_QiQrkn",
+        "text_H8qdqQ"
       ],
-      "disabled": true,
+      "name": "ビックカード",
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#606060",
+        "max_width": 1200,
+        "border_radius": 16,
+        "block_gap": 24,
+        "padding_top_desktop": 112,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 76,
+        "padding_bottom_mobile": 48
+      }
+    },
+    "big_card_f8rNnX": {
+      "type": "big-card",
+      "blocks": {
+        "title_WhXQwN": {
+          "type": "title",
+          "settings": {
+            "title": "<p>Mark II</p>",
+            "text_font": "serif",
+            "font_size": 29,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 4,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "title_bw3Ht8": {
+          "type": "title",
+          "settings": {
+            "title": "<p><em>Lotus Prestige</em></p>",
+            "text_font": "serif",
+            "font_size": 18,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 4,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "image_ebcNB4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2_2x_aab41807-52dc-492d-ac34-df13b56b9fbf.png",
+            "aspect_ratio": "1 / 1",
+            "image_fit": "cover",
+            "image_width_mode": "box",
+            "image_box_width": 300,
+            "image_box_height": 300,
+            "image_align": "center",
+            "image_background_transparent": true,
+            "image_background_color": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_MbNJLC": {
+          "type": "text",
+          "settings": {
+            "text": "<p>講座の広がりとともに、プロ講師へのライセンスや台湾での展開がはじまりました。それに合わせて、より品格のあるマークが必要になりました。</p><p>インドの伝統的なブロックプリント（木版のスタンプ）からヒントを得た、繊細な蓮の花のデザインです。</p><p>蓮は、泥の中から清らかな花を咲かせます。東洋では昔から、清らかさや再生の象徴として描かれてきました。手仕事の温かみと、凛とした品格。そのふたつが自然に重なるマークになりました。</p>",
+            "text_font": "assistant_n4",
+            "font_size": 13,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_WhXQwN",
+        "title_bw3Ht8",
+        "image_ebcNB4",
+        "text_MbNJLC"
+      ],
+      "name": "ビックカード",
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#606060",
+        "max_width": 1200,
+        "border_radius": 16,
+        "block_gap": 24,
+        "padding_top_desktop": 112,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 76,
+        "padding_bottom_mobile": 48
+      }
+    },
+    "big_card_LzmjCq": {
+      "type": "big-card",
+      "blocks": {
+        "title_KEDfQC": {
+          "type": "title",
+          "settings": {
+            "title": "<p>Mark III</p>",
+            "text_font": "serif",
+            "font_size": 29,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 4,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "title_DfTdxb": {
+          "type": "title",
+          "settings": {
+            "title": "<p><em>Lotus Global</em></p>",
+            "text_font": "serif",
+            "font_size": 18,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 4,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "image_h9WNha": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/3_2x_a8f90f3c-bb60-4099-8cbc-c36dba5123c3.png",
+            "aspect_ratio": "1 / 1",
+            "image_fit": "contain",
+            "image_width_mode": "box",
+            "image_box_width": 600,
+            "image_box_height": 300,
+            "image_align": "center",
+            "image_background_transparent": true,
+            "image_background_color": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_b34RNE": {
+          "type": "text",
+          "settings": {
+            "text": "<p>そしてこのたび、ボタニーペインティングのロゴマークを新しくしました。</p><p>余分な線をなくし、誰が見ても「蓮の花だ」とわかるシンプルなかたちへ。日本語がわからなくても、アートに詳しくなくても、一目で美しさが伝わる——そういうマークを目指しました。</p><p>ボタニーペインティングは、これからも世界の方々に届けていきたいと思っています。このマークが、そのための新しい顔になります。</p>",
+            "text_font": "assistant_n4",
+            "font_size": 13,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_A89fMb": {
+          "type": "text",
+          "settings": {
+            "text": "<p>3つのマークはそれぞれ違う時代に生まれましたが、根っこにあるものは変わりません。植物が好きで、色を重ねることが好きで、その喜びを誰かと分かち合いたい。</p><p>ボタニーペインティングは、これからも、そういうアートであり続けます。<br/>2026年4月29日</p>",
+            "text_font": "assistant_n4",
+            "font_size": 13,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_KEDfQC",
+        "title_DfTdxb",
+        "image_h9WNha",
+        "text_b34RNE",
+        "text_A89fMb"
+      ],
       "name": "ビックカード",
       "settings": {
         "background_color": "#ffffff",
@@ -944,6 +1145,9 @@
     "slideshow_WAxXXG",
     "video_7rBJ6d",
     "featured_product_mcjbRH",
-    "big_card_d7k89"
+    "big_card_d7k89",
+    "big_card_RGRFDU",
+    "big_card_f8rNnX",
+    "big_card_LzmjCq"
   ]
 }

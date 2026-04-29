@@ -57,7 +57,7 @@
       "settings": {
         "heading": "FAQ",
         "subheading": "",
-        "intro": "",
+        "intro": "<p>日本の講座のご案内です。海外での講座内容とは解答が違う場合がございます。ご了承をお願い致します。</p>",
         "tabs_aria_label": "質問カテゴリー",
         "heading_box_bg": "#613a43",
         "heading_box_text": "#ffffff",

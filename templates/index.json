@@ -1069,7 +1069,7 @@
           "settings": {
             "image": "shopify://shop_images/3_2x_a8f90f3c-bb60-4099-8cbc-c36dba5123c3.png",
             "aspect_ratio": "1 / 1",
-            "image_fit": "cover",
+            "image_fit": "contain",
             "image_width_mode": "box",
             "image_box_width": 600,
             "image_box_height": 300,

@@ -1,9 +1,13 @@
 {%- comment -%}
-  Tabbed FAQ — 1ブロック = 1カテゴリー（タブ）。textarea は「質問 : 回答」を1行1組で入力。
+  Tabbed FAQ — qfa metaobjects provide group/question/answer content.
 {%- endcomment -%}
 
 {%- liquid
   assign sid = section.id
+  assign faqs = blank
+  if shop.metaobjects.qfa
+    assign faqs = shop.metaobjects.qfa.values
+  endif
 -%}
 
 {%- style -%}
@@ -104,10 +108,7 @@
           if category_index == 1
             assign cat_first = true
           endif
-          assign qa_key = block.settings.qa_key | default: '' | strip
-          assign item_count = block.settings.item_count | default: 0
-          assign qa_raw = block.settings.qa_content | default: '' | strip
-          assign qa_lines = qa_raw | newline_to_br | split: '<br />'
+          assign group_key = block.settings.group_key | default: block.settings.qa_key | default: block.settings.tab_title | strip
         -%}
         <div
           class="tabbed-faq__panel{% if cat_first %} is-active{% endif %}"
@@ -126,75 +127,70 @@
 
           <div class="tabbed-faq__accordion" data-tabbed-faq-accordion>
             {%- assign pair_index = 0 -%}
-            {%- if qa_key != blank and item_count > 0 -%}
-              {%- for i in (1..item_count) -%}
+
+            {%- if faqs != blank and group_key != blank -%}
+              {%- assign faq_refs = '' -%}
+              {%- for faq in faqs -%}
                 {%- liquid
-                  assign item_key = 'item_' | append: i
-                  assign question_key = 'sections.tabbed_faq.qa.' | append: qa_key | append: '.items.' | append: item_key | append: '.question'
-                  assign answer_key = 'sections.tabbed_faq.qa.' | append: qa_key | append: '.items.' | append: item_key | append: '.answer'
-                  assign question = question_key | t | strip
-                  assign answer = answer_key | t | strip
-                  assign has_missing_translation = false
-                  if question contains 'translation missing' or answer contains 'translation missing'
-                    assign has_missing_translation = true
+                  assign faq_group = ''
+                  if faq.group and faq.group.value != blank
+                    assign faq_group = faq.group.value | strip
+                  endif
+
+                  assign faq_handle = ''
+                  if faq.system and faq.system.handle != blank
+                    assign faq_handle = faq.system.handle
+                  elsif faq.handle != blank
+                    assign faq_handle = faq.handle
+                  endif
+
+                  assign question = ''
+                  if faq.question and faq.question.value != blank
+                    assign question = faq.question.value | strip
+                  endif
+
+                  assign answer = ''
+                  if faq.answer and faq.answer.value != blank
+                    assign answer = faq.answer.value | strip
                   endif
                 -%}
-                {%- if question != blank and answer != blank and has_missing_translation == false -%}
-                  {%- assign pair_index = pair_index | plus: 1 -%}
-                  <div
-                    class="tabbed-faq__item{% if cat_first and pair_index == 1 %} is-open{% endif %}"
-                    data-tabbed-faq-item
-                  >
-                    <button
-                      type="button"
-                      class="tabbed-faq__question"
-                      aria-expanded="{% if cat_first and pair_index == 1 %}true{% else %}false{% endif %}"
-                      data-tabbed-faq-trigger
-                      id="tabbed-faq-q-{{ sid }}-{{ block.id }}-{{ pair_index }}"
-                    >
-                      <span class="tabbed-faq__q-label">Q.</span>
-                      <span class="tabbed-faq__q-text">{{ question | escape }}</span>
-                      <span class="tabbed-faq__icon" aria-hidden="true" data-tabbed-faq-icon></span>
-                    </button>
-                    <div
-                      class="tabbed-faq__answer"
-                      id="tabbed-faq-a-{{ sid }}-{{ block.id }}-{{ pair_index }}"
-                      role="region"
-                      aria-labelledby="tabbed-faq-q-{{ sid }}-{{ block.id }}-{{ pair_index }}"
-                      {% unless cat_first and pair_index == 1 %}hidden{% endunless %}
-                      data-tabbed-faq-answer
-                    >
-                      <span class="tabbed-faq__a-label">A.</span>
-                      <div class="tabbed-faq__a-text">{{ answer | escape | newline_to_br }}</div>
-                    </div>
-                  </div>
+
+                {%- if faq_group == group_key and faq_handle != blank and question != blank and answer != blank -%}
+                  {%- liquid
+                    assign order_number = faq_handle | remove: 'qfa' | remove: '-' | plus: 0
+                    assign sort_number = order_number | plus: 1000000000
+                    assign faq_refs = faq_refs | append: sort_number | append: '::' | append: faq_handle | append: '||'
+                  -%}
                 {%- endif -%}
               {%- endfor -%}
-            {%- endif -%}
 
-            {%- if pair_index == 0 and qa_raw != blank -%}
-              {%- for line in qa_lines -%}
-                {%- assign line_stripped = line | strip -%}
-                {%- if line_stripped != blank -%}
-                  {%- assign sep = ' : ' -%}
-                  {%- unless line_stripped contains sep -%}
-                    {%- assign sep = ':' -%}
-                  {%- endunless -%}
-                  {%- if line_stripped contains sep -%}
-                    {%- assign parts = line_stripped | split: sep -%}
-                    {%- assign question = parts | first | strip -%}
-                    {%- assign answer = '' -%}
-                    {%- for p in parts -%}
-                      {%- unless forloop.first -%}
-                        {%- if answer == '' -%}
-                          {%- assign answer = p | strip -%}
-                        {%- else -%}
-                          {%- assign answer = answer | append: sep | append: p -%}
-                        {%- endif -%}
-                      {%- endunless -%}
-                    {%- endfor -%}
-                    {%- assign answer = answer | strip -%}
-                    {%- if question != blank -%}
+              {%- assign faq_refs = faq_refs | split: '||' | sort | reverse -%}
+              {%- for faq_ref in faq_refs -%}
+                {%- if faq_ref == blank -%}
+                  {%- continue -%}
+                {%- endif -%}
+                {%- assign sorted_handle = faq_ref | split: '::' | last -%}
+                {%- for faq in faqs -%}
+                  {%- liquid
+                    assign faq_handle = ''
+                    if faq.system and faq.system.handle != blank
+                      assign faq_handle = faq.system.handle
+                    elsif faq.handle != blank
+                      assign faq_handle = faq.handle
+                    endif
+                  -%}
+                  {%- if faq_handle == sorted_handle -%}
+                    {%- liquid
+                      assign question = ''
+                      if faq.question and faq.question.value != blank
+                        assign question = faq.question.value | strip
+                      endif
+                      assign answer = ''
+                      if faq.answer and faq.answer.value != blank
+                        assign answer = faq.answer.value | strip
+                      endif
+                    -%}
+                    {%- if question != blank and answer != blank -%}
                       {%- assign pair_index = pair_index | plus: 1 -%}
                       <div
                         class="tabbed-faq__item{% if cat_first and pair_index == 1 %} is-open{% endif %}"
@@ -224,9 +220,14 @@
                         </div>
                       </div>
                     {%- endif -%}
+                    {%- break -%}
                   {%- endif -%}
-                {%- endif -%}
+                {%- endfor -%}
               {%- endfor -%}
+            {%- endif -%}
+
+            {%- if pair_index == 0 -%}
+              <p class="tabbed-faq__empty">このカテゴリーのQ&Aはまだありません。</p>
             {%- endif -%}
           </div>
         </div>
@@ -772,19 +773,10 @@
         },
         {
           "type": "text",
-          "id": "qa_key",
-          "label": "翻訳キー",
-          "info": "locales の sections.tabbed_faq.qa.<翻訳キー> を参照します。英数字・アンダースコア推奨。",
-          "default": "account"
-        },
-        {
-          "type": "range",
-          "id": "item_count",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "label": "Q&A件数",
-          "default": 2
+          "id": "group_key",
+          "label": "メタオブジェクトのGroup",
+          "info": "qfaメタオブジェクトのGroup値と一致するQ&Aを表示します。例: workshop / license / etc",
+          "default": "workshop"
         }
       ]
     }
@@ -796,25 +788,22 @@
         {
           "type": "category",
           "settings": {
-            "tab_title": "会員登録・ログインについて",
-            "qa_key": "account",
-            "item_count": 2
+            "tab_title": "ワークショップ",
+            "group_key": "workshop"
           }
         },
         {
           "type": "category",
           "settings": {
-            "tab_title": "ご注文について",
-            "qa_key": "orders",
-            "item_count": 2
+            "tab_title": "認定講座",
+            "group_key": "license"
           }
         },
         {
           "type": "category",
           "settings": {
-            "tab_title": "お支払いについて",
-            "qa_key": "payment",
-            "item_count": 1
+            "tab_title": "その他",
+            "group_key": "etc"
           }
         }
       ]

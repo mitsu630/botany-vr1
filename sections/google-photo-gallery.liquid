@@ -79,7 +79,9 @@
               aria-live="polite"
             >
               <div class="google-photo-gallery__loading" role="status">
-                <span class="google-photo-gallery__spinner" aria-hidden="true"></span>
+                <span class="google-photo-gallery__spinner" aria-hidden="true">
+                  {{ 'loading-spinner.svg' | inline_asset_content }}
+                </span>
                 <span>{{ loading_text }}</span>
               </div>
               {%- for i in (1..section.settings.skeleton_count) -%}
@@ -270,14 +272,26 @@
   }
 
   .google-photo-gallery__spinner {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     flex: 0 0 auto;
     width: 2.2rem;
     height: 2.2rem;
-    border: 0.2rem solid rgba(var(--color-foreground), 0.16);
-    border-top-color: rgba(var(--color-foreground), 0.68);
-    border-radius: 50%;
-    animation: google-photo-gallery-spin 800ms linear infinite;
+  }
+
+  .google-photo-gallery__spinner svg {
+    width: 100%;
+    height: 100%;
+    animation: google-photo-gallery-spin 1.4s linear infinite !important;
+  }
+
+  .google-photo-gallery__spinner .path {
+    stroke: rgba(var(--color-foreground), 0.68);
+    stroke-dasharray: 280;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    animation: google-photo-gallery-dash 1.4s ease-in-out infinite !important;
   }
 
   .google-photo-gallery__tile:focus-visible {
@@ -419,6 +433,20 @@
     }
   }
 
+  @keyframes google-photo-gallery-dash {
+    0% {
+      stroke-dashoffset: 280;
+    }
+    50% {
+      stroke-dashoffset: 75;
+      transform: rotate(135deg);
+    }
+    100% {
+      stroke-dashoffset: 280;
+      transform: rotate(450deg);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .google-photo-gallery__tile img,
     .google-photo-gallery__lightbox,
@@ -431,7 +459,6 @@
       animation: none;
     }
 
-    .google-photo-gallery__spinner,
     .google-photo-gallery__tile.is-loading::before,
     .google-photo-gallery__tile.is-loading::after {
       animation: none;

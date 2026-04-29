@@ -65,9 +65,9 @@
         "text_a9gr7R": {
           "type": "text",
           "settings": {
-            "text": "<p>ボタニーペインティングは、植物という生命の断片に、自分自身を映し出す行為です。<br/>そこには、誰かが決めた「正解」も、なぞるべき「手本」も存在しません。</p>",
+            "text": "<p>ボタニーペインティングは、<br/>植物という生命の断片に、<br/>自分自身を映し出す行為です。<br/>そこには、誰かが決めた「正解」も、<br/>なぞるべき「手本」も存在しません。</p>",
             "text_font": "serif",
-            "font_size": 12,
+            "font_size": 13,
             "color": "#111111",
             "text_align": "center",
             "padding_top": 0,
@@ -95,7 +95,7 @@
           "settings": {
             "text": "<p>指導者や既存の価値観<br/>私たちは知らず知らずのうちに、<br/>外側の「正解」に頼ることに慣れてしまっています。<br/>ボタニーペインティングにおいて、<br/>価値の基準は描くあなた自身の中にしかありません。<br/>他者の歩んだ軌跡をなぞるのではなく、<br/>あなた自身の直感を信じてください。</p>",
             "text_font": "serif",
-            "font_size": 12,
+            "font_size": 13,
             "color": "#111111",
             "text_align": "center",
             "padding_top": 0,
@@ -123,7 +123,7 @@
           "settings": {
             "text": "<p>ボタニーペインティングは、<br/>自然（植物）と自己（人間）が対等に向き合うスタイルです。<br/>蓮や菩提樹の葉<br/>自然が生み出した唯一無二のかたちに、<br/>あなたという生命の色を重ねていく。<br/>その共鳴のプロセスを通じて、<br/>言葉を超えた自己との対話が静かに始まります。</p>",
             "text_font": "serif",
-            "font_size": 12,
+            "font_size": 13,
             "color": "#111111",
             "text_align": "center",
             "padding_top": 0,
@@ -151,7 +151,7 @@
           "settings": {
             "text": "<p>基礎という「型」は、感性を縛る鎖ではなく、自由へ向かうための土台です。<br/>学んだあとは、自ら研究し、<br/>自ら発見してください。<br/>筆を動かすその一瞬、色を選ぶその迷い。<br/>そのすべてが、あなたという人間の真実です。<br/>その探究の先にのみ、<br/>揺るぎない自己信頼が育っていきます。</p>",
             "text_font": "serif",
-            "font_size": 12,
+            "font_size": 13,
             "color": "#111111",
             "text_align": "center",
             "padding_top": 0,
@@ -165,10 +165,10 @@
           "settings": {
             "text": "<p>筆を置いたとき、目の前に現れた作品が、<br/>今のあなたそのものです。<br/>その「作品」を愛せるなら、<br/>あなたは真に自分を信頼したと言えるでしょう。</p><p>「羅針盤は、あなたの中に。」</p><p>この意味がすこし腑に落ちたとき、<br/>ボタニーペインティングの本当の旅が始まります。<br/><br/><em>\"Stop seeking answers from without; reflect your own truth upon the fragments of nature—<br/>the compass is always within you.\"<br/>botanypainting.com</em></p>",
             "text_font": "serif",
-            "font_size": 12,
+            "font_size": 13,
             "color": "#111111",
             "text_align": "center",
-            "padding_top": 0,
+            "padding_top": 20,
             "padding_bottom": 0,
             "margin_top": 0,
             "margin_bottom": 0

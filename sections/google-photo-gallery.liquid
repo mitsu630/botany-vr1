@@ -352,6 +352,32 @@
     content: "\203A" !important;
   }
 
+  .pswp__button--close {
+    top: 1.6rem !important;
+    right: 1.6rem !important;
+    width: 4.8rem !important;
+    height: 4.8rem !important;
+    border: 0.1rem solid rgba(255, 255, 255, 0.26) !important;
+    border-radius: 999rem !important;
+    background-color: rgba(0, 0, 0, 0.46) !important;
+    color: #fff !important;
+    opacity: 1 !important;
+  }
+
+  .pswp__button--close:hover {
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    background-color: rgba(0, 0, 0, 0.68) !important;
+  }
+
+  .pswp__button--close .pswp__icn {
+    width: 2.8rem !important;
+    height: 2.8rem !important;
+  }
+
+  .pswp__img {
+    object-fit: contain !important;
+  }
+
   .google-photo-gallery__pswp-watermark {
     position: fixed;
     top: 50%;
@@ -422,6 +448,7 @@
         this.albums = Array.from(this.querySelectorAll('[data-google-photo-album]'));
         this.photoSwipeLightbox = null;
         this.photoSwipeInitPromise = null;
+        this.dimensionPromises = new Map();
 
         this.loadAlbums();
         this.ensurePhotoSwipeStyles();
@@ -471,8 +498,8 @@
             const thumbnail = item.thumbnailUrl || item.thumbnail_url || item.src || item.url || baseUrl;
             const full = item.fullUrl || item.full_url || item.lightboxUrl || item.lightbox_url || item.url || baseUrl;
             const alt = item.alt || item.description || item.filename || item.title || '';
-            const width = Number(item.width || item.w || item.mediaMetadata?.width || item.media_metadata?.width || 2048);
-            const height = Number(item.height || item.h || item.mediaMetadata?.height || item.media_metadata?.height || 2048);
+            const width = Number(item.width || item.w || item.mediaMetadata?.width || item.media_metadata?.width || 0);
+            const height = Number(item.height || item.h || item.mediaMetadata?.height || item.media_metadata?.height || 0);
 
             return {
               thumbnail: this.withGooglePhotoSize(thumbnail, 'w900-h900-c'),
@@ -480,7 +507,8 @@
               alt,
               caption: item.caption || item.description || item.filename || '',
               width: width > 0 ? width : 2048,
-              height: height > 0 ? height : 2048
+              height: height > 0 ? height : 2048,
+              hasDimensions: width > 0 && height > 0
             };
           })
           .filter((item) => item.thumbnail);
@@ -511,6 +539,11 @@
           link.dataset.pswpHeight = String(photo.height);
           link.dataset.pswpCaption = photo.caption || '';
           link.setAttribute('aria-label', `${albumTitle || 'アルバム'}の写真 ${index + 1} を拡大表示`);
+
+          if (!photo.hasDimensions) {
+            link.dataset.needsImageDimensions = 'true';
+            link.addEventListener('click', (event) => this.handlePhotoClick(event, link));
+          }
 
           const image = document.createElement('img');
           image.alt = photo.alt || '';

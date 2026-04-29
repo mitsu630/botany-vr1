@@ -112,6 +112,15 @@
       <img alt="" data-lightbox-image loading="eager" width="2048" height="2048">
       <p class="google-photo-gallery__lightbox-caption" data-lightbox-caption></p>
     </div>
+    <img
+      class="google-photo-gallery__lightbox-watermark"
+      src="https://cdn.shopify.com/s/files/1/0402/9110/6972/files/sukashi.png?v=1777424554"
+      alt=""
+      width="640"
+      height="240"
+      loading="eager"
+      aria-hidden="true"
+    >
     <button class="google-photo-gallery__lightbox-nav google-photo-gallery__lightbox-nav--previous" type="button" data-lightbox-previous aria-label="前の写真">
       &#8249;
     </button>
@@ -350,6 +359,8 @@
   }
 
   .google-photo-gallery__lightbox-frame {
+    position: relative;
+    z-index: 1;
     max-width: min(108rem, 100%);
     max-height: 100%;
     display: grid;
@@ -392,6 +403,7 @@
     position: absolute;
     top: 1.8rem;
     right: 1.8rem;
+    z-index: 4;
     width: 4.4rem;
     height: 4.4rem;
     display: grid;
@@ -423,10 +435,26 @@
     stroke-linecap: round;
   }
 
+  .google-photo-gallery__lightbox-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: min(42rem, 58vw);
+    max-width: 72%;
+    height: auto;
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 0.42;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    user-select: none;
+  }
+
   .google-photo-gallery__lightbox-nav {
     position: absolute;
     top: 50%;
-    z-index: 2;
+    z-index: 3;
     width: clamp(4.4rem, 8vw, 7.2rem);
     height: clamp(7rem, 18vw, 12rem);
     display: grid;

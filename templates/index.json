@@ -178,7 +178,7 @@
           "type": "title",
           "settings": {
             "title": "",
-            "font": "assistant_n4",
+            "text_font": "assistant_n4",
             "font_size": 40,
             "color": "#111111",
             "text_align": "left",
@@ -192,7 +192,7 @@
           "type": "text",
           "settings": {
             "text": "",
-            "font": "assistant_n4",
+            "text_font": "assistant_n4",
             "font_size": 16,
             "color": "#111111",
             "text_align": "left",
@@ -810,12 +810,12 @@
           "type": "title",
           "settings": {
             "title": "<p>Botany Painting</p>",
-            "font": "dela_gothic_one_n4",
-            "font_size": 40,
+            "text_font": "serif",
+            "font_size": 29,
             "color": "#111111",
             "text_align": "center",
             "padding_top": 0,
-            "padding_bottom": 0,
+            "padding_bottom": 4,
             "margin_top": 0,
             "margin_bottom": 0
           }
@@ -824,12 +824,54 @@
           "type": "text",
           "settings": {
             "text": "<p>ロゴマークについて</p>",
-            "font": "assistant_n4",
-            "font_size": 16,
+            "text_font": "assistant_n4",
+            "font_size": 13,
             "color": "#111111",
-            "text_align": "left",
+            "text_align": "center",
             "padding_top": 0,
             "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_jMQVpN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ボタニーペインティングは、2017年に日本で生まれたオリジナルのアート講座です。</p><p>植物をモチーフに、丁寧に色を重ねていく。そのシンプルな喜びを大切にしながら、講座はすこしずつ広がってきました。</p><p>パートナー講師制度の始まり、台湾へのライセンス、プロ講師の誕生——節目ごとに、ロゴマークもその時々の想いを映して変わってきました。</p><p>それぞれのマークに込めた背景を、ここにご紹介します。</p>",
+            "text_font": "assistant_n4",
+            "font_size": 13,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "title_3jRFYB": {
+          "type": "title",
+          "settings": {
+            "title": "<p>Mark I</p>",
+            "text_font": "serif",
+            "font_size": 29,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 4,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "title_HDh8Ln": {
+          "type": "title",
+          "settings": {
+            "title": "<p><em>Fern Origin</em></p>",
+            "text_font": "serif",
+            "font_size": 18,
+            "color": "#111111",
+            "text_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 4,
             "margin_top": 0,
             "margin_bottom": 0
           }
@@ -837,6 +879,7 @@
         "image_bP9zUQ": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/1_2x_20478165-d5c2-4b92-95a2-8d13108a85ee.png",
             "aspect_ratio": "1 / 1",
             "image_fit": "cover",
             "image_width_mode": "box",
@@ -849,15 +892,14 @@
             "margin_bottom": 0
           }
         },
-        "button_XqmMwM": {
-          "type": "button",
+        "text_jMAbNH": {
+          "type": "text",
           "settings": {
-            "label": "詳しく見る",
-            "link": "",
-            "style": "primary",
-            "align": "center",
-            "button_background": "#111111",
-            "button_color": "#ffffff",
+            "text": "<p>最初のロゴマークは、インド菩提樹の葉をかたちにしたものでした。</p><p>菩提樹は、学びや気づきの象徴として古くから親しまれてきた木です。その葉の繊細な葉脈に、植物への敬意と、アートをはじめる喜びを重ねました。</p><p>このマークは後に、パートナー講師の皆さんが自由に使えるマークとして受け継がれました。教える人が増え、各地にボタニーペインティングが広がっていく——そんな草の根の動きを、この小さな葉が静かに見守ってきました。</p>",
+            "text_font": "assistant_n4",
+            "font_size": 13,
+            "color": "#111111",
+            "text_align": "center",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -868,20 +910,23 @@
       "block_order": [
         "title_KnETdW",
         "text_zXfrax",
+        "text_jMQVpN",
+        "title_3jRFYB",
+        "title_HDh8Ln",
         "image_bP9zUQ",
-        "button_XqmMwM"
+        "text_jMAbNH"
       ],
       "disabled": true,
       "name": "ビックカード",
       "settings": {
         "background_color": "#ffffff",
-        "text_color": "#111111",
+        "text_color": "#606060",
         "max_width": 1200,
         "border_radius": 16,
         "block_gap": 24,
-        "padding_top_desktop": 80,
+        "padding_top_desktop": 112,
         "padding_bottom_desktop": 80,
-        "padding_top_mobile": 48,
+        "padding_top_mobile": 76,
         "padding_bottom_mobile": 48
       }
     }

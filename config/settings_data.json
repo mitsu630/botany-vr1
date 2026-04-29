@@ -495,5 +495,10 @@
         }
       }
     }
+  },
+  "platform_customizations": {
+    "custom_css": [
+      ".registered-mark {font-size: 0.55em; line-height: 1; vertical-align: super;}"
+    ]
   }
 }

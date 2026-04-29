@@ -1,0 +1,47 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "context": {
+    "market": "台湾"
+  },
+  "parent": "page.qa.json",
+  "sections": {
+    "tabbed_faq_4tkqNR": {
+      "settings": {},
+      "blocks": {
+        "category_kRqVa": {
+          "type": "category",
+          "disabled": false,
+          "settings": {
+            "tab_title": "会員登録・ログインについて",
+            "group_key": "workshop",
+            "sort_direction": "desc"
+          }
+        },
+        "category_bYGBU": {
+          "type": "category",
+          "disabled": false,
+          "settings": {
+            "tab_title": "会員登録・ログインについて",
+            "group_key": "workshop",
+            "sort_direction": "desc"
+          }
+        }
+      },
+      "block_order": [
+        "category_kRqVa",
+        "category_HKXcjK",
+        "category_bYGBU",
+        "category_QpbVc4",
+        "category_RKBWPC"
+      ]
+    }
+  }
+}

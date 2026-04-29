@@ -1,0 +1,30 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "context": {
+    "market": "台湾"
+  },
+  "parent": "index.json",
+  "sections": {},
+  "order": [
+    "custom_buttons_B7pFbJ",
+    "autoplay_loop_video_qjVFkb",
+    "multicolumn",
+    "big_card_HUHkac",
+    "rich_text_mdmQjc",
+    "video_EkLcCx",
+    "rich_text_LXVceC",
+    "promo_framed_content_EKixLL",
+    "multicolumn_fmMNbk",
+    "slideshow_WAxXXG",
+    "video_7rBJ6d",
+    "featured_product_mcjbRH"
+  ]
+}

@@ -12,5 +12,36 @@
     "market": "台湾"
   },
   "parent": "page.qa.json",
-  "sections": {}
+  "sections": {
+    "tabbed_faq_4tkqNR": {
+      "settings": {},
+      "blocks": {
+        "category_kRqVa": {
+          "type": "category",
+          "disabled": false,
+          "settings": {
+            "tab_title": "会員登録・ログインについて",
+            "group_key": "workshop",
+            "sort_direction": "desc"
+          }
+        },
+        "category_bYGBU": {
+          "type": "category",
+          "disabled": false,
+          "settings": {
+            "tab_title": "会員登録・ログインについて",
+            "group_key": "workshop",
+            "sort_direction": "desc"
+          }
+        }
+      },
+      "block_order": [
+        "category_kRqVa",
+        "category_HKXcjK",
+        "category_bYGBU",
+        "category_QpbVc4",
+        "category_RKBWPC"
+      ]
+    }
+  }
 }

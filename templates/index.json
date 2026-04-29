@@ -798,6 +798,84 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "big_card_d7k89": {
+      "type": "big-card",
+      "blocks": {
+        "title_KnETdW": {
+          "type": "title",
+          "settings": {
+            "title": "<p>Botany Painting</p>",
+            "font_size": 40,
+            "color": "#111111",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "text_zXfrax": {
+          "type": "text",
+          "settings": {
+            "text": "<p>ロゴマークについて</p>",
+            "font_size": 16,
+            "color": "#111111",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "image_bP9zUQ": {
+          "type": "image",
+          "settings": {
+            "aspect_ratio": "1 / 1",
+            "image_fit": "cover",
+            "image_width_mode": "box",
+            "image_box_width": 300,
+            "image_box_height": 300,
+            "image_align": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        },
+        "button_XqmMwM": {
+          "type": "button",
+          "settings": {
+            "label": "詳しく見る",
+            "link": "",
+            "style": "primary",
+            "align": "center",
+            "button_background": "#111111",
+            "button_color": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "title_KnETdW",
+        "text_zXfrax",
+        "image_bP9zUQ",
+        "button_XqmMwM"
+      ],
+      "disabled": true,
+      "name": "ビックカード",
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#111111",
+        "max_width": 1200,
+        "border_radius": 16,
+        "block_gap": 24,
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
+      }
     }
   },
   "order": [
@@ -812,6 +890,7 @@
     "multicolumn_fmMNbk",
     "slideshow_WAxXXG",
     "video_7rBJ6d",
-    "featured_product_mcjbRH"
+    "featured_product_mcjbRH",
+    "big_card_d7k89"
   ]
 }

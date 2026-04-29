@@ -314,7 +314,7 @@
   }
 
   .pswp {
-    --pswp-bg: rgba(0, 0, 0, 0.86) !important;
+    --pswp-bg: rgba(0, 0, 0, 0.58) !important;
   }
 
   .pswp__button--arrow {
@@ -325,6 +325,7 @@
     margin-top: calc(clamp(7rem, 18vw, 12rem) / -2) !important;
     color: rgba(255, 255, 255, 0.82) !important;
     opacity: 1 !important;
+    text-shadow: 0 0.1rem 0.8rem rgba(0, 0, 0, 0.28) !important;
   }
 
   .pswp__button--arrow:hover {
@@ -336,20 +337,20 @@
   }
 
   .pswp__button--arrow::before {
-    content: "\2039" !important;
+    content: "<" !important;
     position: static !important;
     width: auto !important;
     height: auto !important;
     margin: 0 !important;
     background: transparent !important;
-    font-family: Georgia, 'Times New Roman', serif !important;
-    font-size: clamp(5.2rem, 11vw, 8.8rem) !important;
-    font-weight: 200 !important;
-    line-height: 1 !important;
+    font-family: 'Helvetica Neue', Arial, sans-serif !important;
+    font-size: clamp(4.6rem, 10vw, 7.8rem) !important;
+    font-weight: 100 !important;
+    line-height: 0.9 !important;
   }
 
   .pswp__button--arrow--next::before {
-    content: "\203A" !important;
+    content: ">" !important;
   }
 
   .pswp__button--close {
@@ -361,6 +362,12 @@
     border-radius: 999rem !important;
     background-color: rgba(0, 0, 0, 0.46) !important;
     color: #fff !important;
+    display: grid !important;
+    place-items: center !important;
+    font-family: 'Helvetica Neue', Arial, sans-serif !important;
+    font-size: 3.4rem !important;
+    font-weight: 200 !important;
+    line-height: 1 !important;
     opacity: 1 !important;
   }
 
@@ -370,8 +377,17 @@
   }
 
   .pswp__button--close .pswp__icn {
-    width: 2.8rem !important;
-    height: 2.8rem !important;
+    display: none !important;
+  }
+
+  .pswp__button--close::before {
+    content: "\00D7" !important;
+    display: block !important;
+    width: 1em !important;
+    height: 1em !important;
+    margin-top: -0.05em !important;
+    line-height: 0.92 !important;
+    text-align: center !important;
   }
 
   .pswp__img {

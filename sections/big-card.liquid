@@ -1,4 +1,10 @@
 {%- style -%}
+  {%- for block in section.blocks -%}
+    {%- if block.settings.font != blank -%}
+      {{ block.settings.font | font_face: font_display: 'swap' }}
+    {%- endif -%}
+  {%- endfor -%}
+
   #shopify-section-{{ section.id }} {
     --big-card-background: {{ section.settings.background_color }};
     --big-card-text-color: {{ section.settings.text_color }};
@@ -52,6 +58,13 @@
 
   #shopify-section-{{ section.id }} .big-card__title {
     line-height: 1.25;
+  }
+
+  #shopify-section-{{ section.id }} .big-card__title *,
+  #shopify-section-{{ section.id }} .big-card__text *,
+  #shopify-section-{{ section.id }} .big-card__text-column *,
+  #shopify-section-{{ section.id }} .big-card__text-cell * {
+    font-family: inherit;
   }
 
   #shopify-section-{{ section.id }} .big-card__title > *:first-child,

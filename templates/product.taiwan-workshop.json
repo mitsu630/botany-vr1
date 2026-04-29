@@ -148,8 +148,7 @@
         "enable_country_selector": true,
         "enable_language_selector": true,
         "content_alignment": "center",
-        "mobile_layout": "column",
-        "full_width": false,
+        "full_width": true,
         "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 100

@@ -372,6 +372,10 @@
                 if name == blank
                   assign name = m.system.handle
                 endif
+                assign display_name = name
+                if m.bp_nickname and m.bp_nickname.value != blank
+                  assign display_name = m.bp_nickname.value
+                endif
 
                 assign kana_last = ''
                 if m.bp_last_name_kana and m.bp_last_name_kana.value != blank
@@ -406,7 +410,7 @@
                 data-region="{{ region | escape }}"
                 data-rank="{{ rank | escape }}"
                 data-has-photo="{% if photo != blank %}1{% else %}0{% endif %}"
-                data-sort-name="{{ name | escape }}"
+                data-sort-name="{{ display_name | escape }}"
                 data-sort-kana="{{ kana | escape }}"
               >
                 <a
@@ -420,7 +424,7 @@
                     {%- if photo != blank -%}
                       <img
                         src="{{ photo | image_url: width: 480, height: 360, crop: 'center' }}"
-                        alt="{{ name | escape }}"
+                        alt="{{ display_name | escape }}"
                         width="480"
                         height="360"
                         loading="lazy"
@@ -438,7 +442,7 @@
                         <span class="instructor-card__region">{{ country | escape }}</span>
                       {%- endif -%}
                     </div>
-                    <p class="instructor-card__name">{{ name | escape }}</p>
+                    <p class="instructor-card__name">{{ display_name | escape }}</p>
                     {%- if kana != blank -%}
                       <p class="instructor-card__kana">{{ kana | escape }}</p>
                     {%- endif -%}

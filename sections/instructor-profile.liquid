@@ -174,15 +174,6 @@
   @media screen and (max-width: 749px) { .instructor-profile__name { font-size: 3rem; } }
   @media screen and (min-width: 750px) { .instructor-profile__name { text-align: left; } }
 
-  .instructor-profile__name-kana {
-    font-size: 1.3rem;
-    color: rgba(var(--color-foreground), 0.55);
-    margin: -1.2rem 0 1.2rem;
-    letter-spacing: 0.06em;
-    text-align: center;
-  }
-  @media screen and (min-width: 750px) { .instructor-profile__name-kana { text-align: left; } }
-
   .instructor-profile__meta {
     display: grid;
     gap: 0;
@@ -528,14 +519,11 @@
     hero += '</div>';
     if (instructor.kicker) hero += '<p class="instructor-profile__kicker">' + escapeHtml(instructor.kicker) + '</p>';
     hero += '<h1 class="instructor-profile__name">' + escapeHtml(instructor.name) + '</h1>';
-    if (instructor.kana) hero += '<p class="instructor-profile__name-kana">' + escapeHtml(instructor.kana) + '</p>';
     hero += '<div class="instructor-profile__meta">';
     (instructor.facts || []).forEach(function (f) {
       if (!f) return;
       hero += '<p class="instructor-profile__meta-item">' + escapeHtml(f) + '</p>';
     });
-    if (instructor.license) hero += '<p class="instructor-profile__meta-item">ライセンス番号：' + escapeHtml(instructor.license) + '</p>';
-    if (instructor.status) hero += '<p class="instructor-profile__meta-item">' + escapeHtml(instructor.status) + '</p>';
     hero += '</div>';
     if (instructor.sns_ig || instructor.sns_fb) {
       hero += '<div class="instructor-profile__sns">';
@@ -617,9 +605,10 @@
         assign name = m.system.handle
       endif
 
-      assign kana_last = m.bp_last_name_kana.value | default: ''
-      assign kana_first = m.bp_first_name_kana.value | default: ''
-      assign kana = kana_last | append: ' ' | append: kana_first | strip
+      assign display_name = name
+      if m.bp_nickname and m.bp_nickname.value != blank
+        assign display_name = m.bp_nickname.value
+      endif
 
       assign photo_url = ''
       if m.bp_photo_profile and m.bp_photo_profile.value != blank
@@ -640,20 +629,11 @@
       assign fact_3 = m.bp_fact_3.value | default: ''
       assign fact_4 = m.bp_fact_4.value | default: ''
 
-      assign license = m.bp_license_no.value | default: ''
-      assign status = m.bp_status.value | default: ''
-
       assign sns_ig = m.bp_sns_ig.value | default: ''
       assign sns_fb = m.bp_sns_fb.value | default: ''
 
       assign bio = m.bp_bio.value | default: ''
       assign ig_embed = m.bp_sns_ig_embed.value | default: ''
-
-      assign nickname = ''
-      if m.bp_nickname and m.bp_nickname.value != blank
-        assign nickname = m.bp_nickname.value
-      endif
-      assign hero_label = nickname | default: name
 
       assign works = m.bp_photo_work001.value
     -%}
@@ -661,21 +641,18 @@
       "handle": {{ m.system.handle | json }},
       "bp_id": {{ bp_id | json }},
       "bp_is_active": {{ is_active | json }},
-      "name": {{ name | json }},
-      "kana": {{ kana | json }},
+      "name": {{ display_name | json }},
       "photo": {{ photo_url | json }},
       "rank": {{ rank | json }},
       "location": {{ location | json }},
       "country": {{ country | json }},
       "facts": [{{ fact_1 | json }}, {{ fact_2 | json }}, {{ fact_3 | json }}, {{ fact_4 | json }}],
-      "license": {{ license | json }},
-      "status": {{ status | json }},
       "sns_ig": {{ sns_ig | json }},
       "sns_fb": {{ sns_fb | json }},
       "bio": {{ bio | json }},
       "ig_embed": {{ ig_embed | json }},
       "kicker": {{ section.settings.hero_kicker | json }},
-      "hero_label": {{ hero_label | json }},
+      "hero_label": {{ display_name | json }},
       "works": [
         {%- if works != blank and works.size > 0 -%}
           {%- for img in works -%}
@@ -702,7 +679,6 @@
       "limit": 1,
       "settings": [
         { "type": "checkbox", "id": "show_rank",    "label": "ランクを表示",                   "default": true  },
-        { "type": "checkbox", "id": "show_license", "label": "ライセンス番号・ステータスを表示", "default": false },
         { "type": "checkbox", "id": "show_sns",     "label": "SNSリンクを表示",                "default": true  }
       ]
     },

@@ -374,7 +374,7 @@
     if (!root) return;
 
     root.querySelectorAll('[data-world-file-image]').forEach(function (img) {
-      img.addEventListener('error', function () {
+      function tryNextFallback() {
         var next = Number(img.getAttribute('data-fallback-index') || '1');
         var fallback = '';
 
@@ -388,7 +388,14 @@
         img.setAttribute('data-fallback-index', String(next));
         if (!fallback) return;
         img.src = fallback;
-      });
+      }
+
+      img.addEventListener('error', tryNextFallback);
+
+      // The first failed image can happen before this script attaches in the theme editor.
+      if (img.complete && img.naturalWidth === 0) {
+        tryNextFallback();
+      }
     });
   })();
 </script>

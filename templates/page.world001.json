@@ -21,11 +21,11 @@
       "type": "world-instructor-list",
       "settings": {
         "eyebrow": "INSTRUCTORS",
-        "title": "台灣講師介紹",
+        "title": "台灣香港講師介紹",
         "subtitle": "",
         "show_count": false,
         "count_suffix": "名",
-        "area_prefix": "活動地域: ",
+        "area_prefix": "活動地域:",
         "button_label": "講師詳情請點此",
         "columns_desktop": 4,
         "image_size": 88,

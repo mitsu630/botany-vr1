@@ -269,6 +269,10 @@
             if image_field and image_field.value != blank
               assign image_name = image_field.value | strip
             endif
+            assign image_src_name = image_name
+            unless image_src_name contains '.'
+              assign image_src_name = image_src_name | append: section.settings.default_image_extension
+            endunless
 
             assign comment_field = instructor.comment
             assign comment = ''
@@ -299,11 +303,18 @@
             <div class="world-instructor-card__image">
               {%- if image_name != blank -%}
                 <img
-                  src="{{ image_name | file_url }}"
+                  src="{{ image_src_name | file_url }}"
                   alt="{{ name | escape }}"
                   width="{{ section.settings.image_size }}"
                   height="{{ section.settings.image_size }}"
                   loading="lazy"
+                  data-world-file-image
+                  data-fallback-1="{{ image_name | append: '.JPG' | file_url }}"
+                  data-fallback-2="{{ image_name | append: '.jpg' | file_url }}"
+                  data-fallback-3="{{ image_name | append: '.jpeg' | file_url }}"
+                  data-fallback-4="{{ image_name | append: '.JPEG' | file_url }}"
+                  data-fallback-5="{{ image_name | append: '.png' | file_url }}"
+                  data-fallback-6="{{ image_name | append: '.PNG' | file_url }}"
                 >
               {%- else -%}
                 <div class="world-instructor-card__placeholder" aria-hidden="true">
@@ -356,6 +367,31 @@
     {%- endif -%}
   </div>
 </section>
+
+<script>
+  (function () {
+    var root = document.querySelector('.world-instructors-{{ section.id }}');
+    if (!root) return;
+
+    root.querySelectorAll('[data-world-file-image]').forEach(function (img) {
+      img.addEventListener('error', function () {
+        var next = Number(img.getAttribute('data-fallback-index') || '1');
+        var fallback = '';
+
+        while (next <= 6) {
+          fallback = img.getAttribute('data-fallback-' + next);
+          next += 1;
+          if (fallback && fallback !== img.currentSrc && fallback !== img.src) break;
+          fallback = '';
+        }
+
+        img.setAttribute('data-fallback-index', String(next));
+        if (!fallback) return;
+        img.src = fallback;
+      });
+    });
+  })();
+</script>
 
 {% schema %}
 {
@@ -431,6 +467,13 @@
       "unit": "px",
       "label": "画像サイズ",
       "default": 88
+    },
+    {
+      "type": "text",
+      "id": "default_image_extension",
+      "label": "拡張子なし画像名の既定拡張子",
+      "default": ".JPG",
+      "info": "メタオブジェクトの image に拡張子なしで入力した場合に付与します。例: world001-name -> world001-name.JPG"
     },
     {
       "type": "header",

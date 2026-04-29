@@ -29,6 +29,7 @@
         "button_label": "講師詳情請點此",
         "columns_desktop": 4,
         "image_size": 88,
+        "default_image_extension": ".JPG",
         "background_color": "#f8e8e5",
         "card_background_color": "#ffffff",
         "card_border_color": "#f2d9d4",

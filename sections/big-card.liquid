@@ -1,7 +1,20 @@
 {%- style -%}
   {%- for block in section.blocks -%}
-    {%- if block.settings.font != blank -%}
-      {{ block.settings.font | font_face: font_display: 'swap' }}
+    {%- if block.settings.text_font != blank -%}
+      {{ block.settings.text_font | font_face: font_display: 'swap' }}
+
+      #shopify-section-{{ section.id }} .big-card__block--{{ block.id }} .big-card__title,
+      #shopify-section-{{ section.id }} .big-card__block--{{ block.id }} .big-card__title *,
+      #shopify-section-{{ section.id }} .big-card__block--{{ block.id }} .big-card__text,
+      #shopify-section-{{ section.id }} .big-card__block--{{ block.id }} .big-card__text *,
+      #shopify-section-{{ section.id }} .big-card__block--{{ block.id }} .big-card__text-column,
+      #shopify-section-{{ section.id }} .big-card__block--{{ block.id }} .big-card__text-column *,
+      #shopify-section-{{ section.id }} .big-card__block--{{ block.id }} .big-card__text-cell,
+      #shopify-section-{{ section.id }} .big-card__block--{{ block.id }} .big-card__text-cell * {
+        font-family: {{ block.settings.text_font.family }}, {{ block.settings.text_font.fallback_families }} !important;
+        font-style: {{ block.settings.text_font.style }} !important;
+        font-weight: {{ block.settings.text_font.weight }} !important;
+      }
     {%- endif -%}
   {%- endfor -%}
 
@@ -285,15 +298,15 @@
           color: {{ block_color }};
           font-size: {{ block_font_size }}px;
           text-align: {{ block_text_align }};
-          {%- if block.settings.font != blank -%}
-            font-family: {{ block.settings.font.family }}, {{ block.settings.font.fallback_families }} !important;
-            font-style: {{ block.settings.font.style }} !important;
-            font-weight: {{ block.settings.font.weight }} !important;
+          {%- if block.settings.text_font != blank -%}
+            font-family: {{ block.settings.text_font.family }}, {{ block.settings.text_font.fallback_families }} !important;
+            font-style: {{ block.settings.text_font.style }} !important;
+            font-weight: {{ block.settings.text_font.weight }} !important;
           {%- endif -%}
         {%- endcapture -%}
 
         <div
-          class="big-card__block big-card__block--{{ block.type }}"
+          class="big-card__block big-card__block--{{ block.type }} big-card__block--{{ block.id }}"
           style="
             --big-card-block-color: {{ block_color }};
             --big-card-block-font-size: {{ block_font_size }}px;
@@ -302,10 +315,10 @@
             --big-card-block-margin-top: {{ block_margin_top }}px;
             --big-card-block-margin-bottom: {{ block_margin_bottom }}px;
             --big-card-block-text-align: {{ block_text_align }};
-            {%- if block.settings.font != blank -%}
-              --big-card-block-font-family: {{ block.settings.font.family }}, {{ block.settings.font.fallback_families }};
-              --big-card-block-font-style: {{ block.settings.font.style }};
-              --big-card-block-font-weight: {{ block.settings.font.weight }};
+            {%- if block.settings.text_font != blank -%}
+              --big-card-block-font-family: {{ block.settings.text_font.family }}, {{ block.settings.text_font.fallback_families }};
+              --big-card-block-font-style: {{ block.settings.text_font.style }};
+              --big-card-block-font-weight: {{ block.settings.text_font.weight }};
             {%- endif -%}
             --big-card-media-ratio: {{ media_ratio }};
             --big-card-grid-gap: {{ grid_gap }}px;
@@ -672,7 +685,7 @@
         },
         {
           "type": "font_picker",
-          "id": "font",
+          "id": "text_font",
           "label": "フォント",
           "default": "assistant_n4"
         },
@@ -766,7 +779,7 @@
         },
         {
           "type": "font_picker",
-          "id": "font",
+          "id": "text_font",
           "label": "フォント",
           "default": "assistant_n4"
         },
@@ -1268,7 +1281,7 @@
         },
         {
           "type": "font_picker",
-          "id": "font",
+          "id": "text_font",
           "label": "フォント",
           "default": "assistant_n4"
         },
@@ -1390,7 +1403,7 @@
         },
         {
           "type": "font_picker",
-          "id": "font",
+          "id": "text_font",
           "label": "フォント",
           "default": "assistant_n4"
         },

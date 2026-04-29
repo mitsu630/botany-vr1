@@ -579,6 +579,65 @@
         document.head.append(link);
       }
 
+      async handlePhotoClick(event, link) {
+        if (link.dataset.needsImageDimensions !== 'true') {
+          return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        await this.initializePhotoSwipe();
+        await this.updateLinkImageDimensions(link);
+
+        const links = Array.from(this.querySelectorAll('.google-photo-gallery__tile'));
+        const index = links.indexOf(link);
+
+        if (index >= 0) {
+          this.photoSwipeLightbox?.loadAndOpen(index);
+        }
+      }
+
+      updateLinkImageDimensions(link) {
+        const src = link.href;
+
+        if (!src) {
+          return Promise.resolve();
+        }
+
+        if (!this.dimensionPromises.has(src)) {
+          this.dimensionPromises.set(
+            src,
+            new Promise((resolve) => {
+              const image = new Image();
+
+              image.onload = () => {
+                if (image.naturalWidth > 0 && image.naturalHeight > 0) {
+                  resolve({
+                    width: image.naturalWidth,
+                    height: image.naturalHeight
+                  });
+                  return;
+                }
+
+                resolve(null);
+              };
+
+              image.onerror = () => resolve(null);
+              image.src = src;
+            })
+          );
+        }
+
+        return this.dimensionPromises.get(src).then((dimensions) => {
+          if (dimensions) {
+            link.dataset.pswpWidth = String(dimensions.width);
+            link.dataset.pswpHeight = String(dimensions.height);
+            link.dataset.needsImageDimensions = 'false';
+          }
+        });
+      }
+
       async initializePhotoSwipe() {
         if (this.photoSwipeLightbox || this.photoSwipeInitPromise) {
           return this.photoSwipeInitPromise;

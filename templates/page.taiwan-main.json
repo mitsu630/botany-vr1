@@ -9,10 +9,10 @@
  */
 {
   "sections": {
-    "custom_buttons_FiUnki": {
+    "custom_buttons_xP7ENp": {
       "type": "custom-buttons",
       "blocks": {
-        "button_fcnDp9": {
+        "button_xbLMJy": {
           "type": "button",
           "settings": {
             "text": "師資取得課程",
@@ -31,7 +31,7 @@
             "font_weight": "400"
           }
         },
-        "button_cC6TjK": {
+        "button_7KX6EL": {
           "type": "button",
           "settings": {
             "text": "單日體驗課程",
@@ -50,10 +50,10 @@
             "font_weight": "400"
           }
         },
-        "button_39dhG3": {
+        "button_XbTLm3": {
           "type": "button",
           "settings": {
-            "text": "取得講師",
+            "text": "認證講師",
             "link": "shopify://pages/world001",
             "open_new_tab": false,
             "background_color": "#c44e93",
@@ -71,9 +71,9 @@
         }
       },
       "block_order": [
-        "button_fcnDp9",
-        "button_cC6TjK",
-        "button_39dhG3"
+        "button_xbLMJy",
+        "button_7KX6EL",
+        "button_XbTLm3"
       ],
       "name": "ボタンズ (custom-buttons)",
       "settings": {
@@ -415,7 +415,7 @@
     }
   },
   "order": [
-    "custom_buttons_FiUnki",
+    "custom_buttons_xP7ENp",
     "localization_selectors_6XALWq",
     "main",
     "slideshow_fbMJg6",

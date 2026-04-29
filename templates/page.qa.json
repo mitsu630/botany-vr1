@@ -25,7 +25,8 @@
           "name": "ワークショップ",
           "settings": {
             "tab_title": "ワークショップ",
-            "group_key": "workshop"
+            "group_key": "workshop",
+            "sort_direction": "desc"
           }
         },
         "category_QpbVc4": {
@@ -33,7 +34,8 @@
           "name": "認定講座",
           "settings": {
             "tab_title": "認定講座",
-            "group_key": "license"
+            "group_key": "license",
+            "sort_direction": "asc"
           }
         },
         "category_RKBWPC": {
@@ -41,7 +43,8 @@
           "name": "その他",
           "settings": {
             "tab_title": "その他",
-            "group_key": "etc"
+            "group_key": "etc",
+            "sort_direction": "desc"
           }
         }
       },

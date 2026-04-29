@@ -108,6 +108,7 @@
             assign cat_first = true
           endif
           assign group_key = block.settings.group_key | default: block.settings.qa_key | default: block.settings.tab_title | strip
+          assign sort_direction = block.settings.sort_direction | default: 'desc'
         -%}
         <div
           class="tabbed-faq__panel{% if cat_first %} is-active{% endif %}"
@@ -169,7 +170,10 @@
                 {%- endif -%}
               {%- endfor -%}
 
-              {%- assign faq_refs = faq_refs | split: '||' | sort | reverse -%}
+              {%- assign faq_refs = faq_refs | split: '||' | sort -%}
+              {%- if sort_direction == 'desc' -%}
+                {%- assign faq_refs = faq_refs | reverse -%}
+              {%- endif -%}
               {%- for faq_ref in faq_refs -%}
                 {%- if faq_ref == blank -%}
                   {%- continue -%}
@@ -788,6 +792,22 @@
           "label": "メタオブジェクトのGroup",
           "info": "qfaメタオブジェクトのGroup値と一致するQ&Aを表示します。例: workshop / license / etc",
           "default": "workshop"
+        },
+        {
+          "type": "select",
+          "id": "sort_direction",
+          "label": "表示順",
+          "options": [
+            {
+              "value": "desc",
+              "label": "ハンドル番号が大きい順"
+            },
+            {
+              "value": "asc",
+              "label": "ハンドル番号が小さい順"
+            }
+          ],
+          "default": "desc"
         }
       ]
     }
@@ -800,21 +820,24 @@
           "type": "category",
           "settings": {
             "tab_title": "ワークショップ",
-            "group_key": "workshop"
+            "group_key": "workshop",
+            "sort_direction": "desc"
           }
         },
         {
           "type": "category",
           "settings": {
             "tab_title": "認定講座",
-            "group_key": "license"
+            "group_key": "license",
+            "sort_direction": "asc"
           }
         },
         {
           "type": "category",
           "settings": {
             "tab_title": "その他",
-            "group_key": "etc"
+            "group_key": "etc",
+            "sort_direction": "desc"
           }
         }
       ]

@@ -412,7 +412,6 @@
   <div class="page-width section-{{ section.id }}-padding">
     <div class="instructor-profile__inner">
 
-      <div id="InstructorProfileDebug-{{ section.id }}"></div>
       <div class="instructor-profile__not-found" id="InstructorProfileNotFound-{{ section.id }}" hidden>
         <p>{{ section.settings.not_found_message | escape }}</p>
       </div>
@@ -486,38 +485,19 @@
   function render() {
     var mount = document.getElementById('InstructorProfileMount-{{ section.id }}');
     var nf = document.getElementById('InstructorProfileNotFound-{{ section.id }}');
-    var debugMount = document.getElementById('InstructorProfileDebug-{{ section.id }}');
     if (!mount || !nf) return;
 
     var id = (getParam('id') || '').trim();
     var dataEl = document.getElementById('InstructorProfileData-{{ section.id }}');
     var instructors = [];
-    var parseError = '';
     var raw = (dataEl && dataEl.textContent) ? dataEl.textContent : '';
-    try { instructors = JSON.parse(raw || '[]'); } catch (e) { parseError = (e && e.message) ? String(e.message) : 'parse failed'; }
+    try { instructors = JSON.parse(raw || '[]'); } catch (e) { instructors = []; }
 
     var instructor = instructors.find(function (x) {
       if (!x) return false;
       return (x.handle && x.handle === id) || (x.bp_id && x.bp_id === id);
     }) || null;
     var isActive = instructor && instructor.bp_is_active === true;
-
-    if ({{ section.settings.debug | json }}) {
-      var sample = (instructors || []).slice(0, 8).map(function (x) { return x && (x.handle || x.bp_id) ? (x.handle || x.bp_id) : ''; }).filter(Boolean);
-      debugMount.innerHTML =
-        '<div style="margin: 0 0 1.2rem; padding: 1.2rem 1.4rem; border: 1px dashed rgba(var(--color-foreground), 0.25); border-radius: 0.8rem; font-size: 12px; background: rgba(255,255,255,0.6);">' +
-        '<div><strong>debug</strong></div>' +
-        '<div>id(param): <code>' + escapeHtml(id) + '</code></div>' +
-        '<div>json_raw_len: <code>' + String(raw ? raw.length : 0) + '</code></div>' +
-        '<div>parse_error: <code>' + escapeHtml(parseError || '-') + '</code></div>' +
-        '<div>count: <code>' + String((instructors && instructors.length) ? instructors.length : 0) + '</code></div>' +
-        '<div>sample(handles): <code>' + escapeHtml(sample.join(', ') || '-') + '</code></div>' +
-        '<div>found: <code>' + (instructor ? 'true' : 'false') + '</code></div>' +
-        '<div>handle: <code>' + escapeHtml(instructor && instructor.handle) + '</code></div>' +
-        '<div>bp_id: <code>' + escapeHtml(instructor && instructor.bp_id) + '</code></div>' +
-        '<div>bp_is_active: <code>' + (instructor ? String(instructor.bp_is_active) : '-') + '</code></div>' +
-        '</div>';
-    }
 
     if (!instructor || !isActive) {
       nf.hidden = false;
@@ -779,12 +759,6 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
-    },
-    {
-      "type": "checkbox",
-      "id": "debug",
-      "label": "デバッグ表示（id/取得結果）",
-      "default": false
     },
     {
       "type": "header",

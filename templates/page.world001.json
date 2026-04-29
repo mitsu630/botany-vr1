@@ -1,0 +1,53 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "world_instructor_list": {
+      "type": "world-instructor-list",
+      "settings": {
+        "eyebrow": "INSTRUCTORS",
+        "title": "台灣講師介紹",
+        "subtitle": "",
+        "show_count": false,
+        "count_suffix": "名",
+        "area_prefix": "活動地域: ",
+        "button_label": "講師詳情請點此",
+        "columns_desktop": 4,
+        "image_size": 88,
+        "background_color": "#f8e8e5",
+        "card_background_color": "#ffffff",
+        "card_border_color": "#f2d9d4",
+        "heading_color": "#2d2a25",
+        "text_color": "#2d2a25",
+        "subtext_color": "#5e5b53",
+        "accent_color": "#9c7a52",
+        "button_background_color": "#9b5f83",
+        "button_text_color": "#ffffff",
+        "icon_color": "#5d7f9a",
+        "card_radius": 4,
+        "empty_text": "表示できる講師情報がまだありません。",
+        "padding_top": 48,
+        "padding_bottom": 56
+      }
+    }
+  },
+  "order": [
+    "main",
+    "world_instructor_list"
+  ]
+}

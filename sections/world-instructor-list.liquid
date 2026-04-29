@@ -1,0 +1,546 @@
+{%- liquid
+  assign instructors_src = shop.metaobjects.world_instructor
+  assign instructors = blank
+  if instructors_src
+    assign instructors = instructors_src.values
+  endif
+
+  assign visible_count = 0
+  if instructors != blank
+    for instructor in instructors
+      assign status_field = instructor['Status'] | default: instructor.status
+      assign status = ''
+      if status_field and status_field.value != blank
+        assign status = status_field.value | downcase | strip
+      endif
+
+      assign is_hidden = false
+      if status == '非公開' or status == 'inactive' or status == 'false' or status == '0' or status == 'off' or status == 'draft' or status == 'hide' or status == 'hidden'
+        assign is_hidden = true
+      endif
+
+      unless is_hidden
+        assign visible_count = visible_count | plus: 1
+      endunless
+    endfor
+  endif
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .world-instructors-{{ section.id }} {
+    background: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+  }
+
+  .world-instructors-{{ section.id }} .world-instructors__head {
+    max-width: 860px;
+    margin: 0 auto 3.2rem;
+    text-align: center;
+  }
+
+  .world-instructors-{{ section.id }} .world-instructors__eyebrow {
+    margin: 0 0 0.8rem;
+    color: {{ section.settings.accent_color }};
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  .world-instructors-{{ section.id }} .world-instructors__title {
+    margin: 0;
+    color: {{ section.settings.heading_color }};
+    font-size: clamp(2.6rem, 4vw, 4rem);
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+  }
+
+  .world-instructors-{{ section.id }} .world-instructors__subtitle {
+    margin: 1.2rem 0 0;
+    color: {{ section.settings.subtext_color }};
+    font-size: 1.45rem;
+    line-height: 1.8;
+  }
+
+  .world-instructors-{{ section.id }} .world-instructors__count {
+    margin: 1.4rem 0 0;
+    color: {{ section.settings.subtext_color }};
+    font-size: 1.2rem;
+  }
+
+  .world-instructors-{{ section.id }} .world-instructors__grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.2rem;
+  }
+
+  @media screen and (min-width: 640px) {
+    .world-instructors-{{ section.id }} .world-instructors__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .world-instructors-{{ section.id }} .world-instructors__grid {
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
+    }
+  }
+
+  .world-instructors-{{ section.id }} .world-instructor-card {
+    min-height: 100%;
+    padding: 2rem 1.4rem 1.8rem;
+    background: {{ section.settings.card_background_color }};
+    border: 1px solid {{ section.settings.card_border_color }};
+    border-radius: {{ section.settings.card_radius }}px;
+    text-align: center;
+  }
+
+  .world-instructors-{{ section.id }} .world-instructor-card__image {
+    width: {{ section.settings.image_size }}px;
+    height: {{ section.settings.image_size }}px;
+    margin: 0 auto 1.2rem;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(var(--color-foreground), 0.06);
+  }
+
+  .world-instructors-{{ section.id }} .world-instructor-card__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .world-instructors-{{ section.id }} .world-instructor-card__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: rgba(var(--color-foreground), 0.35);
+    font-size: 2.4rem;
+    font-weight: 600;
+  }
+
+  .world-instructors-{{ section.id }} .world-instructor-card__name {
+    margin: 0;
+    color: {{ section.settings.heading_color }};
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .world-instructors-{{ section.id }} .world-instructor-card__comment {
+    margin: 0.5rem 0 0;
+    color: {{ section.settings.text_color }};
+    font-size: 1.2rem;
+    line-height: 1.55;
+  }
+
+  .world-instructors-{{ section.id }} .world-instructor-card__area {
+    margin: 0.6rem 0 0;
+    color: {{ section.settings.subtext_color }};
+    font-size: 1.15rem;
+    line-height: 1.5;
+  }
+
+  .world-instructors-{{ section.id }} .world-instructor-card__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  .world-instructors-{{ section.id }} .world-instructor-card__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.8rem;
+    padding: 0.8rem 1.3rem;
+    border-radius: 0.4rem;
+    background: {{ section.settings.button_background_color }};
+    color: {{ section.settings.button_text_color }};
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+  }
+
+  .world-instructors-{{ section.id }} .world-instructor-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    color: {{ section.settings.icon_color }};
+    text-decoration: none;
+  }
+
+  .world-instructors-{{ section.id }} .world-instructor-card__icon svg {
+    width: 2rem;
+    height: 2rem;
+    display: block;
+  }
+
+  .world-instructors-{{ section.id }} .world-instructors__empty {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 4.8rem 2rem;
+    background: {{ section.settings.card_background_color }};
+    border: 1px solid {{ section.settings.card_border_color }};
+    border-radius: {{ section.settings.card_radius }}px;
+    text-align: center;
+  }
+
+  .world-instructors-{{ section.id }} .world-instructors__empty p {
+    margin: 0;
+    color: {{ section.settings.subtext_color }};
+    font-size: 1.4rem;
+  }
+{%- endstyle -%}
+
+<section class="world-instructors world-instructors-{{ section.id }}">
+  <div class="page-width section-{{ section.id }}-padding">
+    <header class="world-instructors__head">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="world-instructors__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h1 class="world-instructors__title">{{ section.settings.title | escape }}</h1>
+      {%- endif -%}
+      {%- if section.settings.subtitle != blank -%}
+        <p class="world-instructors__subtitle">{{ section.settings.subtitle | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.show_count -%}
+        <p class="world-instructors__count">{{ visible_count }}{{ section.settings.count_suffix | escape }}</p>
+      {%- endif -%}
+    </header>
+
+    {%- if visible_count == 0 -%}
+      <div class="world-instructors__empty">
+        <p>{{ section.settings.empty_text | escape }}</p>
+      </div>
+    {%- else -%}
+      <div class="world-instructors__grid">
+        {%- for instructor in instructors -%}
+          {%- liquid
+            assign status_field = instructor['Status'] | default: instructor.status
+            assign status = ''
+            if status_field and status_field.value != blank
+              assign status = status_field.value | downcase | strip
+            endif
+
+            assign is_hidden = false
+            if status == '非公開' or status == 'inactive' or status == 'false' or status == '0' or status == 'off' or status == 'draft' or status == 'hide' or status == 'hidden'
+              assign is_hidden = true
+            endif
+
+            if is_hidden
+              continue
+            endif
+
+            assign instructor_id_field = instructor['koushi-id'] | default: instructor.koushi_id
+            assign instructor_id = ''
+            if instructor_id_field and instructor_id_field.value != blank
+              assign instructor_id = instructor_id_field.value
+            endif
+
+            assign name_field = instructor.name
+            assign name = instructor.system.handle
+            if name_field and name_field.value != blank
+              assign name = name_field.value
+            endif
+
+            assign image_field = instructor.image
+            assign image_name = ''
+            if image_field and image_field.value != blank
+              assign image_name = image_field.value | strip
+            endif
+
+            assign comment_field = instructor.comment
+            assign comment = ''
+            if comment_field and comment_field.value != blank
+              assign comment = comment_field.value
+            endif
+
+            assign email_field = instructor.email
+            assign email = ''
+            if email_field and email_field.value != blank
+              assign email = email_field.value | strip
+            endif
+
+            assign area_field = instructor.area
+            assign area = ''
+            if area_field and area_field.value != blank
+              assign area = area_field.value
+            endif
+
+            assign sns_field = instructor.sns
+            assign sns = ''
+            if sns_field and sns_field.value != blank
+              assign sns = sns_field.value | strip
+            endif
+          -%}
+
+          <article class="world-instructor-card">
+            <div class="world-instructor-card__image">
+              {%- if image_name != blank -%}
+                <img
+                  src="{{ image_name | file_url }}"
+                  alt="{{ name | escape }}"
+                  width="{{ section.settings.image_size }}"
+                  height="{{ section.settings.image_size }}"
+                  loading="lazy"
+                >
+              {%- else -%}
+                <div class="world-instructor-card__placeholder" aria-hidden="true">
+                  {{ name | slice: 0, 1 | escape }}
+                </div>
+              {%- endif -%}
+            </div>
+
+            <h2 class="world-instructor-card__name">{{ name | escape }}</h2>
+
+            {%- if comment != blank -%}
+              <p class="world-instructor-card__comment">{{ comment | escape | newline_to_br }}</p>
+            {%- endif -%}
+
+            {%- if area != blank -%}
+              <p class="world-instructor-card__area">{{ section.settings.area_prefix | escape }}{{ area | escape }}</p>
+            {%- endif -%}
+
+            <div class="world-instructor-card__actions">
+              {%- if section.settings.button_label != blank and email != blank -%}
+                <a class="world-instructor-card__button" href="mailto:{{ email | escape }}">{{ section.settings.button_label | escape }}</a>
+              {%- elsif section.settings.button_label != blank and sns != blank -%}
+                <a class="world-instructor-card__button" href="{{ sns | escape }}" target="_blank" rel="noopener noreferrer">{{ section.settings.button_label | escape }}</a>
+              {%- endif -%}
+
+              {%- if email != blank -%}
+                <a class="world-instructor-card__icon" href="mailto:{{ email | escape }}" aria-label="{{ name | escape }} email">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2Zm0 4.2-8 5-8-5V6l8 5 8-5v2.2Z"/>
+                  </svg>
+                </a>
+              {%- endif -%}
+
+              {%- if sns != blank -%}
+                <a class="world-instructor-card__icon" href="{{ sns | escape }}" target="_blank" rel="noopener noreferrer" aria-label="{{ name | escape }} SNS">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M10 13a5 5 0 0 0 7.07 0l2.12-2.12a5 5 0 0 0-7.07-7.07L10.9 5.03"/>
+                    <path d="M14 11a5 5 0 0 0-7.07 0L4.81 13.12a5 5 0 0 0 7.07 7.07l1.22-1.22"/>
+                  </svg>
+                </a>
+              {%- endif -%}
+            </div>
+
+            {%- if instructor_id != blank -%}
+              <span class="visually-hidden">{{ instructor_id | escape }}</span>
+            {%- endif -%}
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "World instructor list",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "タイトル"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "上部ラベル",
+      "default": "INSTRUCTORS"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "タイトル",
+      "default": "台灣講師介紹"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "説明文",
+      "default": "台灣各地で活動する Botany Painting 講師をご紹介します。"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_count",
+      "label": "件数を表示",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "count_suffix",
+      "label": "件数表示の後ろ",
+      "default": "名"
+    },
+    {
+      "type": "header",
+      "content": "カード"
+    },
+    {
+      "type": "text",
+      "id": "area_prefix",
+      "label": "活動地域の接頭辞",
+      "default": "活動地域: "
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "ボタン文言",
+      "default": "講師詳情請點此"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "label": "PC列数",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "image_size",
+      "min": 64,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "label": "画像サイズ",
+      "default": 88
+    },
+    {
+      "type": "header",
+      "content": "カラー"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "default": "#f8e8e5"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "カード背景色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "カード枠線",
+      "default": "#f2d9d4"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "見出し色",
+      "default": "#2d2a25"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "本文色",
+      "default": "#2d2a25"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "補助テキスト色",
+      "default": "#5e5b53"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "アクセント色",
+      "default": "#9c7a52"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "ボタン背景色",
+      "default": "#9b5f83"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "ボタン文字色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "アイコン色",
+      "default": "#5d7f9a"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "カード角丸",
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "0件時の文言",
+      "default": "表示できる講師情報がまだありません。"
+    },
+    {
+      "type": "header",
+      "content": "余白"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "上余白",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "下余白",
+      "default": 56
+    }
+  ],
+  "presets": [
+    {
+      "name": "World instructor list"
+    }
+  ]
+}
+{% endschema %}

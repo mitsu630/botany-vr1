@@ -45,10 +45,87 @@
         "padding_top": 48,
         "padding_bottom": 56
       }
+    },
+    "custom_buttons_QRAQLx": {
+      "type": "custom-buttons",
+      "blocks": {
+        "button_G49gVg": {
+          "type": "button",
+          "settings": {
+            "text": "師資取得課程",
+            "link": "shopify://products/taiwan-special",
+            "open_new_tab": false,
+            "background_color": "#c44e93",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 8,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 6,
+            "padding_x": 16,
+            "font_size": 13,
+            "font_weight": "400"
+          }
+        },
+        "button_8f464D": {
+          "type": "button",
+          "settings": {
+            "text": "單日體驗課程",
+            "link": "shopify://products/taiwan-workshop-1",
+            "open_new_tab": false,
+            "background_color": "#c44e93",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 8,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 6,
+            "padding_x": 16,
+            "font_size": 13,
+            "font_weight": "400"
+          }
+        },
+        "button_tLp9XP": {
+          "type": "button",
+          "settings": {
+            "text": "認證講師",
+            "link": "shopify://pages/world001",
+            "open_new_tab": false,
+            "background_color": "#c44e93",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 8,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 6,
+            "padding_x": 16,
+            "font_size": 13,
+            "font_weight": "400"
+          }
+        }
+      },
+      "block_order": [
+        "button_G49gVg",
+        "button_8f464D",
+        "button_tLp9XP"
+      ],
+      "name": "ボタンズ (custom-buttons)",
+      "settings": {
+        "desktop_alignment": "center",
+        "mobile_alignment": "center",
+        "padding_top": 12,
+        "padding_bottom": 12,
+        "button_gap": 16,
+        "background_color": "#e9dccd"
+      }
     }
   },
   "order": [
     "main",
+    "custom_buttons_QRAQLx",
     "world_instructor_list"
   ]
 }

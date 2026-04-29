@@ -56,7 +56,7 @@
             "text_1": "<p>LINEのお友達登録はこちらから</p>",
             "text_1_font_size_rem": 1.9,
             "text_1_font_family": "inherit",
-            "text_2": "<p>ボタニーペインティングについて気になることがありましたら、どうぞお気軽にご相談ください。ワークショップのことや作品づくりについてなど、知りたいことがあればLINEからいつでもお声がけいただけます。</p>",
+            "text_2": "<p>ボタニー®ペインティングについて気になることがありましたら、どうぞお気軽にご相談ください。ワークショップのことや作品づくりについてなど、知りたいことがあればLINEからいつでもお声がけいただけます。</p>",
             "text_2_font_size_rem": 1.6,
             "text_2_font_family": "inherit",
             "button_label": "ボタン",
@@ -82,7 +82,7 @@
           "settings": {
             "force_full_width_on_desktop": true,
             "color_scheme": "scheme-1",
-            "title": "ボタニーペインティングBOOK販売中",
+            "title": "ボタニー®ペインティングBOOK販売中",
             "text": "<p>初心者でもわかりやすいよう画材の説明や葉の貼り方、色付けの手順を丁寧に紹介しています。また、スパッタリングやグリッターを用いる技法など幅広い作品つくりを楽しめるアイデアも満載!ボタニーペインティングと出逢って、ヨガ、カラーセラピー、植物やアートの仕事などにボタニーペインティングを上手に調和させて活躍されている方のインタビューページも、必見のページです。</p>",
             "left_image_1": "shopify://shop_images/booktest.png",
             "left_image_1_link": "",
@@ -284,14 +284,14 @@
         "newsletter_enable": false,
         "newsletter_heading": "Subscribe to our emails",
         "enable_follow_on_shop": false,
-        "show_social": false,
+        "show_social": true,
         "enable_country_selector": true,
         "enable_language_selector": true,
         "payment_enable": true,
         "show_policy": true,
         "margin_top": 0,
-        "padding_top": 0,
-        "padding_bottom": 100
+        "padding_top": 4,
+        "padding_bottom": 0
       }
     }
   },

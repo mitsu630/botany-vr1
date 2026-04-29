@@ -20,6 +20,7 @@
     "spacing_sections": 0,
     "spacing_grid_horizontal": 8,
     "spacing_grid_vertical": 8,
+    "animations_reveal_on_scroll": true,
     "buttons_border_thickness": 1,
     "buttons_border_opacity": 100,
     "buttons_radius": 0,
@@ -220,11 +221,6 @@
       },
       "6860625604077830985": {
         "type": "shopify://apps/securify/blocks/browser-blocker/e3ed2576-9111-486f-86eb-a36b6bee4e94",
-        "disabled": false,
-        "settings": {}
-      },
-      "18128612654622612671": {
-        "type": "shopify://apps/selecty/blocks/app-embed/a005a4a7-4aa2-4155-9c2b-0ab41acbf99c",
         "disabled": false,
         "settings": {}
       }

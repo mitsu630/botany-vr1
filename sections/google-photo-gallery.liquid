@@ -349,6 +349,7 @@
     display: grid;
     gap: 1.2rem;
     justify-items: center;
+    touch-action: pan-y;
     transform: translateY(1.2rem) scale(0.98);
     transition: transform 260ms ease;
   }
@@ -480,6 +481,10 @@
         this.lightboxCaption = this.querySelector('[data-lightbox-caption]');
         this.closeButton = this.querySelector('[data-lightbox-close]');
         this.previousBodyPaddingRight = '';
+        this.currentPhotos = [];
+        this.currentPhotoIndex = 0;
+        this.touchStartX = 0;
+        this.touchStartY = 0;
         this.boundHandleKeydown = this.handleKeydown.bind(this);
 
         this.closeButton?.addEventListener('click', () => this.closeLightbox());
@@ -488,6 +493,8 @@
             this.closeLightbox();
           }
         });
+        this.lightbox?.addEventListener('touchstart', (event) => this.handleTouchStart(event), { passive: true });
+        this.lightbox?.addEventListener('touchend', (event) => this.handleTouchEnd(event), { passive: true });
 
         this.loadAlbums();
       }
@@ -572,7 +579,7 @@
           image.src = photo.thumbnail;
 
           button.append(image);
-          button.addEventListener('click', () => this.openLightbox(photo));
+          button.addEventListener('click', () => this.openLightbox(photos, index));
           grid.append(button);
         });
       }
@@ -586,19 +593,49 @@
         grid.append(error);
       }
 
-      openLightbox(photo) {
+      openLightbox(photos, index) {
         if (!this.lightbox || !this.lightboxImage) {
           return;
         }
 
-        this.lightboxImage.src = photo.full || photo.thumbnail;
-        this.lightboxImage.alt = photo.alt || '';
-        this.lightboxCaption.textContent = photo.caption || '';
+        this.currentPhotos = photos;
+        this.currentPhotoIndex = index;
+        this.showLightboxPhoto(index);
         this.lightbox.classList.add('is-open');
         this.lightbox.setAttribute('aria-hidden', 'false');
         this.lockScroll();
         document.addEventListener('keydown', this.boundHandleKeydown);
         this.closeButton?.focus();
+      }
+
+      showLightboxPhoto(index) {
+        if (!this.lightboxImage || !this.currentPhotos.length) {
+          return;
+        }
+
+        const photoCount = this.currentPhotos.length;
+        this.currentPhotoIndex = (index + photoCount) % photoCount;
+        const photo = this.currentPhotos[this.currentPhotoIndex];
+
+        this.lightboxImage.src = photo.full || photo.thumbnail;
+        this.lightboxImage.alt = photo.alt || '';
+        this.lightboxCaption.textContent = photo.caption || '';
+      }
+
+      showNextPhoto() {
+        if (this.currentPhotos.length < 2) {
+          return;
+        }
+
+        this.showLightboxPhoto(this.currentPhotoIndex + 1);
+      }
+
+      showPreviousPhoto() {
+        if (this.currentPhotos.length < 2) {
+          return;
+        }
+
+        this.showLightboxPhoto(this.currentPhotoIndex - 1);
       }
 
       closeLightbox() {
@@ -609,6 +646,8 @@
         this.lightbox.classList.remove('is-open');
         this.lightbox.setAttribute('aria-hidden', 'true');
         this.lightboxImage.src = '';
+        this.currentPhotos = [];
+        this.currentPhotoIndex = 0;
         this.unlockScroll();
         document.removeEventListener('keydown', this.boundHandleKeydown);
       }
@@ -616,6 +655,40 @@
       handleKeydown(event) {
         if (event.key === 'Escape') {
           this.closeLightbox();
+        } else if (event.key === 'ArrowRight') {
+          this.showNextPhoto();
+        } else if (event.key === 'ArrowLeft') {
+          this.showPreviousPhoto();
+        }
+      }
+
+      handleTouchStart(event) {
+        if (!this.lightbox?.classList.contains('is-open') || event.touches.length !== 1) {
+          return;
+        }
+
+        this.touchStartX = event.touches[0].clientX;
+        this.touchStartY = event.touches[0].clientY;
+      }
+
+      handleTouchEnd(event) {
+        if (!this.lightbox?.classList.contains('is-open') || event.changedTouches.length !== 1) {
+          return;
+        }
+
+        const touchEndX = event.changedTouches[0].clientX;
+        const touchEndY = event.changedTouches[0].clientY;
+        const deltaX = touchEndX - this.touchStartX;
+        const deltaY = touchEndY - this.touchStartY;
+
+        if (Math.abs(deltaX) < 50 || Math.abs(deltaX) < Math.abs(deltaY)) {
+          return;
+        }
+
+        if (deltaX < 0) {
+          this.showNextPhoto();
+        } else {
+          this.showPreviousPhoto();
         }
       }
 

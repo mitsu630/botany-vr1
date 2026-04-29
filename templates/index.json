@@ -178,8 +178,10 @@
           "type": "title",
           "settings": {
             "title": "",
+            "font": "assistant_n4",
             "font_size": 40,
             "color": "#111111",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -190,8 +192,10 @@
           "type": "text",
           "settings": {
             "text": "",
+            "font": "assistant_n4",
             "font_size": 16,
             "color": "#111111",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -806,8 +810,10 @@
           "type": "title",
           "settings": {
             "title": "<p>Botany Painting</p>",
+            "font": "dela_gothic_one_n4",
             "font_size": 40,
             "color": "#111111",
+            "text_align": "center",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -818,8 +824,10 @@
           "type": "text",
           "settings": {
             "text": "<p>ロゴマークについて</p>",
+            "font": "assistant_n4",
             "font_size": 16,
             "color": "#111111",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -863,7 +871,6 @@
         "image_bP9zUQ",
         "button_XqmMwM"
       ],
-      "disabled": true,
       "name": "ビックカード",
       "settings": {
         "background_color": "#ffffff",

@@ -108,6 +108,23 @@
             assign cat_first = true
           endif
           assign group_key = block.settings.group_key | default: block.settings.qa_key | default: block.settings.tab_title | strip
+          assign group_lookup = group_key | downcase | handleize
+          case group_lookup
+            when 'workshops'
+              assign group_lookup = 'workshop'
+            when 'certified-course', 'certified-courses', 'certified', 'certification-course', 'license-course', 'licenses'
+              assign group_lookup = 'license'
+            when 'other', 'others', 'misc'
+              assign group_lookup = 'etc'
+          endcase
+          case group_key
+            when 'ワークショップ', '工作坊'
+              assign group_lookup = 'workshop'
+            when '認定講座', '認證課程', '认证课程'
+              assign group_lookup = 'license'
+            when 'その他', '其他', '其它'
+              assign group_lookup = 'etc'
+          endcase
           assign sort_direction = block.settings.sort_direction | default: 'desc'
         -%}
         <div
@@ -138,6 +155,23 @@
                   elsif faq['group'] and faq['group'].value != blank
                     assign faq_group = faq['group'].value | strip
                   endif
+                  assign faq_group_lookup = faq_group | downcase | handleize
+                  case faq_group_lookup
+                    when 'workshops'
+                      assign faq_group_lookup = 'workshop'
+                    when 'certified-course', 'certified-courses', 'certified', 'certification-course', 'license-course', 'licenses'
+                      assign faq_group_lookup = 'license'
+                    when 'other', 'others', 'misc'
+                      assign faq_group_lookup = 'etc'
+                  endcase
+                  case faq_group
+                    when 'ワークショップ', '工作坊'
+                      assign faq_group_lookup = 'workshop'
+                    when '認定講座', '認證課程', '认证课程'
+                      assign faq_group_lookup = 'license'
+                    when 'その他', '其他', '其它'
+                      assign faq_group_lookup = 'etc'
+                  endcase
 
                   assign faq_handle = ''
                   if faq.system and faq.system.handle != blank
@@ -159,9 +193,16 @@
                   elsif faq['answer'] and faq['answer'].value != blank
                     assign answer = faq['answer'].value | strip
                   endif
+
+                  assign group_matches = false
+                  if faq_group == group_key
+                    assign group_matches = true
+                  elsif faq_group_lookup == group_lookup
+                    assign group_matches = true
+                  endif
                 -%}
 
-                {%- if faq_group == group_key and faq_handle != blank and question != blank and answer != blank -%}
+                {%- if group_matches and faq_handle != blank and question != blank and answer != blank -%}
                   {%- liquid
                     assign order_number = faq_handle | remove: 'qfa' | remove: '-' | plus: 0
                     assign sort_number = order_number | plus: 1000000000

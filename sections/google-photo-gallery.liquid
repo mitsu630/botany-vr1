@@ -102,32 +102,6 @@
     </div>
   </div>
 
-  <div class="google-photo-gallery__lightbox" data-lightbox aria-hidden="true">
-    <button class="google-photo-gallery__lightbox-close" type="button" data-lightbox-close aria-label="閉じる">
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M5 5L19 19M19 5L5 19" />
-      </svg>
-    </button>
-    <div class="google-photo-gallery__lightbox-frame">
-      <img alt="" data-lightbox-image loading="eager" width="2048" height="2048">
-      <p class="google-photo-gallery__lightbox-caption" data-lightbox-caption></p>
-    </div>
-    <img
-      class="google-photo-gallery__lightbox-watermark"
-      src="https://cdn.shopify.com/s/files/1/0402/9110/6972/files/sukashi.png?v=1777424554"
-      alt=""
-      width="640"
-      height="240"
-      loading="eager"
-      aria-hidden="true"
-    >
-    <button class="google-photo-gallery__lightbox-nav google-photo-gallery__lightbox-nav--previous" type="button" data-lightbox-previous aria-label="前の写真">
-      &#8249;
-    </button>
-    <button class="google-photo-gallery__lightbox-nav google-photo-gallery__lightbox-nav--next" type="button" data-lightbox-next aria-label="次の写真">
-      &#8250;
-    </button>
-  </div>
 </google-photo-gallery>
 
 <style>
@@ -339,164 +313,57 @@
     color: rgb(var(--color-foreground));
   }
 
-  .google-photo-gallery__lightbox {
+  .pswp {
+    --pswp-bg: rgba(0, 0, 0, 0.86) !important;
+  }
+
+  .pswp__button--arrow {
+    width: clamp(4.4rem, 8vw, 7.2rem) !important;
+    height: clamp(7rem, 18vw, 12rem) !important;
+    display: grid !important;
+    place-items: center !important;
+    margin-top: calc(clamp(7rem, 18vw, 12rem) / -2) !important;
+    color: rgba(255, 255, 255, 0.82) !important;
+    opacity: 1 !important;
+  }
+
+  .pswp__button--arrow:hover {
+    color: #fff !important;
+  }
+
+  .pswp__button--arrow .pswp__icn {
+    display: none !important;
+  }
+
+  .pswp__button--arrow::before {
+    content: "\2039" !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    background: transparent !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: clamp(5.2rem, 11vw, 8.8rem) !important;
+    font-weight: 200 !important;
+    line-height: 1 !important;
+  }
+
+  .pswp__button--arrow--next::before {
+    content: "\203A" !important;
+  }
+
+  .google-photo-gallery__pswp-watermark {
     position: fixed;
-    inset: 0;
-    z-index: 999;
-    display: grid;
-    place-items: center;
-    padding: 6.4rem 2rem 2rem;
-    background: rgba(0, 0, 0, 0);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 260ms ease, visibility 260ms ease, background-color 260ms ease;
-  }
-
-  .google-photo-gallery__lightbox.is-open {
-    opacity: 1;
-    visibility: visible;
-    background: rgba(0, 0, 0, 0.82);
-  }
-
-  .google-photo-gallery__lightbox-frame {
-    position: relative;
-    z-index: 1;
-    max-width: min(108rem, 100%);
-    max-height: 100%;
-    display: grid;
-    gap: 1.2rem;
-    justify-items: center;
-    touch-action: pan-y;
-    transform: translateY(1.2rem) scale(0.98);
-    transition: transform 260ms ease;
-  }
-
-  .google-photo-gallery__lightbox.is-open .google-photo-gallery__lightbox-frame {
-    transform: translateY(0) scale(1);
-  }
-
-  .google-photo-gallery__lightbox img {
-    max-width: 100%;
-    max-height: calc(100vh - 12rem);
-    display: block;
-    border-radius: calc(var(--gpg-radius) * 0.75);
-    object-fit: contain;
-    box-shadow: 0 2.4rem 7rem rgba(0, 0, 0, 0.28);
-    transition: transform 220ms ease, opacity 220ms ease;
-    will-change: transform, opacity;
-  }
-
-  .google-photo-gallery__lightbox-caption {
-    max-width: 72rem;
-    margin: 0;
-    color: rgba(255, 255, 255, 0.82);
-    text-align: center;
-    font-size: 1.3rem;
-    line-height: 1.5;
-  }
-
-  .google-photo-gallery__lightbox-caption:empty {
-    display: none;
-  }
-
-  .google-photo-gallery__lightbox-close {
-    position: absolute;
-    top: 1.8rem;
-    right: 1.8rem;
-    z-index: 4;
-    width: 4.4rem;
-    height: 4.4rem;
-    display: grid;
-    place-items: center;
-    padding: 0;
-    border: 0.1rem solid rgba(255, 255, 255, 0.22);
-    border-radius: 999rem;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.08);
-    cursor: pointer;
-    transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
-  }
-
-  .google-photo-gallery__lightbox-close:hover {
-    border-color: rgba(255, 255, 255, 0.42);
-    background: rgba(255, 255, 255, 0.14);
-    transform: scale(1.04);
-  }
-
-  .google-photo-gallery__lightbox-close svg {
-    width: 2rem;
-    height: 2rem;
-  }
-
-  .google-photo-gallery__lightbox-close path {
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.4;
-    stroke-linecap: round;
-  }
-
-  .google-photo-gallery__lightbox-watermark {
-    position: absolute;
     top: 50%;
     left: 50%;
-    z-index: 2;
+    z-index: 100002;
     width: min(42rem, 58vw);
     max-width: 72%;
     height: auto;
-    border-radius: 0;
-    box-shadow: none;
     opacity: 0.42;
     pointer-events: none;
     transform: translate(-50%, -50%);
     user-select: none;
-  }
-
-  .google-photo-gallery__lightbox-nav {
-    position: absolute;
-    top: 50%;
-    z-index: 3;
-    width: clamp(4.4rem, 8vw, 7.2rem);
-    height: clamp(7rem, 18vw, 12rem);
-    display: grid;
-    place-items: center;
-    padding: 0;
-    border: 0;
-    color: rgba(255, 255, 255, 0.82);
-    background: transparent;
-    cursor: pointer;
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(5.2rem, 11vw, 8.8rem);
-    font-weight: 200;
-    line-height: 1;
-    transform: translateY(-50%);
-    transition: color 180ms ease, opacity 180ms ease, transform 180ms ease;
-  }
-
-  .google-photo-gallery__lightbox-nav:hover,
-  .google-photo-gallery__lightbox-nav:focus-visible {
-    color: #fff;
-    transform: translateY(-50%) scale(1.04);
-  }
-
-  .google-photo-gallery__lightbox-nav:focus-visible {
-    outline: 0.1rem solid rgba(255, 255, 255, 0.72);
-    outline-offset: 0.4rem;
-  }
-
-  .google-photo-gallery__lightbox-nav[hidden] {
-    display: none;
-  }
-
-  .google-photo-gallery__lightbox-nav--previous {
-    left: clamp(0.4rem, 2vw, 2.4rem);
-  }
-
-  .google-photo-gallery__lightbox-nav--next {
-    right: clamp(0.4rem, 2vw, 2.4rem);
-  }
-
-  body.google-photo-gallery-lock {
-    overflow: hidden;
   }
 
   @keyframes google-photo-gallery-skeleton {
@@ -529,10 +396,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .google-photo-gallery__tile img,
-    .google-photo-gallery__lightbox,
-    .google-photo-gallery__lightbox-frame,
-    .google-photo-gallery__lightbox-close {
+    .google-photo-gallery__tile img {
       transition: none;
     }
 
@@ -556,34 +420,18 @@
     class GooglePhotoGallery extends HTMLElement {
       connectedCallback() {
         this.albums = Array.from(this.querySelectorAll('[data-google-photo-album]'));
-        this.lightbox = this.querySelector('[data-lightbox]');
-        this.lightboxImage = this.querySelector('[data-lightbox-image]');
-        this.lightboxCaption = this.querySelector('[data-lightbox-caption]');
-        this.closeButton = this.querySelector('[data-lightbox-close]');
-        this.previousButton = this.querySelector('[data-lightbox-previous]');
-        this.nextButton = this.querySelector('[data-lightbox-next]');
-        this.previousBodyPaddingRight = '';
-        this.currentPhotos = [];
-        this.currentPhotoIndex = 0;
-        this.touchStartX = 0;
-        this.touchStartY = 0;
-        this.touchCurrentX = 0;
-        this.lightboxAnimationId = 0;
-        this.boundHandleKeydown = this.handleKeydown.bind(this);
-
-        this.closeButton?.addEventListener('click', () => this.closeLightbox());
-        this.previousButton?.addEventListener('click', () => this.showPreviousPhoto());
-        this.nextButton?.addEventListener('click', () => this.showNextPhoto());
-        this.lightbox?.addEventListener('click', (event) => {
-          if (event.target === this.lightbox) {
-            this.closeLightbox();
-          }
-        });
-        this.lightbox?.addEventListener('touchstart', (event) => this.handleTouchStart(event), { passive: true });
-        this.lightbox?.addEventListener('touchmove', (event) => this.handleTouchMove(event), { passive: true });
-        this.lightbox?.addEventListener('touchend', (event) => this.handleTouchEnd(event), { passive: true });
+        this.photoSwipeLightbox = null;
+        this.photoSwipeInitPromise = null;
 
         this.loadAlbums();
+        this.ensurePhotoSwipeStyles();
+        this.initializePhotoSwipe();
+      }
+
+      disconnectedCallback() {
+        this.photoSwipeLightbox?.destroy();
+        this.photoSwipeLightbox = null;
+        this.photoSwipeInitPromise = null;
       }
 
       async loadAlbums() {
@@ -623,12 +471,16 @@
             const thumbnail = item.thumbnailUrl || item.thumbnail_url || item.src || item.url || baseUrl;
             const full = item.fullUrl || item.full_url || item.lightboxUrl || item.lightbox_url || item.url || baseUrl;
             const alt = item.alt || item.description || item.filename || item.title || '';
+            const width = Number(item.width || item.w || item.mediaMetadata?.width || item.media_metadata?.width || 2048);
+            const height = Number(item.height || item.h || item.mediaMetadata?.height || item.media_metadata?.height || 2048);
 
             return {
               thumbnail: this.withGooglePhotoSize(thumbnail, 'w900-h900-c'),
               full: this.withGooglePhotoSize(full, 'w2048-h2048'),
               alt,
-              caption: item.caption || item.description || item.filename || ''
+              caption: item.caption || item.description || item.filename || '',
+              width: width > 0 ? width : 2048,
+              height: height > 0 ? height : 2048
             };
           })
           .filter((item) => item.thumbnail);
@@ -652,22 +504,24 @@
         }
 
         photos.forEach((photo, index) => {
-          const button = document.createElement('button');
-          button.type = 'button';
-          button.className = 'google-photo-gallery__tile is-loading';
-          button.setAttribute('aria-label', `${albumTitle || 'アルバム'}の写真 ${index + 1} を拡大表示`);
+          const link = document.createElement('a');
+          link.className = 'google-photo-gallery__tile is-loading';
+          link.href = photo.full || photo.thumbnail;
+          link.dataset.pswpWidth = String(photo.width);
+          link.dataset.pswpHeight = String(photo.height);
+          link.dataset.pswpCaption = photo.caption || '';
+          link.setAttribute('aria-label', `${albumTitle || 'アルバム'}の写真 ${index + 1} を拡大表示`);
 
           const image = document.createElement('img');
           image.alt = photo.alt || '';
           image.loading = index < 4 ? 'eager' : 'lazy';
           image.decoding = 'async';
-          image.addEventListener('load', () => button.classList.remove('is-loading'), { once: true });
-          image.addEventListener('error', () => button.classList.remove('is-loading'), { once: true });
+          image.addEventListener('load', () => link.classList.remove('is-loading'), { once: true });
+          image.addEventListener('error', () => link.classList.remove('is-loading'), { once: true });
           image.src = photo.thumbnail;
 
-          button.append(image);
-          button.addEventListener('click', () => this.openLightbox(photos, index));
-          grid.append(button);
+          link.append(image);
+          grid.append(link);
         });
       }
 
@@ -680,195 +534,52 @@
         grid.append(error);
       }
 
-      openLightbox(photos, index) {
-        if (!this.lightbox || !this.lightboxImage) {
+      ensurePhotoSwipeStyles() {
+        if (document.querySelector('link[data-google-photo-gallery-photoswipe]')) {
           return;
         }
 
-        this.currentPhotos = photos;
-        this.currentPhotoIndex = index;
-        this.showLightboxPhoto(index);
-        this.updateLightboxNavigation();
-        this.lightbox.classList.add('is-open');
-        this.lightbox.setAttribute('aria-hidden', 'false');
-        this.lockScroll();
-        document.addEventListener('keydown', this.boundHandleKeydown);
-        this.closeButton?.focus();
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.css';
+        link.dataset.googlePhotoGalleryPhotoswipe = 'true';
+        document.head.append(link);
       }
 
-      showLightboxPhoto(index, direction = null) {
-        if (!this.lightboxImage || !this.currentPhotos.length) {
-          return;
+      async initializePhotoSwipe() {
+        if (this.photoSwipeLightbox || this.photoSwipeInitPromise) {
+          return this.photoSwipeInitPromise;
         }
 
-        const photoCount = this.currentPhotos.length;
-        this.currentPhotoIndex = (index + photoCount) % photoCount;
-        const photo = this.currentPhotos[this.currentPhotoIndex];
+        this.photoSwipeInitPromise = import('https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe-lightbox.esm.js')
+          .then(({ default: PhotoSwipeLightbox }) => {
+            const lightbox = new PhotoSwipeLightbox({
+              gallery: this,
+              children: '.google-photo-gallery__tile',
+              loop: true,
+              showHideAnimationType: 'fade',
+              pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.esm.js')
+            });
 
-        if (direction) {
-          this.animateLightboxPhoto(photo, direction);
-          return;
-        }
+            lightbox.on('uiRegister', () => {
+              lightbox.pswp.ui.registerElement({
+                name: 'google-photo-gallery-watermark',
+                order: 9,
+                isButton: false,
+                appendTo: 'root',
+                html: '<img class="google-photo-gallery__pswp-watermark" src="https://cdn.shopify.com/s/files/1/0402/9110/6972/files/sukashi.png?v=1777424554" alt="" aria-hidden="true">'
+              });
+            });
 
-        this.lightboxImage.src = photo.full || photo.thumbnail;
-        this.lightboxImage.alt = photo.alt || '';
-        this.lightboxCaption.textContent = photo.caption || '';
-      }
-
-      animateLightboxPhoto(photo, direction) {
-        const image = this.lightboxImage;
-        const caption = this.lightboxCaption;
-        const animationId = ++this.lightboxAnimationId;
-        const exitX = direction === 'next' ? -52 : 52;
-        const enterX = direction === 'next' ? 52 : -52;
-        const startTransform = image.style.transform || 'translateX(0)';
-        const startOpacity = image.style.opacity || '1';
-
-        image.animate(
-          [
-            { opacity: startOpacity, transform: startTransform },
-            { opacity: 0, transform: `translateX(${exitX}px)` }
-          ],
-          { duration: 150, easing: 'cubic-bezier(0.4, 0, 0.2, 1)' }
-        ).onfinish = () => {
-          if (animationId !== this.lightboxAnimationId) {
-            return;
-          }
-
-          image.src = photo.full || photo.thumbnail;
-          image.alt = photo.alt || '';
-          caption.textContent = photo.caption || '';
-          image.style.transform = `translateX(${enterX}px)`;
-          image.style.opacity = '0';
-
-          requestAnimationFrame(() => {
-            if (animationId !== this.lightboxAnimationId) {
-              return;
-            }
-
-            image.style.transform = 'translateX(0)';
-            image.style.opacity = '1';
+            lightbox.init();
+            this.photoSwipeLightbox = lightbox;
+          })
+          .catch((error) => {
+            this.photoSwipeInitPromise = null;
+            console.error('[GooglePhotoGallery] PhotoSwipe failed to load:', error);
           });
-        };
-      }
 
-      showNextPhoto() {
-        if (this.currentPhotos.length < 2) {
-          return;
-        }
-
-        this.showLightboxPhoto(this.currentPhotoIndex + 1, 'next');
-      }
-
-      showPreviousPhoto() {
-        if (this.currentPhotos.length < 2) {
-          return;
-        }
-
-        this.showLightboxPhoto(this.currentPhotoIndex - 1, 'previous');
-      }
-
-      updateLightboxNavigation() {
-        const shouldShow = this.currentPhotos.length > 1;
-        this.previousButton?.toggleAttribute('hidden', !shouldShow);
-        this.nextButton?.toggleAttribute('hidden', !shouldShow);
-      }
-
-      closeLightbox() {
-        if (!this.lightbox || !this.lightboxImage) {
-          return;
-        }
-
-        this.lightbox.classList.remove('is-open');
-        this.lightbox.setAttribute('aria-hidden', 'true');
-        this.lightboxImage.src = '';
-        this.lightboxImage.style.transform = '';
-        this.lightboxImage.style.opacity = '';
-        this.lightboxImage.style.transition = '';
-        this.currentPhotos = [];
-        this.currentPhotoIndex = 0;
-        this.updateLightboxNavigation();
-        this.unlockScroll();
-        document.removeEventListener('keydown', this.boundHandleKeydown);
-      }
-
-      handleKeydown(event) {
-        if (event.key === 'Escape') {
-          this.closeLightbox();
-        } else if (event.key === 'ArrowRight') {
-          this.showNextPhoto();
-        } else if (event.key === 'ArrowLeft') {
-          this.showPreviousPhoto();
-        }
-      }
-
-      handleTouchStart(event) {
-        if (!this.lightbox?.classList.contains('is-open') || event.touches.length !== 1) {
-          return;
-        }
-
-        this.touchStartX = event.touches[0].clientX;
-        this.touchStartY = event.touches[0].clientY;
-        this.touchCurrentX = this.touchStartX;
-        this.lightboxImage.style.transition = 'none';
-      }
-
-      handleTouchMove(event) {
-        if (!this.lightbox?.classList.contains('is-open') || event.touches.length !== 1 || this.currentPhotos.length < 2) {
-          return;
-        }
-
-        this.touchCurrentX = event.touches[0].clientX;
-        const deltaX = this.touchCurrentX - this.touchStartX;
-        const deltaY = event.touches[0].clientY - this.touchStartY;
-
-        if (Math.abs(deltaX) < Math.abs(deltaY)) {
-          return;
-        }
-
-        const dragX = Math.max(-90, Math.min(90, deltaX * 0.38));
-        this.lightboxImage.style.transform = `translateX(${dragX}px)`;
-        this.lightboxImage.style.opacity = `${Math.max(0.68, 1 - Math.abs(deltaX) / 420)}`;
-      }
-
-      handleTouchEnd(event) {
-        if (!this.lightbox?.classList.contains('is-open') || event.changedTouches.length !== 1) {
-          return;
-        }
-
-        const touchEndX = event.changedTouches[0].clientX;
-        const touchEndY = event.changedTouches[0].clientY;
-        const deltaX = touchEndX - this.touchStartX;
-        const deltaY = touchEndY - this.touchStartY;
-        this.lightboxImage.style.transition = '';
-
-        if (Math.abs(deltaX) < 50 || Math.abs(deltaX) < Math.abs(deltaY)) {
-          this.lightboxImage.style.transform = 'translateX(0)';
-          this.lightboxImage.style.opacity = '1';
-          return;
-        }
-
-        if (deltaX < 0) {
-          this.showNextPhoto();
-        } else {
-          this.showPreviousPhoto();
-        }
-      }
-
-      lockScroll() {
-        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-        this.previousBodyPaddingRight = document.body.style.paddingRight;
-
-        if (scrollbarWidth > 0) {
-          document.body.style.paddingRight = `${scrollbarWidth}px`;
-        }
-
-        document.body.classList.add('google-photo-gallery-lock');
-      }
-
-      unlockScroll() {
-        document.body.classList.remove('google-photo-gallery-lock');
-        document.body.style.paddingRight = this.previousBodyPaddingRight;
+        return this.photoSwipeInitPromise;
       }
     }
 

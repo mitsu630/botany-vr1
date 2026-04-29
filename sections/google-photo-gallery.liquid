@@ -394,7 +394,8 @@
     object-fit: contain !important;
   }
 
-  .google-photo-gallery__pswp-watermark {
+  .pswp__google-photo-gallery-watermark,
+  .google-photo-gallery__pswp-watermark-wrap {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -402,9 +403,17 @@
     width: min(42rem, 58vw);
     max-width: 72%;
     height: auto;
+    pointer-events: auto;
+    transform: translate(-50%, -50%);
+    user-select: none;
+  }
+
+  .google-photo-gallery__pswp-watermark {
+    display: block;
+    width: 100%;
+    height: auto;
     opacity: 0.42;
     pointer-events: none;
-    transform: translate(-50%, -50%);
     user-select: none;
   }
 
@@ -675,7 +684,15 @@
                 order: 9,
                 isButton: false,
                 appendTo: 'root',
-                html: '<img class="google-photo-gallery__pswp-watermark" src="https://cdn.shopify.com/s/files/1/0402/9110/6972/files/sukashi.png?v=1777424554" alt="" aria-hidden="true">'
+                html: '<span class="google-photo-gallery__pswp-watermark-wrap"><img class="google-photo-gallery__pswp-watermark" src="https://cdn.shopify.com/s/files/1/0402/9110/6972/files/sukashi.png?v=1777424554" alt="" aria-hidden="true"></span>',
+                onInit: (element) => {
+                  ['click', 'pointerdown', 'pointerup', 'touchstart', 'touchend'].forEach((eventName) => {
+                    element.addEventListener(eventName, (event) => {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    });
+                  });
+                }
               });
             });
 

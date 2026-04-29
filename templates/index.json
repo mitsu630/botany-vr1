@@ -871,6 +871,7 @@
         "image_bP9zUQ",
         "button_XqmMwM"
       ],
+      "disabled": true,
       "name": "ビックカード",
       "settings": {
         "background_color": "#ffffff",

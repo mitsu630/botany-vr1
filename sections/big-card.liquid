@@ -108,7 +108,6 @@
     border-radius: var(--big-card-radius);
   }
 
-  #shopify-section-{{ section.id }} .big-card__image,
   #shopify-section-{{ section.id }} .big-card__video,
   #shopify-section-{{ section.id }} .big-card__placeholder {
     background: rgba(0, 0, 0, 0.04);
@@ -118,6 +117,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: var(--big-card-image-background, rgba(0, 0, 0, 0.04));
   }
 
   #shopify-section-{{ section.id }} .big-card__image--boxed {
@@ -290,6 +290,14 @@
           assign grid_gap = block.settings.grid_gap | default: 16
           assign image_box_width = block.settings.image_box_width | default: 1200
           assign image_box_height = block.settings.image_box_height | default: 720
+          assign image_background = 'rgba(0, 0, 0, 0.04)'
+          if block.type == 'image'
+            if block.settings.image_background_transparent
+              assign image_background = 'transparent'
+            else
+              assign image_background = block.settings.image_background_color | default: '#f2f2f2'
+            endif
+          endif
           assign image_align = block.settings.image_align | default: 'center'
           assign image_fit = block.settings.image_fit | default: 'cover'
           assign image_width_mode = block.settings.image_width_mode | default: 'box'
@@ -324,6 +332,7 @@
             --big-card-grid-gap: {{ grid_gap }}px;
             --big-card-image-box-width: {{ image_box_width }}px;
             --big-card-image-box-height: {{ image_box_height }}px;
+            --big-card-image-background: {{ image_background }};
           "
           {{ block.shopify_attributes }}
         >
@@ -1030,6 +1039,19 @@
             }
           ],
           "default": "center"
+        },
+        {
+          "type": "checkbox",
+          "id": "image_background_transparent",
+          "label": "画像背景を透明にする",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "image_background_color",
+          "label": "画像背景色",
+          "info": "「画像背景を透明にする」をオフにした場合に使用します。",
+          "default": "#f2f2f2"
         },
         {
           "type": "range",

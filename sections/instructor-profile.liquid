@@ -1,9 +1,6 @@
+{%- paginate metaobjects.instructors.values by 250 -%}
 {%- liquid
-  assign instructors_src = shop.metaobjects.instructors
-  assign instructors = blank
-  if instructors_src
-    assign instructors = instructors_src.values
-  endif
+  assign instructors = metaobjects.instructors.values
 -%}
 
 {%- style -%}
@@ -669,6 +666,7 @@
 {%- endif -%}
 ]
 </script>
+{%- endpaginate -%}
 
 {% schema %}
 {

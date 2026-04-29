@@ -64,7 +64,13 @@
   #shopify-section-{{ section.id }} .big-card__text *,
   #shopify-section-{{ section.id }} .big-card__text-column *,
   #shopify-section-{{ section.id }} .big-card__text-cell * {
-    font-family: inherit;
+    color: inherit;
+    font-family: inherit !important;
+    font-size: inherit;
+    font-style: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit;
+    text-align: inherit;
   }
 
   #shopify-section-{{ section.id }} .big-card__title > *:first-child,
@@ -275,6 +281,16 @@
           assign image_fit = block.settings.image_fit | default: 'cover'
           assign image_width_mode = block.settings.image_width_mode | default: 'box'
         -%}
+        {%- capture block_text_style -%}
+          color: {{ block_color }};
+          font-size: {{ block_font_size }}px;
+          text-align: {{ block_text_align }};
+          {%- if block.settings.font != blank -%}
+            font-family: {{ block.settings.font.family }}, {{ block.settings.font.fallback_families }} !important;
+            font-style: {{ block.settings.font.style }} !important;
+            font-weight: {{ block.settings.font.weight }} !important;
+          {%- endif -%}
+        {%- endcapture -%}
 
         <div
           class="big-card__block big-card__block--{{ block.type }}"
@@ -301,14 +317,14 @@
           {%- case block.type -%}
             {%- when 'title' -%}
               {%- if block.settings.title != blank -%}
-                <div class="big-card__title rte">
+                <div class="big-card__title rte" style="{{ block_text_style | strip }}">
                   {{ block.settings.title }}
                 </div>
               {%- endif -%}
 
             {%- when 'text' -%}
               {%- if block.settings.text != blank -%}
-                <div class="big-card__text rte">
+                <div class="big-card__text rte" style="{{ block_text_style | strip }}">
                   {{ block.settings.text }}
                 </div>
               {%- endif -%}
@@ -459,13 +475,13 @@
             {%- when 'text_2' -%}
               <div class="big-card__text-grid big-card__text-grid--two">
                 {%- if block.settings.left_text != blank -%}
-                  <div class="big-card__text-column rte">
+                  <div class="big-card__text-column rte" style="{{ block_text_style | strip }}">
                     {{ block.settings.left_text }}
                   </div>
                 {%- endif -%}
 
                 {%- if block.settings.right_text != blank -%}
-                  <div class="big-card__text-column rte">
+                  <div class="big-card__text-column rte" style="{{ block_text_style | strip }}">
                     {{ block.settings.right_text }}
                   </div>
                 {%- endif -%}
@@ -474,25 +490,25 @@
             {%- when 'text_4' -%}
               <div class="big-card__text-grid big-card__text-grid--four">
                 {%- if block.settings.text_1 != blank -%}
-                  <div class="big-card__text-cell rte">
+                  <div class="big-card__text-cell rte" style="{{ block_text_style | strip }}">
                     {{ block.settings.text_1 }}
                   </div>
                 {%- endif -%}
 
                 {%- if block.settings.text_2 != blank -%}
-                  <div class="big-card__text-cell rte">
+                  <div class="big-card__text-cell rte" style="{{ block_text_style | strip }}">
                     {{ block.settings.text_2 }}
                   </div>
                 {%- endif -%}
 
                 {%- if block.settings.text_3 != blank -%}
-                  <div class="big-card__text-cell rte">
+                  <div class="big-card__text-cell rte" style="{{ block_text_style | strip }}">
                     {{ block.settings.text_3 }}
                   </div>
                 {%- endif -%}
 
                 {%- if block.settings.text_4 != blank -%}
-                  <div class="big-card__text-cell rte">
+                  <div class="big-card__text-cell rte" style="{{ block_text_style | strip }}">
                     {{ block.settings.text_4 }}
                   </div>
                 {%- endif -%}

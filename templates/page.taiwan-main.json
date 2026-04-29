@@ -21,7 +21,7 @@
             "background_color": "#c44e93",
             "text_color": "#ffffff",
             "border_color": "#111111",
-            "border_width": 1,
+            "border_width": 0,
             "border_radius": 8,
             "width_type": "auto",
             "custom_width": 200,
@@ -40,7 +40,7 @@
             "background_color": "#c44e93",
             "text_color": "#ffffff",
             "border_color": "#111111",
-            "border_width": 1,
+            "border_width": 0,
             "border_radius": 8,
             "width_type": "auto",
             "custom_width": 200,
@@ -59,7 +59,7 @@
             "background_color": "#c44e93",
             "text_color": "#ffffff",
             "border_color": "#111111",
-            "border_width": 1,
+            "border_width": 0,
             "border_radius": 8,
             "width_type": "auto",
             "custom_width": 200,
@@ -82,7 +82,7 @@
         "padding_top": 12,
         "padding_bottom": 12,
         "button_gap": 16,
-        "background_color": "#849974"
+        "background_color": "#e9dccd"
       }
     },
     "localization_selectors_6XALWq": {
@@ -94,8 +94,8 @@
         "content_alignment": "center",
         "full_width": false,
         "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 100
+        "padding_top": 8,
+        "padding_bottom": 8
       }
     },
     "main": {

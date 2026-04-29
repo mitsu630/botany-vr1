@@ -9,6 +9,95 @@
  */
 {
   "sections": {
+    "custom_buttons_mAeqmg": {
+      "type": "custom-buttons",
+      "blocks": {
+        "button_iE7U4Y": {
+          "type": "button",
+          "settings": {
+            "text": "師資取得課程",
+            "link": "shopify://products/taiwan-special",
+            "open_new_tab": false,
+            "background_color": "#c44e93",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 8,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 6,
+            "padding_x": 16,
+            "font_size": 13,
+            "font_weight": "400"
+          }
+        },
+        "button_wbrh3V": {
+          "type": "button",
+          "settings": {
+            "text": "單日體驗課程",
+            "link": "shopify://products/taiwan-workshop-1",
+            "open_new_tab": false,
+            "background_color": "#c44e93",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 8,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 6,
+            "padding_x": 16,
+            "font_size": 13,
+            "font_weight": "400"
+          }
+        },
+        "button_mk4Dnz": {
+          "type": "button",
+          "settings": {
+            "text": "取得講師",
+            "link": "shopify://pages/world001",
+            "open_new_tab": false,
+            "background_color": "#c44e93",
+            "text_color": "#ffffff",
+            "border_color": "#111111",
+            "border_width": 0,
+            "border_radius": 8,
+            "width_type": "auto",
+            "custom_width": 200,
+            "padding_y": 6,
+            "padding_x": 16,
+            "font_size": 13,
+            "font_weight": "400"
+          }
+        }
+      },
+      "block_order": [
+        "button_iE7U4Y",
+        "button_wbrh3V",
+        "button_mk4Dnz"
+      ],
+      "name": "ボタンズ (custom-buttons)",
+      "settings": {
+        "desktop_alignment": "center",
+        "mobile_alignment": "center",
+        "padding_top": 12,
+        "padding_bottom": 12,
+        "button_gap": 16,
+        "background_color": "#e9dccd"
+      }
+    },
+    "localization_selectors_QE8Na8": {
+      "type": "localization-selectors",
+      "name": "言語・通貨表示",
+      "settings": {
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "content_alignment": "center",
+        "full_width": true,
+        "color_scheme": "",
+        "padding_top": 8,
+        "padding_bottom": 8
+      }
+    },
     "slideshow_xWt8J6": {
       "type": "slideshow",
       "blocks": {
@@ -139,19 +228,6 @@
         "image_behavior": "none",
         "show_text_below": true,
         "accessibility_info": "ブランドについてのスライドショー"
-      }
-    },
-    "localization_selectors_QE8Na8": {
-      "type": "localization-selectors",
-      "name": "言語・通貨表示",
-      "settings": {
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "content_alignment": "center",
-        "full_width": true,
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 100
       }
     },
     "rich_text_RqgYcL": {
@@ -697,8 +773,9 @@
     }
   },
   "order": [
-    "slideshow_xWt8J6",
+    "custom_buttons_mAeqmg",
     "localization_selectors_QE8Na8",
+    "slideshow_xWt8J6",
     "rich_text_RqgYcL",
     "multicolumn_YztMbi",
     "custom_google_maps_7JJLBe",

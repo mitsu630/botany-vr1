@@ -24,7 +24,6 @@
           "type": "profile_header",
           "settings": {
             "show_rank": true,
-            "show_license": false,
             "show_sns": true
           }
         },
@@ -71,7 +70,6 @@
       ],
       "settings": {
         "color_scheme": "scheme-2",
-        "debug": true,
         "background_image_opacity": 35,
         "background_color": "#edf4ea",
         "background_overlay_color": "#ffffff",
@@ -85,9 +83,6 @@
         "content_max_width": 1040,
         "hero_kicker": "Botany Japan Professional",
         "not_found_message": "講師情報が見つかりませんでした。",
-        "workshop_product": "workshop",
-        "artworks_collection": "all",
-        "artworks_limit": 8,
         "padding_top": 36,
         "padding_bottom": 60
       }

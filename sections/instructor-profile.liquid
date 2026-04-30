@@ -838,24 +838,40 @@
                 break
               endif
               assign debug_metafield = variant.metafields.custom['koushi-item-link']
+              assign debug_metafield_underscore = variant.metafields.custom['koushi_item_link']
               assign debug_value = debug_metafield.value
               assign debug_reference = debug_metafield.reference
               assign debug_references = debug_metafield.references
+              assign debug_value_underscore = debug_metafield_underscore.value
+              assign debug_reference_underscore = debug_metafield_underscore.reference
+              assign debug_references_underscore = debug_metafield_underscore.references
               capture debug_line
                 echo 'variant='
                 echo variant.title
-                echo ' | mf_blank='
+                echo ' | hyphen_blank='
                 if debug_metafield == blank
                   echo 'true'
                 else
                   echo 'false'
                 endif
-                echo ' | value='
+                echo ' | hyphen_value='
                 echo debug_value | json
-                echo ' | reference='
+                echo ' | hyphen_reference='
                 echo debug_reference | json
-                echo ' | references='
+                echo ' | hyphen_references='
                 echo debug_references | json
+                echo ' | underscore_blank='
+                if debug_metafield_underscore == blank
+                  echo 'true'
+                else
+                  echo 'false'
+                endif
+                echo ' | underscore_value='
+                echo debug_value_underscore | json
+                echo ' | underscore_reference='
+                echo debug_reference_underscore | json
+                echo ' | underscore_references='
+                echo debug_references_underscore | json
               endcapture
             -%}
             {%- if has_workshop_debug -%},{%- endif -%}
@@ -879,26 +895,42 @@
                 break
               endif
               assign debug_metafield = product.metafields.custom['koushi-item-link']
+              assign debug_metafield_underscore = product.metafields.custom['koushi_item_link']
               assign debug_value = debug_metafield.value
               assign debug_reference = debug_metafield.reference
               assign debug_references = debug_metafield.references
+              assign debug_value_underscore = debug_metafield_underscore.value
+              assign debug_reference_underscore = debug_metafield_underscore.reference
+              assign debug_references_underscore = debug_metafield_underscore.references
               capture debug_line
                 echo 'product='
                 echo product.title
                 echo ' | handle='
                 echo product.handle
-                echo ' | mf_blank='
+                echo ' | hyphen_blank='
                 if debug_metafield == blank
                   echo 'true'
                 else
                   echo 'false'
                 endif
-                echo ' | value='
+                echo ' | hyphen_value='
                 echo debug_value | json
-                echo ' | reference='
+                echo ' | hyphen_reference='
                 echo debug_reference | json
-                echo ' | references='
+                echo ' | hyphen_references='
                 echo debug_references | json
+                echo ' | underscore_blank='
+                if debug_metafield_underscore == blank
+                  echo 'true'
+                else
+                  echo 'false'
+                endif
+                echo ' | underscore_value='
+                echo debug_value_underscore | json
+                echo ' | underscore_reference='
+                echo debug_reference_underscore | json
+                echo ' | underscore_references='
+                echo debug_references_underscore | json
               endcapture
             -%}
             {%- if has_artwork_debug -%},{%- endif -%}
@@ -918,6 +950,9 @@
           {%- for variant in workshop_product.variants -%}
             {%- liquid
               assign linked_instructor_metafield = variant.metafields.custom['koushi-item-link']
+              if linked_instructor_metafield == blank
+                assign linked_instructor_metafield = variant.metafields.custom['koushi_item_link']
+              endif
               assign linked_instructor = linked_instructor_metafield.value
               if linked_instructor == blank and linked_instructor_metafield.reference != blank
                 assign linked_instructor = linked_instructor_metafield.reference
@@ -1085,6 +1120,9 @@
               endif
 
               assign linked_instructor_metafield = product.metafields.custom['koushi-item-link']
+              if linked_instructor_metafield == blank
+                assign linked_instructor_metafield = product.metafields.custom['koushi_item_link']
+              endif
               assign linked_instructor = linked_instructor_metafield.value
               if linked_instructor == blank and linked_instructor_metafield.reference != blank
                 assign linked_instructor = linked_instructor_metafield.reference

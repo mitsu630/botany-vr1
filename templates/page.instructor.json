@@ -51,7 +51,7 @@
         "artworks": {
           "type": "artworks",
           "settings": {
-            "heading": "関連作品"
+            "heading": "販売中の作品"
           }
         },
         "ig_embed": {
@@ -85,6 +85,9 @@
         "content_max_width": 1040,
         "hero_kicker": "Botany Japan Professional",
         "not_found_message": "講師情報が見つかりませんでした。",
+        "workshop_product": "workshop",
+        "artworks_collection": "all",
+        "artworks_limit": 8,
         "padding_top": 36,
         "padding_bottom": 60
       }

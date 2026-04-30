@@ -294,16 +294,6 @@
         "padding_bottom": 52
       }
     },
-    "custom_liquid_YJLcAN": {
-      "type": "custom-liquid",
-      "name": "t:sections.custom-liquid.presets.name",
-      "settings": {
-        "custom_liquid": "<style>\n  .bp-nav2 {\n    background: #e8dcc8;\n    padding: 28px 20px;\n    color: #2d2a25;\n    font-family: \"Noto Sans TC\", \"Hiragino Sans\", \"Helvetica Neue\", Arial, \"Microsoft JhengHei\", sans-serif;\n    -webkit-font-smoothing: antialiased;\n  }\n  .bp-nav2__inner {\n    max-width: 600px;\n    margin: 0 auto;\n    display: grid;\n    grid-template-columns: repeat(2, 1fr);\n    justify-items: center;\n    gap: 32px;\n  }\n\n  /* ===== ボタン（ピル型） ===== */\n  .bp-nav2__btn {\n    position: relative;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    width: 100%;\n    max-width: 240px;\n    padding: 11px 16px;\n    background: #ffffff;\n    border: 1px solid #d8c9a8;\n    border-radius: 999px;\n    text-decoration: none;\n    color: #2d2a25;\n    font-family: \"Noto Serif TC\", \"Source Han Serif TC\", \"Yu Mincho\", \"Hiragino Mincho ProN\", serif;\n    font-size: 14px;\n    letter-spacing: .15em;\n    font-weight: 500;\n    text-align: center;\n    white-space: nowrap;\n    transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease, background .35s ease;\n  }\n  .bp-nav2__btn::before {\n    content: \"\";\n    position: absolute;\n    inset: 3px;\n    border: 0.5px solid transparent;\n    border-radius: 999px;\n    pointer-events: none;\n    transition: border-color .35s ease;\n  }\n  .bp-nav2__btn:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 10px 24px rgba(80, 70, 50, .1);\n    border-color: #a8865c;\n  }\n  .bp-nav2__btn:hover::before {\n    border-color: rgba(176, 141, 90, .35);\n  }\n\n  /* 推奨ボタン */\n  .bp-nav2__btn--pick {\n    background: linear-gradient(180deg, #f5ede0 0%, #faf3e3 100%);\n    border-color: #c4a87a;\n  }\n  .bp-nav2__btn--pick::before {\n    border-color: rgba(176, 141, 90, .25);\n  }\n  .bp-nav2__btn--pick:hover {\n    background: linear-gradient(180deg, #f0e5d0 0%, #f5ecd9 100%);\n    border-color: #a8865c;\n  }\n  .bp-nav2__btn--pick:hover::before {\n    border-color: rgba(176, 141, 90, .5);\n  }\n\n  /* スマホ */\n  @media (max-width: 720px) {\n    .bp-nav2 { padding: 22px 14px; }\n    .bp-nav2__inner { gap: 18px; }\n    .bp-nav2__btn {\n      padding: 10px 12px;\n      font-size: 13px;\n      letter-spacing: .1em;\n      max-width: none;\n    }\n  }\n  @media (max-width: 380px) {\n    .bp-nav2 { padding: 18px 10px; }\n    .bp-nav2__inner { gap: 12px; }\n    .bp-nav2__btn {\n      padding: 9px 8px;\n      font-size: 12px;\n      letter-spacing: .06em;\n    }\n  }\n</style>\n\n<section class=\"bp-nav2\" aria-label=\"主要連結\">\n  <div class=\"bp-nav2__inner\">\n\n    <a class=\"bp-nav2__btn bp-nav2__btn--pick\" href=\"https://botanypainting.com/products/taiwan-special\">\n      師資取得課程\n    </a>\n\n    <a class=\"bp-nav2__btn\" href=\"https://botanypainting.com/products/taiwan-workshop-1\">\n      單日體驗課程\n    </a>\n\n  </div>\n</section>",
-        "color_scheme": "",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
     "multirow_nfArPR": {
       "type": "multirow",
       "blocks": {
@@ -445,10 +435,9 @@
     "rich_text_LEPFa6",
     "1777336773a4c32e06",
     "custom_liquid_QpjFWC",
-    "custom_liquid_witELW",
     "video_7GzqbP",
     "custom_liquid_YNKmfD",
-    "custom_liquid_YJLcAN",
+    "custom_liquid_witELW",
     "multirow_nfArPR",
     "custom_liquid_tLnDYd",
     "custom_liquid_iXxthy",

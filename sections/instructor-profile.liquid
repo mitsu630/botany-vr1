@@ -527,6 +527,7 @@
       'matched: ' + (info.matched ? 'yes' : 'no'),
       'matched_handle: ' + (info.handle || '(none)'),
       'matched_bp_id: ' + (info.bpId || '(none)'),
+      'matched_system_id: ' + (info.systemId || '(none)'),
       'matched_name: ' + (info.name || '(none)'),
       'matched_active: ' + (info.active ? 'true' : 'false'),
       'workshops_count: ' + info.workshopsCount,
@@ -624,6 +625,7 @@
       matched: !!instructor,
       handle: instructor && instructor.handle,
       bpId: instructor && instructor.bp_id,
+      systemId: instructor && instructor.system_id,
       name: instructor && instructor.name,
       active: isActive,
       workshopsCount: instructor && instructor.workshops ? instructor.workshops.length : 0,
@@ -789,6 +791,7 @@
     {
       "handle": {{ m.system.handle | json }},
       "bp_id": {{ bp_id | json }},
+      "system_id": {{ instructor_system_id | json }},
       "bp_is_active": {{ is_active | json }},
       "name": {{ display_name | json }},
       "photo": {{ photo_url | json }},
@@ -823,10 +826,20 @@
               if linked_instructor == blank and linked_instructor_metafield.reference != blank
                 assign linked_instructor = linked_instructor_metafield.reference
               endif
+              assign linked_instructor_references = linked_instructor_metafield.references
               assign linked_handle = ''
               assign linked_bp_id = ''
               assign linked_system_id = ''
               assign instructor_matched = false
+              capture linked_reference_text
+                echo linked_instructor_metafield.value | json
+                echo ' '
+                echo linked_instructor_metafield.reference | json
+                echo ' '
+                echo linked_instructor_metafield.references | json
+                echo ' '
+                echo linked_instructor_metafield | json
+              endcapture
               if linked_instructor and linked_instructor.system and linked_instructor.system.handle != blank
                 assign linked_handle = linked_instructor.system.handle
               elsif linked_instructor and linked_instructor.handle != blank
@@ -848,9 +861,46 @@
               if linked_system_id != blank and linked_system_id == instructor_system_id
                 assign instructor_matched = true
               endif
+              if linked_reference_text contains instructor_handle
+                assign instructor_matched = true
+              endif
+              if instructor_bp_id != blank and linked_reference_text contains instructor_bp_id
+                assign instructor_matched = true
+              endif
+              if instructor_system_id != blank and linked_reference_text contains instructor_system_id
+                assign instructor_matched = true
+              endif
 
               unless instructor_matched
                 for linked_item in linked_instructor
+                  assign linked_item_handle = ''
+                  assign linked_item_bp_id = ''
+                  assign linked_item_system_id = ''
+                  if linked_item.system and linked_item.system.handle != blank
+                    assign linked_item_handle = linked_item.system.handle
+                  elsif linked_item.handle != blank
+                    assign linked_item_handle = linked_item.handle
+                  endif
+                  if linked_item.bp_id and linked_item.bp_id.value != blank
+                    assign linked_item_bp_id = linked_item.bp_id.value
+                  endif
+                  if linked_item.system and linked_item.system.id != blank
+                    assign linked_item_system_id = linked_item.system.id
+                  endif
+                  if linked_item_handle != blank and linked_item_handle == instructor_handle
+                    assign instructor_matched = true
+                  endif
+                  if linked_item_bp_id != blank and linked_item_bp_id == instructor_bp_id
+                    assign instructor_matched = true
+                  endif
+                  if linked_item_system_id != blank and linked_item_system_id == instructor_system_id
+                    assign instructor_matched = true
+                  endif
+                endfor
+              endunless
+
+              unless instructor_matched
+                for linked_item in linked_instructor_references
                   assign linked_item_handle = ''
                   assign linked_item_bp_id = ''
                   assign linked_item_system_id = ''
@@ -943,10 +993,20 @@
               if linked_instructor == blank and linked_instructor_metafield.reference != blank
                 assign linked_instructor = linked_instructor_metafield.reference
               endif
+              assign linked_instructor_references = linked_instructor_metafield.references
               assign linked_handle = ''
               assign linked_bp_id = ''
               assign linked_system_id = ''
               assign instructor_matched = false
+              capture linked_reference_text
+                echo linked_instructor_metafield.value | json
+                echo ' '
+                echo linked_instructor_metafield.reference | json
+                echo ' '
+                echo linked_instructor_metafield.references | json
+                echo ' '
+                echo linked_instructor_metafield | json
+              endcapture
               if linked_instructor and linked_instructor.system and linked_instructor.system.handle != blank
                 assign linked_handle = linked_instructor.system.handle
               elsif linked_instructor and linked_instructor.handle != blank
@@ -968,9 +1028,46 @@
               if linked_system_id != blank and linked_system_id == instructor_system_id
                 assign instructor_matched = true
               endif
+              if linked_reference_text contains instructor_handle
+                assign instructor_matched = true
+              endif
+              if instructor_bp_id != blank and linked_reference_text contains instructor_bp_id
+                assign instructor_matched = true
+              endif
+              if instructor_system_id != blank and linked_reference_text contains instructor_system_id
+                assign instructor_matched = true
+              endif
 
               unless instructor_matched
                 for linked_item in linked_instructor
+                  assign linked_item_handle = ''
+                  assign linked_item_bp_id = ''
+                  assign linked_item_system_id = ''
+                  if linked_item.system and linked_item.system.handle != blank
+                    assign linked_item_handle = linked_item.system.handle
+                  elsif linked_item.handle != blank
+                    assign linked_item_handle = linked_item.handle
+                  endif
+                  if linked_item.bp_id and linked_item.bp_id.value != blank
+                    assign linked_item_bp_id = linked_item.bp_id.value
+                  endif
+                  if linked_item.system and linked_item.system.id != blank
+                    assign linked_item_system_id = linked_item.system.id
+                  endif
+                  if linked_item_handle != blank and linked_item_handle == instructor_handle
+                    assign instructor_matched = true
+                  endif
+                  if linked_item_bp_id != blank and linked_item_bp_id == instructor_bp_id
+                    assign instructor_matched = true
+                  endif
+                  if linked_item_system_id != blank and linked_item_system_id == instructor_system_id
+                    assign instructor_matched = true
+                  endif
+                endfor
+              endunless
+
+              unless instructor_matched
+                for linked_item in linked_instructor_references
                   assign linked_item_handle = ''
                   assign linked_item_bp_id = ''
                   assign linked_item_system_id = ''

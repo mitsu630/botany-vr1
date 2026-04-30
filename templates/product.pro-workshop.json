@@ -200,8 +200,13 @@
         "padding_left": 0
       }
     },
+    "17775336420c4097d8": {
+      "type": "_blocks",
+      "settings": {}
+    },
     "custom_standalone_image_agbXCQ": {
       "type": "custom-standalone-image",
+      "disabled": true,
       "name": "t:sections.custom-standalone-image.presets.name",
       "settings": {
         "image": "shopify://shop_images/shizu103_49ad1eef-5aa0-4587-8a9c-1414d4b66fbc.webp",
@@ -218,6 +223,53 @@
         "padding_right": 0,
         "padding_bottom": 0,
         "padding_left": 0
+      }
+    },
+    "1777534691c2c38f66": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "rich_text_GiihXY": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_Cqq9By": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "text_7zarGt": {
+          "type": "text",
+          "settings": {
+            "text": "<h6>初心者の方も気軽に楽しめる小さなパネルから、<br/>人気の41cmパネルまで。</h6><h6>お好みのサイズを選んで、想い想いに<br/>1枚のアートを仕上げるワークショップです。</h6><h6>天然の蓮の葉を並べ、心のおもむくままに色をのせていく。<br/>偶然生まれる色の混ざりや、葉脈の美しさに心が洗われます。</h6><h6>「絵心に自信がないかも…」という方もご安心ください。<br/>自然の葉そのものが持つ造形美が、<br/>誰でも素敵な作品にしてくれます。</h6><h6>技術やセンス、年齢に関係なく、<br/>色が重なる癒やしのひとときをお楽しみください。</h6>"
+          }
+        },
+        "button_iFmRcr": {
+          "type": "button",
+          "settings": {
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_Cqq9By",
+        "text_7zarGt",
+        "button_iFmRcr"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-3172028a-6e78-4251-8b09-d9d0cf7c9a95",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     },
     "custom_standalone_image_Dxhtt8": {
@@ -684,7 +736,10 @@
     "rich_text_KzMKVq",
     "17775293465f4571c2",
     "custom_standalone_image_ytdCcG",
+    "17775336420c4097d8",
     "custom_standalone_image_agbXCQ",
+    "1777534691c2c38f66",
+    "rich_text_GiihXY",
     "custom_standalone_image_Dxhtt8",
     "custom_standalone_image_X7aEGJ",
     "custom_standalone_image_cQTq7i",

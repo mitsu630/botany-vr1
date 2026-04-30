@@ -87,6 +87,7 @@
     },
     "localization_selectors_6XALWq": {
       "type": "localization-selectors",
+      "disabled": true,
       "name": "言語・通貨表示",
       "settings": {
         "enable_country_selector": true,

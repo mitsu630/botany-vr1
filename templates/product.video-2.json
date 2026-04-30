@@ -160,24 +160,6 @@
         "content_alignment": "center"
       }
     },
-    "related-products": {
-      "type": "related-products",
-      "settings": {
-        "heading": "",
-        "heading_size": "h2",
-        "products_to_show": 4,
-        "columns_desktop": 4,
-        "columns_mobile": "2",
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "padding_top": 36,
-        "padding_bottom": 28
-      }
-    },
     "multicolumn_LNrrnW": {
       "type": "multicolumn",
       "blocks": {
@@ -442,8 +424,10 @@
           "type": "text",
           "settings": {
             "text": "<p><strong>動画を見て学ぶ</strong></p>",
+            "text_font": "assistant_n4",
             "font_size": 16,
             "color": "#595555",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -454,8 +438,10 @@
           "type": "text",
           "settings": {
             "text": "<p>スマホやパソコンで繰り返し視聴できる一般非公開のネット動画で、丁寧に説明します。（以下画像はサンプルです）</p>",
+            "text_font": "assistant_n4",
             "font_size": 13,
             "color": "#3d3d3d",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -477,8 +463,10 @@
           "type": "text",
           "settings": {
             "text": "<p><strong>動画を見て学ぶ</strong></p>",
+            "text_font": "assistant_n4",
             "font_size": 16,
             "color": "#595555",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 28,
@@ -489,8 +477,10 @@
           "type": "text",
           "settings": {
             "text": "<p>ボタニーペインティングの基本と応用がわかるテキストBOOKを同封。アートの着色の基礎や応用について学べ、講師の作品集も豊富に掲載しています。一般書店でも販売されている本格的な本で、しっかりと学ぶことができます。</p>",
+            "text_font": "assistant_n4",
             "font_size": 13,
             "color": "#3d3d3d",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -514,8 +504,10 @@
           "type": "text",
           "settings": {
             "text": "<p><strong>講座基本セット</strong></p>",
+            "text_font": "assistant_n4",
             "font_size": 16,
             "color": "#595555",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 28,
@@ -526,8 +518,10 @@
           "type": "text",
           "settings": {
             "text": "<p>動画のURLとテキストBOOKの他、講座を楽しむための画材セットをお送りします。セット内容には、30cm正方形木製パネル1枚、アクリル絵の具12色、ゴールド・シルバー絵の具、ペーパーパレット、専用糊、着色用スポンジ、専用ニス、ニス用刷毛、動画URL、受講者専用画材サイトのURLが含まれます。</p>",
+            "text_font": "assistant_n4",
             "font_size": 13,
             "color": "#3d3d3d",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -539,8 +533,10 @@
           "settings": {
             "left_text": "<ul><li>30cm正方形木製パネル1枚</li><li>アクリル絵の具12色</li><li>ゴールド絵の具・シルバー絵の具</li><li>ペーパーパレット</li><li>専用糊</li></ul>",
             "right_text": "<ul><li>着色用スポンジ</li><li>専用ニス</li><li>ニス用刷毛</li><li>動画URL</li><li>受講者専用画材サイトのURL</li></ul>",
+            "text_font": "assistant_n4",
             "font_size": 16,
             "color": "#111111",
+            "text_align": "left",
             "grid_gap": 24,
             "padding_top": 0,
             "padding_bottom": 0,
@@ -558,6 +554,8 @@
             "image_box_width": 1200,
             "image_box_height": 720,
             "image_align": "center",
+            "image_background_transparent": true,
+            "image_background_color": "#f2f2f2",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -568,8 +566,10 @@
           "type": "text",
           "settings": {
             "text": "<p><strong>選べる植物</strong></p>",
+            "text_font": "assistant_n4",
             "font_size": 16,
             "color": "#595555",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 28,
@@ -580,8 +580,10 @@
           "type": "text",
           "settings": {
             "text": "<p>講座お申し込み時に、初回の葉をお選びいただけます。講座を受講すると別の植物の葉も購入できます。</p>",
+            "text_font": "assistant_n4",
             "font_size": 13,
             "color": "#3d3d3d",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -598,6 +600,8 @@
             "image_box_width": 1200,
             "image_box_height": 720,
             "image_align": "center",
+            "image_background_transparent": true,
+            "image_background_color": "#f2f2f2",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -918,6 +922,44 @@
         "padding_top": 36,
         "padding_bottom": 12
       }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "1777517076dedae5f3": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_xfykHj": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_xfykHj"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
@@ -936,6 +978,7 @@
     "legal_notes_qyzKXn",
     "legal_notes_4KMcdT",
     "main",
-    "related-products"
+    "related-products",
+    "1777517076dedae5f3"
   ]
 }

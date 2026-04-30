@@ -85,7 +85,7 @@
         "not_found_message": "講師情報が見つかりませんでした。",
         "preview_instructor_id": "bp-pro2026-shimosako",
         "workshop_product": "workshop",
-        "artworks_collection": "all",
+        "artworks_collection": "講師作品",
         "artworks_limit": 8,
         "padding_top": 36,
         "padding_bottom": 60

@@ -27,6 +27,19 @@
             "show_sns": true
           }
         },
+        "artworks": {
+          "type": "artworks",
+          "settings": {
+            "heading": "販売中の作品"
+          }
+        },
+        "workshops": {
+          "type": "workshops",
+          "settings": {
+            "heading": "担当ワークショップ",
+            "show_product_image": true
+          }
+        },
         "bio": {
           "type": "bio",
           "settings": {
@@ -40,19 +53,6 @@
             "columns": 3
           }
         },
-        "workshops": {
-          "type": "workshops",
-          "settings": {
-            "heading": "担当ワークショップ",
-            "show_product_image": true
-          }
-        },
-        "artworks": {
-          "type": "artworks",
-          "settings": {
-            "heading": "販売中の作品"
-          }
-        },
         "ig_embed": {
           "type": "ig_embed",
           "settings": {
@@ -62,10 +62,10 @@
       },
       "block_order": [
         "profile_header",
+        "artworks",
+        "workshops",
         "bio",
         "gallery",
-        "workshops",
-        "artworks",
         "ig_embed"
       ],
       "settings": {
@@ -83,6 +83,7 @@
         "content_max_width": 1040,
         "hero_kicker": "Botany Japan Professional",
         "not_found_message": "講師情報が見つかりませんでした。",
+        "preview_instructor_id": "bp-pro2026-shimosako",
         "workshop_product": "workshop",
         "artworks_collection": "all",
         "artworks_limit": 8,

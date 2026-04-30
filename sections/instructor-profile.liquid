@@ -724,6 +724,10 @@
       assign works = m.bp_photo_work001.value
       assign instructor_handle = m.system.handle
       assign instructor_bp_id = bp_id
+      assign instructor_system_id = ''
+      if m.system and m.system.id != blank
+        assign instructor_system_id = m.system.id
+      endif
     -%}
     {
       "handle": {{ m.system.handle | json }},
@@ -757,19 +761,68 @@
         {%- if workshop_product != blank and workshop_product.variants.size > 0 -%}
           {%- for variant in workshop_product.variants -%}
             {%- liquid
-              assign linked_instructor = variant.metafields.custom['koushi-item-link'].value
+              assign linked_instructor_metafield = variant.metafields.custom['koushi-item-link']
+              assign linked_instructor = linked_instructor_metafield.value
+              if linked_instructor == blank and linked_instructor_metafield.reference != blank
+                assign linked_instructor = linked_instructor_metafield.reference
+              endif
               assign linked_handle = ''
               assign linked_bp_id = ''
+              assign linked_system_id = ''
+              assign instructor_matched = false
               if linked_instructor and linked_instructor.system and linked_instructor.system.handle != blank
                 assign linked_handle = linked_instructor.system.handle
+              elsif linked_instructor and linked_instructor.handle != blank
+                assign linked_handle = linked_instructor.handle
               endif
               if linked_instructor and linked_instructor.bp_id and linked_instructor.bp_id.value != blank
                 assign linked_bp_id = linked_instructor.bp_id.value
               endif
-
-              if linked_handle != instructor_handle and linked_bp_id != instructor_bp_id
-                continue
+              if linked_instructor and linked_instructor.system and linked_instructor.system.id != blank
+                assign linked_system_id = linked_instructor.system.id
               endif
+
+              if linked_handle != blank and linked_handle == instructor_handle
+                assign instructor_matched = true
+              endif
+              if linked_bp_id != blank and linked_bp_id == instructor_bp_id
+                assign instructor_matched = true
+              endif
+              if linked_system_id != blank and linked_system_id == instructor_system_id
+                assign instructor_matched = true
+              endif
+
+              unless instructor_matched
+                for linked_item in linked_instructor
+                  assign linked_item_handle = ''
+                  assign linked_item_bp_id = ''
+                  assign linked_item_system_id = ''
+                  if linked_item.system and linked_item.system.handle != blank
+                    assign linked_item_handle = linked_item.system.handle
+                  elsif linked_item.handle != blank
+                    assign linked_item_handle = linked_item.handle
+                  endif
+                  if linked_item.bp_id and linked_item.bp_id.value != blank
+                    assign linked_item_bp_id = linked_item.bp_id.value
+                  endif
+                  if linked_item.system and linked_item.system.id != blank
+                    assign linked_item_system_id = linked_item.system.id
+                  endif
+                  if linked_item_handle != blank and linked_item_handle == instructor_handle
+                    assign instructor_matched = true
+                  endif
+                  if linked_item_bp_id != blank and linked_item_bp_id == instructor_bp_id
+                    assign instructor_matched = true
+                  endif
+                  if linked_item_system_id != blank and linked_item_system_id == instructor_system_id
+                    assign instructor_matched = true
+                  endif
+                endfor
+              endunless
+
+              unless instructor_matched
+                continue
+              endunless
 
               assign venue_m = variant.metafields.custom.workshop_venue.value
               assign datetime_m = variant.metafields.custom.workshop_datetime.value
@@ -828,19 +881,68 @@
                 break
               endif
 
-              assign linked_instructor = product.metafields.custom['koushi-item-link'].value
+              assign linked_instructor_metafield = product.metafields.custom['koushi-item-link']
+              assign linked_instructor = linked_instructor_metafield.value
+              if linked_instructor == blank and linked_instructor_metafield.reference != blank
+                assign linked_instructor = linked_instructor_metafield.reference
+              endif
               assign linked_handle = ''
               assign linked_bp_id = ''
+              assign linked_system_id = ''
+              assign instructor_matched = false
               if linked_instructor and linked_instructor.system and linked_instructor.system.handle != blank
                 assign linked_handle = linked_instructor.system.handle
+              elsif linked_instructor and linked_instructor.handle != blank
+                assign linked_handle = linked_instructor.handle
               endif
               if linked_instructor and linked_instructor.bp_id and linked_instructor.bp_id.value != blank
                 assign linked_bp_id = linked_instructor.bp_id.value
               endif
-
-              if linked_handle != instructor_handle and linked_bp_id != instructor_bp_id
-                continue
+              if linked_instructor and linked_instructor.system and linked_instructor.system.id != blank
+                assign linked_system_id = linked_instructor.system.id
               endif
+
+              if linked_handle != blank and linked_handle == instructor_handle
+                assign instructor_matched = true
+              endif
+              if linked_bp_id != blank and linked_bp_id == instructor_bp_id
+                assign instructor_matched = true
+              endif
+              if linked_system_id != blank and linked_system_id == instructor_system_id
+                assign instructor_matched = true
+              endif
+
+              unless instructor_matched
+                for linked_item in linked_instructor
+                  assign linked_item_handle = ''
+                  assign linked_item_bp_id = ''
+                  assign linked_item_system_id = ''
+                  if linked_item.system and linked_item.system.handle != blank
+                    assign linked_item_handle = linked_item.system.handle
+                  elsif linked_item.handle != blank
+                    assign linked_item_handle = linked_item.handle
+                  endif
+                  if linked_item.bp_id and linked_item.bp_id.value != blank
+                    assign linked_item_bp_id = linked_item.bp_id.value
+                  endif
+                  if linked_item.system and linked_item.system.id != blank
+                    assign linked_item_system_id = linked_item.system.id
+                  endif
+                  if linked_item_handle != blank and linked_item_handle == instructor_handle
+                    assign instructor_matched = true
+                  endif
+                  if linked_item_bp_id != blank and linked_item_bp_id == instructor_bp_id
+                    assign instructor_matched = true
+                  endif
+                  if linked_item_system_id != blank and linked_item_system_id == instructor_system_id
+                    assign instructor_matched = true
+                  endif
+                endfor
+              endunless
+
+              unless instructor_matched
+                continue
+              endunless
 
               assign artwork_image = ''
               if product.featured_media != blank

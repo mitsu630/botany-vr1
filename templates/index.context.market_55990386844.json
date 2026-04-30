@@ -12,7 +12,94 @@
     "market": "台湾"
   },
   "parent": "index.json",
-  "sections": {},
+  "sections": {
+    "featured_product_mcjbRH": {
+      "settings": {
+        "product": "taiwan-special"
+      },
+      "blocks": {}
+    },
+    "featured_product_cdhkR": {
+      "type": "featured-product",
+      "disabled": false,
+      "settings": {
+        "product": "taiwan-workshop-1",
+        "color_scheme": "",
+        "secondary_background": false,
+        "header-3fa9e2686c20e3984d761e1434556f21": null,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "header-8a8c94324d53fe22621b2fd3c57ea99a": null,
+        "padding_top": 36,
+        "padding_bottom": 36
+      },
+      "blocks": {
+        "text_YtDLY": {
+          "type": "text",
+          "disabled": false,
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_gwQP6": {
+          "type": "title",
+          "disabled": false,
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_XX8PX": {
+          "type": "price",
+          "disabled": false,
+          "settings": {}
+        },
+        "variant_picker_PXVVi": {
+          "type": "variant_picker",
+          "disabled": false,
+          "settings": {
+            "picker_type": "dropdown",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_7e6Nc": {
+          "type": "quantity_selector",
+          "disabled": false,
+          "settings": {}
+        },
+        "buy_buttons_nnALL": {
+          "type": "buy_buttons",
+          "disabled": false,
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_m3EfD": {
+          "type": "share",
+          "disabled": false,
+          "settings": {
+            "share_label": "共有"
+          }
+        }
+      },
+      "block_order": [
+        "text_YtDLY",
+        "title_gwQP6",
+        "price_XX8PX",
+        "variant_picker_PXVVi",
+        "quantity_selector_7e6Nc",
+        "buy_buttons_nnALL",
+        "share_m3EfD"
+      ],
+      "name": "t:sections.featured-product.presets.name"
+    }
+  },
   "order": [
     "custom_buttons_B7pFbJ",
     "autoplay_loop_video_qjVFkb",
@@ -25,6 +112,11 @@
     "multicolumn_fmMNbk",
     "slideshow_WAxXXG",
     "video_7rBJ6d",
-    "featured_product_mcjbRH"
+    "featured_product_mcjbRH",
+    "featured_product_cdhkR",
+    "big_card_d7k89",
+    "big_card_RGRFDU",
+    "big_card_f8rNnX",
+    "big_card_LzmjCq"
   ]
 }

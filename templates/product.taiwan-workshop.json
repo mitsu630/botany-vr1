@@ -9,6 +9,16 @@
  */
 {
   "sections": {
+    "custom_liquid_eTVFe9": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n  .bp-nav3 {\n    background: #e8dcc8;\n    padding: 28px 20px;\n    color: #2d2a25;\n    font-family: \"Noto Sans TC\", \"Hiragino Sans\", \"Helvetica Neue\", Arial, \"Microsoft JhengHei\", sans-serif;\n    -webkit-font-smoothing: antialiased;\n  }\n  .bp-nav3__inner {\n    max-width: 720px;\n    margin: 0 auto;\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: center;\n    gap: 14px;\n  }\n\n  /* ===== ボタン（ピル型） ===== */\n  .bp-nav3__btn {\n    position: relative;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    padding: 11px 28px;\n    background: #ffffff;\n    border: 1px solid #d8c9a8;\n    border-radius: 999px;\n    text-decoration: none;\n    color: #2d2a25;\n    font-family: \"Noto Serif TC\", \"Source Han Serif TC\", \"Yu Mincho\", \"Hiragino Mincho ProN\", serif;\n    font-size: 14px;\n    letter-spacing: .15em;\n    font-weight: 500;\n    text-align: center;\n    white-space: nowrap;\n    transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease, background .35s ease;\n  }\n  .bp-nav3__btn::before {\n    content: \"\";\n    position: absolute;\n    inset: 3px;\n    border: 0.5px solid transparent;\n    border-radius: 999px;\n    pointer-events: none;\n    transition: border-color .35s ease;\n  }\n  .bp-nav3__btn:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 10px 24px rgba(80, 70, 50, .1);\n    border-color: #a8865c;\n  }\n  .bp-nav3__btn:hover::before {\n    border-color: rgba(176, 141, 90, .35);\n  }\n\n  /* 推奨ボタン（師資取得課程） */\n  .bp-nav3__btn--pick {\n    background: linear-gradient(180deg, #f5ede0 0%, #faf3e3 100%);\n    border-color: #c4a87a;\n  }\n  .bp-nav3__btn--pick::before {\n    border-color: rgba(176, 141, 90, .25);\n  }\n  .bp-nav3__btn--pick:hover {\n    background: linear-gradient(180deg, #f0e5d0 0%, #f5ecd9 100%);\n    border-color: #a8865c;\n  }\n  .bp-nav3__btn--pick:hover::before {\n    border-color: rgba(176, 141, 90, .5);\n  }\n\n  /* スマホ */\n  @media (max-width: 720px) {\n    .bp-nav3 { padding: 22px 16px; }\n    .bp-nav3__inner { gap: 10px; }\n    .bp-nav3__btn {\n      padding: 10px 22px;\n      font-size: 13px;\n      letter-spacing: .12em;\n    }\n  }\n  @media (max-width: 380px) {\n    .bp-nav3 { padding: 18px 12px; }\n    .bp-nav3__inner { gap: 8px; }\n    .bp-nav3__btn {\n      padding: 9px 18px;\n      font-size: 12px;\n      letter-spacing: .08em;\n    }\n  }\n</style>\n\n<section class=\"bp-nav3\" aria-label=\"主要連結\">\n  <div class=\"bp-nav3__inner\">\n\n    <a class=\"bp-nav3__btn bp-nav3__btn--pick\" href=\"https://botanypainting.com/products/taiwan-special\">\n      師資取得課程\n    </a>\n\n    <a class=\"bp-nav3__btn\" href=\"https://botanypainting.com/products/taiwan-workshop-1\">\n      單日體驗課程\n    </a>\n\n    <a class=\"bp-nav3__btn\" href=\"https://botanypainting.com/pages/world001\">\n      認證講師\n    </a>\n\n  </div>\n</section>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "custom_buttons_mAeqmg": {
       "type": "custom-buttons",
       "blocks": {
@@ -75,6 +85,7 @@
         "button_wbrh3V",
         "button_mk4Dnz"
       ],
+      "disabled": true,
       "name": "ボタンズ (custom-buttons)",
       "settings": {
         "desktop_alignment": "center",
@@ -87,6 +98,7 @@
     },
     "localization_selectors_QE8Na8": {
       "type": "localization-selectors",
+      "disabled": true,
       "name": "言語・通貨表示",
       "settings": {
         "enable_country_selector": true,
@@ -354,8 +366,10 @@
           "type": "text",
           "settings": {
             "text": "<p>安排配置</p>",
+            "text_font": "assistant_n4",
             "font_size": 16,
             "color": "#111111",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -366,8 +380,10 @@
           "type": "text",
           "settings": {
             "text": "<p>在木製畫版上自由擺放葉子。就算超出畫板也沒有關係。（在粘貼後會將超出部分裁掉。）</p>",
+            "text_font": "assistant_n4",
             "font_size": 16,
             "color": "#111111",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -384,6 +400,8 @@
             "image_box_width": 1200,
             "image_box_height": 360,
             "image_align": "center",
+            "image_background_transparent": true,
+            "image_background_color": "#f2f2f2",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -394,8 +412,10 @@
           "type": "text",
           "settings": {
             "text": "<p>黏貼</p>",
+            "text_font": "assistant_n4",
             "font_size": 16,
             "color": "#111111",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -406,8 +426,10 @@
           "type": "text",
           "settings": {
             "text": "<p>用專用的膠水將葉子貼上。用手掌觸摸天然植物，可感受其帶來的放鬆效果。</p>",
+            "text_font": "assistant_n4",
             "font_size": 16,
             "color": "#111111",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -424,6 +446,8 @@
             "image_box_width": 1200,
             "image_box_height": 360,
             "image_align": "center",
+            "image_background_transparent": true,
+            "image_background_color": "#f2f2f2",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -434,8 +458,10 @@
           "type": "text",
           "settings": {
             "text": "<p>上色</p>",
+            "text_font": "assistant_n4",
             "font_size": 16,
             "color": "#111111",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -446,8 +472,10 @@
           "type": "text",
           "settings": {
             "text": "<p>使使用海綿將壓克力顏料像化妝一樣塗在葉子上。請放鬆心情，慢慢享受這段無思無慮的時光。</p>",
+            "text_font": "assistant_n4",
             "font_size": 16,
             "color": "#111111",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -464,6 +492,8 @@
             "image_box_width": 1200,
             "image_box_height": 360,
             "image_align": "center",
+            "image_background_transparent": true,
+            "image_background_color": "#f2f2f2",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -570,8 +600,10 @@
           "type": "text",
           "settings": {
             "text": "<p>【注意事項】<br/>※本次課程恕不事先寄送畫材，所有上課所需材料將於活動當天在會場為您準備齊全。<br/>※本課程為由五感寄合所有限公司主辦的免費課程，為期兩天。<br/>因此不收取課程費用，僅需負擔畫材材料費用。敬請理解與配合。<br/><br/></p><p>【關於營運體制】<br/>株式會社アントレ・サン・フラッペ 植物彩繪事業部在台灣的活動安排如下：<br/>課程的預約、付款管理及畫材寄送責任由日本本部（株式會社アントレ・サン・フラッペ，日本法人番號：4080101007800）負責，在台灣舉辦課程的執行與運營責任則由台灣代理店 五感寄合所負責。（統一編號：60656028）</p><p>【關於講師認證課程】<br/>植物彩繪講師認證課程是透過學習作品製作的基礎技術，並通過規定的技術審查，取得正式作為植物彩繪講師進行活動的資格之課程。</p><p>【營運責任・聯絡資訊】<br/>■ 營運代表（預約管理／畫材寄送責任）<br/>株式會社アントレ・サン・フラッペ 植物彩繪事業部<br/>日本法人番號：4080101007800<br/>日本靜岡縣三島市塚原新田24-3<br/>[taiwan@botanypainting.com]（日本在住台灣籍負責人）<br/>+81-559-83-3361（僅限日文應對）</p><p>■ 免費講座主辦代理（台灣場執行與運營責任）<br/>五感寄合所有限公司<br/>統一編號：60656028<br/>公司地址：台灣台北市北投區致遠一路二段45巷10號2樓<br/>E-mail：info@5kanjo.com</p>",
+            "text_font": "assistant_n4",
             "font_size": 16,
             "color": "#111111",
+            "text_align": "left",
             "padding_top": 0,
             "padding_bottom": 0,
             "margin_top": 0,
@@ -773,6 +805,7 @@
     }
   },
   "order": [
+    "custom_liquid_eTVFe9",
     "custom_buttons_mAeqmg",
     "localization_selectors_QE8Na8",
     "slideshow_xWt8J6",

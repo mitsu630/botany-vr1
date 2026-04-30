@@ -14,6 +14,9 @@
     },
     "台湾": {
       "parent": "@default"
+    },
+    "国外": {
+      "parent": "@default"
     }
   }
 }

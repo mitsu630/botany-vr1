@@ -534,6 +534,12 @@
       'artworks_count: ' + info.artworksCount,
       'workshop_product_setting: {{ section.settings.workshop_product.handle | default: 'workshop' | escape }}',
       'artworks_collection_setting: {{ section.settings.artworks_collection.handle | default: '(blank)' | escape }}',
+      'workshop_product_variants_count: ' + (info.workshopVariantCount || 0),
+      'artworks_collection_products_count: ' + (info.artworkProductCount || 0),
+      'workshop_metafield_samples:',
+      (info.workshopDebug && info.workshopDebug.length ? info.workshopDebug.join('\n') : '(none)'),
+      'artwork_metafield_samples:',
+      (info.artworkDebug && info.artworkDebug.length ? info.artworkDebug.join('\n') : '(none)'),
       'updated_marker: 2026-04-30 instructor related content debug'
     ];
 
@@ -629,7 +635,11 @@
       name: instructor && instructor.name,
       active: isActive,
       workshopsCount: instructor && instructor.workshops ? instructor.workshops.length : 0,
-      artworksCount: instructor && instructor.artworks ? instructor.artworks.length : 0
+      artworksCount: instructor && instructor.artworks ? instructor.artworks.length : 0,
+      workshopVariantCount: instructor && instructor.workshop_variant_count,
+      artworkProductCount: instructor && instructor.artwork_product_count,
+      workshopDebug: instructor && instructor.workshop_debug,
+      artworkDebug: instructor && instructor.artwork_debug
     });
 
     if (!instructor || !isActive) {
@@ -814,6 +824,92 @@
       ],
       "workshop_heading": {{ workshop_heading | json }},
       "artworks_heading": {{ artworks_heading | json }},
+      "workshop_variant_count": {{ workshop_product.variants.size | default: 0 | json }},
+      "artwork_product_count": {{ artworks_collection.products.size | default: 0 | json }},
+      "workshop_debug": [
+        {%- liquid
+          assign debug_count = 0
+          assign has_workshop_debug = false
+        -%}
+        {%- if workshop_product != blank and workshop_product.variants.size > 0 -%}
+          {%- for variant in workshop_product.variants -%}
+            {%- liquid
+              if debug_count >= 8
+                break
+              endif
+              assign debug_metafield = variant.metafields.custom['koushi-item-link']
+              assign debug_value = debug_metafield.value
+              assign debug_reference = debug_metafield.reference
+              assign debug_references = debug_metafield.references
+              capture debug_line
+                echo 'variant='
+                echo variant.title
+                echo ' | mf_blank='
+                if debug_metafield == blank
+                  echo 'true'
+                else
+                  echo 'false'
+                endif
+                echo ' | value='
+                echo debug_value | json
+                echo ' | reference='
+                echo debug_reference | json
+                echo ' | references='
+                echo debug_references | json
+              endcapture
+            -%}
+            {%- if has_workshop_debug -%},{%- endif -%}
+            {{ debug_line | strip | json }}
+            {%- liquid
+              assign has_workshop_debug = true
+              assign debug_count = debug_count | plus: 1
+            -%}
+          {%- endfor -%}
+        {%- endif -%}
+      ],
+      "artwork_debug": [
+        {%- liquid
+          assign debug_count = 0
+          assign has_artwork_debug = false
+        -%}
+        {%- if artworks_collection != blank and artworks_collection.products.size > 0 -%}
+          {%- for product in artworks_collection.products -%}
+            {%- liquid
+              if debug_count >= 8
+                break
+              endif
+              assign debug_metafield = product.metafields.custom['koushi-item-link']
+              assign debug_value = debug_metafield.value
+              assign debug_reference = debug_metafield.reference
+              assign debug_references = debug_metafield.references
+              capture debug_line
+                echo 'product='
+                echo product.title
+                echo ' | handle='
+                echo product.handle
+                echo ' | mf_blank='
+                if debug_metafield == blank
+                  echo 'true'
+                else
+                  echo 'false'
+                endif
+                echo ' | value='
+                echo debug_value | json
+                echo ' | reference='
+                echo debug_reference | json
+                echo ' | references='
+                echo debug_references | json
+              endcapture
+            -%}
+            {%- if has_artwork_debug -%},{%- endif -%}
+            {{ debug_line | strip | json }}
+            {%- liquid
+              assign has_artwork_debug = true
+              assign debug_count = debug_count | plus: 1
+            -%}
+          {%- endfor -%}
+        {%- endif -%}
+      ],
       "workshops": [
         {%- liquid
           assign has_workshop = false

@@ -24,7 +24,6 @@
           "type": "profile_header",
           "settings": {
             "show_rank": true,
-            "show_license": false,
             "show_sns": true
           }
         },
@@ -71,7 +70,6 @@
       ],
       "settings": {
         "color_scheme": "scheme-2",
-        "debug": true,
         "background_image_opacity": 35,
         "background_color": "#edf4ea",
         "background_overlay_color": "#ffffff",

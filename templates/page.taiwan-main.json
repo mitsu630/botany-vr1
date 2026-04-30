@@ -75,6 +75,7 @@
         "button_7KX6EL",
         "button_XbTLm3"
       ],
+      "disabled": true,
       "name": "ボタンズ (custom-buttons)",
       "settings": {
         "desktop_alignment": "center",
@@ -105,6 +106,16 @@
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
+      }
+    },
+    "custom_liquid_witELW": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n  .bp-nav3 {\n    background: #e8dcc8;\n    padding: 28px 20px;\n    color: #2d2a25;\n    font-family: \"Noto Sans TC\", \"Hiragino Sans\", \"Helvetica Neue\", Arial, \"Microsoft JhengHei\", sans-serif;\n    -webkit-font-smoothing: antialiased;\n  }\n  .bp-nav3__inner {\n    max-width: 720px;\n    margin: 0 auto;\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: center;\n    gap: 14px;\n  }\n\n  /* ===== ボタン（ピル型） ===== */\n  .bp-nav3__btn {\n    position: relative;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    padding: 11px 28px;\n    background: #ffffff;\n    border: 1px solid #d8c9a8;\n    border-radius: 999px;\n    text-decoration: none;\n    color: #2d2a25;\n    font-family: \"Noto Serif TC\", \"Source Han Serif TC\", \"Yu Mincho\", \"Hiragino Mincho ProN\", serif;\n    font-size: 14px;\n    letter-spacing: .15em;\n    font-weight: 500;\n    text-align: center;\n    white-space: nowrap;\n    transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease, background .35s ease;\n  }\n  .bp-nav3__btn::before {\n    content: \"\";\n    position: absolute;\n    inset: 3px;\n    border: 0.5px solid transparent;\n    border-radius: 999px;\n    pointer-events: none;\n    transition: border-color .35s ease;\n  }\n  .bp-nav3__btn:hover {\n    transform: translateY(-2px);\n    box-shadow: 0 10px 24px rgba(80, 70, 50, .1);\n    border-color: #a8865c;\n  }\n  .bp-nav3__btn:hover::before {\n    border-color: rgba(176, 141, 90, .35);\n  }\n\n  /* 推奨ボタン（師資取得課程） */\n  .bp-nav3__btn--pick {\n    background: linear-gradient(180deg, #f5ede0 0%, #faf3e3 100%);\n    border-color: #c4a87a;\n  }\n  .bp-nav3__btn--pick::before {\n    border-color: rgba(176, 141, 90, .25);\n  }\n  .bp-nav3__btn--pick:hover {\n    background: linear-gradient(180deg, #f0e5d0 0%, #f5ecd9 100%);\n    border-color: #a8865c;\n  }\n  .bp-nav3__btn--pick:hover::before {\n    border-color: rgba(176, 141, 90, .5);\n  }\n\n  /* スマホ */\n  @media (max-width: 720px) {\n    .bp-nav3 { padding: 22px 16px; }\n    .bp-nav3__inner { gap: 10px; }\n    .bp-nav3__btn {\n      padding: 10px 22px;\n      font-size: 13px;\n      letter-spacing: .12em;\n    }\n  }\n  @media (max-width: 380px) {\n    .bp-nav3 { padding: 18px 12px; }\n    .bp-nav3__inner { gap: 8px; }\n    .bp-nav3__btn {\n      padding: 9px 18px;\n      font-size: 12px;\n      letter-spacing: .08em;\n    }\n  }\n</style>\n\n<section class=\"bp-nav3\" aria-label=\"主要連結\">\n  <div class=\"bp-nav3__inner\">\n\n    <a class=\"bp-nav3__btn bp-nav3__btn--pick\" href=\"https://botanypainting.com/products/taiwan-special\">\n      師資取得課程\n    </a>\n\n    <a class=\"bp-nav3__btn\" href=\"https://botanypainting.com/products/taiwan-workshop-1\">\n      單日體驗課程\n    </a>\n\n    <a class=\"bp-nav3__btn\" href=\"https://botanypainting.com/pages/world001\">\n      認證講師\n    </a>\n\n  </div>\n</section>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "slideshow_fbMJg6": {
@@ -228,16 +239,6 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
-    "custom_liquid_witELW": {
-      "type": "custom-liquid",
-      "name": "t:sections.custom-liquid.presets.name",
-      "settings": {
-        "custom_liquid": "<style>\n  .bp-cta-slim {\n    padding: 20px;\n    background: transparent;\n    color: #2d2a25;\n    font-family: \"Noto Sans TC\", \"Hiragino Sans\", \"Helvetica Neue\", Arial, \"Microsoft JhengHei\", sans-serif;\n    -webkit-font-smoothing: antialiased;\n  }\n  .bp-cta-slim__inner {\n    max-width: 760px;\n    margin: 0 auto;\n    display: flex;\n    gap: 10px;\n    justify-content: center;\n    flex-wrap: wrap;\n  }\n\n  .bp-cta-slim__btn {\n    flex: 1 1 0;\n    min-width: 200px;\n    display: inline-flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 14px;\n    padding: 14px 22px;\n    background: #ffffff;\n    border: 1px solid #d8d2c2;\n    text-decoration: none;\n    color: #2d2a25;\n    font-size: 14.5px;\n    letter-spacing: .1em;\n    font-family: \"Noto Serif TC\", \"Yu Mincho\", \"Hiragino Mincho ProN\", serif;\n    font-weight: 500;\n    transition: background .25s ease, border-color .25s ease, transform .25s ease;\n  }\n  .bp-cta-slim__btn:hover {\n    background: #f7f4ee;\n    border-color: #b08d5a;\n    transform: translateY(-1px);\n  }\n\n  .bp-cta-slim__btn--pick {\n    background: linear-gradient(180deg, #f5ede0 0%, #faf3e3 100%);\n    border-color: #c4a87a;\n  }\n  .bp-cta-slim__btn--pick:hover {\n    background: linear-gradient(180deg, #f0e5d0 0%, #f5ecd9 100%);\n    border-color: #a8865c;\n  }\n\n  /* 矢印 */\n  .bp-cta-slim__arrow {\n    position: relative;\n    display: inline-block;\n    width: 14px;\n    height: 1px;\n    background: currentColor;\n    flex-shrink: 0;\n    transition: width .25s ease;\n    color: #8a8270;\n  }\n  .bp-cta-slim__btn--pick .bp-cta-slim__arrow { color: #9c7a52; }\n  .bp-cta-slim__arrow::after {\n    content: \"\";\n    position: absolute;\n    right: 0;\n    top: 50%;\n    width: 5px;\n    height: 5px;\n    border-top: 1px solid currentColor;\n    border-right: 1px solid currentColor;\n    transform: translateY(-50%) rotate(45deg);\n  }\n  .bp-cta-slim__btn:hover .bp-cta-slim__arrow { width: 20px; }\n\n  @media (max-width: 480px) {\n    .bp-cta-slim__inner { gap: 8px; }\n    .bp-cta-slim__btn {\n      padding: 12px 16px;\n      font-size: 13.5px;\n      letter-spacing: .05em;\n      min-width: 0;\n    }\n  }\n</style>\n\n<section class=\"bp-cta-slim\" aria-label=\"課程報名\">\n  <div class=\"bp-cta-slim__inner\">\n\n    <a class=\"bp-cta-slim__btn bp-cta-slim__btn--pick\" href=\"https://botanypainting.com/products/taiwan-special\">\n      <span>師資取得課程</span>\n      <span class=\"bp-cta-slim__arrow\"></span>\n    </a>\n\n    <a class=\"bp-cta-slim__btn\" href=\"https://botanypainting.com/products/taiwan-workshop-1\">\n      <span>單日體驗課程</span>\n      <span class=\"bp-cta-slim__arrow\"></span>\n    </a>\n\n  </div>\n</section>",
-        "color_scheme": "",
         "padding_top": 40,
         "padding_bottom": 52
       }
@@ -419,9 +420,9 @@
     "custom_buttons_xP7ENp",
     "localization_selectors_6XALWq",
     "main",
+    "custom_liquid_witELW",
     "slideshow_fbMJg6",
     "rich_text_LEPFa6",
-    "custom_liquid_witELW",
     "1777336773a4c32e06",
     "custom_liquid_QpjFWC",
     "video_7GzqbP",

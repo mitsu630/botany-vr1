@@ -401,6 +401,23 @@
     text-align: center; padding: 8rem 2rem;
     color: rgba(var(--color-foreground), 0.45); font-size: 1.5rem;
   }
+  .instructor-profile__debug {
+    display: none;
+    margin-top: 2.4rem;
+    padding: 1rem;
+    border: 1px dashed rgba(var(--color-foreground), 0.22);
+    border-radius: 0.6rem;
+    background: rgba(255,255,255,0.65);
+    color: rgba(var(--color-foreground), 0.62);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    word-break: break-word;
+  }
+  .instructor-profile__debug.is-visible { display: block; }
+  .instructor-profile__debug code {
+    font-size: 1.1rem;
+    white-space: pre-wrap;
+  }
 
 {%- endstyle -%}
 
@@ -414,6 +431,9 @@
         <p>{{ section.settings.not_found_message | escape }}</p>
       </div>
       <div id="InstructorProfileMount-{{ section.id }}"></div>
+      <div class="instructor-profile__debug" id="InstructorProfileDebug-{{ section.id }}">
+        <code>Instructor profile debug loading...</code>
+      </div>
 
     </div>
   </div>
@@ -497,6 +517,33 @@
     return '';
   }
 
+  function renderDebug(info) {
+    if (getParam('debug') !== '1') return;
+
+    var debug = document.getElementById('InstructorProfileDebug-{{ section.id }}');
+    if (!debug) return;
+
+    var lines = [
+      'DEBUG instructor-profile',
+      'section_id: {{ section.id }}',
+      'url_id: ' + (info.id || '(blank)'),
+      'matched: ' + (info.matched ? 'yes' : 'no'),
+      'matched_handle: ' + (info.handle || '(none)'),
+      'matched_bp_id: ' + (info.bpId || '(none)'),
+      'matched_system_id: ' + (info.systemId || '(none)'),
+      'matched_name: ' + (info.name || '(none)'),
+      'workshops_count: ' + info.workshopsCount,
+      'artworks_count: ' + info.artworksCount,
+      'artworks_collection_setting: {{ section.settings.artworks_collection.handle | default: '(blank)' | escape }}',
+      'artworks_collection_products_count: ' + (info.artworkProductCount || 0),
+      'artwork_scan:',
+      (info.artworkScan && info.artworkScan.length ? info.artworkScan.join('\n') : '(none)')
+    ];
+
+    debug.classList.add('is-visible');
+    debug.innerHTML = '<code>' + escapeHtml(lines.join('\n')) + '</code>';
+  }
+
   function renderWorkshops(instructor) {
     var workshops = instructor.workshops || [];
     if (!workshops.length) return '';
@@ -567,6 +614,19 @@
       return (x.handle && x.handle === id) || (x.bp_id && x.bp_id === id);
     }) || null;
     var isActive = instructor && instructor.bp_is_active === true;
+
+    renderDebug({
+      id: id,
+      matched: !!instructor,
+      handle: instructor && instructor.handle,
+      bpId: instructor && instructor.bp_id,
+      systemId: instructor && instructor.system_id,
+      name: instructor && instructor.name,
+      workshopsCount: instructor && instructor.workshops ? instructor.workshops.length : 0,
+      artworksCount: instructor && instructor.artworks ? instructor.artworks.length : 0,
+      artworkProductCount: instructor && instructor.artwork_product_count,
+      artworkScan: instructor && instructor.artwork_scan
+    });
 
     if (!instructor || !isActive) {
       nf.hidden = false;
@@ -762,6 +822,84 @@
       ],
       "workshop_heading": {{ workshop_heading | json }},
       "artworks_heading": {{ artworks_heading | json }},
+      "artwork_product_count": {{ artworks_collection.products.size | default: 0 | json }},
+      "artwork_scan": [
+        {%- liquid
+          assign scan_count = 0
+          assign has_scan = false
+        -%}
+        {%- if artworks_collection != blank and artworks_collection.products.size > 0 -%}
+          {%- for product in artworks_collection.products -%}
+            {%- liquid
+              if scan_count >= 40
+                break
+              endif
+
+              assign scan_hyphen_metafield = product.metafields.custom['koushi-item-link']
+              assign scan_underscore_metafield = product.metafields.custom['koushi_item_link']
+              assign scan_metafield = scan_hyphen_metafield
+              if scan_metafield == blank
+                assign scan_metafield = scan_underscore_metafield
+              endif
+
+              assign scan_text = ''
+              capture scan_text
+                echo scan_metafield.value | json
+                echo ' '
+                echo scan_metafield.reference | json
+                echo ' '
+                echo scan_metafield.references | json
+                echo ' '
+                echo scan_metafield | json
+              endcapture
+
+              assign scan_match = false
+              if scan_text contains instructor_handle
+                assign scan_match = true
+              endif
+              if instructor_bp_id != blank and scan_text contains instructor_bp_id
+                assign scan_match = true
+              endif
+              if instructor_system_id != blank and scan_text contains instructor_system_id
+                assign scan_match = true
+              endif
+
+              capture scan_line
+                echo 'product='
+                echo product.title
+                echo ' | handle='
+                echo product.handle
+                echo ' | hyphen_blank='
+                if scan_hyphen_metafield == blank
+                  echo 'true'
+                else
+                  echo 'false'
+                endif
+                echo ' | underscore_blank='
+                if scan_underscore_metafield == blank
+                  echo 'true'
+                else
+                  echo 'false'
+                endif
+                echo ' | match='
+                if scan_match
+                  echo 'true'
+                else
+                  echo 'false'
+                endif
+                echo ' | text='
+                echo scan_text | strip
+              endcapture
+            -%}
+            {%- if has_scan -%},{%- endif -%}
+            {{ scan_line | strip | json }}
+            {%- liquid
+              assign has_scan = true
+              assign scan_count = scan_count | plus: 1
+            -%}
+          {%- endfor -%}
+        {%- endif -%}
+      ],
       "workshops": [
         {%- liquid
           assign has_workshop = false

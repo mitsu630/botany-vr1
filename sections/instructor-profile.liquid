@@ -935,10 +935,6 @@
         {%- if artworks_collection != blank and artworks_collection.products.size > 0 -%}
           {%- for product in artworks_collection.products -%}
             {%- liquid
-              if artwork_count >= artwork_limit
-                break
-              endif
-
               assign linked_instructor_metafield = product.metafields.custom['koushi-item-link']
               if linked_instructor_metafield == blank
                 assign linked_instructor_metafield = product.metafields.custom['koushi_item_link']
@@ -1051,6 +1047,10 @@
               unless instructor_matched
                 continue
               endunless
+
+              if artwork_count >= artwork_limit
+                break
+              endif
 
               assign artwork_image = ''
               if product.featured_media != blank

@@ -103,7 +103,7 @@
         "heading_cejmJX": {
           "type": "heading",
           "settings": {
-            "heading": "ワークショップ詳細",
+            "heading": "<strong>ワークショップ詳細</strong>",
             "heading_size": "h2"
           }
         },
@@ -125,7 +125,6 @@
         "text_9D9WV9",
         "text_e6nVny"
       ],
-      "disabled": true,
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
@@ -141,6 +140,7 @@
       "blocks": {
         "ai_gen_block_387f5f4_mzTxg3": {
           "type": "ai_gen_block_387f5f4",
+          "disabled": true,
           "settings": {
             "section_1_enabled": true,
             "section_1_heading": "ボタニーペインティングとは",

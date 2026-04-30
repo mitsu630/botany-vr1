@@ -483,6 +483,17 @@
     }
   }
 
+  function getInstructorId() {
+    var id = (getParam('id') || '').trim();
+    if (id) return id;
+
+    if (window.Shopify && window.Shopify.designMode) {
+      return {{ section.settings.preview_instructor_id | json }} || '';
+    }
+
+    return '';
+  }
+
   function renderWorkshops(instructor) {
     var workshops = instructor.workshops || [];
     if (!workshops.length) return '';
@@ -550,7 +561,7 @@
     var nf = document.getElementById('InstructorProfileNotFound-{{ section.id }}');
     if (!mount || !nf) return;
 
-    var id = (getParam('id') || '').trim();
+    var id = getInstructorId();
     var dataEl = document.getElementById('InstructorProfileData-{{ section.id }}');
     var instructors = [];
     var raw = (dataEl && dataEl.textContent) ? dataEl.textContent : '';
@@ -712,6 +723,7 @@
 
       assign works = m.bp_photo_work001.value
       assign instructor_handle = m.system.handle
+      assign instructor_bp_id = bp_id
     -%}
     {
       "handle": {{ m.system.handle | json }},
@@ -747,11 +759,15 @@
             {%- liquid
               assign linked_instructor = variant.metafields.custom['koushi-item-link'].value
               assign linked_handle = ''
+              assign linked_bp_id = ''
               if linked_instructor and linked_instructor.system and linked_instructor.system.handle != blank
                 assign linked_handle = linked_instructor.system.handle
               endif
+              if linked_instructor and linked_instructor.bp_id and linked_instructor.bp_id.value != blank
+                assign linked_bp_id = linked_instructor.bp_id.value
+              endif
 
-              if linked_handle != instructor_handle
+              if linked_handle != instructor_handle and linked_bp_id != instructor_bp_id
                 continue
               endif
 
@@ -814,11 +830,15 @@
 
               assign linked_instructor = product.metafields.custom['koushi-item-link'].value
               assign linked_handle = ''
+              assign linked_bp_id = ''
               if linked_instructor and linked_instructor.system and linked_instructor.system.handle != blank
                 assign linked_handle = linked_instructor.system.handle
               endif
+              if linked_instructor and linked_instructor.bp_id and linked_instructor.bp_id.value != blank
+                assign linked_bp_id = linked_instructor.bp_id.value
+              endif
 
-              if linked_handle != instructor_handle
+              if linked_handle != instructor_handle and linked_bp_id != instructor_bp_id
                 continue
               endif
 
@@ -1029,6 +1049,13 @@
       "id": "not_found_message",
       "label": "講師が見つからない場合のメッセージ",
       "default": "講師情報が見つかりませんでした。"
+    },
+    {
+      "type": "text",
+      "id": "preview_instructor_id",
+      "label": "テーマエディタ用プレビュー講師ID",
+      "info": "テーマエディタではURLパラメータ id が渡らないため、プレビュー表示に使う講師の bp_id または handle を指定します。公開ページではURLの id を優先します。",
+      "default": "bp-pro2026-shimosako"
     },
     {
       "type": "header",

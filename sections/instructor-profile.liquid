@@ -405,6 +405,22 @@
     text-align: center; padding: 8rem 2rem;
     color: rgba(var(--color-foreground), 0.45); font-size: 1.5rem;
   }
+
+  .instructor-profile__debug {
+    margin-top: 2.4rem;
+    padding: 0.8rem 1rem;
+    border: 1px dashed rgba(var(--color-foreground), 0.18);
+    border-radius: 0.6rem;
+    background: rgba(255,255,255,0.45);
+    color: rgba(var(--color-foreground), 0.55);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    word-break: break-word;
+  }
+  .instructor-profile__debug code {
+    font-size: 1.1rem;
+    white-space: pre-wrap;
+  }
 {%- endstyle -%}
 
 <div class="instructor-profile color-{{ section.settings.color_scheme }} gradient">
@@ -417,6 +433,9 @@
         <p>{{ section.settings.not_found_message | escape }}</p>
       </div>
       <div id="InstructorProfileMount-{{ section.id }}"></div>
+      <div class="instructor-profile__debug" id="InstructorProfileDebug-{{ section.id }}" aria-label="講師プロフィール デバッグ情報">
+        <code>Instructor profile debug loading...</code>
+      </div>
 
     </div>
   </div>
@@ -492,6 +511,32 @@
     }
 
     return '';
+  }
+
+  function renderDebug(info) {
+    var debug = document.getElementById('InstructorProfileDebug-{{ section.id }}');
+    if (!debug) return;
+
+    var lines = [
+      'DEBUG instructor-profile',
+      'section_id: {{ section.id }}',
+      'section_file: sections/instructor-profile.liquid',
+      'url_id: ' + (info.id || '(blank)'),
+      'preview_instructor_id: {{ section.settings.preview_instructor_id | escape }}',
+      'instructors_total: ' + info.total,
+      'matched: ' + (info.matched ? 'yes' : 'no'),
+      'matched_handle: ' + (info.handle || '(none)'),
+      'matched_bp_id: ' + (info.bpId || '(none)'),
+      'matched_name: ' + (info.name || '(none)'),
+      'matched_active: ' + (info.active ? 'true' : 'false'),
+      'workshops_count: ' + info.workshopsCount,
+      'artworks_count: ' + info.artworksCount,
+      'workshop_product_setting: {{ section.settings.workshop_product.handle | default: 'workshop' | escape }}',
+      'artworks_collection_setting: {{ section.settings.artworks_collection.handle | default: '(blank)' | escape }}',
+      'updated_marker: 2026-04-30 instructor related content debug'
+    ];
+
+    debug.innerHTML = '<code>' + escapeHtml(lines.join('\n')) + '</code>';
   }
 
   function renderWorkshops(instructor) {
@@ -572,6 +617,18 @@
       return (x.handle && x.handle === id) || (x.bp_id && x.bp_id === id);
     }) || null;
     var isActive = instructor && instructor.bp_is_active === true;
+
+    renderDebug({
+      id: id,
+      total: instructors.length,
+      matched: !!instructor,
+      handle: instructor && instructor.handle,
+      bpId: instructor && instructor.bp_id,
+      name: instructor && instructor.name,
+      active: isActive,
+      workshopsCount: instructor && instructor.workshops ? instructor.workshops.length : 0,
+      artworksCount: instructor && instructor.artworks ? instructor.artworks.length : 0
+    });
 
     if (!instructor || !isActive) {
       nf.hidden = false;

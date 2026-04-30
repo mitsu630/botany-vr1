@@ -78,6 +78,7 @@
     },
     "custom_standalone_image_FJCfPF": {
       "type": "custom-standalone-image",
+      "disabled": true,
       "name": "t:sections.custom-standalone-image.presets.name",
       "settings": {
         "image": "shopify://shop_images/shizu101_04f79893-5988-4e45-bf6f-b55db319e3a7.webp",
@@ -95,6 +96,89 @@
         "padding_bottom": 0,
         "padding_left": 0
       }
+    },
+    "rich_text_KzMKVq": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_cejmJX": {
+          "type": "heading",
+          "settings": {
+            "heading": "ワークショップ詳細",
+            "heading_size": "h2"
+          }
+        },
+        "text_9D9WV9": {
+          "type": "text",
+          "settings": {
+            "text": "<h6>[ ボタニーペインティングとは ]</h6><h6>天然の葉をパネルに貼り、彩るアートです。<br/>自然の葉脈と、あなたの選ぶ色が重なり合います。<br/>配置と色付けだけなので、初めての方も安心！<br/>誰が作っても、プロのような本格的な仕上がりになります。</h6><h6>[ こんな方におすすめ ]</h6><h6>絵は苦手だけど、何か作ることに憧れがある方。<br/>忙しい日常を忘れて、無心でリフレッシュしたい方。<br/>自分で作ったおしゃれなインテリアを部屋に飾りたい方。<br/>新しい趣味や、没頭できる時間を探している方。</h6><h6>[ 作った作品の楽しみ方 ]</h6><h6>玄関やリビングを彩る、世界に一つのインテリアに。<br/>非常に軽い素材なので、画鋲ひとつで壁に飾れます。<br/>大切な方への、心のこもった手作りギフトとしても人気です。<br/>季節ごとに色を変えて、いくつか並べて飾るのも素敵です。</h6>"
+          }
+        },
+        "text_e6nVny": {
+          "type": "text",
+          "settings": {
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_cejmJX",
+        "text_9D9WV9",
+        "text_e6nVny"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "17775293465f4571c2": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_387f5f4_mzTxg3": {
+          "type": "ai_gen_block_387f5f4",
+          "settings": {
+            "section_1_enabled": true,
+            "section_1_heading": "ボタニーペインティングとは",
+            "section_1_text": "<h6>天然の葉をパネルに貼り、彩るアートです。<br/>自然の葉脈と、あなたの選ぶ色が重なり合います。<br/>配置と色付けだけなので、初めての方も安心！<br/>りになります。</h6>",
+            "section_2_enabled": true,
+            "section_2_heading": "こんな方におすすめ",
+            "section_2_text": "<h6>絵は苦手だけど、何か作ることに憧れがある方。忙しい日常を忘れて、無心でリフレッシュしたい方。自分で作ったおしゃれなインテリアを部屋に飾りたい方。新しい趣味や、没頭できる時間を探している方。</h6>",
+            "section_3_enabled": true,
+            "section_3_heading": "作った作品の楽しみ方",
+            "section_3_text": "<h6>玄関やリビングを彩る、世界に一つのインテリアに。非常に軽い素材なので、画鋲ひとつで壁に飾れます。大切な方への、心のこもった手作りギフトとしても人気です。季節ごとに色を変えて、いくつか並べて飾るのも素敵です。</h6>",
+            "section_4_enabled": false,
+            "section_4_heading": "",
+            "section_4_text": "",
+            "desktop_width_percent": 100,
+            "text_alignment": "center",
+            "section_padding": 32,
+            "section_spacing": 32,
+            "border_radius": 0,
+            "show_dividers": true,
+            "divider_thickness": 1,
+            "divider_spacing": 16,
+            "divider_color": "#e3bab3",
+            "heading_size": 20,
+            "heading_spacing": 12,
+            "text_size": 15,
+            "line_height": 1.8,
+            "paragraph_spacing": 12,
+            "background_color": "#e9dccd",
+            "heading_color": "#36384c",
+            "text_color": "#36384c"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_387f5f4_mzTxg3"
+      ],
+      "settings": {}
     },
     "custom_standalone_image_ytdCcG": {
       "type": "custom-standalone-image",
@@ -597,6 +681,8 @@
     "rich_text_nKXQka",
     "autoplay_loop_video_ETx7df",
     "custom_standalone_image_FJCfPF",
+    "rich_text_KzMKVq",
+    "17775293465f4571c2",
     "custom_standalone_image_ytdCcG",
     "custom_standalone_image_agbXCQ",
     "custom_standalone_image_Dxhtt8",

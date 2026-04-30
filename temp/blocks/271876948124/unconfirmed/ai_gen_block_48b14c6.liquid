@@ -1,0 +1,353 @@
+{% doc %}
+  @prompt
+    写真付きの２ステップ。
+    １、２って感じで
+    写真は真ん中に
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-two-step-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.section_padding }}px 0;
+  }
+
+  .ai-two-step-container-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.step_gap }}px;
+  }
+
+  .ai-two-step-item-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: {{ block.settings.content_gap }}px;
+  }
+
+  .ai-two-step-number-{{ ai_gen_id }} {
+    width: {{ block.settings.number_size }}px;
+    height: {{ block.settings.number_size }}px;
+    border-radius: 50%;
+    background-color: {{ block.settings.number_bg_color }};
+    color: {{ block.settings.number_text_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: {{ block.settings.number_font_size }}px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .ai-two-step-image-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: {{ block.settings.image_max_width }}px;
+  }
+
+  .ai-two-step-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-two-step-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-two-step-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-two-step-content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ai-two-step-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_font_size }}px;
+    color: {{ block.settings.title_color }};
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .ai-two-step-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_font_size }}px;
+    color: {{ block.settings.description_color }};
+    line-height: 1.6;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-two-step-{{ ai_gen_id }} {
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<two-step-guide-{{ ai_gen_id }} class="ai-two-step-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-two-step-container-{{ ai_gen_id }}">
+    {% for i in (1..2) %}
+      {% liquid
+        assign title_key = 'step_' | append: i | append: '_title'
+        assign description_key = 'step_' | append: i | append: '_description'
+        assign image_key = 'step_' | append: i | append: '_image'
+        
+        assign step_title = block.settings[title_key]
+        assign step_description = block.settings[description_key]
+        assign step_image = block.settings[image_key]
+      %}
+      
+      <div class="ai-two-step-item-{{ ai_gen_id }}">
+        <div class="ai-two-step-number-{{ ai_gen_id }}">{{ i }}</div>
+        
+        <div class="ai-two-step-image-wrapper-{{ ai_gen_id }}">
+          {% if step_image %}
+            <img
+              src="{{ step_image | image_url: width: 800 }}"
+              alt="{{ step_image.alt | escape }}"
+              loading="lazy"
+              width="{{ step_image.width }}"
+              height="{{ step_image.height }}"
+              class="ai-two-step-image-{{ ai_gen_id }}"
+            >
+          {% else %}
+            <div class="ai-two-step-image-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+        
+        <div class="ai-two-step-content-{{ ai_gen_id }}">
+          {% if step_title != blank %}
+            <h3 class="ai-two-step-title-{{ ai_gen_id }}">{{ step_title }}</h3>
+          {% endif %}
+          
+          {% if step_description != blank %}
+            <div class="ai-two-step-description-{{ ai_gen_id }}">{{ step_description }}</div>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</two-step-guide-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class TwoStepGuide{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+      }
+    }
+
+    customElements.define('two-step-guide-{{ ai_gen_id }}', TwoStepGuide{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "2ステップガイド",
+  "settings": [
+    {
+      "type": "header",
+      "content": "ステップ1"
+    },
+    {
+      "type": "image_picker",
+      "id": "step_1_image",
+      "label": "画像"
+    },
+    {
+      "type": "text",
+      "id": "step_1_title",
+      "label": "タイトル",
+      "default": "ステップ1"
+    },
+    {
+      "type": "richtext",
+      "id": "step_1_description",
+      "label": "説明",
+      "default": "<p>最初のステップの説明をここに入力してください。</p>"
+    },
+    {
+      "type": "header",
+      "content": "ステップ2"
+    },
+    {
+      "type": "image_picker",
+      "id": "step_2_image",
+      "label": "画像"
+    },
+    {
+      "type": "text",
+      "id": "step_2_title",
+      "label": "タイトル",
+      "default": "ステップ2"
+    },
+    {
+      "type": "richtext",
+      "id": "step_2_description",
+      "label": "説明",
+      "default": "<p>2番目のステップの説明をここに入力してください。</p>"
+    },
+    {
+      "type": "header",
+      "content": "レイアウト"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "デスクトップ幅",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "セクション余白",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "step_gap",
+      "label": "ステップ間の間隔",
+      "min": 20,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "label": "コンテンツ間隔",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "番号スタイル"
+    },
+    {
+      "type": "range",
+      "id": "number_size",
+      "label": "番号サイズ",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "number_font_size",
+      "label": "番号フォントサイズ",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "number_bg_color",
+      "label": "番号背景色",
+      "default": "#613a43"
+    },
+    {
+      "type": "color",
+      "id": "number_text_color",
+      "label": "番号テキスト色",
+      "default": "#e9dccd"
+    },
+    {
+      "type": "header",
+      "content": "画像スタイル"
+    },
+    {
+      "type": "range",
+      "id": "image_max_width",
+      "label": "画像最大幅",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "画像角丸",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "テキストスタイル"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "タイトルフォントサイズ",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "タイトル色",
+      "default": "#36384c"
+    },
+    {
+      "type": "range",
+      "id": "description_font_size",
+      "label": "説明フォントサイズ",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "説明色",
+      "default": "#36384c"
+    }
+  ],
+  "presets": [
+    {
+      "name": "2ステップガイド"
+    }
+  ]
+}
+{% endschema %}

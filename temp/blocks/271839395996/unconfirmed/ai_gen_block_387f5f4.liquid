@@ -15,7 +15,7 @@
     玄関やリビングを彩る、世界に一つのインテリアに。
     非常に軽い素材なので、画鋲ひとつで壁に飾れます。
     大切な方への、心のこもった手作りギフトとしても人気です。
-    季節ごとに色を変えて、いくつか並べて飾るのも素敵です。
+    季節ごとに色を変えて、いくつか並べて飾るのも素敵です。, 中央揃えに
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
@@ -27,6 +27,7 @@
     padding: {{ block.settings.section_padding }}px;
     background-color: {{ block.settings.background_color }};
     border-radius: {{ block.settings.border_radius }}px;
+    margin: 0 auto;
   }
 
   .ai-workshop-details__section-{{ ai_gen_id }} {
@@ -277,7 +278,7 @@
           "label": "右"
         }
       ],
-      "default": "left"
+      "default": "center"
     },
     {
       "type": "range",

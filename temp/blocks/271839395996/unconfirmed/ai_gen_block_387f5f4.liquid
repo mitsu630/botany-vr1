@@ -1,6 +1,431 @@
+{% doc %}
+  @prompt
+    ワークショップ詳細
+    [ ボタニーペインティングとは ]
+    天然の葉をパネルに貼り、彩るアートです。
+    自然の葉脈と、あなたの選ぶ色が重なり合います。
+    配置と色付けだけなので、初めての方も安心！
+    誰が作っても、プロのような本格的な仕上がりになります。
+    [ こんな方におすすめ ]
+    絵は苦手だけど、何か作ることに憧れがある方。
+    忙しい日常を忘れて、無心でリフレッシュしたい方。
+    自分で作ったおしゃれなインテリアを部屋に飾りたい方。
+    新しい趣味や、没頭できる時間を探している方。
+    [ 作った作品の楽しみ方 ]
+    玄関やリビングを彩る、世界に一つのインテリアに。
+    非常に軽い素材なので、画鋲ひとつで壁に飾れます。
+    大切な方への、心のこもった手作りギフトとしても人気です。
+    季節ごとに色を変えて、いくつか並べて飾るのも素敵です。, 中央揃えに
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-workshop-details-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.section_padding }}px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    margin: 0 auto;
+  }
+
+  .ai-workshop-details__section-{{ ai_gen_id }} {
+    margin-bottom: {{ block.settings.section_spacing }}px;
+  }
+
+  .ai-workshop-details__section-{{ ai_gen_id }}:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-workshop-details__heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 {{ block.settings.heading_spacing }}px;
+    text-align: {{ block.settings.text_alignment }};
+    font-weight: 600;
+  }
+
+  .ai-workshop-details__text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: {{ block.settings.line_height }};
+    margin: 0;
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-workshop-details__text-{{ ai_gen_id }} p {
+    margin: 0 0 {{ block.settings.paragraph_spacing }}px;
+  }
+
+  .ai-workshop-details__text-{{ ai_gen_id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-workshop-details__divider-{{ ai_gen_id }} {
+    height: {{ block.settings.divider_thickness }}px;
+    background-color: {{ block.settings.divider_color }};
+    border: none;
+    margin: {{ block.settings.divider_spacing }}px 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-workshop-details-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding | times: 0.7 }}px;
+    }
+
+    .ai-workshop-details__heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.85 }}px;
+    }
+
+    .ai-workshop-details__text-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-workshop-details-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.section_1_enabled %}
+    <div class="ai-workshop-details__section-{{ ai_gen_id }}">
+      {% if block.settings.section_1_heading != blank %}
+        <h2 class="ai-workshop-details__heading-{{ ai_gen_id }}">
+          {{ block.settings.section_1_heading }}
+        </h2>
+      {% endif %}
+      {% if block.settings.section_1_text != blank %}
+        <div class="ai-workshop-details__text-{{ ai_gen_id }}">
+          {{ block.settings.section_1_text }}
+        </div>
+      {% endif %}
+    </div>
+    {% if block.settings.show_dividers and block.settings.section_2_enabled %}
+      <hr class="ai-workshop-details__divider-{{ ai_gen_id }}">
+    {% endif %}
+  {% endif %}
+
+  {% if block.settings.section_2_enabled %}
+    <div class="ai-workshop-details__section-{{ ai_gen_id }}">
+      {% if block.settings.section_2_heading != blank %}
+        <h2 class="ai-workshop-details__heading-{{ ai_gen_id }}">
+          {{ block.settings.section_2_heading }}
+        </h2>
+      {% endif %}
+      {% if block.settings.section_2_text != blank %}
+        <div class="ai-workshop-details__text-{{ ai_gen_id }}">
+          {{ block.settings.section_2_text }}
+        </div>
+      {% endif %}
+    </div>
+    {% if block.settings.show_dividers and block.settings.section_3_enabled %}
+      <hr class="ai-workshop-details__divider-{{ ai_gen_id }}">
+    {% endif %}
+  {% endif %}
+
+  {% if block.settings.section_3_enabled %}
+    <div class="ai-workshop-details__section-{{ ai_gen_id }}">
+      {% if block.settings.section_3_heading != blank %}
+        <h2 class="ai-workshop-details__heading-{{ ai_gen_id }}">
+          {{ block.settings.section_3_heading }}
+        </h2>
+      {% endif %}
+      {% if block.settings.section_3_text != blank %}
+        <div class="ai-workshop-details__text-{{ ai_gen_id }}">
+          {{ block.settings.section_3_text }}
+        </div>
+      {% endif %}
+    </div>
+    {% if block.settings.show_dividers and block.settings.section_4_enabled %}
+      <hr class="ai-workshop-details__divider-{{ ai_gen_id }}">
+    {% endif %}
+  {% endif %}
+
+  {% if block.settings.section_4_enabled %}
+    <div class="ai-workshop-details__section-{{ ai_gen_id }}">
+      {% if block.settings.section_4_heading != blank %}
+        <h2 class="ai-workshop-details__heading-{{ ai_gen_id }}">
+          {{ block.settings.section_4_heading }}
+        </h2>
+      {% endif %}
+      {% if block.settings.section_4_text != blank %}
+        <div class="ai-workshop-details__text-{{ ai_gen_id }}">
+          {{ block.settings.section_4_text }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "ワークショップ詳細",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "セクション1"
+    },
+    {
+      "type": "checkbox",
+      "id": "section_1_enabled",
+      "label": "セクション1を表示",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "section_1_heading",
+      "label": "見出し",
+      "default": "ボタニーペインティングとは"
+    },
+    {
+      "type": "richtext",
+      "id": "section_1_text",
+      "label": "本文",
+      "default": "<p>天然の葉をパネルに貼り、彩るアートです。<br>自然の葉脈と、あなたの選ぶ色が重なり合います。<br>配置と色付けだけなので、初めての方も安心！<br>誰が作っても、プロのような本格的な仕上がりになります。</p>"
+    },
+    {
+      "type": "header",
+      "content": "セクション2"
+    },
+    {
+      "type": "checkbox",
+      "id": "section_2_enabled",
+      "label": "セクション2を表示",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "section_2_heading",
+      "label": "見出し",
+      "default": "こんな方におすすめ"
+    },
+    {
+      "type": "richtext",
+      "id": "section_2_text",
+      "label": "本文",
+      "default": "<p>絵は苦手だけど、何か作ることに憧れがある方。<br>忙しい日常を忘れて、無心でリフレッシュしたい方。<br>自分で作ったおしゃれなインテリアを部屋に飾りたい方。<br>新しい趣味や、没頭できる時間を探している方。</p>"
+    },
+    {
+      "type": "header",
+      "content": "セクション3"
+    },
+    {
+      "type": "checkbox",
+      "id": "section_3_enabled",
+      "label": "セクション3を表示",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "section_3_heading",
+      "label": "見出し",
+      "default": "作った作品の楽しみ方"
+    },
+    {
+      "type": "richtext",
+      "id": "section_3_text",
+      "label": "本文",
+      "default": "<p>玄関やリビングを彩る、世界に一つのインテリアに。<br>非常に軽い素材なので、画鋲ひとつで壁に飾れます。<br>大切な方への、心のこもった手作りギフトとしても人気です。<br>季節ごとに色を変えて、いくつか並べて飾るのも素敵です。</p>"
+    },
+    {
+      "type": "header",
+      "content": "セクション4"
+    },
+    {
+      "type": "checkbox",
+      "id": "section_4_enabled",
+      "label": "セクション4を表示",
+      "default": false
+    },
+    {
+      "type": "inline_richtext",
+      "id": "section_4_heading",
+      "label": "見出し"
+    },
+    {
+      "type": "richtext",
+      "id": "section_4_text",
+      "label": "本文"
+    },
+    {
+      "type": "header",
+      "content": "レイアウト"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "デスクトップ幅",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "テキスト配置",
+      "options": [
+        {
+          "value": "left",
+          "label": "左"
+        },
+        {
+          "value": "center",
+          "label": "中央"
+        },
+        {
+          "value": "right",
+          "label": "右"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "セクション内側余白",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "section_spacing",
+      "label": "セクション間隔",
+      "min": 16,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "角丸",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "区切り線"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dividers",
+      "label": "区切り線を表示",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "divider_thickness",
+      "label": "区切り線の太さ",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "divider_spacing",
+      "label": "区切り線の余白",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "区切り線の色",
+      "default": "#e3bab3"
+    },
+    {
+      "type": "header",
+      "content": "タイポグラフィ"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "見出しサイズ",
+      "min": 14,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "label": "見出し下余白",
+      "min": 4,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "本文サイズ",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "line_height",
+      "label": "行の高さ",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "default": 1.8
+    },
+    {
+      "type": "range",
+      "id": "paragraph_spacing",
+      "label": "段落間隔",
+      "min": 4,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "カラー"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色",
+      "default": "#e9dccd"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "見出し色",
+      "default": "#36384c"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "本文色",
+      "default": "#36384c"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ワークショップ詳細"
+    }
+  ]
+}
 {% endschema %}

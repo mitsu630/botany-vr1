@@ -421,6 +421,12 @@
 
 <script>
 (function () {
+  var blockOrder = [
+    {%- for block in section.blocks -%}
+      {{ block.type | json }}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ];
+
   function initGallery(el) {
     var triggers = Array.from(el.querySelectorAll('[data-lightbox-trigger]'));
     var modal    = el.querySelector('[data-lightbox-modal]');
@@ -646,7 +652,19 @@
       ig += '</div>';
     }
 
-    mount.innerHTML = hero + bio + gallery + workshops + artworks + ig;
+    var parts = {
+      profile_header: hero,
+      bio: bio,
+      gallery: gallery,
+      workshops: workshops,
+      artworks: artworks,
+      ig_embed: ig
+    };
+    var orderedHtml = blockOrder.map(function (type) {
+      return parts[type] || '';
+    }).join('');
+
+    mount.innerHTML = orderedHtml || (hero + bio + gallery + workshops + artworks + ig);
 
     // init lightbox galleries after render
     mount.querySelectorAll('[data-instructor-gallery]').forEach(initGallery);
